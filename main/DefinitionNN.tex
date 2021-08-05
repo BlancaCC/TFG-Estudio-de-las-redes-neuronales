@@ -1,15 +1,12 @@
-\documentclass{book}
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{amsfonts}
-
+\input{header.tex}
 
 \begin{document}
 
 \chapter{Perceptron}
 
-In order to simplify the Neural Networks' introduction, we are going to describe first 
-what Perceptrons are. 
+In order to simplify the Neural Networks' introduction, we are going 
+to describe first 
+what Perceptron us. 
 
 The perceptron algorithm for halfspaces.
  \footnote{A half-space is either of the two parts into which a hyperplane divides a affine space. } 
@@ -20,4 +17,23 @@ The perceptron algorithm for halfspaces.
  The class of affine function  $L_d$ is the defined as follows:
 
  $$L_d = \{ h_{w,d}: w \in \mathbb{R}^d, b \in \mathbb R\}$$
+
+Based on a target function
+and  training examples fixed from a specific decision problem.  
+
+We define a simple learning model as a : 
+Let define the input space as $\mathcal{X} = \R^d$ where $d \in \N$ and $\X$ 
+the $d$-dimensional Euclidian space. 
+
+The output space is defining as $\mathcal{Y}={+1, -1}$. 
+
+We specify the hypothesis set $\mathcal{H} = \{ h(\x) = sign(w^T \x +b)$ where $w, \x \in \X$
+and $b \in \R$. 
+
+The weight vector is $w$ and $\x$ are the elements from the training set. 
+
+The model of $\mathcal{H}$ is called the \textit{perceptron}.  
+
+And and simple example 
+
 \end{document}
