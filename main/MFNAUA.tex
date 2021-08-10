@@ -25,6 +25,63 @@ Firstly we are going to start with some basic definitions.
     denotes the usual dot product of vector, and $b \in \R$ is a scalar.  
     
 \end{definition}
+
+\begin{definition} Squashing function
+
+    A function $\psi: \R \longrightarrow [0,1]$ is a squashing function if
+    \begin{itemize}
+        \item It is non-decreasing.
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 
+        $.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+    \end{itemize}  
+
+    Squashing functions are measurable due to the fact that have at most 
+    countably discontinuities.   
+
+    Most common examples are: 
+    \begin{itemize}
+        \item Threshold functions.\footnote{
+         A threshold function is a function that takes the value 1 
+         is a specified function of the arguments exceeds a given threshold and 
+         0 otherwise. \cite{threshold-definition} 
+        }
+
+        \item Indicator functions: $\psi(\lambda) = 1_{\{\lambda > 0\}}$. 
+        \item The ramp function: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}$
+    
+        \item The cosine squasher of Gallant and White (1988)
+        \begin{equation*}
+    \psi(lambda )= (1 + cos(\lambda + 3 \frac{\pi}{2}) \frac{1}{2}) 
+     1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
+     1_{\{ \frac{\pi}{2} < \lambda \}}
+    \end{equation*}
+    \end{itemize}
+\end{definition}  
+
+\begin{definition} 
+    Now we are going to define the familiar class of function of autput functions 
+    for a single hidden layer feedforward. 
+
+
+    For any Borel measurable function $\G(\cdot)$ mapping $\R$ to $\R$ and 
+    $r \in  \N$, let define the class of function 
+
+    \begin{equation*}
+        \begin{split}
+        \C = \{ 
+        f: \R^r \longrightarrow \R = \\
+        \sum_{j = 1} ^q ( \prod_{k=1}^{l_j}
+        \G(A_{jk}(x)), 
+        x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j \in \N
+        )
+        \}
+    \end{split}
+    \end{equation*}
+    
+\end{definition}
+
+
     
 
 
