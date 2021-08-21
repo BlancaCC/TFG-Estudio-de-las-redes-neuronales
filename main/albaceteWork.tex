@@ -1,0 +1,45 @@
+\input{header}
+\input{albaceteHeader}
+
+
+\begin{definition} Dense subset  
+    Let $(X,\rho)$ be a metric space and $S \subseteq X$ is $p-$\textit{dense} in a subset T
+    if for every $\epsilon \in S$ and for every $t \in T$ 
+    there is an $s \in S$ such that $\rho (s, t) < \epsilon$. 
+\end{definition}  
+
+(The same that in the paper)
+The concept under this definition is that an element of S can approximate a element of T to any desired degree of 
+accuracy. In our theorems below, T and X correspond to $\mathcal{C}^r$ or $\mathcal{M}^r$, $S$ corresponds to 
+$\C$ or $\Cp$ fo specific choices of $\mathcal G$ and $\rho$ is chosen appropriately.
+
+
+
+\begin{definition} Uniformly dense on compacta in $\mathcal{C} ^r$
+    A subset $S$ of $\Cr$ is said to be \textit{uniformly dense on compacta in } $\Cr$ if for every compact subset
+    $K \subset \R^r$, $S$ is a $\rho_k$-dense in $\Cr$, where for $f,g \in Cr$ 
+    $\rho_k(f,g) \equiv sup_{x\in k} |f(x) - g(x)|$. 
+\end{definition}
+
+\begin{definition} Functions' convergence uniformly on compacta
+    A sequence of functions  $\{f_n\}$ \mathtit{convergence to a function f uniformly on compacta} if for all
+    compact $K \subset \R ^r$  $\{ \rho_k(f_n), f) \} \rightarrow 0$ as $\{n \} \rightarrow \infty$
+\end{definition}
+
+
+
+We are ready to proof our first theorem, Its idea 
+is that $\sum \prod$ feedforward networks are capable of arbitrarily accurate approximation to 
+any real-valued continuos function over a compact set. 
+
+This individually is interesting since if a phenomenon could be represented by the lasted conditions 
+it could be learnt. (Another question maybe for physician or philosophers would be
+that what kind of real phenomenons have those properties, but any way, 
+we are going to achieve a more general theorem :D) 
+
+We can argue that be in a compact function is not so restrictive. 
+
+\begin{theorem} $\Cp$ i uniformly dense on compacta in $\Cr$
+ Let G be any continuous non constant function from $\R \rightarrow \R.$ 
+ Then $\Cp$ is uniformly dense on compacta in $\Cr .$   
+\end{theorem}
