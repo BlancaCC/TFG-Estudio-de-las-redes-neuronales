@@ -11,6 +11,15 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 
+% Bibliography
+\usepackage{csquotes}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{MFNAUA.bib}
+
 %Commands
 \newcommand{\R}{\mathbb{R}} %Real numbers 
 \newcommand{\N}{\mathbb{N}-\{0\}} % Natural number bigger than 0
@@ -18,4 +27,5 @@
 \newcommand{\x}{\textbf{x}} % Column vector 
 \newcommand{\G}{\mathcal{G}} 
 \newcommand{\C}{\sum ^r (\G)}
+\newcommand{\Cp}{\sum \prod ^r ( \G)}
 

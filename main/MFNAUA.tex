@@ -14,6 +14,8 @@ Feedforward networks are a class of Universal approximators.
 (REWRITE THREE LAST SENTENCES)
 
 Firstly we are going to start with some basic definitions. 
+Particularly we are going to introduce familiar of function from more particular to more general 
+that will represent 
 
 \begin{definition}Affine functions  
 
@@ -59,9 +61,11 @@ Firstly we are going to start with some basic definitions.
     \end{itemize}
 \end{definition}  
 
-\begin{definition} 
-    Now we are going to define the familiar class of function of autput functions 
-    for a single hidden layer feedforward. 
+\begin{definition} General family for NN
+
+    In order to introduce the familiar class of function for single hidden layer feedforward networks. 
+    Now we are going to define the familiar class of function of output functions 
+    
 
 
     For any Borel measurable function $\G(\cdot)$ mapping $\R$ to $\R$ and 
@@ -71,18 +75,128 @@ Firstly we are going to start with some basic definitions.
         \begin{split}
         \C = \{ 
         f: \R^r \longrightarrow \R = \\
-        \sum_{j = 1} ^q ( \prod_{k=1}^{l_j}
-        \G(A_{jk}(x)), 
-        x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j \in \N
+        f(x)=\sum_{j = 1} ^q (
+        \beta_j \G(A_{j}(x)), 
+        x  \in \R^r, \beta_j \in \R, A_{j}\in A^r, l_j,q \in \N
         )
         \}
     \end{split}
     \end{equation*}
+
+    When $\G$ is a squashing function, $\C$ is the familiar class of 
+ we were searching for, the familiar class of output function for single hidden layer feedforward networks at the
+ output layer. 
+ 
+ The scalars $\beta_j$ correspond to network weight from hidden to output layers.
+    
+\end{definition}
+
+\begin{definition} More general family definition 
+
+    For any measurable function $\G(\cdot)$ mapping $\R$ to $\R$ and $r\N$, let 
+    
+
+    
+    \begin{equation*}
+        \begin{split}
+        \sum \prod^r(\G) = \{ 
+        f: \R^r \longrightarrow \R | \\
+        f(x) = \sum_{j = 1} ^q , \beta_j \cdot \prod_{k=1}^{l_j}
+        \G(A_{jk}(x)), 
+        x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
+        )
+        \}
+    \end{split}
+    \end{equation*}
+
+\end{definition}
+
+\begin{definition} Multivariable continuos functions and Borel $\sigma$-field 
+
+    Let $\mathcal C^r$ be the set of continuos functions from $\R^r$ to $\R$, and let $\mathcal M^r$ 
+    be the set of all Borel measurable functions from $\R^r$ to $\R$. We denote the Borel 
+    $\sigma$-field of $\R^r$ as $\mathcal B^r$
     
 \end{definition}
 
 
+
+In order to write a self-contained book 
+we are going to define some basic analysis and algebra concepts.
+
+\begin{definition} Ring \cite{rudin-lebesgue-theory}
+    A family $\mathcal R$ of sets is called a ring if $A \in \mathcal{R}$ 
+    and $B \in \mathcal{R}$ implies
+
+    \begin{enumerate}
+        \item $A \cup B \in \mathcal R.$
+        \item $A \cap B \in \mathcal R.$ TODO ADD SINCE 301
+    \end{enumerate}
+\end{definition}
+
+
+\begin{definition} $\sigma -$ring \cite{rudin-lebesgue-theory}
+ 
+    A ring $\mathcal{R}$ is called a $\sigma -$ ring if 
+
+    \begin{enumerate}
+
+        \item $\cup^\infty _{n=1} A_n \in \mathcal{R}$ whenever 
+        $A_n \mathcal{R} for n \in \N$.
+    \end{enumerate}
+
+ TODO ADD SINCE PAG 301 
+
+\end{definition}
+
+TODO 
+\begin{definition} Additive functions \cite{rudin-lebesgue-theory}
+    We define a additive function $\phi$, as a set function defined on $\mathcal{R}$
+    if $\phi$ assigns to every $A \in \mathcal{R}$ a number $\phi(A) \in \R$ and 
+    if for every $A,B  \in mathcal{R}$ that verified $A \cap B = \emptyset$, 
+    this implies
+
+    \begin{equation*}
+        \phi (A \cup B) = \phi(A) + \phi(B),  
+    \end{equation*}
+
+    In addition, $\phi$ is defined as \textit{ countably additive} if 
+    $A_i \cap A_j = \emptyset (i \neq j)$ implies 
+    \begin{equation*}
+        \phi( \cup_{n = 1} ^ \infty A_n) = \sum_{n=1} ^ \infty \phi(A_n)
+    \end{equation*}
     
 
+    We assume that the range of $\phi$ does not contain both $+\infty$ and $-\infty$.
+    Also we exclude set functions whose only value is $+\infty$ and $-\infty$. 
+
+    When $\phi$ is countably additive and $\phi(A) \geq 0$ for every $A  \in \mathcal{R}$, 
+    It is called a \textit{non negative countably additive function.}
+\end{definition}
+ 
+\begin{definition} Measure spaces \cite{rudin-lebesgue-theory}
+
+     
+\end{definition}
+
+
+The notation that we are going to use is
+
+\begin{definition}
+    \begin{itemize}
+        \item Let $\mathcal C^r$ be the set of continuous functions from $\R^r$ to $\R$.
+        \item Let $\mathcal{M}^r$ be the set of all Borel measurable functions from $\R^r$ to $\R$.
+        \item The Borel $\sigma -$ field of $\R^r$ is going to be denoted as $\mathcal B^r$
+    \end{itemize}
+\end{definition}  
+
+The classes $\C$ and $\sum \prod ^r (G)$ belong to $\mathcal{M}^r$ 
+for any Borel measurable $\G$. When $\G$ is continuos, 
+
+TODO pag 3-8  
+
+\medskip
+
+\printbibliography
 
 \end{document}
