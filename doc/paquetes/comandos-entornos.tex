@@ -1,0 +1,44 @@
+% DEFINICIÓN DE COMANDOS Y ENTORNOS
+
+% CONJUNTOS DE NÚMEROS
+
+  \newcommand{\N}{\mathbb{N}}     % Naturales
+  \newcommand{\R}{\mathbb{R}}     % Reales
+  \newcommand{\Z}{\mathbb{Z}}     % Enteros
+  \newcommand{\Q}{\mathbb{Q}}     % Racionales
+  \newcommand{\C}{\mathbb{C}}     % Complejos
+
+% TEOREMAS Y ENTORNOS ASOCIADOS
+
+  % \newtheorem{theorem}{Theorem}[chapter]
+  \newtheorem*{teorema*}{Teorema}
+  \newtheorem{teorema}{Teorema}[chapter]
+  \newtheorem{proposicion}{Proposición}[chapter]
+  \newtheorem{lema}{Lema}[chapter]
+  \newtheorem{corolario}{Corolario}[chapter]
+
+    \theoremstyle{definition}
+  \newtheorem{definicion}{Definición}[chapter]
+  \newtheorem{ejemplo}{Ejemplo}[chapter]
+
+    \theoremstyle{remark}
+  \newtheorem{observacion}{Observación}[chapter]
+
+
+\DeclareMathOperator{\sign}{signo}
+\usepackage[inline]{enumitem}
+\usepackage{mathtools}
+\usepackage[spanish,onelanguage,linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{listingsutf8}
+\lstset{language=Python,
+        literate=
+          {ó}{{\'o}}1
+          {í}{{\'i}}1
+          {á}{{\'a}}1
+          {ú}{{\'u}}1
+          {é}{{\'e}}1
+          {ñ}{{\v{n}}}1
+}
+\usepackage{tocloft}
+\setlength{\cftfignumwidth}{2.55em}
+\DeclareMathOperator*{\argmin}{arg\,min}
