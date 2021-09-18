@@ -1,0 +1,70 @@
+% !TeX root = ../libro.tex
+% !TeX encoding = utf8
+
+\chapter{Software}\label{ap:software}
+
+\section{Archivos del proyecto}
+
+Encontramos el \href{https://github.com/MiguelLentisco/tfg}{proyecto} en la plataforma \emph{Github}, con la siguiente estructura:
+
+\begin{itemize}
+  \item $PV$: Parte selección de modelos.
+    \begin{itemize}
+      \item $resultados$: contiene los resultados del experimento en .csv y .png para TS Y CMFTS.
+      \item $src$: archivos fuente.
+      \begin{itemize}
+        \item $PV.py$: contiene la clase PV.
+        \item $KNN.py$: contiene la clase KNN.
+        \item $LSTM.py$: contiene la clase LSTM.
+        \item $RClassifiers.py$: contiene las clases DTW, C45, C50, CPart y RPart.
+        \item $Utils.py$: funciones auxiliares.
+        \item $experimento\_PV.py$: experimento para selección de modelos.
+        \item $experimento\_hiper.py$: experimento para los hiperparámetros.
+      \end{itemize}
+    \end{itemize}
+  \item $AD$: Parte detección de anomalías.
+    \begin{itemize}
+      \item $models$: contiene los pesos de los modelos obtenidos.
+      \item $src$: archivos fuente.
+        \begin{itemize}
+          \item $alteraciones.py$: métodos para alterar series.
+          \item $calc\_pr.py$: métodos para calcular la métrica PR.
+          \item $detector.py$: detector LSTM.
+          \item $experimento\_AD.py$: experimento anomalías.
+        \end{itemize}
+    \end{itemize}
+  \item $doc$: archivos referentes a la memoria del proyecto.
+  \item $Datasets$: \emph{datsets} con las versiones TS y CMFTS.
+
+\end{itemize}
+
+\section{Lenguajes utilizados}
+
+La mayoría de código ha sido implementado en \emph{Python 3.6.8}, habiéndose implementado alguna función y usando paquetes de \emph{R 3.4.4}.
+
+\section{Paquetes utilizados}
+
+Listamos los paquetes utilizados en el proyecto. En \emph{Python 3.6.8}:
+
+\begin{itemize}
+  \item \emph{matplotlib 3.1.1}: para imprimir gráficos.
+  \item \emph{numpy 1.18.3}: para trabajar con arrays, matrices, tensores.
+  \item \emph{pandas 0.24.1}: cargar y guardar \emph{datasets}.
+  \item \emph{Keras 2.2.5}: utilizada para implementar modelos de redes neuronales LSTM.
+  \item \emph{scikit-learn 0.20.2}: se han usado distintos clasificadores, métricas y preprocesado de \emph{datasets}.
+  \item \emph{scipy 1.2.1}: para señales gaussianas, pulso sinusoidal-gaussiano y estimación de distribución.
+  \item \emph{statsmodels 0.9.0}: descomposición STL.
+  \item \emph{rpy2 3.0.0}: interfaz para utilizar \emph{R} con \emph{Python}.
+\end{itemize}
+
+En \emph{R 3.4.4}:
+
+\begin{itemize}
+  \item \emph{RWeka 0.4.42}: árbol de decisión C4.5
+  \item \emph{C50 0.1.3}: árbol de decisión C5.0
+  \item \emph{rpart 4.1.13}: árbol de decisión RPart.
+  \item \emph{partykit 1.2.3}: árbol de decisión CTree.
+  \item \emph{IncDTW 1.1.3.1}: función para calcular la métrica DTW.
+\end{itemize}
+
+\endinput
