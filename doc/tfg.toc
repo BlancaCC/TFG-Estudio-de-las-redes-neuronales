@@ -1,0 +1,8 @@
+\babel@toc {spanish}{}
+\contentsline {paragraph}{\nonumberline PALABRAS CLAVE:}{5}{section*.3}%
+\babel@toc {english}{}
+\contentsline {paragraph}{\nonumberline KEYWORDS:}{7}{section*.5}%
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Introducción}{11}{chapter.1}%
+\contentsline {part}{\numberline {I}Matemáticas}{13}{part.1}%
+\contentsline {chapter}{\numberline {2}Polinomios de Bernstein}{15}{chapter.2}%

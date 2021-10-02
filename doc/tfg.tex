@@ -207,26 +207,28 @@
 % \pagestyle{scrheadings} % A partir de ahora sí imprime cabeceras
 
 \include{preliminares/introduccion}
-\include{preliminares/teoria_aproximacion/polinomios_de_Berstenstein}
+%
 
 % --------------------------------------------------------------------
 % MAINMATTER
 % --------------------------------------------------------------------
 %\mainmatter % activa la numeración de capítulos, resetea la numeración de las páginas y usa números arábigos
 \setpartpreamble[c][0.75\linewidth]{
-	\bigskip % Deja un espacio vertical en la parte superior
+	\bigskip % Deja un espacio vertical en la parte superiọ-r
   Esto es un texto nuevo 
 }
 
 %\part{Conceptos previos}\label{part:conceptos-previos}
 %\include{conceptos-previos/aprendizaje-profundo}
-
+\part{Matemáticas}
+\include{capitulos/teoria_aproximacion/polinomios_de_Berstenstein}
 % --------------------------------------------------------------------
 % APPENDIX: Opcional
 % --------------------------------------------------------------------
 
 \appendix % Reinicia la numeración de los capítulos y usa letras para numerarlos
 \pdfbookmark[-1]{Apéndices}{appendix} % Alternativamente podemos agrupar los apéndices con un nuevo \part{Apéndices}
+
 
 %\include{apendices/documentacion}
 

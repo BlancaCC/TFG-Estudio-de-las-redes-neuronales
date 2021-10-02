@@ -1,0 +1,113 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Polinomois de Bernstein
+%*******************************************************
+
+\chapter{Polinomios de Bernstein}\label{ch:Bernstein}
+
+\begin{definicion}[Polinomios de Bernstein] \label{def:Bernstein}
+    Dada cierta función $f: [0,1] \rightarrow \R$, se define el n-ésimo polinomio de Bernstain para $f$ como 
+
+    $$B_n(x) = B_n(x;f)=\sum_ {k=0}^{n} f \left( \frac{k}{n} \right) \left( \binom{n}{k} \right) x^k (1-x)^{n-k}.$$
+
+\end{definicion}
+
+La intuición que se esconde tras esta definición es la siguiente: 
+Se pretende aproximar la función $f$ a través de los puntos $\frac{k}{n}$ con $n \in \N$ fijo
+y $k \in \{0,...,n \}.$
+De tal forma que si evaluamos $B_n(x)$ con $x$ lo suficientemente próximo a  $\frac{k}{n}$  
+la imagen de $B_n(x)$ se acerque a $f \left( \frac{k}{n} \right).$
+
+Para ello recordaremos el teorema del Binomio de Newton: 
+
+\begin{teorema}[Binomio de Newton]
+    Cualquier potencia de un binomio $x+y$ con $x,y \in R$,  puede ser expandido en una suma de la forma
+    \[(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k}y^k\]
+\end{teorema}
+
+Así pues en virtud de esta igualdad y puesto que nuestro dominio de definición de $f$ es $[0,1]$, para cualquier $x \in [0,1].$
+
+Tenemos 
+
+\begin{equation}
+    1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
+\end{equation}
+
+Multiplicamos ahora en ambos lados por $f(x)$
+
+\begin{equation}
+    f(x) = \sum_{k=0}^n f(x) \binom{n}{k} x^{k} (1-x)^{n-k}
+\end{equation} 
+
+Y tenemos que las diferencia entre $f(x)$ y $B_n(x)$ es
+
+\begin{equation}
+    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+\end{equation} 
+
+Que en valores absolutos resulta 
+\begin{equation} \label{eqn:berstein_difference}
+    |f(x)-B_n(x)| = \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+\end{equation} 
+
+Observando esta ecuación \ref{eqn:berstein_difference} se desprende como es natural un teorema de convergencia. 
+
+\begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
+
+    Sea $f$ una función continua en un intervalo $I$ con imágenes en los reales. 
+    La secuencia de polinomio de Bernstein
+    \ref{def:Bernstein} converge uniformemente a $f$ en $I.$
+    
+\end{teorema}
+Recordaremos antes la definición de convergencia uniforme: 
+
+\begin{definicion}[Convergencia uniforme para funciones reales]
+
+    Dado $E$ un conjunto y $\{f_n\}_{n \in \N}$ una sucesión de funciones de $E$
+     a los reales; se dice 
+    que dicha sucesión converge uniformemente si para cualquier $\varepsilon > 0$ existe un número natural $m$ tal que 
+    para todo $x   \in E$ y cualquier natural $n$ que cumpla $n \geq m$ se tiene que 
+
+    \begin{equation*}
+        |f_n(x) - f(x) | < \varepsilon
+    \end{equation*}
+    
+\end{definicion}
+
+Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
+\begin{proof}
+    Por estar $f$ definida en un intervalo cerrado, está acotada, supongamos por $M$. 
+    Además es uniformemente continua. 
+    
+    TODO revisar continuidad.
+    
+    En el peor de los casos nuestra función será menor que $2M$. 
+
+
+    Dividamos ahora en dos partes, los $x- frac{k}{n}$ para los cuales la diferencia es pequeña (TODO ¿cuánto de pequeña) y para los que es grande. 
+
+    Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.  
+
+    Podemos elegir $m$ de manera conveniente de tal forma que 
+
+    $$ n \geq sup \{ (\delta_\varepsilon) ^{-4}, \frac{M^2}{\varepsilon^2}\}$$
+
+
+    y agruparemos los términos de la sumatoria en dos partes, para los que 
+    $|x - \frac{k}{n}| < n^{ -\frac{1}{4}} \leq \delta_\varepsilon$. 
+
+    Para éstos,  se tiene por Newton  
+
+    \begin{equation*}
+        \sum_{k=1}^n   \varepsilon \binom{n}{k} x^k (1-x)^{n-k} \leq \varepsilon \sum_{k=1}^n \binom{n}{k} x^k (1-x)^{n-k} =  \varepsilon
+    \end{equation*}
+
+\end{proof}
+
+ 
+ 
+\endinput 
