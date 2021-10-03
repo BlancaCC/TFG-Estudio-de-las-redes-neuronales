@@ -31,7 +31,7 @@ Así pues en virtud de esta igualdad y puesto que nuestro dominio de definición
 
 Tenemos 
 
-\begin{equation}
+\begin{equation}\label{eq:uno_igual_binomio}
     1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation}
 
@@ -119,12 +119,12 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.
     
     Por otro lado se define
-    $$\mathcal{B}_{x,N} = \{1, ..., N\} \\ \mathcal{A}_{x,N}$$
+    $$\mathcal{B}_{x,N} = \{1, ..., N\} - \mathcal{A}_{x,N}$$
 
 
     Podemos elegir $m$ de manera conveniente de tal forma que 
 
-    $$ n \geq sup \{ (\delta_\varepsilon) ^{-4}, \frac{M^2}{\varepsilon^2}\}$$
+    $$ n \geq sup \left\{ (\delta_\varepsilon) ^{-4}, \frac{M^2}{\varepsilon^2}\right\}$$
 
 
     y agruparemos los términos de la sumatoria en dos partes, para los que 
@@ -137,7 +137,31 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \end{equation*}
 
     Para el resto de términos, aquellos cuya $k$ cumpla que $|x - \frac{x}{n}| \geq n ^\frac{-1}{4}$, se tiene que 
-    $|x - \frac{x}{m}| \geq n ^\frac{-1}{2}$,
+    $|x - \frac{x}{m}| \geq n ^\frac{-1}{2}$. 
+
+    Queda el resto de subíndices resulta acotada por, deberemos de ver que para una determinada N, 
+    esa desigualdad se queda en épsilon
+    \begin{equation*}
+        \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{n}{k} x^k (1-x) ^{n-k} \\
+    \end{equation*}
+
+    Para acotar esto nos va a costar trabajar un poco más 
+    \begin{equation*}
+        \begin{split}
+        & \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{N}{k} x^k (1-x) ^{N-k} \\
+        & = 2M  \sum_{k \in \mathcal{B}_{x,N}}  \frac{(x- \frac{k}{N})^2}{(x- \frac{k}{N})^2} \binom{N}{k} x^k (1-x) ^{N-k} \\
+        & \leq 2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{n}{k} x^k (1-x) ^{N-k} \\
+    \end{split}
+    \end{equation*}
+
+
+    Tengamos ahora presenten las siquientes igualdades 
+    \begin{equation*}
+        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1)!)} = \frac{k}{n} \binom{n}{k}x
+    \end{equation*}
+
+    Partiendo de \ref{eq:uno_igual_binomio}
+    
 
 \end{proof}
 
