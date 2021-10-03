@@ -80,17 +80,47 @@ Recordaremos antes la definición de convergencia uniforme:
 
 Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
 \begin{proof}
-    Por estar $f$ definida en un intervalo cerrado, está acotada, supongamos por $M$. 
-    Además es uniformemente continua. 
+    Sin pérdida de generalidad supondremos que $I=[0,1]$, como veremos esto no es restrictivo ya que 
+    si $I$ fuera un intervalo cerrado existiría un homeomorfismo $H$ tal que $H^*(I)=[0,1]$ y podríamos
+    trabajar con $H \circ f$ la cual respetaría todas los argumentos utilizados en la demostración. 
+
+    Si $I$ fuera un abierto consideraríamos su cierre y aplicaríamos el razonamiento anterior. 
+    De esta manera los supremos e ínfimos se mantendrían, ahora como mínimos y máximos y no se alteraría
+    de ninguna manera la continuidad. 
+
+    Tras la aclaración anterior podemos comenzar.
     
-    TODO revisar continuidad.
+    Sea $\varepsilon > 0$ queremos probar que existirá un $m_\varepsilon  \in \N$ tal que para 
+    cualquier $x \in I$ e $n \geq m_\varepsilon$  se tenga que 
+    $|f(x) - B_n(x)| < \varepsilon$.
     
-    En el peor de los casos nuestra función será menor que $2M$. 
+     Para ello por estar $f$ definida en un intervalo, 
+    se tienen dos consecuencias claves: 
+    \begin{enumerate}
+        \item Está acotada, supongamos por $M \in \R$, esto es $|f(x)| \leq M$.
+        \item Es uniformemente continua, es decir: para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
+        tal que para cualesquiera $x,y \in I$ que cumplan $|x-y| < \delta_\varepsilon$ entonces $|f(x)-f(y)| < \varepsilon$
+    \end{enumerate}
+    
+    
+    Dado $N \in  \N$ fijo pero arbitrario, para $\{ k | k \in \{1, ..., N\}$
+    $\frac{k}{N} \in I$ y tomando $x \in I$ podemos acotar
 
+    $$|f(x)- f\left( \frac{k}{N} \right) | \leq |f(x)| + |f(\frac{k}{N})|\leq 2M$$
 
-    Dividamos ahora en dos partes, los $x- frac{k}{n}$ para los cuales la diferencia es pequeña (TODO ¿cuánto de pequeña) y para los que es grande. 
+    
+    Fijado un $x$ del dominio, se tienen las siguientes particiones de índices: 
+    
+    $$\mathcal{A}_{x,N} = \{ k | k \in \{1, ..., N\} \text{ y }  |x- \frac{k}{N}| < \delta_\varepsilon \}$$
 
-    Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.  
+    Donde el $\delta_\varepsilon$ se ha obtenido de la observación 2 tomando como $\varepsilon$ el 
+    buscado para la convergencia uniforme. 
+ 
+    Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.
+    
+    Por otro lado se define
+    $$\mathcal{B}_{x,N} = \{1, ..., N\} \\ \mathcal{A}_{x,N}$$
+
 
     Podemos elegir $m$ de manera conveniente de tal forma que 
 
@@ -105,6 +135,9 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \begin{equation*}
         \sum_{k=1}^n   \varepsilon \binom{n}{k} x^k (1-x)^{n-k} \leq \varepsilon \sum_{k=1}^n \binom{n}{k} x^k (1-x)^{n-k} =  \varepsilon
     \end{equation*}
+
+    Para el resto de términos, aquellos cuya $k$ cumpla que $|x - \frac{x}{n}| \geq n ^\frac{-1}{4}$, se tiene que 
+    $|x - \frac{x}{m}| \geq n ^\frac{-1}{2}$,
 
 \end{proof}
 
