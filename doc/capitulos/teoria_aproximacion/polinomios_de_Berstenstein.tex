@@ -146,8 +146,9 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \end{equation*}
 
     Para acotar esto nos va a costar trabajar un poco más 
-    \begin{equation*}
+    \begin{equation*} 
         \begin{split}
+        \label{eq:Bernstein_caso_a_acotar}
         & \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{N}{k} x^k (1-x) ^{N-k} \\
         & = 2M  \sum_{k \in \mathcal{B}_{x,N}}  \frac{(x- \frac{k}{N})^2}{(x- \frac{k}{N})^2} \binom{N}{k} x^k (1-x) ^{N-k} \\
         & \leq 2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{n}{k} x^k (1-x) ^{N-k} \\
@@ -155,13 +156,93 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \end{equation*}
 
 
-    Tengamos ahora presenten las siquientes igualdades 
-    \begin{equation*}
-        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1)!)} = \frac{k}{n} \binom{n}{k}x
-    \end{equation*}
+    Tengamos ahora presenten las siguientes igualdades 
+    \begin{equation} \label{eq:binomio_menos_uno}
+        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1)!)} = \frac{k}{n} \binom{n}{k}
+    \end{equation}
+    \begin{equation} \label{eq:binomio_menos_dos}
+        \binom{n-2}{k-2} = \frac{(n-2)!}{(k-2)! (n-2-(k-2)!)} = \frac{k(k-1)}{n(n-1)} \binom{n}{k}
+    \end{equation}
 
-    Partiendo de \ref{eq:uno_igual_binomio}
+    Partiendo de \ref{eq:uno_igual_binomio} se tiene que 
+    \begin{equation}
+        1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    Reemplazamos la $n$ por $n-1$ y la $k$ por $j$ y tenemos 
+    \begin{equation}
+        1 = \sum_{j=0}^{n-1} \binom{n-1}{j} x^{j} (1-x)^{(n-1)-j}
+    \end{equation}
+    Multiplicamos por $x$ y aplicamos la igualdad \ref{eq:binomio_menos_uno} resultando 
+
+    \begin{equation}
+        x = \sum_{j=0}^{n-1} \frac{j+1}{n} \binom{n}{j+1} x^{j+1} (1-x)^{(n-(j+1)}
+    \end{equation}
+
+    Renombramos $k= j+1$, por lo que resulta
+    \begin{equation}
+        x = \sum_{k=1}^{n} \frac{k}{n} \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    Como el término con $k=0$ es nulo podemos añadirlo a la sumatoria
     
+    \begin{equation} \label{eq:desarrollo_binomio_uno}
+        x = \sum_{k=0}^{n} \frac{k}{n} \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    %------------------ caso 2, no te confundas --------------------
+    Haremos ahora un razonamiento similar sustituyendo $n$ por $n-2$
+
+    Partiendo de \ref{eq:uno_igual_binomio} se tiene que 
+    \begin{equation}
+        1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    Reemplazamos la $n$ por $n-2$ y la $k$ por $j$ y tenemos 
+    \begin{equation}
+        1 = \sum_{j=0}^{n-2} \binom{n-2}{j} x^{j} (1-x)^{(n-2)-j}
+    \end{equation}
+    Multiplicamos por $x^2$ y aplicamos la igualdad \ref{eq:binomio_menos_dos} resultando 
+
+    \begin{equation}
+        x^2 = \sum_{j=0}^{n-2} \frac{(j+2)(j+1)}{n(n-1)} \binom{n}{j+2} x^{j+2} (1-x)^{(n-(j+2)}
+    \end{equation}
+
+    Renombramos $k= j+2$, por lo que resulta
+    \begin{equation}
+        x^2 = \sum_{k=2}^{n} \frac{k(k-1)}{n(n-1)} \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    Como con los términos $k=0$ y $k=1$ se anula, podemos añadir dichos índices sin modificar la suma 
+    
+    \begin{equation}
+        x^2 = \sum_{k=0}^{n} \frac{k(k-1)}{n(n-1)} \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+
+    Podemos reescribir la ecuación resultando: 
+
+    \begin{equation} \label{eq:desarrollo_binomio_dos}
+      (n^2 - n)  x^2 = \sum_{k=0}^{n} (k^2 - k) \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation}
+    
+    
+%--------------- fin de las igualdades del binomio de Newton 
+
+Recordemos que nuestro objetivo era acotar \ref{eq:Bernstein_caso_a_acotar}
+
+Para ello vamos a sumar las dos expresiones que hemos obtenido
+ \ref{eq:desarrollo_binomio_uno} y \ref{eq:desarrollo_binomio_dos}
+
+ resultando 
+ TODO MIRAR CÓMO LO AJUSTA EN LOS APUNTES
+ \begin{equation} 
+    (n^2 - n)  x^2 + nx= \sum_{k=0}^{n} ((k^2 - k)+k) \binom{n}{k} x^{k} (1-x)^{n-k}
+  \end{equation}
+
+  \begin{equation} 
+    (n^2 - n)  x^2 + nx= \sum_{k=0}^{n} ((k^2 - k)+k) \binom{n}{k} x^{k} (1-x)^{n-k}
+  \end{equation}
+
 
 \end{proof}
 
