@@ -24,7 +24,7 @@ Para ello recordaremos el teorema del Binomio de Newton:
 
 \begin{teorema}[Binomio de Newton]
     Cualquier potencia de un binomio $x+y$ con $x,y \in R$,  puede ser expandido en una suma de la forma
-    \[(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k}y^k\]
+    \[(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{k}y^{n-k}\]
 \end{teorema}
 
 Así pues en virtud de esta igualdad y puesto que nuestro dominio de definición de $f$ es $[0,1]$, para cualquier $x \in [0,1].$
@@ -41,20 +41,25 @@ Multiplicamos ahora en ambos lados por $f(x)$
     f(x) = \sum_{k=0}^n f(x) \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
 
-Y tenemos que las diferencia entre $f(x)$ y $B_n(x)$ es
+De manera razonable habríamos encontrado una forma sensata de definir el polinomio buscado, 
+faltaría por ver  si efectivamente \textit{aproxima bien}, es decir estudiar la convergencia. 
 
-\begin{equation}
-    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
-    \binom{n}{k} x^{k} (1-x)^{n-k}
-\end{equation} 
+Las diferencia entre $f(x)$ y $B_n(x)$ es de
 
-Que en valores absolutos resulta 
-\begin{equation} \label{eqn:berstein_difference}
+%\begin{equation}
+%    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
+%    \binom{n}{k} x^{k} (1-x)^{n-k}
+%\end{equation} 
+
+%Tomando valor absoluto resulta 
+\begin{equation} \label{eq:berstein_diferencia}
     |f(x)-B_n(x)| = \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|
     \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
 
-Observando esta ecuación \ref{eqn:berstein_difference} se desprende como es natural un teorema de convergencia. 
+Comp
+Observando esta ecuación \eqref{eq:berstein_diferencia} ya la intuición nos 
+hace pensar que sea convergente, veremos efectivamente que son uniformemente convergentes. 
 
 \begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
 
@@ -78,7 +83,7 @@ Recordaremos antes la definición de convergencia uniforme:
     
 \end{definicion}
 
-Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
+Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein}.
 \begin{proof}
     Sin pérdida de generalidad supondremos que $I=[0,1]$, como veremos esto no es restrictivo ya que 
     si $I$ fuera un intervalo cerrado existiría un homeomorfismo $H$ tal que $H^*(I)=[0,1]$ y podríamos
@@ -98,7 +103,7 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     se tienen dos consecuencias claves: 
     \begin{enumerate}
         \item Está acotada, supongamos por $M \in \R$, esto es $|f(x)| \leq M$.
-        \item Es uniformemente continua, es decir: para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
+        \item En virtud del teorema de Heine-Cantor $f$ es uniformemente continua, es decir: para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
         tal que para cualesquiera $x,y \in I$ que cumplan $|x-y| < \delta_\varepsilon$ entonces $|f(x)-f(y)| < \varepsilon$
     \end{enumerate}
     
@@ -106,7 +111,7 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     Dado $N \in  \N$ fijo pero arbitrario, para $\{ k | k \in \{1, ..., N\}$
     $\frac{k}{N} \in I$ y tomando $x \in I$ podemos acotar
 
-    $$|f(x)- f\left( \frac{k}{N} \right) | \leq |f(x)| + |f(\frac{k}{N})|\leq 2M$$
+    $$\left|f(x)- f\left( \frac{k}{N} \right) \right| \leq |f(x)| + \left|f \left( \frac{k}{N}\right) \right|\leq 2M$$
 
     
     Fijado un $x$ del dominio, se tienen las siguientes particiones de índices: 
@@ -146,9 +151,8 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \end{equation*}
 
     Para acotar esto nos va a costar trabajar un poco más 
-    \begin{equation*} 
+    \begin{equation*}  \label{eq:Bernstein_caso_a_acotar}
         \begin{split}
-        \label{eq:Bernstein_caso_a_acotar}
         & \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{N}{k} x^k (1-x) ^{N-k} \\
         & = 2M  \sum_{k \in \mathcal{B}_{x,N}}  \frac{(x- \frac{k}{N})^2}{(x- \frac{k}{N})^2} \binom{N}{k} x^k (1-x) ^{N-k} \\
         & \leq 2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{n}{k} x^k (1-x) ^{N-k} \\
@@ -158,13 +162,13 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
 
     Tengamos ahora presenten las siguientes igualdades 
     \begin{equation} \label{eq:binomio_menos_uno}
-        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1)!)} = \frac{k}{n} \binom{n}{k}
+        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1))!} = \frac{k}{n} \binom{n}{k}
     \end{equation}
     \begin{equation} \label{eq:binomio_menos_dos}
-        \binom{n-2}{k-2} = \frac{(n-2)!}{(k-2)! (n-2-(k-2)!)} = \frac{k(k-1)}{n(n-1)} \binom{n}{k}
+        \binom{n-2}{k-2} = \frac{(n-2)!}{(k-2)! (n-2-(k-2))!} = \frac{k(k-1)}{n(n-1)} \binom{n}{k}
     \end{equation}
 
-    Partiendo de \ref{eq:uno_igual_binomio} se tiene que 
+    Partiendo de la igualdad \eqref{eq:uno_igual_binomio}:
     \begin{equation}
         1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
     \end{equation}
@@ -173,7 +177,7 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \begin{equation}
         1 = \sum_{j=0}^{n-1} \binom{n-1}{j} x^{j} (1-x)^{(n-1)-j}
     \end{equation}
-    Multiplicamos por $x$ y aplicamos la igualdad \ref{eq:binomio_menos_uno} resultando 
+    Multiplicamos por $x$ y aplicamos la igualdad \eqref{eq:binomio_menos_uno} resultando 
 
     \begin{equation}
         x = \sum_{j=0}^{n-1} \frac{j+1}{n} \binom{n}{j+1} x^{j+1} (1-x)^{(n-(j+1)}
@@ -193,7 +197,7 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     %------------------ caso 2, no te confundas --------------------
     Haremos ahora un razonamiento similar sustituyendo $n$ por $n-2$
 
-    Partiendo de \ref{eq:uno_igual_binomio} se tiene que 
+    Partiendo de \eqref{eq:uno_igual_binomio} se tiene que 
     \begin{equation}
         1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
     \end{equation}
@@ -202,7 +206,7 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
     \begin{equation}
         1 = \sum_{j=0}^{n-2} \binom{n-2}{j} x^{j} (1-x)^{(n-2)-j}
     \end{equation}
-    Multiplicamos por $x^2$ y aplicamos la igualdad \ref{eq:binomio_menos_dos} resultando 
+    Multiplicamos por $x^2$ y aplicamos la igualdad \eqref{eq:binomio_menos_dos} resultando 
 
     \begin{equation}
         x^2 = \sum_{j=0}^{n-2} \frac{(j+2)(j+1)}{n(n-1)} \binom{n}{j+2} x^{j+2} (1-x)^{(n-(j+2)}
@@ -231,18 +235,48 @@ Comencemos pues con a demostración \ref{teo:aproximacion_bernstein}
 Recordemos que nuestro objetivo era acotar \ref{eq:Bernstein_caso_a_acotar}
 
 Para ello vamos a sumar las dos expresiones que hemos obtenido
- \ref{eq:desarrollo_binomio_uno} y \ref{eq:desarrollo_binomio_dos}
+ \eqref{eq:desarrollo_binomio_uno} y \eqref{eq:desarrollo_binomio_dos}
 
  resultando 
- TODO MIRAR CÓMO LO AJUSTA EN LOS APUNTES
  \begin{equation} 
     (n^2 - n)  x^2 + nx= \sum_{k=0}^{n} ((k^2 - k)+k) \binom{n}{k} x^{k} (1-x)^{n-k}
   \end{equation}
-
-  \begin{equation} 
-    (n^2 - n)  x^2 + nx= \sum_{k=0}^{n} ((k^2 - k)+k) \binom{n}{k} x^{k} (1-x)^{n-k}
+  Dividimos todo entre $n$. 
+  \begin{equation} \label{eq:binomio_tras_suma}
+    (1 - \frac{1}{n})  x^2 + \frac{1}{n}x= \sum_{k=0}^{n} \left( \frac{k}{n} \right)^2 \binom{n}{k} x^{k} (1-x)^{n-k}
   \end{equation}
 
+  A continuación sumamos a la igualdad \eqref{eq:binomio_tras_suma} la ecuación \eqref{eq:uno_igual_binomio} multiplicada por $x^2$ y la ecuación \eqref{eq:desarrollo_binomio_uno}
+  multiplicada por $-2x$ resultando: 
+
+
+  \begin{equation} 
+    (1 - \frac{1}{n} + 1 -2)  x^2 + \frac{1}{n}x= \sum_{k=0}^{n} \left( \left( \frac{k}{n} \right)^2 + x^2 -2x \right) \binom{n}{k} x^{k} (1-x)^{n-k}
+  \end{equation}
+
+  Factorizando en ambos miembros resulta
+
+  \begin{equation} \label{eq:binomio_segunda_suma}
+     \frac{1}{n} x (1-x)= \sum_{k=0}^{n}  \left( x-\frac{k}{n} \right)^2  \binom{n}{k} x^{k} (1-x)^{n-k}
+  \end{equation}
+
+  Gracias a \eqref{eq:binomio_segunda_suma} acabos de encontrar una cota para 
+  \eqref{eq:Bernstein_caso_a_acotar}
+
+  \begin{equation}
+    2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{N}{k} x^k (1-x) ^{N-k}  = 2M \sqrt{N} \frac{1}{N} x (1-x) = 2M  \frac{1}{\sqrt{N}} x (1-x)
+  \end{equation}
+
+  Además como $x (1-x)$ alcanza un máximo absoluto en $x=\frac{1}{2}$ luego concluimos que 
+
+  \begin{equation}
+    |f(x)-B_N(x)| = \sum_{k=0}^N \left| f(x) - f \left(\frac{k}{N} \right) \right| \binom{n}{k} x^k (1-x) ^{n-k} \leq M \frac{1}{2 \sqrt{N}} 
+\end{equation}
+
+    Con $M = max \{ |f(x)| : x \in I\}.$
+
+    Por que tomando como $m_\epsilon = \lceil M \frac{1}{2 \sqrt{ \epsilon }} \rceil$
+    habremos probado la convergencia uniforme buscada. 
 
 \end{proof}
 
