@@ -1,4 +1,5 @@
-# Trabajo fin de grado sobre optimización de redes neuronales. 
+# Trabajo fin de grado sobre optimización de redes neuronales.
+
 
 ## Motivación    
 
