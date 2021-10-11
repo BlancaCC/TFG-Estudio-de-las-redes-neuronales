@@ -1,13 +1,21 @@
 # Trabajo fin de grado sobre optimización de redes neuronales.
 
 
-## Motivación    
+## Motivación: Democratización de la inteligencia artificial.
 
 Se pretende realizar un estudio de la posible optimización de redes neuronales a raíz de (1) el análisis detallados de la construcción y resultados matemáticos de éstas (como puede ser el teorema de aproximación universal) (2) Un estudio empírico de la velocidad o precisión de los resultados.  
 
 Tanto (1) como (2) se desarrollarán ligados y se retroalimentarán entre ellos.
 
-## Estructura u objetivos    
+De esta manera se tratará de buscar algoritmo de redes neuronales que no requieran de una potencia masiva.
+
+## Objetivos
+
+1. Posibilidad de limitar la precisión de los cálculos con los que se trabaja en redes neuronales.  
+2. Posibilidad de hallar límites superiores al tamaño de las redes neuronales que se usan en machine learning, tanto en capas como en unidades para cada capa.  
+3. Implementación "open source" de los límites hallados anteriormente usando un lenguaje de altas prestaciones, que permita trabajar en cualquier tipo de hardware.  
+
+## Tareas y estructura
 
 ###  1 Teoría de la aproximación.  
 (Contenido teórico) 
