@@ -6,5 +6,5 @@
 \contentsline {chapter}{\numberline {1}Introducción}{11}{chapter.1}%
 \contentsline {part}{\numberline {I}Matemáticas}{13}{part.1}%
 \contentsline {chapter}{\numberline {2}Polinomios de Bernstein}{15}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Teorema de Stone-Weierstass}{21}{chapter.3}%
-\contentsline {chapter}{\nonumberline Bibliograf\'{\i }a}{23}{chapter*.9}%
+\contentsline {chapter}{\numberline {3}Teorema de Stone-Weierstass}{19}{chapter.3}%
+\contentsline {chapter}{\nonumberline Bibliograf\'{\i }a}{21}{chapter*.9}%

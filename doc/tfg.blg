@@ -8,7 +8,7 @@ A level-1 auxiliary file: preliminares/summary.aux
 A level-1 auxiliary file: preliminares/tablacontenidos.aux
 A level-1 auxiliary file: preliminares/introduccion.aux
 A level-1 auxiliary file: capitulos/teoria_aproximacion/polinomios_de_Berstenstein.aux
-A level-1 auxiliary file: capitulos/teoria_aproximacion/TeoremaStoneWeierstrass.tex.aux
+A level-1 auxiliary file: capitulos/teoria_aproximacion/TeoremaStoneWeierstrass.aux
 The style file: alphaurl.bst
 A level-1 auxiliary file: preliminares/agradecimientos.aux
 I found no \citation commands---while reading file tfg.aux
@@ -21,7 +21,7 @@ Database file #1: library.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 0 entries,
             3307 wiz_defined-function locations,
-            692 strings with 5792 characters,
+            692 strings with 5788 characters,
 and the built_in function-call counts, 46 in all, are:
 = -- 0
 > -- 0

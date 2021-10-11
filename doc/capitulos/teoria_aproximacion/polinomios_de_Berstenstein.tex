@@ -5,46 +5,49 @@
 % Polinomois de Bernstein
 %*******************************************************
 
-\chapter{Polinomios de Bernstein}\label{ch:Bernstein}
+\chapter{Polinomios de Bernstein}\label{ch:Bernstein}  
 
-\begin{definicion}[Polinomios de Bernstein] \label{def:Bernstein}
-    Dada cierta función $f: [0,1] \rightarrow \R$, se define el n-ésimo polinomio de Bernstain para $f$ como 
+%% Resumen capítulo 
+En este capítulo introduciremos los polinomios de Bernstein;   que vistos como una serie nos asegurarán una convergencia uniformemente a cualquier función continua en un compacto y serán esenciales para nuestra prueba del teorema de Stone-Weiertrass.  
 
-    $$B_n(x) = B_n(x;f)=\sum_ {k=0}^{n} f \left( \frac{k}{n} \right) \left( \binom{n}{k} \right) x^k (1-x)^{n-k}.$$
+Comenzaremos recordando el Teorema del Binomio de Newton. 
 
-\end{definicion}
-
-La intuición que se esconde tras esta definición es la siguiente: 
-Se pretende aproximar la función $f$ a través de los puntos $\frac{k}{n}$ con $n \in \N$ fijo
-y $k \in \{0,...,n \}.$
-De tal forma que si evaluamos $B_n(x)$ con $x$ lo suficientemente próximo a  $\frac{k}{n}$  
-la imagen de $B_n(x)$ se acerque a $f \left( \frac{k}{n} \right).$
-
-Para ello recordaremos el teorema del Binomio de Newton: 
+%% Teorema Binomio de Newton
 
 \begin{teorema}[Binomio de Newton]
-    Cualquier potencia de un binomio $x+y$ con $x,y \in R$,  puede ser expandido en una suma de la forma
+    Cualquier potencia de un binomio $x+y$ con $x,y \in \R$,  puede ser expandido en una suma de la forma
     \[(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{k}y^{n-k}\]
-\end{teorema}
+\end{teorema}  
 
-Así pues en virtud de esta igualdad y puesto que nuestro dominio de definición de $f$ es $[0,1]$, para cualquier $x \in [0,1].$
-
-Tenemos 
+%%% Idea intuitiva y desigualdad 
+Tomando ahora para esta igualdad $x \in \R, y= 1-x$ se tiene que 
 
 \begin{equation}\label{eq:uno_igual_binomio}
     1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation}
 
-Multiplicamos ahora en ambos lados por $f(x)$
+Dada cualquier función $f$ definida en $x$ podríamos multiplicar la ecuación 
+\eqref{eq:uno_igual_binomio} por $f(x)$ resultando. 
 
-\begin{equation}
+\begin{equation}\label{eq:f_igual_binomio}
     f(x) = \sum_{k=0}^n f(x) \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
 
-De manera razonable habríamos encontrado una forma sensata de definir el polinomio buscado, 
-faltaría por ver  si efectivamente \textit{aproxima bien}, es decir estudiar la convergencia. 
+Y tomando como dominio $I=[0,1]$ de $f: I \longrightarrow \R$,
+ nos encontramos
+frente a una ecuación muy sugerente para introducir $B_n(x)$, el \textit{Polinomio n-ésimo  de Bernstein }. 
+El cual pretende  aproximar la función $f$ a través de los puntos $\frac{k}{n}$ con $n \in \N$ fijo
+y $k \in \{0,...,n \}.$
 
-Las diferencia entre $f(x)$ y $B_n(x)$ es de
+\begin{definicion}[Polinomios de Bernstein] \label{def:Bernstein}
+    Dada cierta función $f: [0,1] \rightarrow \R$, se define el n-ésimo polinomio de Bernstein para $f$ como 
+
+    $$B_n(x) = B_n(x;f)=\sum_ {k=0}^{n} \left( f \left( \frac{k}{n} \right) \binom{n}{k} x^k (1-x)^{n-k} \right) .$$
+
+\end{definicion}
+
+Faltaría por ver si efectivamente nuestro polinomio construido\textit{aproxima lo suficientemente bien} a la $f$ originaria. 
+Para ello basándonos en la \eqref{f_igual_binomio} y la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
 
 %\begin{equation}
 %    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
@@ -57,13 +60,12 @@ Las diferencia entre $f(x)$ y $B_n(x)$ es de
     \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
 
-Comp
-Observando esta ecuación \eqref{eq:berstein_diferencia} ya la intuición nos 
-hace pensar que sea convergente, veremos efectivamente que son uniformemente convergentes. 
+La intuición nos ya
+hace pensar que sea convergente; en efecto veremos que \ref{def:Bernstein} es uniformemente convergente a $f$. 
 
 \begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
 
-    Sea $f$ una función continua en un intervalo $I$ con imágenes en los reales. 
+    Sea $f$ una función continua de un intervalo $I = [0,1]$ con imágenes en los reales. 
     La secuencia de polinomio de Bernstein
     \ref{def:Bernstein} converge uniformemente a $f$ en $I.$
     
@@ -83,82 +85,42 @@ Recordaremos antes la definición de convergencia uniforme:
     
 \end{definicion}
 
+% Demostración de la convergencia de los polinomios de Bernstein
 Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein}.
 \begin{proof}
-    Sin pérdida de generalidad supondremos que $I=[0,1]$, como veremos esto no es restrictivo ya que 
-    si $I$ fuera un intervalo cerrado existiría un homeomorfismo $H$ tal que $H^*(I)=[0,1]$ y podríamos
-    trabajar con $H \circ f$ la cual respetaría todas los argumentos utilizados en la demostración. 
-
-    Si $I$ fuera un abierto consideraríamos su cierre y aplicaríamos el razonamiento anterior. 
-    De esta manera los supremos e ínfimos se mantendrían, ahora como mínimos y máximos y no se alteraría
-    de ninguna manera la continuidad. 
-
-    Tras la aclaración anterior podemos comenzar.
     
-    Sea $\varepsilon > 0$ queremos probar que existirá un $m_\varepsilon  \in \N$ tal que para 
-    cualquier $x \in I$ e $n \geq m_\varepsilon$  se tenga que 
+    Para cualquier $\varepsilon > 0$ queremos probar que existe un $m_\varepsilon  \in \N$ tal que para 
+    todo $x \in I$ e $n \geq m_\varepsilon$  se tiene que 
     $|f(x) - B_n(x)| < \varepsilon$.
     
      Para ello por estar $f$ definida en un intervalo, 
     se tienen dos consecuencias claves: 
     \begin{enumerate}
-        \item Está acotada, supongamos por $M \in \R$, esto es $|f(x)| \leq M$.
-        \item En virtud del teorema de Heine-Cantor $f$ es uniformemente continua, es decir: para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
-        tal que para cualesquiera $x,y \in I$ que cumplan $|x-y| < \delta_\varepsilon$ entonces $|f(x)-f(y)| < \varepsilon$
+        \item Está acotada, supongamos por $M \in \R$, esto es $|f(x)| \leq M$. \label{consecuencia:M}
+        \item En virtud del teorema de Heine-Cantor $f$ es uniformemente continua, es decir; por estar $f$ definida en un compacto,  para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
+        tal que para cualesquiera $x,y \in I$ que cumplan $|x-y| < \delta_\varepsilon$ entonces $|f(x)-f(y)| < \varepsilon$. \label{consecuencia:delta}
     \end{enumerate}
-    
-    
-    Dado $N \in  \N$ fijo pero arbitrario, para $\{ k | k \in \{1, ..., N\}$
-    $\frac{k}{N} \in I$ y tomando $x \in I$ podemos acotar
+    %% Cota 2M para  cada sumando
+    En virtud de la consecuencia \refeq{consecuencia:M}. 
+    Dado $N \in  \N$ fijo pero arbitrario, para cualquier $k \in \{1, ..., N\}$ se tiene que
+    $\frac{k}{N} \in I$ y tomando $x \in I$ podemos acotar por la desigualdad triangular
 
-    $$\left|f(x)- f\left( \frac{k}{N} \right) \right| \leq |f(x)| + \left|f \left( \frac{k}{N}\right) \right|\leq 2M$$
+    $$\left|f(x)- f\left( \frac{k}{N} \right) \right| \leq |f(x)| + \left|f \left( \frac{k}{N}\right) \right|\leq 2M$$  
 
-    
-    Fijado un $x$ del dominio, se tienen las siguientes particiones de índices: 
-    
-    $$\mathcal{A}_{x,N} = \{ k | k \in \{1, ..., N\} \text{ y }  |x- \frac{k}{N}| < \delta_\varepsilon \}$$
-
-    Donde el $\delta_\varepsilon$ se ha obtenido de la observación 2 tomando como $\varepsilon$ el 
-    buscado para la convergencia uniforme. 
- 
-    Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.
-    
-    Por otro lado se define
-    $$\mathcal{B}_{x,N} = \{1, ..., N\} - \mathcal{A}_{x,N}$$
-
-
-    Podemos elegir $m$ de manera conveniente de tal forma que 
-
-    $$ n \geq sup \left\{ (\delta_\varepsilon) ^{-4}, \frac{M^2}{\varepsilon^2}\right\}$$
-
-
-    y agruparemos los términos de la sumatoria en dos partes, para los que 
-    $|x - \frac{k}{n}| < n^{ -\frac{1}{4}} \leq \delta_\varepsilon$. 
-
-    Para éstos,  se tiene por Newton  
+    Por lo que 
 
     \begin{equation*}
-        \sum_{k=1}^n   \varepsilon \binom{n}{k} x^k (1-x)^{n-k} \leq \varepsilon \sum_{k=1}^n \binom{n}{k} x^k (1-x)^{n-k} =  \varepsilon
+        |f(x)-B_n(x)| = \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+    \sum_{k=0}^n 2M \leq
+    \binom{n}{k} x^{k} (1-x)^{n-k}
     \end{equation*}
 
-    Para el resto de términos, aquellos cuya $k$ cumpla que $|x - \frac{x}{n}| \geq n ^\frac{-1}{4}$, se tiene que 
-    $|x - \frac{x}{m}| \geq n ^\frac{-1}{2}$. 
+    %% Amago de cota 
+    El siente paso natural será acotar la sumatoria entera por alguna expresión que decrezca al aumentar N, para ello jugaremos un poco con la propiedades de los coeficientes binomiales. 
 
-    Queda el resto de subíndices resulta acotada por, deberemos de ver que para una determinada N, 
-    esa desigualdad se queda en épsilon
-    \begin{equation*}
-        \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{n}{k} x^k (1-x) ^{n-k} \\
-    \end{equation*}
-
-    Para acotar esto nos va a costar trabajar un poco más 
-    \begin{equation*}  \label{eq:Bernstein_caso_a_acotar}
-        \begin{split}
-        & \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{N}{k} x^k (1-x) ^{N-k} \\
-        & = 2M  \sum_{k \in \mathcal{B}_{x,N}}  \frac{(x- \frac{k}{N})^2}{(x- \frac{k}{N})^2} \binom{N}{k} x^k (1-x) ^{N-k} \\
-        & \leq 2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{n}{k} x^k (1-x) ^{N-k} \\
-    \end{split}
-    \end{equation*}
-
+   
+    %%% propiedades coeficientes binomial 
 
     Tengamos ahora presenten las siguientes igualdades 
     \begin{equation} \label{eq:binomio_menos_uno}
@@ -232,6 +194,18 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
     
 %--------------- fin de las igualdades del binomio de Newton 
 
+
+%%% -- MOVER ESTO DE SITIO
+\begin{equation*}  \label{eq:Bernstein_caso_a_acotar}
+    \begin{split}
+    & \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{N}{k} x^k (1-x) ^{N-k} \\
+    & = 2M  \sum_{k \in \mathcal{B}_{x,N}}  \frac{(x- \frac{k}{N})^2}{(x- \frac{k}{N})^2} \binom{N}{k} x^k (1-x) ^{N-k} \\
+    & \leq 2M \sqrt{N} \sum_{k \in \mathcal{B}_{x,N}}  (x- \frac{k}{N})^2 \binom{n}{k} x^k (1-x) ^{N-k} \\
+\end{split}
+\end{equation*}
+
+
+%%% copiad de lo que había arriba
 Recordemos que nuestro objetivo era acotar \ref{eq:Bernstein_caso_a_acotar}
 
 Para ello vamos a sumar las dos expresiones que hemos obtenido
@@ -283,3 +257,51 @@ Para ello vamos a sumar las dos expresiones que hemos obtenido
  
  
 \endinput 
+
+
+Sin pérdida de generalidad supondremos que $I=[0,1]$, como veremos esto no es restrictivo ya que 
+si $I$ fuera un intervalo cerrado existiría un homeomorfismo $H$ tal que $H^*(I)=[0,1]$ y podríamos
+trabajar con $H \circ f$ la cual respetaría todas los argumentos utilizados en la demostración. 
+
+Si $I$ fuera un abierto consideraríamos su cierre y aplicaríamos el razonamiento anterior. 
+De esta manera los supremos e ínfimos se mantendrían, ahora como mínimos y máximos y no se alteraría
+de ninguna manera la continuidad. 
+
+Tras la aclaración anterior podemos comenzar.
+
+%% borrar
+Fijado un $x$ del dominio, se tienen las siguientes particiones de índices: 
+    
+$$\mathcal{A}_{x,N} = \{ k | k \in \{1, ..., N\} \text{ y }  |x- \frac{k}{N}| < \delta_\varepsilon \}$$
+
+Donde el $\delta_\varepsilon$ se ha obtenido de la observación 2 tomando como $\varepsilon$ el 
+buscado para la convergencia uniforme. 
+
+Sea $\varepsilon > 0$ y tomemos $\delta_ \varepsilon$ el delta de la definición de uniformemente continuo.
+
+Por otro lado se define
+$$\mathcal{B}_{x,N} = \{1, ..., N\} - \mathcal{A}_{x,N}$$
+
+
+Podemos elegir $m$ de manera conveniente de tal forma que 
+
+$$ n \geq sup \left\{ (\delta_\varepsilon) ^{-4}, \frac{M^2}{\varepsilon^2}\right\}$$
+
+
+y agruparemos los términos de la sumatoria en dos partes, para los que 
+$|x - \frac{k}{n}| < n^{ -\frac{1}{4}} \leq \delta_\varepsilon$. 
+
+Para éstos,  se tiene por Newton  
+
+\begin{equation*}
+    \sum_{k=1}^n   \varepsilon \binom{n}{k} x^k (1-x)^{n-k} \leq \varepsilon \sum_{k=1}^n \binom{n}{k} x^k (1-x)^{n-k} =  \varepsilon
+\end{equation*}
+
+Para el resto de términos, aquellos cuya $k$ cumpla que $|x - \frac{x}{n}| \geq n ^\frac{-1}{4}$, se tiene que 
+$|x - \frac{x}{m}| \geq n ^\frac{-1}{2}$. 
+
+Queda el resto de subíndices resulta acotada por, deberemos de ver que para una determinada N, 
+esa desigualdad se queda en épsilon
+\begin{equation*}
+    \sum_{k \in \mathcal{B}_{x,N}} 2M \binom{n}{k} x^k (1-x) ^{n-k} \\
+\end{equation*}
