@@ -2,12 +2,12 @@
 % !TeX encoding = utf8
 %
 %*******************************************************
-% Teorema de Stone Weiertass 
+% Teorema de Stone Weiertrass 
 %*******************************************************
 
-\chapter{Teorema de Stone-Weierstass }\label{ch:TeoremaStoneWeiertass}
+\chapter{Teorema de Stone-Weierstrass }\label{ch:TeoremaStoneWeiertrass}
 
-\begin{teorema}[Teorema de Stone-Weierstass]
+\begin{teorema}[Teorema de Stone-Weierstrass]
 
     Sea $K$ un subconjunto compacto de $\R^p$ y sea $\mathcal{A}$ una colección de 
     funciones continuas de $K$ a $\R$ con las siguientes propiedades: 
@@ -20,12 +20,12 @@
     \end{enumerate}
     
     Se tiene que toda función continua de $K$ a $\R$ puede ser aproximada en $K$ por funciones de $\mathcal a$. 
-    \begin{proof}
-        
-    \end{proof}
+
 \end{teorema}  
 
-La idea que subyace bajo la demostración del teorema es que a partir de la las hipótesis de estructura de álgebra se prueba que es posible encontrar un supremos e ínfimo, construyéndolo a partir del valor absoluto.   Que se encuentra en la estructura.  
+La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y separabilidad se prueba que es posible encontrar las funciones máximo y mínimo, construyéndolo a partir del valor absoluto.   
+
+Con esta nueva propiedad y las hipótesis adicional se puede alcanzar cualquier función. 
 
 \begin{proof}
     Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá un función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
@@ -55,12 +55,12 @@ La idea que subyace bajo la demostración del teorema es que a partir de la las 
     
     Por lo que concluimos que cualquier función puede ser uniformemente aproximada por combinaciones lineales, supremos e ínfimo mediante funciones de $\mathcal{A}$.   Es decir, cualquier función continua en $K$
     puede ser uniformemente aproximado por funciones de $\mathcal{A}$. 
-
-
-    
-
-
-
 \end{proof}
+
+Reflexión sobre el teorema, $K$ puede parecer todo lo abstracta posible, ¿Son por ende las hipótesis demasiado restrictivas?  Para responder a esta pregunta basta con pensar en un ejemplo concreto: 
+Tomemos $K =  \R^n$  el cuerpo de los polinomios cumple todas las hipótesis, luego... 
+
+Sin embargo aproximar uniformemente cualquier función continua es 
+Lo restrictivo está en pensar ya que el conjunto de funciones continuas en un compacto es mucho  más pequeño que el de todas las funciones que podamos pensar.  
 
 \endinput

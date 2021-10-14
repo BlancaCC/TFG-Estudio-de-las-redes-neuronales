@@ -1,0 +1,3 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Polinomios de Bernstein}{7}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Teorema de Stone-Weierstrass}{13}{chapter.2}%
