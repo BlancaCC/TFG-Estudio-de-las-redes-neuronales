@@ -14,7 +14,7 @@
 
     \begin{enumerate}
         \item La función constantemente uno, definida como $e(x)=1$, para cualquier $x\in K$ pertenece a $\mathcal{A}$.
-        \item Cerrado para sumas y producto para escalares. Si $f,g$ pertenece a  $\mathcal{A}$, entonces $\alpha f + \beta g$ pertenece a $\mathcal{A}$ . 
+        \item Cerrado para sumas y producto para escalares reales. Si $f,g$ pertenece a  $\mathcal{A}$, entonces $\alpha f + \beta g$ pertenece a $\mathcal{A}$ . 
         \item Cerrado para producto, $fg$ pertenece a $\mathcal{A}$. 
         \item Separación de $K$, es decir si $x \neq y$ pertenecientes a $K$, entonces existe una función $f$ en $\mathcal{A}$  de tal manera que $f(x) \neq f(y)$. 
     \end{enumerate}
@@ -23,6 +23,44 @@
     \begin{proof}
         
     \end{proof}
-\end{teorema}
+\end{teorema}  
+
+La idea que subyace bajo la demostración del teorema es que a partir de la las hipótesis de estructura de álgebra se prueba que es posible encontrar un supremos e ínfimo, construyéndolo a partir del valor absoluto.   Que se encuentra en la estructura.  
+
+\begin{proof}
+    Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá un función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
+    $e \in \mathcal{A}$ en el álgebra nos permite encontrar reales $\alpha, \beta$ tales que 
+
+    $$\alpha f(x) + \beta e(x) = a, \quad \alpha f(y) + \beta e(y) = b$$  
+
+     Por el teorema de Heine, para $f \in \mathcal A$ está acotada por tomar imagen en un compacto, es decir $|f(x)| \leq M$ para $x \in K.$  
+
+    Consideremos ahora la función valor absoluto, $\phi(t)=|t|$ definida en el dominio $I = [-M, M].$
+    Por el teorema de aproximación de Weierstass \refeq{teo:TeoremaAproximacionWeierstrass} 
+    para cualquier $\varepsilon > 0$ 
+    existirá un polinomio $p$ cumpliendo que 
+    $$||t|- p(t)| < \varepsilon, \quad \forall t \in I.$$
+
+    Puesto que $t \in I$ no son más que las posibles imágenes que puede tomar $f$ en $K$ inferimos entonces que 
+
+    $$||f(x)| - p \circ f(x)| < \varepsilon \quad \forall x \in K.$$
+
+    Como $f \in \mathcal{A}$ y $p$ es un polinomio, es decir,  $p \circ f(x)$ son sumas de potencias multiplicadas por escalares de $f(x)$, luego por la hipótesis de ser cerrado a estas operaciones tenemos que la función 
+    $|f|$ pertenece a $\mathcal{A}$ si $f \in \mathcal{A}.$  
+
+
+    Tenemos con esto que $\mathcal{A}$ también es cerrada a supremo e ínfimo  gracias a que:   
+    $$sup\{f,g\} = \frac{1}{2} \{f+g+ |f+g|\}$$
+    $$inf\{f,g\} = \frac{1}{2} \{f+g -|f+g|\}$$
+    
+    Por lo que concluimos que cualquier función puede ser uniformemente aproximada por combinaciones lineales, supremos e ínfimo mediante funciones de $\mathcal{A}$.   Es decir, cualquier función continua en $K$
+    puede ser uniformemente aproximado por funciones de $\mathcal{A}$. 
+
+
+    
+
+
+
+\end{proof}
 
 \endinput
