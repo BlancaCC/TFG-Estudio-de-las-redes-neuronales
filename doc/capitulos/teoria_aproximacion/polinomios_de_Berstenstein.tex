@@ -47,7 +47,7 @@ y $k \in \{0,...,n \}.$
 \end{definicion}
 
 Faltaría por ver si efectivamente nuestro polinomio construido\textit{aproxima lo suficientemente bien} a la $f$ originaria. 
-Para ello basándonos en la \eqref{f_igual_binomio} y la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
+Para ello basándonos en la igualdad del binomio a uno \eqref{eq:f_igual_binomio} y la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
 
 %\begin{equation}
 %    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
@@ -61,7 +61,8 @@ Para ello basándonos en la \eqref{f_igual_binomio} y la diferencia entre $f(x)$
 \end{equation} 
 
 La intuición nos ya
-hace pensar que sea convergente; en efecto veremos que \ref{def:Bernstein} es uniformemente convergente a $f$. 
+hace pensar que sea convergente; en efecto veremos que \ref{def:Bernstein}
+ es uniformemente convergente a $f$. 
 
 \begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
 
@@ -122,7 +123,7 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
    
     %%% propiedades coeficientes binomial 
 
-    Tengamos ahora presenten las siguientes igualdades 
+    Tengamos ahora presente las siguientes igualdades 
     \begin{equation} \label{eq:binomio_menos_uno}
         \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1))!} = \frac{k}{n} \binom{n}{k}
     \end{equation}

@@ -19,13 +19,13 @@
         \item Separación de $K$, es decir si $x \neq y$ pertenecientes a $K$, entonces existe una función $f$ en $\mathcal{A}$  de tal manera que $f(x) \neq f(y)$. 
     \end{enumerate}
     
-    Se tiene que toda función continua de $K$ a $\R$ puede ser aproximada en $K$ por funciones de $\mathcal a$. 
+    Se tiene que toda función continua de $K$ a $\R$ puede ser aproximada en $K$ por funciones de $\mathcal A$. 
 
 \end{teorema}  
 
 La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y separabilidad se prueba que es posible encontrar las funciones máximo y mínimo, construyéndolo a partir del valor absoluto.   
 
-Con esta nueva propiedad y las hipótesis adicional se puede alcanzar cualquier función. 
+Con esta nueva propiedad y siendo cerrado para combinaciones lineales se puede aproximar uniformemente cualquier función continua definida en el compacto. 
 
 \begin{proof}
     Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá un función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
@@ -36,7 +36,9 @@ Con esta nueva propiedad y las hipótesis adicional se puede alcanzar cualquier 
      Por el teorema de Heine, para $f \in \mathcal A$ está acotada por tomar imagen en un compacto, es decir $|f(x)| \leq M$ para $x \in K.$  
 
     Consideremos ahora la función valor absoluto, $\phi(t)=|t|$ definida en el dominio $I = [-M, M].$
-    Por el teorema de aproximación de Weierstass \refeq{teo:TeoremaAproximacionWeierstrass} 
+    Por el teorema de aproximación de Weierstrass 
+    \ref{teo:TeoremaAproximacionWeierstrass}
+    
     para cualquier $\varepsilon > 0$ 
     existirá un polinomio $p$ cumpliendo que 
     $$||t|- p(t)| < \varepsilon, \quad \forall t \in I.$$
@@ -57,7 +59,13 @@ Con esta nueva propiedad y las hipótesis adicional se puede alcanzar cualquier 
     puede ser uniformemente aproximado por funciones de $\mathcal{A}$. 
 \end{proof}
 
-Reflexión sobre el teorema, $K$ puede parecer todo lo abstracta posible, ¿Son por ende las hipótesis demasiado restrictivas?  Para responder a esta pregunta basta con pensar en un ejemplo concreto: 
+Admite este teorema una reflexión sobre cuánto de restrictivas son las hipótesis
+ o el conjunto de propiedades exigidas $\mathcal{A}$. 
+
+Para ello tomemos un ejemplo concreto, sea $K =  \R^n$ se tiene que el conjunto 
+$\mathcal{ A} = \{ \}$
+Reflexión sobre el teorema, $K$ puede parecer todo lo abstracta posible, ¿Son por ende las 
+hipótesis demasiado restrictivas?  Para responder a esta pregunta basta con pensar en un ejemplo concreto: 
 Tomemos $K =  \R^n$  el cuerpo de los polinomios cumple todas las hipótesis, luego... 
 
 Sin embargo aproximar uniformemente cualquier función continua es 
