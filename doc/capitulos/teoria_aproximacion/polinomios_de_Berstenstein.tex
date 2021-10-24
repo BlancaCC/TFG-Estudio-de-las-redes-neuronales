@@ -8,7 +8,7 @@
 \section{Polinomios de Bernstein}\label{ch:Bernstein}  
 
 %% Resumen capítulo 
-En este capítulo introduciremos los polinomios de Bernstein;   que vistos como una serie nos asegurarán una convergencia uniformemente a cualquier función continua en un compacto y serán esenciales para nuestra prueba del teorema de Stone-Weiertrass.  
+En esta seción introduciremos los polinomios de Bernstein;   que vistos como una serie nos asegurarán una convergencia uniformemente a cualquier función continua en un compacto y serán esenciales para nuestra prueba del teorema de Stone-Weiertrass.  
 
 Comenzaremos recordando el Teorema del Binomio de Newton. 
 
@@ -46,8 +46,10 @@ y $k \in \{0,...,n \}.$
 
 \end{definicion}
 
-Faltaría por ver si efectivamente nuestro polinomio construido\textit{aproxima lo suficientemente bien} a la $f$ originaria. 
-Para ello basándonos en la igualdad del binomio a uno \eqref{eq:f_igual_binomio} y la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
+Faltaría por ver si efectivamente nuestro polinomio construido
+ \textit{aproxima lo suficientemente bien} a la $f$ originaria. 
+Basándonos en la igualdad \eqref{eq:f_igual_binomio} y 
+la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
 
 %\begin{equation}
 %    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
@@ -60,9 +62,10 @@ Para ello basándonos en la igualdad del binomio a uno \eqref{eq:f_igual_binomio
     \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
 
-La intuición nos ya
-hace pensar que sea convergente; en efecto veremos que \ref{def:Bernstein}
- es uniformemente convergente a $f$. 
+Ante tal igualdad la intuición ya nos
+hace pensar que sea convergente al aumenta el tamaño de la partición.
+ En efecto, en nuestro sucesivo teorema, nos cercioraremos que \ref{def:Bernstein}
+ es uniformemente convergente a $f$ en un compacto. 
 
 \begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
 
@@ -111,15 +114,24 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
     Por lo que 
 
     \begin{equation*}
-        |f(x)-B_n(x)| = \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
-    \binom{n}{k} x^{k} (1-x)^{n-k}
-    \sum_{k=0}^n 2M \leq
+        |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
+     \binom{n}{k} x^{k} (1-x)^{n-k}
+     \ leq \sum_{k=0}^n 2M 
     \binom{n}{k} x^{k} (1-x)^{n-k}
     \end{equation*}
 
     %% Amago de cota 
-    El siente paso natural será acotar la sumatoria entera por alguna expresión que decrezca al aumentar N, para ello jugaremos un poco con la propiedades de los coeficientes binomiales. 
 
+    Encauzados nuevamente por la intuición de que la diferencia debe decrecer al aumentar $N$,
+     el tamaño de la partición;
+    escribiremos la ecuación anterior en involucrando a $N$. 
+
+    %% Desarrollo hasta llegar a la ecuación de raiz de N
+
+
+    El siente paso natural será acotar la sumatoria entera por alguna expresión que decrezca al aumentar N, para ello jugaremos un poco con la propiedades de los coeficientes binomiales. 
+    TODO : es necesario introducir aquí la inecuaciónde la N, pero ahora no ves clara la relación, conviene 
+    y quizás de aquí surgen la necesidad de la partición. 
    
     %%% propiedades coeficientes binomial 
 
