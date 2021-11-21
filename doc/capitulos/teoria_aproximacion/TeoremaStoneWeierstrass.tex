@@ -1,0 +1,74 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Teorema de Stone Weiertrass 
+%*******************************************************
+
+\section{Teorema de Stone-Weierstrass }\label{ch:TeoremaStoneWeiertrass}
+
+\begin{teorema}[Teorema de Stone-Weierstrass]
+
+    Sea $K$ un subconjunto compacto de $\R^p$ y sea $\mathcal{A}$ una colección de 
+    funciones continuas de $K$ a $\R$ con las siguientes propiedades: 
+
+    \begin{enumerate}
+        \item La función constantemente uno, definida como $e(x)=1$, para cualquier $x\in K$ pertenece a $\mathcal{A}$.
+        \item Cerrado para sumas y producto para escalares reales. Si $f,g$ pertenece a  $\mathcal{A}$, entonces $\alpha f + \beta g$ pertenece a $\mathcal{A}$ . 
+        \item Cerrado para producto. Para $f,g \in \mathcal A$, se tiene que $fg$ pertenece a $\mathcal{A}$. 
+        \item Separación de $K$, es decir si $x \neq y$ pertenecientes a $K$, entonces existe una función $f$ en $\mathcal{A}$  de tal manera que $f(x) \neq f(y)$. 
+    \end{enumerate}
+    
+    Se tiene que toda función continua de $K$ a $\R$ puede ser aproximada en $K$ por funciones de $\mathcal A$. 
+
+\end{teorema}  
+
+La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y separabilidad se prueba que es posible encontrar las funciones máximo y mínimo, construyéndolo a partir del valor absoluto.   
+
+Con esta nueva propiedad y siendo cerrado para combinaciones lineales se puede aproximar uniformemente cualquier función continua definida en el compacto. 
+
+\begin{proof}
+    Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá un función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
+    $e \in \mathcal{A}$ en el álgebra nos permite encontrar reales $\alpha, \beta$ tales que 
+
+    $$\alpha f(x) + \beta e(x) = a, \quad \alpha f(y) + \beta e(y) = b$$  
+
+     Por el teorema de Heine, para $f \in \mathcal A$ está acotada por tomar imagen en un compacto, es decir $|f(x)| \leq M$ para $x \in K.$  
+
+    Consideremos ahora la función valor absoluto, $\phi(t)=|t|$ definida en el dominio $I = [-M, M].$
+    Por el teorema de aproximación de Weierstrass 
+    \ref{teo:TeoremaAproximacionWeierstrass}
+    
+    para cualquier $\varepsilon > 0$ 
+    existirá un polinomio $p$ cumpliendo que 
+    $$||t|- p(t)| < \varepsilon, \quad \forall t \in I.$$
+
+    Puesto que $t \in I$ no son más que las posibles imágenes que puede tomar $f$ en $K$ inferimos entonces que 
+
+    $$||f(x)| - p \circ f(x)| < \varepsilon \quad \forall x \in K.$$
+
+    Como $f \in \mathcal{A}$ y $p$ es un polinomio, es decir,  $p \circ f(x)$ son sumas de potencias multiplicadas por escalares de $f(x)$, luego por la hipótesis de ser cerrado a estas operaciones tenemos que la función 
+    $|f|$ pertenece a $\mathcal{A}$ si $f \in \mathcal{A}.$  
+
+
+    Tenemos con esto que $\mathcal{A}$ también es cerrada a supremo e ínfimo  gracias a que:   
+    $$sup\{f,g\} = \frac{1}{2} \{f+g+ |f+g|\}$$
+    $$inf\{f,g\} = \frac{1}{2} \{f+g -|f+g|\}$$
+    
+    Por lo que concluimos que cualquier función puede ser uniformemente aproximada por combinaciones lineales, supremos e ínfimo mediante funciones de $\mathcal{A}$.   Es decir, cualquier función continua en $K$
+    puede ser uniformemente aproximado por funciones de $\mathcal{A}$. 
+\end{proof}
+
+Admite este teorema una reflexión sobre cuánto de restrictivas son las hipótesis
+ o el conjunto de propiedades exigidas $\mathcal{A}$. 
+
+Para ello tomemos un ejemplo concreto, sea $K =  \R^n$ se tiene que el conjunto 
+$\mathcal{ A} = \{ \}$
+Reflexión sobre el teorema, $K$ puede parecer todo lo abstracta posible, ¿Son por ende las 
+hipótesis demasiado restrictivas?  Para responder a esta pregunta basta con pensar en un ejemplo concreto: 
+Tomemos $K =  \R^n$  el cuerpo de los polinomios cumple todas las hipótesis, luego... 
+
+Sin embargo aproximar uniformemente cualquier función continua es 
+Lo restrictivo está en pensar ya que el conjunto de funciones continuas en un compacto es mucho  más pequeño que el de todas las funciones que podamos pensar.  
+
+\endinput
