@@ -123,6 +123,34 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
     si está lo suficientemente alejado, tan solo podremos acotar tal término por $2M$. 
 
     Separaremos pues nuestra sumatoria en los siguientes dos conjuntos.  
+
+    Para $\varepsilon > 0$ y para $\delta_\varepsilon$ de la definición de continuidad uniforme de $f$ 
+    podemos encontrar un $n \geq \sup \{ (\delta_\varepsilon)^{-4}, \frac{M^2}{ \varepsilon^2}\}$. 
+    \textcolor{red}{ TODO: explicar porqué se eleva a menos cuatro, tiene que ver con la cota de los mayores.}
+
+    Dispuestos a separar la sumatoria en en función de la  distancia mencionada resultan los conjuntos: 
+
+     $$\mathcal{A}_{n,x} = \{ k \text{ tales que } k \in \{0,..., n\} \text{ y  } |x - \frac{k}{n}| < n^{\frac{-1}{4}} \leq \delta_\varepsilon$$
+     $$\mathcal{B}_{n,x} = \{0,..., n\} - \mathcal{A}$$. 
+
+     De donde obtenemos la siguiente estimación: 
+     \begin{equation*}
+        \begin{split}
+        \sum_{k \in \mathcal A } \left|f(x) - f \left( \frac{k}{n} \right)\right|
+     \binom{n}{k} x^{k} (1-x)^{n-k}
+     \leq 
+     \sum_{k \in \mathcal A } \varepsilon \binom{n}{k} x^{k} (1-x)^{n-k} 
+     =  \\
+      = \sum_{k \in \mathcal A } \varepsilon \binom{n}{k} x^{k} (1-x)^{n-k} 
+     \leq 
+     \varepsilon \sum_{k = 0} ^ n  \binom{n}{k} x^{k} (1-x)^{n-k} = 
+     \varepsilon
+        \end{split}
+    \end{equation*}
+
+    Para el resto de sumandos para los que $|x - \frac{k}{n}| \geq  n^{\frac{-1}{4}}$ se tiene que 
+    $(x - \frac{k}{n})^2 \geq  n^{\frac{-1}{2}}$ cota que utilizaremos más adelante. 
+
     \begin{equation*}
         |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
      \binom{n}{k} x^{k} (1-x)^{n-k}
