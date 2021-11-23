@@ -116,7 +116,17 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
     \begin{equation*}
         |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
      \binom{n}{k} x^{k} (1-x)^{n-k}
-     \ leq \sum_{k=0}^n 2M 
+    \end{equation*}
+
+    Puesto que tenemos que $f$ acotada por $M$ y es uniformemente continua, para valores de $k$ tales que $\frac{k}{n}$ 
+    esté próxima a $x$, tal término de la sumatoria será pequeño por la continuidad de $f$ en $x$. Por otro lado
+    si está lo suficientemente alejado, tan solo podremos acotar tal término por $2M$. 
+
+    Separaremos pues nuestra sumatoria en los siguientes dos conjuntos.  
+    \begin{equation*}
+        |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
+     \binom{n}{k} x^{k} (1-x)^{n-k}
+     \leq \sum_{k=0}^n 2M 
     \binom{n}{k} x^{k} (1-x)^{n-k}
     \end{equation*}
 
