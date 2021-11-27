@@ -5,4 +5,8 @@
 
 *.log
 *.out
-  
+*.aux
+*.idx
+*.pdf
+*.toc
+*.lof
