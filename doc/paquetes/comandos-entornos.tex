@@ -8,6 +8,16 @@
   \newcommand{\Q}{\mathbb{Q}}     % Racionales
   \newcommand{\C}{\mathbb{C}}     % Complejos
 
+  %%%%%%%%% Mis comandos %%%%%%%%%5
+\usepackage{sidenotes} % Notas en el margen
+\newcommand{\margenimagen}{
+  \newgeometry{
+      left=2.5cm, % Margen izquierdo
+    right=5cm, % Margen derecho
+    bottom=2.5cm % Margen inferior}
+  }
+}
+
 % TEOREMAS Y ENTORNOS ASOCIADOS
 
   % \newtheorem{theorem}{Theorem}[chapter]
@@ -42,3 +52,5 @@
 \usepackage{tocloft}
 \setlength{\cftfignumwidth}{2.55em}
 \DeclareMathOperator*{\argmin}{arg\,min}
+
+
