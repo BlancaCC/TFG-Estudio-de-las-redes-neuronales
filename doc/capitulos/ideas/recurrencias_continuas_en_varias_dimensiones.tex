@@ -23,7 +23,8 @@ Comenzaré presentando la estructura con ejemplo:
 
 Supongamos que en el plano euclídeo se tiene definida una curva $\sigma_0$, 
 que sin pérdida de generalidad restringe su dominio del intervalo $[0,1]$ al plano. 
-Se define pues a la función recurrente continua de la curva $\sigma_0$ $\mathcal S_{\sigma_0}$
+Se define pues a la función recurrente continua de la curva $\sigma_0$, 
+a la que denotaremos como $\mathcal S_{\sigma_0}$;
 como la suma infinita numerable de
  las curvas $\sigma_n :[0,1] \longrightarrow \R^2$ con $n$ natural y construido de manera recursiva como
  $$\sigma_n(t) = \sigma_{n-1}(1) + \sigma_0(t) - \sigma_0(0)$$.  
@@ -43,8 +44,9 @@ espacios de mayor dimensión.
 Quizás a priori pueda no parecer interesante esta estructura, pero introduzcamos 
 de manera informal nuevas restricciones a nuestro problema: 
 
-Dado un plano se quiere construir una función que pase por los "puntos rojos" evitando los negros 
-\ref{img:idea_recurrencia_plano}: 
+Dado un plano se quiere construir una función que pase por los \textit{puntos rojos} 
+evitando los \textit{negros}
+. Figura \ref{img:idea_recurrencia_plano}. 
 
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{ideas/recurencias_continuas/ejemplo_de_plano.jpg}
@@ -75,13 +77,37 @@ calcular solo $\sigma_0$.
 
 \subsection{ Preguntas que introduce esta estructura}
 
-1. Nótese que ha sido necesaria cierta simetría o patrón en la estructura del ejemplo
-¿Se podría generalizar? 
-La intuición me dice que sí.
-Una forma de generalizarlo que se me ocurre y aún no he formalizado
- sería "añadir puntos negros y rojos auxiliares que den lugar al patrón buscado"
- como si calculáramos un mínimo común múltiplo geométrico.  
+1. Nótese que ha sido necesaria cierta simetría o patrón en la estructura del ejemplo  
 
+¿Se podría generalizar?   
+
+De manera intuitiva las respuesta es sí. Bastaría con
+\begin{enumerate}
+ \item \textit{Dividir en la misma proporción el espacio} obteniendo las particiones $D_n$ (numeradas de izquierda a derecha).
+ \item \textit{Superponer} las sucesivas $D_n$ de tal manera que obtenemos $\mathcal{D}$,
+ \item Puesto que $\mathcal{D}$ contiene todos los puntos relevantes bastará con
+ \item \textit{Trazar} en $D_0$ la curva $\sigma_0$ necesaria en  $\mathcal{D}$ y que 
+  comience en un \textit{borde} cuya  posición relativa en $D_0$ sea 
+  $\sigma_0(0)$, tal que el final de la curva trazada $\sigma_0(1)$, en la posición relativa 
+  $D_1$  coincida con $\sigma_0(0)$. 
+\end{enumerate}
+
+
+Esta idea  de demostración intuitiva nos brinda las siguientes reflexiones 
+sobre el modelo creado: 
+
+\begin{itemize}
+    \item En caso de que no haya hipótesis de patrón el costo computacional de construir 
+    $\sigma_0$ es el mismo es el mismo (o mayor por las superposición) que el de construir la función entera. 
+
+    \item Tiene la limitación de que el patrón se repite en una dimensión, ya que no deja de ser un grafo.
+    (¿Facilmente solventable  ampliando el número de $\sigma_0$?)
+\end{itemize}
+
+\subsection{Conclusiones}
+
+Hasta el momento esta estructura aquí definida no deja de ser más de un delirio de curiosidad 
+y no es facilmente aplicable si no encontramos patrones en el espacio. 
 
 
 
