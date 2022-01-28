@@ -64,10 +64,10 @@ como un perceptrón.
         \begin{split}
         \pmc = 
         \{ 
-            f: \R ^r \longrightarrow \R \\
-            f(x)=\sum_{j = 1} ^q (
-            \beta_j G(A_{j}(x)), 
-            x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r, l_j,q \in \N
+            & f: \R ^r \longrightarrow \R \\
+            &f(x)=\sum_{j = 1} ^q (
+            \beta_j G(A_{j}(x)), \\
+            & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r, l_j,q \in \N
             )
         \}
         \end{split}
@@ -77,6 +77,28 @@ como un perceptrón.
 
 Obsérvese que cada sumatoria representa un perceptrón y la salida final 
 es una combinación lineal de los distintos perceptrones. 
+
+Con esta misma idea se definirá la siguiente estructura que generaliza a la familia $\pmc$  
+   
+\begin{definicion} Generalización de la familia $\pmc$ \\
+    
+    \begin{equation} 
+        \begin{split}
+        \sum \prod^r(G) = \{ 
+        &f: \R^r \longrightarrow \R | \\
+        & f(x) = \sum_{j = 1} ^q , \beta_j \cdot \prod_{k=1}^{l_j}
+        G(A_{jk}(x)), \\
+        &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
+        )
+        \}
+    \end{split}
+    \end{equation}  
+
+    Notemos que $\pmc$ es el caso particular $l_j = 1$ para todo $j$. Nuestro primer
+    resultado se demostrará para $\sum \prod^r(G)$ y como consecuencia quedará probado
+    también para $\pmc$. 
+\end{definicion}
+
 
 \subsection{ Reflexión sobre la relevancia de la función de activación}  
 
@@ -88,5 +110,24 @@ Por si mi comentario no ha resultado claro procedo a dar un ejemplo:
 Supongamos que nos hallamos frente a un problema de clasificación de dos clases y que la función de activación
 tomada es una función umbral que toma valores cero o uno. Define por tanto esta función una separación de clases. 
 De otra manera, de solo existir la función afín sin una transformación de la salida, el codominio serían los Reales
-donde a priori no se explicita una asignación de clase.   
+donde a priori no se explicita una asignación de clase.  
 
+Introduciremos a continuación notación de los conjuntos de funciones que seremos capaces de aproximar.  
+
+\begin{definicion} Conjuntos de funciones continuas y Borel-medibles \\
+    Sea $C^r$ el conjunto de funciones continuas con dominio en $\R^r$ y codominio $R$, 
+    y sea $M^r$ el conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
+
+    Denotaremos también a la $\sigma$-álgebra de Bore en $\R ^r$ como $B^r$. 
+\end{definicion}
+
+En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ pertenecen a 
+$M^r$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
+$\pmc$ y $\pmcg$ pertenecen a $C^r$. Tengamos presente que $C^r$ es un subconjunto ç
+de $M^r$.  
+
+Como veremos más adelante primero demostraremos el teorema para $C^r$ y después 
+extenderemos el resultado para $M^r$.   
+
+
+\subsection{ Reflexión sobre el tipo de conjuntos que se pueden aproximar}
