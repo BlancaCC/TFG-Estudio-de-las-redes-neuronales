@@ -146,9 +146,9 @@ Quizás habría que buscar características más intrínsecas del problema en cu
 razonamientos topológicos.
 
 \begin{definicion} Subconjunto denso \\  
-    Dado un subconjunto $S$ de un espacio métrico $(X, d)$, se dice que $S$ es denso por la distancia $d$
+    Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
     en subconjunto $T$ si para todo $\epsilon$ positivo y cualquier $t \in T$ existe un $s \in S$ tal 
-    que $d(s,t) \leq \epsilon$. 
+    que $\rho(s,t) \leq \epsilon$. 
 \end{definicion}
 
 Un ejemplo habitual sería en el espacio métrico $(\R, |.|)$ con $|.|$ el valor absoluto, el subconjunto 
@@ -157,7 +157,24 @@ $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$.
 A nivel intuitivo sería decir que los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
 con la precisión que se desee. 
 
+\begin{definicion} 
+    Un subconjunto $S$ de $C^r$ se dice que es \textbf{uniformemente denso por compactos} en  $C^r$
+    si para cada subconjunto compacto $K \subset \R^r$ se tiene que $S$ es denso según $\rho_k$ en $C^r$
+    donde está definida como: 
 
+    para cualquier $f,g \in C^r$ 
+    \begin{equation}
+        \rho _ k (f,g) = \sup_{x \in K} |f(x) -g(x)|.
+    \end{equation}
+\end{definicion}
+
+\begin{definicion}
+    Una serie de funciones $\{f_n\}$ \textbf{converge uniformemente a una función $f$ en compactos} si para 
+    todos los conjuntos compactos $K \subset \R^r$ si 
+    \begin{equation}
+        \rho_k (f_n, f) \longrightarrow 0 \text{ cuando } n \longrightarrow \infty
+    \end{equation} 
+\end{definicion}
 
 
 
