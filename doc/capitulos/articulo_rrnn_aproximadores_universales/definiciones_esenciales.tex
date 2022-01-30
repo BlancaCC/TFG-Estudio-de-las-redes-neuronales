@@ -86,7 +86,7 @@ Con esta misma idea se definirá la siguiente estructura que generaliza a la fam
         \begin{split}
         \sum \prod^r(G) = \{ 
         &f: \R^r \longrightarrow \R | \\
-        & f(x) = \sum_{j = 1} ^q , \beta_j \cdot \prod_{k=1}^{l_j}
+        & f(x) = \sum_{j = 1} ^q  \beta_j \cdot \prod_{k=1}^{l_j}
         G(A_{jk}(x)), \\
         &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
         )
@@ -164,7 +164,7 @@ con la precisión que se desee.
 
     para cualquier $f,g \in C^r$ 
     \begin{equation}
-        \rho _ k (f,g) = \sup_{x \in K} |f(x) -g(x)|.
+        \rho _ k (f,g) = \sup_{x \in K} |f(x) - g(x)|.
     \end{equation}
 \end{definicion}
 
@@ -176,6 +176,67 @@ con la precisión que se desee.
     \end{equation} 
 \end{definicion}
 
+\begin{teorema} [Teorema de independencia función de activación] 
+
+    Sea G cualquier función continua no constante definida de $\R$ en $\R$. 
+    Se tiene que $\pmcg$ es uniformemente denso por compactos en $C^r$
+\end{teorema}
+
+\begin{proof}
+    Bastará con probar el conjunto $\pmcg$ satisface las hipótesis del teorema de Stone-Weiertrass \ref{ch:TeoremaStoneWeiertrass}
+    La primera hipótesis será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
+    \begin{enumerate}
+        \item La función constante uno pertenece al conjunto. 
+        Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b$
+        Consideremos la función afín $A(x) = 0 \cdot x + a$, está claro que $\frac{1}{b}G(A(x))$ es la función constantemente uno. 
+        \item Cerrado para sumas y producto para escalares reales. 
+        Si $f,g$ pertenece a  $\pmcg$, entonces $\alpha f + \beta g$ pertenece a $\pmcg$ .
+        
+        Tenemos por definición del conjunto $\pmcg$
+        que $f,g$ serán de la forma $f = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
+        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$ la suma de ambas seguirá la expresión
+        de los elementos de $\pmcg$
+        
+        \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
+        Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
+        \begin{equation}
+            \begin{split}
+                fg &= \left(\sum_{i \in I_f} \beta_{j} \cdot \prod_{k=1}^{l_{i}}  G(A_{ik}(x))\right)
+                    \left(\sum_{j \in I_g} ^p  \beta_{j} \cdot \prod_{k=1}^{l_{j}} G(A_{jk}(x)) \right) \\
+                    & = \sum_{i \in I_f} \left(  \beta_{j} \cdot \prod_{k=1}^{l_{i}}  G(A_{ik}(x))
+                        \left( \sum_{j \in I_g} ^p  \beta_{j} \cdot \prod_{k=1}^{l_{j}} G(A_{jk}(x))  \right)  
+                     \right) \\
+                    & =  \sum_{(i,j) \in I_f \times I_g} (\beta{i}\beta{j}) \prod_{k \in \Lambda} G(A_{k}(x))
+            \end{split}
+        \end{equation}
+        Luego $fg \in \pmcg$. 
+    \end{enumerate}
+
+    La segunda hipótesis, dado cualquier compacto $K \subset \R^r$ veamos que $\pmcg$ separa puntos de $K$. 
+
+    Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Tomaremos entonces cualquiera de las 
+    funciones afines de $A^r$ que cumplen que $A(x) = a$ y $A(y)=b$ 
+    \footnote{Sabemos que al menos una habrá, ya que podemos plantear la función afín
+    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones}
+    Por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
+
+    Veamos finalmente que para todo punto de $k$ existe una función de $\pmcg$  en el que la imagen no es nula.  
+
+    Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$ , consideramos ahora la aplicación lineal
+    $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(b) \neq 0$. 
+
+    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos que 
+    la clausura uniforme de $\pmcg$ en $\R$ consiste en todas las funciones continuas de variable real en un compacto,
+     o equivalentemente, $\pmcg$ es denso en el espacio denso en el  espacio de la funciones continuas de una variable en un compacto. 
+\end{proof}
+
+Con esto lo que acabamos de probar que \textit{feedforward neural networks} $\sum \prod$ son capaces de aproximar cualquier 
+función continua de variable real en un compacto.  
+
+
+\subsection{Reflexión teorema de independencia función de activación}
+Nota: En ningún momento dice que deba de ser una función de activación ¿Por qué pide entonces tales características en la definición de 
+función de activación.  
 
 
 
