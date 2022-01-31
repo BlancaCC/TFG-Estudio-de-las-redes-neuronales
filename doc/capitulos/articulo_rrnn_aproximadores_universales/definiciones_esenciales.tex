@@ -323,6 +323,37 @@ número de neuronas, por capa. Supongamos una situación en la que el número de
 generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras. 
 
 
+%% Definiciones de equivalencia de funciones 
+\begin{definicion}[Equivalencia entre funciones]
+    Sea $\mu$ una medida de probabilidad en $(\R^r, B^r)$.  Dos funciones 
+    $f$ y $g$ pertenecientes a $M^r$, diremos que son $\mu -$equivalentes 
+    si $\mu\{ x \in \R^r : f(x)=g(x) \} = 1.$
+\end{definicion}
+
+Lo que se está diciendo es que serán iguales casi por doquier.   
+
+% Definición métrica  
+\begin{definicion}
+    Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
+    la métrica $\rho_{\mu}$ definida como 
+    \begin{equation}
+        \begin{split}
+            & \rho_{\mu} : M^r \times M^r \Longrightarrow \R^+ \\
+            & \rho_{\mu}(f,g) = \inf \{ \epsilon > 0: \mu \{ x : |f(x) - g(x)| > \epsilon \} < \epsilon \}.
+        \end{split}
+    \end{equation}
+\end{definicion}  
+
+Con esta definición lo que se está buscando es una forma de decir cuánto 
+distan las funciones $f,g$ entre ellas.  
+
+%% Lema 
+
+\begin{lema}
+    Son equivalente las siguientes afirmaciones 
+\end{lema}
+
+
 
 
 
