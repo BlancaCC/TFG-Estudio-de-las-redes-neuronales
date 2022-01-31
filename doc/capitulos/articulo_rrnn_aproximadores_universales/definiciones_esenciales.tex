@@ -333,12 +333,12 @@ generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras.
 Lo que se está diciendo es que serán iguales casi por doquier.   
 
 % Definición métrica  
-\begin{definicion}
+\begin{definicion} [Introducción de una métrica basada en una probabilidad]
     Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
     la métrica $\rho_{\mu}$ definida como 
     \begin{equation}
         \begin{split}
-            & \rho_{\mu} : M^r \times M^r \Longrightarrow \R^+ \\
+            & \rho_{\mu} : M^r \times M^r \longrightarrow \R^+ \\
             & \rho_{\mu}(f,g) = \inf \{ \epsilon > 0: \mu \{ x : |f(x) - g(x)| > \epsilon \} < \epsilon \}.
         \end{split}
     \end{equation}
@@ -348,10 +348,50 @@ Con esta definición lo que se está buscando es una forma de decir cuánto
 distan las funciones $f,g$ entre ellas.  
 
 %% Lema 
-
-\begin{lema}
-    Son equivalente las siguientes afirmaciones 
+\begin{lema}[Caracterización de la convergencia de una sucesión]
+    Son equivalente las siguientes afirmaciones: 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\rho_{\mu}(f_n, f) \longrightarrow 0$.
+        \item Para cualquier  $\epsilon > 0$ se tiene que $\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0$.
+        \item $\int min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \longrightarrow 0.$
+    \end{enumerate}
 \end{lema}
+
+\begin{proof}
+    Comenzaremos probando (i) $\Longleftrightarrow$ (ii). 
+
+    Si $\rho_{\mu}(f_n, f) \longrightarrow 0$
+    tenemos por definición que 
+    para cualquier $\epsilon > 0$ existirá $n_0 \in \N$ tal que 
+    $\rho_{\mu}(f_n, f) < \epsilon$ para $n$ un natural mayor que $n_0$. 
+    
+    Por definición de la métrica, tenemos que 
+    $$\rho_{\mu}(f_n, f) = \inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \}$$
+    Luego $\rho_{\mu}(f_n, f)  < \epsilon$ sii 
+    $$\inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \} < \epsilon$$
+    por estar en un espacio compacto, el ínfimo se alcanza luego esto equivale a 
+    $$\mu \{ x : |f_n(x) - f(x)| > \epsilon$$
+    probando la equivalencia buscada.  
+
+    Probaremos ahora que (ii) $\Longrightarrow$ (iii).   
+
+    Por (ii) se tiene que sea cual sea el $\frac{\epsilon}{2} > 0$ 
+    existirá un natural $n_0$ a partir del cual, cualquier otro natural $n$ 
+    satisface que 
+    $$\mu \{  x : |f_n(x) - f(x)| > \frac{\epsilon}{2}  \}  < \frac{\epsilon}{2}$$ 
+    Gracias a esta desigualdad, para cualquier $n > n_0$ podemos acotar la siguiente integral: 
+
+    \begin{equation}
+        \begin{split}
+            \int min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \leq
+            \frac{\epsilon}{2} (1-\frac{\epsilon}{2}) + 1\frac{\epsilon}{2} 
+             = \epsilon - \frac{\epsilon^2}{4} <  \epsilon.  
+        \end{split}
+    \end{equation}
+
+    probando con ello la implicación (ii) $\Longrightarrow$ (iii).
+
+\end{proof}
 
 
 
