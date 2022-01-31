@@ -189,14 +189,18 @@ con la precisión que se desee.
         Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b \neq 0$ para $a,b \in \R.$
         Consideremos la función afín $A(x) = 0 \cdot x + a$, está claro que $\frac{1}{b}G(A(x))$ es la función constantemente uno. 
         \item Cerrado para sumas y producto para escalares reales. 
-        Si $f,g$ pertenece a  $\pmcg$, entonces $\alpha f + \beta g$ pertenece a $\pmcg$ .
+        Si $f,g$ pertenece a  $\pmcg$, entonces $\gamma f + \sigma g$ pertenece a $\pmcg$ .
         
         Tenemos por definición del conjunto $\pmcg$
         que $f,g$ serán de la forma $f = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
-        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$ 
+        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$  por lo que
         \begin{equation}
-            f+g = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
-            \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
+            \begin{split}
+                \gamma f+ \sigma g =& \gamma \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sigma \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)) \\
+                & = \sum_{j = 1} ^q  (\gamma \beta_{fj}) \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sum_{j = 1} ^p  (\sigma \beta_{gj}) \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
+            \end{split}
         \end{equation}
         
         Puede apreciarse como la suma de ambas seguirá la expresión de los elementos de $\pmcg$. 
@@ -239,7 +243,7 @@ con la precisión que se desee.
 Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta son $\sum \prod$ son capaces de aproximar cualquier 
 función continua de variable real en un compacto.  Cabe destacar que a la función $G$, la función de activación, solo se le ha pedido como 
 hipótesis ser una función continua de variable real. \textcolor{red}{¿Por qué pide entonces tales características en la definición de 
-función de activación. }    
+función de activación?}    
 
 Además, solo se está demostrando para le caso de una capa oculta, como veremos a continuación es fácilmente generalizable a redes neuronales 
 con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
