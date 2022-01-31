@@ -259,6 +259,7 @@ Notemos que la función de activación $G$ es única en toda la estructura,
 sin embargo es habitual la combinación de éstas en una misma red neuronal. 
 
 \begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal]
+
     Una misma red neuronal puede estar constituida por una familia de funciones continuas no constantes $\Gamma$, 
     bastará con generalizar $\pmcg$ a $\sum \prod ^r (\Gamma)$ donde 
     \begin{equation}
@@ -274,16 +275,44 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal.
     \end{equation}
 \end{corolario}
 \begin{proof}
-    La demostración es idéntica a la dada en el Teorema de convergencia real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
-
+    La demostración es idéntica a la dada en el Teorema de convergencia 
+    real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
 \end{proof}
+
+Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
+ ni cómo afecta a la \textit{velocidad de convergencia}. 
 
 \begin{corolario}[Extensión a múltiples capas ocultas]
 
+    Sea $\Gamma$ cualquier familia de funciones continuas definidas de $\R$ en $\R$. 
+    Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $C^r$  
+    Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
 \end{corolario}
+\begin{proof}
+    \textcolor{red}{Explicado muy intuitivamente, ya que habría que tener en cuenta la conexión de las neurona 
+    capa por capa, por ejemplo ¿Es densamente conexa? ¿Recurrente? ¿convolucional? ¿una GAN?}
 
-\begin{corolario}[Generalización de A]
+    Como con una capa ya se nos asegura la convergencia bastará con asegurar que exista 
+    en el espacio de las redes neuronales profundas capas que transmitan la información sin cambiarla. 
+
+    Una vez concretada la estructura de la red neuronal,  su estructura algebraica podría permitir esa transmisión. 
+\end{proof}
+
+Recordemos que de manera general se ha definido $A$ como una función afín 
+$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$ y $\cdot$ representa el producto 
+usual de escalares y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
+Por ejemplo $B((x_1, ..., x_r)) = \sum_{i= 0} ^N \sum_{j= 0} ^r \alpha_{ij} x_j^i$  con $N$ natural positivo. 
+
+\begin{corolario}[Generalización de A]  
+
+    Se puede extender $A^r$ a conjuntos más generales como el de los polinomios de $r$ variables de grado $N$, $\mathbb{P}$.  
 \end{corolario}
+\begin{proof}
+    Simplemente hay que reparar que $A^r$ está contenido en el espacio $\mathbb{P}$. 
+    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $A^r$. 
+\end{proof}
+
+
 
 
 
