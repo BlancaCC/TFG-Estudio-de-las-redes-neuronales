@@ -160,9 +160,8 @@ con la precisión que se desee.
 \begin{definicion} 
     Un subconjunto $S$ de $C^r$ se dice que es \textbf{uniformemente denso por compactos} en  $C^r$
     si para cada subconjunto compacto $K \subset \R^r$ se tiene que $S$ es denso según $\rho_k$ en $C^r$
-    donde está definida como: 
-
-    para cualquier $f,g \in C^r$ 
+    donde está definida como sigue.
+    Para cualquier $f,g \in C^r$ 
     \begin{equation}
         \rho _ k (f,g) = \sup_{x \in K} |f(x) - g(x)|.
     \end{equation}
@@ -172,11 +171,11 @@ con la precisión que se desee.
     Una serie de funciones $\{f_n\}$ \textbf{converge uniformemente a una función $f$ en compactos} si para 
     todos los conjuntos compactos $K \subset \R^r$ si 
     \begin{equation}
-        \rho_k (f_n, f) \longrightarrow 0 \text{ cuando } n \longrightarrow \infty
+        \rho_k (f_n, f) \longrightarrow 0 \text{ cuando } n \longrightarrow \infty.
     \end{equation} 
 \end{definicion}
 
-\begin{teorema} [Teorema de independencia función de activación] 
+\begin{teorema} [Teorema de convergencia real en compactos] 
 
     Sea G cualquier función continua no constante definida de $\R$ en $\R$. 
     Se tiene que $\pmcg$ es uniformemente denso por compactos en $C^r$
@@ -187,15 +186,20 @@ con la precisión que se desee.
     La primera hipótesis será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
     \begin{enumerate}
         \item La función constante uno pertenece al conjunto. 
-        Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b$
+        Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b \neq 0$ para $a,b \in \R.$
         Consideremos la función afín $A(x) = 0 \cdot x + a$, está claro que $\frac{1}{b}G(A(x))$ es la función constantemente uno. 
         \item Cerrado para sumas y producto para escalares reales. 
         Si $f,g$ pertenece a  $\pmcg$, entonces $\alpha f + \beta g$ pertenece a $\pmcg$ .
         
         Tenemos por definición del conjunto $\pmcg$
         que $f,g$ serán de la forma $f = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
-        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$ la suma de ambas seguirá la expresión
-        de los elementos de $\pmcg$
+        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$ 
+        \begin{equation}
+            f+g = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+            \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
+        \end{equation}
+        
+        Puede apreciarse como la suma de ambas seguirá la expresión de los elementos de $\pmcg$. 
         
         \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
         Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
@@ -217,7 +221,7 @@ con la precisión que se desee.
     Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Tomaremos entonces cualquiera de las 
     funciones afines de $A^r$ que cumplen que $A(x) = a$ y $A(y)=b$ 
     \footnote{Sabemos que al menos una habrá, ya que podemos plantear la función afín
-    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones}
+    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones.}
     Por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
 
     Veamos finalmente que para todo punto de $k$ existe una función de $\pmcg$  en el que la imagen no es nula.  
@@ -230,13 +234,30 @@ con la precisión que se desee.
      o equivalentemente, $\pmcg$ es denso en el espacio denso en el  espacio de la funciones continuas de una variable en un compacto. 
 \end{proof}
 
-Con esto lo que acabamos de probar que \textit{feedforward neural networks} $\sum \prod$ son capaces de aproximar cualquier 
-función continua de variable real en un compacto.  
+\subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
 
+Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta son $\sum \prod$ son capaces de aproximar cualquier 
+función continua de variable real en un compacto.  Cabe destacar que a la función $G$, la función de activación, solo se le ha pedido como 
+hipótesis ser una función continua de variable real. \textcolor{red}{¿Por qué pide entonces tales características en la definición de 
+función de activación. }    
 
-\subsection{Reflexión teorema de independencia función de activación}
-Nota: En ningún momento dice que deba de ser una función de activación ¿Por qué pide entonces tales características en la definición de 
-función de activación.  
+Además, solo se está demostrando para le caso de una capa oculta, como veremos a continuación es fácilmente generalizable a redes neuronales 
+con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
+multicapas a la necesidad de una formulación más abstracta de las mismas. 
+
+Además es fácil ver generalizaciones del método. 
+\textcolor{red}{Estos corolarios los he pensado por mi cuenta, OJO con ellos por si he metido la bacalá}
+
+\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal]
+    
+\end{corolario}
+
+\begin{corolario}[Extensión a múltiples capas ocultas]
+
+\end{corolario}
+
+\begin{corolario}[Generalización de A]
+\end{corolario}
 
 
 
