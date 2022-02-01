@@ -353,7 +353,7 @@ distan las funciones $f,g$ entre ellas.
     \begin{enumerate}[label=(\roman*)]
         \item $\rho_{\mu}(f_n, f) \longrightarrow 0$.
         \item Para cualquier  $\epsilon > 0$ se tiene que $\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0$.
-        \item $\int min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \longrightarrow 0.$
+        \item $\int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \longrightarrow 0.$
     \end{enumerate}
 \end{lema}
 
@@ -370,7 +370,7 @@ distan las funciones $f,g$ entre ellas.
     Luego $\rho_{\mu}(f_n, f)  < \epsilon$ sii 
     $$\inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \} < \epsilon$$
     por estar en un espacio compacto, el ínfimo se alcanza luego esto equivale a 
-    $$\mu \{ x : |f_n(x) - f(x)| > \epsilon$$
+    $$\mu \{ x : |f_n(x) - f(x)| > \epsilon \}$$
     probando la equivalencia buscada.  
 
     Probaremos ahora que (ii) $\Longrightarrow$ (iii).   
@@ -383,13 +383,59 @@ distan las funciones $f,g$ entre ellas.
 
     \begin{equation}
         \begin{split}
-            \int min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \leq
+            \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \leq
             \frac{\epsilon}{2} (1-\frac{\epsilon}{2}) + 1\frac{\epsilon}{2} 
              = \epsilon - \frac{\epsilon^2}{4} <  \epsilon.  
         \end{split}
     \end{equation}
 
     probando con ello la implicación (ii) $\Longrightarrow$ (iii).
+
+    Finalmente comprobaremos la implicación (iii) $\Longrightarrow$ (ii).
+    \textcolor{red}{ Javier, revisa cuidadosamente esta implicación, por favor. }
+    Se tiene que para cualquier $\epsilon > 0$ existe un $n_0$ natural a partir del cual cualquier natural $n$
+    cumple que 
+
+    \begin{equation}
+        \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) < \epsilon
+    \end{equation}
+
+    Además tenemos que 
+    \begin{equation}
+        \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) =  
+        \int _ {|f_n(x) - f(x)|<1} |f_n(x) - f(x)| \mu(dx) + \mu \{ x : |f_n(x) - f(x)| \geq 1- \}  < \epsilon
+    \end{equation}
+
+    Luego si tomamos $\epsilon$ lo suficientemente cercano a cero  se tiene que $\min \{ |f_n(x) - f(x)|, 1\}$
+    es $\mu$-equivalente a $|f_n(x) - f(x)|$, tomemos $\epsilon^2$ cumpliendo esto y veamos que.  
+
+    \begin{equation}
+        \begin{split}
+            \epsilon^2 & >  \int |f_n(x) - f(x)|  \mu(dx) =  \\
+            & =\int_{|f_n(x) - f(x)| \leq \epsilon } |f_n(x) - f(x)|  \mu(dx)
+             + \int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx)  
+        \end{split}
+    \end{equation}
+
+
+En particular 
+\begin{equation}
+    \begin{split}
+        & \epsilon^2  > \int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) \\
+        &  \epsilon  > \frac{1}{\epsilon}\int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) \\
+    \end{split}
+\end{equation}
+
+En virtud de la desigualdad de Chebyshev 
+
+\begin{equation}
+    \begin{split}
+          \epsilon  > \frac{1}{\epsilon}\int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) 
+          \geq \mu \{  x : |f_n(x) - f(x)| > \epsilon \} 
+    \end{split}
+\end{equation}
+
+Probando con esto que     Para cualquier  $\epsilon > 0$ se tiene que $\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0$.
 
 \end{proof}
 
