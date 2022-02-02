@@ -12,9 +12,9 @@ Se pretende con las siguientes definiciones una concepción y trabajo preciso de
 
 
 \begin{definicion} Función de activación \\
-    Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedad
+    Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedades:
     \begin{enumerate}[label=(\roman*)]
-        \item Es no decreciente
+        \item Es no decreciente.
         \item $\lim _{x \rightarrow \infty} \psi(x) = 1
         $.
         \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
@@ -32,9 +32,9 @@ Se pretende con las siguientes definiciones una concepción y trabajo preciso de
     
         \item La función \textit{cosine squasher} de Gallant and White (1988)
         \begin{equation*}
-    \psi(lambda )= (1 + cos(\lambda + 3 \frac{\pi}{2}) \frac{1}{2}) 
+    \psi(\lambda )= \left(1 + cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
      1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
-     1_{\{ \frac{\pi}{2} < \lambda \}}
+     1_{\{ \frac{\pi}{2} < \lambda \}}.
     \end{equation*}
     \end{itemize}
 
@@ -42,9 +42,9 @@ Se pretende con las siguientes definiciones una concepción y trabajo preciso de
     hay quien acepta funciones otras posibles definiciones menos restrictivas.
 \end{definicion}
 
-\begin{definicion} Función afín
+\begin{definicion} [Función afín]
 
-    Para cualquier natural mayor que cero $r$  denotaremos por $A^r$ como al conjunto de todas 
+    Para cualquier natural $r$ mayor que cero  denotaremos por $A^r$ como al conjunto de todas 
     las funciones afines de $\R^r$ a $\R$. Es decir el conjunto de funciones de la forma 
     $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$ y $\cdot$ representa el producto 
     usual de escalares y $b \in \R$ es un escalar.  
@@ -57,8 +57,8 @@ que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo.
 Nótese que faltaría componer la función afín con una función de activación para obtener lo que hemos definido 
 como un perceptrón. 
 
-\begin{definicion} Primera formalización red neuronal multicapa \\
-    Para cualquier función Borel medible $G(\cdot)$, definida de $\R$ a $\R$ y cualquier natural positivo ç
+\begin{definicion} [Primera  aproximación a la formalización de una red neuronal]
+    Para cualquier función Borel medible $G(\cdot)$, definida de $\R$ a $\R$ y cualquier natural positivo
     $r \in \N$ de define a la clase de funciones $\pmc$ como 
     \begin{equation}
         \begin{split}
@@ -69,7 +69,7 @@ como un perceptrón.
             \beta_j G(A_{j}(x)), \\
             & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r, l_j,q \in \N
             )
-        \}
+        \}.
         \end{split}
     \end{equation}
 \end{definicion}
@@ -80,7 +80,7 @@ es una combinación lineal de los distintos perceptrones.
 
 Con esta misma idea se definirá la siguiente estructura que generaliza a la familia $\pmc$  
    
-\begin{definicion} Generalización de la familia $\pmc$ \\
+\begin{definicion} [Formalización red neuronal con una capa oculta]
     
     \begin{equation} 
         \begin{split}
@@ -90,7 +90,7 @@ Con esta misma idea se definirá la siguiente estructura que generaliza a la fam
         G(A_{jk}(x)), \\
         &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
         )
-        \}
+        \}.
     \end{split}
     \end{equation}  
 
@@ -102,7 +102,21 @@ Con esta misma idea se definirá la siguiente estructura que generaliza a la fam
 
 \subsection{ Reflexión sobre la relevancia de la función de activación}  
 
-La función de activación acota la imagen de un una aplicación afín, esta limitación 
+La función de activación $G$ es clave en el proceso de aprendizaje.
+Por una parte nótese que si $A^r$ es un espacio afín, lo que se está haciendo es 
+aproximar una función medible a partir de \textit{rectas}, 
+\ref{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
+ por lo que una vez 
+\textit{calculadas} las rectas ¿Cómo sabemos con qué rectas y cómo 
+ se debe de evaluar la entrada? 
+ 
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemploAproximaciónCurvasPorRectas.jpeg}
+    \caption{Ejemplo curva aproximada por percentrón multicapa \cite{alma991008058419704990}.}
+    \label{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
+\end{figure}
+
+Por otra parte, la función de activación acota la imagen de un una aplicación afín, esta limitación 
 es de total relevancia ya que permite una interpretación previamente convenida. 
 Decimos por ende que es la causante del \textit{aprendizaje}.     
 
@@ -114,7 +128,7 @@ donde a priori no se explicita una asignación de clase.
 
 Introduciremos a continuación notación de los conjuntos de funciones que seremos capaces de aproximar.  
 
-\begin{definicion} Conjuntos de funciones continuas y Borel-medibles \\
+\begin{definicion}[Conjuntos de funciones continuas y Borel-medibles]
     Sea $C^r$ el conjunto de funciones continuas con dominio en $\R^r$ y codominio $R$, 
     y sea $M^r$ el conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
 
@@ -145,7 +159,7 @@ de una medida,  ¿Cómo se podría construir una sucesión de funciones que se a
 Quizás habría que buscar características más intrínsecas del problema en cuestión, 
 razonamientos topológicos.
 
-\begin{definicion} Subconjunto denso \\  
+\begin{definicion} [Subconjunto denso ] 
     Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
     en subconjunto $T$ si para todo $\epsilon$ positivo y cualquier $t \in T$ existe un $s \in S$ tal 
     que $\rho(s,t) \leq \epsilon$. 
@@ -179,7 +193,7 @@ con la precisión que se desee.
 \begin{teorema} [Teorema de convergencia real en compactos]  \label{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
 
     Sea G cualquier función continua no constante definida de $\R$ en $\R$. 
-    Se tiene que $\pmcg$ es uniformemente denso por compactos en $C^r$
+    Se tiene que $\pmcg$ es uniformemente denso por compactos en $C^r$.
 \end{teorema}
 
 \begin{proof}
@@ -242,15 +256,18 @@ con la precisión que se desee.
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
 
 Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta son $\sum \prod$ son capaces de aproximar cualquier 
-función continua de variable real en un compacto.  Cabe destacar que a la función $G$, la función de activación, solo se le ha pedido como 
-hipótesis ser una función continua de variable real. \textcolor{red}{¿Por qué pide entonces tales características en la definición de 
-función de activación?}    
+función continua de variable real en un compacto.  Cabe destacar que a la función $G$, la función de activación,
+ solo se le ha pedido como 
+hipótesis ser una función continua de variable real.     
 
-Además, solo se está demostrando para le caso de una capa oculta, como veremos a continuación es fácilmente generalizable a redes neuronales 
+Además, solo se está demostrando para le caso de una capa oculta, como veremos a continuación  de 
+manera intuitiva se explica que sea extrapolable también a redes neuronales 
 con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
 multicapas a la necesidad de una formulación más abstracta de las mismas. 
+\textcolor{red}{Habría que añadir aquí o en algún apartado similar un comentario
+sobre el estado del arte explicado en issue \# 52 }
 
-Además es fácil ver generalizaciones del método. 
+Se aportan las siguientes generalizaciones del método. 
 %%% Corolarios propios 
 
 \textcolor{red}{Estos corolarios los he pensado por mi cuenta, OJO con ellos por si he metido la bacalá}
@@ -288,7 +305,7 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
     Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $C^r$  
     Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
 \end{corolario}
-\begin{proof}
+
     \textcolor{red}{Explicado muy intuitivamente, ya que habría que tener en cuenta la conexión de las neurona 
     capa por capa, por ejemplo ¿Es densamente conexa? ¿Recurrente? ¿convolucional? ¿una GAN?}
 
@@ -296,7 +313,7 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
     en el espacio de las redes neuronales profundas capas que transmitan la información sin cambiarla. 
 
     Una vez concretada la estructura de la red neuronal,  su estructura algebraica podría permitir esa transmisión. 
-\end{proof}
+
 
 Recordemos que de manera general se ha definido $A$ como una función afín 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$ y $\cdot$ representa el producto 
