@@ -468,7 +468,7 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
     (pag 228 teorema 52.G \cite{nla.cat-vn1819421}),
     se tiene que existirá un subconjunto $K$ compacto de $\R^r$ con medida $\mu(K) > 1 - \frac{\epsilon}{2}.$
     Para el cual, por su compacidad, existirá un  $n_0$ natural cumpliendo que para cualquier otro 
-    natural $n \geq n_0$ se cumple que el $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}$  
+    natural $n \geq n_0$ se cumple que el $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}.$  
 
     Por lo que combinando ambas ecuaciones y acotando el primer sumando por la medida 
     del complemento de la región integrada y el segundo por que el mínimo será menor que el 
@@ -478,7 +478,8 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
         \begin{split}
             \int_{R^r - K} \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) +
             \int_{K} \min \{ |f_n(x) - f(x)|, 1\} \mu(dx)  \\ \leq
-            \left( 1 - \left(1 -\frac{\epsilon}{2}\right)\right) + (\frac{\epsilon}{2} ( 1 -\frac{\epsilon}{2} ) < \epsilon
+            \left( 1 - \left(1 -\frac{\epsilon}{2}\right)\right) + 
+            \left(\frac{\epsilon}{2} \left( 1 -\frac{\epsilon}{2} \right)\right) < \epsilon
         \end{split}
     \end{equation}
 
