@@ -465,7 +465,7 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
     en los pasos siguiente $\mu(K) > M - \frac{\epsilon}{2}$ y acotar con $\frac{\epsilon}{2M}$ 
     en vez de $\frac{\epsilon}{2}$}. 
     Ya que $\R^r$ es localmente un espacio métrico 
-    ( pag 228 teorema 52.G \cite{nla.cat-vn1819421}),
+    (pag 228 teorema 52.G \cite{nla.cat-vn1819421}),
     se tiene que existirá un subconjunto $K$ compacto de $\R^r$ con medida $\mu(K) > 1 - \frac{\epsilon}{2}.$
     Para el cual, por su compacidad, existirá un  $n_0$ natural cumpliendo que para cualquier otro 
     natural $n \geq n_0$ se cumple que el $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}$  
@@ -483,7 +483,37 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
     \end{equation}
 
     para cualquier $n \geq n_0$. 
+\end{proof}
 
+\begin{lema}
+    Para cualquier medida finita $\mu$ se tiene que $C^r$ es denso en 
+    $M^r$ de acorde a la métrica $\rho_\mu$.
+\end{lema}
+\begin{proof}
+    Se quiere probar que dada cualquier $f \in M^r$ y un $\epsilon > 0$ arbitrario. 
+    Tenemos que encontrar una función $g \in C^r$ que cumpla que 
+    $\rho_{\mu}(f, g) < \epsilon$. 
+
+    Tomando un $M > 0$ lo suficientemente grande, tenemos que 
+    
+    \begin{equation}
+        \int \min \{ |f(x)\cdot 1_{|f(x)| < M} - f(x)|, 1\} \mu(dx) 
+        < \frac{\epsilon}{2}. 
+    \end{equation}
+
+    Sabemos además que podemos aproximar $f\cdot 1_{|f| < M}$ como $g$, una función continua que es límite de una sucesión 
+    funciones simples ( pag 241-242,  teoremas 55C y 55D \cite{nla.cat-vn1819421}), 
+    la cual satisface 
+    \begin{equation}
+        \int \min \{ |f(x)\cdot 1_{|f(x)| < M} - g(x)|, 1\} \mu(dx) 
+        < \frac{\epsilon}{2}. 
+    \end{equation}
+
+     Por lo que 
+     \begin{equation}
+        \int \min \{ |f  - g|, 1\} d\mu 
+        < \epsilon. 
+    \end{equation}
 \end{proof}
 
 
