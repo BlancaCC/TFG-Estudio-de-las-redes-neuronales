@@ -1,9 +1,6 @@
 name: "check spelling"
 
-on:
-  push:
-    tags:
-      - '*'
+on: push
 
 jobs:
   check-spelling:
