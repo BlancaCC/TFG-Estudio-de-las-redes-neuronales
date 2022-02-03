@@ -1,20 +1,22 @@
 #!/bin/bash
 
-#aspell check --mode=tex doc/tfg.tex
-
-# Search for .tex files in "capitulos"
-#find capitulos -name "*.tex"
-
-
 MyPrint () {
+    error=0;
     echo "";
     echo "Errores ortográficos en fichero" $1":";
-    cat $1 | aspell --lang=en --list | aspell --lang=es --list | sort -u;
-
+    n_line=1; 
+    while IFS= read -r line
+    do
+        let "n_line += 1"
+        resultado=$(echo $line | aspell --mode=tex  --lang=en --list | aspell --mode=tex  --lang=es --list);
+        [ -z "$resultado" ] ||( echo "Spell error in line $n_line : $resultado" && let "error = 1")
+    done < $1
+    exit $error; 
 }
 
 export -f MyPrint; 
 
+#MyPrint "doc/tfg.tex"; 
 find doc/capitulos -name "*.tex" -exec bash -c 'MyPrint "{}"' \;
 
 
