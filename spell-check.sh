@@ -6,13 +6,13 @@ SpellingError () {
     n_line=1; 
     while IFS= read -r line
     do
-        let "n_line += 1"
         resultado=$(echo $line | aspell --mode=tex  --lang=en --list | aspell --mode=tex  --lang=es --list --home-dir=. --personal=.github/workflows/aspell-exceptions.txt);
         if [[ ! -z "$resultado" ]]
         then 
          echo "Spell error in line $n_line : $resultado" 
          let "error = 1";
         fi
+        let "n_line += 1"
     done < $1
     return $error; 
 }
