@@ -8,11 +8,20 @@ SpellingError () {
     do
         let "n_line += 1"
         resultado=$(echo $line | aspell --mode=tex  --lang=en --list | aspell --mode=tex  --lang=es --list --home-dir=. --personal=.github/workflows/aspell-exceptions.txt);
-        [ -z "$resultado" ] ||( echo "Spell error in line $n_line : $resultado" && let "error = 1")
+        if [[ ! -z "$resultado" ]]
+        then 
+         echo "Spell error in line $n_line : $resultado" 
+         let "error = 1";
+        fi
     done < $1
-    exit $error; 
+    return $error; 
 }
 export -f SpellingError; 
-find doc/capitulos -name "*.tex" -exec bash -c 'SpellingError "{}"' \;
+exitValue=0
+for file in $(find doc/capitulos -name "*.tex")
+do 
+    SpellingError $file; 
+    let "exitValue += $?"
+done
 
-
+exit $exitValue; 
