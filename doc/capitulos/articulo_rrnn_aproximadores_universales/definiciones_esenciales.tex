@@ -68,7 +68,7 @@ como un perceptrón.
             f(x)=\sum_{j = 1} ^q (
             \beta_j G(A_{j}(x)), \\
             & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r,q \in \N
-            )
+            )`'
         \}.
         \end{split}
     \end{equation}
@@ -102,16 +102,12 @@ se define la siguiente estructura que generaliza a la familia $\pmc.$
 \subsection{ Reflexión sobre la relevancia de la función de activación}  
 
 La función de activación $G$ es clave en el proceso de aprendizaje.
-Por una parte nótese que si $A^r$ es un espacio afín, lo que se está haciendo es 
-aproximar una función medible a partir de \textit{rectas}, 
-\ref{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
- por lo que una vez 
-\textit{calculadas} las rectas ¿Cómo sabemos con qué rectas y cómo 
- se debe de evaluar la entrada? 
+Por una parte nótese que como $A^r$ es un espacio afín, lo que se está haciendo es 
+aproximar una función medible a partir de combinaciones lineales de \textit{rectas} evaluadas mediante $G$. 
  
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemploAproximaciónCurvasPorRectas.jpeg}
-    \caption{Ejemplo curva aproximada por percentrón multicapa \cite{alma991008058419704990}.}
+    \caption{Ejemplo de curva aproximada por perceptrones multicapa \cite{alma991008058419704990}.}
     \label{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
 \end{figure}
 
@@ -119,29 +115,23 @@ Por otra parte, la función de activación acota la imagen de un una aplicación
 es de total relevancia ya que permite una interpretación previamente convenida. 
 Decimos por ende que es la causante del \textit{aprendizaje}.     
 
-Por si mi comentario no ha resultado claro procedo a dar un ejemplo:   
+Por si el comentario no ha resultado claro procedamos a dar un ejemplo:   
 Supongamos que nos hallamos frente a un problema de clasificación de dos clases y que la función de activación
 tomada es una función umbral que toma valores cero o uno. Define por tanto esta función una separación de clases. 
-De otra manera, de solo existir la función afín sin una transformación de la salida, el codominio serían los Reales
-donde a priori no se explicita una asignación de clase.  
+De otra manera, de solo existir la función afín sin una transformación de la salida, el codominio serían 
+todos los número reales donde a priori no se explicita una asignación de clase.  
 
-Introduciremos a continuación notación de los conjuntos de funciones que seremos capaces de aproximar.  
+Introducimos a continuación la notación de los conjuntos de funciones que seremos capaces de aproximar.  
 
-\begin{definicion}[Conjuntos de funciones continuas y Borel-medibles]
-    Sea $C^r$ el conjunto de funciones continuas con dominio en $\R^r$ y codominio $R$, 
-    y sea $M^r$ el conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
-
-    Denotaremos también a la $\sigma$-álgebra de Bore en $\R ^r$ como $B^r$. 
-\end{definicion}
+Denotamos por  $C^r$ al conjunto de funciones continuas con dominio en $\R^r$ y codominio $\R$,
+por  $M^r$ al conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
+y por $B^r$ a la $\sigma$-álgebra de Borel en $\R ^r$. 
 
 En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ pertenecen a 
 $M^r$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
-$\pmc$ y $\pmcg$ pertenecen a $C^r$. Tengamos presente que $C^r$ es un subconjunto ç
+$\pmc$ y $\pmcg$ pertenecen a $C^r$. Tengamos presente que $C^r$ es un subconjunto
 de $M^r$.  
-
-Como veremos más adelante primero demostraremos el teorema para $C^r$ y después 
-extenderemos el resultado para $M^r$.   
-
+  
 
 \subsection{ Reflexión sobre el tipo de conjuntos que se pueden aproximar}
 
