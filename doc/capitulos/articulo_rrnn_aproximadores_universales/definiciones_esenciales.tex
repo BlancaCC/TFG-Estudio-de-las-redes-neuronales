@@ -178,7 +178,7 @@ con la precisión que se desee.
     \end{equation} 
 \end{definicion}
 
-%% TODO por aquí te has quedado corrigiendo 
+
 %%%%% primer teorema de convergencia   
 \begin{teorema} [Teorema de convergencia real en compactos]  \label{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
 
@@ -243,25 +243,26 @@ con la precisión que se desee.
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
 
-Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta son $\sum \prod$ son capaces de aproximar cualquier 
-función continua de variable real en un compacto.  Cabe destacar que a la función $G$, la función de activación,
+Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
+función continua en un compacto.  Cabe destacar que a la función $G$, la función de activación,
  solo se le ha pedido como 
-hipótesis ser una función continua de variable real.     
+hipótesis ser una función continua.     
 
-Además, solo se está demostrando para le caso de una capa oculta, como veremos a continuación  de 
+Además, solo se está demostrando para el caso de una capa oculta, como veremos a continuación  de 
 manera intuitiva se explica que sea extrapolable también a redes neuronales 
 con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
-multicapas a la necesidad de una formulación más abstracta de las mismas. 
-\textcolor{red}{Habría que añadir aquí o en algún apartado similar un comentario
-sobre el estado del arte explicado en issue \# 52 }
+multicapas a la necesidad de una definición más abstracta de las mismas. 
+
 
 Se aportan las siguientes generalizaciones del método. 
 %%% Corolarios propios 
 
-\textcolor{red}{Estos corolarios los he pensado por mi cuenta, OJO con ellos por si he metido la bacalá}
-
 Notemos que la función de activación $G$ es única en toda la estructura,
-sin embargo es habitual la combinación de éstas en una misma red neuronal. 
+sin embargo es habitual la combinación de éstas en una misma red neuronal (
+\cite{DBLP:journals/corr/abs-1811-03378}, 
+ \cite{8258768}, 
+ \cite{DBLP:journals/corr/SzegedyVISW15}
+). 
 
 \begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal]
 
@@ -269,16 +270,20 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal.
     bastará con generalizar $\pmcg$ a $\sum \prod ^r (\Gamma)$ donde 
     \begin{equation}
         \begin{split}
-            \sum \prod (\Gamma) = \{ 
+            \sum \prod^r (\Gamma) = \{ 
                 &f: \R^r \longrightarrow \R | \\
-                & f(x) = \sum_{j = 1} ^q  \beta_j \cdot \prod_{k=1}^{l_j}
+                & f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
                 G(A_{jk}(x)), \\
                 &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N, G \in \Gamma
                 )
                 \}
         \end{split}
     \end{equation}
+    Es decir, combinaciones lineales de perceptrones cuyas funciones 
+    de activación pueden diferir unas de otras. 
 \end{corolario}
+
+%% TODO por aquí te has quedado 
 \begin{proof}
     La demostración es idéntica a la dada en el Teorema de convergencia 
     real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
