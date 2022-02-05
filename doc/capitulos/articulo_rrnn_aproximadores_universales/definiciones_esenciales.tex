@@ -123,23 +123,23 @@ todos los número reales donde a priori no se explicita una asignación de clase
 
 Introducimos a continuación la notación de los conjuntos de funciones que seremos capaces de aproximar.  
 
-Denotamos por  $C^r$ al conjunto de funciones continuas con dominio en $\R^r$ y codominio $\R$,
-por  $M^r$ al conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
+Denotamos por  $\fC$ al conjunto de funciones continuas con dominio en $\R^r$ y codominio $\R$,
+por  $\fM$ al conjunto de todas las funciones Borel medible de $\R^r$ a $\R$. 
 y por $B^r$ a la $\sigma$-álgebra de Borel en $\R ^r$. 
 
 En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ pertenecen a 
-$M^r$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
-$\pmc$ y $\pmcg$ pertenecen a $C^r$. Tengamos presente que $C^r$ es un subconjunto
-de $M^r$.  
+$\fM$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
+$\pmc$ y $\pmcg$ pertenecen a $\fC$. Tengamos presente que $\fC$ es un subconjunto
+de $\fM$.  
   
 
-\subsection{ Reflexión sobre el tipo de conjuntos que se pueden aproximar}
+\subsection{ Reflexión sobre el tipo de funciones que se pueden aproximar}
 
-La existencia de conjuntos de funciones no medibles manifiesta una limitación
-de la formalización actual de las redes neuronales. Que plantea las siguientes 
+La existencia de funciones no medibles manifiesta una limitación
+de la formalización actual de las redes neuronales que plantea las siguientes 
 preguntas: 
 \begin{enumerate}
-    \item ¿Supone la existencia de este conjunto una verdadera limitación a nivel práctico?
+    \item ¿Supone la existencia de este tipo de funciones una verdadera limitación a nivel práctico?
     \item ¿Se podría construir alguna arquitectura que sí que las aproximara?
 \end{enumerate}  
 
@@ -154,60 +154,61 @@ razonamientos topológicos.
     que $\rho(s,t) \leq \epsilon$. 
 \end{definicion}
 
-Un ejemplo habitual sería en el espacio métrico $(\R, |.|)$ con $|.|$ el valor absoluto, el subconjunto 
+Un ejemplo habitual sería en el espacio métrico $(\R, |\cdot|)$ con $|\cdot|$ el valor absoluto, el subconjunto 
 $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$. 
 
 A nivel intuitivo sería decir que los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
 con la precisión que se desee. 
 
 \begin{definicion} 
-    Un subconjunto $S$ de $C^r$ se dice que es \textbf{uniformemente denso por compactos} en  $C^r$
-    si para cada subconjunto compacto $K \subset \R^r$ se tiene que $S$ es denso según $\rho_k$ en $C^r$
-    donde está definida como sigue.
-    Para cualquier $f,g \in C^r$ 
+    Un subconjunto $S$ de $\fC$ se dice que es \textbf{uniformemente denso para compactos} en  $\fC$
+    si para cada subconjunto compacto $K \subset \R^r$ se tiene que $S_K$ es denso según $\rho_K$ en $\fC$
+    donde $\rho_K$ está definida como sigue.
+    Para cualquier $f,g \in \fC$ 
     \begin{equation}
-        \rho _ k (f,g) = \sup_{x \in K} |f(x) - g(x)|.
+        \rho _ K (f,g) = \sup_{x \in K} |f(x) - g(x)|.
     \end{equation}
 \end{definicion}
 
 \begin{definicion}
-    Una serie de funciones $\{f_n\}$ \textbf{converge uniformemente a una función $f$ en compactos} si para 
-    todos los conjuntos compactos $K \subset \R^r$ si 
+    Una serie de funciones $\{f_n\}$ \textbf{converge uniformemente a una función $f$ sobre compactos} si para 
+    cada  conjunto compacto $K \subset \R^r$  se cumple que
     \begin{equation}
         \rho_k (f_n, f) \longrightarrow 0 \text{ cuando } n \longrightarrow \infty.
     \end{equation} 
 \end{definicion}
 
+%% TODO por aquí te has quedado corrigiendo 
 %%%%% primer teorema de convergencia   
 \begin{teorema} [Teorema de convergencia real en compactos]  \label{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
 
     Sea G cualquier función continua no constante definida de $\R$ en $\R$. 
-    Se tiene que $\pmcg$ es uniformemente denso por compactos en $C^r$.
+    Se tiene que $\pmcg$ es uniformemente denso para compactos en $\fC$.
 \end{teorema}
 
 \begin{proof}
-    Bastará con probar el conjunto $\pmcg$ satisface las hipótesis del teorema de Stone-Weiertrass \ref{ch:TeoremaStoneWeiertrass}
-    La primera hipótesis será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
+    Bastará probar que el conjunto $\pmcg$ satisface las hipótesis del teorema de
+     Stone-Weiertrass \ref{ch:TeoremaStoneWeiertrass}.
+    Lo primero será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
     \begin{enumerate}
         \item La función constante uno pertenece al conjunto. 
         Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b \neq 0$ para $a,b \in \R.$
         Consideremos la función afín $A(x) = 0 \cdot x + a$, está claro que $\frac{1}{b}G(A(x))$ es la función constantemente uno. 
-        \item Cerrado para sumas y producto para escalares reales. 
-        Si $f,g$ pertenece a  $\pmcg$, entonces $\gamma f + \sigma g$ pertenece a $\pmcg$ .
-        
-        Tenemos por definición del conjunto $\pmcg$
-        que $f,g$ serán de la forma $f = \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
-        $g = \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$  por lo que
+        \item El conjunto $\pmcg$ es cerrado para sumas y producto por escalares reales. 
+        En efecto, si $f,g$ pertenecen a  $\pmcg$, serán de la forma
+         $f = \sum_{j = 1} ^q  \beta_{fj} \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
+        $g = \sum_{j = 1} ^p  \beta_{gj} \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$  por lo que
         \begin{equation}
             \begin{split}
-                \gamma f+ \sigma g =& \gamma \sum_{j = 1} ^q  \beta_{fj} \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
-                \sigma \sum_{j = 1} ^p  \beta_{gj} \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)) \\
-                & = \sum_{j = 1} ^q  (\gamma \beta_{fj}) \cdot \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
-                \sum_{j = 1} ^p  (\sigma \beta_{gj}) \cdot \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
+                \gamma f+ \sigma g =& \gamma \sum_{j = 1} ^q  \beta_{fj} \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sigma \sum_{j = 1} ^p  \beta_{gj} \ \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)) \\
+                & = \sum_{j = 1} ^q  (\gamma \beta_{fj})  \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sum_{j = 1} ^p  (\sigma \beta_{gj}) \ \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
             \end{split}
         \end{equation}
         
-        Puede apreciarse como la suma de ambas seguirá la expresión de los elementos de $\pmcg$. 
+        Basta renumerar una de las sumatorias para ver $\gamma f+ \sigma g$ como una combinación 
+        lineal de productos finitos de perceptrones y por tanto $\gamma f+ \sigma g \in \pmcg.$
         
         \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
         Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
@@ -291,7 +292,7 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
 \begin{corolario}[Extensión a múltiples capas ocultas]
 
     Sea $\Gamma$ cualquier familia de funciones continuas definidas de $\R$ en $\R$. 
-    Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $C^r$  
+    Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $\fC$  
     Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
 \end{corolario}
 
@@ -332,7 +333,7 @@ generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras.
 %% Definiciones de equivalencia de funciones 
 \begin{definicion}[Equivalencia entre funciones]
     Sea $\mu$ una medida de probabilidad en $(\R^r, B^r)$.  Dos funciones 
-    $f$ y $g$ pertenecientes a $M^r$, diremos que son $\mu -$equivalentes 
+    $f$ y $g$ pertenecientes a $\fM$, diremos que son $\mu -$equivalentes 
     si $\mu\{ x \in \R^r : f(x)=g(x) \} = 1.$
 \end{definicion}
 
@@ -344,7 +345,7 @@ Lo que se está diciendo es que serán iguales casi por doquier.
     la métrica $\rho_{\mu}$ definida como 
     \begin{equation}
         \begin{split}
-            & \rho_{\mu} : M^r \times M^r \longrightarrow \R^+ \\
+            & \rho_{\mu} : \fM \times \fM \longrightarrow \R^+ \\
             & \rho_{\mu}(f,g) = \inf \{ \epsilon > 0: \mu \{ x : |f(x) - g(x)| > \epsilon \} < \epsilon \}.
         \end{split}
     \end{equation}
@@ -453,7 +454,7 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
 
 %% Lema 2.2
 \begin{lema}  
-    Si $\{f_n\}$ es una secuencia de funciones en $M^r$ que converge
+    Si $\{f_n\}$ es una secuencia de funciones en $\fM$ que converge
     uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$. 
 \end{lema}  
 \begin{proof}
@@ -493,12 +494,12 @@ asignatura de análisis matemático II por eso y por avanzar más rápido no las
 \end{proof}
 
 \begin{lema}
-    Para cualquier medida finita $\mu$ se tiene que $C^r$ es denso en 
-    $M^r$ de acorde a la métrica $\rho_\mu$.
+    Para cualquier medida finita $\mu$ se tiene que $\fC$ es denso en 
+    $\fM$ de acorde a la métrica $\rho_\mu$.
 \end{lema}
 \begin{proof}
-    Se quiere probar que dada cualquier $f \in M^r$ y un $\epsilon > 0$ arbitrario. 
-    Tenemos que encontrar una función $g \in C^r$ que cumpla que 
+    Se quiere probar que dada cualquier $f \in \fM$ y un $\epsilon > 0$ arbitrario. 
+    Tenemos que encontrar una función $g \in \fC$ que cumpla que 
     $\rho_{\mu}(f, g) < \epsilon$. 
 
     Tomando un $M > 0$ lo suficientemente grande, tenemos que 
