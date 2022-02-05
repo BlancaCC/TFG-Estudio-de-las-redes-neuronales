@@ -11,7 +11,7 @@
 Se pretende con las siguientes definiciones una concepción y trabajo preciso de la clase de redes neuronales multicapa feedforward. 
 
 
-\begin{definicion} Función de activación \\
+\begin{definicion}[Función de activación ]
     Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedades:
     \begin{enumerate}[label=(\roman*)]
         \item Es no decreciente.
@@ -20,36 +20,36 @@ Se pretende con las siguientes definiciones una concepción y trabajo preciso de
         \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
     \end{enumerate}  
 
-    Las funciones de activación son medibles ya que tienen como mucho un número contable de discontinuidades.
+    Las funciones de activación son medibles ya que tienen como mucho una cantidad numerable de discontinuidades.
    
-    Ejemplos comunes son
+    Ejemplos comunes de funciones de activación son
     \begin{itemize}
         \item Funciones umbral. 
-        (Vale cero hasta que se cumple cierta condición de las entradas, a partir de ahí empezaría a valer uno).
 
-        \item Funciones indicadoras: $\psi(\lambda) = 1_{\{\lambda > 0\}}$. 
-        \item Ramp function: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}$
+        \item Funciones indicadoras: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
+        \item Función rampa: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
     
         \item La función \textit{cosine squasher} de Gallant and White (1988)
         \begin{equation*}
     \psi(\lambda )= \left(1 + cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
      1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
+     +
      1_{\{ \frac{\pi}{2} < \lambda \}}.
     \end{equation*}
     \end{itemize}
 
-    Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que en otros casos 
-    hay quien acepta funciones otras posibles definiciones menos restrictivas.
+    Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que existen
+    otras posibles definiciones menos restrictivas.
 \end{definicion}
 
-\begin{definicion} [Función afín]
 
-    Para cualquier natural $r$ mayor que cero  denotaremos por $A^r$ como al conjunto de todas 
-    las funciones afines de $\R^r$ a $\R$. Es decir el conjunto de funciones de la forma 
-    $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$ y $\cdot$ representa el producto 
-    usual de escalares y $b \in \R$ es un escalar.  
+
+    Para cualquier natural $r$ mayor que cero  denotaremos por $A^r$ al conjunto de todas 
+    las \textbf{funciones afines} de $\R^r$ a $\R$. Es decir el conjunto de funciones de la forma 
+    $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$,  $b \in \R$ es un escalar y $\cdot$ representa el producto 
+    usual de escalares.  
     
-\end{definicion}  
+
 
 En este contexto, $x$ corresponde al vector entrada de la red neuronal, $w$ los pesos de la red
 que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo. 
@@ -58,16 +58,16 @@ Nótese que faltaría componer la función afín con una función de activación
 como un perceptrón. 
 
 \begin{definicion} [Primera  aproximación a la formalización de una red neuronal]
-    Para cualquier función Borel medible $G(\cdot)$, definida de $\R$ a $\R$ y cualquier natural positivo
-    $r \in \N$ de define a la clase de funciones $\pmc$ como 
+    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
+    $r \in \N$ se define a la clase de funciones $\pmc$ como 
     \begin{equation}
         \begin{split}
         \pmc = 
         \{ 
-            & f: \R ^r \longrightarrow \R \\
-            &f(x)=\sum_{j = 1} ^q (
+            & f: \R ^r \longrightarrow \R / \quad
+            f(x)=\sum_{j = 1} ^q (
             \beta_j G(A_{j}(x)), \\
-            & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r, l_j,q \in \N
+            & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r,q \in \N
             )
         \}.
         \end{split}
@@ -75,18 +75,17 @@ como un perceptrón.
 \end{definicion}
 
 
-Obsérvese que cada sumatoria representa un perceptrón y la salida final 
-es una combinación lineal de los distintos perceptrones. 
-
-Con esta misma idea se definirá la siguiente estructura que generaliza a la familia $\pmc$  
+Obsérvese que cada elemento de la sumatoria representa un perceptrón y que la salida final 
+es una combinación lineal de los distintos perceptrones. Con esta misma idea 
+se define la siguiente estructura que generaliza a la familia $\pmc.$  
    
-\begin{definicion} [Formalización red neuronal con una capa oculta]
+\begin{definicion} [Formalización de una red neuronal con una capa oculta]
     
     \begin{equation} 
         \begin{split}
         \sum \prod^r(G) = \{ 
-        &f: \R^r \longrightarrow \R | \\
-        & f(x) = \sum_{j = 1} ^q  \beta_j \cdot \prod_{k=1}^{l_j}
+        &f: \R^r \longrightarrow \R /\\
+        & f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
         G(A_{jk}(x)), \\
         &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
         )
@@ -94,9 +93,9 @@ Con esta misma idea se definirá la siguiente estructura que generaliza a la fam
     \end{split}
     \end{equation}  
 
-    Notemos que $\pmc$ es el caso particular $l_j = 1$ para todo $j$. Nuestro primer
-    resultado se demostrará para $\sum \prod^r(G)$ y como consecuencia quedará probado
-    también para $\pmc$. 
+    Notemos que $\pmc$ se recupera en el caso particular en el que $l_j = 1$ para todo $j$.
+    Los elementos de $\pmcg$ son combinaciones lineales de productos finitos de perceptrones. 
+
 \end{definicion}
 
 
