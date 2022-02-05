@@ -214,33 +214,31 @@ con la precisión que se desee.
         Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
         \begin{equation}
             \begin{split}
-                fg &= \left(\sum_{i \in I_f} \beta_{j} \cdot \prod_{k=1}^{l_{i}}  G(A_{ik}(x))\right)
-                    \left(\sum_{j \in I_g} ^p  \beta_{j} \cdot \prod_{k=1}^{l_{j}} G(A_{jk}(x)) \right) \\
-                    & = \sum_{i \in I_f} \left(  \beta_{j} \cdot \prod_{k=1}^{l_{i}}  G(A_{ik}(x))
-                        \left( \sum_{j \in I_g} ^p  \beta_{j} \cdot \prod_{k=1}^{l_{j}} G(A_{jk}(x))  \right)  
+                fg &= \left(\sum_{i \in I_f} \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))\right)
+                    \left(\sum_{j \in I_g}   \beta_{j}  \prod_{k=1}^{l_{j}} G(A_{jk}(x)) \right) \\
+                    & = \sum_{i \in I_f} \left(  \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))
+                        \left( \sum_{j \in I_g}  \beta_{j} \prod_{k=1}^{l_{j}} G(A_{jk}(x))  \right)  
                      \right) \\
                     & =  \sum_{(i,j) \in I_f \times I_g} (\beta{i}\beta{j}) \prod_{k \in \Lambda} G(A_{k}(x))
             \end{split}
         \end{equation}
-        Luego $fg \in \pmcg$. 
+        luego $fg \in \pmcg$. 
     \end{enumerate}
 
-    La segunda hipótesis, dado cualquier compacto $K \subset \R^r$ veamos que $\pmcg$ separa puntos de $K$. 
+    Veamos que $\pmcg$ separa puntos cada compacto $K \subset \R^r$. 
 
-    Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Tomaremos entonces cualquiera de las 
-    funciones afines de $A^r$ que cumplen que $A(x) = a$ y $A(y)=b$ 
+    Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Fijadas $x,y \in K$ tomamos entonces cualquiera de las 
+    funciones afines que cumplen que $A(x) = a$ y $A(y)=b$ 
     \footnote{Sabemos que al menos una habrá, ya que podemos plantear la función afín
-    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones.}
-    Por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
+    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones}, 
+    por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
 
-    Veamos finalmente que para todo punto de $k$ existe una función de $\pmcg$  en el que la imagen no es nula.  
+    Veamos finalmente que para todo punto de $K$ existe una función de $\pmcg$  en el que la imagen no es nula.  
 
     Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$ , consideramos ahora la aplicación lineal
-    $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(b) \neq 0$. 
+    $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(a) \neq 0$. 
 
-    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos que 
-    la clausura uniforme de $\pmcg$ en $\R$ consiste en todas las funciones continuas de variable real en un compacto,
-     o equivalentemente, $\pmcg$ es denso en el espacio denso en el  espacio de la funciones continuas de una variable en un compacto. 
+    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos pronar que $\pmcg |_K$ es denso en $C(K). $ 
 \end{proof}
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
