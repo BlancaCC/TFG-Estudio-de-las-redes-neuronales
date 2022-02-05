@@ -1,0 +1,85 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Metodología
+%*******************************************************
+
+\chapter{Metodología}
+
+La planificación y organización es un componente vital a la hora del desarrollo de software 
+y la ciencia de datos. Por lo que no es de extrañar que sus beneficios sean extrapolables
+a otras áreas de la ciencia; 
+hemos aplicado por ende la 
+metodología expuesta en el artículo \cite{DBLP:journals/corr/abs-2104-12545}, realizado 
+el trabajo siguiendo una metodología ágil, de acorde a las siguientes hipótesis. 
+
+\begin{enumerate}
+    \item Se premia la \textbf{reproducibilidad}, \textit{la ciencia no puede ser ciencia si no es reproducible}. Es por 
+    ello que se publica todo el material usado. 
+    \item \textbf{Comprobaciones} en todo los niveles, \textit{el código que no se ha probado no funciona}. 
+    Explicitamos unos requisitos y criterios claros de validación. 
+    \item Conocimiento libre, tanto la memoria como el código se encuentra publicado y con licencia libre en nuestro repositorio 
+    de github \cite{TFG-Estudio-de-las-redes-neuronales}.
+
+    \textcolor{red}{ JJ, el cuarto punto de tu \cite{DBLP:journals/corr/abs-2104-12545} artículo: "Stakeholder collaboration over vertical chains-of-command" 
+    no lo he puesto porque no creo que encaje con la situación, el rol profesor-alumno necesariamente tiene cierto 
+    enfoque vertical, no por la autoridad; sino por la desigualdad de conocimientos, conduciendo a esa relación "desigual".
+     }
+\end{enumerate}  
+
+\section{Descripción de la metodología }  
+
+Concretamente la metodología seguida basada en \cite{que-es-un-trabajo-fin-de-x} ha sido la siguiente: 
+
+El objetivo principal es resolver un problema usando técnicas tanto informáticas como matemáticas. Para ello 
+se han definido unos objetivos claros a través de una \textit{metodología de personas}  \cite{personas-why-and-how-you-should-use-them}
+y las respectivas historias de usuario derivadas.   
+
+\subsection{Personas definidas}  
+
+Las personas que hemos definido son:  
+
+\begin{itemize}
+    \item \textbf{Perfil de usuario Tribunal}
+
+Lector experto  de la memoria y trabajo. Valorará que el trabajo presentado  cumpla ciertos requisitos inamovibles.
+Puesto que para el doble grado no he encontrado nada específico procedo a combinar los requisitos encontrado para los grados:
+
+\begin{enumerate}
+    \item Declaración explícita firmada en la que se asume la originalidad del trabajo, entendida en el sentido de que no ha utilizado fuentes sin citarlas debidamente. Esta declaración se puede descargar en la web del Grado (matemáticas).
+    \item Un índice detallado de capítulos y secciones.
+    \item Un resumen amplio en inglés del trabajo realizado (se recomienda entre 800 y 1500 palabras).
+    \item Una introducción en la que se describan claramente los objetivos previstos inicialmente en la propuesta de TFG, indicando si han sido o no alcanzados, los antecedentes importantes para el desarrollo, los resultados obtenidos, en su caso, y las principales fuentes consultadas.
+    \item Una descripción de la metodología.
+    \item Un estado del arte y diseño.
+    \item Estimación de los costes.
+    \item Análisis de las prestaciones.
+    \item Una bibliografía final que incluya todas las referencias utilizadas.
+    \item Para realizar la entrega cada estudiante: Como tarea de la asignatura Trabajo Fin de Grado, subirá a PRADO su memoria de TFG en un fichero pdf (Apellidos.pdf) y lo someterá a la herramienta de control de plagio Turnitin.
+
+\end{enumerate}
+
+
+\item \textbf{Perfil usuario: Benefactor del problema}
+
+Busca una mejora de las redes neuronales en cualquier aspecto:
+
+\begin{itemize}
+    \item Necesidad de arquitecturas menos potentes.
+    \item Mayor precisión para misma arquitectura.
+    \item Resolver nuevos problemas.
+\end{itemize}
+
+\item \textbf{Perfil usuario: Matemático}
+Busca una memoria y un estudio formal, exacto  y exhaustivo, que involucra aspectos como: 
+\begin{itemize}
+    \item Definir de manera rigurosa los conceptos.
+    \item Abstracción de las técnicas informáticas.
+    \item Planteará cuestiones que puedan tener relevancia en cuanto a optimizar RRNN.
+    \item Comprobará la bondad de sus especulaciones realizando benchmark.
+\end{itemize}
+\end{itemize}
+
+\subsection{Historias de usuario}  
+
