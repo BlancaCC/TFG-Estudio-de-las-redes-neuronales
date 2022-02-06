@@ -464,6 +464,7 @@ distan las funciones $f,g$ entre ellas.
     \end{equation}
     probando con ello la implicación (2) $\Longrightarrow$ (3).
 
+    % 3 -> 1
     Finalmente comprobaremos la implicación (3) $\Longrightarrow$ (1).
 
     Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
@@ -501,81 +502,123 @@ Probando con esto lo buscado que  para cualquier  $\epsilon > 0$ se tiene que
 $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
 \end{proof}
 
-%% Nota para Javier   
-
-\textcolor{red}{Javier, las citas a \cite{nla.cat-vn1819421} son contenido de la 
-asignatura de análisis matemático II por eso y por avanzar más rápido no las he incluido.
-¿Ves necesario que se incluya su prueba aquí?}
 
 %% Lema 2.2
 \begin{lema}  
-    Si $\{f_n\}$ es una secuencia de funciones en $\fM$ que converge
+    Si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
     uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$. 
 \end{lema}  
-\begin{proof}
-    Tengamos presente que por el lema  lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} 
+\begin{proof} Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
+    Tengamos presente que por el  lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} 
     deberemos probar que para cualquier $\epsilon > 0$, 
     existe un $n_0$ natural, tal que para cualquier otro natural $n$ mayor o igual que $n_0$ se tiene que 
 
     \begin{equation}
-        \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) < \epsilon.
+        \int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+        < 
+        \frac{\epsilon}{2}.
     \end{equation}  
 
     Sea $\mu(\R^r) = M \in \R^+$  y 
-    sin pérdida de generalizad puede suponerse $M = 1$
+    sin pérdida de generalidad puede suponerse $M = 1$
      \footnote{De otra forma bastaría con definir 
-    en los pasos siguiente $\mu(K) > M - \frac{\epsilon}{2}$ y acotar con $\frac{\epsilon}{2M}$ 
-    en vez de $\frac{\epsilon}{2}$}. 
-    Ya que $\R^r$ es localmente un espacio métrico 
+    en los pasos siguientes $\mu(K) > M - \frac{\epsilon}{2}$ y acotar con $\frac{\epsilon}{2M}$ 
+    en vez de $\frac{\epsilon}{2}$.}. 
+    Ya que $\R^r$ es un espacio métrico localmente compacto
     (pag 228 teorema 52.G \cite{nla.cat-vn1819421}),
     se tiene que existirá un subconjunto $K$ compacto de $\R^r$ con medida $\mu(K) > 1 - \frac{\epsilon}{2}.$
-    Para el cual, por su compacidad, existirá un  $n_0$ natural cumpliendo que para cualquier otro 
-    natural $n \geq n_0$ se cumple que el $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}.$  
+    Para el cual, por su compacidad, existirá un  $n_0$ natural 
+    $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}$   
+    para cada natural $n$ con $n\geq n_0.$  
+    De modo que para cualquier $x \in K$, 
+     $n$ con $n\geq n_0$   se cumple que 
+     \begin{equation}
+        |f_n(x) - f(x)| 
+        = 
+        \min \{ |f_n(x) - f(x)|, 1\} 
+        = 
+        g_n.
+     \end{equation}
 
-    Por lo que combinando ambas ecuaciones y acotando el primer sumando por la medida 
-    del complemento de la región integrada y el segundo por que el mínimo será menor que el 
-    supremo que ya es conocido, concluimos que 
+    Por lo que  
+    \begin{equation} \label{eq:lema3_2_integral_en_compacto_K}
+        \int_K g_n d\mu 
+        \leq
+         \mu(K) \sup_{x \in K} |f_n(x) - f(x)| 
+        \leq 
+        \frac{\epsilon}{2} .
+    \end{equation}
+
+    Acotando el primer sumando por la medida 
+    del complemento de la región integrada y en virtud de 
+    (\refeq{eq:lema3_2_integral_en_compacto_K})
 
     \begin{equation}
         \begin{split}
-            \int_{R^r - K} \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) +
-            \int_{K} \min \{ |f_n(x) - f(x)|, 1\} \mu(dx)  \\ \leq
-            \left( 1 - \left(1 -\frac{\epsilon}{2}\right)\right) + 
-            \left(\frac{\epsilon}{2} \left( 1 -\frac{\epsilon}{2} \right)\right) < \epsilon
+            \int_{\R^r \setminus K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+            +
+            \int_{K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x)  \\ \leq
+            \mu(\R^r \setminus K) +  \frac{\epsilon}{2}
+            \leq
+            \frac{\epsilon}{2} +  \frac{\epsilon}{2}
+            = 
+            \epsilon
         \end{split}
     \end{equation}
 
     para cualquier $n \geq n_0$. 
 \end{proof}
 
+% Lema 3.3
 \begin{lema}
     Para cualquier medida finita $\mu$ se tiene que $\fC$ es denso en 
-    $\fM$ de acorde a la métrica $\rho_\mu$.
+    $\fM$ para la distancia $\rho_\mu$.
 \end{lema}
 \begin{proof}
-    Se quiere probar que dada cualquier $f \in \fM$ y un $\epsilon > 0$ arbitrario. 
-    Tenemos que encontrar una función $g \in \fC$ que cumpla que 
+    Dada cualquier $f \in \fM$ y un $\epsilon > 0$ arbitrario, 
+    tenemos que encontrar una función $g$ que cumpla que 
     $\rho_{\mu}(f, g) < \epsilon$. 
 
-    Tomando un $M > 0$ lo suficientemente grande, tenemos que 
+    Tomando un $M > 1$ lo suficientemente grande, tenemos que 
     
     \begin{equation}
-        \int \min \{ |f(x)\cdot 1_{|f(x)| < M} - f(x)|, 1\} \mu(dx) 
+        \int \min \{ |f(x)\ 1_{|f(x)| < M} - f(x)|, 1\} d\mu(x)
         < \frac{\epsilon}{2}. 
     \end{equation}
 
-    Sabemos además que podemos aproximar $f\cdot 1_{|f| < M}$ como $g$, una función continua que es límite de una sucesión 
+    Sabemos además que podemos aproximar $f 1_{|f| < M}$ por $g$, una función continua que es límite de una sucesión de
     funciones simples ( pag 241-242,  teoremas 55C y 55D \cite{nla.cat-vn1819421}), 
     la cual satisface 
-    \begin{equation}
-        \int \min \{ |f(x)\cdot 1_{|f(x)| < M} - g(x)|, 1\} \mu(dx) 
+    \begin{equation}\label{eq:lema3_3_integral}
+        \int \min \{ |f(x) 1_{|f(x)| < M} - g(x)|, 1\} d\mu(x) 
         < \frac{\epsilon}{2}. 
     \end{equation}
-
-     Por lo que 
+    Tomamos $M$ lo suficientemente grande, de tal forma que 
+    \begin{equation} \label{eq:lema3_3_medida_conjunto}
+        \mu(\{ x: |f(x)| \geq M\}) < \frac{\epsilon}{2}
+    \end{equation}
+    y denotamos por $\Lambda$ al conjunto $\{ x: |f(x)| < M\}.$
+    
+    Concluyendo por \refeq{eq:lema3_3_integral} y 
+    \refeq{eq:lema3_3_medida_conjunto}
      \begin{equation}
-        \int \min \{ |f  - g|, 1\} d\mu 
-        < \epsilon. 
+        \begin{split}
+            \int \min \{ |f  - g|, 1\} d\mu 
+            = 
+            \int_\Lambda \min \{ |f1_{|f(x)| < M}  - g|, 1\} d\mu
+            + 
+            \int_{\R^r \setminus \Lambda} \min \{ |f  - g|, 1\} d\mu 
+            \\
+            <
+            \frac{\epsilon}{2} 
+            + 
+            \mu(\{ x: |f(x)| \geq M\}) 
+            <
+            \frac{\epsilon}{2} 
+            + 
+            \frac{\epsilon}{2} 
+            < \epsilon. 
+    \end{split}
     \end{equation}
 \end{proof}
 
