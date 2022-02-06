@@ -76,7 +76,59 @@ $$ECM = \frac{1}{n} \sum_{i=0} ^n (f(x_i) - y_i)^2,$$
 
 donde $f(x_i)$ representa la predicción y $y_i$ la etiqueta de entrenamiento de $x_i$, es decir, su valor real. 
 
-\subsection{Modelos de aprendizaje}  
+% Componentes del aprendizaje   
+\subsection{Componentes del aprendizaje}  
 
-Una vez formalizado el concepto de aprendizaje, la cuestión es cómo \textit{aproximarnos} a esa función 
-desconocida. Las redes neuronales, no son más que una técnica más con la que conseguir tal objetivo. 
+(Información proveniente del capítulo 1 \cite{MostafaLearningFromData})
+Los principales componentes del aprendizaje son: 
+
+\begin{itemize}
+    \item Una entrada $x$. 
+    \item Una función objetivo ideal y desconocida
+     $f: \mathcal X \longrightarrow \mathcal{Y}$. 
+     Donde  $\mathcal X$ es el espacio de entrada al que pertenecen las entradas $x$ y $\mathcal{Y}$ el espacio de salida. 
+    \item Un conjunto de datos de entrenamiento $\mathcal D.$
+    \item Un algoritmo de aprendizaje que consiste en seleccionar una fórmula $g: \mathcal X \longrightarrow \mathcal{Y}$ que aproxime $f$. La fórmula $g$ pertenece 
+    a un conjunto $\mathcal H$ de hipótesis. 
+\end{itemize}
+
+En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neuronales y $g$ la red neuronal seleccionada. 
+
+
+% Tipos de aprendizaje 
+\subsection{Tipos de aprendizaje}  
+
+(Información proveniente del capítulo 1 \cite{MostafaLearningFromData})
+
+El aprendizaje a partir de los datos consiste en el uso de un 
+un conjunto de observaciones con el fin de descubrir un patrón, modelo o ley del proceso subyacente. 
+
+En función de ciertas características del conjunto de datos se 
+tienen distintos tipos de aprendizaje.  
+
+\subsubsection{Aprendizaje supervisado}
+Cuando el conjunto de datos de entrenamiento contiene de manera explícita lo que es una salida correcta respecto a una entrada estamos frente a un caso de \textbf{aprendizaje no supervisado}.   
+
+Un ejemplo sería el reconocimiento de dígitos  manuscritos donde cada imagen de un dígito tiene asociado cuál es. 
+
+
+\subsubsection{Aprendizaje por refuerzo}  
+Se trata de un problema de aprendizaje por refuerzo 
+cuando conjunto de datos de entrenamiento no explicita la salida, en su lugar contiene posibles salidas junto a la bondad de éstas. 
+
+Pongamos por ejemplo que se quiere enseñar a un sistema a jugar
+a las damas; de todo el espacio de jugadas posibles, se conocerían tan solo el resultado de algunas situaciones, por ejemplo en la que uno de los jugadores ha ganado.  
+
+\subsubsection{Aprendizaje no supervisado}  
+
+En este tipo de aprendizaje, los datos de entrenamiento tampoco contienen ninguna información de la salida.
+ Tan solo se tienen los datos de entrada. El \textbf{aprendizaje no supervisado} 
+ consiste en la tarea de encontrar patrones y estructuras en los datos de entrada, 
+ así como de crear una una abstracción de los datos.  
+
+
+Las redes neuronales son partícipes en los tres tipos de aprendizaje 
+recién mencionados
+\cite{8612259}, \cite{DBLP:journals/corr/BakerGNR16}, \cite{10.5555/2955491.2955578}. Sin embargo centraremos nuestro estudio en el caso 
+de aprendizaje supervisado. 
+
