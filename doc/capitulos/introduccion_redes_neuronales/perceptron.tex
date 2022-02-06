@@ -5,5 +5,68 @@
 % Perceptrón
 %*******************************************************
 
-\section{Perceptrón}\label{ch:Perceptron} 
-TODO: 
+\chapter{Construcción de las redes neuronales}  
+Para entender con mayor claridad cómo se construye una red neuronal, explicaremos primero 
+uno a uno cada uno de sus elementos clave 
+(Capítulo 4 \cite{BishopPaterRecognition}).
+
+\section{El perceptrón}  
+
+El perceptrón de Rosenblatt fue presentado en 1962. 
+Y no es más que un ejemplo de modelo lineal 
+discriminate a dos clases.
+Dado un vector de entrada $x$, 
+$\phi$ una transformación no lineal fija que relaciona
+$x$ con un vector de características. 
+
+Por lo general, $\phi(x)$ suele incluir un sesgo, 
+devolviendo un vector, con un uno en la primera componente y en las siguientes las misma que $x$. 
+\begin{equation}
+    \phi((x_1,..x_n)) = (1, x_1, ..., x_n)
+\end{equation} 
+
+La fórmula generalizada es 
+\begin{equation}
+    y(x) = f(w^T \phi(x))
+\end{equation}
+
+Donde $w$ es un vector de pesos a ajustar y 
+$f$ una función a trozos definida como 
+
+\begin{equation}
+    f(x) =
+    \left\{ 
+        \begin{aligned}
+        +1, & x \geq 0
+            \\
+            -1, & x \leq 0.
+        \end{aligned}
+    \right .  
+\end{equation}
+
+\subsubsection{El algoritmo del perceptrón}
+
+Se define como función de pérdida la conocida como 
+\textit{criterio del perceptrón}
+
+\begin{equation}
+    E_p(w) = - \sum_{x \in \mathcal M} w^T \phi_n (x_n)
+\end{equation}
+
+Donde $\mathcal M$ denota al conjunto de puntos mal clasificados por el perceptrón.
+
+Aplica el algoritmo del gradiente descendente estocástico, la sucesión de pesos será de la forma
+
+\begin{equation}
+    w_{\tau+1} = 
+    w_{\tau} - \eta \nabla E_p(w)
+     = 
+     w_{\tau} + \eta \phi_n (x_n)
+\end{equation}
+
+donde $\eta$, el denominado  \textit{learning rate}
+es un coeficiente real libre
+
+
+
+
