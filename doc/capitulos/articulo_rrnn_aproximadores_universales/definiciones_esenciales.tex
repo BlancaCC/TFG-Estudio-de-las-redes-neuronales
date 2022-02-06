@@ -271,8 +271,8 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
     \begin{equation}
         \begin{split}
             \sum \prod^r (\Gamma) = \{ 
-                &f: \R^r \longrightarrow \R | \\
-                & f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+                &f: \R^r \longrightarrow \R /
+                f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
                 G(A_{jk}(x)), \\
                 &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N, G \in \Gamma
                 )
@@ -286,7 +286,7 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 %% TODO por aquí te has quedado 
 \begin{proof}
     La demostración es idéntica a la dada en el Teorema de convergencia 
-    real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
+    real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}.
 \end{proof}
 
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
@@ -299,9 +299,6 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
     Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
 \end{corolario}
 
-    \textcolor{red}{Explicado muy intuitivamente, ya que habría que tener en cuenta la conexión de las neurona 
-    capa por capa, por ejemplo ¿Es densamente conexa? ¿Recurrente? ¿convolucional? ¿una GAN?}
-
     Como con una capa ya se nos asegura la convergencia bastará con asegurar que exista 
     en el espacio de las redes neuronales profundas capas que transmitan la información sin cambiarla. 
 
@@ -309,12 +306,10 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
 
 
 Recordemos que de manera general se ha definido $A$ como una función afín 
-$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$ y $\cdot$ representa el producto 
-usual de escalares y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
+$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
 Por ejemplo $B((x_1, ..., x_r)) = \sum_{i= 0} ^N \sum_{j= 0} ^r \alpha_{ij} x_j^i$  con $N$ natural positivo. 
 
 \begin{corolario}[Generalización de A]  
-
     Se puede extender $A^r$ a conjuntos más generales como el de los polinomios de $r$ variables de grado $N$, $\mathbb{P}$.  
 \end{corolario}
 \begin{proof}
@@ -342,8 +337,8 @@ generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras.
 
 Lo que se está diciendo es que serán iguales casi por doquier.   
 
-% Definición métrica  
-\begin{definicion} [Introducción de una métrica basada en una probabilidad]
+% Definición distancia  
+\begin{definicion} [Introducción de una distancia basada en una probabilidad]
     Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
     la métrica $\rho_{\mu}$ definida como 
     \begin{equation}
@@ -359,91 +354,148 @@ distan las funciones $f,g$ entre ellas.
 
 %% Lema 2.1
 \begin{lema}[Caracterización de la convergencia de una sucesión]\label{lema:caracterizacionConvergenciaSucesiones2_1}
-    Son equivalente las siguientes afirmaciones: 
-    \begin{enumerate}[label=(\roman*)]
+    Son equivalentes las siguientes afirmaciones: 
+    \begin{enumerate}
         \item $\rho_{\mu}(f_n, f) \longrightarrow 0$.
         \item Para cualquier  $\epsilon > 0$ se tiene que $\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0$.
-        \item $\int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \longrightarrow 0.$
+        \item $\int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) \longrightarrow 0.$
     \end{enumerate}
 \end{lema}
 
 \begin{proof}
-    Comenzaremos probando (i) $\Longleftrightarrow$ (ii). 
+    % 1 -> 2
+    Comenzaremos probando (1) $\Rightarrow$ (2). 
 
     Si $\rho_{\mu}(f_n, f) \longrightarrow 0$
-    tenemos por definición que 
-    para cualquier $\epsilon > 0$ existirá $n_0 \in \N$ tal que 
-    $\rho_{\mu}(f_n, f) < \epsilon$ para $n$ un natural mayor que $n_0$. 
+    Fijamos $\epsilon_0 > 0$, tenemos por definición que 
+    para cualquier $0 < \delta < \epsilon_0$ existirá $n_0 \in \N$ tal que 
+    $\rho_{\mu}(f_n, f) < \delta$ para cada $n$ un natural mayor que $n_0$. Es decir,  
     
-    Por definición de la métrica, tenemos que 
-    $$\rho_{\mu}(f_n, f) = \inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \}$$
-    Luego $\rho_{\mu}(f_n, f)  < \epsilon$ sii 
-    $$\inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \} < \epsilon$$
-    por estar en un espacio compacto, el ínfimo se alcanza luego esto equivale a 
-    $$\mu \{ x : |f_n(x) - f(x)| > \epsilon \}$$
-    probando la equivalencia buscada.  
 
-    Probaremos ahora que (ii) $\Longrightarrow$ (iii).   
+    $$\inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \} < \delta \quad \forall n \geq n_0$$
 
-    Por (ii) se tiene que sea cual sea el $\frac{\epsilon}{2} > 0$ 
+    entonces 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \leq
+        \mu \{ x : |f_n(x) - f(x)| > \delta\}
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    lo que significa que 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \longrightarrow
+        0  
+    \end{equation}
+    probando con ello la implicación buscada.
+
+    % 2 -> 1
+    Veamos ahora que (2) $\Rightarrow$ (1). 
+    Fijamos $\epsilon_0 > 0$ y bajo la hipótesis segunda se tiene que 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \longrightarrow
+        0,  
+    \end{equation}
+    es decir, que para cualquier real $\delta$ cumpliendo que $0 < \delta < \epsilon_0$ 
+    existe un natural $n_0$ a partir del cual todo natural $n$ mayor o igual satisface que 
+    
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \leq
+        \mu \{ x : |f_n(x) - f(x)| > \delta\}
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    lo que significa que 
+    
+    \begin{equation}
+        \inf \{ \epsilon > 0:
+         \mu \{ 
+             x : |f_n(x) - f(x)| > \epsilon \} < \epsilon 
+             \} 
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    que por definición de la distancia equivale a que 
+
+    \begin{equation}
+        \rho_{\mu}(f_n, f) < \delta \quad \forall n \geq n_0
+    \end{equation}
+
+    probando con ello 
+
+    \begin{equation}
+        \rho_{\mu}(f_n, f) \longrightarrow 0. 
+    \end{equation}
+
+    % 2 -> 3
+    Probaremos ahora que (2) $\Longrightarrow$ (3).   
+
+    Por (2) se tiene que sea cual sea el $\epsilon$ cumpliendo que 
+    $0 < \epsilon \leq 2$ 
     existirá un natural $n_0$ a partir del cual, cualquier otro natural $n$ 
     satisface que 
-    $$\mu \{  x : |f_n(x) - f(x)| > \frac{\epsilon}{2}  \}  < \frac{\epsilon}{2}$$ 
+    \begin{equation} 
+        \mu \{  
+            x : |f_n(x) - f(x)| > \frac{\epsilon}{2}  
+            \}  
+        < 
+        \frac{\epsilon}{2},  
+    \end{equation}
+
     Gracias a esta desigualdad, para cualquier $n > n_0$ podemos acotar la siguiente integral: 
 
     \begin{equation}
-        \begin{split}
-            \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) \leq
-            \frac{\epsilon}{2} (1-\frac{\epsilon}{2}) + 1\frac{\epsilon}{2} 
-             = \epsilon - \frac{\epsilon^2}{4} <  \epsilon.  
-        \end{split}
+        \int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+        \leq
+        \frac{\epsilon}{2} (1-\frac{\epsilon}{2}) + 1\frac{\epsilon}{2} 
+         = \epsilon - \frac{\epsilon^2}{4} <  \epsilon.  
     \end{equation}
+    probando con ello la implicación (2) $\Longrightarrow$ (3).
 
-    probando con ello la implicación (ii) $\Longrightarrow$ (iii).
+    Finalmente comprobaremos la implicación (3) $\Longrightarrow$ (1).
 
-    Finalmente comprobaremos la implicación (iii) $\Longrightarrow$ (ii).
-    \textcolor{red}{ Javier, revisa cuidadosamente esta implicación, por favor. }
-    Se tiene que para cualquier $\epsilon > 0$ existe un $n_0$ natural a partir del cual cualquier natural $n$
-    cumple que 
+    Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
+    Por (2), dado $0 < \epsilon < 1$, existe un $n_0 \in \N$
+    de modo que si $n \geq n_0$ se cumple que 
+    \begin{equation}\label{eq:definicionesBasicasIntegralGNmenorEpsilonCuadrado}
+        \int g_n d\mu < \epsilon^2
+    \end{equation}
+    Como $\epsilon < 1$ tenemos que 
 
     \begin{equation}
-        \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) < \epsilon
+        \{ x; g_n(x) > \epsilon \}
+         = 
+         \{ x; |f_n - f| > \epsilon \}
     \end{equation}
 
-    Además tenemos que 
-    \begin{equation}
-        \int \min \{ |f_n(x) - f(x)|, 1\} \mu(dx) =  
-        \int _ {|f_n(x) - f(x)|<1} |f_n(x) - f(x)| \mu(dx) + \mu \{ x : |f_n(x) - f(x)| \geq 1- \}  < \epsilon
-    \end{equation}
-
-    Luego si tomamos $\epsilon$ lo suficientemente cercano a cero  se tiene que $\min \{ |f_n(x) - f(x)|, 1\}$
-    es $\mu$-equivalente a $|f_n(x) - f(x)|$, tomemos $\epsilon^2$ cumpliendo esto y veamos que.  
+    luego 
 
     \begin{equation}
-        \begin{split}
-            \epsilon^2 & >  \int |f_n(x) - f(x)|  \mu(dx) =  \\
-            & =\int_{|f_n(x) - f(x)| \leq \epsilon } |f_n(x) - f(x)|  \mu(dx)
-             + \int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx)  
-        \end{split}
+        \mu\{ x; |f_n - f(x)| > \epsilon \}
+        = 
+        \mu\{ x; g_n(x) > \epsilon \}
+        \leq
+        \frac{1}{\epsilon} 
+        \int_{g_n(x) > \epsilon} g_n d\mu 
+        < \epsilon 
+        \quad
+        \forall n \geq n_0
     \end{equation}
 
-
-En particular 
-\begin{equation}
-    \begin{split}
-        & \epsilon^2  > \int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) \\
-        &  \epsilon  > \frac{1}{\epsilon}\int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) \\
-    \end{split}
-\end{equation}
-
-En virtud de la desigualdad de Chebyshev 
-
-\begin{equation}
-    \begin{split}
-          \epsilon  > \frac{1}{\epsilon}\int_{|f_n(x) - f(x)| > \epsilon } |f_n(x) - f(x)|  \mu(dx) 
-          \geq \mu \{  x : |f_n(x) - f(x)| > \epsilon \} 
-    \end{split}
-\end{equation}
+    donde se ha usado la desigualdad de Chebyshev para $g_n$ y la desigualdad 
+    (\refeq{eq:definicionesBasicasIntegralGNmenorEpsilonCuadrado}). 
 
 Probando con esto lo buscado que  para cualquier  $\epsilon > 0$ se tiene que 
 $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
