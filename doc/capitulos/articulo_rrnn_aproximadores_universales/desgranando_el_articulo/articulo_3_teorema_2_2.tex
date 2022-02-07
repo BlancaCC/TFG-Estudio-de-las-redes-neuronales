@@ -6,7 +6,7 @@
 %***************************************************************
 
 % Teorema 2.2 
-\begin{teorema}
+\begin{teorema}\label{teo:2_2_denso_funcion_continua}
     Para cualquier función continua no constate $G$, $r \in \N$ y
     medida de probabilidad $\mu$ o $(\R^r, B^r)$, 
     se tiene que $\pmcg$ es $\dist$-denso en $\fM$. 
@@ -15,7 +15,7 @@
     Debemos probar que para cualquier función $f \in \fM$ existe una 
     sucesión de funciones $\{h_n\}_{n\in \N}$ contenida en $\pmcg$ y 
     cumpliendo que $\dist(h_n, f) \longrightarrow 0.$
-    
+
     Consideramos cualquier $f \in \fM$,
     por el lema \ref{lema:A_1_C_es_denso_en_M} sabemos que $\fC$ es $\dist$-denso en $\fM$; 
     es decir, existirá un sucesión $\{f_n\}_{n\in \N}$ de funciones de $\fC$ convergente a 
@@ -28,12 +28,22 @@
 
     Así pues, denotando como $h_n$ al término $g(n)_n$, obtenemos una sucesión de funciones 
     en $\fM$ que converge uniformemente en compactos a $f$ y por el lema \ref{lema:2_2_convergencia_uniforme_en_compactos}
-    tenemos que $\dist(h_n, f) \longrightarrow 0$ como queríamos probar. 
-
-    
+    tenemos que $\dist(h_n, f) \longrightarrow 0$ como queríamos probar.     
 \end{proof}
 
 % --- Faltan por demostrar -----
+% Lema A.2 
+\begin{lema}\label{lema:a_2_paso_previo_denso}
+    Sea F una función de activación continua y $\psi$ una función de activación arbitraria. 
+    Para cualquier $\epsilon > 0$ existe un elemento $H_{\epsilon}$ de $\sum^1(\psi)$ cumpliendo que
+    \begin{equation}
+        \sup_{\lambda \in \R} | F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon.
+    \end{equation}
+\end{lema} 
+\begin{proof}
+    TODO
+\end{proof}      
+
 % Teorema 2.3
 \begin{teorema}
     Para cualquier función de activación $\psi$, $r \in \N$ y
@@ -41,7 +51,55 @@
     se tiene que $\rrnng$ es uniformemente denso en compactos
     en $\fC$ y denso en $\fM$ de acorde a la distancia $\dist$. 
 \end{teorema}
+\begin{proof}
+    En virtud del lema \ref{lema:2_2_convergencia_uniforme_en_compactos} y del 
+    teorema \ref{teo:2_2_denso_funcion_continua} basta con probar que 
+    $\rrnng$ es uniformemente denso en compactos de $\sum \prod^r(F)$, 
+    donde $F$ es una función de activación continua 
+    \footnote{el razonamiento 
+    por el que con esta hipótesis es suficiente es idéntico al realizado para la 
+    demostración del teorema \ref{teo:2_2_denso_funcion_continua}}.
 
+    Para ello basta ver que cualquier función de la forma $\prod_{k=1}^l F(A_k(\cdot))$
+    puede ser uniformemente aproximada por una una sucesión de funciones de $\rrnng$.
+
+    Fijamos un $\epsilon > 0$  de manera arbitraria. 
+    Gracias a la continuidad de la norma y de la operación multiplicación, existirá un $\delta >0$
+    tal que para cualesquiera números reales $0 \leq a_k, b_k \leq 1,$ con $k \in \{1,...,l\}$ 
+    se satisfagan que $|a_k -b_k| < \delta$ se cumpla que 
+    \begin{equation} \label{eq:teorema_2_3__1}
+        \left| 
+            \prod^l_{k=1} a_k - \prod^l_{k=1} b_k 
+        \right| 
+        < 
+        \epsilon.
+    \end{equation}
+
+    Por el lema \ref{lema:a_2_paso_previo_denso} existe una función 
+    $ H_{\delta}(\cdot) = \sum_{t=1}^T \beta_t \psi(A_t(\cdot))$
+    cumpliendo que 
+
+    \begin{equation}
+        \sup_{\lambda \in \R} |F(\lambda) - H_{\delta}(\lambda) | < \delta.
+    \end{equation}
+
+    que satisface las hipótesis de la desigualdad \refeq{eq:teorema_2_3__1} por lo que 
+    resulta 
+    \begin{equation}
+        \sup_{x \in \R^r} 
+        \left| 
+            \prod ^l_{k=1} F(A_k(x))
+            -
+            \prod ^l_{k=1} H_\delta(A_k(x))
+        \right| 
+        < 
+        \epsilon.
+    \end{equation} 
+    
+    TODO : Falta por acabar la demostración.
+\end{proof} 
+
+%% Falta por probar 
 % Teorema 2.4
 \begin{teorema}
     Para cualquier función de activación $\psi$, $r \in \N$ y
