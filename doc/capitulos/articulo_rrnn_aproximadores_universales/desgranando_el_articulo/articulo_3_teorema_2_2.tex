@@ -46,8 +46,8 @@
 
 % Teorema 2.3
 \begin{teorema}
-    Para cualquier función de activación $\psi$, $r \in \N$ y
-    medida de probabilidad $\mu$ o $(\R^r, B^r)$, 
+    Para cualquier función de activación $\psi$, $r$ natural positivo y
+    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
     se tiene que $\rrnng$ es uniformemente denso en compactos
     en $\fC$ y denso en $\fM$ de acorde a la distancia $\dist$. 
 \end{teorema}
@@ -58,7 +58,7 @@
     donde $F$ es una función de activación continua 
     \footnote{el razonamiento 
     por el que con esta hipótesis es suficiente es idéntico al realizado para la 
-    demostración del teorema \ref{teo:2_2_denso_funcion_continua}}.
+    demostración del teorema \ref{teo:2_2_denso_funcion_continua}.}.
 
     Para ello basta ver que cualquier función de la forma $\prod_{k=1}^l F(A_k(\cdot))$
     puede ser uniformemente aproximada por una una sucesión de funciones de $\rrnng$.
@@ -66,7 +66,7 @@
     Fijamos un $\epsilon > 0$  de manera arbitraria. 
     Gracias a la continuidad de la norma y de la operación multiplicación, existirá un $\delta >0$
     tal que para cualesquiera números reales $0 \leq a_k, b_k \leq 1,$ con $k \in \{1,...,l\}$ 
-    se satisfagan que $|a_k -b_k| < \delta$ se cumpla que 
+    se satisfagan que $|a_k -b_k| < \delta$ se cumple que 
     \begin{equation} \label{eq:teorema_2_3__1}
         \left| 
             \prod^l_{k=1} a_k - \prod^l_{k=1} b_k 
@@ -76,16 +76,16 @@
     \end{equation}
 
     Por el lema \ref{lema:a_2_paso_previo_denso} existe una función 
-    $ H_{\delta}(\cdot) = \sum_{t=1}^T \beta_t \psi(A_t(\cdot))$
+    $H_{\delta}(\cdot) = \sum_{t=1}^T \beta_t \psi(A_t(\cdot))$
     cumpliendo que 
 
     \begin{equation}
         \sup_{\lambda \in \R} |F(\lambda) - H_{\delta}(\lambda) | < \delta.
     \end{equation}
 
-    que satisface las hipótesis de la desigualdad \refeq{eq:teorema_2_3__1} por lo que 
+    Se satisface con la cota suficiente de la desigualdad \refeq{eq:teorema_2_3__1} por lo que 
     resulta 
-    \begin{equation}
+    \begin{equation}\label{eq:teorema2_3__3}
         \sup_{x \in \R^r} 
         \left| 
             \prod ^l_{k=1} F(A_k(x))
@@ -96,7 +96,12 @@
         \epsilon.
     \end{equation} 
     
-    TODO : Falta por acabar la demostración.
+    Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A^1_t(\cdot))$ 
+    y porque $A^1_t(A_k(\cdot)) \in A^r$ se tiene por la desigualdad \ref{eq:teorema2_3__3} que 
+    $\prod ^l_{k=1} H_\delta(A_k(\cdot)) \in \rrnng.$
+
+    Por lo tanto como  $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
+    aproximado por elementos de $\rrnng$ probando con ello lo buscado. 
 \end{proof} 
 
 %% Falta por probar 
