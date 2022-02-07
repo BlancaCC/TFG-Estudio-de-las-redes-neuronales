@@ -34,14 +34,65 @@
 % --- Faltan por demostrar -----
 % Lema A.2 
 \begin{lema}\label{lema:a_2_paso_previo_denso}
-    Sea F una función de activación continua y $\psi$ una función de activación arbitraria. 
+    Sea F una función de activación continua y $\psi$ una \textbf{función de activación} arbitraria. 
     Para cualquier $\epsilon > 0$ existe un elemento $H_{\epsilon}$ de $\sum^1(\psi)$ cumpliendo que
     \begin{equation}
         \sup_{\lambda \in \R} | F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon.
     \end{equation}
 \end{lema} 
 \begin{proof}
-    TODO
+    Procedamos a realizar la siguiente prueba constructiva. 
+    Tomamos fijo pero arbitrario un $\epsilon > 0,$ que sin pérdida de generalidad
+    supondremos menor que uno 
+    \footnote{En caso de ser mayor, se tomará cualquier otro menor que la unidad y la función resultante será igual de válida.}.
+    Para que la $H_\epsilon$ pertenezca a $\sum ^1 (\psi)$ deberá de ser de la 
+    forma $\sum^{q-1}_{j=1} b_j \psi( A_j(\lambda))$
+    debemos encontrar por ende el número de sumatorias $q-1$ y esa misma cantidad de constantes reales $b_j$ y funciones afines $A_j$. 
+    
+    La idea subyacente consiste en lo siguiente, puesto que estamos trabajando con funciones estrictamente monótonas que bastará definir conocer el comportamiento de $F$ dentro de un dominio cerrado y acotado. 
+    
+    Tomamos como $q$ a cualquier número natural que cumpla que 
+    \begin{equation}
+        \frac{1}{q} < \frac{\epsilon}{2}.
+    \end{equation}
+
+    Fijaremos para cada $j \in \{1,2, ...,q-1\}$ los coeficientes  $\beta_j$ como $\frac{1}{q}$. 
+
+    Seleccionamos la constante real $M>0$ de tal forma que 
+    \begin{equation}
+        \psi(-M) < \frac{\epsilon}{2}q 
+        \quad \text{ y } \quad
+        \psi(M) > 1 - \frac{\epsilon}{2}q.
+    \end{equation} Sabemos que esta constante existe ya que por ser $\psi$ una función de activación satisface que 
+    $\lim_{\lambda \longrightarrow \infty} \psi(\lambda) = 1$ y que  $\lim_{\lambda \longrightarrow -\infty} \psi(\lambda) = 0$, 
+
+    Luego existirá una constante $M_1$ positiva tal que a partir de ella cualquier otra constante $n_1$ mayor o igual satisfaga que 
+    $\psi(n_1) > 1 - \frac{\epsilon}{2}q$. También existirá una constante $M_2$ positiva tal que a partir de ella cualquier otra constante $n_2$ mayor o igual satisfaga que 
+    $\psi(-n_2) < \frac{\epsilon}{2}q$.
+
+    Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
+
+    Seleccionaremos ahora los siguientes puntos del dominio
+    \begin{equation}
+        r_j = \sup \left\{ \lambda: F(\lambda) = \frac{j}{q} \right\},
+         \text{ con } j \in \{1, ..., q-1\}, 
+         \quad \text{ y } \quad
+        r_q = \sup \left\{ \lambda: F(\lambda) = 1 - \frac{1}{q} \right\}. 
+    \end{equation}
+    Que por ser $F$ continua sabemos que existen. 
+
+    Procedemos ahora a definir las distintas aplicaciones afines. 
+    Para cualquier reales $s,r$ que cumplan que $r < s$ sea $A_{rs}\in A^1$ la única aplicación afín que satisface que 
+    \begin{equation}
+        A_{rs}(r) = M \text{ y }  A_{rs}(s) = - M. 
+    \end{equation} 
+    
+    Se tiene que 
+    \begin{equation}
+        H_\epsilon(\lambda) = \sum^{q-1}_{j=1} b_j \psi( A_j(\lambda))
+    \end{equation}
+    así definida cumple por 
+    %TODO falta por probar que se cumple que cada subintervalo (r_j,r_{j+1}] y en los semi abiertos. 
 \end{proof}      
 
 % Teorema 2.3
