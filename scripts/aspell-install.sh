@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo apt-get install -y aspell aspell-es
+sudo apt-get install aspell aspell-es aspell-en
