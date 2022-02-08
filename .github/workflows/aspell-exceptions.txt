@@ -17,3 +17,9 @@ homeomorfismo
 ésimo
 sumatoria
 Factorizando
+TeoremaStoneWeiertrass
+eq
+inecuación
+nx
+teo
+fg
