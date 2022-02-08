@@ -59,21 +59,22 @@
     Fijaremos para cada $j \in \{1,2, ...,q-1\}$ los coeficientes  $\beta_j$ como $\frac{1}{q}$. 
 
     Seleccionamos la constante real $M>0$ de tal forma que 
-    \begin{equation}
-        \psi(-M) < \frac{\epsilon}{2}q 
+    \textcolor{red}{ Ojo con la la q de la fracción, que está en el denominador
+    \begin{equation}\label{lema_a_2_psi_m}
+        \psi(-M) < \frac{\epsilon}{2q}
         \quad \text{ y } \quad
-        \psi(M) > 1 - \frac{\epsilon}{2}q.
-    \end{equation} Sabemos que esta constante existe ya que por ser $\psi$ una función de activación satisface que 
-    $\lim_{\lambda \longrightarrow \infty} \psi(\lambda) = 1$ y que  $\lim_{\lambda \longrightarrow -\infty} \psi(\lambda) = 0$, 
-
-    Luego existirá una constante $M_1$ positiva tal que a partir de ella cualquier otra constante $n_1$ mayor o igual satisfaga que 
-    $\psi(n_1) > 1 - \frac{\epsilon}{2}q$. También existirá una constante $M_2$ positiva tal que a partir de ella cualquier otra constante $n_2$ mayor o igual satisfaga que 
-    $\psi(-n_2) < \frac{\epsilon}{2}q$.
-
+        \psi(M) > 1 - \frac{\epsilon}{2q}.
+    \end{equation} }
+    Sabemos que esto es posible ya que por ser $\psi$ una función de activación satisface que 
+    $\lim_{\lambda \longrightarrow \infty} \psi(\lambda) = 1$ y que  $\lim_{\lambda \longrightarrow -\infty} \psi(\lambda) = 0$,
+    por tanto existirá una constante $M_1$ positiva tal que a partir de ella cualquier otra constante $n_1$ mayor o igual satisfaga que 
+    $\psi(n_1) > 1 - \frac{\epsilon}{2q}$. También existirá una constante $M_2$ positiva tal que a partir de ella cualquier otra constante $n_2$ mayor o igual satisfaga que 
+    $\psi(-n_2) < \frac{\epsilon}{2q}$.
+    
     Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
 
     Seleccionaremos ahora los siguientes puntos del dominio
-    \begin{equation}
+    \begin{equation}\label{lema:2_2_seleccion_r_F}
         r_j = \sup \left\{ \lambda: F(\lambda) = \frac{j}{q} \right\},
          \text{ con } j \in \{1, ..., q-1\}, 
          \quad \text{ y } \quad
@@ -83,16 +84,102 @@
 
     Procedemos ahora a definir las distintas aplicaciones afines. 
     Para cualquier reales $s,r$ que cumplan que $r < s$ sea $A_{rs}\in A^1$ la única aplicación afín que satisface que 
+    \textcolor{red}{ (Cambio signos con respecto a la función original)
     \begin{equation}
-        A_{rs}(r) = M \text{ y }  A_{rs}(s) = - M. 
+        A_{rs}(r) = -M \text{ y }  A_{rs}(s) = M. 
     \end{equation} 
-    
+    }
     Se tiene que 
     \begin{equation}
-        H_\epsilon(\lambda) = \sum^{q-1}_{j=1} b_j \psi( A_{r_j, r_{j+1}}(\lambda))
+        H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda))
     \end{equation}
-    así definida cumple por 
-    %TODO falta por probar que se cumple que cada subintervalo (r_j,r_{j+1}] y en los semi abiertos. 
+    así definida cumple que: 
+    \begin{itemize}
+        \item Si $\lambda \in (- \infty, r_1]:$
+        Se cumple que $\lambda \leq r_1 < r_2 <...< r_q$ luego  
+        para todos los $j \in \{1, ..., q-1\}$ se cumple que  
+        $A_{r_j, r_{j+1}}(\lambda) < -M$ y por cómo se fijó la $M$ en \refeq{lema_a_2_psi_m}
+        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) < \frac{\epsilon}{2q}$ concluyendo que 
+        para $\lambda \in (- \infty, r_1]$
+        \begin{equation}
+            H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
+            <
+            \frac{1}{q} \sum^{q-1}_{j=1}  \frac{\epsilon}{2q}
+            < 
+            \frac{1}{q} \frac{\epsilon (q-1)}{2q}
+            <\frac{\epsilon }{2q^2}
+            < \frac{\epsilon }{2}
+        \end{equation}
+        y por ende, como además $0 \leq F(\lambda) \leq \frac{1}{q} < \frac{\epsilon}{2}$ por cómo se seleccionaron los $r_j$ en 
+        \refeq{lema:2_2_seleccion_r_F} se tiene que 
+        \begin{equation}
+            | F(\lambda) - H_{\epsilon}(\lambda) | < \frac{\epsilon}{2} + \frac{\epsilon}{2} < \epsilon. 
+        \end{equation}
+
+        \item Si $\lambda \in (r_q,\infty):$
+        Se cumple que $r_1 < r_2 <...< r_q <\lambda$ luego  
+        para todos los $j \in \{1, ..., q-1\}$ se cumple que  
+        $A_{r_j, r_{j+1}}(\lambda) > M$ y por cómo se fijó la $M$ en \refeq{lema_a_2_psi_m}
+        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) > 1-\frac{\epsilon}{2q}$ concluyendo que 
+        para $\lambda \in (r_q,\infty)$
+        \begin{equation}
+            H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
+            >
+                \frac{1}{q} \sum^{q-1}_{j=1}  \left(1-\frac{\epsilon}{2q} \right)
+            >
+            \frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right)   
+        \end{equation}
+        y por ende, como además $\frac{q-1}{q} \leq F(\lambda) \leq 1$ por cómo se seleccionaron los $r_j$ en 
+        \refeq{lema:2_2_seleccion_r_F} se tiene que 
+        \begin{equation}
+            | F(\lambda) - H_{\epsilon}(\lambda) | < \frac{1}{q} +  \frac{\epsilon}{2q} < \epsilon.
+        \end{equation}
+
+        \item Si $\lambda \in (r_{j},r_{j+1}]:$
+        \textcolor{red}{Esta parte me tiene mareada y no consigo acotarla de manera clara}
+        Tenemos por una parte que $\frac{j}{q} < F(\lambda) \leq \frac{j+1}{q}$ y 
+        podemos componer $H_\epsilon$ en las siguientes sumatorias: 
+        \begin{equation}
+            \begin{split}
+                q H_\epsilon(\lambda) 
+                = 
+                 \sum^{j-1}_{i=1} \psi( A_{r_i, r_{i+1}}(\lambda))
+                + 
+                \psi( A_{r_j, r_{j+1}}(\lambda))
+                + 
+                \sum^{q-1}_{i=j+1} \psi( A_{r_i, r_{i+1}}(\lambda))
+            \end{split}
+        \end{equation}
+
+        Los términos de la primera sumatoria serán mayores que $\left(1-\frac{\epsilon}{2q} \right)$, 
+        el segundo sumando satisface que 
+        $\frac{j}{q} < q\psi( A_{r_j, r_{j+1}}(\lambda)) \leq \frac{j+1}{q}$
+        y para la última sumatoria, todos sus términos serán menores que $\frac{\epsilon}{2q} < \frac{\epsilon^2}{4}.$
+        \begin{equation}
+            (j-1)\left(1-\frac{\epsilon^2}{4} \right) 
+            +  
+            j\frac{\epsilon}{2} 
+            <
+            H_\epsilon(\lambda) 
+            <
+            (j-1)\left(1-\frac{\epsilon^2}{4} \right) 
+            + 
+            (j+1)\frac{\epsilon}{2}
+            + 
+            (q-j) \frac{\epsilon^2}{4} 
+        \end{equation}
+        Por lo que $H_\epsilon(\lambda) = \frac{j}{q} + \frac{\gamma}{q} +\mathcal O(\epsilon^2)$
+        para $\gamma \in (0,1).$
+        Concluyendo que 
+        \begin{equation}
+            | F(\lambda) - H_{\epsilon}(\lambda) | < \frac{1}{q} +  \mathcal O(\epsilon^2) < \epsilon.
+        \end{equation}
+    \end{itemize}
+    La acotación $| F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon$ se cumple para todo
+    \begin{equation}
+        \lambda \in (- \infty, r_1] \cup (r_q,\infty) \cup_{j \in \{1, ..., q-1\}} (r_{j},r_{j+1}] = \R,
+    \end{equation}
+    probando con ello lo buscado.
 \end{proof}      
 
 % Teorema 2.3
