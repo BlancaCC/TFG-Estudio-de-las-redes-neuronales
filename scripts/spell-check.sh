@@ -18,7 +18,7 @@ SpellingError () {
 }
 export -f SpellingError; 
 exitValue=0
-for file in $(find ../doc/capitulos -name "*.tex")
+for file in $(find ./doc/capitulos -name "*.tex")
 do 
     SpellingError $file; 
     let "exitValue += $?"
