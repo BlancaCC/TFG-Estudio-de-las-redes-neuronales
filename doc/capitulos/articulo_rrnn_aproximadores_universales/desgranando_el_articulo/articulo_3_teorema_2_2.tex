@@ -257,7 +257,51 @@
     aproximado por elementos de $\rrnng$ probando con ello lo buscado. 
 \end{proof} 
 
-%% Falta por probar 
+%% Faltan  por probar 
+%Lema A.3
+\begin{lema}
+    Para cada función de activación $\psi$, cada $\epsilon >0$
+    y cada $M>0$ existe una función 
+    $cos_{M,\epsilon} \in \sum^1(\psi)$ tal que 
+    \begin{equation}
+        \sup_{ \lambda \in [-M, +M]}
+        |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)|
+        < 
+        \epsilon. 
+    \end{equation}
+\end{lema}
+\begin{proof}
+    Sea $F$ la función de activación \textit{cosine squasher} de Gallant and White (1988) definida en \ref{def:funcion_activacion_articulo}
+
+    \begin{equation}
+        F(\lambda )= \left(1 + \cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
+         1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
+         +
+         1_{\{ \frac{\pi}{2} < \lambda \}}.
+        \end{equation}
+        % TODO 
+\end{proof}
+
+%Lema 4.A
+\begin{lema}
+    Sea $g(\cdot) = \sum_{j=1}^q \beta_j \cos(A_j(\cdot))$ con 
+    $A_j \in A^r$. 
+    Para cualquier función de activación $\psi$, 
+    cualquier compacto $K \subset \R^r$
+    y cualquier $\epsilon > 0$
+    existe $f \in \sum^r(\psi)$ para el cual se cumple que 
+    \begin{equation}
+        \sup_{x \in K} 
+        |g(x) - f(x)| < \epsilon.
+    \end{equation}
+\end{lema}
+
+%Lema A.5 
+\begin{lema}
+    Para cualquier función de activación $\psi$ se tiene que 
+    $\rrnn$ es uniformemente denso en compactos de $C^r.$
+\end{lema}
+
 % Teorema 2.4
 \begin{teorema}
     Para cualquier función de activación $\psi$, $r \in \N$ y
