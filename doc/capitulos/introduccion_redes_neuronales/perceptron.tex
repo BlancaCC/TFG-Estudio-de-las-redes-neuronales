@@ -65,7 +65,37 @@ Aplica el algoritmo del gradiente descendente estocástico, la sucesión de peso
 \end{equation}
 
 donde $\eta$, el denominado  \textit{learning rate}
-es un coeficiente real libre
+es un coeficiente libre real, que determina la relevancia del gradiente del error en la actualización. 
+
+\subsubsection{Gradiente descente}  
+
+El gradiente descendente es una técnica usada para minimizar funciones diferenciables
+a partir de la pendiente en cada punto. 
+
+Se define punto inicial y arbitrario $w_0$ y una función de error diferenciable
+$E: \R^d \times \R^d \longrightarrow \R$, así como un \textit{learning rate} 
+$\eta \in \R^+$. 
+El método de actualización es 
+\begin{equation}
+    w_{t+1}  = w_t - \eta \nabla E(w_t).
+\end{equation}
+
+Las características de este algoritmo son las siguientes: 
+
+\begin{itemize}
+    \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
+    \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
+    \item Si la función es convexa el mínimo será global. 
+\end{itemize}
+
+\subsubsection{Actualización de pesos en un perceptrón }
+
+
+
+
+
+
+
 
 
 
