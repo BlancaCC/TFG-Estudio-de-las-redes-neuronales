@@ -259,7 +259,7 @@
 
 %% Faltan  por probar 
 %Lema A.3
-\begin{lema}
+\begin{lema}\label{lema:A_3_función_activación_continua_con_arbitaria}
     Para cada función de activación $\psi$, cada $\epsilon >0$
     y cada $M>0$ existe una función 
     $cos_{M,\epsilon} \in \sum^1(\psi)$ tal que 
@@ -347,30 +347,104 @@
 
     Así pues podemos definir 
     \begin{equation}
-        H_{[-\pi, \pi ]} = H_{[-\pi, 0]} + H_{[-\pi, 0]}(-\mu) - 1
-        = H_{[-\pi, \pi]} + H_{[-\pi, 0]}(-\mu) - F(\mu + 2 \pi M)
+        \begin{split}
+            H_{[-\pi, \pi ]}(\mu) &= H_{[-\pi, 0]}(\mu) + H_{[-\pi, 0]}(-\mu) - 1 \\
+            &= H_{[-\pi, 0]}(\mu) + H_{[-\pi, 0]}(-\mu) - F(\mu + 2 \pi M). 
+        \end{split} 
     \end{equation}  
 
     Por ser el coseno una función periódica es fácil ver que 
-    para $2 \pi N \geq M$
-    \begin{figure}[h]
+    considerando un natural $N$ que satisfaga que $2 \pi N \geq M$
+  
+    \begin{equation}
+    \begin{split}
+        H_{[-2\pi N, 2 \pi N]} (\lambda) = 
+        \sum_{i=1}^N (H_{[-\pi, \pi ]}(\lambda + 2 \pi i) +1) 
+        + H_{[-\pi, \pi ]}(\lambda)  \\
+        - \sum_{i=1}^N (H_{[-\pi, \pi ]}(- \lambda + 2 \pi i - \pi) +1),
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        H_{[-2\pi N, 2 \pi N]} (\lambda) 
+        =  H_{[-\pi, \pi ]}(\lambda) + 
+        \sum_{i=1}^N (
+            H_{[-\pi, \pi ]}(\lambda + 2 \pi i)
+            - 
+            H_{[-\pi, \pi ]}(- \lambda + 2 \pi i - \pi)
+        ) .         
+    \end{split}
+    \end{equation}
+
+      % Ejemplos de la función H final
+      \begin{figure}[h]
         \centering
-        \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/ejemplo_H_Grande.png}
-        \caption{Función $H_{[-M, M]}$ con $N=1$. }
-        \label{fig:H_con_M}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemplo_H_Grande.png}
+            \caption{Función $H_{[-M, M]}$ con $N=1$.}
+            \label{fig:H_con_M}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/H_menos_ocho_pi_más_ocho_pi.png}
+            \caption{Función $H_{[-M, M]}$ con $N=4$. }
+        \end{subfigure}
+        \hfill
+        \caption{Ejemplos de funciones $H_{[-M, M]}$}
     \end{figure}
+
+    
+    Así definida $H_{[-2\pi N, 2 \pi N]}$
+    pertenecerá a $\sum(F)$ o lo que es de nuestro interés, estará 
+    formada por una combinación finita, supongamos que $K$, 
+    sumas y restas finita de $F \circ A_i$ con $A_i$ una función afín. 
+    Por ser $F$ una función de activación continua gracias al
+    lema \ref{lema:A_3_función_activación_continua_con_arbitaria}, 
+    existirá $H_{ \frac{\epsilon}{k}} \in \sum(\psi)$ tal que 
+    podremos acotar $|F - H_{ \frac{\epsilon}{k}} | < \frac{\epsilon}{k}$.
+
+    Además, como las transformaciones $A_i$ solo son traslaciones,
+    para cada $i \in \{1,..K\}$ se cumple que 
+     $H_{ \frac{\epsilon}{k}} \circ A_i \in \sum(\psi)$ y se mantiene que 
+    \begin{equation}
+        |F \circ A_i - H_{ \frac{\epsilon}{k}} \circ A_i | < \frac{\epsilon}{k}. 
+    \end{equation}
+
+
+    Recopilemos pues, tenemos que para $2\pi N \geq M$
+    \begin{equation}
+        H_{[-2\pi N, 2 \pi N]}(\lambda) = 
+        \sum_{i=1}^k \alpha_i F( A_i(\lambda)) \quad \alpha_i \in \{-1,1\}.
+    \end{equation}
+    fijado tales $\alpha_i \in \{-1,1\}$ definimos 
+    \begin{equation}
+        \cos_{M, \epsilon}(\lambda) = \sum_{i=1}^k 
+        \alpha_i  H_{ \frac{\epsilon}{k}}(A_i(\lambda)). 
+    \end{equation}
+
+    De esta manera, para cualquier $\lambda \in [-2\pi N, 2 \pi N]$
 
     \begin{equation}
         \begin{split}
-        H_{[-2\pi N, 2 \pi N]} (\lambda) &= \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda + 2 \pi i) +1)
-        + H_{[-\pi, \pi ]}(\lambda)+
-        \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda - 2 \pi i) +1) \\
-        &= \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda + 2 \pi i) + F(\lambda + 2 \pi M))\\
-        & + H_{[-\pi, \pi ]}(\lambda)\\
-        & +\sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda - 2 \pi i) + F(\lambda + 2 \pi M)).           
-    \end{split}
+            |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)| 
+            &= |\cos_{M,\epsilon}(\lambda) - \cos(\lambda) \pm  H_{[-2\pi N, 2 \pi N]}(\lambda)| \\
+            &\leq
+            |\cos(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)|
+            + 
+            | \cos_{M,\epsilon}(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)|  \\
+            &\leq  0 
+            + | \cos_{M,\epsilon}(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)| \\
+            & \leq  \sum_{i=1}^k 
+            |  H_{ \frac{\epsilon}{k}}(A_i(\lambda)) 
+            -
+            F( A_i(\lambda))
+             | \\
+             & <   \sum_{i=1}^k \frac{\epsilon}{k} = \epsilon .
+        \end{split}
     \end{equation}
-      
+ 
 \end{proof}
 
 %Lema 4.A
