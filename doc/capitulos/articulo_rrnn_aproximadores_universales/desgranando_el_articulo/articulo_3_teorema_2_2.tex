@@ -271,15 +271,106 @@
     \end{equation}
 \end{lema}
 \begin{proof}
-    Sea $F$ la función de activación \textit{cosine squasher} de Gallant and White (1988) definida en \ref{def:funcion_activacion_articulo}
+    Sea $F$ la función de activación \textit{cosine squasher} de Gallant and White (1988) definida 
+    en \ref{def:funcion_activacion_articulo}
+
+    Comenzaremos probando que para un intervalo acotado $[-M, M]$, existe $H \in \sum(F)$ 
+    tal que para todo elemento $\lambda \in [-M, M]$ se cumpla que 
 
     \begin{equation}
-        F(\lambda )= \left(1 + \cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
+        H(\lambda) = \cos(\lambda).
+    \end{equation}
+
+    Calcularemos $H \in \sum(F)$  de forma constructiva: 
+    \begin{equation}
+        F(\lambda )= \left(1 + \cos\left(\lambda -\frac{\pi}{2} \right) \frac{1}{2}\right) 
          1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
          +
          1_{\{ \frac{\pi}{2} < \lambda \}}.
-        \end{equation}
-        % TODO 
+    \end{equation}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/cosineSquaser.png}
+        \caption{Función \textit{cosine squaser}}
+        \label{fig:cosine_squaser}
+    \end{figure}
+
+    Se tiene pues que para cualquier $\lambda \in \left[ \frac{-\pi}{2}, \frac{\pi}{2}\right]$
+
+    \begin{equation}
+        2 F(\lambda)-1 = \cos \left( \lambda - \frac{\pi}{2}\right)
+    \end{equation}
+
+    Que haciendo $\mu = \lambda - \frac{\pi}{2}$ resulta que para cualquier
+    $\mu \in [-\pi, 0]$
+    \begin{equation}
+        \cos(\mu) = 2 F \left(\mu + \frac{\pi}{2} \right)  -1 
+    \end{equation}
+
+    Además, puesto que $F(\mu + 2 \pi M) = 1$ para todo $\mu \in [-M, M] \supset [-\pi, 0]$ tenemos que
+    para cualquier $\mu \in [-\pi, 0]$
+    \begin{equation}
+        \cos(\mu) = 2 F \left(\mu + \frac{\pi}{2} \right)  - F(\mu + 2 \pi M) 
+    \end{equation}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/H_menos_pi_0.png}
+        \caption{Comparativa $H_{[-\pi, 0]}$ con la función coseno real. }
+        \label{fig:coseno_vs_H_menos_pi_cero}
+    \end{figure}
+
+    De manera generalizada denotaremos como $H_{[M_1,M_2 ]}$ a la función 
+     existe $H_{[M_1,M_2 ]} \in \sum(F)$ 
+    tal que para todo elemento $\lambda \in [M_1, M_2]$ se cumpla que 
+    \begin{equation}
+        H_{[M_1,M_2 ]}(\lambda) = \cos(\lambda)
+    \end{equation}
+
+    Por tanto $H_{[-\pi, 0]}$ viene definida como  
+    \begin{equation}
+        H_{[-\pi, 0]} = 2 F \left(\mu + \frac{\pi}{2} \right)  - F(\mu + 2 \pi M) 
+    \end{equation}
+
+    Por la simetría de la función coseno resulta que 
+    para todo $\mu \in [0, \pi]$
+    \begin{equation}
+        \cos(\mu) = \cos(-\mu) = H_{[-\pi, 0]}(-\mu)
+    \end{equation}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/H_menos_pi_mas_pi.png}
+        \caption{Función $H_{[-\pi, \pi]}$. }
+        \label{fig:H_menos_pi_mas_pi}
+    \end{figure}
+
+    Así pues podemos definir 
+    \begin{equation}
+        H_{[-\pi, \pi ]} = H_{[-\pi, 0]} + H_{[-\pi, 0]}(-\mu) - 1
+        = H_{[-\pi, \pi]} + H_{[-\pi, 0]}(-\mu) - F(\mu + 2 \pi M)
+    \end{equation}  
+
+    Por ser el coseno una función periódica es fácil ver que 
+    para $2 \pi N \geq M$
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/ejemplo_H_Grande.png}
+        \caption{Función $H_{[-M, M]}$ con $N=1$. }
+        \label{fig:H_con_M}
+    \end{figure}
+
+    \begin{equation}
+        \begin{split}
+        H_{[-2\pi N, 2 \pi N]} (\lambda) &= \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda + 2 \pi i) +1)
+        + H_{[-\pi, \pi ]}(\lambda)+
+        \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda - 2 \pi i) +1) \\
+        &= \sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda + 2 \pi i) + F(\lambda + 2 \pi M))\\
+        & + H_{[-\pi, \pi ]}(\lambda)\\
+        & +\sum_{i=1}^N (H_{[-\pi, \pi ]})(\lambda - 2 \pi i) + F(\lambda + 2 \pi M)).           
+    \end{split}
+    \end{equation}
+      
 \end{proof}
 
 %Lema 4.A
