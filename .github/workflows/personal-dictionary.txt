@@ -38,6 +38,7 @@ nótese
 pag
 perceptrones
 perceptrón
+qB
 renumerar
 rrnn
 separabilidad
