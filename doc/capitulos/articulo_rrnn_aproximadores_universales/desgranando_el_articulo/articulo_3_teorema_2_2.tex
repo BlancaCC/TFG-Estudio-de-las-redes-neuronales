@@ -459,7 +459,7 @@
 \end{proof}
 
 %Lema 4.A
-\begin{lema}
+\begin{lema}\label{lema:A_4_sum_cos_aproxima}
     Sea $g(\cdot) = \sum_{j=1}^q \beta_j \cos(A_j(\cdot))$ con 
     $A_j \in A^r$.
     Para cualquier función de activación $\psi$, 
@@ -554,8 +554,77 @@
 %Lema A.5 
 \begin{lema}
     Para cualquier función de activación $\psi$ se tiene que 
-    $\rrnn$ es uniformemente denso en compactos de $C^r.$
+    $\rrnn$ es uniformemente denso en compactos de $\fC.$
 \end{lema}
+\begin{proof}
+    En virtud del lema \ref{lema:A_4_sum_cos_aproxima} 
+    bastaría probar que $\sum^r(cos)$ es uniformemente 
+    denso en compactos, ya que hemos visto que $\rrnn$ 
+    es denso en $\sum^r(cos)$. 
+
+    Veamos ahora que $\sum^r(cos) = \sum \prod^r(cos)$ 
+    donde recordamos que $\sum \prod^r(cos)$ se correspondía
+    con el espacio de los polinomios trigonométricos. 
+    \begin{equation}
+        \sum \prod^r(\cos) = 
+        \left\{
+            \sum_{j=1}^q \beta_j 
+            \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) 
+            : q, l_j \in \N, \beta_j \in \R, A_{j,k}\in A^r
+        \right\}
+    \end{equation}
+    Y  $\sum^r(cos)$ el caso particular de los polinomios anteriores 
+    de grado uno. 
+    
+    Luego está claro que $\sum^r(cos) \subseteq \sum \prod^r(cos).$
+    Traigamos a colación las siguientes igualdades trigonométricas:
+
+    Para cualesquiera números reales $A,B$ 
+    \begin{equation}
+        \begin{split}
+            &\cos(A + B)  = 
+            \cos(A)\cos(B) - \sin(A)\sin(B) \\
+            &\cos(A - B)  = 
+            \cos(A)\cos(B) + \sin(A)\sin(B).
+        \end{split}
+    \end{equation}
+
+    Por lo que sumando
+    \begin{equation}
+        \begin{split}
+            \cos(A + B)  + \cos(A - B)
+            = 2\cos(A)\cos(B).
+        \end{split} 
+    \end{equation}  
+    y de manera general si definimos 
+    \begin{equation}
+        \Lambda_l = \{
+            (x_1, x_2, ..., x_l) : 
+            x_1 = 1, x_i \in \{-1, 1\} 
+            \text{ para cualquier } 1 < i \leq l
+        \}
+    \end{equation}
+
+    \begin{equation}
+        \prod^l_{k=1} cos(A_k) = 
+        \frac{1}{2^{l-1}}(\sum_{j=1}^{2^{l-1}} \cos(\sum_{x_i \in X \in \Lambda_l} x_i A_i)). 
+    \end{equation}
+
+    Por lo que cada elemento 
+    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) \in \sum \prod^r(cos)$
+    podrá ser expresado como 
+    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) = 
+    \sum_{j=1}^t \alpha_j \cos(A_{j,k}(\cdot))$, es decir, como un elemento 
+    de $\sum^r(cos)$ con lo que concluimos como queríamos que son iguales
+    los siguientes espacios
+    $\sum^r(cos) = \sum \prod^r(cos)$. 
+
+    Finalmente gracias al teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
+    por ser  el $\cos$ una función real continua no constante sabemos que 
+    $\sum \prod^r(\cos)$ es uniformemente denso en compactos en $\fC$ 
+    probando con esto el resultado buscado. 
+    
+\end{proof}
 
 % Teorema 2.4
 \begin{teorema}
