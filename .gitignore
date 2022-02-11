@@ -1,6 +1,8 @@
 *~
 code/.ipynb_checkpoints
-
+.DS_Store
+dudas/
+correcciones-TFG/
 #latex
 *#*
 
