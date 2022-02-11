@@ -461,7 +461,7 @@
 %Lema 4.A
 \begin{lema}
     Sea $g(\cdot) = \sum_{j=1}^q \beta_j \cos(A_j(\cdot))$ con 
-    $A_j \in A^r$. 
+    $A_j \in A^r$.
     Para cualquier función de activación $\psi$, 
     cualquier compacto $K \subset \R^r$
     y cualquier $\epsilon > 0$
@@ -471,6 +471,85 @@
         |g(x) - f(x)| < \epsilon.
     \end{equation}
 \end{lema}
+\begin{proof}
+    Puesto que $K$ es un compacto, el número de sumatorias $q$
+    es finito y $A_j$ son funciones continuas
+    , existe
+     $M$ un número real positivo  cumpliendo que
+    \begin{equation}
+        A_i(K) \subseteq [-M, M] 
+        \quad 
+        \text{para todo } j \in \{1, ..., q \}. 
+    \end{equation} 
+
+    También existe un real $B$, que es el máximo de las normas 
+    los coeficientes de $g$. 
+    \begin{equation}
+        B = \sup \{ |\beta_j| :  j \in \{1, ..., q \}\}
+    \end{equation}
+
+    En virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
+    podemos encontrar un 
+    $\cos_{M, \frac{\epsilon}{qB}} \in \sum(\psi)$ cumpliendo que
+    \begin{equation}
+        \sup_{\lambda \in [-M, M]} | 
+        \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+        - 
+        cos(\lambda)
+        | 
+        < \frac{\epsilon}{qB} 
+    \end{equation}
+    por lo que para cualquier  $j \in \{1, ..., q \}\}$   se tiene que 
+    \begin{equation}
+        \sup_{x \in K} | 
+        \cos_{M, \frac{\epsilon}{qB}}(A_j(x))
+        - 
+        cos(A_j(x))
+        | 
+        \leq  
+        \sup_{\lambda \in [-M, M]} | 
+        \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+        - 
+        cos(\lambda)
+        | 
+        < \frac{\epsilon}{qB}. 
+    \end{equation}
+
+    Definamos ahora $f$ como 
+    \begin{equation}
+        f(x) = \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{qB}}(A_j(x)).
+    \end{equation}
+    Puesto que $\cos_{M, \frac{\epsilon}{qB}} \in \sum(\psi)$ entonces 
+    $f \in \sum^r(\psi)$ y satisface además que 
+
+    \begin{equation}
+        \begin{split}
+        \sup_{x \in K} | f(x) - g(x)| 
+        \leq
+        \sup_{\lambda \in [-M, M]} 
+        | \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{qB}}(\lambda )
+         - 
+         \sum_{j=1}^q \beta_j \cos(\lambda )|  \\
+        \leq
+        \sup_{\lambda \in [-M, M]} 
+        \sum_{j=1}^q 
+            |\beta_j|
+            |
+                \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+                -
+                \cos(\lambda)
+            |   
+            <
+            \sup_{\lambda \in [-M, M]} 
+            \sum_{j=1}^q   
+                B
+                \frac{\epsilon}{qB}
+            = \epsilon.
+        \end{split}
+    \end{equation}
+     Con lo que acabamos de probar la tesis del lema. 
+\end{proof}
+
 
 %Lema A.5 
 \begin{lema}
