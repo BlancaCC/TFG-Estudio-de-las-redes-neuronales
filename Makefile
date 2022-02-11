@@ -21,5 +21,8 @@ order-dic:
 
 workflow-spell: install-spell spell
 
+## test en general 
+test: spell
+
 
 	
