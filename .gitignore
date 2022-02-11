@@ -1,6 +1,7 @@
 *~
-#latex
+code/.ipynb_checkpoints
 
+#latex
 *#*
 
 *.log
@@ -10,3 +11,15 @@
 *.pdf
 *.toc
 *.lof
+*.bbl
+*.brf
+*.fdb_*
+*.ilg
+*.ind
+*.gz
+*.blg
+*.fls
+*.lot
+
+
+
