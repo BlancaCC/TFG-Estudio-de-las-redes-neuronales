@@ -66,8 +66,10 @@
     \end{equation} 
     Sabemos que esto es posible ya que por ser $\psi$ una función de activación satisface que 
     $\lim_{\lambda \longrightarrow \infty} \psi(\lambda) = 1$ y que  $\lim_{\lambda \longrightarrow -\infty} \psi(\lambda) = 0$,
-    por tanto existirá una constante $M_1$ positiva tal que a partir de ella cualquier otra constante $n_1$ mayor o igual satisfaga que 
-    $\psi(n_1) > 1 - \frac{\epsilon}{2q}$. También existirá una constante $M_2$ positiva tal que a partir de ella cualquier otra constante $n_2$ mayor o igual satisfaga que 
+    por tanto existirá una constante $M_1$ positiva tal que a partir de ella cualquier
+     otra constante $n_1$ mayor o igual que cumpla que 
+    $\psi(n_1) > 1 - \frac{\epsilon}{2q}$. También existirá una constante $M_2$ positiva tal que a partir de 
+    ella cualquier otra constante $n_2$ mayor o igual tal que que 
     $\psi(-n_2) < \frac{\epsilon}{2q}$. Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
 
     Seleccionaremos ahora los siguientes puntos del dominio
@@ -188,7 +190,7 @@
             < \frac{\epsilon}{2} + \frac{\epsilon}{2}
             < \epsilon.
         \end{equation}
-        Donde para acotar $\frac{2}{q}$ hemos usado la desigualdad \refeq{eq:lema_a_2_def_q}
+        Donde para acotar $\frac{2}{q}$ hemos usado la desigualdad \refeq{eq:lema_a_2_def_q}.
     \end{itemize}
     La acotación $| F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon$ se cumple para todo
     \begin{equation}
@@ -253,8 +255,8 @@
     y porque $A^1_t(A_k(\cdot)) \in A^r$ se tiene por la desigualdad \ref{eq:teorema2_3__3} que 
     $\prod ^l_{k=1} H_\delta(A_k(\cdot)) \in \rrnng.$
 
-    Por lo tanto como  $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
-    aproximado por elementos de $\rrnng$ probando con ello lo buscado. 
+    Por lo tanto c $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
+    aproximado por elementos de $\rrnng$ y acabamos de probar con ello lo buscado. 
 \end{proof} 
 
 %% Faltan  por probar 
@@ -381,19 +383,25 @@
         \centering
         \begin{subfigure}[b]{0.45\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemplo_H_Grande.png}
-            \caption{Función $H_{[-M, M]}$ con $N=1$.}
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/H_[-2π,2π].png}
+            \caption{Función $H_{[-2\pi, 2\pi]}$ con $N=1$.}
             \label{fig:H_con_M}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.45\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/H_menos_ocho_pi_más_ocho_pi.png}
-            \caption{Función $H_{[-M, M]}$ con $N=4$. }
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/H_[-8π,8π].png}
+            \caption{Función $H_{[-8\pi, 8\pi]}$ con $N=4$. }
         \end{subfigure}
         \hfill
         \caption{Ejemplos de funciones $H_{[-M, M]}$}
     \end{figure}
+
+    Está claro que por ser $2 \pi N \geq M$ la función $H_{[-M, M]}$ será la restricción de la anterior, es decir: 
+
+    \begin{equation}
+        H_{[-M, M]} = H_{[-2\pi N, 2 \pi N]_{|[-M, M]}}.
+    \end{equation}
 
     
     Así definida $H_{[-2\pi N, 2 \pi N]}$
@@ -401,49 +409,52 @@
     formada por una combinación finita, supongamos que $K$, 
     sumas y restas finita de $F \circ A_i$ con $A_i$ una función afín. 
     Por ser $F$ una función de activación continua gracias al
-    lema \ref{lema:A_3_función_activación_continua_con_arbitaria}, 
-    existirá $H_{ \frac{\epsilon}{k}} \in \sum(\psi)$ tal que 
-    podremos acotar $|F - H_{ \frac{\epsilon}{k}} | < \frac{\epsilon}{k}$.
+    lema \ref{lema:a_2_paso_previo_denso}, 
+    existirá $W_{ \frac{\epsilon}{k}} \in \sum(\psi)$ tal que 
+    podremos acotar $|F - W_{ \frac{\epsilon}{k}} | < \frac{\epsilon}{k}$ en todo $\R$.
 
-    Además, como las transformaciones $A_i$ solo son traslaciones,
+    Además, como las transformaciones afines $A_i$ solo son traslaciones,
     para cada $i \in \{1,..K\}$ se cumple que 
-     $H_{ \frac{\epsilon}{k}} \circ A_i \in \sum(\psi)$ y se mantiene que 
+     $W_{ \frac{\epsilon}{k}} \circ A_i \in \sum(\psi)$ y se mantiene que 
     \begin{equation}
-        |F \circ A_i - H_{ \frac{\epsilon}{k}} \circ A_i | < \frac{\epsilon}{k}. 
+        |F \circ A_i - W_{ \frac{\epsilon}{k}} \circ A_i | < \frac{\epsilon}{k}. 
     \end{equation}
 
 
-    Recopilemos pues, tenemos que para $2\pi N \geq M$
+    Recopilemos pues, tenemos que para $2\pi N \geq M$ y en el dominio $\lambda \in [-M, M]$: 
     \begin{equation}
+        H_{[-M, M]} (\lambda) = 
         H_{[-2\pi N, 2 \pi N]}(\lambda) = 
         \sum_{i=1}^k \alpha_i F( A_i(\lambda)) \quad \alpha_i \in \{-1,1\}.
     \end{equation}
-    fijado tales $\alpha_i \in \{-1,1\}$ definimos 
+    fijando tales $\alpha_i \in \{-1,1\}$ y las traslaciones $A_i$ definimos 
     \begin{equation}
         \cos_{M, \epsilon}(\lambda) = \sum_{i=1}^k 
-        \alpha_i  H_{ \frac{\epsilon}{k}}(A_i(\lambda)). 
+        \alpha_i  W_{ \frac{\epsilon}{k}}(A_i(\lambda)). 
     \end{equation}
 
-    De esta manera, para cualquier $\lambda \in [-2\pi N, 2 \pi N]$
+    De esta manera, para cualquier $\lambda \in [-M, M]$
 
     \begin{equation}
         \begin{split}
             |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)| 
-            &= |\cos_{M,\epsilon}(\lambda) - \cos(\lambda) \pm  H_{[-2\pi N, 2 \pi N]}(\lambda)| \\
+            &= |\cos_{M,\epsilon}(\lambda) - \cos(\lambda) \pm  H_{[- M, M]}(\lambda)| \\
             &\leq
-            |\cos(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)|
+            |\cos(\lambda) -  H_{[- M, M]}(\lambda)|
             + 
-            | \cos_{M,\epsilon}(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)|  \\
+            | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)|  \\
             &\leq  0 
-            + | \cos_{M,\epsilon}(\lambda) -  H_{[-2\pi N, 2 \pi N]}(\lambda)| \\
+            + | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)| \\
             & \leq  \sum_{i=1}^k 
-            |  H_{ \frac{\epsilon}{k}}(A_i(\lambda)) 
+            |  W_{ \frac{\epsilon}{k}}(A_i(\lambda)) 
             -
             F( A_i(\lambda))
              | \\
              & <   \sum_{i=1}^k \frac{\epsilon}{k} = \epsilon .
         \end{split}
     \end{equation}
+
+    Dando con esto por concluida la demostración. 
  
 \end{proof}
 
