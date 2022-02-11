@@ -1,0 +1,25 @@
+personal_ws-1.1 es 0 utf-8 
+Bernstein
+Borel
+ECM
+Factorizando
+Halber
+Multilayer
+Nótese
+Perceptrón
+Stinchcombe
+TeoremaStoneWeiertrass
+UMVUE
+eq
+fg
+homeomorfismo
+inecuación
+insesgado
+multicapa
+nx
+perceptrón
+separabilidad
+solventable
+sumatoria
+teo
+ésimo
