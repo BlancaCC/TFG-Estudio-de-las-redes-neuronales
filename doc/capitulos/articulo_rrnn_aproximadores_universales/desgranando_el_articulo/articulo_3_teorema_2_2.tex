@@ -552,7 +552,7 @@
 
 
 %Lema A.5 
-\begin{lema}
+\begin{lema} \label{lema:A_5_uniformemente_denso_compactos}
     Para cualquier función de activación $\psi$ se tiene que 
     $\rrnn$ es uniformemente denso en compactos de $\fC.$
 \end{lema}
@@ -626,10 +626,43 @@
     
 \end{proof}
 
+Estamos ya en condiciones de probar el resultado clave del artículo. 
+
 % Teorema 2.4
-\begin{teorema}
+\begin{teorema} \label{teo:2_4_rrnn_densas_M}
     Para cualquier función de activación $\psi$, $r \in \N$ y
     medida de probabilidad $\mu$ o $(\R^r, B^r)$, 
     se tiene que $\rrnn$ es uniformemente denso en compactos
     en $\fC$ y denso en $\fM$ de acorde a la distancia $\dist$. 
 \end{teorema}
+\begin{proof}
+Por el lema anterior \ref{lema:A_5_uniformemente_denso_compactos}
+acabamos de ver que $\rrnn$ es uniformemente denso en compactos de $\fC$
+y gracias al lema \ref{lema:2_2_convergencia_uniforme_en_compactos} 
+(Si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
+uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$.)
+esto implica 
+que $\rrnn$ sea $\dist$-denso en $\fC$. 
+
+Finalmente como consecuencia del 
+lema \ref{lema:A_1_C_es_denso_en_M}  que indica que 
+para cualquier medida finita $\mu$ se tiene que $\fC$ es denso en 
+$\fM$ para la distancia $\rho_\mu$
+se tiene por la transitividad de ser denso (ver mismo razonamiento que el 
+usado para la demostración del teorema \ref{teo:2_2_denso_función_continua})
+$\rrnn$ es $\dist$-denso en $\fM$.
+\end{proof}
+
+\subsubsection{Relevancia del teorema de aproximación de funciones medibles \ref{teo:2_4_rrnn_densas_M}}
+
+Notemos que  $\rrnn$ representa el conjunto de 
+las redes neuronales \textit{feedforward} con tan solo una capa oculta, luego 
+acabamos de probar que las redes neuronales \textit{feedforward} con 
+tan solo una capa oculta son capaces de aproximar \textit{con un error uniformemente} 
+cualquier función continua y aproximar \textit{a secas} cualquier
+función medible 
+con cualquier medida $\mu$, distancia $\dist$, independiente de la 
+función de activación $\mu$ seleccionada (ya sea continua o no) 
+y con cualquier dimensión $r$ del espacio de entrada. 
+
+ 
