@@ -1,0 +1,88 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%***************************************************************
+% Contenido del artículo 4: Colorario 2.1
+%***************************************************************
+
+% Nociones topológicas previas 
+
+Antes de proceder con los siguientes resultados será necesario introducir nociones
+básicas de topología. 
+
+\textcolor{red}{Javier, He querido introducir unas nociones básicas de topología por si 
+a los de informática les suena a chino lo que iba tratar. Pero tampoco he querido profundizar
+introduciendo conceptos como el de topología, norma... ¿Dejo las siguientes definiciones como están? 
+¿Las borro? ¿Las amplío?
+}
+
+\begin{definicion}[Vecino]
+    Sea $(X, \mathcal{T})$ un espacio. Se define por vecino $U(x)$  de $x$ al conjunto de abiertos 
+    $O \in \mathcal{T}$ que contenga a $x$. (Definición de pag 63 \cite{james1966topology})
+\end{definicion}
+
+En el espacio particular que estamos trabajando el espacio será $(\R^r, \mathcal{T}_u)$ con 
+$\mathcal{T}_u$ la topología usual en $\R^r$,  es decir todos los intervalos abiertos
+
+\begin{equation}
+    \begin{split}
+            I = \{ (a_1, b_1) \times ... \times (a_r, b_r) : 
+            a_i < b_i,
+            \quad
+            a_i, b_i \in \R \cup \{-\infty,  +\infty \},
+            \quad 
+            i \in \{1,..., r\}
+        \} 
+        \\
+        \mathcal{T}_u = \text{ El conjunto vacío o uniones numerables de elementos de } I. 
+    \end{split}
+\end{equation}
+
+\begin{definicion}[Hausdorff]
+    Un espacio $X$ es Hausdorff o separable si para cada dos puntos distinto existen vecinos disjuntos, esto es 
+    sea $p,q \in X$ que  si $p \neq q$ existirán dos abierto $O_p \in U(p)$, $O_q \in U(q)$ satisfaciendo que 
+    \begin{equation}
+        O_p \cap O_q = \emptyset.
+    \end{equation}
+    (Definición en pag 137-138 \cite{james1966topology})
+
+    En nuestro caso $(\R^r, \mathcal{T}_u)$ es Hausdorff ya 
+    que suponiendo cualesquiera 
+    $(x_1,..x_r),(y_1, ..., y_r) \in R^r$ diferentes
+    podemos considerar $d = \frac{1}{3}\min_{i\in \{1,...,r\}}|x_i-y_i|$ entonces está claro que 
+    denotando a 
+    \begin{equation}
+        (x-d, x+d) = (x_1-d, x_1+d) \times ...  \times (x_r-d, x_r+d).
+    \end{equation}
+    Se cumple que 
+    $(x-d, x+d) \in U(x)$,
+    $(y-d, y+d) \in U(y)$  y 
+    \begin{equation}
+        (x-d, x+d) \cap (y-d, y+d) = \emptyset.
+    \end{equation}
+
+    En el caso de que los abiertos estén formados por uniones numerables de intervalos, 
+    podemos aplicar la misma idea encontrando el $d$ mínimo que satisfaga la misma idea.
+\end{definicion}
+
+\begin{definicion}[Espacio Hausdorff normal]
+    Se dice que un espacio es Hausdorff normal si para cada par de conjunto cerrados  
+    estos tienen vecinos disjuntos.(Definición en pag 144 \cite{james1966topology})
+
+    Se tiene que $(\R^r, \mathcal{T}_u)$ es un espacio Hausdorff normal, ya que los cerrados de $\R$
+    son de la forma $C = \R^r - O$ con $O \in \mathcal{T}_u$ 
+\end{definicion}
+
+\begin{teorema}(Caracterización de normalidad de Tietze)
+    Sea $X$ un espacio Hausdorff. Son equivalentes las siguientes afirmaciones: 
+    \begin{enumerate}
+        \item $X$ es normal.
+        \item Para conjunto cerrado $A \subset X$ y para cualquier función continua 
+        $f: A \longrightarrow \R$, $f$ admite una extensión continua $F:X \longrightarrow \R.$
+        Además, si para todo $a \in A$ se cumple que $|f(a)| < c \in \R$, se puede elegir $F$
+        de tal forma que satisfaga que $|F(x)| < c$ para todo $x\in X.$ 
+    \end{enumerate}
+    (Demostración en páginas 149-151 de \cite{james1966topology})
+\end{teorema}
+
+% Corolarios del artículo 
