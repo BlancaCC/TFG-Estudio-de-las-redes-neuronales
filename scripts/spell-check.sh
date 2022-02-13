@@ -18,6 +18,10 @@ SpellingError () {
 }
 export -f SpellingError; 
 exitValue=0
+# Comprobamos el readme 
+SpellingError Readme.md
+let "exitValue += $?"
+# Comprobamos ficheros .tex
 for file in $(find ./doc/capitulos -name "*.tex")
 do 
     SpellingError $file; 

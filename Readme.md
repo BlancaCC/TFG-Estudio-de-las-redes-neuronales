@@ -37,7 +37,6 @@ Es de interés profundizar en este campo porque
 #### 2.1 Formulación del marco teórico  
 
  Se conecta con teoría de aproximación y teorema de convergencia universal.  
-
 #### 2.2 Descripción   
 (Teoría)
 - Construcción desde perceptrón. 
