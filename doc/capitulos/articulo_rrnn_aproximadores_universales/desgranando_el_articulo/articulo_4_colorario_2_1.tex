@@ -5,8 +5,25 @@
 % Contenido del artículo 4: Colorario 2.1
 %***************************************************************
 
-% Nociones topológicas previas 
+% Resultado de teoría de la medida 
+Trataremos ahora de generalizar la tesis expuesta en 
+ el teorema \ref{teo:2_4_rrnn_densas_M} sobre las funciones medibles. 
+ Para ello recordaremos el teorema de Lusin.
+% Teorema de Lusin 
+\begin{teorema}[Teorema de Lusin] \label{teo:Lusin}
+    Si $\mu$ es una medida regular de Borel, $E$ un conjunto de medida finita 
+    y $f$ una función medible en $E$ entonces
+    para cualquier $\epsilon > 0$ existirá un conjunto compacto 
+    $K$ en $E$ tal que $\mu(E \setminus C) \leq \epsilon$ y donde $f$ es continua en $K$. 
+\end{teorema}
+\begin{proof}
+    Demostración en páginas 242 y 243 de \cite{nla.cat-vn1819421}.
+\end{proof}  
 
+Notemos los puntos clave de este teorema, nos va a permitir \textit{trabajar} con una función medible como si fuera continua en un compacto
+todo lo parecido a $\R^r$ como se quiera. 
+
+% Nociones topológicas previas 
 Antes de proceder con los siguientes resultados será necesario introducir nociones
 básicas de topología. 
 
@@ -85,16 +102,9 @@ $\mathcal{T}_u$ la topología usual en $\R^r$,  es decir todos los intervalos ab
     (Demostración en páginas 149-151 de \cite{james1966topology})
 \end{teorema}
 
-% Teorema de Lusin 
-\begin{teorema}[Teorema de Lusin] \label{teo:Lusin}
-    Si $\mu$ es una medida regular de Borel, $E$ un conjunto de medida finita 
-    y $f$ una función medible en $E$ entonces
-    para cualquier $\epsilon > 0$ existirá un conjunto compacto 
-    $K$ en $E$ tal que $\mu(E \setminus C) \leq \epsilon$ y donde $f$ es continua en $K$. 
-\end{teorema}
-\begin{proof}
-    Demostración en páginas 242 y 243 de \cite{nla.cat-vn1819421}.
-\end{proof}
+Como el ambiente actual en el que estamos trabajando 
+es el espacio $(R^r, \mathcal{T})$ que sabemos que es normal y puesto que es habitual que tratemos compactos en $R^r$, conjuntos cerrados y acotados podremos extender esta función al dominio entero. 
+
 
 % Corolarios del artículo 
 % Corolario 2.1
