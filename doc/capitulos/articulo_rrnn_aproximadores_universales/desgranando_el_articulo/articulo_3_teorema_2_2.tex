@@ -490,36 +490,36 @@
 
     En virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
     podemos encontrar un 
-    $\cos_{M, \frac{\epsilon}{qB}} \in \sum(\psi)$ cumpliendo que
+    $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$ cumpliendo que
     \begin{equation}
         \sup_{\lambda \in [-M, M]} | 
-        \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+        \cos_{M, \frac{\epsilon}{q B}}(\lambda)
         - 
         cos(\lambda)
         | 
-        < \frac{\epsilon}{qB} 
+        < \frac{\epsilon}{q B} 
     \end{equation}
     por lo que para cualquier  $j \in \{1, ..., q \}\}$   se tiene que 
     \begin{equation}
         \sup_{x \in K} | 
-        \cos_{M, \frac{\epsilon}{qB}}(A_j(x))
+        \cos_{M, \frac{\epsilon}{q B}}(A_j(x))
         - 
         cos(A_j(x))
         | 
         \leq  
         \sup_{\lambda \in [-M, M]} | 
-        \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+        \cos_{M, \frac{\epsilon}{q B}}(\lambda)
         - 
         cos(\lambda)
         | 
-        < \frac{\epsilon}{qB}. 
+        < \frac{\epsilon}{q B}. 
     \end{equation}
 
     Definamos ahora $f$ como 
     \begin{equation}
-        f(x) = \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{qB}}(A_j(x)).
+        f(x) = \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{q B}}(A_j(x)).
     \end{equation}
-    Puesto que $\cos_{M, \frac{\epsilon}{qB}} \in \sum(\psi)$ entonces 
+    Puesto que $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$ entonces 
     $f \in \sum^r(\psi)$ y satisface además que 
 
     \begin{equation}
@@ -527,7 +527,7 @@
         \sup_{x \in K} | f(x) - g(x)| 
         \leq
         \sup_{\lambda \in [-M, M]} 
-        | \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{qB}}(\lambda )
+        | \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{q B}}(\lambda )
          - 
          \sum_{j=1}^q \beta_j \cos(\lambda )|  \\
         \leq
@@ -535,7 +535,7 @@
         \sum_{j=1}^q 
             |\beta_j|
             |
-                \cos_{M, \frac{\epsilon}{qB}}(\lambda)
+                \cos_{M, \frac{\epsilon}{q B}}(\lambda)
                 -
                 \cos(\lambda)
             |   
@@ -543,7 +543,7 @@
             \sup_{\lambda \in [-M, M]} 
             \sum_{j=1}^q   
                 B
-                \frac{\epsilon}{qB}
+                \frac{\epsilon}{q B}
             = \epsilon.
         \end{split}
     \end{equation}
@@ -607,7 +607,8 @@
 
     \begin{equation}
         \prod^l_{k=1} cos(A_k) = 
-        \frac{1}{2^{l-1}}(\sum_{j=1}^{2^{l-1}} \cos(\sum_{x_i \in X \in \Lambda_l} x_i A_i)). 
+        \frac{1}{2^{l-1}}(\sum_{x \in \Lambda_l}
+         \cos(\sum_{i=1}^l x_i A_i)). 
     \end{equation}
 
     Por lo que cada elemento 
@@ -615,9 +616,9 @@
     podrá ser expresado como 
     $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) = 
     \sum_{j=1}^t \alpha_j \cos(A_{j,k}(\cdot))$, es decir, como un elemento 
-    de $\sum^r(cos)$ con lo que concluimos como queríamos que son iguales
-    los siguientes espacios
-    $\sum^r(cos) = \sum \prod^r(cos)$. 
+    de $\sum^r(cos)$. Concluimos como queríamos que son iguales
+    los espacios
+    $\sum^r(cos)$ y $\sum \prod^r(cos)$. 
 
     Finalmente gracias al teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
     por ser  el $\cos$ una función real continua no constante sabemos que 
