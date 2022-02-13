@@ -105,7 +105,7 @@ diría que no tiene mucho sentido la otra formulación y
  Por otra parte he simplificado su demostración, quizás 
  hay por tanto un matiz que se me haya escapado. 
  }
-\begin{corolario}
+\begin{corolario} \label{cor:2_1}
     Para cada función $g \in \fM$ existe un subconjunto compacto 
     $K$ de $\R^r$ y $f \in \rrnng$ tal que para cualquier 
     $\epsilon > 0$ se tiene que 
@@ -126,11 +126,11 @@ diría que no tiene mucho sentido la otra formulación y
     extensión continua $G:\R^r \longrightarrow \R$ tal que 
     \begin{equation}
         \begin{split}
-            g_{|K} = G_{|K} 
-            \text{ y } 
-            \sup_{k \in K} |g(k)| 
-            = 
-            \sup_{x \in \R^r} |G(x)|
+            g_{|K} = G_{|K} .
+    %        \text{ y } 
+    %        \sup_{k \in K} |g(k)| 
+    %        = 
+    %        \sup_{x \in \R^r} |G(x)|
         \end{split}
     \end{equation}
 
@@ -148,5 +148,18 @@ diría que no tiene mucho sentido la otra formulación y
         < \epsilon + 0 = \epsilon
     \end{equation}
 
-    Como queríamos probar.
+    como queríamos probar.
 \end{proof}
+
+\subsubsection{Comentarios sobre el corolario \ref{cor:2_1}}  
+
+Este resultado nos indica que existe una red neuronal con una 
+capa oculta capaz de aproximar cualquier función medible con el grado 
+de precisión que se desee dentro de un compacto.   
+
+Notemos que la diferencia que presenta el corolario recién probado
+\ref{cor:2_1} con respecto al teorema \ref{teo:2_4_rrnn_densas_M}
+es que en el corolario se está fijando el compacto y esto nos 
+permite tener convergencia uniforme en él, mientras que en el 
+teorema \ref{teo:2_4_rrnn_densas_M} para funciones medible
+tendremos asegurada tan solo la convergencia. 
