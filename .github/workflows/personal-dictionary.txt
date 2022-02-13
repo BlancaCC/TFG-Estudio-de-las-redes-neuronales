@@ -9,11 +9,13 @@ Feedforward
 GN
 Halber
 Hornik
+Lusin
 Multilayer
 Nótese
 Perceptrón
 Stinchcombe
 TeoremaStoneWeiertrass
+Tietze
 UMVUE
 aproximadores
 codominio
