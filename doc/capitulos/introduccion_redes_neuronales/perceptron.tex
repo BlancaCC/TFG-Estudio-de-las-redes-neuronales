@@ -88,7 +88,16 @@ Las características de este algoritmo son las siguientes:
     \item Si la función es convexa el mínimo será global. 
 \end{itemize}
 
-\subsubsection{Actualización de pesos en un perceptrón }
+\subsubsection{Convergencia del algoritmo del perceptrón}  
+
+El teorema de convergencia del perceptrón establece que si existe una solución, esto es
+que el conjunto de los datos sea separables, entonces el algoritmo del perceptrón
+nos asegura una convergencia exacta en un número finito de pasos. 
+Una demostración fue dada por Rosenblatt en 1962 \cite{perceptron-convergence}.  
+
+Características generales que posee este algoritmo es que
+cada paso del algoritmo no asegura la disminución del error y en la práctica, hasta que no se 
+ha llegado a la convergencia se desconoce si los datos son separables o no. 
 
 
 
