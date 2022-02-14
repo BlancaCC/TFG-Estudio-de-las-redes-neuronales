@@ -10,3 +10,14 @@
 *.pdf
 *.toc
 *.lof
+*.bbl
+*.brf
+*.fdb_*
+*.ilg
+*.ind
+*.gz
+*.blg
+*.fls
+*.lot
+.DS_Store
+ISSUES-RELEVANTES
