@@ -23,3 +23,74 @@ La distancia asociada al espacio $L_p$ se define como
     \rho_p(f,g) = \| f-g\|_p.
 \end{equation}
 \end{definicion}
+
+% Corolario 2.2
+\begin{corolario}
+    Si existe un subconjunto compacto $K$ en $\R^r$ de medida
+    $\mu(K) =1$ entonces $\rrnn$ es $\dlp$-denso en $L_p(\R^r, \mu)$
+    para cualquier $p \in [1,\infty)$, independientemente de 
+    $\psi$, $r$ o $\mu$.
+\end{corolario}
+\begin{proof}
+    Se quiere probar que para cualquier $g \in L_p$ y 
+    $\epsilon >0$ existe un $f \in \rrnn$ tales que 
+    \begin{equation}
+        \dlp(f,g) <\epsilon.
+    \end{equation}   
+    
+    Por pertenecer $g$ a $L_p$ existe una constante $M$ real positiva
+    los suficientemente grande 
+    tal que si definimos la función $h =g 1_{|g|<M}$ esta satisface 
+    que
+    \begin{equation}\label{eq:corolario_2_2:h_compacto}
+        \dlp(g,h) < \frac{\epsilon}{3}.
+    \end{equation}
+    
+    Además como $h$ es una función acotada de $L_p$, podemos encontrar
+    una función $s$ continua que es límite de una sucesión de
+    funciones simples 
+    ( pag 241-242,  teoremas 55C y 55D \cite{nla.cat-vn1819421})
+    y la cual cumple que 
+
+    \begin{equation}\label{eq:corolario_2_2:s_continua}
+        \dlp(h,s) < \frac{\epsilon}{3}.
+    \end{equation}
+
+    Por el teorema \ref{teo:2_4_rrnn_densas_M}, al estar en un compacto $K$ y por ser $\rrnn$ uniformemente
+    denso en compactos hay una $f \in \rrnn$ la cual cumple que
+    \begin{equation}
+        \sup_{x \in K} |f(x) -s(x)|^p 
+        <
+         \left( \frac{\epsilon}{3}\right) ^p.
+    \end{equation}
+    
+    Y por hipótesis $\mu(K) =1$ y definición de la distancia $\dlp$ 
+    se tiene la siguiente desigualdad: 
+
+    \begin{equation} \label{eq:corolario_2_2:cota_rrnn}
+        \dlp(f,s) = 
+        \left(\int |f(x) - s(x)|^p d\mu \right)^\frac{1}{p}
+        \leq 
+        \left(\int  \left( \frac{\epsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
+        = \left( \mu(K)  \left(\frac{\epsilon}{3} \right)^p\right) ^\frac{1}{p}
+        = \frac{\epsilon}{3}.
+    \end{equation}
+
+    Gracias a la desigualdad triangular y las desigualdades
+    (\refeq{eq:corolario_2_2:cota_rrnn})
+    (\refeq{eq:corolario_2_2:h_compacto})
+    (\refeq{eq:corolario_2_2:s_continua})
+
+    \begin{equation}
+        \dlp(f,g) 
+        \leq
+            \dlp(f,s)
+            +\dlp(s,h)
+            + \dlp(h,g)
+        < 
+        \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}
+        = \epsilon.
+    \end{equation}
+Probando con ello lo buscado. 
+\end{proof}  
+
