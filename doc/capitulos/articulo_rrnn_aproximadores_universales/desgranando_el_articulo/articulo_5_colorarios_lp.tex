@@ -126,7 +126,7 @@ Probando con ello lo buscado.
 \end{proof}
 
 %Corolario 2.4 
-\begin{corolario}
+\begin{corolario} \label{corolario:2_4_conjunto_finito}
     Sea $\mu$ una una medida que evalúa a uno un conjunto 
     finito de puntos, 
     entonces, para cualquier función medible $g \in \fM$
@@ -194,3 +194,76 @@ Probando con ello lo buscado.
 Nótese que con este corolario lo que se está indicando es que en 
 conjunto finito se puede encontrar una red neuronal
 converge de manera exacta en esos puntos. 
+
+\begin{definicion}[Función Booleana]
+    Sea 
+    \begin{equation}
+        B^r = \{
+            (x_1, ..., x_r) : x_i \in \{0,1\}, 
+            \text{ para todo } i \in \{1,..., r\}
+            \}.
+    \end{equation}
+
+    Se dice $f$ es una función Booleana 
+    si formalmente esta definida de $f:B^r \longrightarrow B$. 
+\end{definicion}
+Ejemplo conocidos son la función $or: B^r \longrightarrow B$  que vale 
+uno si alguno de su entrada es uno y la función 
+$and: B^r \longrightarrow B$
+que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
+
+% Corolario 2.5  
+\begin{corolario}
+    Para cada función Booleana $g: B^r \longrightarrow B$ y 
+    cada $\epsilon >0$ existe una red neuronal
+    $f \in \rrnn$ tal que 
+    \begin{equation}
+        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        < \epsilon.
+    \end{equation}
+\end{corolario}
+\begin{proof}
+    Se define la función $\mu : \R^r \longrightarrow [0,1]$ de la forma que 
+    \begin{equation}
+        \mu(x) = 
+      \left \{
+    \begin{aligned}
+      \frac{1}{2^r} \quad &\text{ si } x \in B^r \\
+      0 \quad & \text{ si } x \notin B^r 
+    \end{aligned}
+  \right .
+    \end{equation}
+
+    Se tiene que $\mu$ es una medida ya que cumple que 
+    \begin{enumerate}
+        \item Hipótesis de acotación: $0 \leq \mu(A) \leq 1$ para $A \in \mathcal{P}(\R^r).$
+        \item Probabilidad del vacía es nula y la del  total la unidad. 
+        \item La probabilidad de la unión es la suma de la probabilidades. 
+        \begin{equation}
+            P\left(
+                \cup_{i=1}^n A_i
+            \right)
+            = \sum_{i=1}^n P(A_i).
+            \quad
+            \forall A_i \in  \mathcal{P}(\R^r).
+        \end{equation}
+    \end{enumerate}  
+
+    Como la cardinalidad de $B^r$ es $2^r$, es decir finita
+    podemos aplicar el corolario \ref{corolario:2_4_conjunto_finito}
+    y entonces sabemos que  existe una $f\in \rrnn$ tal que 
+    \begin{equation}
+            \mu\{ 
+                x:
+                |f(x) - g(x)| 
+                < \epsilon
+            \}
+            = 1,
+    \end{equation} 
+    es decir que 
+    \begin{equation}
+        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        < \epsilon
+    \end{equation}
+    como queríamos probar. 
+\end{proof}
