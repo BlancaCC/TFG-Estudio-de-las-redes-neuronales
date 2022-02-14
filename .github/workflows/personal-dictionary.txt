@@ -7,9 +7,12 @@ Halber
 Multilayer
 Nótese
 Perceptrón
+Rosenblatt
 Stinchcombe
 TeoremaStoneWeiertrass
 UMVUE
+diferenciable
+diferenciables
 eq
 fg
 homeomorfismo
@@ -17,6 +20,7 @@ inecuación
 insesgado
 multicapa
 nx
+pag
 perceptrón
 separabilidad
 solventable
