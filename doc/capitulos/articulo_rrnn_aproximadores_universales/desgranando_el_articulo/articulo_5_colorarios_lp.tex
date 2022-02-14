@@ -25,7 +25,7 @@ La distancia asociada al espacio $L_p$ se define como
 \end{definicion}
 
 % Corolario 2.2
-\begin{corolario}
+\begin{corolario}\label{corolario:2_2_rrnn}
     Si existe un subconjunto compacto $K$ en $\R^r$ de medida
     $\mu(K) =1$ entonces $\rrnn$ es $\dlp$-denso en $L_p(\R^r, \mu)$
     para cualquier $p \in [1,\infty)$, independientemente de 
@@ -94,3 +94,17 @@ La distancia asociada al espacio $L_p$ se define como
 Probando con ello lo buscado. 
 \end{proof}  
 
+% Corolario 2.3
+\begin{corolario}
+    Si $\mu$ es una medida de probabilidad en $[0,1]^r$
+    entonces 
+    $\rrnn$ es $\dlp$-denso en 
+    $L_p([0,1]^r, \mu)$ para todo $p \in [1, \infty)$,
+    independientemente de $\psi, r, \mu$. 
+\end{corolario}
+\begin{proof}
+    Es consecuencia directa del corolario previo \ref{corolario:2_2_rrnn}
+    donde para este caso particular $K = [0,1]^r$ un compacto
+    de $\R^r$
+    que cumple que $\mu(K) = 1.$
+\end{proof}
