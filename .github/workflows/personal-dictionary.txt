@@ -46,6 +46,8 @@ rrnn
 separabilidad
 solventable
 squasher
+subespacio
+subespacios
 sumatoria
 sumatorias
 teo
