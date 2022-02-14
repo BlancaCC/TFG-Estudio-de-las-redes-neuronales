@@ -126,3 +126,71 @@ Probando con ello lo buscado.
 \end{proof}
 
 %Corolario 2.4 
+\begin{corolario}
+    Sea $\mu$ una una medida que evalúa a uno un conjunto 
+    finito de puntos, 
+    entonces, para cualquier función medible $g \in \fM$
+    y sea cual sea $\epsilon >0$ 
+    existe $f \in \rrnn$ la cual cumple que 
+    \begin{equation}
+        \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            < \epsilon
+        \}
+        = 1.
+    \end{equation}
+
+\end{corolario}
+\begin{proof}
+    Por el teorema \ref{teo:2_4_rrnn_densas_M} existirá una 
+    $f \in \rrnn$ tal que para cualquier 
+    $\epsilon_1, \epsilon_2 >0$ se cumpla que 
+    $\mu \{x: |f(x) - g(x)| > \epsilon_1\} < \epsilon_2.$
+    Sea $O$ el conjunto de puntos tal que $\mu(O) = 1.$
+    Por ser finito $O$ podemos encontrar
+    \begin{equation} \label{eq:2_4:definicion_epsilon}
+        \delta = \min_{x \in O} \{ 
+            \mu(x) : \mu(x)>0
+        \}. 
+    \end{equation}
+
+    Sin pérdida de generalidad tomamos $\epsilon < \delta$ y entonces
+    para cualquier $f$ que cumpla que 
+    \begin{equation}
+        \dist(f,g) = \epsilon
+    \end{equation}
+    por cómo se define la distancia de una medida
+    \begin{equation}
+        \dist(f,g) =  \inf 
+        \{
+           \epsilon > 0:
+           \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            > \epsilon
+        \}
+        < \epsilon
+        \}
+    \end{equation}
+    y la forma de tomar $\epsilon$ en (\refeq{eq:2_4:definicion_epsilon}) 
+    tiene que $\mu\{ 
+        x:
+        |f(x) - g(x)| 
+        > \epsilon
+    \} = 0.$
+
+    Es decir probando con ello que 
+    \begin{equation}
+        \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            < \epsilon
+        \}
+        = 1.
+    \end{equation}
+\end{proof}
+
+Nótese que con este corolario lo que se está indicando es que en 
+conjunto finito se puede encontrar una red neuronal
+converge de manera exacta en esos puntos. 
