@@ -16,7 +16,7 @@ spell:
 install-spell:
 	bash ./scripts/aspell-install.sh
 
-order-dic:
+order:
 	./scripts/order-dictionary.py
 
 workflow-spell: install-spell spell
