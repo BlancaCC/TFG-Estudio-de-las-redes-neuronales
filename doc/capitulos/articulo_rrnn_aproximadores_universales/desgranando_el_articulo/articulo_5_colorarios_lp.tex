@@ -268,7 +268,7 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     como queríamos probar. 
 \end{proof}
 % Lemas propios  previos al teorema 2.5
-\begin{lema}
+\begin{lema} \label{lema:propio_1_antes_teorema_2_5}
     Si una función de activación  $\psi$ alcanza el cero y el uno, esto es 
     si existen dos constantes reales $M_1, M_2$ 
     tales que 
@@ -277,7 +277,7 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     \end{equation}
     entonces existe una constante real positiva $M$ tal que 
     \begin{equation}
-        \psi(-M) = 1- \psi(M).
+        \psi(-M) = 1- \psi(M) = 0.
     \end{equation}
 \end{lema}
 \begin{proof}
@@ -292,7 +292,7 @@ Por tanto
 
 Gracias a estas desigualdades es fácil ver que 
 \begin{equation}
-    \psi(-M) = 1 - \psi(M)
+    \psi(-M) = 1 - \psi(M) = 0
 \end{equation}
 como queríamos probar. 
 \end{proof}   
@@ -308,3 +308,196 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
         \end{array}
     \right. 
 \end{equation}
+
+% Otro lema propio antes de probar el teorema 2.5
+\begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
+    Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
+    $r$ natural mayor que uno. 
+    Se tiene que existe un vector $p \in \R^r$ que satisface que 
+    para cualesquiera $x,y \in \Lambda$ diferentes 
+    \begin{equation}
+        p \cdot(x-y) \neq 0.
+    \end{equation}
+\end{lema}
+
+% Teorema 2.5  
+\begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
+    Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
+    $\R^r$ y sea 
+    $g: \R^r \longrightarrow \R$ una función arbitraria. 
+    Si $\psi$ alcanza el cero y el uno, 
+    entonces
+    existe una red neuronal $f \in \rrnn$ con $n$
+    capas ocultas tal que 
+
+    \begin{equation}
+        f(x_i) = g(x_i) \text{ en todo } i \in \{1, \ldots, n \}.
+    \end{equation}
+\end{teorema}
+\begin{proof}
+Construiremos la demostración en tres casos. 
+
+\textbf{Caso primero}
+
+Suponemos que $\{x_1, \ldots, x_n\} \subset \R$ y tras renombrar 
+podemos suponer que $x_1 < x_2 < \ldots < x_n.$ 
+Por alcanzar la función de activación $\psi$ el cero y el uno, 
+gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ tal que $\psi(-M) = 1-\psi(M) = 0.$
+
+Definiremos de manera recursiva a la red neuronal. 
+
+\begin{itemize}
+    \item Red neuronal $f_1$. 
+
+Sea $A_1$ la función afín constante $A_1 = M.$
+Fijamos $\beta_1 = g(x_1)$. 
+De esta manera la red neuronal $f_1$ 
+definida como $f_1(x) = \beta_1 \psi(A_1(x)).$
+
+\item Red neuronal $f_k$ con $1 < k \leq n$. 
+
+Se define $A_{k}$ como la única función afín que cumple que 
+\begin{equation}
+    A_k(x_{k-1}) = -M \quad \text{y} \quad  A_{k}(x_k)= M.
+\end{equation}
+Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
+La red neuronal $f_k$ se calcula como 
+\begin{equation}
+    f_k(x) 
+    = 
+    \sum_{j=1}^k \beta_j \psi(A_j(x))
+     = 
+    (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x) .  
+\end{equation}
+Observemos que así construida se tiene que para cualquier
+ $y > x_k$ la evaluación con la red neuronal resulta $f_k(y) = g(x_k).$
+
+\end{itemize}
+Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq n$ se tiene que     
+$f_n(x_i) = g(x_i)$. 
+
+
+\begin{itemize}
+    \item Caso base, $n=1$. 
+    \begin{equation}
+        f_1(x_1)= \beta_1 \psi(A_1(x_1)) = g(x_1)\psi(M) = g(x_1).
+    \end{equation}
+    \item Supuesto que es cierto para $n-1$ veamos que lo es para $n$.      
+    Evaluación de $x_n$
+    \begin{align}
+        f_n(x_n) 
+        &= 
+        (g(x_n) - g(x_{n-1}))\psi(A_n(x_n)) + f_{n-1}(x_n)
+        \\
+        & = (g(x_n) - g(x_{n-1}))\psi(M) + g(x_{n-1}) 
+        \\
+        & = (g(x_n) - g(x_{n-1})) + g(x_{n-1}) 
+        \\
+        & = g(x_n).
+    \end{align}
+
+Evaluación de $x_i$ con $1 \leq i < n$. 
+
+Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducción se tiene que 
+\begin{align}
+    f_n(x_i) 
+        &= 
+        (g(x_n) - g(x_{n-1}))\psi(A_n(x_i)) + f_{n-1}(x_n)
+        \\
+        & = 0 + g(x_{i}) 
+        \\
+        &= g(x_i).
+\end{align}
+\end{itemize}
+
+Acabamos de probar por inducción 
+\begin{equation}
+    f_n(x) = g(x) \text{ para cualquier } x \in \Lambda. 
+\end{equation}
+
+Es decir, el caso primero que existe una red neuronal $f_n$ que dadas las hipótesis satisface la tesis en el caso que $\Lambda \subset \R.$
+
+\textbf{Caso segundo}  
+
+Se tiene para este caso que $\Lambda \subset \R^r$ con $r >1$. 
+Seleccionamos un $p \in \R^r$ cumpliendo que 
+para cualesquiera $x,y \in \Lambda$ distintos 
+se cumpla que $p(x-y) \neq 0$. Este $p$ existe como hemos comprobado en el lema \ref{lema:previo_propio_2_al_teorema_2_5}.
+
+Gracias a esto se puede establecer una relación de orden, que tras 
+renombrar los elementos de $\Lambda$ queda
+ $p \cdot x_1 < p \cdot x_2 < \ldots < p \cdot x_n.$
+
+ Y como procedimos en el caso primero, definiremos de manera
+ recursiva la red neuronal
+
+ \begin{itemize}
+ \item Red neuronal $f_1$. 
+
+Sea $A_1$ la función afín constante $A_1 = M.$
+Fijamos $\beta_1 = g(x_1)$. 
+De esta manera la red neuronal $f_1$ 
+definida como $f_1(x) = \beta_1 \psi(A_1(p \cdot x)).$
+
+\item Red neuronal $f_k$ con $1 < k \leq n$. 
+
+Se define $A_{k}$ como la única función afín que cumple que 
+\begin{equation}
+    A_k(p \cdot x_{k-1}) = -M 
+    \quad \text{y} \quad 
+     A_{k}(p \cdot x_k)= M.
+\end{equation}
+Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
+La red neuronal $f_k$ se calcula como 
+\begin{equation}
+    f_k(x) 
+    = 
+    \sum_{j=1}^k \beta_j \psi(A_j(p \cdot x))
+     = 
+    (g(x_k)-g(x_{k-1})) \psi(A_k(p \cdot x)) + f_{k-1}(x) .  
+\end{equation}
+\end{itemize}
+
+Así definida, la prueba por inducción es idéntica a la mostrada 
+en el caso primero probando con ello el teorema.
+
+\end{proof}
+
+%% Redactar mejor esta sección 
+\textbf{Conclusión que falta aún por escribir bien}
+
+Hasta ahora no tenemos ni idea una estimación del número de 
+neuronas que necesitamos.  ¿son estas un número tan grande que 
+resulte inasumible?
+La idea que reside en este teorema es que si tenemos un conjunto
+finito de puntos siempre se podrá encontrar una red neuronal 
+que los evalúe de manera exacta. 
+
+Este teorema nos muestra dos caras de una manera 
+Aspecto bueno: 
+Podremos reproducir un conjunto finito de puntos con una red neuronal e independientemente de la regla subyacente a estos. 
+Malo: 
+Supongamos que queremos entrenar una red neuronal para que prediga 
+de acorde a una regla $f$, en la vida real no tenemos $f$, pero sí
+pares de entradas e imágenes. Al ser el conjunto finito, 
+esas mismas relaciones pueden ser consecuencia de una clase 
+\textit{infinita no numerable} de funciones. 
+Al \textit{entrenar} con un conjunto de punto finito  la red será capaz de adaptarse  a esos puntos y no 
+necesariamente aproximar $f$. 
+
+AÑADIR IMAGEN DE SPLINE Y POLINOMIO. 
+
+Ante esta situación podríamos aumentar el número de datos, 
+y suponiendo que *continuidad* podrían darse muchos casos distintos 
+
+podría ser interesante visualizar la simpleza
+Ockham -> si tengo pocos datos optaré por modelos simples. 
+
+Puede dar el caso de que los datos tengan también errores o ruido 
+al ser obtenidos, en ese caso estaremos aprendiendo fielmente mentiras. 
+
+Haciendo el número de neuronas menos que N se podría conseguir. 
+
+Nota para experimentar: quizás se podría ahorrar iteraciones de 
+cálculo si utilizamos como \textit{backbone} (valores iniciales de los pesos) una red neuronal construida de esta manera. 
+%% Hasta aquí conclusión que redactar mejor. 
