@@ -267,3 +267,44 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     \end{equation}
     como queríamos probar. 
 \end{proof}
+% Lemas propios  previos al teorema 2.5
+\begin{lema}
+    Si una función de activación  $\psi$ alcanza el cero y el uno, esto es 
+    si existen dos constantes reales $M_1, M_2$ 
+    tales que 
+    \begin{equation}
+        \psi(M_1) = 0 \text{ y } \psi(M_2)=1
+    \end{equation}
+    entonces existe una constante real positiva $M$ tal que 
+    \begin{equation}
+        \psi(-M) = 1- \psi(M).
+    \end{equation}
+\end{lema}
+\begin{proof}
+Sea $M = \max \{|M_1|,|M_2|\}$ y por ser $\psi$ una función de activación sabemos que
+es no decreciente y que su imagen pertenece al intervalo $[0,1].$
+
+Por tanto
+\begin{align}
+      0 &\leq \psi(-M) \leq \psi(M_1) = 0 \quad \text{ luego } \quad \psi(-M) = 0, \\
+      1 &\geq \psi(M) \geq \psi(M_2) = 1 \quad \text{ luego } \quad\psi(M) = 1
+\end{align}
+
+Gracias a estas desigualdades es fácil ver que 
+\begin{equation}
+    \psi(-M) = 1 - \psi(M)
+\end{equation}
+como queríamos probar. 
+\end{proof}   
+
+Es interesante percatarse de que de no exigirse la hipótesis de 
+que $\psi$ alcanza el cero o el uno o que no es continua no puede 
+asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función de activación
+
+\begin{equation}
+    \psi(x)= \left\{ \begin{array}{lcc}
+        0 &   si  & x \leq 0 \\
+        \frac{\lceil x \rceil}{1+ \lceil x \rceil}&  si & 0< x  
+        \end{array}
+    \right. 
+\end{equation}
