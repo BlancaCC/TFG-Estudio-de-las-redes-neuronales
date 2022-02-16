@@ -312,13 +312,36 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 % Otro lema propio antes de probar el teorema 2.5
 \begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
     Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
-    $r$ natural mayor que uno. 
+    $r$ natural positivo. 
     Se tiene que existe un vector $p \in \R^r$ que satisface que 
     para cualesquiera $x,y \in \Lambda$ diferentes 
     \begin{equation}
         p \cdot(x-y) \neq 0.
     \end{equation}
 \end{lema}
+\begin{proof}
+    Consideramos el conjunto $U$ definido como la unión de 
+    $n (n-1)$ hiperplanos de $\R^r$
+
+    \begin{equation}
+        U = \bigcup_{ 
+            \substack{
+                x,y \in \Lambda \\
+                x \neq y
+            }
+        }
+        \{ 
+            p \in \R^r: p \cdot (x-y) = 0
+        \}
+    \end{equation}
+
+    Puesto que $\R^r$ no puede ser expresado como unión finita de hiperplanos,
+    $U \subsetneq \R^r$ y por tanto existirá un $p$ tal que 
+    \begin{equation}
+        p \in \R^r \setminus U
+    \end{equation}
+    como queríamos probar. 
+\end{proof}
 
 % Teorema 2.5  
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
@@ -335,7 +358,8 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     \end{equation}
 \end{teorema}
 \begin{proof}
-Construiremos la demostración en tres casos. 
+Con el fin de facilitar la comprensión dividiremos la demostración en dos casos, 
+primero uno particular, cuando $r=1$ y después el caso general.
 
 \textbf{Caso primero}
 
