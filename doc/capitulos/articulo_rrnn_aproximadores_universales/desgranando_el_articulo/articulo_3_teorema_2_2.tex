@@ -7,8 +7,8 @@
 
 % Teorema 2.2 
 \begin{teorema}\label{teo:2_2_denso_función_continua}
-    Para cualquier función continua no constate $G$, $r \in \N$ y
-    medida de probabilidad $\mu$ o $(\R^r, B^r)$, 
+    Para cualquier función continua no constante $G$, $r \in \N$ y
+    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
     se tiene que $\pmcg$ es $\dist$-denso en $\fM$. 
 \end{teorema} 
 \begin{proof}
@@ -43,14 +43,11 @@
 \begin{proof}
     Procedamos a realizar la siguiente prueba constructiva. 
     Tomamos fijo pero arbitrario un $\epsilon > 0,$ que sin pérdida de generalidad
-    supondremos menor que uno 
-    \footnote{En caso de ser mayor, se tomará cualquier otro menor que la unidad y la función resultante será igual de válida.}.
-    Para que la $H_\epsilon$ pertenezca a $\sum ^1 (\psi)$ deberá de ser de la 
+    supondremos menor que uno.
+    Para que $H_\epsilon$ pertenezca a $\sum ^1 (\psi)$ deberá de ser de la 
     forma $\sum^{q-1}_{j=1} b_j \psi( A_j(\lambda))$
-    debemos encontrar por ende el número de sumatorias, $q-1$; esa misma cantidad de constantes reales $b_j$ y funciones afines $A_j$. 
-    
-
-    Para ello tomamos como $q$ a cualquier número natural que cumpla que 
+    debemos encontrar por ende el número de sumatorias, $q-1$; esa misma cantidad de constantes reales $b_j$ y 
+    funciones afines $A_j$. Para ello tomamos como $q$ cualquier número natural que cumpla que 
     \begin{equation}\label{eq:lema_a_2_def_q}
         \frac{1}{q} < \frac{\epsilon}{4}.
     \end{equation}
@@ -73,22 +70,26 @@
     $\psi(-n_2) < \frac{\epsilon}{2q}$. Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
 
     Seleccionaremos ahora los siguientes puntos del dominio
-    \begin{equation}\label{lema:2_2_selección_r_F}
-        r_j = \sup \left\{ \lambda: F(\lambda) = \frac{j}{q} \right\},
-         \text{ con } j \in \{1, ..., q-1\}, 
-         \quad \text{ y } \quad
-        r_q = \sup \left\{ \lambda: F(\lambda) = 1 - \frac{1}{q} \right\}. 
-    \end{equation}
-    Que por ser $F$ continua sabemos que existen. 
+    \begin{align}\label{lema:2_2_selección_r_F}
+        r_j &= \sup \left\{ \lambda: F(\lambda) = \frac{j}{q} \right\},
+         \text{ con } j \in \{1, ..., q-1\} 
+         \\
+        r_q &= \sup \left\{ \lambda: F(\lambda) = 1 - \frac{1}{2 q} \right\}. 
+    \end{align}
+
+    Que por ser $F$ una función de activación continua 
+    sabemos que existen
+    ya que $\lim_{\lambda \longrightarrow - \infty} F(\lambda) = 0$ y 
+    $\lim_{\lambda \longrightarrow  \infty} F(\lambda) = 1$. 
 
     Procedemos ahora a definir las distintas aplicaciones afines. 
-    Para cualquier reales $s,r$ que cumplan que $r < s$ sea $A_{rs}\in A^1$ la única aplicación afín que satisface que 
+    Para cualesquiera reales $s,r$ que cumplan $r < s$ sea $A_{rs}\in A^1$ la única aplicación afín que satisface que 
     
     \begin{equation}
         A_{rs}(r) = -M \text{ y }  A_{rs}(s) = M. 
     \end{equation} 
     
-    Acabamos pues de determinar todos los elements que conforman a $H_\epsilon$, de tal forma que se tiene que
+    Acabamos pues de determinar todos los elementos que conforman a $H_\epsilon$, de tal forma que se tiene que
     \begin{equation}
         H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda))
     \end{equation}
@@ -96,10 +97,10 @@
     \begin{itemize}
         \item Si $\lambda \in (- \infty, r_1]:$
         Se cumple que $\lambda \leq r_1 < r_2 <...< r_q$ luego  
-        para todos los $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que 
-        $A_{r_j, r_{j+1}}(\lambda) < -M$ y por cómo se fijó la $M$ en la condición \refeq{lema_a_2_psi_m}
-        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) < \frac{\epsilon}{2q}$ concluyendo que 
-        para $\lambda \in (- \infty, r_1]$
+        para todos $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que 
+        $A_{r_j, r_{j+1}}(\lambda) < -M$ y por cómo se fijó $M$ en la condición \refeq{lema_a_2_psi_m}
+        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) < \frac{\epsilon}{2 q}$. Por tanto
+        para $\lambda \in (- \infty, r_1]$ se tiene 
         \begin{equation}
             H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
             <
@@ -109,7 +110,7 @@
             <\frac{\epsilon }{2q}
             < \frac{\epsilon }{2}
         \end{equation}
-        y por ende, como además $0 \leq F(\lambda) \leq \frac{1}{q} < \frac{\epsilon}{2}$ por cómo se seleccionaron los $r_j$ en 
+        y como además $0 \leq F(\lambda) \leq \frac{1}{q} < \frac{\epsilon}{2}$ por cómo se seleccionaron los puntos $r_j$ en 
         \refeq{lema:2_2_selección_r_F} se tiene que 
         \begin{equation}
             | F(\lambda) - H_{\epsilon}(\lambda) | < \frac{\epsilon}{2} + \frac{\epsilon}{2} < \epsilon. 
@@ -117,8 +118,8 @@
 
         \item Si $\lambda \in (r_q, +\infty):$
         Se cumple que $r_1 < r_2 <...< r_q <\lambda$ luego  
-        para todos los $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que  
-        $A_{r_j, r_{j+1}}(\lambda) > M$ y por cómo se fijó la $M$ en \refeq{lema_a_2_psi_m}
+        para todo $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que  
+        $A_{r_j, r_{j+1}}(\lambda) > M$ y por cómo se fijó $M$ en \refeq{lema_a_2_psi_m}
         resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) > 1-\frac{\epsilon}{2q}$ concluyendo que 
         para $\lambda \in (r_q,+\infty):$
         \begin{equation}
@@ -129,7 +130,7 @@
             >
             \frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right)   
         \end{equation}
-        y por ende, como además $\frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right) <  \frac{q-1}{q} \leq F(\lambda) \leq 1$ por cómo se seleccionaron los $r_j$ en 
+        y por ende, como además $\frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right) <  \frac{q-1}{q} \leq F(\lambda) \leq 1$ por cómo se seleccionaron los puntos $r_j$ en 
         \refeq{lema:2_2_selección_r_F} se tiene que 
         \begin{equation}
             | F(\lambda) - H_{\epsilon}(\lambda) | 
@@ -140,7 +141,7 @@
         \end{equation}
         Donde para acotar $\frac{1}{q}$ hemos usado la desigualdad \refeq{eq:lema_a_2_def_q}.
 
-        \item Si $\lambda \in (r_{j},r_{j+1}]:$
+        \item Si $\lambda \in (r_{j},r_{j+1}]$ para $j \in \{ 1, \ldots, q-1\}$: 
         
         Tenemos por una parte que $\frac{j}{q} < F(\lambda) \leq \frac{j+1}{q}$ y 
         podemos descomponer $H_\epsilon$ en las siguientes sumatorias: 
@@ -156,6 +157,8 @@
             \end{split}
         \end{equation}
 
+        Nótese que así definida, si $j = q-2$ o $j = q -1$ el último sumando no aparece. 
+
         Los términos de la primera sumatoria serán mayores que $\left(1-\frac{\epsilon}{2q} \right)$ y menores o iguales que la unidad, 
         el segundo sumando satisface que 
         $0 \leq q\psi( A_{r_j, r_{j+1}}(\lambda)) \leq 1$
@@ -170,9 +173,9 @@
             + 
             \frac{1}{q} 
             + 
-            \frac{q-j}{q} \frac{\epsilon}{2q} 
+            \frac{q-j}{q} \frac{\epsilon}{2q} ,
         \end{equation}
-        Concluyendo que 
+        concluyendo que 
         \begin{equation}
             F(\lambda), H_\epsilon(\lambda) 
             \in 
@@ -190,11 +193,12 @@
             < \frac{\epsilon}{2} + \frac{\epsilon}{2}
             < \epsilon.
         \end{equation}
-        Donde para acotar $\frac{2}{q}$ hemos usado la desigualdad \refeq{eq:lema_a_2_def_q}.
     \end{itemize}
     La acotación $| F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon$ se cumple para todo
     \begin{equation}
-        \lambda \in (- \infty, r_1] \cup (r_q,+\infty) \cup_{j \in \{1, ..., q-1\}} (r_{j},r_{j+1}] = \R,
+        \lambda \in (- \infty, r_1]
+         \bigcup (r_q,+\infty) 
+        \bigcup_{j \in \{1, ..., q-1\}} (r_{j},r_{j+1}] = \R,
     \end{equation}
     probando con ello lo buscado.
 \end{proof}      
@@ -204,7 +208,7 @@
     Para cualquier función de activación $\psi$, $r$ natural positivo y
     medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
     se tiene que $\rrnng$ es uniformemente denso en compactos
-    en $\fC$ y denso en $\fM$ de acorde a la distancia $\dist$. 
+    en $\fC$ y denso en $\fM$ para la distancia $\dist$. 
 \end{teorema}
 \begin{proof}
     En virtud del lema \ref{lema:2_2_convergencia_uniforme_en_compactos} y del 
@@ -218,10 +222,10 @@
     Para ello basta ver que cualquier función de la forma $\prod_{k=1}^l F(A_k(\cdot))$
     puede ser uniformemente aproximada por una una sucesión de funciones de $\rrnng$.
 
-    Fijamos un $\epsilon > 0$  de manera arbitraria. 
-    Gracias a la continuidad de la norma y de la operación multiplicación, existirá un $\delta >0$
-    tal que para cualesquiera números reales $0 \leq a_k, b_k \leq 1,$ con $k \in \{1,...,l\}$ 
-    se satisfagan que $|a_k -b_k| < \delta$ se cumple que 
+    Fijamos $\epsilon > 0$. 
+    Por continuidad, existirá un $\delta >0$
+    tal que, para cualesquiera números reales $0 \leq a_k, b_k \leq 1,$ con $k \in \{1,...,l\}$ 
+    cumpliendo que $|a_k -b_k| < \delta$ se tiene
     \begin{equation} \label{eq:teorema_2_3__1}
         \left| 
             \prod^l_{k=1} a_k - \prod^l_{k=1} b_k 
@@ -238,8 +242,9 @@
         \sup_{\lambda \in \R} |F(\lambda) - H_{\delta}(\lambda) | < \delta.
     \end{equation}
 
-    Se satisface con la cota suficiente de la desigualdad \refeq{eq:teorema_2_3__1} por lo que 
-    resulta 
+    Usando \refeq{eq:teorema_2_3__1} para 
+    $a_k = F(A_k(x))$ y $b_k = H_\delta(A_k(x))$
+    obtenemos
     \begin{equation}\label{eq:teorema2_3__3}
         \sup_{x \in \R^r} 
         \left| 
@@ -251,11 +256,11 @@
         \epsilon.
     \end{equation} 
     
-    Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A^1_t(\cdot))$ 
-    y porque $A^1_t(A_k(\cdot)) \in A^r$ se tiene por la desigualdad \ref{eq:teorema2_3__3} que 
+    Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A_t(\cdot))$ 
+    y porque $A_t(A_k(\cdot)) \in A^r$ se tiene por la desigualdad \refeq{eq:teorema2_3__3} que 
     $\prod ^l_{k=1} H_\delta(A_k(\cdot)) \in \rrnng.$
 
-    Por lo tanto c $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
+    Por lo tanto $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
     aproximado por elementos de $\rrnng$ y acabamos de probar con ello lo buscado. 
 \end{proof} 
 
@@ -264,9 +269,9 @@
 \begin{lema}\label{lema:A_3_función_activación_continua_con_arbitaria}
     Para cada función de activación $\psi$, cada $\epsilon >0$
     y cada $M>0$ existe una función 
-    $cos_{M,\epsilon} \in \sum^1(\psi)$ tal que 
+    $\cos_{M,\epsilon} \in \sum^1(\psi)$ tal que 
     \begin{equation}
-        \sup_{ \lambda \in [-M, +M]}
+        \sup_{ \lambda \in [-M, M]}
         |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)|
         < 
         \epsilon. 
@@ -274,16 +279,14 @@
 \end{lema}
 \begin{proof}
     Sea $F$ la función de activación \textit{cosine squasher} de Gallant and White (1988) definida 
-    en \ref{def:funcion_activacion_articulo}
-
-    Comenzaremos probando que para un intervalo acotado $[-M, M]$, existe $H \in \sum(F)$ 
-    tal que para todo elemento $\lambda \in [-M, M]$ se cumpla que 
+    en \ref{def:funcion_activacion_articulo} Comenzamos probando que para un intervalo acotado $[-M, M]$, existe $H_[-M, M] \in \sum(F)$ 
+    tal que para todo elemento $\lambda \in [-M, M]$ se cumple que 
 
     \begin{equation}
-        H(\lambda) = \cos(\lambda).
+        H_[-M, M](\lambda) = \cos(\lambda).
     \end{equation}
 
-    Calcularemos $H \in \sum(F)$  de forma constructiva: 
+    Calculamos $H_[-M, M] \in \sum(F)$  de forma constructiva. Recordemos que  
     \begin{equation}
         F(\lambda )= \left(1 + \cos\left(\lambda -\frac{\pi}{2} \right) \frac{1}{2}\right) 
          1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
@@ -298,22 +301,23 @@
         \label{fig:cosine_squaser}
     \end{figure}
 
-    Se tiene pues que para cualquier $\lambda \in \left[ \frac{-\pi}{2}, \frac{\pi}{2}\right]$
+    Se tiene pues que para cualquier $\lambda \in \left[ \frac{-\pi}{2}, \frac{\pi}{2}\right]$ se cumple
 
     \begin{equation}
         2 F(\lambda)-1 = \cos \left( \lambda - \frac{\pi}{2}\right)
     \end{equation}
 
-    Que haciendo $\mu = \lambda - \frac{\pi}{2}$ resulta que para cualquier
-    $\mu \in [-\pi, 0]$
+    y, haciendo $\mu = \lambda - \frac{\pi}{2}$, resulta que para cualquier
+    $\mu \in [-\pi, 0]$ se tiene 
     \begin{equation}
         \cos(\mu) = 2 F \left(\mu + \frac{\pi}{2} \right)  -1 
     \end{equation}
 
-    Además, puesto que $F(\mu + 2 \pi M) = 1$ para todo $\mu \in [-M, M] \supset [-\pi, 0]$ tenemos que
-    para cualquier $\mu \in [-\pi, 0]$
+    Además, puesto que $F(\mu + 2 \pi M) = 1$ para todo $\mu \in [-M, M] \supset [-\pi, 0]$,
+    para cada $\mu \in [-\pi, 0]$ podemos escribir
     \begin{equation}
-        \cos(\mu) = 2 F \left(\mu + \frac{\pi}{2} \right)  - F(\mu + 2 \pi M) 
+        \cos(\mu) = 
+        2 F \left(\mu + \frac{\pi}{2} \right)  - F(\mu + 2 \pi M). 
     \end{equation}
 
     \begin{figure}[h]
@@ -323,22 +327,16 @@
         \label{fig:coseno_vs_H_menos_pi_cero}
     \end{figure}
 
-    De manera generalizada denotaremos como $H_{[M_1,M_2 ]}$ a la función 
-     existe $H_{[M_1,M_2 ]} \in \sum(F)$ 
-    tal que para todo elemento $\lambda \in [M_1, M_2]$ se cumpla que 
-    \begin{equation}
-        H_{[M_1,M_2 ]}(\lambda) = \cos(\lambda)
-    \end{equation}
-
-    Por tanto $H_{[-\pi, 0]}$ viene definida como  
+    Podemos definir entonces
     \begin{equation}
         H_{[-\pi, 0]} = 2 F \left(\mu + \frac{\pi}{2} \right)  - F(\mu + 2 \pi M) 
     \end{equation}
+    que cumple que $H_{[-\pi, 0]} = \cos$ en $[-\pi,0]$
 
     Por la simetría de la función coseno resulta que 
-    para todo $\mu \in [0, \pi]$
+    para todo $\mu \in [0, \pi]$ se tiene
     \begin{equation}
-        \cos(\mu) = \cos(-\mu) = H_{[-\pi, 0]}(-\mu)
+        \cos(\mu) = \cos(-\mu) = H_{[-\pi, 0]}(-\mu).
     \end{equation}
     \begin{figure}[h]
         \centering
@@ -351,33 +349,34 @@
     \begin{equation}
         \begin{split}
             H_{[-\pi, \pi ]}(\mu) &= H_{[-\pi, 0]}(\mu) + H_{[-\pi, 0]}(-\mu) - 1 \\
-            &= H_{[-\pi, 0]}(\mu) + H_{[-\pi, 0]}(-\mu) - F(\mu + 2 \pi M). 
+            &= H_{[-\pi, 0]}(\mu) + H_{[-\pi, 0]}(-\mu) - F(\mu + 2 \pi M) 
         \end{split} 
     \end{equation}  
-
-    Por ser el coseno una función periódica es fácil ver que 
-    considerando un natural $N$ que satisfaga que $2 \pi N \geq M$
-  
+    que cumple que $H_{[-\pi, \pi ]} = \cos$ en $[-\pi, \pi]$.
+    Fijamos un natural $N$ cumpliendo que $2 \pi N \geq M$ 
+    y definimos  
     \begin{equation}
     \begin{split}
         H_{[-2\pi N, 2 \pi N]} (\lambda) = 
-        \sum_{i=1}^N (H_{[-\pi, \pi ]}(\lambda + 2 \pi i) +1) 
+        \sum_{j=1}^N (H_{[-\pi, \pi ]}(\lambda + 2 \pi j) +1) 
         + H_{[-\pi, \pi ]}(\lambda)  \\
-        - \sum_{i=1}^N (H_{[-\pi, \pi ]}(- \lambda + 2 \pi i - \pi) +1),
+        - \sum_{j=1}^N (H_{[-\pi, \pi ]}(- \lambda + 2 \pi j - \pi) +1),
     \end{split}
 \end{equation}
 \begin{equation}
     \begin{split}
         H_{[-2\pi N, 2 \pi N]} (\lambda) 
         =  H_{[-\pi, \pi ]}(\lambda) + 
-        \sum_{i=1}^N (
-            H_{[-\pi, \pi ]}(\lambda + 2 \pi i)
+        \sum_{j=1}^N (
+            H_{[-\pi, \pi ]}(\lambda + 2 \pi j)
             - 
-            H_{[-\pi, \pi ]}(- \lambda + 2 \pi i - \pi)
+            H_{[-\pi, \pi ]}(- \lambda + 2 \pi j - \pi)
         ) .         
     \end{split}
     \end{equation}
 
+    Usando la periodicidad del coseno es fácil ver que 
+    $H_{[-2\pi N, 2 \pi N]} = \cos$ en $[-2\pi N, 2 \pi N].$
       % Ejemplos de la función H final
       \begin{figure}[h]
         \centering
@@ -397,13 +396,14 @@
         \caption{Ejemplos de funciones $H_{[-M, M]}$}
     \end{figure}
 
-    Está claro que por ser $2 \pi N \geq M$ la función $H_{[-M, M]}$ será la restricción de la anterior, es decir: 
-
+    Está claro que por ser $2 \pi N \geq M$ podemos definir 
+    finalmente 
     \begin{equation}
-        H_{[-M, M]} = H_{[-2\pi N, 2 \pi N]_{|[-M, M]}}.
+        H_{[-M, M]} = H_{[-2\pi N, 2 \pi N]}
     \end{equation}
+    lo que concluye finalmente la construcción de $H_[-M, M].$
+    %%  TODO por aquí te has quedado corrigiendo 
 
-    
     Así definida $H_{[-2\pi N, 2 \pi N]}$
     pertenecerá a $\sum(F)$ o lo que es de nuestro interés, estará 
     formada por una combinación finita, supongamos que $K$, 
