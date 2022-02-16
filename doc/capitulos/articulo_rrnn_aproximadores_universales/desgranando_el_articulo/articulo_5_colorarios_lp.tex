@@ -492,41 +492,50 @@ Así definida, la prueba por inducción es idéntica a la del caso primero y hem
 
 %% Redactar mejor esta sección 
 
-\subsection{Reflexión sobre el número de neuronas}
-\textbf{Conclusión que falta aún por escribir bien}
+\subsection{Reflexión sobre el número de neuronas} 
 
-Hasta ahora no tenemos ni idea una estimación del número de 
-neuronas que necesitamos.  ¿son estas un número tan grande que 
-resulte inasumible?
-La idea que reside en este teorema es que si tenemos un conjunto
-finito de puntos siempre se podrá encontrar una red neuronal 
-que los evalúe de manera exacta. 
+Ante la pregunta natural de 
+\textit{¿cuántas neuronas son necesarias?} el 
+recién probado teorema nos responde que 
+si estamos entrenando con $n$ datos, con $n$ neuronas es suficiente para volver a reproducir esos datos. Pero esto carece de sentido a nivel práctico por los siguientes motivos. 
 
-Este teorema nos muestra dos caras de una manera 
-Aspecto bueno: 
-Podremos reproducir un conjunto finito de puntos con una red neuronal e independientemente de la regla subyacente a estos. 
-Malo: 
-Supongamos que queremos entrenar una red neuronal para que prediga 
-de acorde a una regla $f$, en la vida real no tenemos $f$, pero sí
-pares de entradas e imágenes. Al ser el conjunto finito, 
-esas mismas relaciones pueden ser consecuencia de una clase 
-\textit{infinita no numerable} de funciones. 
-Al \textit{entrenar} con un conjunto de punto finito  la red será capaz de adaptarse  a esos puntos y no 
-necesariamente aproximar $f$. 
+\subsubsection*{Naturaleza de los datos}  
+Recordemos que el problema al que nos enfrentamos es el siguiente:
+queremos ser capaces de predecir cierto fenómeno regido por $g$ una \textit{función} desconocida. 
+Para ello tenemos un \textit{conjunto de muestras} 
+compuestas por pares $(x, g(x))$, es decir, ante la situación $x$
+hemos observado que el fenómeno se comporta como $g(x)$. Todo esta 
+situación experimental puede producir incoherencias teóricas, como por ejemplo que se tengan dos muestras $(x_1, y_1), (x_2, y_2)$ 
+tales que $x_1 = x_2$ pero $y_1 \neq y_2$ o que la medición contenga errores, es decir $(x, g(x)+\delta)$. 
 
-AÑADIR IMAGEN DE SPLINE Y POLINOMIO. 
+Se podría paliar esta situación con preprocesado de los datos. 
 
-Ante esta situación podríamos aumentar el número de datos, 
-y suponiendo que *continuidad* podrían darse muchos casos distintos 
+\subsubsection*{ Naturaleza de la regla subyacente}  
 
-podría ser interesante visualizar la simpleza
-Ockham -> si tengo pocos datos optaré por modelos simples. 
+Supongamos que los datos de entrenamiento son perfectos. Existen infinitas aplicaciones 
+que evalúan de la misma manera un conjunto finito de puntos. 
+¿Cuáles tomar?
 
-Puede dar el caso de que los datos tengan también errores o ruido 
-al ser obtenidos, en ese caso estaremos aprendiendo fielmente mentiras. 
+Podríamos, siguiendo el principio de economía de Ockham optar
+por modelos más simples. ¿Cuántas neuronas \textit{simplificarían} el modelo? Podríamos tomar menos del tamaño del conjunto de 
+entrenamiento y utilizar esa \textit{redundancia} para 
+\textit{afinar}. 
 
-Haciendo el número de neuronas menos que N se podría conseguir. 
+\subsubsection*{Coste computacional inasumible}  
+Supongamos que los datos son idílicos, el modelo se conoce y se establece un tamaño de datos de entrenamiento suficiente y
+un número de neuronas acorde  ¿podríamos asumir el coste computacional?
 
-Nota para experimentar: quizás se podría ahorrar iteraciones de 
-cálculo si utilizamos como \textit{backbone} (valores iniciales de los pesos) una red neuronal construida de esta manera. 
+\subsubsection*{Naturaleza constructiva de la demostración}
+\textcolor{red}{Estoy especulando, pero quiero dejar este pensamiento registrado.}
+El coste computacional de \textit{construir} esa red neuronal 
+es menor que el de entrenarla (TODO: comparar)
+podría optarse por una estrategia que se base de alguna manera 
+en esta construcción para inicializar los pesos?
+
+Por ejemplo: queremos construir una rrnn con n neuronas, 
+seleccionamos n datos aleatorios, construimos $f_n$ 
+y sobre ella entrenamos. 
+
+Quizás se obtengan mejores resultados que directamente inicializando los pesos de manera aleatoria. 
+ 
 %% Hasta aquí conclusión que redactar mejor. 
