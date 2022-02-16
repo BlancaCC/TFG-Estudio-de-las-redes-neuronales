@@ -12,6 +12,7 @@ Hornik
 Lusin
 Multilayer
 Nótese
+Ockham
 Perceptrón
 Stinchcombe
 TeoremaStoneWeiertrass
@@ -27,12 +28,15 @@ fj
 fjk
 gj
 gjk
+hiperplanos
 homeomorfismo
 ij
 ik
+inasumible
 inecuación
 insesgado
 jk
+lcc
 multicapa
 multicapas
 nx
@@ -53,6 +57,3 @@ sumatorias
 teo
 tratabilidad
 ésimo
-lcc
-inasumible
-Ockham
