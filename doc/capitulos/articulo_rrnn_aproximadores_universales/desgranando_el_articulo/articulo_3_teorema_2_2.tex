@@ -401,36 +401,33 @@
     \begin{equation}
         H_{[-M, M]} = H_{[-2\pi N, 2 \pi N]}
     \end{equation}
-    lo que concluye finalmente la construcción de $H_[-M, M].$
-    %%  TODO por aquí te has quedado corrigiendo 
-
-    Así definida $H_{[-2\pi N, 2 \pi N]}$
-    pertenecerá a $\sum(F)$ o lo que es de nuestro interés, estará 
-    formada por una combinación finita, supongamos que $K$, 
-    sumas y restas finita de $F \circ A_i$ con $A_i$ una función afín. 
-    Por ser $F$ una función de activación continua gracias al
-    lema \ref{lema:a_2_paso_previo_denso}, 
-    existirá $W_{ \frac{\epsilon}{k}} \in \sum(\psi)$ tal que 
-    podremos acotar $|F - W_{ \frac{\epsilon}{k}} | < \frac{\epsilon}{k}$ en todo $\R$.
-
-    Además, como las transformaciones afines $A_i$ solo son traslaciones,
-    para cada $i \in \{1,..K\}$ se cumple que 
-     $W_{ \frac{\epsilon}{k}} \circ A_i \in \sum(\psi)$ y se mantiene que 
+    lo que concluye finalmente la construcción de $H_{[-M, M]}.$
+    %%  TODO por aquí te has quedado corrigiendo  
+    La construcción anterior nos dice que $H_{[-M, M]} \in \sum(F)$. 
+    De hecho existen $t \in \N$ y traslaciones $A_j$ para 
+    $j \in \{1, \ldots, t\}$ de modo que 
     \begin{equation}
-        |F \circ A_i - W_{ \frac{\epsilon}{k}} \circ A_i | < \frac{\epsilon}{k}. 
+        H_{[-M, M]} = \sum_{j=1}^t \alpha_j A_j(\lambda) 
+        \quad 
+        \alpha_j \in \{-1,1\}. 
+    \end{equation}
+    Como $F$ es una función de activación continua, el lema \ref{lema:a_2_paso_previo_denso}
+    nos da la existencia de 
+    $W_\frac{\epsilon}{t} \in \sum(\psi)$ cumpliendo que 
+    $|F - W_{ \frac{\epsilon}{t}} | < \frac{\epsilon}{t}$ en todo $\R$.
+    Por tanto 
+    \begin{equation}
+        |F \circ A_i - W_{ \frac{\epsilon}{t}} \circ A_i |
+         < \frac{\epsilon}{t}
+         \quad 
+         \forall j \in \{1, \ldots, t\}
+         . 
     \end{equation}
 
-
-    Recopilemos pues, tenemos que para $2\pi N \geq M$ y en el dominio $\lambda \in [-M, M]$: 
+Podemos ya definir la función que buscamos: 
     \begin{equation}
-        H_{[-M, M]} (\lambda) = 
-        H_{[-2\pi N, 2 \pi N]}(\lambda) = 
-        \sum_{i=1}^k \alpha_i F( A_i(\lambda)) \quad \alpha_i \in \{-1,1\}.
-    \end{equation}
-    fijando tales $\alpha_i \in \{-1,1\}$ y las traslaciones $A_i$ definimos 
-    \begin{equation}
-        \cos_{M, \epsilon}(\lambda) = \sum_{i=1}^k 
-        \alpha_i  W_{ \frac{\epsilon}{k}}(A_i(\lambda)). 
+        \cos_{M, \epsilon}(\lambda) = \sum_{j=1}^t 
+        \alpha_j  W_{ \frac{\epsilon}{t}}(A_j(\lambda)). 
     \end{equation}
 
     De esta manera, para cualquier $\lambda \in [-M, M]$
@@ -438,30 +435,28 @@
     \begin{equation}
         \begin{split}
             |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)| 
-            &= |\cos_{M,\epsilon}(\lambda) - \cos(\lambda) \pm  H_{[- M, M]}(\lambda)| \\
             &\leq
             |\cos(\lambda) -  H_{[- M, M]}(\lambda)|
             + 
             | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)|  \\
             &\leq  0 
             + | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)| \\
-            & \leq  \sum_{i=1}^k 
-            |  W_{ \frac{\epsilon}{k}}(A_i(\lambda)) 
+            & \leq  \sum_{j=1}^t 
+            |  W_{ \frac{\epsilon}{t}}(A_j(\lambda)) 
             -
-            F( A_i(\lambda))
+            F( A_j(\lambda))
              | \\
-             & <   \sum_{i=1}^k \frac{\epsilon}{k} = \epsilon .
+             & <   \sum_{j=1}^t \frac{\epsilon}{t} = \epsilon .
         \end{split}
     \end{equation}
 
     Dando con esto por concluida la demostración. 
- 
 \end{proof}
 
 %Lema 4.A
 \begin{lema}\label{lema:A_4_sum_cos_aproxima}
     Sea $g(\cdot) = \sum_{j=1}^q \beta_j \cos(A_j(\cdot))$ con 
-    $A_j \in A^r$.
+    $A_j \in A^r$ y $\beta_j \in \R$.
     Para cualquier función de activación $\psi$, 
     cualquier compacto $K \subset \R^r$
     y cualquier $\epsilon > 0$
@@ -477,60 +472,60 @@
     , existe
      $M$ un número real positivo  cumpliendo que
     \begin{equation}
-        A_i(K) \subseteq [-M, M] 
+        A_j(K) \subseteq [-M, M] 
         \quad 
         \text{para todo } j \in \{1, ..., q \}. 
     \end{equation} 
 
-    También existe un real $B$, que es el máximo de las normas 
-    los coeficientes de $g$. 
+    Definimos  
     \begin{equation}
-        B = \sup \{ |\beta_j| :  j \in \{1, ..., q \}\}
+        B = \max \{ |\beta_j| :  j \in \{1, ..., q \}\}
     \end{equation}
 
     En virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
-    podemos encontrar un 
+    podemos encontrar
     $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$ cumpliendo que
     \begin{equation}
         \sup_{\lambda \in [-M, M]} | 
         \cos_{M, \frac{\epsilon}{q B}}(\lambda)
         - 
-        cos(\lambda)
+        \cos(\lambda)
         | 
         < \frac{\epsilon}{q B} 
     \end{equation}
-    por lo que para cualquier  $j \in \{1, ..., q \}\}$   se tiene que 
+    por lo que para cualquier  $j \in \{1, ..., q \}$   se tiene que 
     \begin{equation}
         \sup_{x \in K} | 
         \cos_{M, \frac{\epsilon}{q B}}(A_j(x))
         - 
-        cos(A_j(x))
+        \cos(A_j(x))
         | 
         \leq  
         \sup_{\lambda \in [-M, M]} | 
         \cos_{M, \frac{\epsilon}{q B}}(\lambda)
         - 
-        cos(\lambda)
+        \cos(\lambda)
         | 
         < \frac{\epsilon}{q B}. 
     \end{equation}
 
     Definamos ahora $f$ como 
     \begin{equation}
-        f(x) = \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{q B}}(A_j(x)).
+        f(x) = \sum_{j=1}^q \beta_j 
+        \cos_{M, \frac{\epsilon}{q B}}(A_j(x)),
     \end{equation}
-    Puesto que $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$ entonces 
-    $f \in \sum^r(\psi)$ y satisface además que 
-
+    que cumple $f \in \sum^r(\psi)$  puesto que 
+    $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$, 
+    y satisface además que
     \begin{equation}
         \begin{split}
         \sup_{x \in K} | f(x) - g(x)| 
-        \leq
+        &\leq
         \sup_{\lambda \in [-M, M]} 
         | \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{q B}}(\lambda )
          - 
          \sum_{j=1}^q \beta_j \cos(\lambda )|  \\
-        \leq
+        &\leq
         \sup_{\lambda \in [-M, M]} 
         \sum_{j=1}^q 
             |\beta_j|
@@ -538,8 +533,9 @@
                 \cos_{M, \frac{\epsilon}{q B}}(\lambda)
                 -
                 \cos(\lambda)
-            |   
-            <
+            |
+            \\   
+            &<
             \sup_{\lambda \in [-M, M]} 
             \sum_{j=1}^q   
                 B
@@ -550,20 +546,21 @@
      Con lo que acabamos de probar la tesis del lema. 
 \end{proof}
 
+% TODO te has quedado por aquí corrigiendo
 
 %Lema A.5 
 \begin{lema} \label{lema:A_5_uniformemente_denso_compactos}
     Para cualquier función de activación $\psi$ se tiene que 
-    $\rrnn$ es uniformemente denso en compactos de $\fC.$
+    $\rrnn$ es uniformemente denso para compactos en $\fC.$
 \end{lema}
 \begin{proof}
     En virtud del lema \ref{lema:A_4_sum_cos_aproxima} 
-    bastaría probar que $\sum^r(cos)$ es uniformemente 
+    bastaría probar que $\sum^r(\cos)$ es uniformemente 
     denso en compactos, ya que hemos visto que $\rrnn$ 
-    es denso en $\sum^r(cos)$. 
+    es denso en $\sum^r(\cos)$. 
 
-    Veamos ahora que $\sum^r(cos) = \sum \prod^r(cos)$ 
-    donde recordamos que $\sum \prod^r(cos)$ se correspondía
+    Veamos ahora que $\sum^r(\cos) = \sum \prod^r(\cos)$ 
+    donde recordamos que $\sum \prod^r(\cos)$ se correspondía
     con el espacio de los polinomios trigonométricos. 
     \begin{equation}
         \sum \prod^r(\cos) = 
@@ -571,29 +568,17 @@
             \sum_{j=1}^q \beta_j 
             \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) 
             : q, l_j \in \N, \beta_j \in \R, A_{j,k}\in A^r
-        \right\}
+        \right\},
     \end{equation}
-    Y  $\sum^r(cos)$ el caso particular de los polinomios anteriores 
-    de grado uno. 
+    y  $\sum^r(\cos)$ el caso particular de los polinomios anteriores 
+    de grado uno. Luego está claro que $\sum^r(\cos) \subseteq \sum \prod^r(\cos).$
     
-    Luego está claro que $\sum^r(cos) \subseteq \sum \prod^r(cos).$
-    Traigamos a colación las siguientes igualdades trigonométricas:
-
-    Para cualesquiera números reales $A,B$ 
+    Para cualesquiera números reales $A,B$
+    se tiene 
     \begin{equation}
         \begin{split}
-            &\cos(A + B)  = 
-            \cos(A)\cos(B) - \sin(A)\sin(B) \\
-            &\cos(A - B)  = 
-            \cos(A)\cos(B) + \sin(A)\sin(B).
-        \end{split}
-    \end{equation}
-
-    Por lo que sumando
-    \begin{equation}
-        \begin{split}
-            \cos(A + B)  + \cos(A - B)
-            = 2\cos(A)\cos(B).
+            \frac{1}{2}(\cos(A + B)  + \cos(A - B))
+            = \cos(A)\cos(B).
         \end{split} 
     \end{equation}  
     y de manera general si definimos 
@@ -604,41 +589,40 @@
             \text{ para cualquier } 1 < i \leq l
         \}
     \end{equation}
-
+    se cumple (por inducción) 
     \begin{equation}
-        \prod^l_{k=1} cos(A_k) = 
+        \prod^l_{k=1} \cos(A_k) = 
         \frac{1}{2^{l-1}}(\sum_{x \in \Lambda_l}
          \cos(\sum_{i=1}^l x_i A_i)). 
     \end{equation}
-
     Por lo que cada elemento 
-    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) \in \sum \prod^r(cos)$
+    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) \in \sum \prod^r(\cos)$
     podrá ser expresado como 
     $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) = 
     \sum_{j=1}^t \alpha_j \cos(A_{j,k}(\cdot))$, es decir, como un elemento 
-    de $\sum^r(cos)$. Concluimos como queríamos que son iguales
+    de $\sum^r(\cos)$. Concluimos como queríamos que son iguales
     los espacios
-    $\sum^r(cos)$ y $\sum \prod^r(cos)$. 
+    $\sum^r(\cos)$ y $\sum \prod^r(\cos)$. 
 
-    Finalmente gracias al teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
-    por ser  el $\cos$ una función real continua no constante sabemos que 
+    Finalmente gracias al teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales},
+    por ser  el coseno una función real continua no constante sabemos que 
     $\sum \prod^r(\cos)$ es uniformemente denso en compactos en $\fC$ 
     probando con esto el resultado buscado. 
     
 \end{proof}
 
-Estamos ya en condiciones de probar el resultado clave del artículo. 
+Estamos ya en condiciones de probar el resultado clave del trabajo. 
 
 % Teorema 2.4
 \begin{teorema} \label{teo:2_4_rrnn_densas_M}
     Para cualquier función de activación $\psi$, $r \in \N$ y
-    medida de probabilidad $\mu$ o $(\R^r, B^r)$, 
-    se tiene que $\rrnn$ es uniformemente denso en compactos
-    en $\fC$ y denso en $\fM$ de acorde a la distancia $\dist$. 
+    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
+    se tiene que $\rrnn$ es uniformemente denso para compactos
+    en $\fC$ y denso en $\fM$ para a la distancia $\dist$. 
 \end{teorema}
 \begin{proof}
-Por el lema anterior \ref{lema:A_5_uniformemente_denso_compactos}
-acabamos de ver que $\rrnn$ es uniformemente denso en compactos de $\fC$
+En el lema anterior 
+acabamos de ver que $\rrnn$ es uniformemente denso en compactos en $\fC$
 y gracias al lema \ref{lema:2_2_convergencia_uniforme_en_compactos} 
 (Si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
 uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$.)
@@ -651,6 +635,7 @@ para cualquier medida finita $\mu$ se tiene que $\fC$ es denso en
 $\fM$ para la distancia $\rho_\mu$
 se tiene por la transitividad de ser denso (ver mismo razonamiento que el 
 usado para la demostración del teorema \ref{teo:2_2_denso_función_continua})
+que 
 $\rrnn$ es $\dist$-denso en $\fM$.
 \end{proof}
 
@@ -659,7 +644,8 @@ $\rrnn$ es $\dist$-denso en $\fM$.
 Notemos que  $\rrnn$ representa el conjunto de 
 las redes neuronales \textit{feedforward} con tan solo una capa oculta, luego 
 acabamos de probar que las redes neuronales \textit{feedforward} con 
-tan solo una capa oculta son capaces de aproximar \textit{con un error uniformemente} 
+tan solo una capa oculta son capaces de aproximar 
+aproximar uniformemente con un error prefijado
 cualquier función continua y aproximar \textit{a secas} cualquier
 función medible 
 con cualquier medida $\mu$, distancia $\dist$, independiente de la 
