@@ -16,8 +16,11 @@ spell:
 install-spell:
 	bash ./scripts/aspell-install.sh
 
-order:
+sort:
 	./scripts/order-dictionary.py
+
+lazy: 
+	./scripts/lazy-spell-check.sh
 
 workflow-spell: install-spell spell
 
