@@ -9,16 +9,12 @@
 Hasta ahora habíamos considerado el espacio de funciones continuas 
 $\fC$ 
 como subespacio dentro del espacio de funciones medibles $\fM$. 
-
-Sin embargo ser continua es una hipótesis muy estricta que queda
-notable en la amplia gama de subespacios que contienen al de 
+Sin embargo, ser continua es una hipótesis muy estricta ya que existe una amplia gama de subespacios que contienen al de 
 las funciones continuas y están contenidos en el de funciones medibles. 
-
 Es por ello que vamos a realizar una generalización de los teoremas
 para espacios $L_p$. De manera intuitiva estos espacios nos van a 
 permitir considerar funciones que no necesariamente sean continuas
-y que incluso puedan \textit{tomar} valores puntuales \textit{que sean}
-$\infty$ o $- \infty$. 
+y que incluso no están acotadas. 
 
 \begin{definicion}[Espacios Lp]
     Se llama espacio $L_p(\R^r, \mu)$ o simplemente $L_p$ al conjunto 
@@ -31,10 +27,9 @@ Se define la norma de $L_p$ como
 \begin{equation}
     \| f\|_p 
     =
-    \left(\int |f(x)|^p d\mu \right)^\frac{1}{p}.
+    \left(\int |f(x)|^p d\mu \right)^\frac{1}{p}
 \end{equation}
-
-La distancia asociada al espacio $L_p$ se define como 
+y la distancia asociada al espacio $L_p$ se define como 
 \begin{equation}
     \rho_p(f,g) = \| f-g\|_p.
 \end{equation}
@@ -49,13 +44,13 @@ La distancia asociada al espacio $L_p$ se define como
 \end{corolario}
 \begin{proof}
     Se quiere probar que para cualquier $g \in L_p$ y 
-    $\epsilon >0$ existe un $f \in \rrnn$ tales que 
+    $\epsilon >0$ existe $f \in \rrnn$ tal que 
     \begin{equation}
         \dlp(f,g) <\epsilon.
     \end{equation}   
     
     Por pertenecer $g$ a $L_p$ existe una constante $M$ real positiva
-    los suficientemente grande 
+    lo suficientemente grande 
     tal que si definimos la función $h =g 1_{|g|<M}$ esta satisface 
     que
     \begin{equation}\label{eq:corolario_2_2:h_compacto}
@@ -93,10 +88,10 @@ La distancia asociada al espacio $L_p$ se define como
     \end{equation}
 
     Gracias a la desigualdad triangular y las desigualdades
-    (\refeq{eq:corolario_2_2:cota_rrnn})
-    (\refeq{eq:corolario_2_2:h_compacto})
+    (\refeq{eq:corolario_2_2:cota_rrnn}),
+    (\refeq{eq:corolario_2_2:h_compacto}) y 
     (\refeq{eq:corolario_2_2:s_continua})
-
+    tenemos
     \begin{equation}
         \dlp(f,g) 
         \leq
@@ -127,8 +122,8 @@ Probando con ello lo buscado.
 
 %Corolario 2.4 
 \begin{corolario} \label{corolario:2_4_conjunto_finito}
-    Sea $\mu$ una una medida que evalúa a uno un conjunto 
-    finito de puntos, 
+    Sea $\mu$ una medida, que para
+    un conjunto finito de puntos $O$ cumple que $\mu(0)=1$, 
     entonces, para cualquier función medible $g \in \fM$
     y sea cual sea $\epsilon >0$ 
     existe $f \in \rrnn$ la cual cumple que 
@@ -143,9 +138,9 @@ Probando con ello lo buscado.
 
 \end{corolario}
 \begin{proof}
-    Por el teorema \ref{teo:2_4_rrnn_densas_M} existirá una 
+    Por el teorema \ref{teo:2_4_rrnn_densas_M} existe 
     $f \in \rrnn$ tal que para cualquier 
-    $\epsilon_1, \epsilon_2 >0$ se cumpla que 
+    $\epsilon_1, \epsilon_2 >0$ se cumple que 
     $\mu \{x: |f(x) - g(x)| > \epsilon_1\} < \epsilon_2.$
     Sea $O$ el conjunto de puntos tal que $\mu(O) = 1.$
     Por ser finito $O$ podemos encontrar
@@ -156,31 +151,32 @@ Probando con ello lo buscado.
     \end{equation}
 
     Sin pérdida de generalidad tomamos $\epsilon < \delta$ y entonces
-    para cualquier $f$ que cumpla que 
+    para  que la $f$ fijada cumpla que
     \begin{equation}
         \dist(f,g) = \epsilon
     \end{equation}
-    por cómo se define la distancia de una medida
+    debe de cumplirse que 
     \begin{equation}
         \dist(f,g) =  \inf 
         \{
-           \epsilon > 0:
+           \epsilon_1 > 0:
            \mu\{ 
             x:
             |f(x) - g(x)| 
-            > \epsilon
+            > \epsilon_1
         \}
-        < \epsilon
-        \}
+        < \epsilon_1
+        \} 
+        = \epsilon,
     \end{equation}
-    y la forma de tomar $\epsilon$ en (\refeq{eq:2_4:definición_epsilon}) 
+    pero por cómo tomamos $\epsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
     tiene que $\mu\{ 
         x:
         |f(x) - g(x)| 
         > \epsilon
     \} = 0.$
 
-    Es decir probando con ello que 
+    Por lo que acabamos de probar, como queríamos, que 
     \begin{equation}
         \mu\{ 
             x:
@@ -191,30 +187,29 @@ Probando con ello lo buscado.
     \end{equation}
 \end{proof}
 
-Nótese que con este corolario lo que se está indicando es que en 
-conjunto finito se puede encontrar una red neuronal
-converge de manera exacta en esos puntos. 
+Nótese que con este corolario lo que se está indicando es que dado
+un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuronal que para tales puntos \textit{devuelva} el valor exacto. 
 
 \begin{definicion}[Función Booleana]
-    Sea 
+    Decimos que una función es Booleana si su dominio es 
+    $\{0,1\}^r$  para algún $r \in \N \setminus \{0\}$
+    y su codominio es $\{0,1\}$. Es decir,
     \begin{equation}
-        B^r = \{
-            (x_1, ..., x_r) : x_i \in \{0,1\}, 
-            \text{ para todo } i \in \{1,..., r\}
-            \}.
+      f:\{0,1\}^r \longrightarrow \{0,1\}.
     \end{equation}
-
-    Se dice $f$ es una función Booleana 
-    si formalmente esta definida de $f:B^r \longrightarrow B$. 
 \end{definicion}
-Ejemplo conocidos son la función $or: B^r \longrightarrow B$  que vale 
+
+Ejemplos conocidos son la función 
+$or: \{0,1\}^r \longrightarrow \{0,1\}$  que vale 
 uno si alguno de su entrada es uno y la función 
-$and: B^r \longrightarrow B$
-que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
+$and: \{0,1\}^r \longrightarrow \{0,1\}$
+que se define como $and(x_1, \ldots, x_r) = \prod_{i=1}^r x_i.$
 
 % Corolario 2.5  
-\begin{corolario}
-    Para cada función Booleana $g: B^r \longrightarrow B$ y 
+\begin{corolario} 
+    Para cada función Booleana 
+    $g: \{0,1\}^r \longrightarrow \{0,1\}$
+     y 
     cada $\epsilon >0$ existe una red neuronal
     $f \in \rrnn$ tal que 
     \begin{equation}
@@ -223,13 +218,13 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     \end{equation}
 \end{corolario}
 \begin{proof}
-    Se define la función $\mu : \R^r \longrightarrow [0,1]$ de la forma que 
+    Se define la función $\mu : \R^r \longrightarrow [0,1]$ de forma que 
     \begin{equation}
         \mu(x) = 
       \left \{
     \begin{aligned}
-      \frac{1}{2^r} \quad &\text{ si } x \in B^r \\
-      0 \quad & \text{ si } x \notin B^r 
+      \frac{1}{2^r} \quad &\text{ si } x \in \{0,1\}^r \\
+      0 \quad & \text{ si } x \notin \{0,1\}^r 
     \end{aligned}
   \right .
     \end{equation}
@@ -237,7 +232,7 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     Se tiene que $\mu$ es una medida ya que cumple que 
     \begin{enumerate}
         \item Hipótesis de acotación: $0 \leq \mu(A) \leq 1$ para $A \in \mathcal{P}(\R^r).$
-        \item Probabilidad del vacía es nula y la del  total la unidad. 
+        \item La probabilidad del vacío es nula y la del  total es la unidad. 
         \item La probabilidad de la unión es la suma de la probabilidades. 
         \begin{equation}
             P\left(
@@ -249,9 +244,9 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
         \end{equation}
     \end{enumerate}  
 
-    Como la cardinalidad de $B^r$ es $2^r$, es decir finita
+    Como la cardinalidad de $\{0,1\}^r$ es $2^r$
     podemos aplicar el corolario \ref{corolario:2_4_conjunto_finito}
-    y entonces sabemos que  existe una $f\in \rrnn$ tal que 
+    y entonces sabemos que  existe $f\in \rrnn$ tal que 
     \begin{equation}
             \mu\{ 
                 x:
@@ -267,6 +262,7 @@ que se define como $and(x_1, ..., x_r) = \prod_{i=1}^r x_i.$
     \end{equation}
     como queríamos probar. 
 \end{proof}
+\textcolor{red}{A partir de aquí no ha sido revisado.}
 % Lemas propios  previos al teorema 2.5
 \begin{lema} \label{lema:propio_1_antes_teorema_2_5}
     Si una función de activación  $\psi$ alcanza el cero y el uno, esto es 
@@ -336,13 +332,16 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     \end{equation}
 
     Puesto que $\R^r$ no puede ser expresado como unión finita de hiperplanos,
-    $U \subsetneq \R^r$ y por tanto existirá un $p$ tal que 
+    $U \subsetneq \R^r$ y por tanto existirá $p \in \R^r \setminus U$ tal que 
     \begin{equation}
-        p \in \R^r \setminus U
+        p \cdot(x-y) \neq 0 
+        \text{ para cualesquiera }
+         x,y \in \Lambda \text{ diferentes. }
     \end{equation}
     como queríamos probar. 
 \end{proof}
 
+\textcolor{red}{Javier, la demostración que vas a leer a continuación se podría hacer directamente sin separar en casos ¿crees que sería mejor atacar directamente en el caso general?}
 % Teorema 2.5  
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
     Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
@@ -351,8 +350,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     Si $\psi$ alcanza el cero y el uno, 
     entonces
     existe una red neuronal $f \in \rrnn$ con $n$
-    capas ocultas tal que 
-
+    neuronas ocultas tal que 
     \begin{equation}
         f(x_i) = g(x_i) \text{ en todo } i \in \{1, \ldots, n \}.
     \end{equation}
@@ -364,18 +362,21 @@ primero uno particular, cuando $r=1$ y después el caso general.
 \textbf{Caso primero}
 
 Suponemos que $\{x_1, \ldots, x_n\} \subset \R$ y tras renombrar 
-podemos suponer que $x_1 < x_2 < \ldots < x_n.$ 
+podemos suponer que 
+\begin{equation}
+    x_1 < x_2 < \ldots < x_n. 
+\end{equation}
 Por alcanzar la función de activación $\psi$ el cero y el uno, 
 gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ tal que $\psi(-M) = 1-\psi(M) = 0.$
 
-Definiremos de manera recursiva a la red neuronal. 
+Definiremos de manera recursiva la red neuronal buscada $f_n$. 
 
 \begin{itemize}
     \item Red neuronal $f_1$. 
 
 Sea $A_1$ la función afín constante $A_1 = M.$
 Fijamos $\beta_1 = g(x_1)$. 
-De esta manera la red neuronal $f_1$ 
+De esta manera la red neuronal $f_1$ queda
 definida como $f_1(x) = \beta_1 \psi(A_1(x)).$
 
 \item Red neuronal $f_k$ con $1 < k \leq n$. 
@@ -400,6 +401,7 @@ Observemos que así construida se tiene que para cualquier
 Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq n$ se tiene que     
 $f_n(x_i) = g(x_i)$. 
 
+Además de que tiene un total de $n$ neuronas ocultas. 
 
 \begin{itemize}
     \item Caso base, $n=1$. 
@@ -434,7 +436,7 @@ Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducc
 \end{align}
 \end{itemize}
 
-Acabamos de probar por inducción 
+Acabamos de probar por inducción  que
 \begin{equation}
     f_n(x) = g(x) \text{ para cualquier } x \in \Lambda. 
 \end{equation}
@@ -444,16 +446,19 @@ Es decir, el caso primero que existe una red neuronal $f_n$ que dadas las hipót
 \textbf{Caso segundo}  
 
 Se tiene para este caso que $\Lambda \subset \R^r$ con $r >1$. 
-Seleccionamos un $p \in \R^r$ cumpliendo que 
+Seleccionamos $p \in \R^r$ cumpliendo que 
 para cualesquiera $x,y \in \Lambda$ distintos 
-se cumpla que $p(x-y) \neq 0$. Este $p$ existe como hemos comprobado en el lema \ref{lema:previo_propio_2_al_teorema_2_5}.
+$p(x-y) \neq 0$ (es posible de 
+encontrar por el lema \ref{lema:previo_propio_2_al_teorema_2_5}).
 
-Gracias a esto se puede establecer una relación de orden, que tras 
+Gracias a esta condición cada producto $p \cdot x$ con $x \in \Lambda$ es distinto y podemos establecer con ello una relación de orden, que tras 
 renombrar los elementos de $\Lambda$ queda
- $p \cdot x_1 < p \cdot x_2 < \ldots < p \cdot x_n.$
+\begin{equation}
+    p \cdot x_1 < p \cdot x_2 < \ldots < p \cdot x_n.
+\end{equation}
 
- Y como procedimos en el caso primero, definiremos de manera
- recursiva la red neuronal
+ Y como procedimos en el caso primero, definimos de manera
+ recursiva la red neuronal $f_n$ buscada:
 
  \begin{itemize}
  \item Red neuronal $f_1$. 
@@ -482,12 +487,12 @@ La red neuronal $f_k$ se calcula como
 \end{equation}
 \end{itemize}
 
-Así definida, la prueba por inducción es idéntica a la mostrada 
-en el caso primero probando con ello el teorema.
-
+Así definida, la prueba por inducción es idéntica a la del caso primero y hemos encontrado por tanto la red neuronal $f_n$ buscada.
 \end{proof}
 
 %% Redactar mejor esta sección 
+
+\subsection{Reflexión sobre el número de neuronas}
 \textbf{Conclusión que falta aún por escribir bien}
 
 Hasta ahora no tenemos ni idea una estimación del número de 
