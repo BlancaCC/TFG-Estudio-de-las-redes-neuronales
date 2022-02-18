@@ -1,0 +1,162 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Metodología
+%*******************************************************
+
+\chapter{Metodología}
+
+La planificación y organización es un componente vital a la hora del desarrollo de software 
+y la ciencia de datos, por lo que no es de extrañar que sus beneficios sean extrapolables
+a otras áreas de la ciencia; 
+hemos aplicado por ende la 
+metodología expuesta en el artículo \cite{DBLP:journals/corr/abs-2104-12545}, realizado 
+el trabajo siguiendo una metodología ágil, de acorde a las siguientes hipótesis. 
+
+\begin{enumerate}
+    \item Se premia la \textbf{reproducibilidad}, \textit{la ciencia no puede ser ciencia si no es reproducible}. Es por 
+    ello que se publica todo el material usado. 
+    \item \textbf{Comprobaciones} en todo los niveles, \textit{el código que no se ha probado no funciona}. 
+    Explicitamos unos requisitos y criterios claros de validación. 
+    \item Conocimiento libre, tanto la memoria como el código se encuentra publicado y con licencia libre en nuestro repositorio 
+    de GitHub \cite{TFG-Estudio-de-las-redes-neuronales}.
+    \item \textbf{Colaboración frente jerarquía de mando vertical}, los tutores en este caso 
+    los \textit{interesados en el producto} 
+    indican qué les gustaría que tuviera en vez de un qué y cómo estricto. Consiguiendo con ello una mayor autonomía, bienestar de trabajo.
+     
+\end{enumerate}  
+
+\section{Descripción de la metodología }  
+
+Concretamente la metodología seguida basada en \cite{que-es-un-trabajo-fin-de-x} ha sido la siguiente: 
+
+El objetivo principal es resolver un problema usando técnicas tanto informáticas como matemáticas. Para ello 
+se han definido unos objetivos claros a través de una \textit{metodología de personas} 
+(ver sección \ref{ch:metodología_persona}) \cite{personas-why-and-how-you-should-use-them}
+y las respectivas historias de usuario derivadas (ver sección \ref{ch:metodología_personas_historias_de_usuario}).   
+
+\subsection{Personas definidas}  \label{ch:metodología_personas}
+
+Las \textit{personas ficticias} que hemos definido serán los beneficiados del proyecto 
+y son los siguientes:  
+
+\begin{itemize}
+
+    \item \textbf{Rosa Camarero}, no tiene ni idea de lo que es una red neuronal ni tampoco le interesa.  Ella aprecia mejoras en su día a día, o bien porque pueda tener nuevas funcionalidades en su móvil o porque alguna 
+    aplicación de su día a día se vuelva más precisa. 
+
+    \item \textbf{Mayte Pérez}, catedrática en matemáticas aplicadas y miembro del tribunal . Su conocimiento
+    de informática es moderado. Valora una memoria formal y rigurosa. Se encarga de evaluar trabajos fin de grado, en particular éste mismo
+    
+    \item \textbf{Pablo Mesejo}, Doctor experto en \textit{deep learning} y miembro del tribunal. Valora la claridad, las experimentaciones sensatas y fundamentadas así cómo la posibilidad de aplicaciones reales. Se encarga de evaluar trabajos fin de grado, en particular éste mismo. 
+    
+    \item \textbf{Javier Merí}, profesor del departamento de análisis matemático y contutor del proyecto (junto con JJ). Busca de manera formal rigurosa entender y optimizar las redes neuronales usando herramientas analíticas. Estará presente durante todo el desarrollo. 
+    
+    \item   \textbf{JJ Merelo}, profesor del departamento de arquitectura de computadores y contutor del proyecto (junto con Javier). 
+    Busca resolver problemas relacionados con la optimización bajo un punto de vista más práctico y experimental, salvaguardando un trabajo bien organizado y metódico. Estará presente durante todo el desarrollo. 
+
+    \item \textbf{Blanca Cano} alumna de informáticas y matemáticas, tiene muchas ganas de aprender sobre redes 
+    neuronales, su conocimiento es moderado, espera presentar el trabajo en la convocatoria ordinaria. 
+
+\end{itemize}
+
+\section{Historias de usuario}   \label{ch:metodología_personas_historias_de_usuario}
+
+A partir de los usuarios se han definido las historias de usuario, que han quedado registradas 
+como \textit{issues} etiquetadas con \textit{user story} y cabecera de formato
+\texttt{[HUxx] título de la historia de usuario} en nuestro 
+repositorio de GitHub \cite{TFG-Estudio-de-las-redes-neuronales},
+ donde \texttt{HUxx} representa
+la historia de usuario número $xx$.   
+
+\subsection{Historias de usuario definidas} 
+
+\subsubsection*{[HU01] Optimización redes neuronales.}
+    Como \textit{Rosa} me gustaría que se encontrara alguna optimización en las redes neuronales, ya sea:
+\begin{itemize}
+    \item  Necesidad de arquitecturas menos potentes.
+    \item  Mayor precisión para misma arquitectura.
+    \item  Resolver nuevos problemas.
+\end{itemize}
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU01}. 
+
+\subsubsection*{ [HU02] Metodología}
+
+Como \textit{JJ} me gustaría que el proyecto se realizara bajo una metodología ágil.
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU02}. 
+
+\subsubsection*{ [HU03] Estudio de las redes neuronales}
+Como \textit{Javier} me gustaría que la memoria fuera un estudio de calidad de las redes neuronales, 
+respondiendo de manera auto-contenida, clara, rigurosa y precisa a preguntas como:
+\begin{itemize}
+    \item ¿Qué son las redes neuronales?
+    \item ¿Cómo se construyen?
+    \item ¿Para qué sirven?
+    \item ¿Por qué funcionan?
+\end{itemize}
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU03}.
+
+\subsubsection*{ [HU04] Indagar y experimentar sobre redes neuronales}
+
+Como \textit{Javier y JJ} gustaría plantear nuevas hipótesis para conocer en mayor profundidad, 
+aclarar limitaciones, particularizar o abstraer en cualquier aspecto de las redes neuronales actuales.
+
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU04}.
+
+\subsubsection*{[HU05] Finalizar memoria a tiempo y sin que quede nada pendiente}
+
+Como \textit{Blanca} me gustaría acabar el proyecto y memoria en la fecha de convocatoria ordinaria, habiendo cumplido todos los hitos anteriores y satisfaciendo todo los requisitos.
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU05}.
+
+\subsubsection*{[HU06] Requisitos tribunal}
+Como \textit{Mayte y Pablo} queremos corregir un trabajo fin de grado bien hecho. 
+Bajo el contexto de evaluación la memoria debe de cumplir una serie de requisitos imprescindibles:
+
+\begin{enumerate}
+    \item Declaración explícita firmada en la que se asume la originalidad del trabajo, entendida en el sentido de que no ha utilizado fuentes sin citarlas debidamente. Esta declaración se puede descargar en la web del Grado (matemáticas).
+    \item Un índice detallado de capítulos y secciones.
+    \item Un resumen amplio en inglés del trabajo realizado (se recomienda entre 800 y 1500 palabras).
+    \item Una introducción en la que se describan claramente los objetivos previstos inicialmente en la propuesta de TFG, indicando si han sido o no alcanzados, los antecedentes importantes para el desarrollo, los resultados obtenidos, en su caso, y las principales fuentes consultadas.
+    \item Una descripción de la metodología.
+    \item Un estado del arte y diseño.
+    \item Estimación de los costes.
+    \item Análisis de las prestaciones.
+    \item Una bibliografía final que incluya todas las referencias utilizadas.
+\end{enumerate}
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU06}.
+
+
+%%%% fin historias de usuario %%%%
+
+Estas historias de usuario dan lugar a \textit{milestones}. 
+
+\section{Milestones}  
+
+Los milestones describen entregables, productos mínimos viables y se basan en las historias de usuarios,
+puede encontrar nuestras declaraciones en nuestro repositorio \cite{TFG-Estudio-de-las-redes-neuronales-milestones}. 
+A éstas además le hemos asociado una fecha de entrega. 
+
+\begin{enumerate}
+    \item Recopilación de bibliografía. 
+    \item Metodología. Apartado que consiste en la planificación del proyecto. 
+    \item Estudio de las redes neuronales. Definición y teorema de convergencia. 
+    \item Fase de planteamiento de hipótesis y experimentación. 
+    \item Entrega del proyecto.
+\end{enumerate}  
+
+Para cumplir con los \textit{milestones},  ha sido necesario resolver nuevos  problemas menores, estos se han
+recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{milestones}.
+
+\section{Resumen de la metodología}  
+
+Se ha seguido una metodología ágil que radica en la resolución de problemas expuestos como historias de usuarios. 
+Éstas historias de usuario se formulan en base a los beneficiados,personas bien definidas; se formalizan 
+mediante \textit{issues} y entraman los \textit{milestones}, hitos con los que guiar el desarrollo.
+
+Todo esto se puede leer no solo en esta memoria sino también en nuestro repositorio de GitHub. 
+ 
+
+
+
+
