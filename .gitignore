@@ -21,3 +21,4 @@
 *.lot
 .DS_Store
 ISSUES-RELEVANTES
+doc/_minted-tfg/*

@@ -1,7 +1,7 @@
 all: compile
 
 compile:
-	cd doc/ && latexmk -pdf tfg.tex
+	cd doc/ && latexmk -shell-escape -pdf tfg.tex
 
 open:
 	open tfg.pdf &
