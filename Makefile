@@ -14,7 +14,7 @@ spell:
 	bash ./scripts/spell-check.sh
 
 install-spell:
-	bash ./scripts/aspell-install.sh
+	sudo apt-get install aspell aspell-es aspell-en
 
 order-dic:
 	./scripts/order-dictionary.py

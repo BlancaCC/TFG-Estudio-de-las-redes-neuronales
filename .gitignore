@@ -10,3 +10,5 @@
 *.pdf
 *.toc
 *.lof
+
+.DS_Store
