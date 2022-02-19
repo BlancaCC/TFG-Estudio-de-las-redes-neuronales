@@ -4,6 +4,9 @@ code/.ipynb_checkpoints
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+doc/.DS_Store
+doc/_minted-tfg
+
 
 #latex
 *#*
@@ -24,6 +27,4 @@ ISSUES-RELEVANTES
 *.blg
 *.fls
 *.lot
-doc/.DS_Store
-doc/_minted-tfg
-doc/.DS_Store
+
