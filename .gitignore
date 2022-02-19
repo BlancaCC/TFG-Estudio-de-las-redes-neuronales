@@ -1,8 +1,18 @@
+# Emacs
 *~
-#latex
+# Python 
+code/.ipynb_checkpoints
+#macOS
+.DS_Store
+doc/.DS_Store
 
+#Ficheros personales
+dudas/
+correcciones-TFG/
+ISSUES-RELEVANTES
+
+# LaTeX
 *#*
-
 *.log
 *.out
 *.aux
@@ -19,6 +29,4 @@
 *.blg
 *.fls
 *.lot
-.DS_Store
-ISSUES-RELEVANTES
-doc/_minted-tfg/*
+doc/_minted-tfg
