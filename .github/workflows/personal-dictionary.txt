@@ -71,6 +71,7 @@ pag
 parametrized
 perceptrones
 perceptrón
+png
 qB
 renumerar
 replicable

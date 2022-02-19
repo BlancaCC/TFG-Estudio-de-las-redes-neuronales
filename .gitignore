@@ -25,5 +25,5 @@ ISSUES-RELEVANTES
 *.fls
 *.lot
 doc/.DS_Store
-
-.DS_Store
+doc/_minted-tfg
+doc/.DS_Store

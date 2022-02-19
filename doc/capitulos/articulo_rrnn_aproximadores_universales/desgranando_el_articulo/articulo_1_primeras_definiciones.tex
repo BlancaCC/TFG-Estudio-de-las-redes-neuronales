@@ -5,12 +5,9 @@
 % Contenido del artículo 1: Definiciones primeras
 %*******************************************************
 
-
 \section{Definiciones primeras}\label{ch:articulo:sec:defincionesPrimeras}  
 
-Se pretende con las siguientes definiciones una concepción y trabajo preciso de la clase de redes neuronales multicapa feedforward. 
-Se precisa nociones como la de función de activación \ref{def:funcion_activacion_articulo}, 
-se abstrae y formaliza matemáticamente la estructura de una red neuronal \ref{def:articulo_abstracción_rrnn} 
+Comenzaremos presentando definiciones básicas sobre redes neuronales. 
 
 \begin{definicion}[Función de activación ] \label{def:funcion_activacion_articulo}
     Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedades:
@@ -20,17 +17,27 @@ se abstrae y formaliza matemáticamente la estructura de una red neuronal \ref{d
         $.
         \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
     \end{enumerate}  
-
-    Las funciones de activación son medibles ya que tienen como mucho una cantidad numerable de discontinuidades.
    
     Ejemplos comunes de funciones de activación son
     \begin{itemize}
-        \item Funciones umbral. 
-
-        \item Funciones indicadoras: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
-        \item Función rampa: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
+        \item \textbf{Funciones umbral} \ref{fig:función_umbral_lineal}:
+        Una función umbral, es una función booleana monótona $f: \{0,1\}^n \longleftarrow \{0,1\},$ 
+        donde para $w \in \R^n$, $t \in \R$ fijos se
+        satisface que 
+        \begin{equation}
+            f(x) = \left\{
+                \begin{array}{lcc}
+                    1, &   si  & w \cdot x \geq t \\
+                    0, &  si & w \cdot x < t\\
+                    \end{array}
+            \right.
+        \end{equation}
     
-        \item La función \textit{cosine squasher} de Gallant and White (1988)
+        \item \textbf{Funciones indicadoras} \ref{fig:función_indicadora}: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
+        \item \textbf{Función rampa} \ref{fig:funciones_rampa}: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
+    
+        \item \textbf{La función \textit{cosine squasher}} de Gallant and White 
+        \ref{fig:cosine_squasher} (1988) \cite{Gallant88thereexists}. 
         \begin{equation*}
     \psi(\lambda )= \left(1 + cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
      1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
@@ -38,9 +45,47 @@ se abstrae y formaliza matemáticamente la estructura de una red neuronal \ref{d
      1_{\{ \frac{\pi}{2} < \lambda \}}.
     \end{equation*}
     \end{itemize}
+    % Imágenes de la función indicadora 
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}[t]{0.47\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{
+                articulo_rrnn_aproximadores_universales/función_indicadora_l_0.png}
+            \caption{Función indicadora $\lambda_0 = 0$}  
+            \label{fig:función_indicadora}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.47\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/función_umbral_lineal.png
+            }
+            \caption{Función umbral $w=(2)$, $t=1$}    
+            \label{fig:función_umbral_lineal}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.47\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/función_rampa.png}
+            \caption{Función rampa} 
+            \label{fig:funciones_rampa}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.47\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/cosineSquasherSinTitulo.png}
+            \caption{\textit{Cosine Squasher}}   
+            \label{fig:cosine_squasher}
+        \end{subfigure}
+        \caption{Ejemplos de funciones de activación} 
+        \label{fig:EjemplosFunciónActivación}
+    \end{figure}
 
     Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que existen
-    otras posibles definiciones menos restrictivas.
+    otras posibles definiciones menos restrictivas con las que también se ha probado la convergencia universal,
+    por ejemplo en \cite{DBLP:journals/corr/SonodaM15} con funciones de activación no polinómicas no acotadas. 
+    \textcolor{red}{A priori no debería de ser equivalentes entre ellas y será necesario un estudio más 
+    profundo para establecer \textit{cuáles son las más democráticas}}
+    %TODO añadir sección 
 \end{definicion}
 
 
@@ -69,15 +114,15 @@ como un perceptrón.
             f(x)=\sum_{j = 1} ^q (
             \beta_j G(A_{j}(x)), \\
             & x  \in \R ^r, \beta_j \in \R, A_{j}\in A^r,q \in \N
-            )`'
+            )
         \}.
         \end{split}
     \end{equation}
 \end{definicion}
 
 
-Obsérvese que cada elemento de la sumatoria representa un perceptrón y que la salida final 
-es una combinación lineal de los distintos perceptrones. Con esta misma idea 
+Obsérvese que cada elemento de la sumatoria representa un nodo o neurona y que la salida final 
+es una combinación lineal de los distintos nodos. Con esta misma idea 
 se define la siguiente estructura que generaliza a la familia $\pmc.$  
    
 \begin{definicion} [Formalización de una red neuronal con una capa oculta]\label{def:articulo_abstracción_rrnn}
@@ -85,17 +130,17 @@ se define la siguiente estructura que generaliza a la familia $\pmc.$
     \begin{equation} 
         \begin{split}
         \sum \prod^r(G) = \{ 
-        &f: \R^r \longrightarrow \R /\\
-        & f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+        &f: \R^r \longrightarrow \R / \quad
+        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
         G(A_{jk}(x)), \\
-        &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N
+        &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r; l_j,q \in \N
         )
         \}.
     \end{split}
     \end{equation}  
 
     Notemos que $\pmc$ se recupera en el caso particular en el que $l_j = 1$ para todo $j$.
-    Los elementos de $\pmcg$ son combinaciones lineales de productos finitos de perceptrones. 
+    Los elementos de $\pmcg$ son combinaciones lineales de productos finitos de neuronas. 
 
 \end{definicion}
 
@@ -112,7 +157,7 @@ aproximar una función medible a partir de combinaciones lineales de \textit{rec
     \label{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
 \end{figure}
 
-Por otra parte, la función de activación acota la imagen de un una aplicación afín, esta limitación 
+Por otra parte, la función de activación acota la imagen de una aplicación afín, esta limitación 
 es de total relevancia ya que permite una interpretación previamente convenida. 
 Decimos por ende que es la causante del \textit{aprendizaje}.     
 
@@ -132,6 +177,8 @@ En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ pertenecen a
 $\fM$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
 $\pmc$ y $\pmcg$ pertenecen a $\fC$. Tengamos presente que $\fC$ es un subconjunto
 de $\fM$.  
+
+De ahora en adelante nos referiremos a Borel-medible como medible. 
   
 
 \subsection{ Reflexión sobre el tipo de funciones que se pueden aproximar}
