@@ -88,7 +88,7 @@ un red neuronal de múltiples capas ocultas.
 % Generalización de modelo 
 \subsection{Construcción red neuronal de varias capas ocultas} \label{rrnn:construcción_generalizada}
 
-Etiquetaremos a cada capa con $l \in \{0, \ldots, L$, donde $L+1$ es el número total de capas.  Donde 
+Etiquetaremos a cada capa con $l \in \{0, \ldots, L \}$, donde $L+1$ es el número total de capas.  Donde 
 
 \begin{itemize}
     \item La capa de entrada será la etiquetada con $l = 0$.
@@ -112,7 +112,7 @@ Cada nodo recibe una señal de entrada $s$ y determina una salida $x$.
 % Añadir gráfica   
 La relación que existe entre dos nodos de capas contiguas es la siguiente: si $x_i^{(l-1)}$ es la salida de la unidad $i$ de la capa $l-1$, 
 entonces se calcula la entrada de la unidad $j$ de la capa $l$ como 
-\begin{align}
+\begin{align}\label{eq:construccion_red_neuronas:calculo_una_capa_oculta}
     s_j^{(l)} &= w_{i j}^{(l)} \cdot x_i^{(l-1)}  \\
     x_j^{(l)} &= \theta(s_j^{(l)})
 \end{align}
@@ -175,10 +175,10 @@ for w in W   # Forward propagation
 end
 salida = x
 \end{minted}
-
+% Imagen red neuronal con pesos concretos
 Veamos un ejemplo concreto para la siguiente red neuronal de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1}
 \begin{figure}[h!]
-    \includegraphics[width=\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/rrnn-2-3-2-1.png}
+    \includegraphics[width=\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/rrnn-2-3-2-1-completa.png}
     \caption{Ejemplo de red neuronal con tres capas ocultas}
     \label{img:construccion_rrnn:rrnn-2-3-2-1}
 \end{figure} 
@@ -205,7 +205,7 @@ Las \textit{flechas} que conectan los nodos hacen referencia a los pesos de cada
 Y si hacemos $x_0 = (1,0)$ y tomamos como función de activación
 a la tangente hiperbólica, la ejecución del algoritmo queda reflejada en la tabla \ref{tab:construcción_rnnn:ejemplo_forward_propagation} resultando que 
 $h((1,0)) = 0.439$.
-\begin{table}[h]
+\begin{table}[H]
     \begin{center}
 \begin{tabular}{| c | c | c | c| }
     \hline
@@ -239,5 +239,189 @@ $h((1,0)) = 0.439$.
 \end{center}
 \end{table}
 
+\subsection{\textit{Backpropagation}}
 
+Los parámetros que determinan una red neuronal son sus pesos, 
+para calcularlos utilizaremos la técnica de gradiente descendente. 
+Que como ya explicamos consistía en \textit{avanzar} en dirección contraria a la del gradiente. 
+
+\begin{equation}
+    W(t+1) = w(t) - \eta \nabla E_{in}(w(t)). 
+\end{equation}
+Donde $E_{in}(w)$ es la función de error, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
+de entrenamiento está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada y $y_n$ la etiqueta asociada para cualquier $n\in \{1, \ldots, N\}.$
+\begin{equation}
+    E_{in}(w) = \frac{1}{N} \sum^N_{n=1} e_n. 
+\end{equation}
+Para el cual 
+\begin{equation}
+    e_n = e(h_w(x), y_n), 
+\end{equation}
+es una métrica para medir error entre, en nuestro caso 
+la red neurona $h_w$ de pesos $w$ e $y_n$.  
+
+y $w$ el vector que contiene las respectivas matrices de pesos de cada capa 
+$W^{(l)} l \in \{1, \ldots, L\}.$  
+%% Ejemplo 
+Mostraremos un ejemplo primero antes de presentar el método general para facilitar la comprensión del algoritmo. 
+% Imagen red neuronal simple
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/rrnn-1-2-1.drawio.png}
+    \caption{Ejemplo de red neuronal con tres capas ocultas}
+    \label{img:construccion_rrnn:rrnn-1-2-1}
+\end{figure} 
+Queremos actualizar los pesos $w$ de la red neuronal 
+$f_w : \R \longrightarrow \R$ presentada en \ref{img:construccion_rrnn:rrnn-1-2-1}.
+$f_w$ está compuesta de dos capas ocultas. Supongamos que nos basaremos en un dato 
+$(x, y)$ así pues podemos suponer que 
+\begin{equation}
+    E_{in}(w) = e(f_w(x), y) = (f_w(x), y)^2.
+\end{equation}
+Como queremos actualizar los pesos utilizando el método de gradiente descendente necesitamos calcular el gradiente $\nabla E_{in}(w)$. 
+En nuestro caso, $w=\{W^{(1)}, W^{(2)}\}$ con 
+\begin{align}
+    W^{(1)} = 
+    \begin{bmatrix}
+        w^{(1)}_{01} & w^{(1)}_{11} \\
+        w^{(1)}_{02} & w^{(1)}_{12} \\
+    \end{bmatrix} 
+    \text{ y }
+    W^{(2)} = 
+    \begin{bmatrix}
+        w^{(2)}_{01} & w^{(2)}_{11} & w^{(2)}_{21}\\
+    \end{bmatrix}. 
+\end{align}
+Luego 
+\begin{equation}
+    \nabla E_{in}(w) = 
+    \left(
+        % primera capa 
+        \frac{\partial e}{\partial w^{(1)}_{01}},
+        \frac{\partial e}{\partial w^{(1)}_{11}},
+        \frac{\partial e}{\partial w^{(1)}_{02}},
+        \frac{\partial e}{\partial w^{(1)}_{12}},
+        % segunda capa
+        \frac{\partial e}{\partial w^{(2)}_{01}},
+        \frac{\partial e}{\partial w^{(2)}_{11}},
+        \frac{\partial e}{\partial w^{(2)}_{21}}
+    \right).
+\end{equation} 
+Cada parcial se calcula, utilizando la regla de la cadena como
+\begin{align}
+    \frac{\partial e}{\partial w^{(1)}_{01}} 
+    &= 
+    \frac{\partial }{\partial w^{(1)}_{01}}
+         \tanh \left(s^{(2)}_{1}\right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \frac{\partial s^{(1)}_{1}}{\partial w^{(1)}_{01}}
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \frac{\partial }{\partial w^{(1)}_{01}}
+    \left(w^{(2)}x^{(1)}\right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \frac{\partial }{\partial w^{(1)}_{01}}
+    \left(
+        \sum^2_{i=0}
+        w^{(2)}_{i1}x^{(1)}_i
+    \right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \left(
+        \sum^2_{i=0}
+        w^{(2)}_{i1}\frac{\partial x^{(1)}_i }{\partial w^{(1)}_{01}}
+    \right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \left(
+        \sum^2_{i=1}
+        w^{(2)}_{i1}\frac{\partial }{\partial w^{(1)}_{01}}
+        \left(
+            \tanh \left(s^{(1)}_{i}\right)
+        \right)
+    \right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \left(
+        \sum^2_{i=1}
+        w^{(2)}_{i1}
+        \left(
+            \left(1- \tanh^2 \left(s^{(1)}_{i}\right)\right)
+            \frac{\partial  }{\partial w^{(1)}_{01}}
+            \left(
+                \sum^1_{j=0}\sum^2_{k=1}
+                w^{(1)}_{jk}x^{(0)}_j
+            \right)
+        \right)
+    \right)
+    \\
+    &= 
+    \left(1- \tanh^2 \left(s^{(2)}_{1}\right)\right) 
+    \left(
+        \sum^2_{i=1}
+        w^{(2)}_{i1}
+        \left(
+            \left(1- \tanh^2 \left(s^{(1)}_{i}\right)\right)
+            x^{(0)}_0
+        \right)
+    \right).
+\end{align}
+Notemos que no se han evaluado las apariciones de $s_i^{(j)}$.
+Otro ejemplo sería
+\begin{align}
+    \frac{\partial e}{\partial w^{(2)}_{21}} 
+    &=
+    \frac{\partial }{\partial w^{(2)}_{21}}
+         \tanh \left(s^{(2)}_{1}\right)
+    \\
+    &= 
+    \frac{\partial }{\partial w^{(2)}_{21}}
+         \tanh \left(w^{(2)}x^{(1)}\right)
+    \\
+    &= \left(
+    1- \tanh^2 \left(s^{(2)}_{1}\right) \right)x^{(1)}_2.
+\end{align}
+
+Para ahorrar cálculo se puede calcular previamente las incidencias
+de $s$.
+%% Fin del ejemplo 
+\begin{equation}
+    \nabla E_{in}(w) = 
+    \left( 
+        \frac{\partial E_{in}}{\partial W^{(1)}}, 
+        \frac{\partial E_{in}}{\partial W^{(2)}},
+        \ldots,
+        \frac{\partial E_{in}}{\partial W^{(L)}}
+    \right).
+\end{equation}
+Para cada entrada del vector
+\begin{equation}
+    \frac{\partial E_{in}}{\partial W^{(l)}}
+    = \frac{1}{N} 
+    \sum_{n=1}^N  \frac{\partial e_{n}}{\partial W^{(l)}}.
+\end{equation}
+Para calcular el valor de esta derivada usaremos la regla de la cadena, teniendo presente cómo se evalúa una capa a partir de la anterior,  $s^{(l)} = x^{(l-1)}W^{(l)}$ (\refeq{eq:construccion_red_neuronas:calculo_una_capa_oculta})
+
+\begin{align}
+    \frac{\partial e}{\partial W^{(L)}} 
+    = 
+    \frac{\partial e}{\partial s^{(L)}} 
+    \frac{\partial s^{(L)}}{\partial W^{(L)}}
+    = 
+    \frac{\partial e}{\partial s^{(L)}} 
+    x^{(L-1)}. 
+\end{align}
+Introduciremos esta notación 
+\begin{equation}
+    \delta^{(l)}
+    =
+    \frac{\partial e}{\partial s^{(l)}}.
+\end{equation}
 
