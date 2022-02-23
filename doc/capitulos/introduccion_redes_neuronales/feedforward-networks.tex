@@ -112,7 +112,7 @@ Cada nodo recibe una señal de entrada $s$ y determina una salida $x$.
 % Añadir gráfica   
 La relación que existe entre dos nodos de capas contiguas es la siguiente: si $x_i^{(l-1)}$ es la salida de la unidad $i$ de la capa $l-1$, 
 entonces se calcula la entrada de la unidad $j$ de la capa $l$ como 
-\begin{align}\label{eq:construccion_red_neuronas:calculo_una_capa_oculta}
+\begin{align}\label{eq:construcción_red_neuronas:calculo_una_capa_oculta}
     s_j^{(l)} &= w_{i j}^{(l)} \cdot x_i^{(l-1)}  \\
     x_j^{(l)} &= \theta(s_j^{(l)})
 \end{align}
@@ -363,7 +363,7 @@ Cada parcial se calcula, utilizando la regla de la cadena como
             \frac{\partial  }{\partial w^{(1)}_{01}}
             \left(
                 \sum^1_{j=0}\sum^2_{k=1}
-                w^{(1)}_{jk}x^{(0)}_j
+                w^{(1)}_{j k}x^{(0)}_j
             \right)
         \right)
     \right)
@@ -421,23 +421,28 @@ para cualquier $l \in \{1, \ldots, L\}$ con
 \end{equation}
 y
 \begin{equation}
-    E(x) = \frac{1}{2} 
+    E(w) = \frac{1}{2} 
     \sum_{n = 1}^{N}
     \sum_{i = 1}^{d^{(L)}}
     \left({x_n}^{(L)}_i-y_{n_i} \right)^2
 \end{equation}
 
 %% Gradiente de la salida: 
-Sin pérdida de generalidad supondremos $N=1$ y vamos a proceder a calcular primero los gradientes de la última capa, 
+Para simplificar la notación renombramos 
+\begin{equation}
+    E(w) = \sum^{N}_{n=1} e_n.
+\end{equation}
+y de ahora en adelante nos referiremos como $e$ a $e_n.$
+Vamos a proceder a calcular primero los gradientes de la última capa, 
 sea $w^{(L)}_{i j}$  con $j \in \{1, \ldots , d^{(L)}\}$, 
 $i \in \{1, \ldots , d^{(L-1)}\}$  el peso que relaciona la salida 
 $x_i ^{(L-1)}$ del  
 nodo $i$ de la capa anterior con la entrada $s_j ^{(L)}$ del nodo $j$ de la última capa. 
-Vamos a calcular $\frac{\partial E}{ w^{(L)}_{i j}}$ utilizando la regla de la cadena. 
+Vamos a calcular $\frac{\partial e}{ w^{(L)}_{i j}}$ utilizando la regla de la cadena. 
 \begin{equation}
-    \frac{\partial{E}}{\partial w^{(L)}_{i j}}
+    \frac{\partial{e}}{\partial w^{(L)}_{i j}}
      = 
-     \frac{\partial{E}}{\partial x^{(L)}_j} 
+     \frac{\partial{e}}{\partial x^{(L)}_j} 
      \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
      \frac{\partial s^{(L)}_j}{\partial w^{(L)}_{i j}}.
 \end{equation}
@@ -458,7 +463,7 @@ Donde $w^{(L)}_{\ast j} = \left(w^{(L)}_{0 j}, w^{(L)}_{2 j}, \ldots, w^{(L)}_{d
  
  Por otro lado 
  \begin{equation}\label{eq:backpropagation_E_última_capa_derivada}
-    \frac{\partial{E}}{\partial x^{(L)}_j} =
+    \frac{\partial{e}}{\partial x^{(L)}_j} =
     x^{(L)}_j - y_j
  \end{equation}
  donde conocemos $x^{(L)}_j$ gracias al algoritmo de \textit{forward propagation}
@@ -482,9 +487,9 @@ Por lo tanto, concluimos por
 y  
 (\refeq{eq:backpropagation_s_última_capa_derivada})
 \begin{equation}
-    \frac{\partial{E}}{\partial w^{(L)}_{i j}}
+    \frac{\partial{e}}{\partial w^{(L)}_{i j}}
      = 
-     \frac{\partial{E}}{\partial x^{(L)}_j} 
+     \frac{\partial{e}}{\partial x^{(L)}_j} 
      \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
      \frac{\partial s^{(L)}_j}{\partial w^{(L)}_{i j}} 
     =
@@ -492,26 +497,61 @@ y
     \theta' \left( s^{(L)}_j\right)
     x^{(L)}_j.
 \end{equation}
+%%%% Gradiente interior 
+Denotaremos por \textit{sensibilidad} a 
+\begin{equation}
+    \delta^{(l)} = \frac{\partial e}{ \partial s^{(l)}}.
+\end{equation}
 
 Para calcular la derivada de pesos de capas interiores $l \{1 \ldots L-1\}$
 procederemos de la siguiente manera, para 
 $j \in \{1, \ldots , d^{(l)}\}$ y 
 $i \in \{1, \ldots , d^{(l-1)}\}$ 
 \begin{equation}
-    \frac{\partial{E}}{\partial w^{(l)}_{i j}}
+    \frac{\partial{e}}{\partial w^{(l)}_{i j}}
      = 
-     \frac{\partial{E}}{\partial x^{(l)}_j} 
-     \frac{\partial x^{(l)}_j}{\partial s^{(l)}_j} 
-     \frac{\partial s^{(l)}_j}{\partial w^{(l)}_{i j}}.
+     \frac{\partial e}{\partial s^{(l)}_j} 
+     \frac{\partial s^{(l)}_j}{\partial w^{(l)}_{i j}}
+    = 
+    \delta^{(l)}
+    \frac{\partial}{\partial w^{(l)}_{i j}}
+    w^{(l) \cdot x^{(l-1)}}
+    = 
+    \delta^{(l)} x^{(l-1)}_i,
 \end{equation}
+donde  $x^{(l-1)}_i$ es conocida por el algoritmo de 
+$\textit{forward propagation}$. por otra parte $\delta^{(l)}$ 
+cumple que 
+\begin{align}
+    \delta^{(l)} 
+    &= 
+    \frac{\partial e}{\partial s^{(l)}}
+    \\
+    &= 
+        \frac{\partial e}{\partial s^{(l+1)}}
+        \frac{\partial s^{(l+1)}}{\partial s^{(l)}}
+    \\
+    &= 
+    \delta^{(l+1)} 
+    \otimes 
+    \frac{\partial}{\partial s^{(l)}}
+        \left( w^{(l)} \cdot \theta(s^{(l)})\right)
+    \\
+    &= 
+    \delta^{(l+1)} 
+    \otimes 
+    w^{(l)} \cdot \theta'(s^{(l)}). 
+\end{align}
+\textcolor{red}{ Revisar penúltima operación.}
+De esta manera a partir de las \textit{sensibilidades} de las 
+capas posteriores es posible calcular las $l$-ésimas y puesto que 
+la sensibilidad $\delta_{(L)}$ es conocida acabamos de determinar 
+cómo calcular la derivada de todos los pesos  de manera constructiva. 
+Procedemos a explicitar los cálculos. 
 
-Donde  \textcolor{red}{Esto está mal}
-\begin{equation}\label{eq:backpropagation_E_capa_intermedia_derivada}
-    \frac{\partial{E}}{\partial x^{(l)}_j} 
-    =
-    \frac{\partial{E}}{\partial s^{(l)}_j} 
-    \frac{\partial{E}}{\partial x^{(l)}_j} 
- \end{equation}
+
+
+
 --------------------------------------------
 
 
@@ -554,7 +594,7 @@ y finalmente para $l \in \{1, \ldots L-1\}$
 %% hasta aquí has llegado con el algoritmo
 La entrada total de un nodo, $x_j$, es una función lineal de la salida anterior
 \begin{equation}
-    x_j = \sum_{i=1}^{d} \theta_i w_{ij}
+    x_j = \sum_{i=1}^{d} \theta_i w_{i j}
 \end{equation}
 
 %%
@@ -610,7 +650,7 @@ Para cada entrada del vector
     = \frac{1}{N} 
     \sum_{n=1}^N  \frac{\partial e_{n}}{\partial W^{(l)}}.
 \end{equation}
-Para calcular el valor de esta derivada usaremos la regla de la cadena, teniendo presente cómo se evalúa una capa a partir de la anterior,  $s^{(l)} = x^{(l-1)}W^{(l)}$ (\refeq{eq:construccion_red_neuronas:calculo_una_capa_oculta})
+Para calcular el valor de esta derivada usaremos la regla de la cadena, teniendo presente cómo se evalúa una capa a partir de la anterior,  $s^{(l)} = x^{(l-1)}W^{(l)}$ (\refeq{eq:construcción_red_neuronas:calculo_una_capa_oculta})
 
 \begin{align}
     \frac{\partial e}{\partial W^{(L)}} 
