@@ -242,25 +242,27 @@ $h((1,0)) = 0.439$.
 \subsection{\textit{Backpropagation}}
 
 Los parámetros que determinan una red neuronal son sus pesos, 
-para calcularlos utilizaremos la técnica de gradiente descendente. 
+para actualizarlos utilizaremos la técnica de gradiente descendente. 
 Que como ya explicamos consistía en \textit{avanzar} en dirección contraria a la del gradiente. 
-
 \begin{equation}
     W(t+1) = w(t) - \eta \nabla E_{in}(w(t)). 
 \end{equation}
-Donde $E_{in}(w)$ es la función de error, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
-de entrenamiento está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada y $y_n$ la etiqueta asociada para cualquier $n\in \{1, \ldots, N\}.$
+
+Además, con el fin de reducir el coste del cálculo del gradiente, 
+se utiliza el algoritmo conocido como \textit{backpropagation} que fue publicado en 
+1989 en el artículo \cite{backpropagation-Hinton}. 
+
+Sea $E_{in}(w)$ la función de error, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
+de entrenamiento está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada y $y_n$ el estado o valor deseado para cualquier $n\in \{1, \ldots, N\}.$
 \begin{equation}
-    E_{in}(w) = \frac{1}{N} \sum^N_{n=1} e_n. 
+    E_{in}(w) = \frac{1}{2} \sum^N_{n=1} e_n. 
 \end{equation}
 Para el cual 
 \begin{equation}
-    e_n = e(h_w(x), y_n), 
+    e_n = (h_w(x)- y_n)^2, 
 \end{equation}
-es una métrica para medir error entre, en nuestro caso 
-la red neurona $h_w$ de pesos $w$ e $y_n$.  
-
-y $w$ el vector que contiene las respectivas matrices de pesos de cada capa 
+es una métrica para medir error entre, en nuestro caso  
+la red neuronal $h_w$ y los valores deseados, con $w$ el vector que contiene las respectivas matrices de pesos de cada capa 
 $W^{(l)} l \in \{1, \ldots, L\}.$  
 %% Ejemplo 
 Mostraremos un ejemplo primero antes de presentar el método general para facilitar la comprensión del algoritmo. 
@@ -275,7 +277,7 @@ $f_w : \R \longrightarrow \R$ presentada en \ref{img:construccion_rrnn:rrnn-1-2-
 $f_w$ está compuesta de dos capas ocultas. Supongamos que nos basaremos en un dato 
 $(x, y)$ así pues podemos suponer que 
 \begin{equation}
-    E_{in}(w) = e(f_w(x), y) = (f_w(x), y)^2.
+    E_{in}(w) = \frac{1}{2}e(f_w(x), y) = \frac{1}{2} (f_w(x)- y)^2.
 \end{equation}
 Como queremos actualizar los pesos utilizando el método de gradiente descendente necesitamos calcular el gradiente $\nabla E_{in}(w)$. 
 En nuestro caso, $w=\{W^{(1)}, W^{(2)}\}$ con 
@@ -309,6 +311,10 @@ Luego
 Cada parcial se calcula, utilizando la regla de la cadena como
 \begin{align}
     \frac{\partial e}{\partial w^{(1)}_{01}} 
+    &=
+    \frac{\partial e}{\partial s_1^{2}}
+    \frac{\partial s_1^{2}}{\partial w^{(1)}_{01}} 
+    \\
     &= 
     \frac{\partial }{\partial w^{(1)}_{01}}
          \tanh \left(s^{(2)}_{1}\right)
@@ -389,9 +395,206 @@ Otro ejemplo sería
     1- \tanh^2 \left(s^{(2)}_{1}\right) \right)x^{(1)}_2.
 \end{align}
 
-Para ahorrar cálculo se puede calcular previamente las incidencias
-de $s$.
+Notemos que no se han desarrolla los términos de la forma $s^{(i)}_j$. Además si existen $Q$ pesos la complejidad del cálculo será $\mathcal{O}(Q^2)$, sin embargo, como hemos visto existen términos que se repiten en ambas ecuaciones, luego utilizando técnicas de 
+programación dinámica y almacenando los valores que se repiten, 
+reduciremos el coste a una complejidad de $\mathcal{O}(Q).$ Este 
+algoritmo se le conoce como el de \textit{backpropagation}
+basaremos su explicación en la publicada en
+el artículo \cite{backpropagation-Hinton}.
 %% Fin del ejemplo 
+%% COMIENZA EL ARTÍCULO 
+
+%Formalizaremos primero qué parámetros debemos estimar del gradiente.
+
+Sea $\theta$ una función de activación derivable, 
+ $L$ el número de capas ocultas, $N$ el tamaño del conjunto de entrenamiento $x^{(0)} = (1, x_1, \ldots, x_{d^{(0)}})^T$ 
+siendo $x = (x_1, \ldots, x_{d^{(0)}})^T$ la entrada de la red neuronal, $x^{(L)}$ la salida de la red neuronal y 
+$d^{(l)}$ la dimensión, número de nodos en la capa $l$-ésima. 
+Recordemos que 
+para cualquier $l \in \{1, \ldots, L\}$ con
+\begin{equation}
+    x^{(l)}
+     = 
+     \theta \left( s^{(l)}\right) 
+     = 
+     \theta \left( W^{(l)} x^{(l-1)}\right),
+\end{equation}
+y
+\begin{equation}
+    E(x) = \frac{1}{2} 
+    \sum_{n = 1}^{N}
+    \sum_{i = 1}^{d^{(L)}}
+    \left({x_n}^{(L)}_i-y_{n_i} \right)^2
+\end{equation}
+
+%% Gradiente de la salida: 
+Sin pérdida de generalidad supondremos $N=1$ y vamos a proceder a calcular primero los gradientes de la última capa, 
+sea $w^{(L)}_{i j}$  con $j \in \{1, \ldots , d^{(L)}\}$, 
+$i \in \{1, \ldots , d^{(L-1)}\}$  el peso que relaciona la salida 
+$x_i ^{(L-1)}$ del  
+nodo $i$ de la capa anterior con la entrada $s_j ^{(L)}$ del nodo $j$ de la última capa. 
+Vamos a calcular $\frac{\partial E}{ w^{(L)}_{i j}}$ utilizando la regla de la cadena. 
+\begin{equation}
+    \frac{\partial{E}}{\partial w^{(L)}_{i j}}
+     = 
+     \frac{\partial{E}}{\partial x^{(L)}_j} 
+     \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
+     \frac{\partial s^{(L)}_j}{\partial w^{(L)}_{i j}}.
+\end{equation}
+Donde es fácil ver que para el tercer término
+\begin{equation}\label{eq:backpropagation_s_última_capa_derivada}
+    \frac{\partial s^{(L)}_{j}}{\partial w^{(L)}_{i j}}
+    = 
+    \frac{\partial }{\partial w^{(L)}_{i j}}
+    \left(
+        w^{(L)}_{\ast j } \cdot x^{(L-1)}
+    \right)
+    = 
+    x^{(L-1)}_j
+\end{equation}
+Donde $w^{(L)}_{\ast j} = \left(w^{(L)}_{0 j}, w^{(L)}_{2 j}, \ldots, w^{(L)}_{d^{(L-1)} j}\right)$ representa los pesos correspondientes al nodo $j$,
+ en forma de  vector fila y $x^{(L-1)} = \left(1, x ^{(L-1)}_1, \ldots, x ^{(L-1)}_{d^{(l-1)}}\right)^T$ el valor de la salida de la capa $L-1$
+ en forma de vector columna.
+ 
+ Por otro lado 
+ \begin{equation}\label{eq:backpropagation_E_última_capa_derivada}
+    \frac{\partial{E}}{\partial x^{(L)}_j} =
+    x^{(L)}_j - y_j
+ \end{equation}
+ donde conocemos $x^{(L)}_j$ gracias al algoritmo de \textit{forward propagation}
+ y $y_j$ la componente $j$-ésima del vector deseado en el entrenamiento.
+y finalmente
+\begin{equation}\label{eq:backpropagation_x_última_capa_derivada}
+    \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
+    = 
+    \frac{d}{d s^{(L)}_j} 
+        \theta \left( 
+            s^{(L)}_j
+        \right)
+\end{equation}
+que sabemos que se puede calcular por ser $\theta$ derivable y 
+$s^{(L)}_j$ un valor conocido que ya ha sido calculado por el algoritmo de 
+\textit{forward propagation.}
+
+Por lo tanto, concluimos por 
+(\refeq{eq:backpropagation_E_última_capa_derivada}),
+(\refeq{eq:backpropagation_x_última_capa_derivada})
+y  
+(\refeq{eq:backpropagation_s_última_capa_derivada})
+\begin{equation}
+    \frac{\partial{E}}{\partial w^{(L)}_{i j}}
+     = 
+     \frac{\partial{E}}{\partial x^{(L)}_j} 
+     \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
+     \frac{\partial s^{(L)}_j}{\partial w^{(L)}_{i j}} 
+    =
+    \left( x^{(L)}_j - y_j \right) 
+    \theta' \left( s^{(L)}_j\right)
+    x^{(L)}_j.
+\end{equation}
+
+Para calcular la derivada de pesos de capas interiores $l \{1 \ldots L-1\}$
+procederemos de la siguiente manera, para 
+$j \in \{1, \ldots , d^{(l)}\}$ y 
+$i \in \{1, \ldots , d^{(l-1)}\}$ 
+\begin{equation}
+    \frac{\partial{E}}{\partial w^{(l)}_{i j}}
+     = 
+     \frac{\partial{E}}{\partial x^{(l)}_j} 
+     \frac{\partial x^{(l)}_j}{\partial s^{(l)}_j} 
+     \frac{\partial s^{(l)}_j}{\partial w^{(l)}_{i j}}.
+\end{equation}
+
+Donde  \textcolor{red}{Esto está mal}
+\begin{equation}\label{eq:backpropagation_E_capa_intermedia_derivada}
+    \frac{\partial{E}}{\partial x^{(l)}_j} 
+    =
+    \frac{\partial{E}}{\partial s^{(l)}_j} 
+    \frac{\partial{E}}{\partial x^{(l)}_j} 
+ \end{equation}
+--------------------------------------------
+
+
+%%  fin capa final
+Comenzamos calculando $\frac{\partial E}{\partial \theta}$ para cada neurona de salida 
+\begin{equation}
+    \frac{\partial E}{\partial \theta} 
+    = 
+    \theta \left(s^{(L)}\right) - y.
+\end{equation}
+Aplicando la regla de la cadena podemos calcular $\frac{\partial E}{\partial s^{(L)}}$
+para $j \in \{1,\ldots, d^{(L)}\}$
+\begin{equation}
+    \frac{\partial E}{\partial s^{(L)}_j} = 
+    \frac{\partial E}{\partial \theta}
+    \frac{d \theta}{d s^{(L)}_j}.
+\end{equation}
+Para un peso $w^{(l)}_j$
+\begin{equation}
+    \frac{\partial{E}}{\partial w^{(l)}_j}
+     = 
+     \frac{\partial{E}}{\partial s^{(l)}_j} 
+     \frac{\partial s^{(l)}_j}{\partial w^{(l)}_j} 
+    =
+    \frac{\partial{E}}{\partial s^{(l)}_j} 
+    \frac{\partial }{\partial w^{(l)}_j} 
+        \left(W^{(l)} \cdot x^{(l-1)}\right)
+    = 
+    \frac{\partial{E}}{\partial s^{(l)}_j} x^{(l-1)}_j
+\end{equation}
+y finalmente para $l \in \{1, \ldots L-1\}$ 
+\begin{equation}
+    \frac{\partial E}{\partial \theta \left( s^{(l)}_i \right)}
+    = 
+    \frac{\partial E}{\partial \theta \left(x^{(l)}_i\right)}
+    \frac{\partial x^{(l)}_i }{\partial \theta \left(s^{(l)}_i\right)}
+    = 
+\end{equation}
+
+%% hasta aquí has llegado con el algoritmo
+La entrada total de un nodo, $x_j$, es una función lineal de la salida anterior
+\begin{equation}
+    x_j = \sum_{i=1}^{d} \theta_i w_{ij}
+\end{equation}
+
+%%
+Con el fin de abreviar notación llamamos \textit{sensibilidad} a
+\begin{equation}
+    \delta^{(l)}_i = \frac{\partial e}{\partial s^{(l)}_i}
+\end{equation}
+y puesto que $s^{(l)} = W^{(l)}x^{(l-1)}$
+por la regla de la cadena resulta que 
+\begin{equation}
+    \frac{\partial e}{\partial W^{(l)}} 
+    = % regla cadena
+    \frac{\partial e}{\partial s^{(l)}}
+    \frac{\partial s^{(l)}}{\partial W^{(l)}}
+    = % s_s = w_s x_o
+    \delta^{(l)}
+    \frac{\partial }{\partial W^{(l)}}
+    \left( W^{(l)} x^{(l-1)}\right)     
+     = 
+     \delta^{(l)}  x^{(l-1)}
+\end{equation}
+Por otro lado, teniendo en cuenta la topología de la red y que para 
+el algoritmo de \textit{forward propagation} $x^{(l)}$ se calcula 
+a partir de $x^{(l-1)}$, tendremos que $\delta^{(l)}$ se puede obtener gracias a $\delta^{(l+1)}$, siendo la relación: 
+\begin{align}
+    \theta(s^{(l)}
+    = 
+\end{align}
+\begin{equation}
+    \delta_j^{(l)}
+    =
+    \frac{\partial e}{\partial s^{(L)}_j}
+    = % regla de la cadena
+    \frac{\partial e}{\partial x^{(L)}_j}
+    \frac{\partial x^{(K)}_j}{\partial s^{(L)}_j}
+    = % sustituimos error
+    \left( s^{(l)}_j \right)
+    \frac{\partial e}{\partial x^{(L)}_j}
+\end{equation}
+
 \begin{equation}
     \nabla E_{in}(w) = 
     \left( 
