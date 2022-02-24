@@ -97,7 +97,7 @@ Etiquetaremos a cada capa con $l \in \{0, \ldots, L \}$, donde $L+1$ es el núme
 \end{itemize}
 
 Se usará un superíndice para hacer referencia a la capa. 
-Cada capa posee un dimensión $d^{(l)}$, es decir que posee
+Cada capa posee una dimensión $d^{(l)}$, es decir que posee
 $d^{(l)} + 1$ unidades o nodos. El nodo $d_0^{(l)}$ se trata del sesgo y siempre será uno. 
 
 El modelo de red neuronal $\mathcal{H}_{n n}$ viene determinado una vez que se fija la arquitectura de la misma, es decir sus dimensiones $d$. 
@@ -503,7 +503,8 @@ Denotaremos por \textit{sensibilidad} a
     \delta^{(l)} = \frac{\partial e}{ \partial s^{(l)}}.
 \end{equation}
 
-Para calcular la derivada de pesos de capas interiores $l \{1 \ldots L-1\}$
+Para calcular la derivada de pesos de capas interiores 
+$l \in \{1 \ldots L-1\}$
 procederemos de la siguiente manera, para 
 $j \in \{1, \ldots , d^{(l)}\}$ y 
 $i \in \{1, \ldots , d^{(l-1)}\}$ 
@@ -549,122 +550,53 @@ la sensibilidad $\delta_{(L)}$ es conocida acabamos de determinar
 cómo calcular la derivada de todos los pesos  de manera constructiva. 
 Procedemos a explicitar los cálculos. 
 
+\subsubsection*{Algoritmo}  
 
-
-
---------------------------------------------
-
-
-%%  fin capa final
-Comenzamos calculando $\frac{\partial E}{\partial \theta}$ para cada neurona de salida 
-\begin{equation}
-    \frac{\partial E}{\partial \theta} 
-    = 
-    \theta \left(s^{(L)}\right) - y.
-\end{equation}
-Aplicando la regla de la cadena podemos calcular $\frac{\partial E}{\partial s^{(L)}}$
-para $j \in \{1,\ldots, d^{(L)}\}$
-\begin{equation}
-    \frac{\partial E}{\partial s^{(L)}_j} = 
-    \frac{\partial E}{\partial \theta}
-    \frac{d \theta}{d s^{(L)}_j}.
-\end{equation}
-Para un peso $w^{(l)}_j$
-\begin{equation}
-    \frac{\partial{E}}{\partial w^{(l)}_j}
-     = 
-     \frac{\partial{E}}{\partial s^{(l)}_j} 
-     \frac{\partial s^{(l)}_j}{\partial w^{(l)}_j} 
-    =
-    \frac{\partial{E}}{\partial s^{(l)}_j} 
-    \frac{\partial }{\partial w^{(l)}_j} 
-        \left(W^{(l)} \cdot x^{(l-1)}\right)
-    = 
-    \frac{\partial{E}}{\partial s^{(l)}_j} x^{(l-1)}_j
-\end{equation}
-y finalmente para $l \in \{1, \ldots L-1\}$ 
-\begin{equation}
-    \frac{\partial E}{\partial \theta \left( s^{(l)}_i \right)}
-    = 
-    \frac{\partial E}{\partial \theta \left(x^{(l)}_i\right)}
-    \frac{\partial x^{(l)}_i }{\partial \theta \left(s^{(l)}_i\right)}
-    = 
-\end{equation}
-
-%% hasta aquí has llegado con el algoritmo
-La entrada total de un nodo, $x_j$, es una función lineal de la salida anterior
-\begin{equation}
-    x_j = \sum_{i=1}^{d} \theta_i w_{i j}
-\end{equation}
-
-%%
-Con el fin de abreviar notación llamamos \textit{sensibilidad} a
-\begin{equation}
-    \delta^{(l)}_i = \frac{\partial e}{\partial s^{(l)}_i}
-\end{equation}
-y puesto que $s^{(l)} = W^{(l)}x^{(l-1)}$
-por la regla de la cadena resulta que 
-\begin{equation}
-    \frac{\partial e}{\partial W^{(l)}} 
-    = % regla cadena
-    \frac{\partial e}{\partial s^{(l)}}
-    \frac{\partial s^{(l)}}{\partial W^{(l)}}
-    = % s_s = w_s x_o
-    \delta^{(l)}
-    \frac{\partial }{\partial W^{(l)}}
-    \left( W^{(l)} x^{(l-1)}\right)     
-     = 
-     \delta^{(l)}  x^{(l-1)}
-\end{equation}
-Por otro lado, teniendo en cuenta la topología de la red y que para 
-el algoritmo de \textit{forward propagation} $x^{(l)}$ se calcula 
-a partir de $x^{(l-1)}$, tendremos que $\delta^{(l)}$ se puede obtener gracias a $\delta^{(l+1)}$, siendo la relación: 
-\begin{align}
-    \theta(s^{(l)}
-    = 
-\end{align}
-\begin{equation}
-    \delta_j^{(l)}
-    =
-    \frac{\partial e}{\partial s^{(L)}_j}
-    = % regla de la cadena
-    \frac{\partial e}{\partial x^{(L)}_j}
-    \frac{\partial x^{(K)}_j}{\partial s^{(L)}_j}
-    = % sustituimos error
-    \left( s^{(l)}_j \right)
-    \frac{\partial e}{\partial x^{(L)}_j}
-\end{equation}
-
-\begin{equation}
-    \nabla E_{in}(w) = 
-    \left( 
-        \frac{\partial E_{in}}{\partial W^{(1)}}, 
-        \frac{\partial E_{in}}{\partial W^{(2)}},
-        \ldots,
-        \frac{\partial E_{in}}{\partial W^{(L)}}
-    \right).
-\end{equation}
-Para cada entrada del vector
-\begin{equation}
-    \frac{\partial E_{in}}{\partial W^{(l)}}
-    = \frac{1}{N} 
-    \sum_{n=1}^N  \frac{\partial e_{n}}{\partial W^{(l)}}.
-\end{equation}
-Para calcular el valor de esta derivada usaremos la regla de la cadena, teniendo presente cómo se evalúa una capa a partir de la anterior,  $s^{(l)} = x^{(l-1)}W^{(l)}$ (\refeq{eq:construcción_red_neuronas:calculo_una_capa_oculta})
-
-\begin{align}
-    \frac{\partial e}{\partial W^{(L)}} 
-    = 
-    \frac{\partial e}{\partial s^{(L)}} 
-    \frac{\partial s^{(L)}}{\partial W^{(L)}}
-    = 
-    \frac{\partial e}{\partial s^{(L)}} 
-    x^{(L-1)}. 
-\end{align}
-Introduciremos esta notación 
-\begin{equation}
-    \delta^{(l)}
-    =
-    \frac{\partial e}{\partial s^{(l)}}.
-\end{equation}
-
+El razonamiento expuesto conduce al siguiente proceso algorítmico 
+para el cálculo de los gradientes. 
+% pseudo código cálculo de sensibilidades 
+\begin{algorithm}
+    \caption{Algoritmo \textit{backpropagation} para calcular
+    las sensinilidades $\delta^{(l)}$}
+    \hspace*{\algorithmicindent} \textbf{Input}: un par de $(x,y)$ del conjunto de entrenamiento.  \\
+    \hspace*{\algorithmicindent} \textbf{Output} 
+    \begin{algorithmic}[1]
+        % Forward propagation
+        \STATE Se ejecuta el algoritmo de \textit{forward propagation} 
+        
+        con $x$ como entrada para calcular y guardar : 
+        \begin{align}
+            s^{(l)} \quad &\text{for } l = 1, \ldots, L;
+            \\
+            x^{(l)} \quad &\text{for } 0 = 1, \ldots, L;
+        \end{align}
+        % Inicializamos
+        \STATE \COMMENT{Inicializamos sensibilidades últimas capas}
+        \begin{equation}
+            \delta^{(L)} \longleftarrow 2
+            \left( 
+                x^{(L)} - y
+            \right)
+            \theta' \left( s^{(L)} \right)
+        \end{equation}
+        \STATE 
+        \COMMENT{ \textit{Backpropagation}}
+        
+        \For{$l = L-1$ to $1$}
+        {
+            \begin{equation}
+                \delta^{(l)} 
+                    \leftarrow
+                \theta' 
+                \left(
+                    s^{(l)}
+                \right)
+                \otimes
+                \left[
+                    W^{(l+1)}
+                    \delta^{(l+1)}
+                \right]^{d^{(l)}}_1
+            \end{equation}
+        }
+\end{algorithmic}
+\end{algorithm}
