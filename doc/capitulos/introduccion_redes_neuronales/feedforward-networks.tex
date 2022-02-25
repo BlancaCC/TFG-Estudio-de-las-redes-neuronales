@@ -162,19 +162,41 @@ Y donde $x^{(0)} = x$ y por tanto $d^{(0)} = d.$
 % Todo añadir ejemplo
 Y por tanto la implementación del algoritmo sería
 
-\begin{minted}{Julia}
-#= Variables 
-X_0 es el vector de entrada
-W vector donde los elementos son los pesos de cada capa
-=#
-x = X_0  # Inicializamos 
-for w in W   # Forward propagation
-    x = [1; x] # Añadimos uno al principio
-    s = w * s  
-    x =  map(activation_function,x)
-end
-salida = x
-\end{minted}
+\begin{algorithm}[H]
+    \caption{Algoritmo \textit{Forward propagation} para evaluación de una red neuronal $h_w(x)$.}
+    \begin{algorithmic}[1]
+        \STATE $x^{(0)} \leftarrow x$ 
+        \COMMENT{Inicialización}
+
+        \STATE \COMMENT{\textit{Forward Propagation}}
+        \For{$l = 1, \ldots , L$}{
+            % Calcula s
+            \STATE 
+            \begin{equation}
+                s^{(l)}
+                    \leftarrow
+                    \left(W^{(l)}\right)^T
+                    x^{(l-1)}      
+            \end{equation}
+
+            %Calcula x
+            \STATE
+            \begin{equation}
+                x^{(l)}
+                    \leftarrow
+                    \left[ 
+                        \begin{array}{c}
+                            1 \\ 
+                            \theta \left( s^{(l)}\right)
+                        \end{array}
+                    \right]
+            \end{equation}
+        }
+        \STATE $h_w(x) = x^{(L)}$ 
+        \COMMENT{Salida}  
+\end{algorithmic}
+\end{algorithm}
+
 % Imagen red neuronal con pesos concretos
 Veamos un ejemplo concreto para la siguiente red neuronal de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1}
 \begin{figure}[h!]
@@ -550,14 +572,15 @@ la sensibilidad $\delta_{(L)}$ es conocida acabamos de determinar
 cómo calcular la derivada de todos los pesos  de manera constructiva. 
 Procedemos a explicitar los cálculos. 
 
-\subsubsection*{Algoritmo}  
+\subsubsection{Algoritmos para la actualización de los pesos}  
 
 El razonamiento expuesto conduce al siguiente proceso algorítmico 
 para el cálculo de los gradientes. 
+
 % pseudo código cálculo de sensibilidades 
-\begin{algorithm}
+\begin{algorithm}[H]
     \caption{Algoritmo \textit{backpropagation} para calcular
-    las sensinilidades $\delta^{(l)}$}
+    las sensibilidades $\delta^{(l)}$}
     \hspace*{\algorithmicindent} \textbf{Input}: un par de $(x,y)$ del conjunto de entrenamiento.  \\
     \hspace*{\algorithmicindent} \textbf{Output} 
     \begin{algorithmic}[1]
@@ -596,6 +619,79 @@ para el cálculo de los gradientes.
                     W^{(l+1)}
                     \delta^{(l+1)}
                 \right]^{d^{(l)}}_1
+            \end{equation}
+        }
+\end{algorithmic}
+\end{algorithm}
+
+% pseudo código cálculo cálculo de gradiente  
+\begin{algorithm}[H]
+    \caption{Algoritmo para el cálculo $E_{in}(w)$
+    y $g = \nabla E_{in}(w).$}
+    \hspace*{\algorithmicindent} \textbf{Input}:
+    $w = \left\{ W^{(1)}, \ldots, W^{(L)}\right\};$
+    $\mathcal{D} = (x_1, y_1), \ldots, (x_n, y_n).$\\
+    \hspace*{\algorithmicindent} \textbf{Output:} error $E_{in}(w)$ y gradiente
+    $g = \{G^{(1)}, \ldots, L\}.$  
+    \begin{algorithmic}[1]
+        \STATE Inicializamos $E_{in}(w)=0$ y $G^{(l)} = 0$ 
+        for $l = 1, \ldots, L.$
+        \STATE \For{ cada punto $(x_n, y_n),$
+        n = 1, \ldots, N}{
+            % cálculos de las x^l y sensibilidades
+            \STATE Calcula $x^{(l)} \quad \text{for } l = 1, \ldots, L;$
+            \COMMENT{ \textit{forward propagation}}
+            \STATE Calcula $\delta^{(l)} \quad \text{for } l = L, \ldots, 1;$
+            \COMMENT{ \textit{backpropagation}}
+            % vamos sumando el erro en cada punto 
+            \STATE
+            \begin{equation}
+                E_{in} 
+                \leftarrow
+                E_{in} + 
+                \frac{1}{N}(x^{L}-y_n)^2 
+            \end{equation}
+            \For{l=1, \ldots, L}{
+                \STATE
+                \COMMENT{Calculamos gradiente en un punto}
+                \begin{equation}
+                    G^{(l)}\left( x_n\right) = 
+                    \left[
+                        x^{(l-1)}
+                        \left(
+                            \delta^{(l)}
+                        \right)^T
+                    \right]
+                \end{equation}
+                \STATE 
+                \begin{equation}
+                    G^{(l)}
+                    \leftarrow
+                    G^{(l)}
+                    + 
+                    \frac{1}{N}
+                    G^{(l)}\left( x_n\right)
+                \end{equation}
+            }
+        }
+\end{algorithmic}
+\end{algorithm}
+
+Finalmente para conocer el valor actualizado de los pesos, lo actualizaremos usando la técnica de gradiente descendente. 
+
+\begin{algorithm}[H]
+    \caption{Algoritmo gradiente descendente.}
+    \hspace*{\algorithmicindent} \textbf{Input}: Pesos $w$ y gradiente $g$. \\
+    \hspace*{\algorithmicindent} \textbf{Output:} $w$ actualizado
+    \begin{algorithmic}[1]
+        \STATE
+        \For{$l = 1, \ldots, L.$}{
+            \begin{equation}
+                W^{(l)}
+                \leftarrow
+                W^{(l)} 
+                - 
+                \eta G^{(l)}                    
             \end{equation}
         }
 \end{algorithmic}
