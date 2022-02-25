@@ -7,8 +7,6 @@
 
 \section{Concepto de aprendizaje}\label{ch:Aprendizaje}
 
-Las redes neuronales son un tipo de algoritmos de Aprendizaje Automático. Por ello, no sería prudente exponer la historia de las redes neuronales sin dar en primer lugar una nociones básicas del área del saber a la que pertenecen.
-
 El término de Aprendizaje Automático 
 \cite{hisour} 
 fue acuñado en 1959 por Arthur Samuel 
@@ -33,24 +31,24 @@ sin que en esas mejoras intervenga un programador.
 \end{marginfigure}
 
 Fue en 1997 cuando Tom Mitchell propuso una definición 
-más formal de aprendizaje 
+formal de aprendizaje 
 \cite{tom-michell-machine-learning}, 
 aproximada a la dada en el libro \textit{Learning from data}
 \cite{learning-from-data-1-2}, que expondremos en seguida.
 
 El aprendizaje es un proceso por el cual se estima una dependencia desconocida 
 (input-output) o la estructura de un sistema a partir de un número finito de 
-observaciones.  El aprendizaje se compone de tres elementos principales: 
+observaciones. Se compone de tres elementos principales: 
 
 \begin{itemize}
     \item Un generador o función de distribución de la cual se extraen 
     vectores aleatorios 
-    $x \in \mathbb R^ n$ 
+    $x \in I \subset \mathbb R^ n$ 
     que dependen de una función de densidad desconocida \footnote{De hecho, encontrar esta función resolvería el problema de aprendizaje}.
     
     \item Un sistema que produce un vector de salida $y$ por cada entrada del vector $x$ a partir del valor fijo $p(y|x)$, que es desconocido también. 
     
-    \item Una \textit{learning machine}, que en el caso más general no es  más que un conjunto de funciones abstractas cuyos elementos son de la forma $f(x,w), w\in \omega$.
+    \item Una \textit{learning machine} dependiente de parámetros $w$, que en el caso más general no es  más que un conjunto de funciones abstractas cuyos elementos son de la forma $f(x,w)$.
 \end{itemize}
 
 \begin{marginfigure}
@@ -78,9 +76,10 @@ donde $f(x_i)$ representa la predicción y $y_i$ la etiqueta de entrenamiento de
 
 % Componentes del aprendizaje   
 \subsection{Componentes del aprendizaje}  
+A nivel práctico y en nuestro caso, los elementos que consideraremos para el aprendizaje y los cuales 
+serán susceptibles de contribuir a la optimización buscada son
+(capítulo 1 \cite{MostafaLearningFromData}): 
 
-(Información proveniente del capítulo 1 \cite{MostafaLearningFromData})
-Los principales componentes del aprendizaje son: 
 
 \begin{itemize}
     \item Una entrada $x$. 
