@@ -48,7 +48,9 @@ fg
 homeomorfismo
 inecuación
 insesgado
+insesgados
 md
+muestral
 multicapa
 nx
 overparametrization
@@ -65,5 +67,5 @@ sumatoria
 teo
 usefulInformation
 ésima
-ésimo
 ésimas
+ésimo

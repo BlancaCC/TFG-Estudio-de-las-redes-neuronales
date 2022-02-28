@@ -44,21 +44,22 @@ Por lo general la teoría se fundamenta en minimizar el error de estimadores, co
 
 $$ECM = \frac{1}{n} \sum_{i=0} ^n (f(x_i) - y_i)^2,$$
 
-donde $f(x_i)$ representa la predicción y $y_i$ la etiqueta de entrenamiento de $x_i$, es decir, su valor real. xccx
+donde $f(x_i)$ representa la predicción y $y_i$ la etiqueta de entrenamiento de $x_i$, es decir, su valor real.
 
 % Componentes del aprendizaje   
-\subsection{Componentes del aprendizaje}  
+\subsection{Componentes del aprendizaje}\label{sub:componentes_aprendizaje}  
 A nivel práctico y en nuestro caso, los elementos que consideraremos para el aprendizaje y los cuales 
 serán susceptibles de contribuir a la optimización buscada son
 (capítulo 1 \cite{MostafaLearningFromData}): 
 
 
 \begin{itemize}
-    \item Espacio muestral Una entrada $x$. 
+    \item Espacio muestral $\mathcal X$.  
     \item Una función objetivo ideal y desconocida
-     $f: \mathcal X \longrightarrow \mathcal{Y}$. 
-     Donde  $\mathcal X$ es el espacio de entrada al que pertenecen las entradas $x$ y $\mathcal{Y}$ el espacio de salida. 
-    \item Un conjunto de datos de entrenamiento $\mathcal D.$
+     $f: \mathcal X \longrightarrow \mathcal{Y},$ 
+     donde  $\mathcal{Y}$ es el conjunto de posibles valores asociados. 
+    \item Un conjunto de datos de entrenamiento $\mathcal D$, donde los elementos son pares $(x,y)$ con $x \in  \mathcal X$ y 
+    $y \in \mathcal{Y}$ y que representa una observación $f(x)=y.$
     \item Un algoritmo de aprendizaje que consiste en seleccionar una fórmula $g: \mathcal X \longrightarrow \mathcal{Y}$ que aproxime $f$. La fórmula $g$ pertenece 
     a un conjunto $\mathcal H$ de hipótesis. 
 \end{itemize}
@@ -71,8 +72,7 @@ En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neur
 
 (Información proveniente del capítulo 1 \cite{MostafaLearningFromData})
 
-El aprendizaje a partir de los datos consiste en el uso de un 
-un conjunto de observaciones con el fin de descubrir un patrón, modelo o ley del proceso subyacente. 
+El aprendizaje a partir de los datos trata en esencia de modelizar un patrón, modelo o ley del proceso subyacente a partir de un conjunto finito de muestras.  
 
 En función de ciertas características del conjunto de datos se 
 tienen distintos tipos de aprendizaje.  
@@ -103,7 +103,40 @@ recién mencionados
 \cite{8612259}, \cite{DBLP:journals/corr/BakerGNR16}, \cite{10.5555/2955491.2955578}. Sin embargo centraremos nuestro estudio en el caso 
 de aprendizaje supervisado. 
 
-Además, podríamos clasificar también el tipo de problemas en función del tipo de salida requerida (capítulo 4 pag 179
-\cite{BishopPaterRecognition}), en regresión, clasificación o probabilistas. 
-Dada una salida cualquiera, la adaptación de esta a un dominio concreto se consigue por medio de funciones 
-no lineales, las cuales denotamos como \textbf{funciones de activación}. 
+\subsubsection*{Otra clasificación en virtud de la salida}
+
+Se clasifican también los problemas en función de la salida requerida (capítulo 4 pag 179
+\cite{BishopPaterRecognition}) en problemas de regresión, clasificación o probabilistas. 
+
+\subsection{El gradiente descendente} 
+
+Así pues, una vez concretado el problema y sus elementos 
+(\ref{sub:componentes_aprendizaje}) es necesario definir un método con el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
+
+El gradiente descendente es una técnica iterativa usada para minimizar funciones diferenciables
+a partir de la pendiente en cada punto. 
+
+Supongamos que se quiere aproximar $f$ a partir de funciones $h_w \in \mathcal{H}$, donde $w \in \R^d \times \R^d$ son parámetros que caracterizan a $h_w$.
+Dada también una función de error diferenciable y que no presente puntos de inflexión
+$E: \R^d \times \R^d \longrightarrow \R,$
+se toma un punto inicial  cualquiera $w_0 \in \R^d \times \R^d$ y 
+fijado $\eta \in \R^+$. 
+
+Se define la sucesión 
+\begin{equation}
+    w_{t+1}  = w_t - \eta \nabla E(w_t).
+\end{equation}  
+
+Si $\nabla E(w_t) \neq 0$ y 
+
+\textcolor{red}{TODO : Demostrar que disminuye el error.}
+
+\textcolor{red}{TODO : Incluir teoría sobre estimadores insesgados. }
+
+Las características de este algoritmo son las siguientes: 
+
+\begin{itemize}
+    \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
+    \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
+    \item Si la función es convexa el mínimo será global. 
+\end{itemize}
