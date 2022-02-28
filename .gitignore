@@ -29,3 +29,4 @@ doc/_minted-tfg
 *.lot
 
 doc/tfg.loa
+doc/.DS_Store
