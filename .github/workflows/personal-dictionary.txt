@@ -79,6 +79,7 @@ reproducibility
 retroalimentación
 retroalimentarán
 rrnn
+rrnng
 separabilidad
 solventable
 squasher

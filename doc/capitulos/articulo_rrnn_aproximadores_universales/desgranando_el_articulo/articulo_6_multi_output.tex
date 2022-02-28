@@ -2,20 +2,82 @@
 % !TeX encoding = utf8
 %
 %***************************************************************
-% Contenido del artículo 5: Generalización a multi-output ∫
+% Contenido del artículo 5: Generalización a multi-output 
 %***************************************************************
 \section{Generalización para \textit{multi-output neuronal networks}}
 
 En las secciones anteriores se han provisto resultados para redes 
 neuronales de salida real. Vamos a generalizar los resultados vistos
 para ser capaces de aproximar funciones continuas o medibles 
-de $\R^r$ a $\R^s$ con $r,s \in \N$
+de $\R^r$ a $\R^s$ con $r,s \in \N.$
 
+Denotaremos como $\fCC$ al conjunto de funciones continuas definidas de $\R^r$ a $\R^s$ y al de funciones medibles de 
+$\R^r$ a $\R^s$  como $\fMM.$ 
+La distancia asociada a estos espacios se define como 
+\begin{equation}
+    \rho_{\mu}^s(f,g) 
+    =
+    \sum_{i=1}^s \dist(f_i, g_i).
+\end{equation}
+\text{red}{Falta afinar estas definiciones}
+\begin{definicion} 
+    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
+    $r \in \N$ se define a la clase de funciones $\pmc$ como 
+    \begin{equation}
+        \begin{split}
+        \sum^{r,s}(G) = 
+        \{ 
+            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots f_s)  / \quad 
+            \\ &
+            \text{ con } f_i : \R ^r\longrightarrow \R, 
+            f_i(x)=\sum_{j = 1} ^q (
+            \beta_{j i} G(A_{j i}(x)) \quad i \in \{1,2,\ldots, s\}, \\
+            & x  \in \R ^r, \beta_j \in \{1\} \times \R^s, A_{j}\in A^r,q \in \N
+            )
+        \}.
+        \end{split}
+    \end{equation}
+\end{definicion}
+
+\begin{definicion} 
+    \begin{equation} 
+        \begin{split}
+        \sum \prod^{r, s}(G) = \{ 
+        &f: \R^r \longrightarrow \R / \quad
+        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+        G(A_{jk}(x)), \\
+        &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r; l_j,q \in \N
+        )
+        \}.
+    \end{split}
+    \end{equation} 
+\end{definicion}
+
+% Corolario 2.6  
+\begin{corolario}\label{corolario:2_6}
+    Los teoremas 
+    \ref{teorema:2_3_uniformemente_denso_compactos}
+    \ref{teo:2_4_rrnn_densas_M} 
+    y los corolarios
+    \ref{cor:2_1}, 
+    \ref{corolario:2_2_rrnn},
+    \ref{corolario:2_3_medida_probabilidad},
+    \ref{corolario:2_4_conjunto_finito}
+    y 
+    \ref{corolario:2_5_función_Booleana}
+    permanecen válidos si se sustituye $\rrnn$ por $\rrnnmc$
+    ,$rrnng$ por $\rrnngmc$, 
+    los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente con su respectiva norma.
+\end{corolario}
+\begin{proof}
+    \textcolor{red}{TODO}
+\end{proof}
 
 % Lema A.6   
-\textcolor{red}{La demostración expuesta en el artículo de este lema es incorrecta, ya que él se afirma que 
+\textcolor{red}{La demostración expuesta en el artículo de este lema es incorrecta, ya que en él se afirma que 
 si $|f(x) - x| <= e$ entonces $|g(f(x))- g(x)|$ es menor $e$. Esto claramente es un error ya que 
-consideremos $g(x) = 2x$ y $f(x)=x+e$, está claro que $|g(f(x))- g(x)|=2e>e$.}
+consideremos $g(x) = 2x$ y $f(x)=x+e$, está claro que $|g(f(x))- g(x)|=2e>e$. Es por ello que propongo esta
+demostración alternativa basada en el conjunto $\Lambda_{K, \delta, g}$.}
 \begin{lema}
     Sea F un conjunto de funciones definidas de $\R \longrightarrow \R$ que es uniformemente 
     denso para compactos de $C(\R)$ y
@@ -53,6 +115,52 @@ consideremos $g(x) = 2x$ y $f(x)=x+e$, está claro que $|g(f(x))- g(x)|=2e>e$.}
         \}
     \end{equation}
     Notemos que por estar en un compacto $\sup|g(x) - g(s)|$ está bien definido 
-    y además existe el supremo de $\Lambda_{K, \delta, g}, $
-
+    y existe el supremo de $\Lambda_{K, \delta, g};$ además, fijando $g$ y $K$ por continuidad de $g$
+    y estar en un compacto podemos encontrar un $\delta'$ tal que 
+    \begin{equation}\label{lema_A_6:supremo_lambda_delta_prima}
+        \sup \Lambda_{K, \delta', g}  < \frac{\epsilon}{2}.
+    \end{equation}
+    Por ser $F$ uniformemente denso existe $f \in F$ satisfaciendo 
+    que 
+    \begin{equation}\label{lema_A_6:encontramos_f}
+        \sup_{x \in K}|f(x) - x| < \delta'.
+    \end{equation}
+    Gracias a \refeq{lema_A_6:supremo_lambda_delta_prima} y \refeq{lema_A_6:encontramos_f} se tiene que
+    \begin{equation}
+        \sup_{x \in K}|g \circ f(x) - g(x)| 
+        < \sup \Lambda_{K, \delta', g} 
+        < \frac{\epsilon}{2}
+    \end{equation}
+    Por lo que acabamos de probar lo buscado 
+    \begin{align}
+        \sup_{x \in K}|h(x) - g \circ f(x)| &
+        < 
+        \sup_{x \in K}|h(x) - g(x) + g(x) - g \circ f(x)| 
+        \\ &
+        < 
+        \sup_{x \in K}|h(x) - g(x)|
+        + 
+        \sup_{x \in K}|g(x) - g \circ f(x)|  
+        \\ &
+        < 
+        \frac{\epsilon}{2} + \frac{\epsilon}{2}
+        = \epsilon.
+    \end{align}
 \end{proof}
+
+Finalmente vamos a probar la aproximación universal 
+para redes neuronales multicapas. 
+\begin{corolario}
+    El teorema
+    \ref{teo:2_4_rrnn_densas_M} 
+    y los corolarios
+    \ref{cor:2_1}, 
+    \ref{corolario:2_2_rrnn},
+    \ref{corolario:2_3_medida_probabilidad},
+    \ref{corolario:2_4_conjunto_finito},
+    \ref{corolario:2_5_función_Booleana}
+    y 
+    \ref{corolario:2_6}
+    son válidos para 
+    TODO terminar de copiar. 
+\end{corolario}
