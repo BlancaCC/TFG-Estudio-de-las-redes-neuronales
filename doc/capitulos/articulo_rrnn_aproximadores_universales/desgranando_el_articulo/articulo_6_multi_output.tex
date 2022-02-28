@@ -10,3 +10,49 @@ En las secciones anteriores se han provisto resultados para redes
 neuronales de salida real. Vamos a generalizar los resultados vistos
 para ser capaces de aproximar funciones continuas o medibles 
 de $\R^r$ a $\R^s$ con $r,s \in \N$
+
+
+% Lema A.6   
+\textcolor{red}{La demostración expuesta en el artículo de este lema es incorrecta, ya que él se afirma que 
+si $|f(x) - x| <= e$ entonces $|g(f(x))- g(x)|$ es menor $e$. Esto claramente es un error ya que 
+consideremos $g(x) = 2x$ y $f(x)=x+e$, está claro que $|g(f(x))- g(x)|=2e>e$.}
+\begin{lema}
+    Sea F un conjunto de funciones definidas de $\R \longrightarrow \R$ que es uniformemente 
+    denso para compactos de $C(\R)$ y
+    G un conjunto de funciones definidas de $\R^r \longrightarrow \R$ que es uniformemente 
+    denso para compactos de $\fC$.
+    
+    Se tiene entonces que el conjunto 
+    \begin{equation}
+        G \circ F 
+        = 
+        \{
+            g \circ f : g \in G \text{ y } f \in F
+        \}
+    \end{equation}
+    es uniformemente denso para compactos de $\fC.$
+\end{lema}
+\begin{proof}
+    Queremos probar que para cualquier $h \in \fC$, cualquier conjunto compacto $K \subset \R^r$ 
+    y cualquier $\epsilon >0$
+    existe una función $g \circ f \in G \circ F$ tal que 
+    \begin{equation}
+        \sup_{x \in K}|h(x) - g \circ f(x)| < \epsilon.
+    \end{equation}
+
+    Por ser $G$ uniformemente denso existe $g \in G$ satisfaciendo 
+    \begin{equation}
+        \sup_{x \in K}|h(x) - g(x)| < \frac{\epsilon}{2}.
+    \end{equation}
+    Definimos el conjunto 
+    \begin{equation}
+        \Lambda_{K, \delta, g} 
+        = 
+        \{
+           \sup|g(x) - g(s)| : x \in K, s \in \bar{B}(x,\delta) \cap K 
+        \}
+    \end{equation}
+    Notemos que por estar en un compacto $\sup|g(x) - g(s)|$ está bien definido 
+    y además existe el supremo de $\Lambda_{K, \delta, g}, $
+
+\end{proof}
