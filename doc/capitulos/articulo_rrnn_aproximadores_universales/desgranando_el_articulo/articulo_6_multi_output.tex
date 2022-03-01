@@ -19,8 +19,22 @@ La distancia asociada a estos espacios se define como
     =
     \sum_{i=1}^s \dist(f_i, g_i).
 \end{equation}
+
 \text{red}{Falta afinar estas definiciones}
-\begin{definicion} 
+
+Con la siguiente definición buscamos abstraer el modelo de una red neuronal de una capa oculta y salida múltiple.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/RedNeuronalAbstactaUnaCapaVariasSalidas.png}
+    \caption{Ejemplo de red neuronal de una capa oculta con $h$ nodos, de dimensión de entrada $r$ y salida $s$.}
+    \label{fig:red neuronal-r-h-s}
+\end{figure}
+
+Nótese que los vectores $(w_{0i},w_{1i}, \ldots, w_{ri})$ representan a la aplicación afín 
+$A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^r w_{ji} x_j$
+con $i \in \{1,\ldots, h\}$ . 
+
+\begin{definicion}[Abstracción red neuronal una capa oculta múltiple salida] 
     Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
     $r \in \N$ se define a la clase de funciones $\pmc$ como 
     \begin{equation}
@@ -30,27 +44,36 @@ La distancia asociada a estos espacios se define como
             & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots f_s)  / \quad 
             \\ &
             \text{ con } f_i : \R ^r\longrightarrow \R, 
-            f_i(x)=\sum_{j = 1} ^q (
-            \beta_{j i} G(A_{j i}(x)) \quad i \in \{1,2,\ldots, s\}, \\
-            & x  \in \R ^r, \beta_j \in \{1\} \times \R^s, A_{j}\in A^r,q \in \N
+            f_i(x)=\sum_{j = 1} ^h (
+            \beta_{j i} G(A_{j}(x)) \quad i \in \{1,2,\ldots, s\}, \\
+            & x  \in \R ^r, \beta_{j i} \in \R, A_{j}\in A^r,h \in \N
             )
         \}.
         \end{split}
     \end{equation}
 \end{definicion}
+y no es difícil pensar que su versión generalizada sea: 
 
 \begin{definicion} 
-    \begin{equation} 
+    Dadas las mismas hipótesis que en la definición anterior, se define la siguiente clase de funciones como 
+    \begin{equation}
         \begin{split}
-        \sum \prod^{r, s}(G) = \{ 
-        &f: \R^r \longrightarrow \R / \quad
-        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
-        G(A_{jk}(x)), \\
-        &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r; l_j,q \in \N
-        )
+            \sum \prod^{r, s}(G) 
+            = 
+        \{ 
+            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots f_s)  / \quad 
+            \\ &
+            \text{ con } f_i : \R ^r\longrightarrow \R, 
+            f_i(x)=\sum_{j = 1} ^h 
+            \left(
+            \beta_{j i} \prod_{k=1}^{l_{j i}} G(A_{j i}(x)
+            \right)
+             \quad i \in \{1,2,\ldots, s\}, \\
+            & x  \in \R ^r, \beta_{j i} \in \R, A_{j i}\in A^r; h,l_{j i} \in \N
+            )
         \}.
-    \end{split}
-    \end{equation} 
+        \end{split}
+    \end{equation}
 \end{definicion}
 
 % Corolario 2.6  
@@ -66,7 +89,7 @@ La distancia asociada a estos espacios se define como
     y 
     \ref{corolario:2_5_función_Booleana}
     permanecen válidos si se sustituye $\rrnn$ por $\rrnnmc$
-    ,$rrnng$ por $\rrnngmc$, 
+    ,$\rrnng$ por $\rrnngmc$, 
     los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente con su respectiva norma.
 \end{corolario}
 \begin{proof}
