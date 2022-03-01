@@ -20,8 +20,6 @@ La distancia asociada a estos espacios se define como
     \sum_{i=1}^s \dist(f_i, g_i).
 \end{equation}
 
-\text{red}{Falta afinar estas definiciones}
-
 Con la siguiente definición buscamos abstraer el modelo de una red neuronal de una capa oculta y salida múltiple.
 \begin{figure}[h]
     \centering
@@ -66,16 +64,26 @@ y no es difícil pensar que su versión generalizada sea:
             \text{ con } f_i : \R ^r\longrightarrow \R, 
             f_i(x)=\sum_{j = 1} ^h 
             \left(
-            \beta_{j i} \prod_{k=1}^{l_{j i}} G(A_{j i}(x)
+            \beta_{j i} \prod_{k=1}^{l_{j i}} G(A_{j i}(x))
             \right)
              \quad i \in \{1,2,\ldots, s\}, \\
-            & x  \in \R ^r, \beta_{j i} \in \R, A_{j i}\in A^r; h,l_{j i} \in \N
-            )
+            & x  \in \R ^r, \beta_{j i} \in \R, A_{j i}\in A^r; h,l_{j i} \in \N 
         \}.
         \end{split}
     \end{equation}
+    Haciendo abuso de lenguaje, nos referiremos a cada uno de los sumandos como 
+    nodo en la capa oculta, es decir habría $h$ nodos en la capa oculta. 
 \end{definicion}
 
+
+\textcolor{red}{No tengo muy claro cómo enunciar este teorema. ¿Dejarlo así 
+es lo suficientemente riguroso? Otras opciones que barajo es (O1) ir enumerando 
+respectivamente los lemas y teoremas en la versión de salida múltiple,
+ demostrar el primero y en el resto decir que se hace igual, pero puede 
+ ser muy pesado de leer y de escribir cuando la idea es sencilla. 
+ (O2) Ponerlo como corolarios tras enunciar la versión simple, esto supondría eliminar 
+ esta sección y tener 
+ que definir antes los espacios y distancias}
 % Corolario 2.6  
 \begin{corolario}\label{corolario:2_6}
     Los teoremas 
@@ -93,7 +101,64 @@ y no es difícil pensar que su versión generalizada sea:
     los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente con su respectiva norma.
 \end{corolario}
 \begin{proof}
-    \textcolor{red}{TODO}
+    Observemos que todos los teoremas y lemas mencionados basan su tesis
+    en la existencia de una red neuronal es decir, que si llamamos según 
+    convenga $\mathcal{F}^{r,s}$ a $\rrnnmc$ o $\rrnngmc$ deberemos de 
+    encontrar un $f \in \mathcal{F}^{r,s}$ que cumplan las respectivas tesis para salidas múltiples. 
+
+    La prueba se construirá por inducción sobre el número de nodos de salida $s$. 
+
+    El caso base $s=1$ viene dado por los respectivos teoremas y lemas.
+    Supuesto cierto para $s = n$ veamos que se cumple para $s=n+1$: 
+    
+    Se quiere encontrar l 
+    $f = (f_1, f_2, \ldots, f_n, f_{n+1})$ de $n+1$ salidas, 
+    por hipótesis de inducción existe $g_n \in \mathcal{F}^{r,n}$ con
+     $g_n = (f_1, f_2, \ldots, f_n)$ y con $h_n$ nodos en la capa oculta. Denotamos a los pesos de las transformaciones afines 
+     $w_{i j} \in \R$ con 
+     $i \in \{0, 1, \ldots r \}$  y  $j \in \{1, \ldots h_n \}$ 
+     y $\beta_{ k l} \in \R$ con 
+     $k \in \{1, \ldots h_n \}$  y  $l \in \{1, \ldots n \}.$
+
+    También existe $g_1 \in \mathcal{F}^{r,1}$ cumpliendo que
+    $g_1 = f_{n+1}$ con $h_1$ neuronas en la capa oculta
+    y pesos  
+    ${w'}_{i j} \in \R$ con 
+     $i \in \{0, 1, \ldots r \}$  y  $j \in \{1, \ldots h_1 \}$ 
+     y ${\beta '}_{ k l} \in \R$ con 
+     $k \in \{1, \ldots h_1 \}$  y  $l = {n+1}$
+     (Ver figura \ref{fig:red neuronal-r-h-s} para orientarse en la notación tomada).
+     
+    Considerando $f$ que está compuesta por una capa oculta de nodos $h_n$ y $h_1$ y donde sus pesos son los siguientes:
+
+    El peso $\tilde{w}$ de las funciones afines: 
+    Para cuales quiera 
+    $i \in \{0, 1, \ldots r \}$  y  
+    $j \in \{1, \ldots h_n, h_{n} + 1, \ldots, h_n + h_1\}$  determinaremos la siguiente casuística
+    \begin{enumerate}
+        \item Si $1 \leq j \leq h_n$ entonces $\tilde{w}_{i j} = w_{i j}.$
+        \item Si $h_n < j \leq h_n + h_1$ entonces $\tilde{w}_{i j} = w_{i (j-h_n)}.$
+    \end{enumerate}
+
+    Para los pesos $\tilde{\beta}$, para cualquier
+    $k \in \{1, \ldots h_n, h_{n} + 1, \ldots, h_n + h_1\}$ y  
+    $l \in \{1, \ldots n+1 \}$ 
+    \begin{enumerate}
+        \item Si $k \in \{1, \ldots h_n \}$ y $l \in \{1, \ldots n\}$ 
+        entonces $\tilde{\beta}_{k l} = \beta_{k l}.$
+        \item Si $k \in \{1, \ldots h_n \}$ y $l=n+1$ 
+        entonces $\tilde{\beta}_{k l} = 0.$
+        \item Si $k \in \{h_{n} + 1, \ldots, h_n + h_1 \}$ 
+        y $l \in \{1, \ldots n\}$ 
+        entonces $\tilde{\beta}_{k l} = 0.$
+        \item Si $k \in \{h_{n} + 1, \ldots, h_n + h_1 \}$ 
+        y $l=n+1$ 
+        entonces 
+        $\tilde{\beta}_{k l} = {\beta '}_{(k- h_n) l}.$
+    \end{enumerate}
+
+    Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{r,s}$ que para cada teorema o lema
+    cada una de las proyecciones de $f$ cumple la tesis, es decir $f$ cumple lo buscado. 
 \end{proof}
 
 % Lema A.6   
@@ -171,7 +236,7 @@ demostración alternativa basada en el conjunto $\Lambda_{K, \delta, g}$.}
     \end{align}
 \end{proof}
 
-Finalmente vamos a probar la aproximación universal 
+Finalmente vamos a probar la aproximación universal para redes universales multicapas con múltiples salidas. 
 para redes neuronales multicapas. 
 \begin{corolario}
     El teorema
