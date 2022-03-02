@@ -28,7 +28,7 @@ Con la siguiente definición buscamos abstraer el modelo de una red neuronal de 
     \label{fig:red neuronal-r-h-s}
 \end{figure}
 
-Nótese que los vectores $(w_{0i},w_{1i}, \ldots, w_{ri})$ representan a la aplicación afín 
+Nótese que los vectores $(w_{0i},w_{1 i}, \ldots, w_{r i})$ representan a la aplicación afín 
 $A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^r w_{ji} x_j$
 con $i \in \{1,\ldots, h\}$ . 
 
@@ -160,6 +160,12 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
     Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{r,s}$ que para cada teorema o lema
     cada una de las proyecciones de $f$ cumple la tesis, es decir $f$ cumple lo buscado. 
 \end{proof}
+
+\subsubsection*{ Conclusión sobre el teorema anterior}  
+A la vista de la demostración constructiva se nos acaba de decir de manera indirecta que si queremos construir una red neuronal 
+a partir de un tamaño de entrenamiento $E$ y de salida $r$, 
+con una red neuronal de $E \times r$ capas ocultas será suficiente y para este caso la reflexión expuesta en la sección \ref{subsection:reflexión_sobre_número_de_neuronas} es idéntica. 
+
 
 % Lema A.6   
 \textcolor{red}{La demostración expuesta en el artículo de este lema es incorrecta, ya que en él se afirma que 
