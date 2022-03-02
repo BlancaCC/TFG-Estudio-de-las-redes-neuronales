@@ -166,7 +166,7 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
 si $|f(x) - x| <= e$ entonces $|g(f(x))- g(x)|$ es menor $e$. Esto claramente es un error ya que 
 consideremos $g(x) = 2x$ y $f(x)=x+e$, está claro que $|g(f(x))- g(x)|=2e>e$. Es por ello que propongo esta
 demostración alternativa basada en el conjunto $\Lambda_{K, \delta, g}$.}
-\begin{lema}
+\begin{lema}\label{lema:lema_a_6}
     Sea F un conjunto de funciones definidas de $\R \longrightarrow \R$ que es uniformemente 
     denso para compactos de $C(\R)$ y
     G un conjunto de funciones definidas de $\R^r \longrightarrow \R$ que es uniformemente 
@@ -249,6 +249,54 @@ para redes neuronales multicapas.
     \ref{corolario:2_5_función_Booleana}
     y 
     \ref{corolario:2_6}
-    son válidos para 
-    TODO terminar de copiar. 
+    son válidos para $\sum_{l}^{r,s}(\psi),$
+    la clase de funciones de las redes neuronales multicapas de entrada 
+    dimensión $r$, salida $s$, $l$ número de capas ocultas con función de
+    activación $\psi$, aproximando funciones $\fCC$ y $\fMM$ con su respectivas distancias. 
 \end{corolario}
+\begin{proof}
+    Para la demostración consideraremos el caso $s=1$, ya que para $s\geq 2$ 
+    se puede aplicar la demostración dada en \ref{corolario:2_6}.
+
+    Basta con probar que para cada $k$ la clase 
+    \begin{align}
+        J_k = \left\{
+            \sum_{i_k} \beta_{ i_k} \psi
+            \left(
+                A_{i k}
+                \left(
+                    \sum_{i_{k-1}} \beta_{ i_k i_{k-1}} 
+                    \times
+                    \psi \left(
+                         \ldots 
+                         \left(
+                            \sum_{i_k} \beta_{ i_k, \ldots, i_l} 
+                            \psi(A_{i_k \ldots i_l}(x))
+                         \right)
+                         \ldots
+                    \right)
+                \right)
+            \right)
+        \right\}
+    \end{align}
+    es uniformemente densa en compactos para $\fC$.
+
+    Lo probaremos por inducción sobre $k$.
+
+    Para el caso base $k=1$ basta con recordar que el lema \ref{lema:A_5_uniformemente_denso_compactos} 
+    nos asegura la convergencia uniforme.
+
+    Supuesto cierto para $J_k$ queremos ver que lo es para $J_{k+1}$. 
+    Está claro que podemos definir de manera recursiva
+    \begin{equation}
+        J_{k+1} = \left\{
+            \sum_j \beta_j \psi(A_j(g_j(x)))
+            : g_j \in J_k
+        \right\}.
+    \end{equation}
+    el lema \ref{lema:A_5_uniformemente_denso_compactos} nos asegura que 
+    $\left\{
+        \sum_j \beta_j \psi(A_j(\cdot))
+    \right\}$ es uniformemente denso en compactos para $C(\R)$ y gracias al lema \ref{lema:lema_a_6} completamos la inducción y por tanto la prueba del teorema. 
+\end{proof}
+La misma prueba es válida para el espacio $\sum \prod_l ^{r,s}$.
