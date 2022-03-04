@@ -11,8 +11,8 @@ neuronales de salida real. Vamos a generalizar los resultados vistos
 para ser capaces de aproximar funciones continuas o medibles 
 de $\R^r$ a $\R^s$ con $r,s \in \N.$
 
-Denotaremos como $\fCC$ al conjunto de funciones continuas definidas de $\R^r$ a $\R^s$ y al de funciones medibles de 
-$\R^r$ a $\R^s$  como $\fMM.$ 
+Denotaremos por $\fCC$ al conjunto de funciones continuas definidas de $\R^r$ a $\R^s$ y al de funciones medibles de 
+$\R^r$ a $\R^s$  por $\fMM.$ 
 La distancia asociada a estos espacios se define como 
 \begin{equation}
     \rho_{\mu}^s(f,g) 
@@ -32,14 +32,14 @@ Nótese que los vectores $(w_{0i},w_{1 i}, \ldots, w_{r i})$ representan a la ap
 $A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^r w_{ji} x_j$
 con $i \in \{1,\ldots, h\}$ . 
 
-\begin{definicion}[Abstracción red neuronal una capa oculta múltiple salida] 
+\begin{definicion}[Abstracción de una red neuronal con una capa oculta y múltiple salida] 
     Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
     $r \in \N$ se define a la clase de funciones $\pmc$ como 
     \begin{equation}
         \begin{split}
         \sum^{r,s}(G) = 
         \{ 
-            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots f_s)  / \quad 
+            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots, f_s)  / \quad 
             \\ &
             \text{ con } f_i : \R ^r\longrightarrow \R, 
             f_i(x)=\sum_{j = 1} ^h (
@@ -50,7 +50,8 @@ con $i \in \{1,\ldots, h\}$ .
         \end{split}
     \end{equation}
 \end{definicion}
-y no es difícil pensar que su versión generalizada sea: 
+
+No es difícil pensar que su versión generalizada sea: 
 
 \begin{definicion} 
     Dadas las mismas hipótesis que en la definición anterior, se define la siguiente clase de funciones como 
@@ -59,7 +60,7 @@ y no es difícil pensar que su versión generalizada sea:
             \sum \prod^{r, s}(G) 
             = 
         \{ 
-            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots f_s)  / \quad 
+            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots , f_s)  / \quad 
             \\ &
             \text{ con } f_i : \R ^r\longrightarrow \R, 
             f_i(x)=\sum_{j = 1} ^h 
@@ -71,23 +72,13 @@ y no es difícil pensar que su versión generalizada sea:
         \}.
         \end{split}
     \end{equation}
-    Haciendo abuso de lenguaje, nos referiremos a cada uno de los sumandos como 
-    nodo en la capa oculta, es decir habría $h$ nodos en la capa oculta. 
 \end{definicion}
 
 
-\textcolor{red}{No tengo muy claro cómo enunciar este teorema. ¿Dejarlo así 
-es lo suficientemente riguroso? Otras opciones que barajo es (O1) ir enumerando 
-respectivamente los lemas y teoremas en la versión de salida múltiple,
- demostrar el primero y en el resto decir que se hace igual, pero puede 
- ser muy pesado de leer y de escribir cuando la idea es sencilla. 
- (O2) Ponerlo como corolarios tras enunciar la versión simple, esto supondría eliminar 
- esta sección y tener 
- que definir antes los espacios y distancias}
 % Corolario 2.6  
 \begin{corolario}\label{corolario:2_6}
     Los teoremas 
-    \ref{teorema:2_3_uniformemente_denso_compactos}
+    \ref{teorema:2_3_uniformemente_denso_compactos},
     \ref{teo:2_4_rrnn_densas_M} 
     y los corolarios
     \ref{cor:2_1}, 
@@ -98,7 +89,7 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
     \ref{corolario:2_5_función_Booleana}
     permanecen válidos si se sustituye $\rrnn$ por $\rrnnmc$
     ,$\rrnng$ por $\rrnngmc$, 
-    los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente con su respectiva norma.
+    los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente.
 \end{corolario}
 \begin{proof}
     Observemos que todos los teoremas y lemas mencionados basan su tesis
@@ -106,50 +97,50 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
     convenga $\mathcal{F}^{r,s}$ a $\rrnnmc$ o $\rrnngmc$ deberemos de 
     encontrar un $f \in \mathcal{F}^{r,s}$ que cumplan las respectivas tesis para salidas múltiples. 
 
-    La prueba se construirá por inducción sobre el número de nodos de salida $s$. 
+    La prueba se construirá por inducción sobre el número de salidas $s$. 
 
-    El caso base $s=1$ viene dado por los respectivos teoremas y lemas.
+    El caso base $s=1$ viene dado por los respectivos teoremas y lemas ya probados.
     Supuesto cierto para $s = n$ veamos que se cumple para $s=n+1$: 
     
-    Se quiere encontrar l 
+    Se quiere encontrar 
     $f = (f_1, f_2, \ldots, f_n, f_{n+1})$ de $n+1$ salidas, 
     por hipótesis de inducción existe $g_n \in \mathcal{F}^{r,n}$ con
-     $g_n = (f_1, f_2, \ldots, f_n)$ y con $h_n$ nodos en la capa oculta. Denotamos a los pesos de las transformaciones afines 
+     $g_n = (f_1, f_2, \ldots, f_n)$ y con $h_n$ sumandos. Denotamos a los pesos de las transformaciones afines 
      $w_{i j} \in \R$ con 
-     $i \in \{0, 1, \ldots r \}$  y  $j \in \{1, \ldots h_n \}$ 
+     $i \in \{0, 1, \ldots , r \}$  y  $j \in \{1, \ldots ,h_n \}$ 
      y $\beta_{ k l} \in \R$ con 
-     $k \in \{1, \ldots h_n \}$  y  $l \in \{1, \ldots n \}.$
+     $k \in \{1, \ldots ,h_n \}$  y  $l \in \{1, \ldots ,n \}.$
 
     También existe $g_1 \in \mathcal{F}^{r,1}$ cumpliendo que
-    $g_1 = f_{n+1}$ con $h_1$ neuronas en la capa oculta
+    $g_1 = f_{n+1}$ con $h_1$ sumandos en la capa oculta
     y pesos  
     ${w'}_{i j} \in \R$ con 
-     $i \in \{0, 1, \ldots r \}$  y  $j \in \{1, \ldots h_1 \}$ 
+     $i \in \{0, 1, \ldots , r \}$  y  $j \in \{1, \ldots , h_1 \}$ 
      y ${\beta '}_{ k l} \in \R$ con 
-     $k \in \{1, \ldots h_1 \}$  y  $l = {n+1}$
+     $k \in \{1, \ldots , h_1 \}$  y  $l = {n+1}$
      (Ver figura \ref{fig:red neuronal-r-h-s} para orientarse en la notación tomada).
      
-    Considerando $f$ que está compuesta por una capa oculta de nodos $h_n$ y $h_1$ y donde sus pesos son los siguientes:
+    Considerando $f$ compuesta por $h_n + h_1$ sumandos y donde sus pesos son los siguientes:
 
     El peso $\tilde{w}$ de las funciones afines: 
     Para cuales quiera 
-    $i \in \{0, 1, \ldots r \}$  y  
-    $j \in \{1, \ldots h_n, h_{n} + 1, \ldots, h_n + h_1\}$  determinaremos la siguiente casuística
+    $i \in \{0, 1, \ldots  , r \}$  y  
+    $j \in \{1, \ldots , h_n, h_{n} + 1, \ldots, h_n + h_1\}$  determinaremos la siguiente casuística
     \begin{enumerate}
         \item Si $1 \leq j \leq h_n$ entonces $\tilde{w}_{i j} = w_{i j}.$
         \item Si $h_n < j \leq h_n + h_1$ entonces $\tilde{w}_{i j} = w_{i (j-h_n)}.$
     \end{enumerate}
 
     Para los pesos $\tilde{\beta}$, para cualquier
-    $k \in \{1, \ldots h_n, h_{n} + 1, \ldots, h_n + h_1\}$ y  
-    $l \in \{1, \ldots n+1 \}$ 
+    $k \in \{1, \ldots , h_n, h_{n} + 1, \ldots, h_n + h_1\}$ y  
+    $l \in \{1, \ldots ,  n+1 \} :$ 
     \begin{enumerate}
-        \item Si $k \in \{1, \ldots h_n \}$ y $l \in \{1, \ldots n\}$ 
+        \item Si $k \in \{1, \ldots ,  h_n \}$ y $l \in \{1, \ldots , n\}$ 
         entonces $\tilde{\beta}_{k l} = \beta_{k l}.$
-        \item Si $k \in \{1, \ldots h_n \}$ y $l=n+1$ 
+        \item Si $k \in \{1, \ldots , h_n \}$ y $l=n+1$ 
         entonces $\tilde{\beta}_{k l} = 0.$
         \item Si $k \in \{h_{n} + 1, \ldots, h_n + h_1 \}$ 
-        y $l \in \{1, \ldots n\}$ 
+        y $l \in \{1, \ldots , n\}$ 
         entonces $\tilde{\beta}_{k l} = 0.$
         \item Si $k \in \{h_{n} + 1, \ldots, h_n + h_1 \}$ 
         y $l=n+1$ 
@@ -157,7 +148,7 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
         $\tilde{\beta}_{k l} = {\beta '}_{(k- h_n) l}.$
     \end{enumerate}
 
-    Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{r,s}$ que para cada teorema o lema
+    Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{r,s}$, y que para cada teorema o lema
     cada una de las proyecciones de $f$ cumple la tesis, es decir $f$ cumple lo buscado. 
 \end{proof}
 
@@ -165,6 +156,9 @@ respectivamente los lemas y teoremas en la versión de salida múltiple,
 A la vista de la demostración constructiva se nos acaba de decir de manera indirecta que si queremos construir una red neuronal 
 a partir de un tamaño de entrenamiento $E$ y de salida $r$, 
 con una red neuronal de $E \times r$ capas ocultas será suficiente y para este caso la reflexión expuesta en la sección \ref{subsection:reflexión_sobre_número_de_neuronas} es idéntica. 
+
+
+%% Hasta aquí se aplican los cambios de Javier y JJ  
 
 
 % Lema A.6   

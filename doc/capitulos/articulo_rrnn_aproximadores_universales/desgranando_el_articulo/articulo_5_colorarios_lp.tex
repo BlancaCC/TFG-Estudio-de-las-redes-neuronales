@@ -294,13 +294,13 @@ como queríamos probar.
 \end{proof}   
 
 Es interesante percatarse de que de no exigirse la hipótesis de 
-que $\psi$ alcanza el cero o el uno o que no es continua no puede 
+que $\psi$ alcanza el cero y el uno no puede 
 asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función de activación
 
 \begin{equation}
     \psi(x)= \left\{ \begin{array}{lcc}
         0 &   si  & x \leq 0 \\
-        \frac{\lceil x \rceil}{1+ \lceil x \rceil}&  si & 0< x  
+        \frac{| x |}{1+ | x |}&  si & 0< x  
         \end{array}
     \right. 
 \end{equation}
@@ -309,14 +309,15 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
     Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
     $r$ natural positivo. 
-    Se tiene que existe un vector $p \in \R^r$ que satisface que 
+    Existe un vector $p \in \R^r$ que satisface que 
     para cualesquiera $x,y \in \Lambda$ diferentes 
     \begin{equation}
         p \cdot(x-y) \neq 0.
     \end{equation}
 \end{lema}
 \begin{proof}
-    Consideramos el conjunto $U$ definido como la unión de 
+    Si $n$ es el cardinal de $\Lambda$,
+    consideramos el conjunto $U$ definido como la unión de 
     $n (n-1)$ hiperplanos de $\R^r$
 
     \begin{equation}
@@ -328,7 +329,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
         }
         \{ 
             p \in \R^r: p \cdot (x-y) = 0
-        \}
+        \}.
     \end{equation}
 
     Puesto que $\R^r$ no puede ser expresado como unión finita de hiperplanos,
@@ -336,12 +337,11 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     \begin{equation}
         p \cdot(x-y) \neq 0 
         \text{ para cualesquiera }
-         x,y \in \Lambda \text{ diferentes. }
+         x,y \in \Lambda \text{ diferentes, }
     \end{equation}
     como queríamos probar. 
 \end{proof}
 
-\textcolor{red}{Javier, la demostración que vas a leer a continuación se podría hacer directamente sin separar en casos ¿crees que sería mejor atacar directamente en el caso general?}
 % Teorema 2.5  
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
     Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
@@ -352,7 +352,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     existe una red neuronal $f \in \rrnn$ con $n$
     neuronas ocultas tal que 
     \begin{equation}
-        f(x_i) = g(x_i) \text{ en todo } i \in \{1, \ldots, n \}.
+        f(x_i) = g(x_i) \text{ para todo } i \in \{1, \ldots, n \}.
     \end{equation}
 \end{teorema}
 \begin{proof}
@@ -361,7 +361,7 @@ primero uno particular, cuando $r=1$ y después el caso general.
 
 \textbf{Caso primero}
 
-Suponemos que $\{x_1, \ldots, x_n\} \subset \R$ y tras renombrar 
+Suponemos que $\{x_1, \cdots, x_n\} \subset \R$ y tras renombrar 
 podemos suponer que 
 \begin{equation}
     x_1 < x_2 < \ldots < x_n. 
@@ -400,7 +400,6 @@ Observemos que así construida se tiene que para cualquier
 \end{itemize}
 Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq n$ se tiene que     
 $f_n(x_i) = g(x_i)$. 
-
 Además de que tiene un total de $n$ neuronas ocultas. 
 
 \begin{itemize}
@@ -428,7 +427,7 @@ Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducc
 \begin{align}
     f_n(x_i) 
         &= 
-        (g(x_n) - g(x_{n-1}))\psi(A_n(x_i)) + f_{n-1}(x_n)
+        (g(x_n) - g(x_{n-1}))\psi(A_n(x_i)) + f_{n-1}(x_i)
         \\
         & = 0 + g(x_{i}) 
         \\
@@ -437,11 +436,7 @@ Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducc
 \end{itemize}
 
 Acabamos de probar por inducción  que
-\begin{equation}
-    f_n(x) = g(x) \text{ para cualquier } x \in \Lambda. 
-\end{equation}
-
-Es decir, el caso primero que existe una red neuronal $f_n$ que dadas las hipótesis satisface la tesis en el caso que $\Lambda \subset \R.$
+$f_n(x) = g(x)$ para cualquier $x \in \Lambda$,lo que termina la demostración.
 
 \textbf{Caso segundo}  
 
@@ -450,41 +445,47 @@ Seleccionamos $p \in \R^r$ cumpliendo que
 para cualesquiera $x,y \in \Lambda$ distintos 
 $p(x-y) \neq 0$ (es posible de 
 encontrar por el lema \ref{lema:previo_propio_2_al_teorema_2_5}).
-
 Gracias a esta condición cada producto $p \cdot x$ con $x \in \Lambda$ es distinto y podemos establecer con ello una relación de orden, que tras 
 renombrar los elementos de $\Lambda$ queda
 \begin{equation}
-    p \cdot x_1 < p \cdot x_2 < \ldots < p \cdot x_n.
+    p \cdot x_1 < p \cdot x_2 < \cdots < p \cdot x_n,
 \end{equation}
-
- Y como procedimos en el caso primero, definimos de manera
+y como procedimos en el caso primero, definimos de manera
  recursiva la red neuronal $f_n$ buscada:
 
  \begin{itemize}
  \item Red neuronal $f_1$. 
 
-Sea $A_1$ la función afín constante $A_1 = M.$
+Sea $B_1$ 
+la función afín de $\R$ a $\R$ constante $B_1 = M.$
 Fijamos $\beta_1 = g(x_1)$. 
 De esta manera la red neuronal $f_1$ 
-definida como $f_1(x) = \beta_1 \psi(A_1(p \cdot x)).$
+definida como $f_1(x) = \beta_1 \psi(B_1(p \cdot x)).$
 
 \item Red neuronal $f_k$ con $1 < k \leq n$. 
 
-Se define $A_{k}$ como la única función afín que cumple que 
+Se define $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que 
 \begin{equation}
-    A_k(p \cdot x_{k-1}) = -M 
+    B_k(p \cdot x_{k-1}) = -M 
     \quad \text{y} \quad 
-     A_{k}(p \cdot x_k)= M.
+     B_{k}(p \cdot x_k)= M.
 \end{equation}
+Podemos definir entonces $A \in A(\R^r)$ por 
+$A_k(x)=B_k(p \cdot x).$
 Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
 La red neuronal $f_k$ se calcula como 
-\begin{equation}
+\begin{align}
     f_k(x) 
-    = 
-    \sum_{j=1}^k \beta_j \psi(A_j(p \cdot x))
+    = &
+    \sum_{j=1}^k \beta_j \psi(B_j(p \cdot x))
      = 
-    (g(x_k)-g(x_{k-1})) \psi(A_k(p \cdot x)) + f_{k-1}(x) .  
-\end{equation}
+    (g(x_k)-g(x_{k-1})) \psi(B_k(p \cdot x)) + f_{k-1}(x) \\
+    \\
+    & = 
+    \sum_{j=1}^k \beta_j \psi(A_j(x))
+    = 
+   (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x)  
+\end{align}
 \end{itemize}
 
 Así definida, la prueba por inducción es idéntica a la del caso primero y hemos encontrado por tanto la red neuronal $f_n$ buscada.
@@ -517,9 +518,10 @@ que evalúan de la misma manera un conjunto finito de puntos.
 ¿Cuáles tomar?
 
 Podríamos, siguiendo el principio de economía de Ockham optar
-por modelos más simples. ¿Cuántas neuronas \textit{simplificarían} el modelo? Otra solución sería 
- tomar un número de neuronas menor que el tamaño del conjunto de 
-entrenamiento y utilizar esa \textit{redundancia} para 
+por modelos que reduzcan el número de neuronas, pero entonces la 
+pregunta sería  ¿qué número mínimo de neuronas serían necesarios para representar el modelo? 
+Una solución sería tomar un número de neuronas menor que el tamaño del conjunto de 
+entrenamiento y utilizar esa \textit{redundancia} de datos para 
 \textit{afinar}. 
 
 \subsubsection*{Coste computacional inasumible}  
@@ -538,8 +540,3 @@ seleccionamos n datos aleatorios, construimos $f_n$
 y sobre ella entrenamos. 
 
 Quizás se obtengan mejores resultados que directamente inicializando los pesos de manera aleatoria. 
- 
-%% Hasta aquí conclusión que redactar mejor. 
-
-\textcolor{red}{Tras la demostración de este teorema, el artículo 
-indica literalmente \textit{Con tediosas modificaciones la prueba de este teorema es válida para cualquier función de activación}. Sin embargo no da ninguna indicación ni nada ¿La incluimos?¿Cómo se haría?}
