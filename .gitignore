@@ -1,15 +1,16 @@
 # Emacs
 *~
-# Python 
 code/.ipynb_checkpoints
-#macOS
 .DS_Store
-doc/.DS_Store
-
-#Ficheros personales
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+doc/.DS_Store
+doc/_minted-tfg
+
+
+#latex
+*#*
 
 # LaTeX
 *#*
@@ -29,4 +30,8 @@ ISSUES-RELEVANTES
 *.blg
 *.fls
 *.lot
+
+doc/tfg.loa
+doc/.DS_Store
+.vscode/settings.json
 doc/_minted-tfg
