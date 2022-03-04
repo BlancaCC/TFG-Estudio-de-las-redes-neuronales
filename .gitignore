@@ -1,3 +1,4 @@
+# Emacs
 *~
 code/.ipynb_checkpoints
 .DS_Store
@@ -11,6 +12,8 @@ doc/_minted-tfg
 #latex
 *#*
 
+# LaTeX
+*#*
 *.log
 *.out
 *.aux
@@ -31,3 +34,4 @@ doc/_minted-tfg
 doc/tfg.loa
 doc/.DS_Store
 .vscode/settings.json
+doc/_minted-tfg
