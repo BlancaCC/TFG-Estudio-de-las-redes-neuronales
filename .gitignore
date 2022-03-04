@@ -1,5 +1,8 @@
 # Emacs
 *~
+#VS code 
+.vscode/settings.json
+
 # Python 
 code/.ipynb_checkpoints
 #macOS
@@ -30,3 +33,5 @@ ISSUES-RELEVANTES
 *.fls
 *.lot
 doc/_minted-tfg
+doc/tfg.loa
+
