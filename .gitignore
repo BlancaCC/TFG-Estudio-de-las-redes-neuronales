@@ -2,7 +2,7 @@
 *~
 
 #VS code 
-.vscode/settings.json
+.vscode/
 
 # Python 
 code/.ipynb_checkpoints
