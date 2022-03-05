@@ -1,0 +1,462 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Contenido del artículo 2: Primeros resultados
+%*******************************************************
+
+
+\section{Primeros resultados} 
+% Introducción sección 
+
+
+%%%%% primer teorema de convergencia  
+% Teorema 2.1 
+\begin{teorema} [Teorema de convergencia real en compactos]  \label{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}
+
+    Sea G cualquier función continua no constante definida de $\R$ en $\R$. 
+    Se tiene que $\pmcg$ es uniformemente denso para compactos en $\fC$.
+\end{teorema}
+
+\begin{proof}
+    Bastará probar que el conjunto $\pmcg$ satisface las hipótesis del teorema de
+     Stone-Weierstrass \ref{ch:TeoremaStoneWeiertrass}.
+    Lo primero será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
+    \begin{enumerate}
+        \item La función constante uno pertenece al conjunto. 
+        Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b \neq 0$ para $a,b \in \R.$
+        Consideremos la función afín $A(x) = 0 \cdot x + a$, está claro que $\frac{1}{b}G(A(x))$ es la función constantemente uno. 
+        \item El conjunto $\pmcg$ es cerrado para sumas y producto por escalares reales. 
+        En efecto, si $f,g$ pertenecen a  $\pmcg$, serán de la forma
+         $f = \sum_{j = 1} ^q  \beta_{fj} \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x))$ y 
+        $g = \sum_{j = 1} ^p  \beta_{gj} \prod_{k=1}^{l_{gj}}G(A_{gjk}(x))$  por lo que
+        \begin{equation}
+            \begin{split}
+                \gamma f+ \sigma g =& \gamma \sum_{j = 1} ^q  \beta_{fj} \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sigma \sum_{j = 1} ^p  \beta_{gj} \ \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)) \\
+                & = \sum_{j = 1} ^q  (\gamma \beta_{fj})  \prod_{k=1}^{l_{fj}}  G(A_{fjk}(x)) + 
+                \sum_{j = 1} ^p  (\sigma \beta_{gj}) \ \prod_{k=1}^{l_{gj}}G(A_{gjk}(x)).
+            \end{split}
+        \end{equation}
+        
+        Basta renumerar una de las sumatorias para ver $\gamma f+ \sigma g$ como una combinación 
+        lineal de productos finitos de perceptrones y por tanto $\gamma f+ \sigma g \in \pmcg.$
+        
+        \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
+        Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
+        \begin{equation}
+            \begin{split}
+                fg &= \left(\sum_{i \in I_f} \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))\right)
+                    \left(\sum_{j \in I_g}   \beta_{j}  \prod_{k=1}^{l_{j}} G(A_{jk}(x)) \right) \\
+                    & = \sum_{i \in I_f} \left(  \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))
+                        \left( \sum_{j \in I_g}  \beta_{j} \prod_{k=1}^{l_{j}} G(A_{jk}(x))  \right)  
+                     \right) \\
+                    & =  \sum_{(i,j) \in I_f \times I_g} (\beta{i}\beta{j}) \prod_{k \in \Lambda} G(A_{k}(x))
+            \end{split}
+        \end{equation}
+        luego $fg \in \pmcg$. 
+    \end{enumerate}
+
+    Veamos que $\pmcg$ separa puntos cada compacto $K \subset \R^r$. 
+
+    Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Fijadas $x,y \in K$ tomamos entonces cualquiera de las 
+    funciones afines que cumplen que $A(x) = a$ y $A(y)=b$ 
+    \footnote{Sabemos que al menos una habrá, ya que podemos plantear la función afín
+    como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones}, 
+    por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
+
+    Veamos finalmente que para todo punto de $K$ existe una función de $\pmcg$  en el que la imagen no es nula.  
+
+    Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$ , consideramos ahora la aplicación lineal
+    $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(a) \neq 0$. 
+
+    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos probar que $\pmcg |_K$ es denso en $C(K). $ 
+\end{proof}
+
+\subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
+
+Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
+función continua en un compacto.  Cabe destacar que a la función $G$, la función de activación,
+ solo se le ha pedido como 
+hipótesis ser una función continua.     
+
+Además, solo se está demostrando para el caso de una capa oculta, como veremos a continuación  de 
+manera intuitiva se explica que sea extrapolable también a redes neuronales 
+con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
+multicapas a la necesidad de una definición más abstracta de las mismas. 
+
+
+Se aportan las siguientes generalizaciones del método. 
+%%% Corolarios propios 
+
+Notemos que la función de activación $G$ es única en toda la estructura,
+sin embargo es habitual la combinación de éstas en una misma red neuronal (
+\cite{DBLP:journals/corr/abs-1811-03378}, 
+ \cite{8258768}, 
+ \cite{DBLP:journals/corr/SzegedyVISW15}
+). 
+
+\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal]
+
+    Una misma red neuronal puede estar constituida por una familia de funciones continuas no constantes $\Gamma$, 
+    bastará con generalizar $\pmcg$ a $\sum \prod ^r (\Gamma)$ donde 
+    \begin{equation}
+        \begin{split}
+            \sum \prod^r (\Gamma) = \{ 
+                &f: \R^r \longrightarrow \R /
+                f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+                G(A_{jk}(x)), \\
+                &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N, G \in \Gamma
+                )
+                \}
+        \end{split}
+    \end{equation}
+    Es decir, combinaciones lineales de perceptrones cuyas funciones 
+    de activación pueden diferir unas de otras. 
+\end{corolario}
+
+\begin{proof}
+    La demostración es idéntica a la dada en el Teorema de convergencia 
+    real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}.
+\end{proof}
+
+Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
+ ni cómo afecta a la \textit{velocidad de convergencia}. 
+
+\begin{corolario}[Extensión a múltiples capas ocultas]
+
+    Sea $\Gamma$ cualquier familia de funciones continuas definidas de $\R$ en $\R$. 
+    Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $\fC$  
+    Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
+\end{corolario}
+
+    Como con una capa ya se nos asegura la convergencia bastará con asegurar que exista 
+    en el espacio de las redes neuronales profundas capas que transmitan la información sin cambiarla. 
+
+    Una vez concretada la estructura de la red neuronal,  su estructura algebraica podría permitir esa transmisión. 
+
+
+Recordemos que de manera general se ha definido $A$ como una función afín 
+$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
+Por ejemplo $B((x_1, ..., x_r)) = \sum_{i= 0} ^N \sum_{j= 0} ^r \alpha_{ij} x_j^i$  con $N$ natural positivo. 
+
+\begin{corolario}[Generalización de A]  
+    Se puede extender $A^r$ a conjuntos más generales como el de los polinomios de $r$ variables de grado $N$, $\mathbb{P}$.  
+\end{corolario}
+\begin{proof}
+    Simplemente hay que reparar que $A^r$ está contenido en el espacio $\mathbb{P}$. 
+    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $A^r$. 
+\end{proof}
+
+La utilidad de este corolario a nivel práctico es cuestionable, ya que aumentaría considerablemente el número de 
+parámetros que ajustar de la red neuronal ocasionando: (1) la necesidad de mayor número de datos que aprender, 
+(2) mayor costo computacional, (3) probablemente peores resultados a igual número de iteraciones en comparativa 
+con otros modelos de menor número de neuronas (ya que el espacio de búsqueda ha aumentado).
+
+Podría tener el siguiente interés:
+el teorema nos dice que podemos aproximar cualquier función continua de variable real, sin embargo, desconocemos el 
+número de neuronas, por capa. Supongamos una situación en la que el número de neuronas esté restringido, en tal caso,
+generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras. 
+
+
+%% Definiciones de equivalencia de funciones 
+\begin{definicion}[Equivalencia entre funciones]
+    Sea $\mu$ una medida de probabilidad en $(\R^r, B^r)$.  Dos funciones 
+    $f$ y $g$ pertenecientes a $\fM$, diremos que son $\mu -$equivalentes 
+    si $\mu\{ x \in \R^r : f(x)=g(x) \} = 1.$
+\end{definicion}
+
+Lo que se está diciendo es que serán iguales casi por doquier.   
+
+% Definición distancia  
+\begin{definicion} [Introducción de una distancia basada en una probabilidad]
+    Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
+    la métrica $\rho_{\mu}$ definida como 
+    \begin{equation}
+        \begin{split}
+            & \rho_{\mu} : \fM \times \fM \longrightarrow \R^+ \\
+            & \rho_{\mu}(f,g) = \inf \{ \epsilon > 0: \mu \{ x : |f(x) - g(x)| > \epsilon \} < \epsilon \}.
+        \end{split}
+    \end{equation}
+\end{definicion}  
+
+Con esta definición lo que se está buscando es una forma de decir cuánto 
+distan las funciones $f,g$ entre ellas.  
+
+%% Lema 2.1
+\begin{lema}[Caracterización de la convergencia de una sucesión]\label{lema:caracterizacionConvergenciaSucesiones2_1}
+    Son equivalentes las siguientes afirmaciones: 
+    \begin{enumerate}
+        \item $\rho_{\mu}(f_n, f) \longrightarrow 0$.
+        \item Para cualquier  $\epsilon > 0$ se tiene que $\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0$.
+        \item $\int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) \longrightarrow 0.$
+    \end{enumerate}
+\end{lema}
+
+\begin{proof}
+    % 1 -> 2
+    Comenzaremos probando (1) $\Rightarrow$ (2). 
+
+    Si $\rho_{\mu}(f_n, f) \longrightarrow 0$
+    Fijamos $\epsilon_0 > 0$, tenemos por definición que 
+    para cualquier $0 < \delta < \epsilon_0$ existirá $n_0 \in \N$ tal que 
+    $\rho_{\mu}(f_n, f) < \delta$ para cada $n$ un natural mayor que $n_0$. Es decir,  
+    
+
+    $$\inf \{ \epsilon > 0: \mu \{ x : |f_n(x) - f(x)| > \epsilon \} < \epsilon \} < \delta \quad \forall n \geq n_0$$
+
+    entonces 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \leq
+        \mu \{ x : |f_n(x) - f(x)| > \delta\}
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    lo que significa que 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \longrightarrow
+        0  
+    \end{equation}
+    probando con ello la implicación buscada.
+
+    % 2 -> 1
+    Veamos ahora que (2) $\Rightarrow$ (1). 
+    Fijamos $\epsilon_0 > 0$ y bajo la hipótesis segunda se tiene que 
+
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \longrightarrow
+        0,  
+    \end{equation}
+    es decir, que para cualquier real $\delta$ cumpliendo que $0 < \delta < \epsilon_0$ 
+    existe un natural $n_0$ a partir del cual todo natural $n$ mayor o igual satisface que 
+    
+    \begin{equation}
+        \mu \{ x : |f_n(x) - f(x)| > \epsilon_0 \}
+        \leq
+        \mu \{ x : |f_n(x) - f(x)| > \delta\}
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    lo que significa que 
+    
+    \begin{equation}
+        \inf \{ \epsilon > 0:
+         \mu \{ 
+             x : |f_n(x) - f(x)| > \epsilon \} < \epsilon 
+             \} 
+        < \delta 
+        \quad 
+        \forall n \geq n_0
+    \end{equation}
+
+    que por definición de la distancia equivale a que 
+
+    \begin{equation}
+        \rho_{\mu}(f_n, f) < \delta \quad \forall n \geq n_0
+    \end{equation}
+
+    probando con ello 
+
+    \begin{equation}
+        \rho_{\mu}(f_n, f) \longrightarrow 0. 
+    \end{equation}
+
+    % 2 -> 3
+    Probaremos ahora que (2) $\Longrightarrow$ (3).   
+
+    Por (2) se tiene que sea cual sea el $\epsilon$ cumpliendo que 
+    $0 < \epsilon \leq 2$ 
+    existirá un natural $n_0$ a partir del cual, cualquier otro natural $n$ 
+    satisface que 
+    \begin{equation} 
+        \mu \{  
+            x : |f_n(x) - f(x)| > \frac{\epsilon}{2}  
+            \}  
+        < 
+        \frac{\epsilon}{2},  
+    \end{equation}
+
+    Gracias a esta desigualdad, para cualquier $n > n_0$ podemos acotar la siguiente integral: 
+
+    \begin{equation}
+        \int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+        \leq
+        \frac{\epsilon}{2} (1-\frac{\epsilon}{2}) + 1\frac{\epsilon}{2} 
+         = \epsilon - \frac{\epsilon^2}{4} <  \epsilon.  
+    \end{equation}
+    probando con ello la implicación (2) $\Longrightarrow$ (3).
+
+    % 3 -> 1
+    Finalmente comprobaremos la implicación (3) $\Longrightarrow$ (1).
+
+    Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
+    Por (2), dado $0 < \epsilon < 1$, existe un $n_0 \in \N$
+    de modo que si $n \geq n_0$ se cumple que 
+    \begin{equation}\label{eq:definiciones_Básicas_Integral_GN_menor_Epsilon_Cuadrado}
+        \int g_n d\mu < \epsilon^2
+    \end{equation}
+    Como $\epsilon < 1$ tenemos que 
+
+    \begin{equation}
+        \{ x; g_n(x) > \epsilon \}
+         = 
+         \{ x; |f_n - f| > \epsilon \}
+    \end{equation}
+
+    luego 
+
+    \begin{equation}
+        \mu\{ x; |f_n - f(x)| > \epsilon \}
+        = 
+        \mu\{ x; g_n(x) > \epsilon \}
+        \leq
+        \frac{1}{\epsilon} 
+        \int_{g_n(x) > \epsilon} g_n d\mu 
+        < \epsilon 
+        \quad
+        \forall n \geq n_0
+    \end{equation}
+
+    donde se ha usado la desigualdad de Chebyshev para $g_n$ y la desigualdad 
+    (\refeq{eq:definiciones_Básicas_Integral_GN_menor_Epsilon_Cuadrado}). 
+
+Probando con esto lo buscado que  para cualquier  $\epsilon > 0$ se tiene que 
+$$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
+\end{proof}
+
+
+%% Lema 2.2
+\begin{lema} \label{lema:2_2_convergencia_uniforme_en_compactos}  
+    Si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
+    uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$. 
+\end{lema}  
+\begin{proof} Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
+    Tengamos presente que por el  lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} 
+    deberemos probar que para cualquier $\epsilon > 0$, 
+    existe un $n_0$ natural, tal que para cualquier otro natural $n$ mayor o igual que $n_0$ se tiene que 
+
+    \begin{equation}
+        \int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+        < 
+        \frac{\epsilon}{2}.
+    \end{equation}  
+
+    Sea $\mu(\R^r) = M \in \R^+$  y 
+    sin pérdida de generalidad puede suponerse $M = 1$
+     \footnote{De otra forma bastaría con definir 
+    en los pasos siguientes $\mu(K) > M - \frac{\epsilon}{2}$ y acotar con $\frac{\epsilon}{2M}$ 
+    en vez de $\frac{\epsilon}{2}$.}. 
+    Ya que $\R^r$ es un espacio métrico localmente compacto
+    (pag 228 teorema 52.G \cite{nla.cat-vn1819421}),
+    se tiene que existirá un subconjunto $K$ compacto de $\R^r$ con medida $\mu(K) > 1 - \frac{\epsilon}{2}.$
+    Para el cual, por su compacidad, existirá un  $n_0$ natural 
+    $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}$   
+    para cada natural $n$ con $n\geq n_0.$  
+    De modo que para cualquier $x \in K$, 
+     $n$ con $n\geq n_0$   se cumple que 
+     \begin{equation}
+        |f_n(x) - f(x)| 
+        = 
+        \min \{ |f_n(x) - f(x)|, 1\} 
+        = 
+        g_n.
+     \end{equation}
+
+    Por lo que  
+    \begin{equation} \label{eq:lema3_2_integral_en_compacto_K}
+        \int_K g_n d\mu 
+        \leq
+         \mu(K) \sup_{x \in K} |f_n(x) - f(x)| 
+        \leq 
+        \frac{\epsilon}{2} .
+    \end{equation}
+
+    Acotando el primer sumando por la medida 
+    del complemento de la región integrada y en virtud de 
+    (\refeq{eq:lema3_2_integral_en_compacto_K})
+
+    \begin{equation}
+        \begin{split}
+            \int_{\R^r \setminus K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+            +
+            \int_{K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x)  \\ \leq
+            \mu(\R^r \setminus K) +  \frac{\epsilon}{2}
+            \leq
+            \frac{\epsilon}{2} +  \frac{\epsilon}{2}
+            = 
+            \epsilon
+        \end{split}
+    \end{equation}
+
+    para cualquier $n \geq n_0$. 
+\end{proof}
+
+% Lema A.1 
+\begin{lema}\label{lema:A_1_C_es_denso_en_M}
+    Para cualquier medida finita $\mu$ se tiene que $\fC$ es denso en 
+    $\fM$ para la distancia $\rho_\mu$.
+\end{lema}
+\begin{proof}
+    Dada cualquier $f \in \fM$ y un $\epsilon > 0$ arbitrario, 
+    tenemos que encontrar una función $g$ que cumpla que 
+    $\rho_{\mu}(f, g) < \epsilon$. 
+
+    Tomando un $M > 1$ lo suficientemente grande, tenemos que 
+    
+    \begin{equation}
+        \int \min \{ |f(x)\ 1_{|f(x)| < M} - f(x)|, 1\} d\mu(x)
+        < \frac{\epsilon}{2}. 
+    \end{equation}
+
+    Sabemos además que podemos aproximar $f 1_{|f| < M}$ por $g$, una función continua que es límite de una sucesión de
+    funciones simples ( pag 241-242,  teoremas 55C y 55D \cite{nla.cat-vn1819421}), 
+    la cual satisface 
+    \begin{equation}\label{eq:lema3_3_integral}
+        \int \min \{ |f(x) 1_{|f(x)| < M} - g(x)|, 1\} d\mu(x) 
+        < \frac{\epsilon}{2}. 
+    \end{equation}
+    Tomamos $M$ lo suficientemente grande, de tal forma que 
+    \begin{equation} \label{eq:lema3_3_medida_conjunto}
+        \mu(\{ x: |f(x)| \geq M\}) < \frac{\epsilon}{2}
+    \end{equation}
+    y denotamos por $\Lambda$ al conjunto $\{ x: |f(x)| < M\}.$
+    
+    Concluyendo por \refeq{eq:lema3_3_integral} y 
+    \refeq{eq:lema3_3_medida_conjunto}
+     \begin{equation}
+        \begin{split}
+            \int \min \{ |f  - g|, 1\} d\mu 
+            = 
+            \int_\Lambda \min \{ |f1_{|f(x)| < M}  - g|, 1\} d\mu
+            + 
+            \int_{\R^r \setminus \Lambda} \min \{ |f  - g|, 1\} d\mu 
+            \\
+            <
+            \frac{\epsilon}{2} 
+            + 
+            \mu(\{ x: |f(x)| \geq M\}) 
+            <
+            \frac{\epsilon}{2} 
+            + 
+            \frac{\epsilon}{2} 
+            < \epsilon. 
+    \end{split}
+    \end{equation}
+\end{proof}
+
+
+
+
+
+
+
+

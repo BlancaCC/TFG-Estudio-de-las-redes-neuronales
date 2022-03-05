@@ -1,0 +1,542 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%***************************************************************
+% Contenido del artículo 5: Colorarios LP
+%***************************************************************
+\section{Generalización a espacios $L_p$}  
+
+Hasta ahora habíamos considerado el espacio de funciones continuas 
+$\fC$ 
+como subespacio dentro del espacio de funciones medibles $\fM$. 
+Sin embargo, ser continua es una hipótesis muy estricta ya que existe una amplia gama de subespacios que contienen al de 
+las funciones continuas y están contenidos en el de funciones medibles. 
+Es por ello que vamos a realizar una generalización de los teoremas
+para espacios $L_p$. De manera intuitiva estos espacios nos van a 
+permitir considerar funciones que no necesariamente sean continuas
+y que incluso no están acotadas. 
+
+\begin{definicion}[Espacios Lp]
+    Se llama espacio $L_p(\R^r, \mu)$ o simplemente $L_p$ al conjunto 
+    de funciones $f \in \fM$ tales que 
+    \begin{equation}
+        \int |f(x)|^p d\mu < \infty. 
+    \end{equation}
+
+Se define la norma de $L_p$ como 
+\begin{equation}
+    \| f\|_p 
+    =
+    \left(\int |f(x)|^p d\mu \right)^\frac{1}{p}
+\end{equation}
+y la distancia asociada al espacio $L_p$ se define como 
+\begin{equation}
+    \rho_p(f,g) = \| f-g\|_p.
+\end{equation}
+\end{definicion}
+
+% Corolario 2.2
+\begin{corolario}\label{corolario:2_2_rrnn}
+    Si existe un subconjunto compacto $K$ en $\R^r$ de medida
+    $\mu(K) =1$ entonces $\rrnn$ es $\dlp$-denso en $L_p(\R^r, \mu)$
+    para cualquier $p \in [1,\infty)$, independientemente de 
+    $\psi$, $r$ o $\mu$.
+\end{corolario}
+\begin{proof}
+    Se quiere probar que para cualquier $g \in L_p$ y 
+    $\epsilon >0$ existe $f \in \rrnn$ tal que 
+    \begin{equation}
+        \dlp(f,g) <\epsilon.
+    \end{equation}   
+    
+    Por pertenecer $g$ a $L_p$ existe una constante $M$ real positiva
+    lo suficientemente grande 
+    tal que si definimos la función $h =g 1_{|g|<M}$ esta satisface 
+    que
+    \begin{equation}\label{eq:corolario_2_2:h_compacto}
+        \dlp(g,h) < \frac{\epsilon}{3}.
+    \end{equation}
+    
+    Además como $h$ es una función acotada de $L_p$, podemos encontrar
+    una función $s$ continua que es límite de una sucesión de
+    funciones simples 
+    ( pag 241-242,  teoremas 55C y 55D \cite{nla.cat-vn1819421})
+    y la cual cumple que 
+
+    \begin{equation}\label{eq:corolario_2_2:s_continua}
+        \dlp(h,s) < \frac{\epsilon}{3}.
+    \end{equation}
+
+    Por el teorema \ref{teo:2_4_rrnn_densas_M}, al estar en un compacto $K$ y por ser $\rrnn$ uniformemente
+    denso en compactos hay una $f \in \rrnn$ la cual cumple que
+    \begin{equation}
+        \sup_{x \in K} |f(x) -s(x)|^p 
+        <
+         \left( \frac{\epsilon}{3}\right) ^p.
+    \end{equation}
+    
+    Y por hipótesis $\mu(K) =1$ y definición de la distancia $\dlp$ 
+    se tiene la siguiente desigualdad: 
+
+    \begin{equation} \label{eq:corolario_2_2:cota_rrnn}
+        \dlp(f,s) = 
+        \left(\int |f(x) - s(x)|^p d\mu \right)^\frac{1}{p}
+        \leq 
+        \left(\int  \left( \frac{\epsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
+        = \left( \mu(K)  \left(\frac{\epsilon}{3} \right)^p\right) ^\frac{1}{p}
+        = \frac{\epsilon}{3}.
+    \end{equation}
+
+    Gracias a la desigualdad triangular y las desigualdades
+    (\refeq{eq:corolario_2_2:cota_rrnn}),
+    (\refeq{eq:corolario_2_2:h_compacto}) y 
+    (\refeq{eq:corolario_2_2:s_continua})
+    tenemos
+    \begin{equation}
+        \dlp(f,g) 
+        \leq
+            \dlp(f,s)
+            +\dlp(s,h)
+            + \dlp(h,g)
+        < 
+        \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}
+        = \epsilon.
+    \end{equation}
+Probando con ello lo buscado. 
+\end{proof}  
+
+% Corolario 2.3
+\begin{corolario}\label{corolario:2_3_medida_probabilidad}
+    Si $\mu$ es una medida de probabilidad en $[0,1]^r$
+    entonces 
+    $\rrnn$ es $\dlp$-denso en 
+    $L_p([0,1]^r, \mu)$ para todo $p \in [1, \infty)$,
+    independientemente de $\psi, r, \mu$. 
+\end{corolario}
+\begin{proof}
+    Es consecuencia directa del corolario previo \ref{corolario:2_2_rrnn}
+    donde para este caso particular $K = [0,1]^r$ un compacto
+    de $\R^r$
+    que cumple que $\mu(K) = 1.$
+\end{proof}
+
+%Corolario 2.4 
+\begin{corolario} \label{corolario:2_4_conjunto_finito}
+    Sea $\mu$ una medida, que para
+    un conjunto finito de puntos $O$ cumple que $\mu(0)=1$, 
+    entonces, para cualquier función medible $g \in \fM$
+    y sea cual sea $\epsilon >0$ 
+    existe $f \in \rrnn$ la cual cumple que 
+    \begin{equation}
+        \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            < \epsilon
+        \}
+        = 1.
+    \end{equation}
+
+\end{corolario}
+\begin{proof}
+    Por el teorema \ref{teo:2_4_rrnn_densas_M} existe 
+    $f \in \rrnn$ tal que para cualquier 
+    $\epsilon_1, \epsilon_2 >0$ se cumple que 
+    $\mu \{x: |f(x) - g(x)| > \epsilon_1\} < \epsilon_2.$
+    Sea $O$ el conjunto de puntos tal que $\mu(O) = 1.$
+    Por ser finito $O$ podemos encontrar
+    \begin{equation} \label{eq:2_4:definición_epsilon}
+        \delta = \min_{x \in O} \{ 
+            \mu(x) : \mu(x)>0
+        \}. 
+    \end{equation}
+
+    Sin pérdida de generalidad tomamos $\epsilon < \delta$ y entonces
+    para  que la $f$ fijada cumpla que
+    \begin{equation}
+        \dist(f,g) = \epsilon
+    \end{equation}
+    debe de cumplirse que 
+    \begin{equation}
+        \dist(f,g) =  \inf 
+        \{
+           \epsilon_1 > 0:
+           \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            > \epsilon_1
+        \}
+        < \epsilon_1
+        \} 
+        = \epsilon,
+    \end{equation}
+    pero por cómo tomamos $\epsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
+    tiene que $\mu\{ 
+        x:
+        |f(x) - g(x)| 
+        > \epsilon
+    \} = 0.$
+
+    Por lo que acabamos de probar, como queríamos, que 
+    \begin{equation}
+        \mu\{ 
+            x:
+            |f(x) - g(x)| 
+            < \epsilon
+        \}
+        = 1.
+    \end{equation}
+\end{proof}
+
+Nótese que con este corolario lo que se está indicando es que dado
+un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuronal que para tales puntos \textit{devuelva} el valor exacto. 
+
+\begin{definicion}[Función Booleana]
+    Decimos que una función es Booleana si su dominio es 
+    $\{0,1\}^r$  para algún $r \in \N \setminus \{0\}$
+    y su codominio es $\{0,1\}$. Es decir,
+    \begin{equation}
+      f:\{0,1\}^r \longrightarrow \{0,1\}.
+    \end{equation}
+\end{definicion}
+
+Ejemplos conocidos son la función 
+$or: \{0,1\}^r \longrightarrow \{0,1\}$  que vale 
+uno si alguno de su entrada es uno y la función 
+$and: \{0,1\}^r \longrightarrow \{0,1\}$
+que se define como $and(x_1, \ldots, x_r) = \prod_{i=1}^r x_i.$
+
+% Corolario 2.5  
+\begin{corolario}\label{corolario:2_5_función_Booleana} 
+    Para cada función Booleana 
+    $g: \{0,1\}^r \longrightarrow \{0,1\}$
+     y 
+    cada $\epsilon >0$ existe una red neuronal
+    $f \in \rrnn$ tal que 
+    \begin{equation}
+        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        < \epsilon.
+    \end{equation}
+\end{corolario}
+\begin{proof}
+    Se define la función $\mu : \R^r \longrightarrow [0,1]$ de forma que 
+    \begin{equation}
+        \mu(x) = 
+      \left \{
+    \begin{aligned}
+      \frac{1}{2^r} \quad &\text{ si } x \in \{0,1\}^r \\
+      0 \quad & \text{ si } x \notin \{0,1\}^r 
+    \end{aligned}
+  \right .
+    \end{equation}
+
+    Se tiene que $\mu$ es una medida ya que cumple que 
+    \begin{enumerate}
+        \item Hipótesis de acotación: $0 \leq \mu(A) \leq 1$ para $A \in \mathcal{P}(\R^r).$
+        \item La probabilidad del vacío es nula y la del  total es la unidad. 
+        \item La probabilidad de la unión es la suma de la probabilidades. 
+        \begin{equation}
+            P\left(
+                \cup_{i=1}^n A_i
+            \right)
+            = \sum_{i=1}^n P(A_i).
+            \quad
+            \forall A_i \in  \mathcal{P}(\R^r).
+        \end{equation}
+    \end{enumerate}  
+
+    Como la cardinalidad de $\{0,1\}^r$ es $2^r$
+    podemos aplicar el corolario \ref{corolario:2_4_conjunto_finito}
+    y entonces sabemos que  existe $f\in \rrnn$ tal que 
+    \begin{equation}
+            \mu\{ 
+                x:
+                |f(x) - g(x)| 
+                < \epsilon
+            \}
+            = 1,
+    \end{equation} 
+    es decir que 
+    \begin{equation}
+        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        < \epsilon
+    \end{equation}
+    como queríamos probar. 
+\end{proof}
+
+% Lemas propios  previos al teorema 2.5
+\begin{lema} \label{lema:propio_1_antes_teorema_2_5}
+    Si una función de activación  $\psi$ alcanza el cero y el uno, esto es 
+    si existen dos constantes reales $M_1, M_2$ 
+    tales que 
+    \begin{equation}
+        \psi(M_1) = 0 \text{ y } \psi(M_2)=1
+    \end{equation}
+    entonces existe una constante real positiva $M$ tal que 
+    \begin{equation}
+        \psi(-M) = 1- \psi(M) = 0.
+    \end{equation}
+\end{lema}
+\begin{proof}
+Sea $M = \max \{|M_1|,|M_2|\}$ y por ser $\psi$ una función de activación sabemos que
+es no decreciente y que su imagen pertenece al intervalo $[0,1].$
+
+Por tanto
+\begin{align}
+      0 &\leq \psi(-M) \leq \psi(M_1) = 0 \quad \text{ luego } \quad \psi(-M) = 0, \\
+      1 &\geq \psi(M) \geq \psi(M_2) = 1 \quad \text{ luego } \quad\psi(M) = 1
+\end{align}
+
+Gracias a estas desigualdades es fácil ver que 
+\begin{equation}
+    \psi(-M) = 1 - \psi(M) = 0
+\end{equation}
+como queríamos probar. 
+\end{proof}   
+
+Es interesante percatarse de que de no exigirse la hipótesis de 
+que $\psi$ alcanza el cero y el uno no puede 
+asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función de activación
+
+\begin{equation}
+    \psi(x)= \left\{ \begin{array}{lcc}
+        0 &   si  & x \leq 0 \\
+        \frac{| x |}{1+ | x |}&  si & 0< x  
+        \end{array}
+    \right. 
+\end{equation}
+
+% Otro lema propio antes de probar el teorema 2.5
+\begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
+    Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
+    $r$ natural positivo. 
+    Existe un vector $p \in \R^r$ que satisface que 
+    para cualesquiera $x,y \in \Lambda$ diferentes 
+    \begin{equation}
+        p \cdot(x-y) \neq 0.
+    \end{equation}
+\end{lema}
+\begin{proof}
+    Si $n$ es el cardinal de $\Lambda$,
+    consideramos el conjunto $U$ definido como la unión de 
+    $n (n-1)$ hiperplanos de $\R^r$
+
+    \begin{equation}
+        U = \bigcup_{ 
+            \substack{
+                x,y \in \Lambda \\
+                x \neq y
+            }
+        }
+        \{ 
+            p \in \R^r: p \cdot (x-y) = 0
+        \}.
+    \end{equation}
+
+    Puesto que $\R^r$ no puede ser expresado como unión finita de hiperplanos,
+    $U \subsetneq \R^r$ y por tanto existirá $p \in \R^r \setminus U$ tal que 
+    \begin{equation}
+        p \cdot(x-y) \neq 0 
+        \text{ para cualesquiera }
+         x,y \in \Lambda \text{ diferentes, }
+    \end{equation}
+    como queríamos probar. 
+\end{proof}
+
+% Teorema 2.5  
+\begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
+    Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
+    $\R^r$ y sea 
+    $g: \R^r \longrightarrow \R$ una función arbitraria. 
+    Si $\psi$ alcanza el cero y el uno, 
+    entonces
+    existe una red neuronal $f \in \rrnn$ con $n$
+    neuronas ocultas tal que 
+    \begin{equation}
+        f(x_i) = g(x_i) \text{ para todo } i \in \{1, \ldots, n \}.
+    \end{equation}
+\end{teorema}
+\begin{proof}
+Con el fin de facilitar la comprensión dividiremos la demostración en dos casos, 
+primero uno particular, cuando $r=1$ y después el caso general.
+
+\textbf{Caso primero}
+
+Suponemos que $\{x_1, \cdots, x_n\} \subset \R$ y tras renombrar 
+podemos suponer que 
+\begin{equation}
+    x_1 < x_2 < \ldots < x_n. 
+\end{equation}
+Por alcanzar la función de activación $\psi$ el cero y el uno, 
+gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ tal que $\psi(-M) = 1-\psi(M) = 0.$
+
+Definiremos de manera recursiva la red neuronal buscada $f_n$. 
+
+\begin{itemize}
+    \item Red neuronal $f_1$. 
+
+Sea $A_1$ la función afín constante $A_1 = M.$
+Fijamos $\beta_1 = g(x_1)$. 
+De esta manera la red neuronal $f_1$ queda
+definida como $f_1(x) = \beta_1 \psi(A_1(x)).$
+
+\item Red neuronal $f_k$ con $1 < k \leq n$. 
+
+Se define $A_{k}$ como la única función afín que cumple que 
+\begin{equation}
+    A_k(x_{k-1}) = -M \quad \text{y} \quad  A_{k}(x_k)= M.
+\end{equation}
+Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
+La red neuronal $f_k$ se calcula como 
+\begin{equation}
+    f_k(x) 
+    = 
+    \sum_{j=1}^k \beta_j \psi(A_j(x))
+     = 
+    (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x) .  
+\end{equation}
+Observemos que así construida se tiene que para cualquier
+ $y > x_k$ la evaluación con la red neuronal resulta $f_k(y) = g(x_k).$
+
+\end{itemize}
+Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq n$ se tiene que     
+$f_n(x_i) = g(x_i)$. 
+Además de que tiene un total de $n$ neuronas ocultas. 
+
+\begin{itemize}
+    \item Caso base, $n=1$. 
+    \begin{equation}
+        f_1(x_1)= \beta_1 \psi(A_1(x_1)) = g(x_1)\psi(M) = g(x_1).
+    \end{equation}
+    \item Supuesto que es cierto para $n-1$ veamos que lo es para $n$.      
+    Evaluación de $x_n$
+    \begin{align}
+        f_n(x_n) 
+        &= 
+        (g(x_n) - g(x_{n-1}))\psi(A_n(x_n)) + f_{n-1}(x_n)
+        \\
+        & = (g(x_n) - g(x_{n-1}))\psi(M) + g(x_{n-1}) 
+        \\
+        & = (g(x_n) - g(x_{n-1})) + g(x_{n-1}) 
+        \\
+        & = g(x_n).
+    \end{align}
+
+Evaluación de $x_i$ con $1 \leq i < n$. 
+
+Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducción se tiene que 
+\begin{align}
+    f_n(x_i) 
+        &= 
+        (g(x_n) - g(x_{n-1}))\psi(A_n(x_i)) + f_{n-1}(x_i)
+        \\
+        & = 0 + g(x_{i}) 
+        \\
+        &= g(x_i).
+\end{align}
+\end{itemize}
+
+Acabamos de probar por inducción  que
+$f_n(x) = g(x)$ para cualquier $x \in \Lambda$,lo que termina la demostración.
+
+\textbf{Caso segundo}  
+
+Se tiene para este caso que $\Lambda \subset \R^r$ con $r >1$. 
+Seleccionamos $p \in \R^r$ cumpliendo que 
+para cualesquiera $x,y \in \Lambda$ distintos 
+$p(x-y) \neq 0$ (es posible de 
+encontrar por el lema \ref{lema:previo_propio_2_al_teorema_2_5}).
+Gracias a esta condición cada producto $p \cdot x$ con $x \in \Lambda$ es distinto y podemos establecer con ello una relación de orden, que tras 
+renombrar los elementos de $\Lambda$ queda
+\begin{equation}
+    p \cdot x_1 < p \cdot x_2 < \cdots < p \cdot x_n,
+\end{equation}
+y como procedimos en el caso primero, definimos de manera
+ recursiva la red neuronal $f_n$ buscada:
+
+ \begin{itemize}
+ \item Red neuronal $f_1$. 
+
+Sea $B_1$ 
+la función afín de $\R$ a $\R$ constante $B_1 = M.$
+Fijamos $\beta_1 = g(x_1)$. 
+De esta manera la red neuronal $f_1$ 
+definida como $f_1(x) = \beta_1 \psi(B_1(p \cdot x)).$
+
+\item Red neuronal $f_k$ con $1 < k \leq n$. 
+
+Se define $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que 
+\begin{equation}
+    B_k(p \cdot x_{k-1}) = -M 
+    \quad \text{y} \quad 
+     B_{k}(p \cdot x_k)= M.
+\end{equation}
+Podemos definir entonces $A \in A(\R^r)$ por 
+$A_k(x)=B_k(p \cdot x).$
+Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
+La red neuronal $f_k$ se calcula como 
+\begin{align}
+    f_k(x) 
+    = &
+    \sum_{j=1}^k \beta_j \psi(B_j(p \cdot x))
+     = 
+    (g(x_k)-g(x_{k-1})) \psi(B_k(p \cdot x)) + f_{k-1}(x) \\
+    \\
+    & = 
+    \sum_{j=1}^k \beta_j \psi(A_j(x))
+    = 
+   (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x)  
+\end{align}
+\end{itemize}
+
+Así definida, la prueba por inducción es idéntica a la del caso primero y hemos encontrado por tanto la red neuronal $f_n$ buscada.
+\end{proof}
+
+%% Redactar mejor esta sección 
+
+\subsection{Reflexión sobre el número de neuronas} \label{subsection:reflexión_sobre_número_de_neuronas}
+
+Ante la pregunta natural de 
+\textit{¿cuántas neuronas son necesarias?} el 
+recién probado teorema nos responde que 
+si estamos entrenando con $n$ datos, con $n$ neuronas es suficiente para volver a reproducir esos datos. Pero esto carece de sentido a nivel práctico por los siguientes motivos. 
+
+\subsubsection*{Naturaleza de los datos}  
+Recordemos que el problema al que nos enfrentamos es el siguiente:
+queremos ser capaces de predecir cierto fenómeno regido por $g$ una \textit{función} desconocida. 
+Para ello tenemos un \textit{conjunto de muestras} 
+compuestas por pares $(x, g(x))$, es decir, ante la situación $x$
+hemos observado que el fenómeno se comporta como $g(x)$. Todo esta 
+situación experimental puede producir incoherencias teóricas, como por ejemplo que se tengan dos muestras $(x_1, y_1), (x_2, y_2)$ 
+tales que $x_1 = x_2$ pero $y_1 \neq y_2$ o que la medición contenga errores, es decir $(x, g(x)+\delta)$. 
+
+Se podría paliar esta situación con preprocesado de los datos. 
+
+\subsubsection*{ Naturaleza de la regla subyacente}  
+
+Supongamos que los datos de entrenamiento son perfectos. Existen infinitas aplicaciones 
+que evalúan de la misma manera un conjunto finito de puntos. 
+¿Cuáles tomar?
+
+Podríamos, siguiendo el principio de economía de Ockham optar
+por modelos que reduzcan el número de neuronas, pero entonces la 
+pregunta sería  ¿qué número mínimo de neuronas serían necesarios para representar el modelo? 
+Una solución sería tomar un número de neuronas menor que el tamaño del conjunto de 
+entrenamiento y utilizar esa \textit{redundancia} de datos para 
+\textit{afinar}. 
+
+\subsubsection*{Coste computacional inasumible}  
+Supongamos que los datos son idílicos, el modelo se conoce y se establece un tamaño de datos de entrenamiento suficiente y
+un número de neuronas acorde  ¿podríamos asumir el coste computacional?
+
+\subsubsection*{Naturaleza constructiva de la demostración}
+\textcolor{red}{Estoy especulando, pero quiero dejar este pensamiento registrado.}
+El coste computacional de \textit{construir} esa red neuronal 
+es menor que el de entrenarla (TODO: comparar)
+podría optarse por una estrategia que se base de alguna manera 
+en esta construcción para inicializar los pesos?
+
+Por ejemplo: queremos construir una rrnn con n neuronas, 
+seleccionamos n datos aleatorios, construimos $f_n$ 
+y sobre ella entrenamos. 
+
+Quizás se obtengan mejores resultados que directamente inicializando los pesos de manera aleatoria. 

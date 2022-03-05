@@ -199,11 +199,176 @@ pages="109-115",
 abstract="Frank Rosenblatt's intention with his book, according to his own introduction, is not just to describe a machine, the perceptron, but rather to put forward a theory. He formulates a series of machines. Each machine serves to introduce a new concept.",
 isbn="978-3-642-70911-1"
 }
+%% ------ Redes neuronales como aproximadores universales  -----
+% Conferencia de 1987 sobre redes neuronales
+@ARTICLE{4307059,
+  author={},
+  journal={IEEE Expert}, 
+  title={IEEE First Annual International Conference on Neural Networks San Diego, California June 21-24, 1987}, 
+  year={1987},
+  volume={2},
+  number={2},
+  pages={14-14},
+  doi={10.1109/MEX.1987.4307059}}
 
+% Artículo principal: Multilayer feedforward networks are universal approximators
+@article{HORNIK1989359,
+title = {Multilayer feedforward networks are universal approximators},
+journal = {Neural Networks},
+volume = {2},
+number = {5},
+pages = {359-366},
+year = {1989},
+issn = {0893-6080},
+doi = {https://doi.org/10.1016/0893-6080(89)90020-8},
+url = {https://www.sciencedirect.com/science/article/pii/0893608089900208},
+author = {Kurt Hornik and Maxwell Stinchcombe and Halbert White},
+keywords = {Feedforward networks, Universal approximation, Mapping networks, Network representation capability, Stone-Weierstrass Theorem, Squashing functions, Sigma-Pi networks, Back-propagation networks},
+abstract = {This paper rigorously establishes that standard multilayer feedforward networks with as few as one hidden layer using arbitrary squashing functions are capable of approximating any Borel measurable function from one finite dimensional space to another to any desired degree of accuracy, provided sufficiently many hidden units are available. In this sense, multilayer feedforward networks are a class of universal approximators.}
+}
+% Imagen perceptrón multicapa  
+@misc{alma991008058419704990,
+publisher = {AMLbook.com},
+title = {Learning from data : a short course },
+year = {2012},
+author = {Abu-Mostafa, Yaser S.},
+address = {Seattle},
+booktitle = {Learning from data : a short course},
+isbn = {9781600490064},
+keywords = {Aprendizaje automático},
+language = {eng},
+}
+% Libro para algunas demostraciones de teoría de la medida
+% Se cita en pag 228 teorema 52.G
+% Se cita en pag 241-242  teorema 55.C y 55.D
+% Para el teorema de Lusin en pag 242-243.
+@Book{ nla.cat-vn1819421,
+author = { Halmos, Paul R. },
+title = { Measure theory / [by] Paul R. Halmos },
+isbn = { 0387900888 },
+publisher = { Springer-Verlag New York },
+year = { 1974 },
+type = { Book },
+url = { http://www.loc.gov/catdir/enhancements/fy0814/74010690-t.html },
+language = { English },
+subjects = { Measure theory. },
+life-dates = { 1974 -  },
+catalogue-url = { https://nla.gov.au/nla.cat-vn1819421 },
+}
 
+% Ejemplos de redes neuronales que combinan distintas funciones de activación 
+% artículo que compara arquitecturas habituales 
+@article{DBLP:journals/corr/abs-1811-03378,
+  author    = {Chigozie Nwankpa and
+               Winifred Ijomah and
+               Anthony Gachagan and
+               Stephen Marshall},
+  title     = {Activation Functions: Comparison of trends in Practice and Research
+               for Deep Learning},
+  journal   = {CoRR},
+  volume    = {abs/1811.03378},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1811.03378},
+  eprinttype = {arXiv},
+  eprint    = {1811.03378},
+  timestamp = {Fri, 23 Nov 2018 12:43:51 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1811-03378.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+% Ejemplo arquitectura 
+@article{DBLP:journals/corr/SzegedyVISW15,
+  author    = {Christian Szegedy and
+               Vincent Vanhoucke and
+               Sergey Ioffe and
+               Jonathon Shlens and
+               Zbigniew Wojna},
+  title     = {Rethinking the Inception Architecture for Computer Vision},
+  journal   = {CoRR},
+  volume    = {abs/1512.00567},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1512.00567},
+  eprinttype = {arXiv},
+  eprint    = {1512.00567},
+  timestamp = {Mon, 13 Aug 2018 16:49:07 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/SzegedyVISW15.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 
+% ejemplo paper general 
+@INPROCEEDINGS{8258768,
+  author={Wang, Bin and Li, Tianrui and Huang, Yanyong and Luo, Huaishao and Guo, Dongming and Horng, Shi-Jinn},
+  booktitle={2017 12th International Conference on Intelligent Systems and Knowledge Engineering (ISKE)}, 
+  title={Diverse activation functions in deep learning}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={10.1109/ISKE.2017.8258768}}
 
+%%% ---- Sobre funciones de activación 
+  % Artículo donde se introduce la función de cosine squasher
+  @MISC{Gallant88thereexists,
+    author = {A. Ronald Gallant and Halbert White},
+    title = {There Exists A Neural Network That Does Not Make Avoidable Mistakes},
+    year = {1988},
+    abstract = {
+    We show that a multiple input, single output, 
+    single hidden layer feedforward network with (known) 
+    hardwired connections from input to hidden layer, monotone squashing at the hidden layer
+    and no squashing at the output embeds as a special case a "Fourier network" which yields a Fourier series
+    approximation to a given function as its output. Thus, such networks possess all the approximation properties
+    of Fourier series representations. In particular, approximation to any desired accuracy of any square 
+    integrable function can be achieved by such a network, using sufficiently many hidden units. In this 
+    sense, such networks do not make avoidable mistakes.
+    }
+}
+% Generalización con funciones no continuas
+@article{FUNAHASHI1989183,
+title = {On the approximate realization of continuous mappings by neural networks},
+journal = {Neural Networks},
+volume = {2},
+number = {3},
+pages = {183-192},
+year = {1989},
+issn = {0893-6080},
+doi = {https://doi.org/10.1016/0893-6080(89)90003-8},
+url = {https://www.sciencedirect.com/science/article/pii/0893608089900038},
+author = {Ken-Ichi Funahashi},
+keywords = {Neural network, Back propagation, Output function, Sigmoid function, Hidden layer, Unit, Realization, Continuous mapping},
+abstract = {In this paper, we prove that any continuous mapping can be approximately realized by Rumelhart-Hinton-Williams' multilayer neural networks with at least one hidden layer whose output functions are sigmoid functions. The starting point of the proof for the one hidden layer case is an integral formula recently proposed by Irie-Miyake and from this, the general case (for any number of hidden layers) can be proved by induction. The two hidden layers case is proved also by using the Kolmogorov-Arnold-Sprecher theorem and this proof also gives non-trivial realizations.}
+}
+% Generalización del teorema universal con funciones de actvación no acotadas
+@article{DBLP:journals/corr/SonodaM15,
+  author    = {Sho Sonoda and
+               Noboru Murata},
+  title     = {Neural Network with Unbounded Activations is Universal Approximator},
+  journal   = {CoRR},
+  volume    = {abs/1505.03654},
+  year      = {2015},
+  url       = {http://arxiv.org/abs/1505.03654},
+  eprinttype = {arXiv},
+  eprint    = {1505.03654},
+  timestamp = {Mon, 13 Aug 2018 16:47:56 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/SonodaM15.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 
+  %% ---------- Nociones topología -------
+ % De james1966topology tomamos: 
+ % Definición vecino (pag 63)
+ % Definición Hausdorff (pag 137-138)
+ % Definción espacio Normal  Hausdorff (pag 144)
+ % Caracterización de normalidad de Tietze (pag 149-151)
+  @book{james1966topology,
+  title={Topology},
+  author={James Dugundji},
+  isbn={9780205002719},
+  lccn={66010940},
+  series={Allyn and Bacon series in advanced mathematics},
+  url={https://books.google.es/books?id=FgFRAAAAMAAJ},
+  year={1966},
+  publisher={Allyn and Bacon}
+}
 
 %%%%%%%%%%%%%%%%%% metodología %%%%%%%%%%%%%%
 %% Descripción del desarrollo ágil en la ciencia

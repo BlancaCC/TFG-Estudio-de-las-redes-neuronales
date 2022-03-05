@@ -11,15 +11,21 @@ clean:
 	cd doc/ && rm -f tfg.toc tfg.out tfg.lot tfg.log tfg.lof tfg.ind tfg.ilg tfg.fls tfg.fdb_latexmk tfg.brf tfg.blg tfg.bbl tfg.idx
 # Corrector ortográfico
 spell:
-	bash ./scripts/spell-check.sh
+	./scripts/spell-check.sh
 
 install-spell:
 	sudo apt-get install aspell aspell-es aspell-en
 
-order:
+sort:
 	./scripts/order-dictionary.py
 
+lazy: 
+	./scripts/lazy-spell-check.sh
+
 workflow-spell: install-spell spell
+
+## test en general 
+test: spell
 
 
 	

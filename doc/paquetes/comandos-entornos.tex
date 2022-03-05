@@ -16,6 +16,21 @@
 %\def\BState{\State\hskip-\ALG@thistlm}
 % Notas en el margen
 \usepackage{sidenotes} 
+  \newcommand{\pmc}{\sum ^r (G)}  % Perceptrón multicapa 
+  \newcommand{\pmcg}{ \sum \prod^r (G)} % Perceptrón multicapa generalizado
+  \newcommand{\fC}{C(\R^r)} %conjunto de funciones continuas en R^r -> R
+  \newcommand{\fM}{M(\R^r)} % Perceptrón generalizado
+  \newcommand{\rrnn}{ \sum^r (\psi)} % Red neuronal  generalizado
+  \newcommand{\rrnng}{ \sum \prod^r (\psi)} % Red neuronal  generalizado
+  \newcommand{\dist}{\rho_{\mu}}     % Distancia de una medida
+  \newcommand{\dlp}{\rho_{p}} % Distancia de los espacios Lp
+  % Para multicapas
+  \newcommand{\fCC}{C(\R^r ,\R^s)}
+  \newcommand{\fMM}{M(\R^r , \R^s)}
+  \newcommand{\rrnnmc}{ \sum^{r,s} (\psi)} 
+  \newcommand{\rrnngmc}{ \sum \prod^{r,s} (\psi)} 
+  %%%%%%%%% Mis comandos %%%%%%%%%5
+\usepackage{sidenotes} % Notas en el margen
 \newcommand{\margenimagen}{
   \newgeometry{
       left=2.5cm, % Margen izquierdo
@@ -23,6 +38,8 @@
     bottom=2.5cm % Margen inferior}
   }
 }
+\usepackage{caption}
+\usepackage{subcaption}
 
 % TEOREMAS Y ENTORNOS ASOCIADOS
 
