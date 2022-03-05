@@ -12,7 +12,7 @@ y la ciencia de datos, por lo que no es de extrañar que sus beneficios sean ext
 a otras áreas de la ciencia; 
 hemos aplicado por ende la 
 metodología expuesta en el artículo \cite{DBLP:journals/corr/abs-2104-12545}, realizado 
-el trabajo siguiendo un desarrollo ágil, de acorde a las siguientes hipótesis. 
+el trabajo desarrollando con una mentalidad ágil, de acorde a las siguientes hipótesis: 
 
 \begin{enumerate}
     \item Se premia la \textbf{reproducibilidad}, \textit{la ciencia no puede ser ciencia si no es reproducible}. Es por 
@@ -73,12 +73,8 @@ la historia de usuario número $xx$.
 \subsection{Historias de usuario definidas} 
 
 \subsubsection*{[HU01] Optimización redes neuronales.}\label{HU01}
-    Como \textit{Rosa} me gustaría que se encontrara alguna optimización en las redes neuronales, ya sea:
-\begin{itemize}
-    \item  Necesidad de arquitecturas menos potentes.
-    \item  Mayor precisión para misma arquitectura.
-    \item  Resolver nuevos problemas.
-\end{itemize}
+    Como \textit{Rosa} me gustaría que se ejecutaran las redes neuronales en un hardware
+    más barato o que consuma menos en un tiempo razonable.
 Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU01}. 
 
 \subsubsection*{ [HU02] Metodología} \label{HUO2}
@@ -105,10 +101,6 @@ aclarar limitaciones, particularizar o abstraer en cualquier aspecto de las rede
 
 Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU04}.
 
-\subsubsection*{[HU05] Finalizar memoria a tiempo y sin que quede nada pendiente} \label{HUO5}
-
-Como \textit{Blanca} me gustaría acabar el proyecto y memoria en la fecha de convocatoria ordinaria, habiendo cumplido todos los hitos anteriores y satisfaciendo todo los requisitos.
-Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU05}.
 
 \subsubsection*{[HU06] Requisitos tribunal} \label{HUO6}
 Como \textit{Mayte y Pablo} queremos corregir un trabajo fin de grado bien hecho. 
@@ -138,56 +130,65 @@ Los milestones describen entregables, productos mínimos viables y se basan en l
 puede encontrar nuestras declaraciones en nuestro repositorio \cite{TFG-Estudio-de-las-redes-neuronales-milestones}. 
 A éstas además le hemos asociado una fecha de entrega. 
 
-\begin{enumerate}
-    \item Recopilación de bibliografía. 
-    \item Metodología. 
-    \item Estudio de las redes neuronales. 
-    \item Fase de planteamiento de hipótesis y experimentación. 
-    \item Entrega del proyecto.
-\end{enumerate}  
 
-\subsection*{Milestone: Recopilación de bibliografía}
-Comprende la búsqueda de recursos para avanzar en el resto de milestones, es por ello que es atemporal. 
-Cada fuente será registrada como una entrada en el fichero \textit{library.bib} con un comentario sobre su 
-interés. Es decir, el producto final será un fichero bien ordenado y explicado de bibliografía al que poder 
-citar en la memoria.
-
-\subsection*{Milestone 0: Metodología}
-Resuelve la segunda historia de usuario definida en \ref{HUO2}. 
-Corresponde a la planificación del trabajo.
-Para entregar este milestone, deberá de haberse definido y creado:
+\subsection*{Milestone 0: Explicitación escrita de la metodología} 
+Consiste en la redacción de la descripción de la metodología a seguir resultando en capítulos concretos de la memoria 
+y \textit{issues} en la plataforma de trabajo, GitHub.  
+La documentación presentada deberá de incluir: 
 \begin{itemize}
-    \item Personas.
-    \item Historias de usuario.
-    \item Milestones.
+    \item Explicitación de la metodología. 
+    \item Definición y descripción de personas.
+    \item Redacción de las historias de usuario.
+    \item Redacción de los milestones.
 \end{itemize}
-El contenido se reflejará tanto en GitHub como en la memoria.
+Será validada cuando los tutores aprueben la organización y formulación de la misma.
 
-\subsection*{Milestone 1: Estudio de las redes neuronales}  
+
+\subsection*{Milestone 1: Aclaración del sustento teórico de las redes neuronales}  
 Resuelve la tercera historia de usuario recogida en sección \ref{HUO3}.
-Este milestone consiste en un estudio de las redes neuronales, el cual se reflejará en varios capítulos y secciones de la memoria. Con secciones como:
+Este milestone consiste en la redacción de una serie de capítulos y secciones 
+que estudien: 
 \begin{itemize}
     \item Definición y construcción de las redes neuronales.
-    \item Análisis del teorema de aproximación universal de las redes neuronales de Hornik, Stinchcombe y White.
+    \item Motivación de su eficacia con: Análisis del 
+    teorema de aproximación universal de las redes neuronales de Hornik, Stinchcombe y White.
 \end{itemize}
+Se aceptarán las secciones una vez hayan sido supervisadas y validadas por los tutores. 
 
-\subsection*{Milestone 2: Hipótesis de optimización}
+\subsection*{Milestone 2: Formulación y experimentación de hipótesis que democraticen las redes neuronales}
 Este milestone trata de solucionar el cuarto (\ref{HUO4}) y primera (\ref{HU01}) historias de usuario. 
 
-Su producto será ciertos capítulos de la memoria donde se reflejen
+Su producto serán ciertos capítulos de la memoria donde se reflejen
 \begin{itemize}
-    \item Hipótesis planteadas que puedan optimizar las redes neuronales.
+    \item Hipótesis planteadas que puedan optimizar las redes neuronales en cualquier aspecto de hardware o potencia de cómputo.
     \item Experimentación o investigación relacionada con las hipótesis anteriores. 
     \item Análisis y conclusiones de los resultados anteriores. 
 \end{itemize}
+El criterio de aceptación consistirá en:
+\begin{itemize}
+    \item Una formulación de las hipótesis por escrito, que tras debatirlas con los tutores
+    se seleccionarán las que se estimen más interesantes y se definirán respectivos experimentos con el fin de falsar o 
+    hacer plausibles tales hipótesis.
+    \item  Los experimentos de requerir implementaciones deberán previamente comprobar su correcto funcionamiento mediante tests.
+    \item La redacción del análisis y conclusiones deberá ser aprobado por los tutores nuevamente.
+\end{itemize}
 
-\subsection*{Milestone 3: Entrega del proyecto}
+
+\subsection*{Milestone 3: Bibliografía}
+
+El producto final será un fichero \textit{library.bib} bien ordenado, comentado y explicado de bibliografía al que poder 
+citar en la memoria.
+El fichero será aprobado siempre que tenga una sintaxis correcta es decir, 
+la memoria laTEX compile correctamente. 
+
+\subsection*{Milestone 4: Entrega del proyecto}
 Este milestone satisface la quinta (\ref{HUO5}) y sexta (\ref{HUO6}) historias de usuario. 
 
 Su resultado será una memoria revisada y pulida que se entregará en Prado como trabajo fin de grado. 
 
 Para cumplir con los \textit{milestones},  ha sido necesario resolver nuevos  problemas menores, estos se han
 recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{milestones}.
+
 
 \section{Resumen de la metodología}  
 
