@@ -1,0 +1,14 @@
+name: "Build LaTeX"
+
+on: push
+
+jobs:
+  build-latex:
+    runs-on: ubuntu-latest
+    container:
+      image: danteev/texlive:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build LaTex
+        run: make 

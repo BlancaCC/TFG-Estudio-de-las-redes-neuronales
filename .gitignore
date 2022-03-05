@@ -1,5 +1,6 @@
 # Emacs
 *~
+
 #VS code 
 .vscode/settings.json
 
@@ -10,7 +11,7 @@ code/.ipynb_checkpoints
 .DS_Store
 doc/.DS_Store
 
-#Ficheros personales
+#Personales
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
@@ -33,6 +34,7 @@ ISSUES-RELEVANTES
 *.blg
 *.fls
 *.lot
-doc/_minted-tfg
 doc/tfg.loa
+doc/_minted-tfg
+
 
