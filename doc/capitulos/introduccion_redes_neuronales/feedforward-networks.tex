@@ -42,7 +42,7 @@ diferenciable y no linear
 En el contexto de las redes neuronales a $z_j$ se le conoce como \textit{unidad oculta} y que podrían ser de 
 nuevo  transformados por una combinación lineal 
 \begin{equation}
-    a_k = \sum_{i=1}^M w_{ji}^{(2)} x_i + w_{k0}^{(2)}
+    a_k = \sum_{i=1}^M w_{ji}^{(2)} z_i + w_{k0}^{(2)}
     \text{ con } j \in \{1, \ldots, K \}.
 \end{equation}
 Nótese que ahora el tamaño de variables de entrada es $M$
@@ -137,10 +137,11 @@ Es decir, que en cada capa $l$ intervienen los siguientes elementos:
 \end{table}
 
 \subsection{ \textit{Forward propagación}}
-Sea $h \in \mathcal{H}_{n n}$ una red neuronal en esta sección explicaremos el algoritmo the \textit{forward propagation} para 
-calcular el valor de $h(x).$
 
-Gracias a la explicación anterior se puede apreciar que 
+Explicaremos en esta sección cómo calcular para una entrada una determinada salida, es decir
+dada una red neuronal $h \in \mathcal{H}_{n n}$ y un vector de entrada $x \in \mathcal{X}$ calcularemos  $h(x)$, esto se hará gracias al algoritmo conocido como \textit{forward propagation}.
+
+Teniendo presente la relación  explicada en (\refeq{eq:construcción_red_neuronas:calculo_una_capa_oculta}) se puede escribir de forma vectorial la siguiente relación: 
 \begin{equation}
     x^{(l)} = 
     \left[ \begin{array}{c}
@@ -154,13 +155,16 @@ Para calcular el vector de entrada de la capa $l$, para cada nodo se hará
 \begin{equation}
     s_j^{(l)} = \sum_{i=0}^{d^{(l-1)}} w_{i j}^{(l)}x_i^{(l-1)}.
 \end{equation}
-Que se formula para toda la capa como 
+Que se formula de forma vectorial para toda la capa como 
 \begin{equation}
     s^{(l)} = W^{(l)} x^{(l-1)}.
 \end{equation}
-Y donde $x^{(0)} = x$ y por tanto $d^{(0)} = d.$
-% Todo añadir ejemplo
-Y por tanto la implementación del algoritmo sería
+
+Si el vector de entrada es $x \in \mathcal{X} \subseteq \R^d$, 
+se inicializa  $x^{(0)} = (1,x_1, \ldots, x_d)^T$ y por tanto $d^{(0)} = d+1.$
+
+
+La implementación del algoritmo sería:
 
 \begin{algorithm}[H]
     \caption{Algoritmo \textit{Forward propagation} para evaluación de una red neuronal $h_w(x)$.}
@@ -204,9 +208,25 @@ Veamos un ejemplo concreto para la siguiente red neuronal de la imagen \ref{img:
     \caption{Ejemplo de red neuronal con tres capas ocultas}
     \label{img:construccion_rrnn:rrnn-2-3-2-1}
 \end{figure} 
-Está compuesta por tres capas ocultas, el vector de entrada $x \in \R^2$, 
-la primera capa oculta está compuesta por tres neuronas, la segunda por dos y la última, la salida por una. 
-Las \textit{flechas} que conectan los nodos hacen referencia a los pesos de cada red neuronal. Por lo que para nosotros 
+
+La red de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1} está 
+compuesta por tres capas ocultas, acepta vectores de entrada de dimensión dos, 
+la primera capa oculta está compuesta por tres neuronas, 
+la segunda por dos y la última, la salida por una. 
+La notación del dibujo usada es la siguiente, entre paréntesis se 
+especifica la capa, en el caso de la salida $x(l)i$ hace referencia a la salida $i$-ésima de la capa $l$. Las \textit{flechas} que conectan los nodos $w(l)ij$ hace referencia al peso que se le da a $x(l-1)i$ con respecto a la entrada $s(l)j$.
+
+Representando los pesos de manera matricial
+\begin{align}
+    W^{(l)} = 
+    \begin{bmatrix}
+        w^{(l)}_{01} & w^{(l)}_{11} & \cdots & w^{(l)}_{d^{(l-1)} 1}\\
+        w^{(l)}_{02} & w^{(l)}_{12} & \cdots & w^{(l)}_{d^{(l-1)} 2}\\
+        \cdots & \cdots & \cdots & \cdots \\
+        w^{(l)}_{0d} & w^{(l)}_{1d} & \cdots & w^{(l)}_{d^{(l-1)} d}\
+    \end{bmatrix} 
+\end{align}
+las matrices de pesos de nuestra imagen son :
 \begin{align}
     W^{(1)} = 
     \begin{bmatrix}
@@ -222,17 +242,17 @@ Las \textit{flechas} que conectan los nodos hacen referencia a los pesos de cada
     W^{(3)} = 
     \begin{bmatrix}
         0.33 & 0.33 & -0.6 \
-    \end{bmatrix} 
+    \end{bmatrix} .
 \end{align}
-Y si hacemos $x_0 = (1,0)$ y tomamos como función de activación
+Si inicializamos $x= (1,0)$ y tomamos como función de activación
 a la tangente hiperbólica, la ejecución del algoritmo queda reflejada en la tabla \ref{tab:construcción_rnnn:ejemplo_forward_propagation} resultando que 
 $h((1,0)) = 0.439$.
 \begin{table}[H]
     \begin{center}
 \begin{tabular}{| c | c | c | c| }
     \hline
-    Valor de $l$ &  $W^{(l)}$ & $\bigl(s^{(l)}\bigr)^T $ & $\bigl(x^{(l)}\bigr)^T$ \\ \hline
-    0 & & & $(1,0)$ 
+    Capa $l$-ésima &  $W^{(l)}$ & $\bigl(s^{(l)}\bigr)^T $ & $\bigl(x^{(l)}\bigr)^T$ \\ \hline
+    0 & & & $(1,1,0)$ 
     \\ \hline
     1 & 
     $\begin{bmatrix}
@@ -240,20 +260,20 @@ $h((1,0)) = 0.439$.
         -0.2 & -0.2 & 0.2\\
         0.1 & 0 & -0.3
     \end{bmatrix}$ 
-    & $(0.1, -0.4, 0.1)$ & $(0.1, -0.38, 0.1)$
+    & $(0.1, -0.4, 0.1)$ & $(1, 0.1, -0.38, 0.1)$
      \\ \hline
     2 & $\begin{bmatrix}
         1 & -1 & 0.3 & 0\\
         0.3& 0 & 0.3 & -0.6 
     \end{bmatrix}$
     & $(0.786, 0.126)$
-    & $(0.656, 0.126)$
+    & $(1,0.656, 0.126)$
     \\ \hline
     3 & $\begin{bmatrix}
         0.33 & 0.33 & -0.6 
     \end{bmatrix}$ 
     & $(0.471)$ 
-    & $(0.439)$
+    & $(1,0.439)$
     \\ \hline
 \end{tabular}
 \caption{Ejemplo de ejecución del algoritmo de \textit{forward propagation}}
@@ -263,7 +283,7 @@ $h((1,0)) = 0.439$.
 
 \subsection{\textit{Backpropagation}}
 
-Los parámetros que determinan una red neuronal son sus pesos, 
+Los parámetros que determinan una red neuronal son sus pesos, y esto es lo que \textit{aprende},
 para actualizarlos utilizaremos la técnica de gradiente descendente. 
 Que como ya explicamos consistía en \textit{avanzar} en dirección contraria a la del gradiente. 
 \begin{equation}
