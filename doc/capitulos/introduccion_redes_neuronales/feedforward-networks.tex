@@ -4,21 +4,24 @@
 %*******************************************************
 % Construcción redes neuronales  
 %*******************************************************
-\section{Construcción \textit{Feedforward Network}}
+\section{Construcción de las reden neuronales \textit{Feedforward Networks}}
 
-TODO: Explicar nombre y que vamos a denotar a feedforward como redes neuronales de aquí en adelante. También comentar diferencia con perceptrón multicapa. 
-% TODO añadir noción de que topológicamente son un grafo sin ciclos. 
+A lo largo de esta sección  explicaremos qué es una red neuronal, cómo está construida y en qué consiste el \textit{aprendizaje} de la misma, concretamente
+construiremos el tipo particular \textit{Feedforward Networks}, al cual nos referiremos de ahora
+en adelante como red neuronal.
 
-Con el fin de facilitar la explicación partiremos de un ejemplo de un modelo básico en la sección \ref{rrnn:modelo_simple_rrnn}, para finalmente en la sección \ref{rrnn:construcción_generalizada} ofrecer una visión general. Además la evaluación de una red neuronal se realiza por un mecanismo conocido como \textit{forward propagation}, el cual 
-describiremos en TODO :referencia y proceso de \textit{ aprendizaje} con una técnica conocida como \textit{back propagation} la cual se describe en TODO referencia. 
+\subsection{Modelo básico de una red neuronal} \label{rrnn:modelo_simple_rrnn}  
 
-\subsection{Modelo básico de una red neuronal} \label{rrnn:modelo_simple_rrnn}
+Con el fin de entender mejor cómo se definen y construyen las redes neuronales y porque en nuestro trabajo nos hemos centrado en estudiar
+esta clase concreta de redes neuronales,
+comenzaremos 
+introduciendo las de una sola capa oculta. 
 La información que se va a desarrollar a lo largo de esta 
 sección proviene principalmente del capítulo cinco, páginas 227-256 del libro \cite{BishopPaterRecognition} y las notas online sobre redes neuronales de \cite{MostafaLearningFromData}.
 
 
-\subsubsection*{Definición de la primera capa}
-La primera capa está compuesta por $M$ combinaciones
+\subsubsection*{Construcción de la primera capa}
+La primera capa está compuesta por el conjunto de $M$ combinaciones
 lineales del vector de entrada $(x_1, \ldots, x_d)$
 a las cuales denominaremos \textit{activaciones}
 
@@ -33,14 +36,14 @@ Nos referiremos a los  parámetros $w_{ji}^{(1)}$ como
 
 \subsubsection*{Unidades ocultas}
 Cada una de esas \textit{activaciones} será transformada
-utilizando una \textit{función de activación} $h$ 
+utilizando una \textit{función de activación} $\sigma_j$ 
 diferenciable y no linear
 
 \begin{equation}
-    z_j = h(a_j).
+    z_j = \sigma_j(a_j).
 \end{equation}
-En el contexto de las redes neuronales a $z_j$ se le conoce como \textit{unidad oculta} y que podrían ser de 
-nuevo  transformados por una combinación lineal 
+En el contexto de las redes neuronales a $z_j$ se le conoce como \textit{unidad oculta}. Ésta  podría ser de 
+nuevo  transformada por una combinación lineal 
 \begin{equation}
     a_k = \sum_{i=1}^M w_{ji}^{(2)} z_i + w_{k0}^{(2)}
     \text{ con } j \in \{1, \ldots, K \}.
@@ -48,37 +51,49 @@ nuevo  transformados por una combinación lineal
 Nótese que ahora el tamaño de variables de entrada es $M$
 y hay un total de $K$ unidades de activación, tanto $M$ como $K$ son
 valores fijados por el diseñador de la red. 
-Y combinando ambas capas resulta: 
+Finalmente se define como \textbf{red neuronal con una capa oculta} $h_w \in \mathcal{H}_{D \times M \times K}$, con $h=(y_1, \ldots, y_K)$ a la combinación de las expresiones anteriores, es decir a: 
 \begin{equation}
-    y_k(x,w) = \sigma 
+    y_k(x,w) = \theta_k 
     \biggl( 
         \sum^M_{j=1} w_{ji}^{(2)}
-        h 
+        \sigma_j 
         \biggl(
             \sum_{i=1}^D w_{ji}^{(1)} x_i + w_{j0}^{(1)}
         \biggr)
         + w_{k0}^{(2)}
-    \biggr) .
+    \biggr) 
+    \text{ para cada  } k \in \{1, \ldots, K \}..
 \end{equation}
 Donde todos los pesos y sesgos han sido agrupados en el vector $w$. 
 
 Si al vector de entrada se le añade una variable $x_0 = 1$, puede reescribirse cada expresión eliminando los sesgos y como producto vectorial
 
 \begin{equation}
-    y_k(x,w) = \sigma 
+    y_k(x,w) = \theta_k 
     \bigl(
          w^{(2)} \cdot
-        h 
+        \sigma    
         \bigl(
              w^{(1)} \cdot x 
         \bigr)
     \bigr)
 \end{equation}  
 
-La función de activación $\sigma$ será escogida de acorde a la
+La función de activación $\theta_k$ será escogida de acorde a la
 naturaleza del problema, es decir \textit{cómo se desee codificar la salida}, por ejemplo si se trata de un problema de regresión, de clasificación, de probabilidad. 
  
 De ahora en adelante trabajaremos con esta notación. 
+
+Es posible visualizar las relaciones de las entradas y los distintos nodos de la 
+red neuronal como un grafo dirigido acíclico como se muestra en la figura \ref{img:ejemplo topología red neuronal}
+
+\begin{figure}[h!] 
+    \centering
+    \includegraphics[width=0.65\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/red-neuronal-simple-introducción.drawio.png}
+    \caption{Ejemplo de red neuronal con una capa oculta}
+    \label{img:ejemplo topología red neuronal}
+\end{figure} 
+ 
 
 
 En este ejemplo poseemos una capa oculta, 
