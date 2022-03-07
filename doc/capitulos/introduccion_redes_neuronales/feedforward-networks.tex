@@ -95,10 +95,9 @@ red neuronal como un grafo dirigido acíclico como se muestra en la figura \ref{
 \end{figure} 
  
 
-
 En este ejemplo poseemos una capa oculta, 
 puede definirse siguiendo esta misma idea
-un red neuronal de múltiples capas ocultas. 
+una red neuronal de múltiples capas ocultas. 
 
 % Generalización de modelo 
 \subsection{Construcción red neuronal de varias capas ocultas} \label{rrnn:construcción_generalizada}
@@ -124,7 +123,7 @@ viene determinada por sus pesos.
 
 \subsubsection*{Cálculo de una capa oculta}  
 Cada nodo recibe una señal de entrada $s$ y determina una salida $x$. 
-% Añadir gráfica   
+  
 La relación que existe entre dos nodos de capas contiguas es la siguiente: si $x_i^{(l-1)}$ es la salida de la unidad $i$ de la capa $l-1$, 
 entonces se calcula la entrada de la unidad $j$ de la capa $l$ como 
 \begin{align}\label{eq:construcción_red_neuronas:calculo_una_capa_oculta}
@@ -154,7 +153,7 @@ Es decir, que en cada capa $l$ intervienen los siguientes elementos:
 \subsection{ \textit{Forward propagación}}
 
 Explicaremos en esta sección cómo calcular para una entrada una determinada salida, es decir
-dada una red neuronal $h \in \mathcal{H}_{n n}$ y un vector de entrada $x \in \mathcal{X}$ calcularemos  $h(x)$, esto se hará gracias al algoritmo conocido como \textit{forward propagation}.
+dada una red neuronal $h \in \mathcal{H}_{d^{(0)} \times \cdots \times d^{(L)}}$ y un vector de entrada $x \in \mathcal{X}$ calcularemos  $h(x)$, esto se hará gracias al algoritmo conocido como \textit{forward propagation}.
 
 Teniendo presente la relación  explicada en (\refeq{eq:construcción_red_neuronas:calculo_una_capa_oculta}) se puede escribir de forma vectorial la siguiente relación: 
 \begin{equation}
@@ -220,14 +219,14 @@ La implementación del algoritmo sería:
 Veamos un ejemplo concreto para la siguiente red neuronal de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1}
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/rrnn-2-3-2-1-completa.png}
-    \caption{Ejemplo de red neuronal con tres capas ocultas}
+    \caption{Ejemplo de red neuronal con dos capas ocultas y pesos con valores concretos}
     \label{img:construccion_rrnn:rrnn-2-3-2-1}
 \end{figure} 
 
 La red de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1} está 
-compuesta por tres capas ocultas, acepta vectores de entrada de dimensión dos, 
+compuesta por dos capas ocultas, acepta vectores de entrada de dimensión dos, 
 la primera capa oculta está compuesta por tres neuronas, 
-la segunda por dos y la última, la salida por una. 
+la segunda por dosy la salida por una. 
 La notación del dibujo usada es la siguiente, entre paréntesis se 
 especifica la capa, en el caso de la salida $x(l)i$ hace referencia a la salida $i$-ésima de la capa $l$. Las \textit{flechas} que conectan los nodos $w(l)ij$ hace referencia al peso que se le da a $x(l-1)i$ con respecto a la entrada $s(l)j$.
 
@@ -299,8 +298,8 @@ $h((1,0)) = 0.439$.
 \subsection{\textit{Backpropagation}}
 
 Los parámetros que determinan una red neuronal son sus pesos, y esto es lo que \textit{aprende},
-para actualizarlos utilizaremos la técnica de gradiente descendente. 
-Que como ya explicamos consistía en \textit{avanzar} en dirección contraria a la del gradiente. 
+para actualizarlos utilizaremos la técnica de gradiente descendente ya explicado en la sección \ref{sec:gradiente-descendente}. 
+
 \begin{equation}
     W(t+1) = w(t) - \eta \nabla E_{in}(w(t)). 
 \end{equation}
@@ -312,15 +311,16 @@ se utiliza el algoritmo conocido como \textit{backpropagation} que fue publicado
 Sea $E_{in}(w)$ la función de error, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
 de entrenamiento está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada y $y_n$ el estado o valor deseado para cualquier $n\in \{1, \ldots, N\}.$
 \begin{equation}
-    E_{in}(w) = \frac{1}{2} \sum^N_{n=1} e_n. 
+    E_{in}(w) = \frac{1}{N} \sum^N_{n=1} (h_w(x)- y_n)^2. 
 \end{equation}
-Para el cual 
+Denotaremos como $e_n$ a 
 \begin{equation}
-    e_n = (h_w(x)- y_n)^2, 
+    e_n = (h_w(x)- y_n)^2 
 \end{equation}
-es una métrica para medir error entre, en nuestro caso  
+que es una métrica para medir error entre, en nuestro caso  
 la red neuronal $h_w$ y los valores deseados, con $w$ el vector que contiene las respectivas matrices de pesos de cada capa 
 $W^{(l)} l \in \{1, \ldots, L\}.$  
+
 %% Ejemplo 
 Mostraremos un ejemplo primero antes de presentar el método general para facilitar la comprensión del algoritmo. 
 % Imagen red neuronal simple
@@ -334,10 +334,9 @@ $f_w : \R \longrightarrow \R$ presentada en \ref{img:construccion_rrnn:rrnn-1-2-
 $f_w$ está compuesta de dos capas ocultas. Supongamos que nos basaremos en un dato 
 $(x, y)$ así pues podemos suponer que 
 \begin{equation}
-    E_{in}(w) = \frac{1}{2}e(f_w(x), y) = \frac{1}{2} (f_w(x)- y)^2.
+    E_{in}(w) = \frac{1}{N}e(f_w(x), y) = \frac{1}{N} (f_w(x)- y)^2.
 \end{equation}
-Como queremos actualizar los pesos utilizando el método de gradiente descendente necesitamos calcular el gradiente $\nabla E_{in}(w)$. 
-En nuestro caso, $w=\{W^{(1)}, W^{(2)}\}$ con 
+Como queremos actualizar los pesos utilizando el método de gradiente descendente necesitamos calcular el gradiente $\nabla E_{in}(w)$, en nuestro caso tenemos $w=\{W^{(1)}, W^{(2)}\}$ con 
 \begin{align}
     W^{(1)} = 
     \begin{bmatrix}
@@ -348,9 +347,9 @@ En nuestro caso, $w=\{W^{(1)}, W^{(2)}\}$ con
     W^{(2)} = 
     \begin{bmatrix}
         w^{(2)}_{01} & w^{(2)}_{11} & w^{(2)}_{21}\\
-    \end{bmatrix}. 
+    \end{bmatrix}, 
 \end{align}
-Luego 
+luego 
 \begin{equation}
     \nabla E_{in}(w) = 
     \left(
@@ -452,12 +451,9 @@ Otro ejemplo sería
     1- \tanh^2 \left(s^{(2)}_{1}\right) \right)x^{(1)}_2.
 \end{align}
 
-Notemos que no se han desarrolla los términos de la forma $s^{(i)}_j$. Además si existen $Q$ pesos la complejidad del cálculo será $\mathcal{O}(Q^2)$, sin embargo, como hemos visto existen términos que se repiten en ambas ecuaciones, luego utilizando técnicas de 
-programación dinámica y almacenando los valores que se repiten, 
-reduciremos el coste a una complejidad de $\mathcal{O}(Q).$ Este 
-algoritmo se le conoce como el de \textit{backpropagation}
-basaremos su explicación en la publicada en
-el artículo \cite{backpropagation-Hinton}.
+Notemos que no se han desarrolla los términos de la forma $s^{(i)}_j$. Además si existen $Q$ pesos la complejidad del cálculo será $\mathcal{O}(Q^2)$, sin embargo, como hemos visto existen términos que se repiten en ambas ecuaciones, por lo que utilizar una técnica de programación dinámica, concretamente la conocida como 
+\textit{backpropagation} (\cite{backpropagation-Hinton}) nos permite reducir el coste a una complejidad de  $\mathcal{O}(Q).$
+
 %% Fin del ejemplo 
 %% COMIENZA EL ARTÍCULO 
 
@@ -478,18 +474,17 @@ para cualquier $l \in \{1, \ldots, L\}$ con
 \end{equation}
 y
 \begin{equation}
-    E(w) = \frac{1}{2} 
+    E(w) = \frac{1}{N} 
     \sum_{n = 1}^{N}
     \sum_{i = 1}^{d^{(L)}}
-    \left({x_n}^{(L)}_i-y_{n_i} \right)^2
+    \left({x_n}^{(L)}_i-y_{n_i} \right)^2 
+    = 
+    \frac{1}{N}
+    \sum^{N}_{n=1} e_n.
 \end{equation}
 
 %% Gradiente de la salida: 
-Para simplificar la notación renombramos 
-\begin{equation}
-    E(w) = \sum^{N}_{n=1} e_n.
-\end{equation}
-y de ahora en adelante nos referiremos como $e$ a $e_n.$
+Para simplificar la notación nos referiremos como $e$ a $e_n.$
 Vamos a proceder a calcular primero los gradientes de la última capa, 
 sea $w^{(L)}_{i j}$  con $j \in \{1, \ldots , d^{(L)}\}$, 
 $i \in \{1, \ldots , d^{(L-1)}\}$  el peso que relaciona la salida 
@@ -521,7 +516,10 @@ Donde $w^{(L)}_{\ast j} = \left(w^{(L)}_{0 j}, w^{(L)}_{2 j}, \ldots, w^{(L)}_{d
  Por otro lado 
  \begin{equation}\label{eq:backpropagation_E_última_capa_derivada}
     \frac{\partial{e}}{\partial x^{(L)}_j} =
+    2 
+    \left(
     x^{(L)}_j - y_j
+    \right)
  \end{equation}
  donde conocemos $x^{(L)}_j$ gracias al algoritmo de \textit{forward propagation}
  y $y_j$ la componente $j$-ésima del vector deseado en el entrenamiento.
@@ -550,7 +548,7 @@ y
      \frac{\partial x^{(L)}_j}{\partial s^{(L)}_j} 
      \frac{\partial s^{(L)}_j}{\partial w^{(L)}_{i j}} 
     =
-    \left( x^{(L)}_j - y_j \right) 
+    2\left( x^{(L)}_j - y_j \right) 
     \theta' \left( s^{(L)}_j\right)
     x^{(L)}_j.
 \end{equation}
@@ -578,7 +576,30 @@ $i \in \{1, \ldots , d^{(l-1)}\}$
     \delta^{(l)} x^{(l-1)}_i,
 \end{equation}
 donde  $x^{(l-1)}_i$ es conocida por el algoritmo de 
-$\textit{forward propagation}$. por otra parte $\delta^{(l)}$ 
+$\textit{forward propagation}$. 
+
+Por otra parte 
+$\delta^{(l)}_j$ 
+cumple que 
+\begin{align}
+    \delta^{(l)}_j 
+    &= 
+    \frac{\partial e}{\partial s^{(l)}_j}
+    \\
+    &= 
+        \frac{\partial e}{\partial s^{(l+1)}}
+        \frac{\partial s^{(l+1)}}{\partial s^{(l)}_j}
+    \\
+    &= 
+    \delta^{(l+1)} 
+    \frac{\partial}{\partial s^{(l)}_j}
+        \left( w^{(l)} \cdot \theta(s^{(l)})\right)
+    \\
+    &= 
+    \delta^{(l+1)}_j 
+    w^{(l)}_j \cdot  \theta'(s^{(l)}_j). 
+\end{align}
+Por lo que de forma matricial tenemos que $\delta^{(l)}$ 
 cumple que 
 \begin{align}
     \delta^{(l)} 
@@ -598,9 +619,11 @@ cumple que
     &= 
     \delta^{(l+1)} 
     \otimes 
-    w^{(l)} \cdot \theta'(s^{(l)}). 
+    \left(
+    w^{(l)} \cdot \theta'(s^{(l)})
+    \right). 
 \end{align}
-\textcolor{red}{ Revisar penúltima operación.}
+
 De esta manera a partir de las \textit{sensibilidades} de las 
 capas posteriores es posible calcular las $l$-ésimas y puesto que 
 la sensibilidad $\delta_{(L)}$ es conocida acabamos de determinar 
