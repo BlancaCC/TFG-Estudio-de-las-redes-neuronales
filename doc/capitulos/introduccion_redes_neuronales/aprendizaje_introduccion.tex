@@ -110,16 +110,17 @@ Se clasifican también los problemas en función de la salida requerida (capítu
 
 \subsection{El gradiente descendente} 
 
+(Información tomada de los capítulos uno y dos de \cite{learning-from-data-1-2})
 Así pues, una vez concretado el problema y sus elementos 
 (\ref{sub:componentes_aprendizaje}) es necesario definir un método con el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
 
-El gradiente descendente es una técnica iterativa usada para minimizar funciones diferenciables
-a partir de la pendiente en cada punto. 
+El gradiente descendente es un método iterativo de minimización de funciones diferenciables. 
 
-Supongamos que se quiere aproximar $f$ a partir de funciones $h_w \in \mathcal{H}$, donde $w \in \R^d \times \R^d$ son parámetros que caracterizan a $h_w$.
+En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h_w \in \mathcal{H}$, donde $w \in M(\R)_{m \times n}$ son parámetros que caracterizan a $h_w$.
+Para  
 Dada también una función de error diferenciable y que no presente puntos de inflexión
-$E: \R^d \times \R^d \longrightarrow \R,$
-se toma un punto inicial  cualquiera $w_0 \in \R^d \times \R^d$ y 
+$E: M(\R)_{m \times n} \longrightarrow \R,$
+se toma una matriz inicial  cualquiera $w_0 \in M(\R)_{m \times n}$ y 
 fijado $\eta \in \R^+$. 
 
 Se define la sucesión 
@@ -127,16 +128,34 @@ Se define la sucesión
     w_{t+1}  = w_t - \eta \nabla E(w_t).
 \end{equation}  
 
-Si $\nabla E(w_t) \neq 0$ y 
-
-\textcolor{red}{TODO : Demostrar que disminuye el error.}
-
-\textcolor{red}{TODO : Incluir teoría sobre estimadores insesgados. }
-
-Las características de este algoritmo son las siguientes: 
+Donde $w_n$ es una sucesión cuyos términos convergen a un mínimo local.
+\subsubsection*{Observaciones sobre el algoritmo }
 
 \begin{itemize}
     \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
     \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
-    \item Si la función es convexa el mínimo será global. 
+    \item Si la función es convexa el mínimo será global.
+    \item El parámetro $\eta$ puede ser cualquiera y debe de ser fijado o controlado por el diseñador.  
 \end{itemize}
+
+
+\subsection{Comentarios de Blanca a tutores que dejo aquí por guardarlo en algún sitio y que en algún momento debiera de borrar} 
+
+
+Estamos buscando verdaderamente no con una función ideal si no 
+la clase de equivalencia de las funciones medibles que coincide su grafo en un conjunto numerable de puntos. 
+
+
+He tomado esta descripción que es la que me he encontrado en todos los manuales, pero hay algo que me chirría y preocupa. Se está suponiendo que la función que queremos encontrar es única y en un mundo ideal todo tiene una explicación y lo que me da el runrun es lo siguiente: 
+
+¿Todo fenómeno planteble tiene una única explicación? 
+
+Ante esta pregunta y teniendo en cuenta la pila de fenómenos que hay probablemente no  
+
+es por ello que la filosofía que se sigue en la resolución no me termina de convencer. 
+
+Optaría por venderlo como: 
+
+Dados una serie de datos se pretende construir alguna regla que prediga cierto resultado. 
+
+
