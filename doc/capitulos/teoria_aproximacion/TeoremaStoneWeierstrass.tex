@@ -7,10 +7,11 @@
 
 \section{Teorema de Stone-Weierstrass }\label{ch:TeoremaStoneWeiertrass}
 
-\begin{teorema}[Teorema de Stone-Weierstrass]
+\begin{teorema}[Teorema de Stone-Weierstrass] 
 
     Sea $K$ un subconjunto compacto de $\R^p$ y sea $\mathcal{A}$ una colección de 
-    funciones continuas de $K$ a $\R$ con las siguientes propiedades: 
+    funciones continuas de $K$ a $\R$ cumpliendo $\mathcal{A}$ y 
+    que separa puntos en $K$, es decir cumpliendo las siguientes propiedades: 
 
     \begin{enumerate}
         \item La función constantemente uno, definida como $e(x)=1$, para cualquier $x\in K$ pertenece a $\mathcal{A}$.
@@ -23,12 +24,17 @@
 
 \end{teorema}  
 
-La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y separabilidad se prueba que es posible encontrar las funciones máximo y mínimo, construyéndolo a partir del valor absoluto.   
+La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y 
+separabilidad 
+se prueba que es posible encontrar las funciones máximo y mínimo, 
+construyéndolo a partir del valor absoluto.   
 
-Con esta nueva propiedad y siendo cerrado para combinaciones lineales se puede aproximar uniformemente cualquier función continua definida en el compacto. 
+Con esta nueva propiedad y siendo cerrado para combinaciones lineales 
+se puede aproximar uniformemente cualquier función continua definida en el compacto. 
 
 \begin{proof}
-    Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá un función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
+    Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá 
+    una función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
     $e \in \mathcal{A}$ en el álgebra nos permite encontrar reales $\alpha, \beta$ tales que 
 
     $$\alpha f(x) + \beta e(x) = a, \quad \alpha f(y) + \beta e(y) = b$$  

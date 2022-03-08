@@ -1,8 +1,10 @@
 # Emacs
 *~
-# Python 
+
+# python
 code/.ipynb_checkpoints
-#macOS
+
+#MacOS
 .DS_Store
 doc/.DS_Store
 
@@ -13,6 +15,8 @@ doc/.DS_Store
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+
+
 
 # LaTeX
 *#*
