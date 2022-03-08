@@ -68,4 +68,45 @@
 \setlength{\cftfignumwidth}{2.55em}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
+% ---- Personal para los márgenes ----- 
+\usepackage[many]{tcolorbox}
+\usepackage{tikzpagenodes}
+\usetikzlibrary{tikzmark}
+\definecolor{ForestGreen}{RGB}{34,139,34}
 
+\newtcolorbox{story}[1][]{
+  width=\textwidth,
+  fonttitle=\bfseries,
+  breakable,
+  extrude right by=4cm,
+  fonttitle=\bfseries\color{Brown},
+  colframe=Melon,
+  colback=Melon!10
+  #1}
+
+\newcounter{mynote}
+\newtcolorbox[use counter=mynote]
+  {mynote}[1][]
+  {title=Note~\thetcbcounter,
+   width=4cm,
+   left=0pt,
+   right=0pt,
+   fonttitle=\bfseries,
+   coltitle=black,
+   colframe=ForestGreen!40,
+   colback=ForestGreen!10,
+   #1
+}    
+
+\newcounter{tmp}
+\newcommand\StoryNote[3][]{%
+    \stepcounter{tmp}%
+    \tikzmark{mark-\thetmp}%
+    \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt,anchor=north west] 
+      at ([xshift=23pt]current page text area.east|-{pic cs:mark-\thetmp})
+      {\begin{mynote}[label=#3]
+        #2
+      \end{mynote}};
+    \end{tikzpicture}%
+}
