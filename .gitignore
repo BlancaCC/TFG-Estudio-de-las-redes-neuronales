@@ -6,6 +6,9 @@ code/.ipynb_checkpoints
 .DS_Store
 doc/.DS_Store
 
+#vs-code 
+.vscode/settings.json
+
 #Ficheros personales
 dudas/
 correcciones-TFG/
@@ -29,4 +32,7 @@ ISSUES-RELEVANTES
 *.blg
 *.fls
 *.lot
+*.loa
 doc/_minted-tfg
+
+
