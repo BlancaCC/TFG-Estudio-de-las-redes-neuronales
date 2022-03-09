@@ -5,13 +5,13 @@
 % Qué es el aprendizaje automático
 %*******************************************************
 
-\section{Concepto de aprendizaje}\label{ch:Aprendizaje}
+\section{Concepto de aprendizaje}\label{sec:Aprendizaje}
 
 El término de Aprendizaje Automático 
 \cite{hisour} 
 fue acuñado en 1959 por Arthur Samuel 
 para hacer referencia a los sistemas informáticos que 
-pueden \textit{aprender} por sí mismos, es decir, mejorar su 
+pudiesen \textit{aprender} por sí mismos, es decir, mejorar su 
 eficacia y rendimiento de forma autónoma a partir de los datos, 
 sin que en esas mejoras intervenga un programador.
 
@@ -70,7 +70,10 @@ En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neur
 % Tipos de aprendizaje 
 \subsection{Tipos de aprendizaje}  
 
-(Información proveniente del capítulo 1 \cite{MostafaLearningFromData})
+Esta clasificación proviene del artículo \cite{importancia-arte-aprendizaje-automatico},
+ del capítulo 1 \cite{MostafaLearningFromData}
+ y capítulo 4 pag 179
+\cite{BishopPaterRecognition}).
 
 El aprendizaje a partir de los datos trata en esencia de modelizar un patrón, modelo o ley del proceso subyacente a partir de un conjunto finito de muestras.  
 
@@ -79,8 +82,11 @@ tienen distintos tipos de aprendizaje.
 
 \subsubsection{Aprendizaje supervisado}
 Cuando el conjunto de datos de entrenamiento contiene de manera explícita lo que es una salida correcta respecto a una entrada estamos frente a un caso de \textbf{aprendizaje no supervisado}.   
-
+Este tipo de aprendizaje resuelve tareas de clasificación, donde la salida es discreta 
+o de regresión, con una salida continua.
 Un ejemplo sería el reconocimiento de dígitos  manuscritos donde cada imagen de un dígito tiene asociado cuál es. 
+
+
 
 
 \subsubsection{Aprendizaje por refuerzo}  
@@ -90,12 +96,18 @@ cuando conjunto de datos de entrenamiento no explicita la salida, en su lugar co
 Pongamos por ejemplo que se quiere enseñar a un sistema a jugar
 a las damas; de todo el espacio de jugadas posibles, se conocerían tan solo el resultado de algunas situaciones, por ejemplo en la que uno de los jugadores ha ganado.  
 
+
 \subsubsection{Aprendizaje no supervisado}  
 
 En este tipo de aprendizaje, los datos de entrenamiento tampoco contienen ninguna información de la salida.
  Tan solo se tienen los datos de entrada. El \textbf{aprendizaje no supervisado} 
  consiste en la tarea de encontrar patrones y estructuras en los datos de entrada, 
- así como de crear una una abstracción de los datos.  
+ así como de crear una una abstracción de los datos.  Son problemas de \textit{clustering}, asociación, detección de anomalías ...
+
+\subsubsection{Aprendizaje semi supervisado }
+Combina tanto datos etiquetados como no etiquetados, 
+se utiliza en problemas de clasificación o \textit{clustering}
+como por ejemplo en traducción o detección de fraudes.
 
 
 Las redes neuronales son partícipes en los tres tipos de aprendizaje 
@@ -103,10 +115,6 @@ recién mencionados
 \cite{8612259}, \cite{DBLP:journals/corr/BakerGNR16}, \cite{10.5555/2955491.2955578}. Sin embargo centraremos nuestro estudio en el caso 
 de aprendizaje supervisado. 
 
-\subsubsection*{Otra clasificación en virtud de la salida}
-
-Se clasifican también los problemas en función de la salida requerida (capítulo 4 pag 179
-\cite{BishopPaterRecognition}) en problemas de regresión, clasificación o probabilistas. 
 
 \subsection{El gradiente descendente} \label{sec:gradiente-descendente}
 
