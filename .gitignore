@@ -34,7 +34,7 @@ ISSUES-RELEVANTES
 *.blg
 *.fls
 *.lot
-doc/tfg.loa
+*.loa
 doc/_minted-tfg
 
 
