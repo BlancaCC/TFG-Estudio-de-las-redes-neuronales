@@ -15,14 +15,15 @@ Memoria/.DS_Store
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+Artículos/
 
 # LaTeX
+tfg*.pdf
 *#*
 *.log
 *.out
 *.aux
 *.idx
-*.pdf
 *.toc
 *.lof
 *.bbl
@@ -41,3 +42,5 @@ Memoria/_minted-tfg
 Memoria/capitulos/introduccion_redes_neuronales/bibliografia.tex
 Memoria/capitulos/introduccion_redes_neuronales/perceptron.tex
 BORRAR
+
+Memoria/paquetes/mathpazo/pazotest.pdf
