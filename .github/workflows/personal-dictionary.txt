@@ -7,6 +7,7 @@ Borel
 Bubeck
 Chebyshev
 ECM
+Explicitación
 Factorizando
 Feedforward
 GN
@@ -19,6 +20,7 @@ Hornik
 Isoperimetry
 JJ
 Julián
+LaTeX
 Liang
 Lusin
 Makefile
@@ -52,6 +54,7 @@ diferenciable
 diferenciables
 entregables
 eq
+falsar
 feedforward
 fg
 fj

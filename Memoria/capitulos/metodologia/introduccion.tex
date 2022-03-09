@@ -12,7 +12,7 @@ y la ciencia de datos, por lo que no es de extrañar que sus beneficios sean ext
 a otras áreas de la ciencia; 
 hemos aplicado por ende la 
 metodología expuesta en el artículo \cite{DBLP:journals/corr/abs-2104-12545}, realizado 
-el trabajo siguiendo una metodología ágil, de acorde a las siguientes hipótesis. 
+el trabajo desarrollando con una mentalidad ágil, de acorde a las siguientes hipótesis: 
 
 \begin{enumerate}
     \item Se premia la \textbf{reproducibilidad}, \textit{la ciencia no puede ser ciencia si no es reproducible}. Es por 
@@ -23,7 +23,7 @@ el trabajo siguiendo una metodología ágil, de acorde a las siguientes hipótes
     de GitHub \cite{TFG-Estudio-de-las-redes-neuronales}.
     \item \textbf{Colaboración frente jerarquía de mando vertical}, los tutores en este caso 
     los \textit{interesados en el producto} 
-    indican qué les gustaría que tuviera en vez de un qué y cómo estricto. Consiguiendo con ello una mayor autonomía, bienestar de trabajo.
+    indican qué les gustaría que tuviera en vez de un qué y cómo estricto. Consiguiendo con ello una mayor autonomía y bienestar de trabajo.
      
 \end{enumerate}  
 
@@ -33,7 +33,7 @@ Concretamente la metodología seguida basada en \cite{que-es-un-trabajo-fin-de-x
 
 El objetivo principal es resolver un problema usando técnicas tanto informáticas como matemáticas. Para ello 
 se han definido unos objetivos claros a través de una \textit{metodología de personas} 
-(ver sección \ref{ch:metodología_persona}) \cite{personas-why-and-how-you-should-use-them}
+(ver sección \ref{ch:metodología_personas}) \cite{personas-why-and-how-you-should-use-them}
 y las respectivas historias de usuario derivadas (ver sección \ref{ch:metodología_personas_historias_de_usuario}).   
 
 \subsection{Personas definidas}  \label{ch:metodología_personas}
@@ -72,21 +72,18 @@ la historia de usuario número $xx$.
 
 \subsection{Historias de usuario definidas} 
 
-\subsubsection*{[HU01] Optimización redes neuronales.}
-    Como \textit{Rosa} me gustaría que se encontrara alguna optimización en las redes neuronales, ya sea:
-\begin{itemize}
-    \item  Necesidad de arquitecturas menos potentes.
-    \item  Mayor precisión para misma arquitectura.
-    \item  Resolver nuevos problemas.
-\end{itemize}
+\subsubsection*{[HU01] Optimización redes neuronales.}\label{HU01}
+    Como \textit{Rosa} me gustaría que se ejecutaran las redes neuronales en un hardware
+    más barato o que consuma menos en un tiempo razonable.
 Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU01}. 
 
-\subsubsection*{ [HU02] Metodología}
+\subsubsection*{ [HU02] Metodología} \label{HUO2}
 
-Como \textit{JJ} me gustaría que el proyecto se realizara bajo una metodología ágil.
-Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU02}. 
+Como \textit{JJ} me gustaría que el proyecto se realizara bajo un desarrollo ágil,  el cuál recoge sus principios en el siguiente manifiesto \cite{principios-manifiesto-agil} y que es una filosofía, no una metodología \cite{why-agile-is-not-a-methodology-1} \cite{why-agile-is-not-a-methodology-2}.
 
-\subsubsection*{ [HU03] Estudio de las redes neuronales}
+Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU02}.  
+
+\subsubsection*{ [HU03] Estudio de las redes neuronales} \label{HUO3}
 Como \textit{Javier} me gustaría que la memoria fuera un estudio de calidad de las redes neuronales, 
 respondiendo de manera auto-contenida, clara, rigurosa y precisa a preguntas como:
 \begin{itemize}
@@ -97,19 +94,15 @@ respondiendo de manera auto-contenida, clara, rigurosa y precisa a preguntas com
 \end{itemize}
 Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU03}.
 
-\subsubsection*{ [HU04] Indagar y experimentar sobre redes neuronales}
+\subsubsection*{ [HU04] Indagar y experimentar sobre redes neuronales} \label{HUO4}
 
 Como \textit{Javier y JJ} gustaría plantear nuevas hipótesis para conocer en mayor profundidad, 
 aclarar limitaciones, particularizar o abstraer en cualquier aspecto de las redes neuronales actuales.
 
 Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU04}.
 
-\subsubsection*{[HU05] Finalizar memoria a tiempo y sin que quede nada pendiente}
 
-Como \textit{Blanca} me gustaría acabar el proyecto y memoria en la fecha de convocatoria ordinaria, habiendo cumplido todos los hitos anteriores y satisfaciendo todo los requisitos.
-Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU05}.
-
-\subsubsection*{[HU06] Requisitos tribunal}
+\subsubsection*{[HU05] Requisitos tribunal} \label{HUO6}
 Como \textit{Mayte y Pablo} queremos corregir un trabajo fin de grado bien hecho. 
 Bajo el contexto de evaluación la memoria debe de cumplir una serie de requisitos imprescindibles:
 
@@ -137,24 +130,63 @@ Los milestones describen entregables, productos mínimos viables y se basan en l
 puede encontrar nuestras declaraciones en nuestro repositorio \cite{TFG-Estudio-de-las-redes-neuronales-milestones}. 
 A éstas además le hemos asociado una fecha de entrega. 
 
-\begin{enumerate}
-    \item Recopilación de bibliografía. 
-    \item Metodología. Apartado que consiste en la planificación del proyecto. 
-    \item Estudio de las redes neuronales. Definición y teorema de convergencia. 
-    \item Fase de planteamiento de hipótesis y experimentación. 
-    \item Entrega del proyecto.
-\end{enumerate}  
+
+\subsection*{Milestone 0: Explicitación escrita de la metodología} 
+Consiste en la redacción de la descripción de la metodología a seguir resultando en capítulos concretos de la memoria 
+y \textit{issues} en la plataforma de trabajo, GitHub.  
+La documentación presentada deberá de incluir: 
+\begin{itemize}
+    \item Explicitación de la metodología. 
+    \item Definición y descripción de personas.
+    \item Redacción de las historias de usuario.
+    \item Redacción de los milestones.
+\end{itemize}
+Será validada cuando los tutores aprueben la organización y formulación de la misma.
+
+
+\subsection*{Milestone 1: Exposición del sustento teórico de las redes neuronales}  
+Este milestone consiste en la redacción de una serie de capítulos y secciones 
+que estudien: 
+\begin{itemize}
+    \item Definición y construcción de las redes neuronales.
+    \item Motivación de su eficacia con: Análisis del 
+    teorema de aproximación universal de las redes neuronales de Hornik, Stinchcombe y White.
+\end{itemize}
+Se aceptarán las secciones una vez hayan sido supervisadas y validadas por los tutores. 
+
+\subsection*{Milestone 2: Formulación y experimentación de hipótesis que democraticen las redes neuronales}
+
+Su producto serán ciertos capítulos de la memoria donde se reflejen
+\begin{itemize}
+    \item Hipótesis planteadas que puedan optimizar las redes neuronales en cualquier aspecto de hardware o potencia de cómputo.
+    \item Experimentación o investigación relacionada con las hipótesis anteriores. 
+    \item Análisis y conclusiones de los resultados anteriores. 
+\end{itemize}
+El criterio de aceptación consistirá en:
+\begin{itemize}
+    \item Una formulación de las hipótesis por escrito, que tras debatirlas con los tutores
+    se seleccionarán las que se estimen más interesantes y se definirán respectivos experimentos con el fin de falsar o 
+    hacer plausibles tales hipótesis.
+    \item  Los experimentos de requerir implementaciones deberán previamente comprobar su correcto funcionamiento mediante tests.
+    \item La redacción del análisis y conclusiones deberá ser aprobado por los tutores nuevamente.
+\end{itemize}
+
+
+\subsection*{Milestone x: Entrega del proyecto}
+
+Su resultado será una memoria revisada y pulida que se entregará en Prado como trabajo fin de grado en el plazo de la convocatoria ordinaria. 
 
 Para cumplir con los \textit{milestones},  ha sido necesario resolver nuevos  problemas menores, estos se han
 recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{milestones}.
 
+
 \section{Resumen de la metodología}  
 
-Se ha seguido una metodología ágil que radica en la resolución de problemas expuestos como historias de usuarios. 
+Se ha seguido un desarrollo ágil que radica en la resolución de problemas expuestos como historias de usuarios. 
 Éstas historias de usuario se formulan en base a los beneficiados,personas bien definidas; se formalizan 
 mediante \textit{issues} y entraman los \textit{milestones}, hitos con los que guiar el desarrollo.
 
-Todo esto se puede leer no solo en esta memoria sino también en nuestro repositorio de GitHub. 
+Todo esto se puede leer no solo en esta memoria sino también en nuestro repositorio de GitHub \cite{TFG-Estudio-de-las-redes-neuronales}. 
  
 
 

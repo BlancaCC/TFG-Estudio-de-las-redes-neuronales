@@ -1,16 +1,20 @@
 # Emacs
 *~
+
+#VS code 
+.vscode/
+
+# Python 
 code/.ipynb_checkpoints
+
+#macOS
 .DS_Store
+Memoria/.DS_Store
+
+#Personales
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
-Memoria/.DS_Store
-Memoria/_minted-tfg
-
-
-#latex
-*#*
 
 # LaTeX
 *#*
@@ -30,12 +34,8 @@ Memoria/_minted-tfg
 *.blg
 *.fls
 *.lot
-
-Memoria/tfg.loa
-Memoria/.DS_Store
-.vscode/settings.json
+*.loa
 Memoria/_minted-tfg
-Memoria/tfg.loa
 
 # Capítulos que sirven a modo de notas 
 Memoria/capitulos/introduccion_redes_neuronales/bibliografia.tex

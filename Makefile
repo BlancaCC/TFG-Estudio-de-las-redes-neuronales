@@ -3,6 +3,9 @@ all: compile
 compile:
 	cd Memoria/ && latexmk -shell-escape -pdf tfg.tex
 
+generate: compile
+	./scripts/tfg-date.sh
+
 open:
 	open tfg.pdf &
 
