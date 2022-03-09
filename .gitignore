@@ -36,3 +36,8 @@ doc/.DS_Store
 .vscode/settings.json
 doc/_minted-tfg
 doc/tfg.loa
+
+# Capítulos que sirven a modo de notas 
+doc/capitulos/introduccion_redes_neuronales/bibliografia.tex
+doc/capitulos/introduccion_redes_neuronales/perceptron.tex
+BORRAR
