@@ -77,6 +77,8 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 
 % ---- Personal para los márgenes ----- 
+\usepackage{afterpage}
+\usepackage{geometry,lscape}
 \usepackage[many]{tcolorbox}
 \usepackage{tikzpagenodes}
 \usetikzlibrary{tikzmark}
@@ -95,7 +97,7 @@
 \newcounter{mynote}
 \newtcolorbox[use counter=mynote]
   {mynote}[1][]
-  {title=Note~\thetcbcounter,
+  {title=Nota aclarativa~\thetcbcounter,
    width=4cm,
    left=0pt,
    right=0pt,
@@ -108,6 +110,8 @@
 
 \newcounter{tmp}
 \newcommand\StoryNote[3][]{%
+      \newgeometry{margin=5cm}
+      \afterpage{\restoregeometry}
     \stepcounter{tmp}%
     \tikzmark{mark-\thetmp}%
     \begin{tikzpicture}[remember picture,overlay]
@@ -118,3 +122,5 @@
       \end{mynote}};
     \end{tikzpicture}%
 }
+
+\usepackage[textwidth=\dimexpr\marginparsep+4cm\relax]{todonotes}
