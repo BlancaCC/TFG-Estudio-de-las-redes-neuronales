@@ -1,7 +1,7 @@
 # Para tener siempre un fichero actualizado con la fecha en el nombre :D
 out_dir="."
 output_file="tfg-"`date +"%d-%m-%Y"`".pdf"
-source_dir="./doc/"
+source_dir="./Memoria/"
 source_name="tfg.pdf"
 
 input="$source_dir$source_name"
