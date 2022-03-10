@@ -6,6 +6,7 @@ Borel
 Bubeck
 Chebyshev
 ECM
+Explicitación
 Factorizando
 Feedforward
 GN
@@ -19,6 +20,7 @@ Hornik
 Isoperimetry
 JJ
 Julián
+LaTeX
 Liang
 Lusin
 Mayte
@@ -46,6 +48,7 @@ codominios
 contutor
 entregables
 eq
+falsar
 feedforward
 fg
 fj
