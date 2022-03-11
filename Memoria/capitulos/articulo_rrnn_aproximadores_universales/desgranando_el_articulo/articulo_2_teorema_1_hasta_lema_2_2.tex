@@ -18,6 +18,12 @@
     Se tiene que $\pmcg$ es uniformemente denso para compactos en $\fC$.
 \end{teorema}
 
+% Significado del teorema 2.1
+\marginpar{\textbf{Qué se está probando en el teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
+Si $G$ es una función continua, podemos aproximar tanto como queramos cualquier función
+continua con elementos de $\pmcg$ es decir versiones algo más generales de redes neuronales. 
+}
+
 \begin{proof}
     Bastará probar que el conjunto $\pmcg$ satisface las hipótesis del teorema de
      Stone-Weierstrass \ref{ch:TeoremaStoneWeiertrass}.
@@ -40,8 +46,13 @@
         \end{equation}
         
         Basta renumerar una de las sumatorias para ver $\gamma f+ \sigma g$ como una combinación 
-        lineal de productos finitos de perceptrones y por tanto $\gamma f+ \sigma g \in \pmcg.$
+        lineal de productos finitos y por tanto $\gamma f+ \sigma g \in \pmcg.$
         
+        % Claves de la demostración teorema 2.1
+        \marginpar{\textbf{Clave de la demostración del teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
+        Se comprueba que \textit{operar} (sumar, multiplicar) dos redes neuronales generalizadas da otra red neuronal generalizada y que además dadas entradas distintas podemos conseguir salidas distintas. 
+        Gracias a esto, el teorema de Weierstrass \ref{ch:TeoremaStoneWeiertrass} da una manera constructiva de aproximar las funciones continuas.
+        }
         \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
         Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
         \begin{equation}
@@ -65,28 +76,29 @@
     como un sistema de ecuaciones lineales de $r+1$ incógnita y 2 soluciones}, 
     por lo que $G(A(x)) \neq G(A(y))$ y tenemos como buscábamos que $\pmcg$ separa los puntos de $K$. 
 
-    Veamos finalmente que para todo punto de $K$ existe una función de $\pmcg$  en el que la imagen no es nula.  
+    Comprobemos finalmente que para todo punto de $K$ existe una función de $\pmcg$  en el que la imagen no es nula.  
 
     Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$ , consideramos ahora la aplicación lineal
     $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(a) \neq 0$. 
 
-    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos probar que $\pmcg |_K$ es denso en $C(K). $ 
+    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos probar que $\pmcg |_K$ es denso en $C(K).$ 
+
+    % Consecuencias de aplicar el teorema de Stone-Weierstrass
+    \marginpar{\textcolor{darkRed}{\textbf{Implicaciones de usar el teorema de Stone-Weierstrass para democratizar las redes neuronales}}
+    Tengamos presentes que la demostración ofrecida del teorema de Stone-Weierstrass 
+    es constructiva, es decir existe un algoritmo bien definido con el que llegar estas estructuras. Por lo que si en las siguientes demostración se siguen con pruebas constructivas (como es el caso) habríamos encontrado un método alternativo al de 
+    gradiente descendente \ref{sec:gradiente-descendente} con el seleccionar las redes neuronales. ¿Podríamos obtener algún beneficio de ello?
+    Se razonará al respecto en la hipótesis \ref{hypothesis:pesos-iniciales}
+    }
 \end{proof}
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
 
-Con esto lo que acabamos de probar que \textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
-función continua en un compacto.  Cabe destacar que a la función $G$, la función de activación,
+Con esto lo que acabamos de probar que una estructura más general de\textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
+función continua en un compacto.  Cabe destacar que a la función $G$, que haría el papel de función de activación,
  solo se le ha pedido como 
-hipótesis ser una función continua.     
+hipótesis ser continua.     
 
-Además, solo se está demostrando para el caso de una capa oculta, como veremos a continuación  de 
-manera intuitiva se explica que sea extrapolable también a redes neuronales 
-con varias capas ocultas, sin embargo; esto pone de manifiesto, si se quieren formular nuevos teoremas en el campo de las redes neuronales
-multicapas a la necesidad de una definición más abstracta de las mismas. 
-
-
-Se aportan las siguientes generalizaciones del método. 
 %%% Corolarios propios 
 
 Notemos que la función de activación $G$ es única en toda la estructura,
@@ -96,7 +108,7 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
  \cite{DBLP:journals/corr/SzegedyVISW15}
 ). 
 
-\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal]
+\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] \label{cor:se-generaliza-G-a-una-familia}
 
     Una misma red neuronal puede estar constituida por una familia de funciones continuas no constantes $\Gamma$, 
     bastará con generalizar $\pmcg$ a $\sum \prod ^r (\Gamma)$ donde 
@@ -111,9 +123,17 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
                 \}
         \end{split}
     \end{equation}
-    Es decir, combinaciones lineales de perceptrones cuyas funciones 
-    de activación pueden diferir unas de otras. 
 \end{corolario}
+
+% Nota sobre experimentar con 
+\setlength{\marginparwidth}{\smallMarginSize}
+\reversemarginpar
+\marginpar{\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+El corolario \ref{cor:se-generaliza-G-a-una-familia}
+abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
+Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
+}
+\normalmarginpar
 
 \begin{proof}
     La demostración es idéntica a la dada en el Teorema de convergencia 
@@ -123,26 +143,23 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
  ni cómo afecta a la \textit{velocidad de convergencia}. 
 
-\begin{corolario}[Extensión a múltiples capas ocultas]
-
-    Sea $\Gamma$ cualquier familia de funciones continuas definidas de $\R$ en $\R$. 
-    Se tiene que $\sum \prod ^r (\Gamma)$ es uniformemente denso por compactos en $\fC$  
-    Es decir, las redes neuronales con varias capas son densas en el  espacio de la funciones continuas de una variable en un compacto. 
-\end{corolario}
-
-    Como con una capa ya se nos asegura la convergencia bastará con asegurar que exista 
-    en el espacio de las redes neuronales profundas capas que transmitan la información sin cambiarla. 
-
-    Una vez concretada la estructura de la red neuronal,  su estructura algebraica podría permitir esa transmisión. 
-
 
 Recordemos que de manera general se ha definido $A$ como una función afín 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
 Por ejemplo $B((x_1, ..., x_r)) = \sum_{i= 0} ^N \sum_{j= 0} ^r \alpha_{ij} x_j^i$  con $N$ natural positivo. 
 
-\begin{corolario}[Generalización de A]  
+\begin{corolario}[Generalización de A]  \label{corolario:generaliza-a}
     Se puede extender $A^r$ a conjuntos más generales como el de los polinomios de $r$ variables de grado $N$, $\mathbb{P}$.  
 \end{corolario}
+
+% Nota sobre posible hipótesis de optimización 
+\setlength{\marginparwidth}{\bigMarginSize}
+\marginpar{\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+Gracias al corolario \ref{corolario:generaliza-a}
+no podemos plantear si aumentar el espacio de búsqueda a partir de transformaciones no lineales es más conveniente que hacerlo mediante neuronas.
+Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
+}
+
 \begin{proof}
     Simplemente hay que reparar que $A^r$ está contenido en el espacio $\mathbb{P}$. 
     Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $A^r$. 

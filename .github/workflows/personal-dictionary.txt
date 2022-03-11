@@ -50,6 +50,7 @@ backpropagation
 codominio
 codominios
 contutor
+darkRed
 diferenciable
 diferenciables
 entregables
