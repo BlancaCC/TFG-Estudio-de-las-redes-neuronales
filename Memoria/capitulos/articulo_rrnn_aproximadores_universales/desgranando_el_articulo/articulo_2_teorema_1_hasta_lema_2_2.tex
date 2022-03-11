@@ -174,10 +174,18 @@ Podría tener el siguiente interés:
 el teorema nos dice que podemos aproximar cualquier función continua de variable real, sin embargo, desconocemos el 
 número de neuronas, por capa. Supongamos una situación en la que el número de neuronas esté restringido, en tal caso,
 generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras. 
+\textcolor{red}{TODO: ELIMINAR ESTA CONCLUSIÓN CUANDO SE REDACTE EN LAS HIPÓTESIS}
 
-
+% Nota idea intuitiva  equivalencia 
+\marginpar{\raggedright
+    \textcolor{dark_green}{\textbf{Idea intuitiva equivalencia de funciones:}}}
+    \marginpar{
+    En la definición \ref{definition:equivalencia_funciones}
+Se considera que dos funciones son equivalentes si 
+son iguales en casi todos sus puntos.  El objetivo de todas estas definiciones es \textbf{saber cuándo una red neuronal es equivalente a una función medible o cuánto la aproxima}.
+}
 %% Definiciones de equivalencia de funciones 
-\begin{definicion}[Equivalencia entre funciones]
+\begin{definicion}[Equivalencia entre funciones] \label{definition:equivalencia_funciones}
     Sea $\mu$ una medida de probabilidad en $(\R^r, B^r)$.  Dos funciones 
     $f$ y $g$ pertenecientes a $\fM$, diremos que son $\mu -$equivalentes 
     si $\mu\{ x \in \R^r : f(x)=g(x) \} = 1.$
@@ -185,8 +193,9 @@ generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras.
 
 Lo que se está diciendo es que serán iguales casi por doquier.   
 
+
 % Definición distancia  
-\begin{definicion} [Introducción de una distancia basada en una probabilidad]
+\begin{definicion} [Introducción de una distancia basada en una probabilidad] \label{definition:distancia-probabilidad}
     Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
     la métrica $\rho_{\mu}$ definida como 
     \begin{equation}
@@ -200,6 +209,7 @@ Lo que se está diciendo es que serán iguales casi por doquier.
 Con esta definición lo que se está buscando es una forma de decir cuánto 
 distan las funciones $f,g$ entre ellas.  
 
+
 %% Lema 2.1
 \begin{lema}[Caracterización de la convergencia de una sucesión]\label{lema:caracterizacionConvergenciaSucesiones2_1}
     Son equivalentes las siguientes afirmaciones: 
@@ -209,6 +219,16 @@ distan las funciones $f,g$ entre ellas.
         \item $\int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) \longrightarrow 0.$
     \end{enumerate}
 \end{lema}
+
+% Nota idea intuitiva distancia
+\marginpar{\raggedright
+    \textcolor{dark_green}{\textbf{Idea intuitiva distancia probabilidad:}}}
+\marginpar{
+Este concepto de analizar la tendencia de la mayoría de los punto 
+se ve reflejado en la definición de distancia basada en una probabilidad \ref{definition:distancia-probabilidad}, siendo entonces la \textbf{distancia de dos funciones la menor de las distancias que siguen la mayoría de sus puntos}.
+
+El lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} nos permitirá trabajar con mayor comodidad matemática este concepto.
+}
 
 \begin{proof}
     % 1 -> 2
@@ -377,7 +397,24 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
     se tiene que existirá un subconjunto $K$ compacto de $\R^r$ con medida $\mu(K) > 1 - \frac{\epsilon}{2}.$
     Para el cual, por su compacidad, existirá un  $n_0$ natural 
     $\sup_{x \in K} |f_n(x) - f(x)| < \frac{\epsilon}{2}$   
-    para cada natural $n$ con $n\geq n_0.$  
+    para cada natural $n$ con $n\geq n_0.$ 
+    
+          % Nota idea intuitiva  lema de que C es denso en M
+          \marginpar{\raggedright
+          \textcolor{dark_green}{\textbf{Idea intuitiva lema \ref{lema:A_1_C_es_denso_en_M}:}}
+          }
+          \marginpar{
+          Las funciones continuas pueden tomar formas muy variopintas, estando incluso no acotadas.La función de Dirichlet definida en $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional, es medible pero no es continua ya que presenta infinitas discontinuidades.
+          }
+          \marginpar{
+          Sin embargo, las funciones continuas son más simples, fáciles de entender y manejar. 
+          Gracias al lema \ref{lema:A_1_C_es_denso_en_M}
+          acabamos de probar que \textbf{podemos aproximar en
+          casi todos sus puntos  cualquier función medible a partir de una continua.} 
+          }
+          \marginpar{
+          Por ejemplo la función constantemente uno aproxima a la función $D$ previamente definida.
+          }
     De modo que para cualquier $x \in K$, 
      $n$ con $n\geq n_0$   se cumple que 
      \begin{equation}
@@ -416,6 +453,8 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
 
     para cualquier $n \geq n_0$. 
 \end{proof}
+
+
 
 % Lema A.1 
 \begin{lema}\label{lema:A_1_C_es_denso_en_M}
