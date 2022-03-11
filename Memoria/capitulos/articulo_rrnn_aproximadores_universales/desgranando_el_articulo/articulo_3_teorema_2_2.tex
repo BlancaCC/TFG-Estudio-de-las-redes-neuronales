@@ -11,6 +11,21 @@
     medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
     se tiene que $\pmcg$ es $\dist$-denso en $\fM$. 
 \end{teorema} 
+  % Nota idea intuitiva  teorema 2.2
+  \marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{
+            Idea intuitiva teorema
+            \ref{teo:2_2_denso_función_continua}
+        }
+    }
+  }
+  \marginpar{
+  Se prueba en el teorema \ref{teo:2_2_denso_función_continua}
+  que con una \textbf{versión más general de una red neuronal} (perteneciente a  $\pmcg$)  \textbf{se es capaz de aproximar cualquier función medible}.
+  
+  La idea de la demostración es sencilla, sabemos aproximar una función medible con una continua y a su vez una continua con una red neuronal generalizada, luego sabemos aproximar una función medible con una red neuronal generalizada.
+  }
 \begin{proof}
     Debemos probar que para cualquier función $f \in \fM$ existe una 
     sucesión de funciones $\{h_n\}_{n\in \N}$ contenida en $\pmcg$ y 
@@ -31,7 +46,22 @@
     tenemos que $\dist(h_n, f) \longrightarrow 0$ como queríamos probar.     
 \end{proof}
 
-% --- Faltan por demostrar -----
+% Nota idea intuitiva  lema 3.4
+\reversemarginpar
+\setlength{\marginparwidth}{\smallMarginSize}
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{
+            Idea intuitiva lema 
+            \ref{lema:a_2_paso_previo_denso}   
+        }
+    }
+}
+\marginpar{
+ Hasta ahora hemos probado que $\pmcg$ es capaz de aproximar funciones medibles pero siendo $G$ una función de activación continua, vamos a relajar tal hipótesis a que $G$ sea cualquier función de activación, sin exigirle continuidad.
+  }
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
 % Lema A.2 
 \begin{lema}\label{lema:a_2_paso_previo_denso}
     Sea F una función de activación continua y $\psi$ una \textbf{función de activación} arbitraria. 
@@ -94,6 +124,21 @@
         H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda))
     \end{equation}
     y así definida cumple que: 
+    % Nota idea de demostración intuitiva  lema lema:a_2_paso_previo_denso
+    \marginpar{\raggedright
+        \textcolor{dark_green}{
+            \textbf{
+                Idea intuitiva demostración del lema 
+                \ref{lema:a_2_paso_previo_denso}   
+            }
+        }
+    }
+    \marginpar{
+    Aprovechamos que sabemos que la función de activación continua $F$ es no decreciente así que podemos dividir su imagen en trozos iguales y aproximar la imagen
+    con una función en escalera que valga en cada tramo el valor mínimo.
+    A su vez, una función en escalera se puede construir con una red neuronal de una capa oculta que tenga como función de 
+    activación arbitaria $\psi$, \textit{cada vez que se activa un nodo más se sube un escalón más de de la escalera}.
+    }
     \begin{itemize}
         \item Si $\lambda \in (- \infty, r_1]:$
         Se cumple que $\lambda \leq r_1 < r_2 <...< r_q$ luego  
@@ -210,6 +255,23 @@
     se tiene que $\rrnng$ es uniformemente denso en compactos
     en $\fC$ y denso en $\fM$ para la distancia $\dist$. 
 \end{teorema}
+
+   % Nota idea  intuitiva  teorema teorema:2_3_uniformemente_denso_compactos
+   \marginpar{\raggedright
+   \textcolor{dark_green}{
+       \textbf{
+           Idea intuitiva teorema
+           \ref{teorema:2_3_uniformemente_denso_compactos}   
+       }
+   }
+}
+\marginpar{
+Con una versión generalizada de una red neuronal que utilice cualquier función de activación (es decir que pertenezca a $\rrnng$)
+\textbf{ podemos aproximar funciones continuas y funciones medibles}.
+
+Esto ha supuesto relajar la hipótesis de $G$ con respecto al último teorema \ref{teo:2_2_denso_función_continua} 
+de convergencia a funciones.
+}
 \begin{proof}
     En virtud del lema \ref{lema:2_2_convergencia_uniforme_en_compactos} y del 
     teorema \ref{teo:2_2_denso_función_continua} basta con probar que 
