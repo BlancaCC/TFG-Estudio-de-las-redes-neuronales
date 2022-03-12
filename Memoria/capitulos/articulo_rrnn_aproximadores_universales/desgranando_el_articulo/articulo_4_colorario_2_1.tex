@@ -44,7 +44,7 @@ en  compactos de $\R^r$, las podremos extender a $\R^r$.
 % Corolario 2.1
 \begin{corolario} \label{cor:2_1}
     Para cada función $g \in \fM$ existe un subconjunto compacto 
-    $K$ de $\R^r$ y $f \in \rrnng$ tal que para cualquier 
+    $K$ de $\R^r$ y $f \in \rrnn$ tal que para cualquier 
     $\epsilon > 0$ se tiene que 
     $\mu(K) > 1- \epsilon$ y para cada $x \in K$ tenemos que 
     \begin{equation}
@@ -52,6 +52,17 @@ en  compactos de $\R^r$, las podremos extender a $\R^r$.
     \end{equation}
     independientemente de la función de activación $\psi$, dimensión $r$ o medida $\mu$. 
 \end{corolario}
+
+    \marginpar{
+    \textcolor{dark_green}{
+        \textbf{Idea intuitiva corolario \ref{cor:2_1}}
+    }
+    }
+    \marginpar{
+    Este teorema corrige la carencia sobre la precisión del error que describíamos en la idea intuitiva del teorema \ref{teo:2_4_rrnn_densas_M}. Podemos encontrar una red neuronal que aproxime cualquier función medible que queramos en todos los puntos del espacio que queramos.
+    }
+
+    
 \begin{proof}
     Sea $\epsilon > 0$ fijo pero arbitrario.  Gracias al teorema de Lusin \ref{teo:Lusin}
     existe un subconjunto compacto $K \subset \R^r$ de medida
@@ -83,15 +94,4 @@ en  compactos de $\R^r$, las podremos extender a $\R^r$.
     como queríamos probar.
 \end{proof}
 
-\subsubsection{Comentarios sobre el corolario \ref{cor:2_1}}  
 
-Este resultado nos indica que existe una red neuronal con una 
-capa oculta capaz de aproximar cualquier función medible con el grado 
-de precisión que se desee dentro de un compacto.   
-
-Notemos que la diferencia que presenta el corolario recién probado
-\ref{cor:2_1} con respecto al teorema \ref{teo:2_4_rrnn_densas_M}
-es que en el corolario se está fijando el compacto y esto nos 
-permite tener convergencia uniforme en él, mientras que en el 
-teorema \ref{teo:2_4_rrnn_densas_M} para funciones medibles
-tendremos asegurada tan solo la convergencia. 

@@ -22,7 +22,10 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     Ejemplos comunes de funciones de activación son
 
     %%% Nota sobre funciones activación más democráticas que otras
-    \marginpar{\textbf{Observación sobre la idoneidad de cada función activación:}
+    \marginpar{
+        \textcolor{blue}{    
+        \textbf{Observación sobre la idoneidad de cada función activación:}
+    }
     Se probará la convergencia de las redes neuronales independientemente de la función de activación seleccionada. Cabe entonces la pregunta
     ¿Existen funciones de activación más democráticas que otras? 
     Se discutirá esta pregunta como hipótesis de optimización \ref{hypothesis:activation-function}.
@@ -118,7 +121,10 @@ que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo.
 Nótese que faltaría componer la función afín con una función de activación para obtener lo que hemos definido 
 como un perceptrón. 
  % Nota margen sobre que abstrae esta estructura
- \marginpar{\textbf{Idea tras la definición de $\pmc$.}
+ \marginpar{
+    \textcolor{dark_green}{    
+    \textbf{Idea tras la definición de $\pmc$.}
+    }
  Nótese que lo que se ha definido es la clase de las redes 
  neuronales de una capa oculta y salida de una dimensión.
  Donde cada sumatoria representa una neurona en la capa oculta.
@@ -146,7 +152,10 @@ Con esta misma idea
 se define la siguiente estructura que generaliza a la familia $\pmc.$  
    
    % Idea intuitiva 
-   \marginpar{\textbf{Motivación de la definición de $\pmcg$.}
+   \marginpar{
+    \textcolor{dark_green}{    
+   \textbf{Motivación de la definición de }}$\pmcg$.
+    
    En un principio será más fácil demostrar que esta clase de funciones es densa en el espacio de funciones continuas.
    De esta manera este conjunto actuará de nexo de unión entre las funciones continuas y las redes neuronales facilitando las demostraciones.
    }
@@ -225,10 +234,13 @@ razonamientos topológicos.
 \begin{definicion} [Subconjunto denso]
     % Explicación de denso
     \reversemarginpar 
-    \marginpar{ \textbf{Idea intuitiva conjunto denso.}
+    \marginpar{
+        \textcolor{dark_green}{
+            \textbf{Idea intuitiva conjunto denso.}
+        }
         Si $S$ es denso en $T$, 
-        a nivel intuitivo sería decir que los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
-        con la precisión que se desee. 
+        se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
+        con la precisión que se desee}. 
     }
     \normalmarginpar
     Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
@@ -249,12 +261,22 @@ $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$.
         \rho _ K (f,g) = \sup_{x \in K} |f(x) - g(x)|.
     \end{equation}
 
-      % Explicación de uniformemente denso
-      
+    % Nota intuitiva de compacto
+    \marginpar{
+        \textcolor{dark_green}{
+          \textbf{Noción intuitiva de compacto}
+        }
+        Al trabajar con números reales, un espacio es compacto si es cerrado y acotado, lo que a nivel práctico significa que los
+        \textbf{datos de entrada se encuentran dentro de un rango concreto}. 
+      }
+
+      % Nota intuitiva de uniformemente denso
       \marginpar{
-          \textbf{Concepto intuitivo  de uniformemente denso para compactos }
-          lo que indica es que \textit{controlamos} cuánto de cerca
-          están dos funciones sea cual sea cualquier punto del compacto en que evaluemos.
+        \textcolor{dark_green}{
+          \textbf{Noción intuitiva de uniformemente denso para compactos }
+        }
+          lo que indica es que \textit{controlamos} \textbf{cuánto de cerca
+          están dos funciones sea cual sea cualquier punto del compacto en que evaluemos} es decir, podríamos afirmar que para una red neuronal que tome valores por ejemplo en $[0,1]^r$, se puede saber que su error es menor que $\epsilon \in\R^+$ independientemente de la entrada.
       }
       
 \end{definicion}

@@ -608,7 +608,16 @@ Podemos ya definir la función que buscamos:
      Con lo que acabamos de probar la tesis del lema. 
 \end{proof}
 
-% TODO te has quedado por aquí corrigiendo
+
+  % Nota idea intuitiva  lema de que C es denso en M
+  \marginpar{
+  \textcolor{dark_green}{\textbf{Idea intuitiva lema \ref{lema:A_5_uniformemente_denso_compactos}:}}
+  }
+  \marginpar{
+    Afirma que \textbf{podemos aproximar cualquier función continua definida 
+    con una red neuronal}. Además, si los valores de entrada está 
+    dentro de un rango acotado tendremos una cota de error única para todo el dominio.
+  }
 
 %Lema A.5 
 \begin{lema} \label{lema:A_5_uniformemente_denso_compactos}
@@ -674,6 +683,7 @@ Podemos ya definir la función que buscamos:
 \end{proof}
 
 Estamos ya en condiciones de probar el resultado clave del trabajo. 
+  
 
 % Teorema 2.4
 \begin{teorema} \label{teo:2_4_rrnn_densas_M}
@@ -682,6 +692,31 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
     se tiene que $\rrnn$ es uniformemente denso para compactos
     en $\fC$ y denso en $\fM$ para a la distancia $\dist$. 
 \end{teorema}
+
+ % Nota idea intuitiva  lema de que C es denso en M
+ \reversemarginpar
+ \marginpar{
+    \textcolor{dark_green}{
+        \textbf{Idea intuitiva teorema \ref{teo:2_4_rrnn_densas_M}:}}
+    }
+    \marginpar{
+    Afirma que las \textbf{redes neuronales son capaces de aproximar funciones medibles},
+    es decir funciones muy generales con formas variopintas.
+    La diferencia que guarda con el lema \ref{lema:A_5_uniformemente_denso_compactos} 
+    es que si lo que estamos aproximando es una función medible, no tendremos una cota global del error,
+    es decir \textbf{podemos asegurar que en casi todos los puntos esté muy próximo a la función que queremos aproximar}, pero pudiera ser que al evaluar un punto concreto el error sea muy grande.
+    }
+
+    \marginpar{
+        \textcolor{darkRed}{
+            \textbf{Reflexión sobre \ref{teo:2_4_rrnn_densas_M}}}
+    }
+    \marginpar{
+        Por lo que acabamos de ver no se \textit{aproxima igual de bien} las funciones continuas a las medibles. La cuestión es la siguiente ¿la función que nosotros queremos aproximar con una red neuronal es continua o solo medible?
+        A nivel práctico es ante todo desconocida, luego debemos 
+        suponer las hipótesis menos restrictivas, es decir, que sea solo medible.
+    }
+    
 \begin{proof}
 En el lema anterior 
 acabamos de ver que $\rrnn$ es uniformemente denso en compactos en $\fC$
