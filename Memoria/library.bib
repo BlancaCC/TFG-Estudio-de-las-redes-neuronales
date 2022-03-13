@@ -9,6 +9,25 @@
 
 % ---------- Introducción a las redes neuronales -------
 
+% Importancia y estado del arte del aprendizaje automático en la actualidad
+@article{importancia-arte-aprendizaje-automatico,
+	abstract = {In the current age of the Fourth Industrial Revolution (4IR or Industry 4.0), the digital world has a wealth of data, such as Internet of Things (IoT) data, cybersecurity data, mobile data, business data, social media data, health data, etc. To intelligently analyze these data and develop the corresponding smart and automated applications, the knowledge of artificial intelligence (AI), particularly, machine learning (ML) is the key. Various types of machine learning algorithms such as supervised, unsupervised, semi-supervised, and reinforcement learning exist in the area. Besides, the deep learning, which is part of a broader family of machine learning methods, can intelligently analyze the data on a large scale. In this paper, we present a comprehensive view on these machine learning algorithms that can be applied to enhance the intelligence and the capabilities of an application. Thus, this study's key contribution is explaining the principles of different machine learning techniques and their applicability in various real-world application domains, such as cybersecurity systems, smart cities, healthcare, e-commerce, agriculture, and many more. We also highlight the challenges and potential research directions based on our study. Overall, this paper aims to serve as a reference point for both academia and industry professionals as well as for decision-makers in various real-world situations and application areas, particularly from the technical point of view.},
+	author = {Sarker, Iqbal H. },
+	doi = {10.1007/s42979-021-00592-x},
+	id = {Sarker2021},
+	isbn = {2661-8907},
+	journal = {SN Computer Science},
+	number = {3},
+	pages = {160},
+	read = {1},
+	title = {Machine Learning: Algorithms, Real-World Applications and Research Directions},
+	ty = {JOUR},
+	url = {https://doi.org/10.1007/s42979-021-00592-x},
+	volume = {2},
+	year = {2021},
+	Bdsk-Url-1 = {https://doi.org/10.1007/s42979-021-00592-x}
+}
+
 @book{learning-from-data-1-2,
   title={Learning From Data: Concepts, Theory, and Methods},
   author={Vladimir Cherkassky and Filip Mulier},
@@ -25,6 +44,29 @@
   urldate = {Jan-2015},
   chapter = {7},
 }
+
+% algoritmo backpropagation 
+@article{backpropagation-Hinton,
+	abstract = {We describe a new learning procedure, back-propagation, for networks of neurone-like units. The procedure repeatedly adjusts the weights of the connections in the network so as to minimize a measure of the difference between the actual output vector of the net and the desired output vector. As a result of the weight adjustments, internal `hidden'units which are not part of the input or output come to represent important features of the task domain, and the regularities in the task are captured by the interactions of these units. The ability to create useful new features distinguishes back-propagation from earlier, simpler methods such as the perceptron-convergence procedure1.},
+	author = {Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J.},
+	da = {1986/10/01},
+	date-added = {2022-02-22 07:39:52 +0100},
+	date-modified = {2022-02-22 07:40:25 +0100},
+	doi = {10.1038/323533a0},
+	id = {Rumelhart1986},
+	isbn = {1476-4687},
+	journal = {Nature},
+	number = {6088},
+	pages = {533--536},
+	read = {0},
+	title = {Learning representations by back-propagating errors},
+	ty = {JOUR},
+	url = {https://doi.org/10.1038/323533a0},
+	volume = {323},
+	year = {1986},
+	Bdsk-Url-1 = {https://doi.org/10.1038/323533a0}
+  }
+
 
 % historia redes neuronales  
 @online{hisour,
@@ -54,6 +96,128 @@
 }
 
 
+%%% ----- Construcción de las redes neuronales   --------
+%% Manual muy extenso , lo has usado para
+%% Definición perceptrón 
+%% Feedforward networks functions: capítulo 5 páginas 227-256
+@book{BishopPaterRecognition,
+author = {Bishop, Christopher M.}, 
+title = {Pattern Recognition and Machine Learning (Information Science and Statistics)}, 
+year = {2006}, 
+isbn = {0387310738}, 
+publisher = {Springer-Verlag}, 
+address = {Berlin, Heidelberg} 
+}
+
+%% Manual también muy interesante
+%% Usado para los tipos de aprendizaje Capítulo 1
+@book{MostafaLearningFromData,  
+author = {Abu-Mostafa, Yaser S. and Magdon-Ismail, Malik and Lin, Hsuan-Tien}, 
+title = {Learning From Data}, 
+year = {2012}, 
+isbn = {1600490069},
+ publisher = {AMLBook}, 
+ abstract = {Machine learning allows computational systems to adaptively 
+ improve their performance with experience accumulated from the observed
+data. Its techniques are widely applied in engineering, science, finance, and commerce.
+This book is designed for a short course on machine learning. It is a short course, not 
+a hurried course. From over a decade of teaching this material, we have distilled what
+we believe to be the core topics that every student of the subject should know. 
+We chose the title `learning from data' that faithfully describes what the subject 
+is about, and made it a point to cover the topics in a story-like fashion. 
+Our hope is that the reader can learn all the fundamentals of the subject by 
+reading the book cover to cover. ---- Learning from data has distinct theoretical
+and practical tracks. In this book, we balance the theoretical and the practical,
+the mathematical and the heuristic. Our criterion for inclusion is relevance. 
+Theory that establishes the conceptual framework for learning is included, 
+and so are heuristics that impact the performance of real learning systems. 
+---- Learning from data is a very dynamic field. Some of the hot techniques
+and theories at times become just fads, and others gain traction and become
+part of the field. What we have emphasized in this book are the necessary 
+fundamentals that give any student of learning from data a solid foundation,
+and enable him or her to venture out and explore further techniques and theories, 
+or perhaps to contribute their own. ---- The authors are professors at California 
+Institute of Technology (Caltech), Rensselaer Polytechnic Institute (RPI), 
+and National Taiwan University (NTU), where this book is the main text for 
+their popular courses on machine learning. The authors also consult extensively 
+with financial and commercial companies on machine learning applications,
+and have led winning teams in machine learning competitions.}          
+}
+
+
+%% Ejemplos de tipo de aprendizaje en los que se utiliza redes neuronales: 
+
+% artículo donde en el estado del arte dice que se aplica en 
+% todas los tipos de aprendizajes 
+%y indica como mejorarlo en el no supervisado 
+
+@INPROCEEDINGS{8612259,
+  author={Dike, Happiness Ugochi and Zhou, Yimin and Deveerasetty, Kranthi Kumar and Wu, Qingtian},
+  booktitle={2018 IEEE International Conference on Cyborg and Bionic Systems (CBS)}, 
+  title={Unsupervised Learning Based On Artificial Neural Network: A Review}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={322-327},
+  doi={10.1109/CBS.2018.8612259}}
+
+% para aprendizaje por refuerzo 
+@article{DBLP:journals/corr/BakerGNR16,
+  author    = {Bowen Baker and
+               Otkrist Gupta and
+               Nikhil Naik and
+               Ramesh Raskar},
+  title     = {Designing Neural Network Architectures using Reinforcement Learning},
+  journal   = {CoRR},
+  volume    = {abs/1611.02167},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1611.02167},
+  eprinttype = {arXiv},
+  eprint    = {1611.02167},
+  timestamp = {Mon, 13 Aug 2018 16:47:42 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/BakerGNR16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+% Ejemplo que utiliza algoritmos evolutivos para configurar la
+red neuronal 
+@inproceedings{10.5555/2955491.2955578, 
+author = {Stanley, Kenneth O. and Miikkulainen, Risto}, 
+title = {Efficient Reinforcement Learning through Evolving Neural Network Topologies}, 
+year = {2002}, 
+isbn = {1558608788}, 
+publisher = {Morgan Kaufmann Publishers Inc.}, 
+address = {San Francisco, CA, USA}, 
+abstract = {Neuroevolution is currently the strongest method on the pole-balancing benchmark reinforcement learning tasks. 
+Although earlier studies suggested that there was an advantage in evolving the network topology as well as connection weights, the leading neuroevolution systems evolve fixed networks. 
+Whether evolving structure can improve performance is an open question. In this article, we introduce such a system, NeuroEvolution of Augmenting Topologies (NEAT). We show that 
+when structure is evolved (1) with a principled method of crossover, (2) by protecting structural innovation, and (3) 
+through incremental growth from minimal structure, learning is
+ significantly faster and stronger than with the best 
+ fixed-topology methods. NEAT also shows that it is possible to evolve populations of increasingly large genomes, achieving 
+ highly complex solutions that would otherwise be difficult to optimize.}, 
+ booktitle = {Proceedings of the 4th Annual 
+ Conference on Genetic and Evolutionary Computation}, 
+ pages = {569–577}, 
+ numpages = {9}, 
+ location = {New York City, New York}, 
+ series = {GECCO'02} 
+}
+
+%% Sobre el perceptrón 
+
+@InProceedings{perceptron-convergence,
+author="Van Der Malsburg, C.",
+editor="Palm, G{\"u}nther
+and Aertsen, Ad",
+title="Frank Rosenblatt: Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms",
+booktitle="Brain Theory",
+year="1986",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="109-115",
+abstract="Frank Rosenblatt's intention with his book, according to his own introduction, is not just to describe a machine, the perceptron, but rather to put forward a theory. He formulates a series of machines. Each machine serves to introduce a new concept.",
+isbn="978-3-642-70911-1"
+}
 %% ------ Redes neuronales como aproximadores universales  -----
 % Conferencia de 1987 sobre redes neuronales
 @ARTICLE{4307059,
@@ -224,8 +388,6 @@ abstract = {In this paper, we prove that any continuous mapping can be approxima
   year={1966},
   publisher={Allyn and Bacon}
 }
-
-
 
 %%%%%%%%%%%%%%%%%% metodología %%%%%%%%%%%%%%
 %% Descripción del desarrollo ágil en la ciencia

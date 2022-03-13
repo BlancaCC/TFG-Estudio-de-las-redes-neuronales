@@ -9,20 +9,21 @@ code/.ipynb_checkpoints
 
 #macOS
 .DS_Store
-doc/.DS_Store
+Memoria/.DS_Store
 
 #Personales
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+Artículos/
 
 # LaTeX
+tfg*.pdf
 *#*
 *.log
 *.out
 *.aux
 *.idx
-*.pdf
 *.toc
 *.lof
 *.bbl
@@ -35,6 +36,11 @@ ISSUES-RELEVANTES
 *.fls
 *.lot
 *.loa
-doc/_minted-tfg
+Memoria/_minted-tfg
 
+# Capítulos que sirven a modo de notas 
+Memoria/capitulos/introduccion_redes_neuronales/bibliografia.tex
+Memoria/capitulos/introduccion_redes_neuronales/perceptron.tex
+BORRAR
 
+Memoria/paquetes/mathpazo/pazotest.pdf
