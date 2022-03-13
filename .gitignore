@@ -15,6 +15,7 @@ doc/.DS_Store
 dudas/
 correcciones-TFG/
 ISSUES-RELEVANTES
+BORRAR
 
 # LaTeX
 *#*
@@ -36,5 +37,6 @@ ISSUES-RELEVANTES
 *.lot
 *.loa
 doc/_minted-tfg
+
 
 

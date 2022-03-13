@@ -27,8 +27,12 @@ lazy:
 
 workflow-spell: install-spell spell
 
+# Test biblioteca redes neurales 
+test-library:
+	julia Biblioteca-Redes-Neuronales/Tests/activation-functions.test.jl 
+
 ## test en general 
-test: spell
+test: spell test-library
 
 
 	
