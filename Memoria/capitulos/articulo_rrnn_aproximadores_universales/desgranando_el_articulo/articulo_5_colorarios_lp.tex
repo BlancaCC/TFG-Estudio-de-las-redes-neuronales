@@ -16,6 +16,18 @@ para espacios $L_p$. De manera intuitiva estos espacios nos van a
 permitir considerar funciones que no necesariamente sean continuas
 y que incluso no están acotadas. 
 
+ % Nota intuitiva sobre la definición  LP
+ \normalmarginpar
+ \marginpar{\raggedright
+ \textcolor{dark_green}{
+     \textbf{Idea intuitiva de espacio $L_p$}
+ }
+ }
+ \marginpar{
+ Con esta definición lo que se trata es de considerar funciones 
+ que tomen un valor real en la mayoría de sus puntos.
+ Ya que la integral no varía su valor si se aplican cambios puntuales. 
+ }
 \begin{definicion}[Espacios Lp]
     Se llama espacio $L_p(\R^r, \mu)$ o simplemente $L_p$ al conjunto 
     de funciones $f \in \fM$ tales que 
@@ -23,6 +35,7 @@ y que incluso no están acotadas.
         \int |f(x)|^p d\mu < \infty. 
     \end{equation}
 
+   
 Se define la norma de $L_p$ como 
 \begin{equation}
     \| f\|_p 
@@ -35,6 +48,7 @@ y la distancia asociada al espacio $L_p$ se define como
 \end{equation}
 \end{definicion}
 
+
 % Corolario 2.2
 \begin{corolario}\label{corolario:2_2_rrnn}
     Si existe un subconjunto compacto $K$ en $\R^r$ de medida
@@ -42,6 +56,18 @@ y la distancia asociada al espacio $L_p$ se define como
     para cualquier $p \in [1,\infty)$, independientemente de 
     $\psi$, $r$ o $\mu$.
 \end{corolario}
+
+% Nota intuitiva sobre el corolario 2.2
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea intuitiva corolario \ref{corolario:2_2_rrnn}}
+    }
+}
+\marginpar{
+Se prueba es que las redes neuronales son capaces de aproximar 
+cualquier función de la clase recién introducida.
+}
+
 \begin{proof}
     Se quiere probar que para cualquier $g \in L_p$ y 
     $\epsilon >0$ existe $f \in \rrnn$ tal que 
@@ -113,6 +139,19 @@ Probando con ello lo buscado.
     $L_p([0,1]^r, \mu)$ para todo $p \in [1, \infty)$,
     independientemente de $\psi, r, \mu$. 
 \end{corolario}
+
+% Nota intuitiva sobre el corolario 2.3
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea intuitiva corolario 
+        \ref{corolario:2_3_medida_probabilidad}}
+    }
+}
+\marginpar{
+    A diferencia que con el corolario \ref{corolario:2_2_rrnn},
+aquí se afirma que las redes neuronales son capaces de aproximar 
+cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^r$, es decir \textbf{se está concretando los valores de entrada que pueden tomar las funciones}.
+}
 \begin{proof}
     Es consecuencia directa del corolario previo \ref{corolario:2_2_rrnn}
     donde para este caso particular $K = [0,1]^r$ un compacto
@@ -343,7 +382,18 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \end{proof}
 
 % Teorema 2.5  
+% Nota intuitiva sobre el Teorema 2.5
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea clave teorema
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}}
+    }
+}
+\marginpar{
+   Podemos conseguir una red neuronal que \textit{valga} lo que queramos en un conjunto finito de puntos.
+}
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
+    \label{teorema:2_5_entrenamiento_redes_neuronales}
     Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
     $\R^r$ y sea 
     $g: \R^r \longrightarrow \R$ una función arbitraria. 
@@ -535,7 +585,7 @@ es menor que el de entrenarla (TODO: comparar)
 podría optarse por una estrategia que se base de alguna manera 
 en esta construcción para inicializar los pesos?
 
-Por ejemplo: queremos construir una rrnn con n neuronas, 
+Por ejemplo: queremos construir una redes neuronales con n neuronas, 
 seleccionamos n datos aleatorios, construimos $f_n$ 
 y sobre ella entrenamos. 
 
