@@ -64,7 +64,7 @@ y la distancia asociada al espacio $L_p$ se define como
     }
 }
 \marginpar{
-Se prueba es que las redes neuronales son capaces de aproximar 
+Se prueba que las redes neuronales son capaces de aproximar 
 cualquier función de la clase recién introducida.
 }
 
@@ -344,6 +344,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     \right. 
 \end{equation}
 
+
 % Otro lema propio antes de probar el teorema 2.5
 \begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
     Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
@@ -354,6 +355,17 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
         p \cdot(x-y) \neq 0.
     \end{equation}
 \end{lema}
+% Nota intuitiva sobre el Teorema 2.5
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea clave teorema
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}}
+    }
+}
+\marginpar{
+   Podemos conseguir una red neuronal que \textit{valga} lo que queramos en un conjunto finito de puntos.
+}
+% Prueba lema propio antes de probar el teorema 2.5
 \begin{proof}
     Si $n$ es el cardinal de $\Lambda$,
     consideramos el conjunto $U$ definido como la unión de 
@@ -382,16 +394,6 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \end{proof}
 
 % Teorema 2.5  
-% Nota intuitiva sobre el Teorema 2.5
-\marginpar{\raggedright
-    \textcolor{dark_green}{
-        \textbf{Idea clave teorema
-        \ref{teorema:2_5_entrenamiento_redes_neuronales}}
-    }
-}
-\marginpar{
-   Podemos conseguir una red neuronal que \textit{valga} lo que queramos en un conjunto finito de puntos.
-}
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
     \label{teorema:2_5_entrenamiento_redes_neuronales}
     Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
@@ -405,6 +407,21 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
         f(x_i) = g(x_i) \text{ para todo } i \in \{1, \ldots, n \}.
     \end{equation}
 \end{teorema}
+
+% Nota intuitiva sobre la demostración del Teorema 2.5
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea de la demostración del teorema
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}}
+    }
+}
+\marginpar{
+  Es interesante reparar en que la demostración se basa
+  en añadir una neurona por cada punto que queramos que tome
+  un valor concreto, esa neurona se activará (es decir, no será nula) cuando la entrada $x$ \textit{sea mayor} que el valor que la activa $x_i$ y vale la diferencia con el valor anterior $x_{i-1}$, es decir $g(x_{i}) - g(x_{i-1})$, como el nodo $x_{i-1}$
+  también se activará por ser menor menor, el término $g(x_{i-1})$ se suma a la salida de la red y así como una serie telescópica al final solo resultará el valor $g(x_i)$.
+}
+
 \begin{proof}
 Con el fin de facilitar la comprensión dividiremos la demostración en dos casos, 
 primero uno particular, cuando $r=1$ y después el caso general.
@@ -416,10 +433,12 @@ podemos suponer que
 \begin{equation}
     x_1 < x_2 < \ldots < x_n. 
 \end{equation}
+
 Por alcanzar la función de activación $\psi$ el cero y el uno, 
 gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ tal que $\psi(-M) = 1-\psi(M) = 0.$
 
 Definiremos de manera recursiva la red neuronal buscada $f_n$. 
+
 
 \begin{itemize}
     \item Red neuronal $f_1$. 
@@ -446,12 +465,38 @@ La red neuronal $f_k$ se calcula como
 \end{equation}
 Observemos que así construida se tiene que para cualquier
  $y > x_k$ la evaluación con la red neuronal resulta $f_k(y) = g(x_k).$
-
 \end{itemize}
+
 Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq n$ se tiene que     
 $f_n(x_i) = g(x_i)$. 
 Además de que tiene un total de $n$ neuronas ocultas. 
 
+% Nota nueva hipótesis de optimización del Teorema 2.5
+\reversemarginpar
+\marginpar{\raggedright
+    \textcolor{blue}{
+        \textbf{Nueva hipótesis de optimización}
+    }
+}
+\marginpar{
+    \textbf{
+    El teorema 
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}
+        nos brinda una heurística de inicialización de los pesos
+        de una red neuronal.
+}
+  La demostración es totalmente constructiva 
+  dando las claves de cómo conseguir una red neuronal 
+  que tome ciertos valores concretos.
+  A nivel práctico si queremos que una red neuronal de una capa oculta
+  con $n$ neuronas aprenda se deberán de ir refinando los pesos iniciales con el algoritmo de gradiente 
+    descendente. Sabemos que los valores iniciales condicionan el 
+    resultado final del entrenamiento, por lo que 
+    \textbf{tomar  como red inicial la construida con la fórmula que nos da 
+    esta demostración y $n$ datos aleatorios, podría ser una buena 
+    heurística}.  
+}
+\normalmarginpar
 \begin{itemize}
     \item Caso base, $n=1$. 
     \begin{equation}
@@ -540,8 +585,6 @@ La red neuronal $f_k$ se calcula como
 
 Así definida, la prueba por inducción es idéntica a la del caso primero y hemos encontrado por tanto la red neuronal $f_n$ buscada.
 \end{proof}
-
-%% Redactar mejor esta sección 
 
 \subsection{Reflexión sobre el número de neuronas} \label{subsection:reflexión_sobre_número_de_neuronas}
 
