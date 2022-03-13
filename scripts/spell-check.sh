@@ -22,7 +22,7 @@ exitValue=0
 SpellingError Readme.md
 let "exitValue += $?"
 # Comprobamos ficheros .tex
-for file in $(find ./doc/capitulos -name "*.tex")
+for file in $(find ./Memoria/capitulos -name "*.tex")
 do 
     SpellingError $file; 
     let "exitValue += $?"

@@ -1,5 +1,6 @@
 personal_ws-1.1 es 0 utf-8 
 Approximators
+Backpropagation
 Bernstein
 Beygelzimer
 Borel
@@ -16,13 +17,13 @@ HU
 HUxx
 Halber
 Hornik
-Hornik
 Isoperimetry
 JJ
 Julián
 LaTeX
 Liang
 Lusin
+Makefile
 Mayte
 Merelo
 Merí
@@ -32,6 +33,8 @@ Nótese
 Ockham
 Perceptrón
 Pérez
+Readme
+Rosenblatt
 Sebastien
 Sellke
 Stinchcombe
@@ -43,9 +46,12 @@ Wortman
 approximators
 aproximadores
 autres
+backpropagation
 codominio
 codominios
 contutor
+diferenciable
+diferenciables
 entregables
 eq
 falsar
@@ -62,8 +68,11 @@ ik
 inasumible
 inecuación
 insesgado
+insesgados
 jk
 lcc
+md
+muestral
 multicapa
 multicapas
 nx
@@ -92,4 +101,7 @@ sumatoria
 sumatorias
 teo
 tratabilidad
+usefulInformation
+ésima
+ésimas
 ésimo
