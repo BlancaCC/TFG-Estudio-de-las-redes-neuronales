@@ -53,7 +53,6 @@ function ForwardPropagation(h::AbstractOneLayerNeuralNetwork, x)
     s = h.W1 * push!(x,1)
     ∑= map(h.activation_function,s)
     x = h.W2 * ∑
-    println(s, ∑, x)
     return x
 end 
 

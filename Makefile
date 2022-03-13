@@ -29,8 +29,8 @@ workflow-spell: install-spell spell
 
 # Test biblioteca redes neurales 
 test-library:
-	julia Biblioteca-Redes-Neuronales/test/activation-functions.test.jl 
-	julia Biblioteca-Redes-Neuronales/test/one-layer-neural-network.test.jl
+	julia Biblioteca-Redes-Neuronales/test/activation_functions.test.jl 
+	julia Biblioteca-Redes-Neuronales/test/one_layer_neural_network.test.jl
 ## test en general 
 test: spell test-library
 

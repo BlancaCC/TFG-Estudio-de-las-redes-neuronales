@@ -1,7 +1,7 @@
 using Test 
 
 include("./../src/activation_functions.jl")
-include("./../src/oneLayerNeuronalNetwork.jl")
+include("./../src/one_layer_neuronal_network.jl")
 using .ActivationFunctions
 using .ModuleOneLayerNeuralNetwork
 
