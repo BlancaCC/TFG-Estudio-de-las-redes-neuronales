@@ -7,11 +7,27 @@ Toma en la actualidad un papel clave en el desarrollo tecnológico el aprendizaj
 \cite{importancia-arte-aprendizaje-automatico}, siendo 
 las redes neuronales un modelo ampliamente usado en este contexto y por ello 
 nuestro objetivo de democratización. 
-% TODO ya escribiré en el summary necesario que queremos decir con democratización 
+
 Comenzaremos pues  sentando las bases y 
-formalizando 
+formalizando  
 qué significa 
 que una máquina \textit{aprenda}  y cómo puede conseguirse, 
 todo ello en la sección \ref{sec:Aprendizaje}.
 Continuaremos en \ref{sec:redes-neuronales-intro} 
 definiendo las redes neuronales, cómo se construyen y evalúan. 
+
+Centraremos además nuestros esfuerzos en el estudio de las redes neuronales de una sola capa, 
+esto se debe a que a pesar de la tendencia actual de utilizar redes neuronales profundas con 
+un aumento de parámetros que ajustar 
+\cite{a-universal-law-of-Robustness} \cite{CHAI2021100134} el sustento de esto no deja de ser experimental 
+o basado en cotas de carácter \textit{en el peor de los casos y por el tamaño del espacio de búsqueda}.
+Pero estos motivos no constituyen una demostración formal ni rigurosa de porqué decantarnos verdaderamente por 
+ello y es más otros artículos experimentales demuestran que aumentar el número de capas no mejora los resultado 
+\cite{DBLP:conf/iwann/Linan-Villafranca21}. 
+
+Así pues, sustentados con la demostración de convergencia universal \cite{HORNIK1989359}
+de las redes neuronales que asegura la convergencia en igualdad de condiciones 
+tanto para una capa como para varias
+y en pos de simplificar el modelo a priori 
+para establecer nuestras propias hipótesis de optimización desprovistos
+de sesgos empíricos comenzaremos nuestro trabajo tratando tan solo de redes neuronales de una sola capa oculta.
