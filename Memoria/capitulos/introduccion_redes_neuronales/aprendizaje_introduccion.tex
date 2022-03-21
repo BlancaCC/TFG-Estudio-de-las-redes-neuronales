@@ -52,6 +52,18 @@ A nivel práctico y en nuestro caso, los elementos que consideraremos para el ap
 serán susceptibles de contribuir a la optimización buscada son
 (capítulo 1 \cite{MostafaLearningFromData}): 
 
+% Comentario margen sobre lo que verdaderamente se trata de aproximar
+\marginpar{\raggedright
+    \textcolor{blue}{
+        \textbf{En qué consiste la función ideal y desconocida a nivel práctico}:
+    }
+}
+\marginpar{
+    A nivel teórico existen infinitas funciones que coincidan en un conjunto finito de puntos,
+    por lo que 
+    verdaderamente no se está buscando una función ideal sino un elemento dentro de
+    la clase de equivalencia de las funciones medibles que coincide en un conjunto numerable de puntos. 
+}
 
 \begin{itemize}
     \item Espacio muestral $\mathcal X$.  
@@ -77,7 +89,7 @@ tienen distintos tipos de aprendizaje y cabe la pregunta de en qué ámbitos son
 son extensibles a otros. 
 
 Con el fin de tener una clara distinción,
-establecemos por consiguiente la siguiente clasificación sobre los tipos de aprendizajes existentes basa en el
+establecemos por consiguiente la siguiente clasificación sobre los tipos de aprendizajes existentes basada en el
 artículo \cite{importancia-arte-aprendizaje-automatico},
  el capítulo 1 \cite{MostafaLearningFromData}
  y capítulo 4 pag 179
@@ -118,41 +130,3 @@ recién mencionados
 de aprendizaje supervisado. 
 
 
-\subsection{El gradiente descendente} \label{sec:gradiente-descendente}
-
-(Información tomada de los capítulos uno y dos de \cite{learning-from-data-1-2})
-Así pues, una vez concretado el problema y sus elementos 
-(\ref{sub:componentes_aprendizaje}) es necesario definir un método con el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
-
-El gradiente descendente es un método iterativo de minimización de funciones diferenciables. 
-
-En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h_w \in \mathcal{H}$, donde $w \in M(\R)_{m \times n}$ son parámetros que caracterizan a $h_w$.
-Para  
-Dada también una función de error diferenciable y que no presente puntos de inflexión
-$E: M(\R)_{m \times n} \longrightarrow \R,$
-se toma una matriz inicial  cualquiera $w_0 \in M(\R)_{m \times n}$ y 
-fijado $\eta \in \R^+$. 
-
-Se define la sucesión 
-\begin{equation}
-    w_{t+1}  = w_t - \eta \nabla E(w_t).
-\end{equation}  
-
-Donde $w_n$ es una sucesión cuyos términos convergen a un mínimo local.
-\subsubsection*{Observaciones sobre el algoritmo }
-
-\begin{itemize}
-    \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
-    \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
-    \item Si la función es convexa el mínimo será global.
-    \item El parámetro $\eta$ puede ser cualquiera y debe de ser fijado o controlado por el diseñador.  
-\end{itemize}
-
-
-\subsection{Comentario de Blanca que deja aquí por guardarlo en algún sitio y que en algún momento debiera de borrar} 
-
-\textcolor{blue}{
-Estamos buscando verdaderamente no una función ideal sino 
-la clase de equivalencia de las funciones medibles que coincide su grafo en un conjunto numerable de puntos. 
-En la práctica nos quedamos con un candidato de esa clase. ¿ Afectar esta forma de ver las cosas?
-}
