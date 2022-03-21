@@ -86,6 +86,7 @@ perceptrones
 perceptrón
 png
 qB
+referenciada
 renumerar
 replicable
 reproducibility

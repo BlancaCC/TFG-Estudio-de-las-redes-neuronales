@@ -27,19 +27,24 @@ el trabajo desarrollando con una mentalidad ágil, de acorde a las siguientes hi
      
 \end{enumerate}  
 
-\section{Descripción de la metodología }  
+\section{Descripción}  
 
 Concretamente la metodología seguida basada en \cite{que-es-un-trabajo-fin-de-x} ha sido la siguiente: 
 
-El objetivo principal es resolver un problema usando técnicas tanto informáticas como matemáticas. Para ello 
-se han definido unos objetivos claros a través de una \textit{metodología de personas} 
+El objetivo es resolver el problema 
+de \textit{optimización de redes neuronales}
+usando técnicas tanto informáticas como matemáticas
+como propuesta de trabajo fin de grado. 
+Puesto que los problemas surgen de las necesidades humanas,
+se han definido unas metas claras a través de la \textit{metodología de personas} 
 (ver sección \ref{ch:metodología_personas}) \cite{personas-why-and-how-you-should-use-them}
 y las respectivas historias de usuario derivadas (ver sección \ref{ch:metodología_personas_historias_de_usuario}).   
 
 \subsection{Personas definidas}  \label{ch:metodología_personas}
 
-Las \textit{personas ficticias} que hemos definido serán los beneficiados del proyecto 
-y son los siguientes:  
+Ante la pregunta de quiénes serán los beneficiados e involucrados por este proyecto y que trataremos de satisfacer
+han surgido 
+las siguientes \textit{personas ficticias}:
 
 \begin{itemize}
 
@@ -144,32 +149,50 @@ La documentación presentada deberá de incluir:
 Será validada cuando los tutores aprueben la organización y formulación de la misma.
 
 
-\subsection*{Milestone 1: Exposición del sustento teórico de las redes neuronales}  
+\subsection*{Milestone 1: 1 Búsqueda de resultados teóricos para optimizar  las redes neuronales}
+
+Se busca con este milestone establecer las bases teóricas para poder optimizar las redes neuronales, se dará por concluido cuando se haya conseguido algún resultado teórico con el que:
+\begin{itemize}
+    \item Acotar el tamaño o la precisión de los pesos u otros parámetros de la red neuronal.
+    \item Alguna forma de acelerar la convergencia, si es que se va a optar por un método de descenso de gradiente.
+    \item En general, cualquier hipótesis que se se pueda relajar o cambiar en el camino de reducir el espacio de búsqueda de posibles redes neuronales o de los pesos de las mismas.
+\end{itemize}
+
+El estudio progresivo se verá reflejado en varios capítulos y secciones de la memoria. Con secciones como: 
+\textit{Definición  y construcción de las redes neuronales}. 
 Este milestone consiste en la redacción de una serie de capítulos y secciones 
 que estudien: 
-\begin{itemize}
-    \item Definición y construcción de las redes neuronales.
-    \item Motivación de su eficacia con: Análisis del 
-    teorema de aproximación universal de las redes neuronales de Hornik, Stinchcombe y White.
-\end{itemize}
+
 Se aceptarán las secciones una vez hayan sido supervisadas y validadas por los tutores. 
 
-\subsection*{Milestone 2: Formulación y experimentación de hipótesis que democraticen las redes neuronales}
+\subsection*{Milestone 2: Evaluación experimental de las hipótesis de optimización formuladas}
 
-Su producto serán ciertos capítulos de la memoria donde se reflejen
+Deberá de validarse y cuantificar experimentalmente las propuestas de optimización del hito anterior. 
+
+Para ello  se deberá de: 
+\begin{enumerate}
+    \item \textbf{Formular los test correspondientes y adecuados},lo que conllevará : 
+    \begin{itemize}
+        \item Una implementación de los algoritmos teóricos propuestos.
+        \item Una descripción y formulación de los test.
+    \end{itemize}
+
+    \item \textbf{Evaluar los resultados.}
+\end{enumerate}
+
+El criterio de aceptación de un producto mínimo viable consistirá en:
 \begin{itemize}
-    \item Hipótesis planteadas que puedan optimizar las redes neuronales en cualquier aspecto de hardware o potencia de cómputo.
-    \item Experimentación o investigación relacionada con las hipótesis anteriores. 
-    \item Análisis y conclusiones de los resultados anteriores. 
-\end{itemize}
-El criterio de aceptación consistirá en:
-\begin{itemize}
-    \item Una formulación de las hipótesis por escrito, que tras debatirlas con los tutores
-    se seleccionarán las que se estimen más interesantes y se definirán respectivos experimentos con el fin de falsar o 
-    hacer plausibles tales hipótesis.
-    \item  Los experimentos de requerir implementaciones deberán previamente comprobar su correcto funcionamiento mediante tests.
+    \item La implementación de los algoritmos debe de ser coherente y proveniente del hito anterior y debe de estar referenciada.
+    \item  Toda implementación deberá previamente comprobar su correcto funcionamiento mediante tests.
     \item La redacción del análisis y conclusiones deberá ser aprobado por los tutores nuevamente.
 \end{itemize}
+
+\subsection*{Milestone 3: Implementación de aplicaciones reales que se beneficien de las optimizaciones encontradas }
+
+A partir de las optimizaciones encontradas del hito previo deberá de implementarse alguna aplicación real que se beneficie de algunas de las optimizaciones encontradas. 
+
+Un ejemplo de ello podría ser entrenar una red neuronal en una raspberry pi .
+
 
 
 \subsection*{Milestone x: Entrega del proyecto}
@@ -178,6 +201,18 @@ Su resultado será una memoria revisada y pulida que se entregará en Prado como
 
 Para cumplir con los \textit{milestones},  ha sido necesario resolver nuevos  problemas menores, estos se han
 recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{milestones}.
+
+% Sobre el tiempo 
+\section{Registro de trabajo}  
+
+Con el fin de constatar que el desarrollo efectivamente se ha 
+llevado con una filosofía ágil y según a los tiempos estipulados se ha registrando el tiempo, tareas dedicadas  y milestones relacionados
+en las siguiente hoja de cálculo \cite{TFG-hoja-calculo-horas-trabajo}.
+
+En total el número de horas invertidas ha sido: 
+\textcolor{red}{TODO añadir registro}
+Que se distribuye de la siguiente manera en los distintos milestones: 
+\textcolor{red}{TODO añadir registro}
 
 
 \section{Resumen de la metodología}  
