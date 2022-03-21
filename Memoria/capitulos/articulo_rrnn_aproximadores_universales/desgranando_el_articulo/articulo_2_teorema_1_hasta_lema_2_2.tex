@@ -24,13 +24,18 @@
     \textbf{Qué se está probando en el teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
     }
     Podemos aproximar tanto como queramos cualquier función
-continua con elementos de $\pmcg$, es decir versiones algo más generales de redes neuronales. 
+continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de aproximación}. 
 }
 
 \begin{proof}
     Bastará probar que el conjunto $\pmcg$ satisface las hipótesis del teorema de
      Stone-Weierstrass \ref{ch:TeoremaStoneWeiertrass}.
-    Lo primero será comprobar que $\pmcg$ es un álgebra, para ello veamos que:         
+    Lo primero será comprobar que $\pmcg$ es un álgebra, para ello veamos que:   
+
+      % Claves de la demostración teorema 2.1
+      \marginpar{\textbf{Clave de la demostración del teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
+      Se comprueba primero que para operando elementos del \textit{anillo de aproximación} con sumas, productos y re-escalados no se \textit{salen del conjunto}, es decir que el resultado es otro elemento del \textit{anillo de aproximación}. Con estas operaciones se irá construyendo y refinando una función que aproxime cualquier función continua con un método cuya idea es \textit{con este elemento del anillo de aproximación tengo tal error porque me falla en tales puntos, si le sumo esto otro corrijo ese error y además el resultado sigue perteneciendo al conjunto.}
+      }      
     \begin{enumerate}
         \item La función constante uno pertenece al conjunto. 
         Como $G$ no es constante existirá un valor de la imagen distinto de $0$, supongamos que $G(a)= b \neq 0$ para $a,b \in \R.$
@@ -51,11 +56,7 @@ continua con elementos de $\pmcg$, es decir versiones algo más generales de red
         Basta renumerar una de las sumatorias para ver $\gamma f+ \sigma g$ como una combinación 
         lineal de productos finitos y por tanto $\gamma f+ \sigma g \in \pmcg.$
         
-        % Claves de la demostración teorema 2.1
-        \marginpar{\textbf{Clave de la demostración del teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
-        Se comprueba que \textit{operar} (sumar, multiplicar...) dos redes neuronales generalizadas da otra red neuronal generalizada y que además dadas entradas distintas podemos conseguir salidas distintas. 
-        Gracias a esto, el teorema de Weierstrass \ref{ch:TeoremaStoneWeiertrass} da una manera constructiva de aproximar las funciones continuas.
-        }
+      
         \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
         Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
         \begin{equation}
@@ -85,14 +86,6 @@ continua con elementos de $\pmcg$, es decir versiones algo más generales de red
     $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(a) \neq 0$. 
 
     Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos probar que $\pmcg |_K$ es denso en $C(K).$ 
-
-    % Consecuencias de aplicar el teorema de Stone-Weierstrass
-    \marginpar{\textcolor{blue}{\textbf{Implicaciones de usar el teorema de Stone-Weierstrass para democratizar las redes neuronales}}
-    Tengamos presentes que la demostración ofrecida del teorema de Stone-Weierstrass 
-    es constructiva, es decir existe un algoritmo bien definido con el que llegar estas estructuras. Por lo que si en las siguientes demostración se siguen con pruebas constructivas (como es el caso) habríamos encontrado un método alternativo al de 
-    gradiente descendente \ref{sec:gradiente-descendente} con el seleccionar las redes neuronales. ¿Podríamos obtener algún beneficio de ello?
-    Se razonará al respecto en la hipótesis \ref{hypothesis:pesos-iniciales}
-    }
 \end{proof}
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
@@ -408,7 +401,7 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
           \textcolor{dark_green}{\textbf{Idea intuitiva lema \ref{lema:A_1_C_es_denso_en_M}:}}
           }
           \marginpar{
-          Las funciones continuas pueden tomar formas muy variopintas, estando incluso no acotadas.La función de Dirichlet definida en $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional, es medible pero no es continua ya que presenta infinitas discontinuidades.
+          Las funciones continuas pueden tomar formas muy variopintas, estando incluso no acotadas. La función de Dirichlet definida en $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional, es medible pero no es continua ya que presenta infinitas discontinuidades.
           }
           \marginpar{
           Sin embargo, las funciones continuas son más simples, fáciles de entender y manejar. 
