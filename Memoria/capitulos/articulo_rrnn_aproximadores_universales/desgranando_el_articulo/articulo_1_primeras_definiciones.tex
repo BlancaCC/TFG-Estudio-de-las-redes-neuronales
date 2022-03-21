@@ -9,6 +9,7 @@
 
 Comenzaremos presentando definiciones básicas sobre redes neuronales. 
 
+
 \begin{definicion}[Función de activación ] \label{def:funcion_activacion_articulo}
     Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedades:
     \begin{enumerate}[label=(\roman*)]
@@ -19,32 +20,17 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     \end{enumerate}  
    
     Ejemplos comunes de funciones de activación son
-    \begin{itemize}
-        \item \textbf{Funciones umbral} \ref{fig:función_umbral_lineal}:
-        Una función umbral, es una función booleana monótona $f: \{0,1\}^n \longleftarrow \{0,1\},$ 
-        donde para $w \in \R^n$, $t \in \R$ fijos se
-        satisface que 
-        \begin{equation}
-            f(x) = \left\{
-                \begin{array}{lcc}
-                    1, &   si  & w \cdot x \geq t \\
-                    0, &  si & w \cdot x < t\\
-                    \end{array}
-            \right.
-        \end{equation}
-    
-        \item \textbf{Funciones indicadoras} \ref{fig:función_indicadora}: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
-        \item \textbf{Función rampa} \ref{fig:funciones_rampa}: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
-    
-        \item \textbf{La función \textit{cosine squasher}} de Gallant and White 
-        \ref{fig:cosine_squasher} (1988) \cite{Gallant88thereexists}. 
-        \begin{equation*}
-    \psi(\lambda )= \left(1 + cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
-     1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
-     +
-     1_{\{ \frac{\pi}{2} < \lambda \}}.
-    \end{equation*}
-    \end{itemize}
+
+    %%% Nota sobre funciones activación más democráticas que otras
+    \marginpar{
+        \textcolor{blue}{    
+        \textbf{Observación sobre la idoneidad de cada función activación:}
+    }
+    Se probará la convergencia de las redes neuronales independientemente de la función de activación seleccionada. Cabe entonces la pregunta
+    ¿Existen funciones de activación más democráticas que otras? 
+    Se discutirá esta pregunta como hipótesis de optimización \ref{hypothesis:activation-function}.
+    }
+
     % Imágenes de la función indicadora 
     \begin{figure}[h]
         \centering
@@ -80,33 +66,86 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
         \label{fig:EjemplosFunciónActivación}
     \end{figure}
 
+    \begin{itemize}
+        \item \textbf{Funciones umbral} \ref{fig:función_umbral_lineal}:
+        Una función umbral, es una función booleana monótona $\psi_w: \{0,1\}^n \longleftarrow \{0,1\},$ 
+        donde para $w \in \R^n$, $t \in \R$ fijos se
+        satisface que 
+        \begin{equation}
+            \psi_w(x) = \left\{
+                \begin{array}{lcc}
+                    1, &   si  & w \cdot x \geq t \\
+                    0, &  si & w \cdot x < t\\
+                    \end{array}
+            \right.
+        \end{equation}
+        
+        \item \textbf{Funciones indicadoras} \ref{fig:función_indicadora}: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
+        \item \textbf{Función rampa} \ref{fig:funciones_rampa}: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
+    
+        \item \textbf{La función \textit{cosine squasher}} de Gallant and White 
+        \ref{fig:cosine_squasher} (1988) \cite{Gallant88thereexists}. 
+        \begin{equation*}
+    \psi(\lambda )= \left(1 + cos\left(\lambda + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
+     1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
+     +
+     1_{\{ \frac{\pi}{2} < \lambda \}}.
+    \end{equation*}
+    \end{itemize}
+
+   Notemos que así definidas las funciones de activación son medibles, ya que la imagen inversa de un abierto de $[0,1]$ siempre será un conjunto medible de  $\R$  (capítulo 7  página 77 \cite{nla.cat-vn1819421}).
+    
+    % Nota margen sobre que abstrae esta estructura de red neurnal
+    \marginpar{
+        \textcolor{dark_green}{    
+        \textbf{Idea tras la definición de $\pmc$.}
+        }
+    Nótese que de acorde a nuestra definición  
+    \textcolor{red}{TODO añadir referencia}
+    lo que se ha definido es la clase de las redes 
+    neuronales de una capa oculta y salida de una dimensión.
+    Donde cada sumando representa una neurona de la capa oculta.
+    }
+    %%% fin nota
+
     Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que existen
     otras posibles definiciones menos restrictivas con las que también se ha probado la convergencia universal,
     por ejemplo podrían aceptarse funciones de activación no continuas \cite{FUNAHASHI1989183},  
+    o como 
     en \cite{DBLP:journals/corr/SonodaM15} con funciones de activación no polinómicas no acotadas. 
     \textcolor{red}{A priori no debería de ser equivalentes entre ellas y será necesario un estudio más 
     profundo para establecer \textit{cuáles son las más democráticas}}
     %TODO añadir sección 
+
 \end{definicion}
 
 
 
-    Para cualquier natural $r$ mayor que cero  denotaremos por $A^r$ al conjunto de todas 
-    las \textbf{funciones afines} de $\R^r$ a $\R$. Es decir el conjunto de funciones de la forma 
-    $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$,  $b \in \R$ es un escalar y $\cdot$ representa el producto 
-    usual de escalares.  
+Para cualquier natural $r$ mayor que cero  denotaremos por $A^r$ al conjunto de todas 
+las \textbf{funciones afines} de $\R^r$ a $\R$. Es decir el conjunto de funciones de la forma 
+$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$,  $b \in \R$ es un escalar y $\cdot$ representa el producto 
+usual de escalares.  
     
-
-
 En este contexto, $x$ corresponde al vector entrada de la red neuronal, $w$ los pesos de la red
 que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo. 
+
+  % Nota margen sobre Idea intuitiva de la definición 
+  \marginpar{
+    \textcolor{dark_green}{    
+   \textbf{Motivación de la definición de $\pmcg$}}.
+    
+   En un principio será más fácil demostrar que con funciones de esta clase seremos capaz de aproximar cualquier función continua.
+   De esta manera este conjunto actuará de nexo de unión entre las funciones continuas y las redes neuronales facilitando las demostraciones. De ahora en adelante nos referiremos a este conjunto como al \textbf{de anillo de aproximación} (como curiosidad, el nombre proviene a que tiene estructura de anillo y que se utilizará para aproximar funciones continuas).
+   }
 
 Nótese que faltaría componer la función afín con una función de activación para obtener lo que hemos definido 
 como un perceptrón. 
 
-\begin{definicion} [Primera  aproximación a la formalización de una red neuronal]
+
+\begin{definicion} [Formalización de una red neuronal de una capa oculta y salida real]
     Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
     $r \in \N$ se define a la clase de funciones $\pmc$ como 
+
     \begin{equation}
         \begin{split}
         \pmc = 
@@ -121,12 +160,11 @@ como un perceptrón.
     \end{equation}
 \end{definicion}
 
-
-Obsérvese que cada elemento de la sumatoria representa un nodo o neurona y que la salida final 
-es una combinación lineal de los distintos nodos. Con esta misma idea 
+Con esta misma idea 
 se define la siguiente estructura que generaliza a la familia $\pmc.$  
    
-\begin{definicion} [Formalización de una red neuronal con una capa oculta]\label{def:articulo_abstracción_rrnn}
+
+\begin{definicion} [Forma normal generalizada]\label{def:articulo_abstracción_rrnn}
     
     \begin{equation} 
         \begin{split}
@@ -140,6 +178,7 @@ se define la siguiente estructura que generaliza a la familia $\pmc.$
     \end{split}
     \end{equation}  
 
+ 
     Notemos que $\pmc$ se recupera en el caso particular en el que $l_j = 1$ para todo $j$.
     Los elementos de $\pmcg$ son combinaciones lineales de productos finitos de neuronas. 
 
@@ -154,14 +193,34 @@ aproximar una función medible a partir de combinaciones lineales de \textit{rec
  
 \begin{figure}[h!]
     \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemploAproximaciónCurvasPorRectas.jpeg}
-    \caption{Ejemplo de curva aproximada por perceptrones multicapa \cite{alma991008058419704990}.}
+    \caption{Ejemplo de curva aproximada por un perceptrón multicapa \cite{alma991008058419704990}. El interior de la curva da lugar a la categoría $+$ y el exterior a otra, la $-$.}
     \label{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
 \end{figure}
+
+Se probará la convergencia de las redes neuronales independientemente de la función de activación seleccionada. Cabe entonces la pregunta
+¿Existen funciones de activación más democráticas que otras? 
+Se discutirá esta pregunta como hipótesis de optimización \ref{hypothesis:activation-function}.
 
 Por otra parte, la función de activación acota la imagen de una aplicación afín, esta limitación 
 es de total relevancia ya que permite una interpretación previamente convenida. 
 Decimos por ende que es la causante del \textit{aprendizaje}.     
 
+  %%% Nota margen sobre función medible 
+  \marginpar{
+    \textcolor{dark_green}{    
+        \textbf{
+            Aplicación práctica aprendizaje automático y 
+            relación con las funciones medible.
+        }
+    }
+    \textbf{A nivel práctico se tiene un conjunto de datos
+    para los cuales queremos extraer un patrón} que nos permita 
+    predecir la naturaleza de datos nuevos. Es por ello necesario
+    suponer que estos datos están regidos por alguna regla, la cual 
+    puede ser todo lo extraña posible pero que toma valores 
+    que pueden ser observables y cuantificables en la mayoría de los casos, estos comportamientos son formalizados
+     matemáticamente con \textbf{funciones medibles}.
+}
 Por si el comentario no ha resultado claro procedamos a dar un ejemplo:   
 Supongamos que nos hallamos frente a un problema de clasificación de dos clases y que la función de activación
 tomada es una función umbral que toma valores cero o uno. Define por tanto esta función una separación de clases. 
@@ -197,7 +256,18 @@ de una medida,  ¿Cómo se podría construir una sucesión de funciones que se a
 Quizás habría que buscar características más intrínsecas del problema en cuestión, 
 razonamientos topológicos.
 
-\begin{definicion} [Subconjunto denso ] 
+\begin{definicion} [Subconjunto denso]
+    % Nota margen de denso
+    \reversemarginpar 
+    \marginpar{
+        \textcolor{dark_green}{
+            \textbf{Idea intuitiva conjunto denso.}
+        }
+        Si $S$ es denso en $T$, 
+        se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
+        con la precisión que se desee}. 
+    }
+    \normalmarginpar
     Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
     en subconjunto $T$ si para todo $\epsilon$ positivo y cualquier $t \in T$ existe un $s \in S$ tal 
     que $\rho(s,t) \leq \epsilon$. 
@@ -206,8 +276,6 @@ razonamientos topológicos.
 Un ejemplo habitual sería en el espacio métrico $(\R, |\cdot|)$ con $|\cdot|$ el valor absoluto, el subconjunto 
 $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$. 
 
-A nivel intuitivo sería decir que los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
-con la precisión que se desee. 
 
 \begin{definicion} 
     Un subconjunto $S$ de $\fC$ se dice que es \textbf{uniformemente denso para compactos} en  $\fC$
@@ -217,6 +285,25 @@ con la precisión que se desee.
     \begin{equation}
         \rho _ K (f,g) = \sup_{x \in K} |f(x) - g(x)|.
     \end{equation}
+
+    % Nota intuitiva de compacto
+    \marginpar{
+        \textcolor{dark_green}{
+          \textbf{Noción intuitiva de compacto}
+        }
+        Al trabajar con números reales, un espacio es compacto si es cerrado y acotado, lo que a nivel práctico significa que los
+        \textbf{datos de entrada se encuentran dentro de un rango concreto}. 
+      }
+
+      % Nota intuitiva de uniformemente denso
+      \marginpar{
+        \textcolor{dark_green}{
+          \textbf{Noción intuitiva de uniformemente denso para compactos }
+        }
+          lo que indica es que \textit{controlamos} \textbf{cuánto de cerca
+          están dos funciones sea cual sea cualquier punto del compacto en que evaluemos} es decir, podríamos afirmar que para una red neuronal que tome valores por ejemplo en $[0,1]^r$, se puede saber que su error es menor que $\epsilon \in\R^+$ independientemente de la entrada.
+      }
+      
 \end{definicion}
 
 \begin{definicion}

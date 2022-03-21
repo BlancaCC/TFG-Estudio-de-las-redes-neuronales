@@ -91,6 +91,35 @@ No es difícil pensar que su versión generalizada sea:
     ,$\rrnng$ por $\rrnngmc$, 
     los espacios de funciones continuas y medibles por $\fCC$ y $\fMM$ respectivamente.
 \end{corolario}
+
+% Nota intuitiva sobre el Corolario 2.6
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea clave corolario
+        \ref{corolario:2_6}}
+    }
+}
+\marginpar{
+   En esencia, todos los resultados probados hasta ahora para redes 
+   neuronales con salida real de dimensión uno son válidos para 
+   cualquier tamaño de salida, es decir, \textbf{lo que a nosotros 
+   nos interesa podemos aproximar cualquier función medible que 
+   vaya entre espacios de dimensión finita}. 
+}
+
+% Nota intuitiva sobre la demostración del Corolario 2.6
+\marginpar{\raggedright
+    \textcolor{dark_green}{
+        \textbf{Idea clave demostración corolario
+        \ref{corolario:2_6}}
+    }
+}
+\marginpar{
+ La demostración del corolario es totalmente constructiva:
+si se desea una red neuronal de salida $r\in \N$, 
+se construyen de manera independiente $r$ redes neuronales de salida de una dimensión
+(una para cada salida buscada) y las concatenamos haciendo valer cero las conexiones entre nodos que no pertenecieran a las redes de partida.
+}
 \begin{proof}
     Observemos que todos los teoremas y lemas mencionados basan su tesis
     en la existencia de una red neuronal es decir, que si llamamos según 
@@ -98,6 +127,27 @@ No es difícil pensar que su versión generalizada sea:
     encontrar un $f \in \mathcal{F}^{r,s}$ que cumplan las respectivas tesis para salidas múltiples. 
 
     La prueba se construirá por inducción sobre el número de salidas $s$. 
+
+    % Nota nueva hipótesis de optimización del Corolario 2.6
+\reversemarginpar
+\setlength{\marginparwidth}{\smallMarginSize}
+
+\marginpar{\raggedright
+    \textcolor{blue}{
+        \textbf{Nueva hipótesis de optimización}
+    }
+}
+\marginpar{
+    La demostración del corolario nos da una \textbf{técnica constructiva}
+    de obtener redes neuronales de varias salidas,
+     que puede ser de valía para aplicarla \textbf{como heurística 
+     para inicializar los pesos de la red neuronal} como 
+     ya apuntábamos en las notas del 
+   teorema 
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}.
+}
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
 
     El caso base $s=1$ viene dado por los respectivos teoremas y lemas ya probados.
     Supuesto cierto para $s = n$ veamos que se cumple para $s=n+1$: 
@@ -158,5 +208,4 @@ a partir de un tamaño de entrenamiento $E$ y de salida $r$,
 con una red neuronal de $E \times r$ capas ocultas será suficiente y para este caso la reflexión expuesta en la sección \ref{subsection:reflexión_sobre_número_de_neuronas} es idéntica. 
 
 
-%% Hasta aquí se aplican los cambios de Javier y JJ  
 
