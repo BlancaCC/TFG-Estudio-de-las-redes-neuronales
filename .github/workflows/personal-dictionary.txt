@@ -44,6 +44,7 @@ Tietze
 UMVUE
 Wortman
 approximators
+aproximador
 aproximadores
 autres
 backpropagation

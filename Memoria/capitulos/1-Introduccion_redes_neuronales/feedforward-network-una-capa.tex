@@ -1,0 +1,190 @@
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Construcción redes neuronales  una capa 
+%*******************************************************
+
+\section{Definición de las redes neuronales \textit{Feedforward Networks} 
+de una capa oculta} \label{sec:redes-neuronales-intro-una-capa}
+
+% Nota margen aclarativa de una función medible
+\reversemarginpar
+\setlength{\marginparwidth}{\smallMarginSize}
+\marginpar{
+    \textcolor{dark_green}{    
+        \textbf{Qué son las funciones medibles 
+        y porqué las usamos en nuestra definición.}
+    }
+    {\small
+        A nivel intuitivo una función medible es aquella,
+        que por muy extraña que sea  
+        su imagen está acotada casi siempre, lo que a nivel práctico 
+        significa que \textit{podemos observar y cuantificar sus valores.}
+    
+        Con esto pretendemos que nuestra definición $\Gamma$ 
+        sea lo menos restrictiva posible.
+    }
+}
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
+
+
+A lo largo de esta sección  explicaremos qué es una red neuronal, cómo está construida y en qué consiste el \textit{aprendizaje} de la misma, concretamente
+construiremos el tipo particular \textit{Feedforward Networks}, al cual nos referiremos de ahora
+en adelante como red neuronal.
+
+De acorde con nuestra filosofía de trabajo expuesta en la introducción del capítulo \ref{motivo-una-capa} partiremos de un modelo de una sola capa oculta. 
+
+% Imagen grafo red neuronal  una capa oculta muy simple y en blanco y negro 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.85\textwidth]{1-Introduccion_redes_neuronales/Red-Neuronal-una-capa-simple.png}
+    \caption{\textit{Grafo} de una red neuronal de una capa oculta}
+    \label{img:grafo-red-neuronal-una-capa-oculta}
+\end{figure}
+
+% Nota margen aclarativa de la fórmula
+\marginpar{
+    \textcolor{dark_green}{    
+        \textbf{Interpretación fórmula}
+    }
+    {
+        Observemos que $n_k$ es el número de neuronas de la capa oculta para la salida $k$, el número total de neuronas en
+        la capa oculta es la sumatoria de cada salida.
+    }
+}
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
+
+\begin{definicion}[Redes neuronales de una capa oculta]
+    Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
+    \begin{align}
+        \mathcal{H}(X,Y) 
+        =
+        \{
+            h : X \longrightarrow Y 
+            /& \quad 
+            h_k(x) = 
+            \sum_{i=1}^{n_k} \beta_{i k} \gamma_{i k}( A_{i k}(x)), \\
+            & \text{donde  $h_k$  es la proyección k-ésima de $h$ con 
+            $k \in \{1, \ldots, s\}$}, \\
+            & n_k \in \N,\gamma_{i k} \in \Gamma , \beta_{i k} \in \R
+             \text{ y }A_{i k} \text{ una aplicación afín de $\R^d$ a $\R$}           
+        \}.
+    \end{align}
+\end{definicion}
+
+Es habitual representar una red neuronal de forma matricial, veremos que tal forma es equivalente a la definición dada. 
+
+Consideramos la aplicación inclusión 
+$i: \R^r \longrightarrow \R^{r+1}$ dada por 
+ $i((x_1, \ldots, x_d)) = (1,x_1, \ldots, x_d).$
+Para coeficientes $w_i \in \R$ toda función afín es de la forma 
+$A_{i}(x)= \sum_{j=1}^d( w_{j i} x_j) + w_{0i}$, 
+tomando $W_i = (w_{0 i}, w_{1 i}, \ldots, w_{r i}) \in \R^{r+1}$ tenemos que 
+$A_i(x) = W_i \cdot i(x)$ como queríamos probar. 
+
+Además también se suele mostrar de manera pedagógica con un grafo como el mostrado en la 
+figura \ref{img:grafo-red-neuronal-una-capa-oculta}.
+
+\textcolor{red}{TODO Comentar cómo se han relajado las hipótesis en nuestra definición con respecto a otras.}
+
+\subsection*{Componentes de la red neuronal}  
+
+A la vista de la definición dada notemos que cada elemento de 
+$\mathcal{H}(X,Y)$ viene determinado por los coeficientes 
+de las distintas $\beta$ y  $w$s de la función afín. Como veremos más adelante estos son los valores que \textit{aprende una red neuronal}.
+
+\subsection*{Diferencia con otras definiciones}  
+
+En otros textos como en el capítulo cinco, páginas 227-256 del libro \cite{BishopPaterRecognition} y las notas online sobre redes neuronales de \cite{MostafaLearningFromData} se presentan las redes neuronales de una capa como 
+\begin{align}
+    y_k(x,w) &= \theta_k 
+    \left( 
+        \sum^M_{j=1} w_{ji}^{(2)}
+        \sigma_j 
+        \left(
+            \sum_{i=1}^D w_{ji}^{(1)} x_i + w_{j0}^{(1)}
+        \right)
+        + w_{k0}^{(2)}
+    \right) 
+    \\
+    & = 
+    \theta_k 
+    \left( 
+        \sum^M_{j=1} A^{(n_k)}_{k}
+        \left(
+            \sigma 
+            \left(
+                A^{r}_{j k}
+                \left(
+                    x
+                \right)
+            \right)
+        \right)
+    \right)
+    \text{ para cada  } k \in \{1, \ldots, K \}.
+\end{align}
+
+Donde $\theta_k$ representa una función de \textit{clasificación}, 
+$\sigma_j$ lo que se suele llamar \textit{función de activación} y a la que además se le exige que sea diferenciable.
+
+Las diferencias con nuestra definición son las siguientes 
+\begin{itemize}
+    \item \textbf{Desaparece la función de clasificación $\theta$}. El motivo es que es un artificio teóricamente innecesario de acorde al teorema de convergencia universal \ref{teo:MFNAUA}.
+    \item \textbf{Se elimina un parámetro} de la transformación afín de la última capa, puesto que no es necesario para la convergencia de nuevo por \ref{teo:MFNAUA} lo hemos eliminado.
+    \item Nuestras funciones de activación son funciones medibles en vez de diferenciables ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción.
+\end{itemize}
+
+\subsection*{Las funciones de activación $\Gamma$ son la clave del aprendizaje}  
+
+Notemos que de no ser por las funciones de activación se estaría haciendo transformaciones lineales de los datos, al aplicar un transformación más \textit{fuerte} se es capaz \textit{de diferenciar puntos}.
+
+Vamos a mostrar un ejemplo de la importancia de la función de activación 
+
+\textcolor{red}{TODO : Añadir gráficos cuando esté implementada una red neuronal}
+
+% Ejemplo de cómo se aproxima gracias  a la forma de la función de activación
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth]{1-Introduccion_redes_neuronales/idea-como-aproxima-redes-neuronales.jpeg}
+    \caption{Cómo actúa en la aproximación una función de activación}
+    \label{img:idea-como-aproxima-redes-neuronales}
+   \end{figure}
+
+La idea intuitiva es que para una capa oculta con una neurona, 
+lo que se hace es \textit{colocar} por escalado y simetrías la imagen de la función de activación. 
+
+% Ejemplo trivial de como la forma de la función de activación influye en aproximar mejor 
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{1-Introduccion_redes_neuronales/Idea-forma-función-Activación.jpg}
+    \caption{Cómo afecta la forma de la función de activación}
+    \label{img:como afecta la forma de la función de aproximación}
+   \end{figure}
+
+% IDEA
+\textcolor{dark_green}{Nota idea Blanca: Multiplicar por un coeficiente complejo sería aplicar un giro,
+ lo que a priori mejoraría la convergencia
+ ¿Qué pasaría se cambiáramos el cuerpo?}
+
+Ante esta idea habría que plantearse si: 
+
+\begin{enumerate}
+    \item Formalizar si esto mejoraría.
+    \item A nivel de implementar Julia tiene números complejos ¿cuánto supondría de coste computacional? ¿merecería la pena?
+    \item ¿Cómo habría que actualizar los pesos?
+\end{enumerate}
+
+% IDEA
+\textcolor{dark_green}{Nota idea Blanca: Vista esta idea sería muy interesante plantearse a partir de los datos cómo deberían de ser las funciones de activación. Es decir, que no se fijen a priori, sino que sean de los datos donde provenga su forma.}
+
+Para poder utilizarse la idea que acaba de plantearse debería de plantearse: 
+\begin{enumerate}
+    \item Formalizar beneficio teórico.
+    \item Balanza costo y mejora.
+    \item Una forma de mejorar que acepte esas funciones (no necesariamente \textit{backpropagation}).
+\end{enumerate}
+
+% IDEA
+\textcolor{dark_green}{Nota idea Blanca: Ante esto mi intuición me dice que que la función de activación sea constante por algún extremo y que no fuera constante en algún intervalo serían las únicas hipótesis para que tal función de activación sirviera para construir redes neuronales que funcionara como aproximador universal}
+
+
