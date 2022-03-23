@@ -68,11 +68,13 @@ serán susceptibles de contribuir a la optimización buscada son
      donde  $\mathcal{Y}$ es el conjunto de posibles valores asociados. 
     \item Un conjunto de datos de entrenamiento $\mathcal D$, donde los elementos son pares $(x,y)$ con $x \in  \mathcal X$ y 
     $y \in \mathcal{Y}$ y que representa una observación $f(x)=y.$
-    \item Un algoritmo de aprendizaje que consiste en seleccionar una fórmula $g: \mathcal X \longrightarrow \mathcal{Y}$ que aproxime $f$. La fórmula $g$ pertenece 
-    a un conjunto $\mathcal H$ de hipótesis. 
+    \item Un algoritmo de aprendizaje es aquel que dado un espacio de búsqueda o de hipótesis posibles
+    $\mathcal{H}$ con elementos de la forma $h: \longrightarrow Y$ con 
+    $X \subseteq \mathcal X$ y $Y \subseteq \mathcal Y$ selecciona un candidato que aproxime $f$.
 \end{itemize}
 
-En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neuronales y $g$ la red neuronal seleccionada. 
+En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neuronales con un cierto 
+número de neuronas y capas ocultas prefijadas. 
 
 
 % Tipos de aprendizaje 
