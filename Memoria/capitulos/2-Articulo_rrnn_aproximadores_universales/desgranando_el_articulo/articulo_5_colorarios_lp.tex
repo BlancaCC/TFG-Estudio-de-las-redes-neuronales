@@ -29,7 +29,7 @@ y que incluso no están acotadas.
  Ya que la integral no varía su valor si se aplican cambios puntuales. 
  }
 \begin{definicion}[Espacios Lp]
-    Se llama espacio $L_p(\R^r, \mu)$ o simplemente $L_p$ al conjunto 
+    Se llama espacio $L_p(\R^d, \mu)$ o simplemente $L_p$ al conjunto 
     de funciones $f \in \fM$ tales que 
     \begin{equation}
         \int |f(x)|^p d\mu < \infty. 
@@ -51,10 +51,10 @@ y la distancia asociada al espacio $L_p$ se define como
 
 % Corolario 2.2
 \begin{corolario}\label{corolario:2_2_rrnn}
-    Si existe un subconjunto compacto $K$ en $\R^r$ de medida
-    $\mu(K) =1$ entonces $\rrnn$ es $\dlp$-denso en $L_p(\R^r, \mu)$
+    Si existe un subconjunto compacto $K$ en $\R^d$ de medida
+    $\mu(K) =1$ entonces $\rrnn$ es $\dlp$-denso en $L_p(\R^d, \mu)$
     para cualquier $p \in [1,\infty)$, independientemente de 
-    $\psi$, $r$ o $\mu$.
+    $\psi$, $d$ o $\mu$.
 \end{corolario}
 
 % Nota intuitiva sobre el corolario 2.2
@@ -133,11 +133,11 @@ Probando con ello lo buscado.
 
 % Corolario 2.3
 \begin{corolario}\label{corolario:2_3_medida_probabilidad}
-    Si $\mu$ es una medida de probabilidad en $[0,1]^r$
+    Si $\mu$ es una medida de probabilidad en $[0,1]^d$
     entonces 
     $\rrnn$ es $\dlp$-denso en 
-    $L_p([0,1]^r, \mu)$ para todo $p \in [1, \infty)$,
-    independientemente de $\psi, r, \mu$. 
+    $L_p([0,1]^d, \mu)$ para todo $p \in [1, \infty)$,
+    independientemente de $\psi, d, \mu$. 
 \end{corolario}
 
 % Nota intuitiva sobre el corolario 2.3
@@ -150,12 +150,12 @@ Probando con ello lo buscado.
 \marginpar{
     A diferencia que con el corolario \ref{corolario:2_2_rrnn},
 aquí se afirma que las redes neuronales son capaces de aproximar 
-cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^r$, es decir \textbf{se está concretando los valores de entrada que pueden tomar las funciones}.
+cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^d$, es decir \textbf{se está concretando los valores de entrada que pueden tomar las funciones}.
 }
 \begin{proof}
     Es consecuencia directa del corolario previo \ref{corolario:2_2_rrnn}
-    donde para este caso particular $K = [0,1]^r$ un compacto
-    de $\R^r$
+    donde para este caso particular $K = [0,1]^d$ un compacto
+    de $\R^d$
     que cumple que $\mu(K) = 1.$
 \end{proof}
 
@@ -231,46 +231,84 @@ un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuro
 
 \begin{definicion}[Función Booleana]
     Decimos que una función es Booleana si su dominio es 
-    $\{0,1\}^r$  para algún $r \in \N \setminus \{0\}$
+    $\{0,1\}^d$  para algún $d \in \N \setminus \{0\}$
     y su codominio es $\{0,1\}$. Es decir,
     \begin{equation}
-      f:\{0,1\}^r \longrightarrow \{0,1\}.
+      f:\{0,1\}^d \longrightarrow \{0,1\}.
     \end{equation}
 \end{definicion}
 
 Ejemplos conocidos son la función 
-$or: \{0,1\}^r \longrightarrow \{0,1\}$  que vale 
+$or: \{0,1\}^d \longrightarrow \{0,1\}$  que vale 
 uno si alguno de su entrada es uno y la función 
-$and: \{0,1\}^r \longrightarrow \{0,1\}$
-que se define como $and(x_1, \ldots, x_r) = \prod_{i=1}^r x_i.$
+$and: \{0,1\}^d \longrightarrow \{0,1\}$
+que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
 
 % Corolario 2.5  
 \begin{corolario}\label{corolario:2_5_función_Booleana} 
     Para cada función Booleana 
-    $g: \{0,1\}^r \longrightarrow \{0,1\}$
+    $g: \{0,1\}^d \longrightarrow \{0,1\}$
      y 
     cada $\epsilon >0$ existe una red neuronal
     $f \in \rrnn$ tal que 
     \begin{equation}
-        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
         < \epsilon.
     \end{equation}
 \end{corolario}
+
+%Nota aclarativa sobre la relevancia del corolario
+\marginpar{
+    \textcolor{dark_green}{    
+        \textbf{
+            Relevancia práctica del corolario 
+            \ref{corolario:2_5_función_Booleana}
+        }
+    }
+    { \small
+    Este resultado nos permite \textbf{aproximar funciones que actúen como clasificadores discretos}. Por ejemplo sea $g$ como una función que dada una imagen $x$ indica si hay un perro haciendo valer $g(x)=1$ y en caso contrario $g(x)=0$.
+    }   
+}
+
+%Nota aclarativa sobre la implementación del corolario
+\marginpar{
+    \textcolor{red}{    
+        \textbf{
+            Observación sobre la implementación
+            del corolario
+            \ref{corolario:2_5_función_Booleana}
+        }
+    }
+    {\small
+    El resultado nos   indica que podemos obtener una red neuronal $h$ que aproxime tal clasificador, 
+    pero \textbf{tal red neuronal no necesariamente tomará valores discretos}, es decir,
+     pudiera darse el caso que 
+     $h( \{ x : g(x)=0 \})  \subset [-0.2,0.3]$ y que 
+     $h(\{ x : g(x)=1 \})  \subset [0.9,1.2]$, 
+     por lo que se pone de manifiesto en este resultado, 
+     que en caso de requerirse de una salida completamente
+     discreta debería de componerse con otra función $\theta$ 
+     tal que 
+     $\theta \circ h(\{ x : g(x)=0 \})=0$ y 
+     $\theta \circ h(\{ x : g(x)=1 \})=1$.
+    }
+}
+
 \begin{proof}
-    Se define la función $\mu : \R^r \longrightarrow [0,1]$ de forma que 
+    Se define la función $\mu : \R^d \longrightarrow [0,1]$ de forma que 
     \begin{equation}
         \mu(x) = 
       \left \{
     \begin{aligned}
-      \frac{1}{2^r} \quad &\text{ si } x \in \{0,1\}^r \\
-      0 \quad & \text{ si } x \notin \{0,1\}^r 
+      \frac{1}{2^d} \quad &\text{ si } x \in \{0,1\}^d \\
+      0 \quad & \text{ si } x \notin \{0,1\}^d 
     \end{aligned}
   \right .
     \end{equation}
 
     Se tiene que $\mu$ es una medida ya que cumple que 
     \begin{enumerate}
-        \item Hipótesis de acotación: $0 \leq \mu(A) \leq 1$ para $A \in \mathcal{P}(\R^r).$
+        \item Hipótesis de acotación: $0 \leq \mu(A) \leq 1$ para $A \in \mathcal{P}(\R^d).$
         \item La probabilidad del vacío es nula y la del  total es la unidad. 
         \item La probabilidad de la unión es la suma de la probabilidades. 
         \begin{equation}
@@ -279,11 +317,11 @@ que se define como $and(x_1, \ldots, x_r) = \prod_{i=1}^r x_i.$
             \right)
             = \sum_{i=1}^n P(A_i).
             \quad
-            \forall A_i \in  \mathcal{P}(\R^r).
+            \forall A_i \in  \mathcal{P}(\R^d).
         \end{equation}
     \end{enumerate}  
 
-    Como la cardinalidad de $\{0,1\}^r$ es $2^r$
+    Como la cardinalidad de $\{0,1\}^d$ es $2^d$
     podemos aplicar el corolario \ref{corolario:2_4_conjunto_finito}
     y entonces sabemos que  existe $f\in \rrnn$ tal que 
     \begin{equation}
@@ -296,11 +334,12 @@ que se define como $and(x_1, \ldots, x_r) = \prod_{i=1}^r x_i.$
     \end{equation} 
     es decir que 
     \begin{equation}
-        \max_{x \in \{ 0,1\}^r} |g(x) - f(x)|
+        \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
         < \epsilon
     \end{equation}
     como queríamos probar. 
 \end{proof}
+
 
 % Lemas propios  previos al teorema 2.5
 \begin{lema} \label{lema:propio_1_antes_teorema_2_5}
@@ -347,9 +386,9 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 
 % Otro lema propio antes de probar el teorema 2.5
 \begin{lema}\label{lema:previo_propio_2_al_teorema_2_5}
-    Dado un conjunto finito de vectores $\Lambda \subset \R^r$ con 
-    $r$ natural positivo. 
-    Existe un vector $p \in \R^r$ que satisface que 
+    Dado un conjunto finito de vectores $\Lambda \subset \R^d$ con 
+    $d$ natural positivo. 
+    Existe un vector $p \in \R^d$ que satisface que 
     para cualesquiera $x,y \in \Lambda$ diferentes 
     \begin{equation}
         p \cdot(x-y) \neq 0.
@@ -369,7 +408,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \begin{proof}
     Si $n$ es el cardinal de $\Lambda$,
     consideramos el conjunto $U$ definido como la unión de 
-    $n (n-1)$ hiperplanos de $\R^r$
+    $n (n-1)$ hiperplanos de $\R^d$
 
     \begin{equation}
         U = \bigcup_{ 
@@ -379,12 +418,12 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
             }
         }
         \{ 
-            p \in \R^r: p \cdot (x-y) = 0
+            p \in \R^d: p \cdot (x-y) = 0
         \}.
     \end{equation}
 
-    Puesto que $\R^r$ no puede ser expresado como unión finita de hiperplanos,
-    $U \subsetneq \R^r$ y por tanto existirá $p \in \R^r \setminus U$ tal que 
+    Puesto que $\R^d$ no puede ser expresado como unión finita de hiperplanos,
+    $U \subsetneq \R^d$ y por tanto existirá $p \in \R^d \setminus U$ tal que 
     \begin{equation}
         p \cdot(x-y) \neq 0 
         \text{ para cualesquiera }
@@ -392,21 +431,6 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     \end{equation}
     como queríamos probar. 
 \end{proof}
-
-% Teorema 2.5  
-\begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
-    \label{teorema:2_5_entrenamiento_redes_neuronales}
-    Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
-    $\R^r$ y sea 
-    $g: \R^r \longrightarrow \R$ una función arbitraria. 
-    Si $\psi$ alcanza el cero y el uno, 
-    entonces
-    existe una red neuronal $f \in \rrnn$ con $n$
-    neuronas ocultas tal que 
-    \begin{equation}
-        f(x_i) = g(x_i) \text{ para todo } i \in \{1, \ldots, n \}.
-    \end{equation}
-\end{teorema}
 
 % Nota intuitiva sobre la demostración del Teorema 2.5
 \marginpar{\raggedright
@@ -416,15 +440,31 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     }
 }
 \marginpar{
+    {\small
   Es interesante reparar en que la demostración se basa
   en añadir una neurona por cada punto que queramos que tome
   un valor concreto, esa neurona se activará (es decir, no será nula) cuando la entrada $x$ \textit{sea mayor} que el valor que la activa $x_i$ y vale la diferencia con el valor anterior $x_{i-1}$, es decir $g(x_{i}) - g(x_{i-1})$, como el nodo $x_{i-1}$
   también se activará por ser menor menor, el término $g(x_{i-1})$ se suma a la salida de la red y así como una serie telescópica al final solo resultará el valor $g(x_i)$.
+    }
 }
+% Teorema 2.5  
+\begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
+    \label{teorema:2_5_entrenamiento_redes_neuronales}
+    Sea $ \Lambda = \{x_1, \ldots, x_n\}$ un conjunto de puntos distintos de 
+    $\R^d$ y sea 
+    $g: \R^d \longrightarrow \R$ una función arbitraria. 
+    Si $\psi$ alcanza el cero y el uno, 
+    entonces
+    existe una red neuronal $f \in \rrnn$ con $n$
+    neuronas ocultas tal que 
+    \begin{equation}
+        f(x_i) = g(x_i) \text{ para todo } i \in \{1, \ldots, n \}.
+    \end{equation}
+\end{teorema}
 
 \begin{proof}
 Con el fin de facilitar la comprensión dividiremos la demostración en dos casos, 
-primero uno particular, cuando $r=1$ y después el caso general.
+primero uno particular, cuando $d=1$ y después el caso general.
 
 \textbf{Caso primero}
 
@@ -531,12 +571,12 @@ Usando que $0 \leq \psi(A_n(x_i)) < \psi(A_n(-M)) = 0$ y la hipótesis de inducc
 \end{itemize}
 
 Acabamos de probar por inducción  que
-$f_n(x) = g(x)$ para cualquier $x \in \Lambda$,lo que termina la demostración.
+$f_n(x) = g(x)$ para cualquier $x \in \Lambda$, lo que termina la demostración.
 
 \textbf{Caso segundo}  
 
-Se tiene para este caso que $\Lambda \subset \R^r$ con $r >1$. 
-Seleccionamos $p \in \R^r$ cumpliendo que 
+Se tiene para este caso que $\Lambda \subset \R^d$ con $d >1$. 
+Seleccionamos $p \in \R^d$ cumpliendo que 
 para cualesquiera $x,y \in \Lambda$ distintos 
 $p(x-y) \neq 0$ (es posible de 
 encontrar por el lema \ref{lema:previo_propio_2_al_teorema_2_5}).
@@ -565,7 +605,7 @@ Se define $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que
     \quad \text{y} \quad 
      B_{k}(p \cdot x_k)= M.
 \end{equation}
-Podemos definir entonces $A \in A(\R^r)$ por 
+Podemos definir entonces $A \in \afines$ por 
 $A_k(x)=B_k(p \cdot x).$
 Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
 La red neuronal $f_k$ se calcula como 

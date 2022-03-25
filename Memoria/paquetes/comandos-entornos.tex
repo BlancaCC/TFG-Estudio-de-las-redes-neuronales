@@ -17,20 +17,21 @@
 \newcommand{\Hu}{\mathcal{H}(X,Y)}  % Espacio de las redes neuronales
 
 % Notas en el margen
-\usepackage{sidenotes} 
-  \newcommand{\pmc}{\sum ^r (G)}  % Perceptrón multicapa 
-  \newcommand{\pmcg}{ \sum \prod^r (G)} % Perceptrón multicapa generalizado
-  \newcommand{\fC}{C(\R^r)} %conjunto de funciones continuas en R^r -> R
-  \newcommand{\fM}{M(\R^r)} % Perceptrón generalizado
-  \newcommand{\rrnn}{ \sum^r (\psi)} % Red neuronal  generalizado
-  \newcommand{\rrnng}{ \sum \prod^r (\psi)} % Red neuronal  generalizado
+\usepackage{sidenotes}
+  \newcommand{\afines}{\mathcal{A}(\R^d)}
+  \newcommand{\pmc}{\mathcal{H}_G(\R^d,\R)}%{\sum ^r (G)}  % Red neurona una capa una salida
+  \newcommand{\pmcg}{ \sum \prod^d (G)} % Generalización red neuronal
+  \newcommand{\fC}{\mathcal{C}(\R^d)} %conjunto de funciones continuas en R^r -> R
+  \newcommand{\fM}{\mathcal{M}(\R^d)} % Conjunto funiones medibles
+  \newcommand{\rrnn}{ \mathcal{H}(\R^d,\R)} % Red neuronal  sin subíndice
+  \newcommand{\rrnng}{ \sum \prod^d (\psi)} % Red neuronal  generalizado
   \newcommand{\dist}{\rho_{\mu}}     % Distancia de una medida
   \newcommand{\dlp}{\rho_{p}} % Distancia de los espacios Lp
   % Para multicapas
-  \newcommand{\fCC}{C(\R^r ,\R^s)}
-  \newcommand{\fMM}{M(\R^r , \R^s)}
-  \newcommand{\rrnnmc}{ \sum^{r,s} (\psi)} 
-  \newcommand{\rrnngmc}{ \sum \prod^{r,s} (\psi)} 
+  \newcommand{\fCC}{\mathcal{C}(\R^d ,\R^s)}
+  \newcommand{\fMM}{\mathcal{M}(\R^d , \R^s)}
+  \newcommand{\rrnnmc}{ \mathcal{H}(\R^d,\R^s)} 
+  \newcommand{\rrnngmc}{ \sum \prod^{d,s} (\psi)} 
   %%%%%%%%% Mis comandos %%%%%%%%%5
 \usepackage{sidenotes} % Notas en el margen
 \newcommand{\margenimagen}{

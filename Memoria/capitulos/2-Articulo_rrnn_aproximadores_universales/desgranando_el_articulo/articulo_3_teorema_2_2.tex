@@ -7,8 +7,8 @@
 
 % Teorema 2.2 
 \begin{teorema}\label{teo:2_2_denso_función_continua}
-    Para cualquier función continua no constante $G$, $r \in \N$ y
-    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
+    Para cualquier función continua no constante $G$, $d \in \N$ y
+    medida de probabilidad $\mu$ en $(\R^d, B^d)$, 
     se tiene que $\pmcg$ es $\dist$-denso en $\fM$. 
 \end{teorema} 
   % Nota idea intuitiva  teorema 2.2
@@ -38,7 +38,7 @@
     
     Por otra parte sabemos por el teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}, 
     que $\pmcg$ es uniformemente denso por compactos en $\fC$, luego en cualquier compacto 
-    $K \subset \R^r$ existirá una sucesión (con $n$ fijo) $\{g(n)_m \} _{m \in \N}$ convergente 
+    $K \subset \R^d$ existirá una sucesión (con $n$ fijo) $\{g(n)_m \} _{m \in \N}$ convergente 
     a $f_n$, el término n-ésimo de la sucesión convergente a $g$. 
 
     Así pues, denotando como $h_n$ al término $g(n)_n$, obtenemos una sucesión de funciones 
@@ -65,7 +65,7 @@
 % Lema A.2 
 \begin{lema}\label{lema:a_2_paso_previo_denso}
     Sea F una función de activación continua y $\psi$ una \textbf{función de activación} arbitraria. 
-    Para cualquier $\epsilon > 0$ existe un elemento $H_{\epsilon}$ de $\sum^1(\psi)$ cumpliendo que
+    Para cualquier $\epsilon > 0$ existe un elemento $H_{\epsilon}$ de $\mathcal{H}_\psi{(\R, \R)}$ cumpliendo que
     \begin{equation}
         \sup_{\lambda \in \R} | F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon.
     \end{equation}
@@ -74,7 +74,7 @@
     Procedamos a realizar la siguiente prueba constructiva. 
     Tomamos fijo pero arbitrario un $\epsilon > 0,$ que sin pérdida de generalidad
     supondremos menor que uno.
-    Para que $H_\epsilon$ pertenezca a $\sum ^1 (\psi)$ deberá de ser de la 
+    Para que $H_\epsilon$ pertenezca a $\mathcal{H}_\psi{(\R, \R)}$ deberá de ser de la 
     forma $\sum^{q-1}_{j=1} b_j \psi( A_j(\lambda))$
     debemos encontrar por ende el número de sumatorias, $q-1$; esa misma cantidad de constantes reales $b_j$ y 
     funciones afines $A_j$. Para ello tomamos como $q$ cualquier número natural que cumpla que 
@@ -113,7 +113,7 @@
     $\lim_{\lambda \longrightarrow  \infty} F(\lambda) = 1$. 
 
     Procedemos ahora a definir las distintas aplicaciones afines. 
-    Para cualesquiera reales $s,r$ que cumplan $r < s$ sea $A_{rs}\in A^1$ la única aplicación afín que satisface que 
+    Para cualesquiera reales $s,r$ que cumplan $r < s$ sea $A_{rs}\in \mathcal{A}(\R)$ la única aplicación afín que satisface que 
     
     \begin{equation}
         A_{rs}(r) = -M \text{ y }  A_{rs}(s) = M. 
@@ -250,8 +250,8 @@
 
 % Teorema 2.3
 \begin{teorema}\label{teorema:2_3_uniformemente_denso_compactos}
-    Para cualquier función de activación $\psi$, $r$ natural positivo y
-    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
+    Para cualquier función de activación $\psi$, $d$ natural positivo y
+    medida de probabilidad $\mu$ en $(\R^d, B^d)$, 
     se tiene que $\rrnng$ es uniformemente denso en compactos
     en $\fC$ y denso en $\fM$ para la distancia $\dist$. 
 \end{teorema}
@@ -275,7 +275,7 @@ de convergencia a funciones.
 \begin{proof}
     En virtud del lema \ref{lema:2_2_convergencia_uniforme_en_compactos} y del 
     teorema \ref{teo:2_2_denso_función_continua} basta con probar que 
-    $\rrnng$ es uniformemente denso en compactos de $\sum \prod^r(F)$, 
+    $\rrnng$ es uniformemente denso en compactos de $\sum \prod^d(F)$, 
     donde $F$ es una función de activación continua 
     \footnote{el razonamiento 
     por el que con esta hipótesis es suficiente es idéntico al realizado para la 
@@ -308,7 +308,7 @@ de convergencia a funciones.
     $a_k = F(A_k(x))$ y $b_k = H_\delta(A_k(x))$
     obtenemos
     \begin{equation}\label{eq:teorema2_3__3}
-        \sup_{x \in \R^r} 
+        \sup_{x \in \R^d} 
         \left| 
             \prod ^l_{k=1} F(A_k(x))
             -
@@ -319,7 +319,7 @@ de convergencia a funciones.
     \end{equation} 
     
     Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A_t(\cdot))$ 
-    y porque $A_t(A_k(\cdot)) \in A^r$ se tiene por la desigualdad \refeq{eq:teorema2_3__3} que 
+    y porque $A_t(A_k(\cdot)) \in \afines$ se tiene por la desigualdad \refeq{eq:teorema2_3__3} que 
     $\prod ^l_{k=1} H_\delta(A_k(\cdot)) \in \rrnng.$
 
     Por lo tanto $\prod ^l_{k=1} F(A_k(\cdot))$ puede ser 
@@ -330,7 +330,7 @@ de convergencia a funciones.
 \begin{lema}\label{lema:A_3_función_activación_continua_con_arbitaria}
     Para cada función de activación $\psi$, cada $\epsilon >0$
     y cada $M>0$ existe una función 
-    $\cos_{M,\epsilon} \in \sum^1(\psi)$ tal que 
+    $\cos_{M,\epsilon} \in \mathcal{H}_F{(\R, \R)}$ tal que 
     \begin{equation}
         \sup_{ \lambda \in [-M, M]}
         |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)|
@@ -340,14 +340,14 @@ de convergencia a funciones.
 \end{lema}
 \begin{proof}
     Sea $F$ la función de activación \textit{cosine squasher} de Gallant and White (1988) definida 
-    en \ref{def:funcion_activacion_articulo} Comenzamos probando que para un intervalo acotado $[-M, M]$, existe $H_[-M, M] \in \sum(F)$ 
+    en \ref{def:funcion_activacion_articulo} Comenzamos probando que para un intervalo acotado $[-M, M]$, existe $H_{[-M, M]} \in \mathcal{H}_F{(\R, \R)}$ 
     tal que para todo elemento $\lambda \in [-M, M]$ se cumple que 
 
     \begin{equation}
-        H_[-M, M](\lambda) = \cos(\lambda).
+        H_{[-M, M]}(\lambda) = \cos(\lambda).
     \end{equation}
 
-    Calculamos $H_[-M, M] \in \sum(F)$  de forma constructiva. Recordemos que  
+    Calculamos $H_{[-M, M]} \in \mathcal{H}_F{(\R, \R)}$  de forma constructiva. Recordemos que  
     \begin{equation}
         F(\lambda )= \left(1 + \cos\left(\lambda -\frac{\pi}{2} \right) \frac{1}{2}\right) 
          1_{\{\frac{-\pi}{2} \leq \lambda \leq  \frac{\pi}{2}\}}
@@ -464,7 +464,8 @@ de convergencia a funciones.
     \end{equation}
     lo que concluye finalmente la construcción de $H_{[-M, M]}.$
     %%  TODO por aquí te has quedado corrigiendo  
-    La construcción anterior nos dice que $H_{[-M, M]} \in \sum(F)$. 
+    La construcción anterior nos dice que 
+    $H_{[-M, M]} \in \mathcal{H}_F{(\R, \R)}$. 
     De hecho existen $t \in \N$ y traslaciones $A_j$ para 
     $j \in \{1, \ldots, t\}$ de modo que 
     \begin{equation}
@@ -474,7 +475,7 @@ de convergencia a funciones.
     \end{equation}
     Como $F$ es una función de activación continua, el lema \ref{lema:a_2_paso_previo_denso}
     nos da la existencia de 
-    $W_\frac{\epsilon}{t} \in \sum(\psi)$ cumpliendo que 
+    $W_\frac{\epsilon}{t} \in \mathcal{H}_\psi{(\R, \R)}$ cumpliendo que 
     $|F - W_{ \frac{\epsilon}{t}} | < \frac{\epsilon}{t}$ en todo $\R$.
     Por tanto 
     \begin{equation}
@@ -517,11 +518,11 @@ Podemos ya definir la función que buscamos:
 %Lema 4.A
 \begin{lema}\label{lema:A_4_sum_cos_aproxima}
     Sea $g(\cdot) = \sum_{j=1}^q \beta_j \cos(A_j(\cdot))$ con 
-    $A_j \in A^r$ y $\beta_j \in \R$.
+    $A_j \in \afines$ y $\beta_j \in \R$.
     Para cualquier función de activación $\psi$, 
-    cualquier compacto $K \subset \R^r$
+    cualquier compacto $K \subset \R^d$
     y cualquier $\epsilon > 0$
-    existe $f \in \sum^r(\psi)$ para el cual se cumple que 
+    existe $f \in \mathcal{H}_\psi{(\R^d, \R)}$ para el cual se cumple que 
     \begin{equation}
         \sup_{x \in K} 
         |g(x) - f(x)| < \epsilon.
@@ -575,8 +576,8 @@ Podemos ya definir la función que buscamos:
         f(x) = \sum_{j=1}^q \beta_j 
         \cos_{M, \frac{\epsilon}{q B}}(A_j(x)),
     \end{equation}
-    que cumple $f \in \sum^r(\psi)$  puesto que 
-    $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$, 
+    que cumple $f \in \mathcal{H}_\psi{(\R^d, \R)}$  puesto que 
+    $\cos_{M, \frac{\epsilon}{q B}} \in \mathcal{H}_\psi{(\R, \R)}$, 
     y satisface además que
     \begin{equation}
         \begin{split}
@@ -625,23 +626,23 @@ Podemos ya definir la función que buscamos:
 \end{lema}
 \begin{proof}
     En virtud del lema \ref{lema:A_4_sum_cos_aproxima} 
-    bastaría probar que $\sum^r(\cos)$ es uniformemente 
+    bastaría probar que $\mathcal{H}_{\cos}(\R^d, \R)$ es uniformemente 
     denso en compactos, ya que hemos visto que $\rrnn$ 
-    es denso en $\sum^r(\cos)$. 
+    es denso en $\mathcal{H}_{\cos}(\R^d, \R)$. 
 
-    Veamos ahora que $\sum^r(\cos) = \sum \prod^r(\cos)$ 
-    donde recordamos que $\sum \prod^r(\cos)$ se correspondía
+    Veamos ahora que $\mathcal{H}_{\cos}(\R^d, \R) = \sum \prod^d(\cos)$ 
+    donde recordamos que $\sum \prod^d(\cos)$ se correspondía
     con el espacio de los polinomios trigonométricos. 
     \begin{equation}
-        \sum \prod^r(\cos) = 
+        \sum \prod^d(\cos) = 
         \left\{
             \sum_{j=1}^q \beta_j 
             \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) 
-            : q, l_j \in \N, \beta_j \in \R, A_{j,k}\in A^r
+            : q, l_j \in \N, \beta_j \in \R, A_{j,k}\in \afines
         \right\},
     \end{equation}
-    y  $\sum^r(\cos)$ el caso particular de los polinomios anteriores 
-    de grado uno. Luego está claro que $\sum^r(\cos) \subseteq \sum \prod^r(\cos).$
+    y  $\mathcal{H}_{\cos}(\R^d, \R)$ el caso particular de los polinomios anteriores 
+    de grado uno. Luego está claro que $\mathcal{H}_{\cos}(\R^d, \R) \subseteq \sum \prod^d(\cos).$
     
     Para cualesquiera números reales $A,B$
     se tiene 
@@ -662,21 +663,24 @@ Podemos ya definir la función que buscamos:
     se cumple (por inducción) 
     \begin{equation}
         \prod^l_{k=1} \cos(A_k) = 
-        \frac{1}{2^{l-1}}(\sum_{x \in \Lambda_l}
-         \cos(\sum_{i=1}^l x_i A_i)). 
+        \frac{1}{2^{l-1}} 
+        \left( 
+            \sum_{x \in \Lambda_l}
+            \cos \left(\sum_{i=1}^l x_i A_i \right)
+        \right). 
     \end{equation}
     Por lo que cada elemento 
-    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) \in \sum \prod^r(\cos)$
+    $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) \in \sum \prod^d(\cos)$
     podrá ser expresado como 
     $\sum_{j=1}^q \beta_j \prod_{k=1}^{l_j} \cos(A_{j,k}(\cdot)) = 
     \sum_{j=1}^t \alpha_j \cos(A_{j,k}(\cdot))$, es decir, como un elemento 
-    de $\sum^r(\cos)$. Concluimos como queríamos que son iguales
+    de $\mathcal{H}_{\cos}(\R^d, \R)$. Concluimos como queríamos que son iguales
     los espacios
-    $\sum^r(\cos)$ y $\sum \prod^r(\cos)$. 
+    $\mathcal{H}_{\cos}(\R^d, \R)$ y $\sum \prod^d(\cos)$. 
 
     Finalmente gracias al teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales},
     por ser  el coseno una función real continua no constante sabemos que 
-    $\sum \prod^r(\cos)$ es uniformemente denso en compactos en $\fC$ 
+    $\sum \prod^d(\cos)$ es uniformemente denso en compactos en $\fC$ 
     probando con esto el resultado buscado. 
     
 \end{proof}
@@ -686,14 +690,13 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
 
 % Teorema 2.4
 \begin{teorema} \label{teo:2_4_rrnn_densas_M}
-    Para cualquier función de activación $\psi$, $r \in \N$ y
-    medida de probabilidad $\mu$ en $(\R^r, B^r)$, 
+    Para cualquier función de activación $\psi$, $d \in \N$ y
+    medida de probabilidad $\mu$ en $(\R^d, B^d)$, 
     se tiene que $\rrnn$ es uniformemente denso para compactos
     en $\fC$ y denso en $\fM$ para a la distancia $\dist$. 
 \end{teorema}
 
  % Nota idea intuitiva  lema de que C es denso en M
- \reversemarginpar
  \marginpar{
     \textcolor{dark_green}{
         \textbf{Idea intuitiva teorema \ref{teo:2_4_rrnn_densas_M}:}}
@@ -746,6 +749,6 @@ cualquier función continua y aproximar \textit{a secas} cualquier
 función medible 
 con cualquier medida $\mu$, distancia $\dist$, independiente de la 
 función de activación $\mu$ seleccionada (ya sea continua o no) 
-y con cualquier dimensión $r$ del espacio de entrada. 
+y con cualquier dimensión $d$ del espacio de entrada. 
 
  

@@ -107,14 +107,14 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 \begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] \label{cor:se-generaliza-G-a-una-familia}
 
     Una misma red neuronal puede estar constituida por una familia de funciones continuas no constantes $\Gamma$, 
-    bastará con generalizar $\pmcg$ a $\sum \prod ^r (\Gamma)$ donde 
+    bastará con generalizar $\pmcg$ a $\sum \prod ^d (\Gamma)$ donde 
     \begin{equation}
         \begin{split}
-            \sum \prod^r (\Gamma) = \{ 
-                &f: \R^r \longrightarrow \R /
+            \sum \prod^d (\Gamma) = \{ 
+                &f: \R^d \longrightarrow \R /
                 f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
                 G(A_{jk}(x)), \\
-                &x  \in \R^r, \beta_j \in \R, A_{jk}\in A^r, l_j,q \in \N, G \in \Gamma
+                &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines, l_j,q \in \N, G \in \Gamma
                 )
                 \}
         \end{split}
@@ -141,11 +141,11 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
 
 
 Recordemos que de manera general se ha definido $A$ como una función afín 
-$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^r$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
-Por ejemplo $B((x_1, ..., x_r)) = \sum_{i= 0} ^N \sum_{j= 0} ^r \alpha_{ij} x_j^i$  con $N$ natural positivo. 
+$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
+Por ejemplo $B((x_1, ..., x_d)) = \sum_{i= 0} ^N \sum_{j= 0} ^d \alpha_{ij} x_j^i$  con $N$ natural positivo. 
 
-\begin{corolario}[Generalización de A]  \label{corolario:generaliza-a}
-    Se puede extender $A^r$ a conjuntos más generales como el de los polinomios de $r$ variables de grado $N$, $\mathbb{P}$.  
+\begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
+    Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
 \end{corolario}
 
 % Nota sobre posible hipótesis de optimización 
@@ -158,8 +158,8 @@ Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
 }
 
 \begin{proof}
-    Simplemente hay que reparar que $A^r$ está contenido en el espacio $\mathbb{P}$. 
-    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $A^r$. 
+    Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
+    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
 \end{proof}
 
 La utilidad de este corolario a nivel práctico es cuestionable, ya que aumentaría considerablemente el número de 
@@ -183,9 +183,9 @@ son iguales en casi todos sus puntos.  El objetivo de todas estas definiciones e
 }
 %% Definiciones de equivalencia de funciones 
 \begin{definicion}[Equivalencia entre funciones] \label{definition:equivalencia_funciones}
-    Sea $\mu$ una medida de probabilidad en $(\R^r, B^r)$.  Dos funciones 
+    Sea $\mu$ una medida de probabilidad en $(\R^d, B^d)$.  Dos funciones 
     $f$ y $g$ pertenecientes a $\fM$, diremos que son $\mu -$equivalentes 
-    si $\mu\{ x \in \R^r : f(x)=g(x) \} = 1.$
+    si $\mu\{ x \in \R^d : f(x)=g(x) \} = 1.$
 \end{definicion}
 
 Lo que se está diciendo es que serán iguales casi por doquier.   
@@ -193,7 +193,7 @@ Lo que se está diciendo es que serán iguales casi por doquier.
 
 % Definición distancia  
 \begin{definicion} [Introducción de una distancia basada en una probabilidad] \label{definition:distancia-probabilidad}
-    Dada una medida de probabilidad $\mu$ en $(\R^r, B^r)$, se define 
+    Dada una medida de probabilidad $\mu$ en $(\R^d, B^d)$, se define 
     la métrica $\rho_{\mu}$ definida como 
     \begin{equation}
         \begin{split}
@@ -384,7 +384,7 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
         \frac{\epsilon}{2}.
     \end{equation}  
 
-    Sea $\mu(\R^r) = M \in \R^+$  y 
+    Sea $\mu(\R^d) = M \in \R^+$  y 
     sin pérdida de generalidad puede suponerse $M = 1$
      \footnote{De otra forma bastaría con definir 
     en los pasos siguientes $\mu(K) > M - \frac{\epsilon}{2}$ y acotar con $\frac{\epsilon}{2M}$ 
@@ -437,10 +437,10 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
 
     \begin{equation}
         \begin{split}
-            \int_{\R^r \setminus K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
+            \int_{\R^d \setminus K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
             +
             \int_{K} \min \{ |f_n(x) - f(x)|, 1\} d\mu(x)  \\ \leq
-            \mu(\R^r \setminus K) +  \frac{\epsilon}{2}
+            \mu(\R^d \setminus K) +  \frac{\epsilon}{2}
             \leq
             \frac{\epsilon}{2} +  \frac{\epsilon}{2}
             = 
@@ -491,7 +491,7 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
             = 
             \int_\Lambda \min \{ |f1_{|f(x)| < M}  - g|, 1\} d\mu
             + 
-            \int_{\R^r \setminus \Lambda} \min \{ |f  - g|, 1\} d\mu 
+            \int_{\R^d \setminus \Lambda} \min \{ |f  - g|, 1\} d\mu 
             \\
             <
             \frac{\epsilon}{2} 
