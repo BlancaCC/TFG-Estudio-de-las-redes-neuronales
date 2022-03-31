@@ -56,7 +56,7 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
 \normalmarginpar
 \setlength{\marginparwidth}{\bigMarginSize}
 
-\begin{definicion}[Redes neuronales de una capa oculta]
+\begin{definicion}[Redes neuronales de una capa oculta] \label{definition:redes_neuronales_una_capa_oculta}
     Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
     \begin{align}
         \mathcal{H}(X,Y) 
@@ -65,11 +65,11 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
             h : X \longrightarrow Y 
             /& \quad 
             h_k(x) = 
-            \sum_{i=1}^{n_k} \beta_{i k} \gamma_{i k}( A_{i k}(x)), \\
+            \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
             & \text{donde  $h_k$  es la proyección k-ésima de $h$ con 
             $k \in \{1, \ldots, s\}$}, \\
-            & n_k \in \N,\gamma_{i k} \in \Gamma , \beta_{i k} \in \R
-             \text{ y }A_{i k} \text{ una aplicación afín de $\R^d$ a $\R$}           
+            & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R
+             \text{ y }A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
         \}.
     \end{align}
 \end{definicion}
@@ -95,7 +95,7 @@ A la vista de la definición dada notemos que cada elemento de
 $\mathcal{H}(X,Y)$ viene determinado por los coeficientes 
 de las distintas $\beta$ y  $w$s de la función afín. Como veremos más adelante estos son los valores que \textit{aprende una red neuronal}.
 
-\subsection*{Diferencia con otras definiciones}  
+\subsection*{Diferencia con otras definiciones}  \label{subsection:diferencia-otras-definiciones-RRNN}
 
 En otros textos como en el capítulo cinco, páginas 227-256 del libro \cite{BishopPaterRecognition} y las notas online sobre redes neuronales de \cite{MostafaLearningFromData} se presentan las redes neuronales de una capa como 
 \begin{align}

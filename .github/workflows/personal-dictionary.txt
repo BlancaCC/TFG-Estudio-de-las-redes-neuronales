@@ -54,6 +54,7 @@ contutor
 darkRed
 diferenciable
 diferenciables
+discretice
 entregables
 eq
 falsar
