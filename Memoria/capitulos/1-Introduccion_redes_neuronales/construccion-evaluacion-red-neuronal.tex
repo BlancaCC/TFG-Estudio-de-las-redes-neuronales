@@ -85,23 +85,33 @@ vamos a proceder  a analizar esta idea.
 
 Es evidente que 
 \begin{equation} \label{eq:conjuntos-redes-neuronales-con-sesgo-contiene-elemental}
-    \mathcal{H}(X,Y) \subsetneq \mathcal{H}^+(X,Y)
+    \mathcal{H}(X,Y) \subseteq \mathcal{H}^+(X,Y)
 \end{equation}
 
 Además al estar trabajando con una sola capa, se tiene que para cualquier 
-$h \in \mathcal{H}^+(X,Y)$
+$h^+ \in \mathcal{H}^+(X,Y)$
 
 \begin{align}
-    h = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x)) + \alpha_{i k} \right)
+    h^+ = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x)) + \alpha_{i k} \right)
     = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x))\right) + k 
 \end{align}
-Con $k \in \R.$
+Con $k \in \R$ un parámetro libre.
+
 Ante esto, al igual que se hacía en el lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
 es fácil obtener una neurona de valor constante y por tanto, para un conjunto fijo de neuronas $n$, se tiene que 
 \begin{equation}
     \mathcal{H}^+_n(X,Y) \subsetneq  \mathcal{H}_{n+1}(X,Y),
 \end{equation}
-esta relación nos hace reparar que la precisión que pueda aportar el sesgo es
+de esta relación se obtienen dos cosas: 
+puesto que $n$ era arbitrario y 
+\begin{equation}
+    \mathcal{H}(X,Y) = \bigcup_{n \in \N} \mathcal{H}_n (X,Y)
+\end{equation}
+entonces como espacios de funciones 
+\begin{equation}
+    \mathcal{H}(X,Y) = \mathcal{H}^+ (X,Y).
+\end{equation}
+Por otra parte no hace reparar que la precisión que pueda aportar el sesgo es
 superada añadiendo una neurona más a un modelo sin sesgo, es más, también se obtiene una mejora en memoria, ya que 
 $\mathcal{H}^+_n(X,Y)$ requiere de $n \mathfrak{F}$ espacio de memoria adicional con respecto a $\mathcal{H}_n(X,Y)$
 mientras que $\mathcal{H}_{n+1}(X,Y)$ de $(D +1) \mathfrak{F}$
@@ -137,9 +147,13 @@ Es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+
 Esto no es posible para todo los casos, fijamos $h^+ \in \mathcal{H}^+_n(X,Y)$ y tomamos como conjunto de datos $\mathcal{D}$ el grafo de $h^+$, es evidente que $E_{\mathcal{D}}(h^+) = 0$ entonces si existiera $h \in \mathcal{H}_n(X,Y)$ con $E_{\mathcal{D}}(h) \leq E_{\mathcal{D}}(h^+)$ necesariamente $E_{\mathcal{D}}(h) = 0$ y entonces $h^+ \in \mathcal{H}_n(X,Y)$ por lo que se tendría que 
 $$\mathcal{H}_n(X,Y) = \mathcal{H}_n^+(X,Y)$$ 
 lo cual es una contradicción.
+
+Notemos que en la práctica el conjunto $\mathcal{D}$ es finito, 
+por lo que habrá situaciones en que para ese conjunto de datos sí  se tenga la misma precisión. 
+
 % Fin de la demostración 
 
- Concluimos por tanto que aunque la precisión es diferente para un mismo número de neuronas, añadiendo una más el sesgo es irrelevante y además aumenta la complejidad, por lo que deducimos 
+ Concluimos tras todo esto que aunque la precisión que se pueda obtener con funciones de $\mathcal{H}_n(X,Y)$ y $\mathcal{H}^+_n(X,Y)$ es diferente para un mismo número de neuronas $n$, añadiendo una más el sesgo es irrelevante  y además $\mathcal{H}^+_n(X,Y)$ tiene mayor coste computacional, por lo que afirmamos que 
 que es un artificio de las redes neuronales multicapa para enlazar una capa con otra y que en redes neuronales de una capa oculta carece de sentido.
 
 
