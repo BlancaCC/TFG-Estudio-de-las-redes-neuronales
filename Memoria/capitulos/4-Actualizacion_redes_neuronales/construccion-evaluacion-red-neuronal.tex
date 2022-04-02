@@ -227,9 +227,126 @@ Y respecto a la precisión no se conoce ninguna motivación (por ahora)
 que \textcolor{red}{TODO pensar}
 
 \textcolor{red}{TODO: Pudiera existir un equilibrio entre 
-el coste y la precisión. Ie, a mismo número de neuronas se podría conseguir mejor precisión con ciertas funciones de activación -> esto seguro. ¿Cómo se podría saber esto a partir de los datos? ¿aumentaría ese proceso el coste?}
+el coste y la precisión. Es decir, a mismo número de neuronas se podría conseguir mejor precisión con ciertas funciones de activación -> esto seguro. ¿Cómo se podría saber esto a partir de los datos? ¿aumentaría ese proceso el coste?}
 
 
 %% Formulación técnica 
 
-\section{Explicitación de la construcción de una red neuronal}
+\section{Explicitación de la construcción y evaluación de una red neuronal}
+
+Ante todas las consideraciones expuestas y puesto que 
+no existe ningún resultado o hipótesis a favor de combinar funciones de activación, vamos a suponer que todos los nodos funcionan con la misma. Entonces,  una red neuronal para nosotros 
+no serán más que dos matrices de pesos y una función de evaluación. 
+
+Es decir para cualquier $h \in \rrnnmc$ si su número de neuronas es $n$ entonces podemos representarla como: 
+$(\gamma, M_{n \times (1+r)}, M_{(n+1) \times s})$ con $M_{f \times c}$ matrices de dimensiones $f$ filas y $c$ columnas. 
+
+$\gamma$ representa a función de activación en cada nodo. 
+$M_{n \times (1+r)}$ son los pesos de la primera capa 
+y $M_{(n+1) \times s}$ son los pesos de la salida. 
+
+Tomando como $\mathfrak{I}_{r+1}: \R^r \longrightarrow M_{(r+1) \times 1}$ a la aplicación inyección que a cada vector $(x_1, \ldots, x_d)$ le hace corresponder el vector columna $(1, x_1, \ldots x_d)^T.$
+Además entendemos para una función $\gamma : \R \longrightarrow \R$ 
+que la imagen de una matriz con $\gamma$ es evaluar cada una de sus entradas por $\gamma$. 
+Con esta representación evaluar una red neuronal consistiría en el producto matricial de 
+
+\begin{equation}
+    h(x) =  M_{(n+1) \times s}\cdot \gamma \left( M_{n \times (1+r)} \cdot \mathfrak{I}_{r+1}(x)\right)
+\end{equation}
+
+El coste computacional de tal operación es 
+\begin{itemize}
+    \item $r n + n s$ multiplicaciones.
+    \item $r n + n s$ sumas. 
+    \item Dos veces el coste de la aplicación inclusión. 
+    \item $(1+r) \mathfrak{G}$ con   $\mathfrak{G}$ el coste de evaluar una vez la función de activación. 
+\end{itemize}
+
+Restringir el tamaño de número mejoraría el coste. 
+\textcolor{red}{TODO: Analizar el coste computacional de cada operación multiplicación y suma en función del tipo de dato.}
+
+\subsubsection*{Ejemplo de evaluación de una red neuronal}
+\begin{figure}[h!]
+    \includegraphics[width=0.7\textwidth]{4-Actualizacion_redes_neuronales/evaluacion-1-capa.drawio.png}
+    \centering
+    \caption{Ejemplo de evaluación de una red neuronal de una capa con entrada y salida de tamaño dos y dos neuronas en la capa oculta}
+    \label{img:Ejemplo-evaluación-red-neruonal-una-capa}
+\end{figure}
+
+A continuación vamos a dar un ejemplo basado en la red neuronal mostrada en la imagen \ref{img:Ejemplo-evaluación-red-neruonal-una-capa}, 
+La red neuronal viene dada por las matrices $\mathfrak A$ y $\mathfrak B$, 
+la matriz de la primera capa asociada es 
+\begin{equation}
+    \mathfrak A = 
+        \begin{bmatrix}
+            0.3 & 0.1 & -0.2 \\
+            0.5 & -0.3 & -0.1 
+        \end{bmatrix}  
+\end{equation}
+La matriz de pesos de la capa oculta sería 
+\begin{equation}
+    \mathfrak B = 
+    \begin{bmatrix}
+        0.1 & -0.6 \\
+        -0.6 & 0.5
+    \end{bmatrix}. 
+\end{equation}
+
+Para la entrada  $x = (0.3, 0.1)$ los sucesivos cálculos serían
+\begin{equation}
+    \mathfrak{I}(x) = \mathfrak{I}((0.3, 0.1)) 
+    \begin{bmatrix}
+        1 \\
+        0.3  \\
+        0.1 
+    \end{bmatrix}. 
+\end{equation}
+La entrada de cada neurona de la capa oculta (la intermedia) sería la respectiva fila del vector columna resultante. 
+\begin{equation}
+    \mathfrak A \mathfrak{I}(x) = 
+    \begin{bmatrix}
+        0.3 & 0.1 & -0.2 \\
+        0.5 & -0.3 & -0.1 
+    \end{bmatrix} 
+    \begin{bmatrix}
+        1  \\
+        0.3  \\
+        0.1 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        0.31  \\
+        0.4   \\
+    \end{bmatrix}.
+\end{equation}
+Cuya imagen tras pasar por la función de activación
+\begin{equation}
+    \tanh\left( \mathfrak A  \mathfrak{I}(x)\right) 
+    =   \begin{bmatrix}
+        \tanh (0.31) \\
+        \tanh(0.4)  \\
+    \end{bmatrix} 
+    = 
+    \begin{bmatrix}
+        0.3004 \\
+        0.3799  \\
+    \end{bmatrix}.
+\end{equation}
+Finalmente las respectivas salidas de las capas ocultas serían
+\begin{equation}
+    \mathfrak B  \tanh\left( \mathfrak A \mathfrak{I}(x)\right)   
+    = 
+    \begin{bmatrix}
+        0.1 & -0.6 \\
+        -0.6 & 0.5
+    \end{bmatrix}
+    \begin{bmatrix}
+        0.3004 \\
+        0.3799  \\
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        -0.1979 \\
+       0.0097  \\
+    \end{bmatrix}.
+\end{equation}
