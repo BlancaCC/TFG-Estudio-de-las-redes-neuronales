@@ -52,6 +52,7 @@ codominio
 codominios
 contutor
 darkRed
+diferenciabilidad
 diferenciable
 diferenciables
 discretice
