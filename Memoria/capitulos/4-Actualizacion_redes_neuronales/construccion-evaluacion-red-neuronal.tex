@@ -39,6 +39,13 @@ $\beta_{i k} \in \R$ y $A_i \in \afines$.
     \label{img:grafo-red-neuronal-una-capa-oculta_repeticion}
 \end{figure}
 
+Ante esta definición el número de parámetros a ajustar es: 
+\begin{itemize}
+    \item De la forma $\beta_{i k}$: $n s$. 
+    \item De la forma $w_{i j}$: $n(d+1)$.
+\end{itemize}
+Lo que hace un total de $n(s+d+1)$ parámetros, done $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. Por lo general $d$ y $s$ son fijos a que suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.
+
 Analizaremos más a fondo su componentes. 
 
 \subsection*{Construcción de la primera capa}
@@ -235,35 +242,113 @@ el coste y la precisión. Es decir, a mismo número de neuronas se podría conse
 \section{Explicitación de la construcción y evaluación de una red neuronal}
 
 Ante todas las consideraciones expuestas y puesto que 
-no existe ningún resultado o hipótesis a favor de combinar funciones de activación, vamos a suponer que todos los nodos funcionan con la misma. Entonces,  una red neuronal para nosotros 
+no existe ningún resultado o hipótesis a favor de combinar funciones de activación, en pos de simplificar el estudio; vamos a suponer a priori que todos los nodos están compuestos con la misma. Entonces,  una red neuronal para nosotros 
 no serán más que dos matrices de pesos y una función de evaluación. 
 
-Es decir para cualquier $h \in \rrnnmc$ si su número de neuronas es $n$ entonces podemos representarla como: 
+Es decir siguiendo la idea constructiva expuesta en manuales tales como \cite{learning-from-data-1-2}
+ cualquier $h \in \rrnnsmn$ de $n$ neuronas en la capa oculta se implementa como 
 $(\gamma, M_{n \times (1+r)}, M_{(n+1) \times s})$ con $M_{f \times c}$ matrices de dimensiones $f$ filas y $c$ columnas. 
 
 $\gamma$ representa a función de activación en cada nodo. 
 $M_{n \times (1+r)}$ son los pesos de la primera capa 
 y $M_{(n+1) \times s}$ son los pesos de la salida. 
 
-Tomando como $\mathfrak{I}_{r+1}: \R^r \longrightarrow M_{(r+1) \times 1}$ a la aplicación inyección que a cada vector $(x_1, \ldots, x_d)$ le hace corresponder el vector columna $(1, x_1, \ldots x_d)^T.$
+Tomando como $\mathfrak{I}_{r+1}: \R^r \longrightarrow M_{(r+1) \times 1}(\R)$ a la aplicación inyección que a cada vector $(x_1, \ldots, x_d)$ le hace corresponder el vector columna $(1, x_1, \ldots x_d)^T.$
 Además entendemos para una función $\gamma : \R \longrightarrow \R$ 
 que la imagen de una matriz con $\gamma$ es evaluar cada una de sus entradas por $\gamma$. 
 Con esta representación evaluar una red neuronal consistiría en el producto matricial de 
 
 \begin{equation}
-    h(x) =  M_{(n+1) \times s}\cdot \gamma \left( M_{n \times (1+r)} \cdot \mathfrak{I}_{r+1}(x)\right)
+    h(x) =  M_{(n+1) \times s} \cdot
+    \mathfrak{I}_{n+1}\left(
+         \gamma \left( 
+             M_{n \times (1+d)} 
+            \cdot 
+            \mathfrak{I}_{d+1}(x)
+        \right)
+    \right).
 \end{equation}
 
 El coste computacional de tal operación es 
-\begin{itemize}
-    \item $r n + n s$ multiplicaciones.
-    \item $r n + n s$ sumas. 
-    \item Dos veces el coste de la aplicación inclusión. 
-    \item $(1+r) \mathfrak{G}$ con   $\mathfrak{G}$ el coste de evaluar una vez la función de activación. 
-\end{itemize}
+\begin{table}[H]
+    \begin{center}
+    \begin{tabular}{| c | c |}
+    \hline
+    Operación & Apariciones  \\ \hline
+    $+$ & $nd+ns = n(d+s)$  \\
+    $\times$ & $n(d+1)+(n+1)s = n(d+s+2)$  \\
+    $\gamma$ & $n$  \\
+    $\mathfrak{I}$ & $2$  \\
+    \hline
+    \end{tabular}
+    \caption{Coste computacional de la implementación propuesta en \cite{MostafaLearningFromData}}
+    \label{tab:coste computacional de la implementación de Mustafa}
+    \end{center}
+\end{table}
 
-Restringir el tamaño de número mejoraría el coste. 
-\textcolor{red}{TODO: Analizar el coste computacional de cada operación multiplicación y suma en función del tipo de dato.}
+\subsection*{Primera optimización reformulando la implementación de una red neuronal}
+
+Sin embargo de acorde a nuestro modelo definido en \ref{definition:redes_neuronales_una_capa_oculta}, nuestra propuesta de representación es al siguiente: 
+
+\begin{equation}
+    (\gamma, A, S, B) 
+    \text{ donde } 
+    A \in M_{n \times d}(\R), 
+    S\in M_{n \times 1}(\R) 
+    \text{ y }
+    B \in M_{s \times n}(\R).
+\end{equation}
+y con esta representación la evaluación sería
+
+\begin{equation}
+    h(x) =  B \cdot
+        \gamma \left( 
+            A
+            \cdot 
+            x
+            + S
+        \right),
+\end{equation}
+que tiene un coste computacional de 
+\begin{table}[H]
+    \begin{center}
+    \begin{tabular}{| c | c |}
+    \hline
+    Operación & Apariciones  \\ \hline
+    $+$ & $nd+n(s-1) = n(d+s-1)$  \\
+    $\times$ & $nd+ns = n(d+s)$  \\
+    $\gamma$ & $n$  \\
+    $\mathfrak{I}$ & $0$  \\
+    \hline
+    \end{tabular}
+    \caption{Coste computacional de nuestra implementación de red neuronal de una capa}
+    \label{tab:coste computacional nuestr modelo red neuronal}
+    \end{center}
+\end{table}
+
+Que como vemos ha supuesto una mejora de 
+
+\begin{table}[H]
+    \begin{center}
+    \begin{tabular}{| c | c | c | c |}
+    \hline
+    % cabecera 
+    Operación 
+    & Coste formulación usual \ref{tab:coste computacional de la implementación de Mustafa}
+    & Coste nuestra propuesta \ref{tab:coste computacional nuestr modelo red neuronal} 
+    & Operaciones reducidas  \\ \hline
+    $+$ & $n(d+s)$ & $n(d+s-1)$ & $n$\\
+    $\times$ & $n(d+s+2)$ & $n(d+s)$  & $2n$\\
+    $\gamma$ & $n$  & $n$  & $0$ \\
+    $\mathfrak{I}$  & $2$ & $0$ & $2$ \\
+    \hline
+    \end{tabular}
+    \caption{Comparativas de coste computacional entre la implementación usual de una red neuronal y la nuestra}
+    \label{tab:comparativas coste red neuronal }
+    \end{center}
+\end{table}
+
+Además se ha reducido el espacio de memoria en $n$ unidades del tipo de datos que utilicen las redes neuronales. 
 
 \subsubsection*{Ejemplo de evaluación de una red neuronal}
 \begin{figure}[h!]
@@ -274,18 +359,26 @@ Restringir el tamaño de número mejoraría el coste.
 \end{figure}
 
 A continuación vamos a dar un ejemplo basado en la red neuronal mostrada en la imagen \ref{img:Ejemplo-evaluación-red-neruonal-una-capa}, 
-La red neuronal viene dada por las matrices $\mathfrak A$ y $\mathfrak B$, 
+La red neuronal viene dada por las matrices: 
 la matriz de la primera capa asociada es 
 \begin{equation}
-    \mathfrak A = 
+     A = 
         \begin{bmatrix}
-            0.3 & 0.1 & -0.2 \\
-            0.5 & -0.3 & -0.1 
+            0.1 & -0.2 \\
+            -0.3 & -0.1 
+        \end{bmatrix}  
+\end{equation}
+la matriz de sesgos 
+\begin{equation}
+    S = 
+        \begin{bmatrix}
+            0.3  \\
+            0.5 
         \end{bmatrix}  
 \end{equation}
 La matriz de pesos de la capa oculta sería 
 \begin{equation}
-    \mathfrak B = 
+     B = 
     \begin{bmatrix}
         0.1 & -0.6 \\
         -0.6 & 0.5
@@ -294,47 +387,65 @@ La matriz de pesos de la capa oculta sería
 
 Para la entrada  $x = (0.3, 0.1)$ los sucesivos cálculos serían
 \begin{equation}
-    \mathfrak{I}(x) = \mathfrak{I}((0.3, 0.1)) 
+    A x = 
     \begin{bmatrix}
-        1 \\
-        0.3  \\
-        0.1 
-    \end{bmatrix}. 
-\end{equation}
-La entrada de cada neurona de la capa oculta (la intermedia) sería la respectiva fila del vector columna resultante. 
-\begin{equation}
-    \mathfrak A \mathfrak{I}(x) = 
+        0.1 & -0.2 \\
+        -0.3 & -0.1 
+    \end{bmatrix}  
     \begin{bmatrix}
-        0.3 & 0.1 & -0.2 \\
-        0.5 & -0.3 & -0.1 
-    \end{bmatrix} 
-    \begin{bmatrix}
-        1  \\
         0.3  \\
         0.1 
     \end{bmatrix}
     = 
     \begin{bmatrix}
-        0.31  \\
-        0.4   \\
-    \end{bmatrix}.
+        0.01  \\
+        -0.1 
+    \end{bmatrix}
+    . 
 \end{equation}
-Cuya imagen tras pasar por la función de activación
+
 \begin{equation}
-    \tanh\left( \mathfrak A  \mathfrak{I}(x)\right) 
-    =   \begin{bmatrix}
-        \tanh (0.31) \\
-        \tanh(0.4)  \\
-    \end{bmatrix} 
+    A x +S= 
+    \begin{bmatrix}
+        0.01  \\
+        -0.1 
+    \end{bmatrix}
+    + 
+    \begin{bmatrix}
+        0.3  \\
+        0.5 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        0.31  \\
+        0.4 
+    \end{bmatrix}
+    . 
+\end{equation}
+
+\begin{equation}
+    \gamma (A x +S) = 
+    \gamma \left(
+    \begin{bmatrix}
+        0.31  \\
+        0.4 
+    \end{bmatrix}
+    \right)
+    = 
+    \begin{bmatrix}
+        \gamma(0.31)  \\
+        \gamma(0.4) 
+    \end{bmatrix}
     = 
     \begin{bmatrix}
         0.3004 \\
         0.3799  \\
     \end{bmatrix}.
 \end{equation}
+
 Finalmente las respectivas salidas de las capas ocultas serían
 \begin{equation}
-    \mathfrak B  \tanh\left( \mathfrak A \mathfrak{I}(x)\right)   
+    B  \gamma (A x +S)  
     = 
     \begin{bmatrix}
         0.1 & -0.6 \\
