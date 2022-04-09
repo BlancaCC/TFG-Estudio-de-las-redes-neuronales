@@ -1,7 +1,7 @@
 \section{Aprendizaje}  
 
 Se entiende por aprendizaje de una red neuronal como el proceso 
-por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $\mathfrak A$ y $\mathfrak B$. 
+por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $A,S$ y $B$.
 
 %%%%%%%%%%%%%%%%%%% algoritmo de gradiente descendente 
 
@@ -109,7 +109,7 @@ Tengamos presente que hemos definido una red neuronal  $h_w \in \mathcal{H}_q (\
     \sum_{i=1}^q \beta_i 
     \sigma
     \left(  
-        \alpha_{0 i} 
+        \alpha_{0 i} +
         \sum_{j=1}^d \alpha_{j i}x_j
     \right)
 \end{equation}
@@ -126,7 +126,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         = 
         \sigma
     \left(  
-        \alpha_{0 i} 
+        \alpha_{0 i} +
         \sum_{j=1}^d \alpha_{j i}x_j
     \right).
     \end{align}
@@ -139,7 +139,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         = 
         \beta_i \sigma'
     \left(  
-        \alpha_{0 i} 
+        \alpha_{0 i} +
         \sum_{j=1}^d \alpha_{j i}x_j
     \right).
     \end{align}
@@ -153,11 +153,39 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         = 
         \beta_i \sigma'
     \left(  
-        \alpha_{0 i} 
+        \alpha_{0 i} +
         \sum_{j=1}^d \alpha_{j i}x_j
     \right) x_j.
     \end{align}
 \end{itemize}  
+
+Si el cálculo se hiciera sin tener más consideración alguna que la propia expresión supondría un coste computacional de: 
+
+% tabla con coste en multiplicación 
+
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{| c | c | c | c | c | c| }
+    \hline
+    % cabecera
+       & Número de parámetros & $+ / -$ & $\times / \div$ & $\sigma$ & $\sigma'$
+    \\ \hline
+    % Para betas
+    (\ref{eq:parcial_beta}) $\frac{\partial E(h)}{\partial \beta_i}$ 
+    & $n s$ & $n s (d+1)$ & $n s d$ & $n s$ & 0
+    \\
+    \hline
+    (\ref{eq:parcial_alpha_cero}) $\frac{\partial E(h)}{\partial \alpha_{0 i}}$ 
+    & $n$ & $n (d+1)$ & $n s d$ & $n s$ & 0
+    \\
+    \hline
+    % Para los segos alpha 0i 
+    \end{tabular}
+    \caption{Coste computacional aplicar para el cálculo directo para actualizar $h \in \mathcal{H}_n(\R^d, \R^s)$}
+    \label{tab:coste-computacional-directa}
+    \end{center}
+\end{table}
 
 A la vista de estas expresiones debemos de definir un algoritmo que busque ahorro en memoria y en coste computacional.
 

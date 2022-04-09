@@ -10,6 +10,7 @@ ECM
 Explicitación
 Factorizando
 Feedforward
+ForwardPropagation
 GN
 García
 Guervós
@@ -18,6 +19,7 @@ HUxx
 Halber
 Hornik
 Isoperimetry
+Iésima
 JJ
 Julián
 LaTeX
@@ -88,8 +90,10 @@ parametrized
 perceptrones
 perceptrón
 png
+primeraCapa
 qB
 referenciada
+reformulando
 renumerar
 replicable
 reproducibility

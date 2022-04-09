@@ -270,12 +270,12 @@ Con esta representación evaluar una red neuronal consistiría en el producto ma
 \end{equation}
 
 El coste computacional de tal operación es 
-\begin{table}[H]
+\begin{table}[h]
     \begin{center}
     \begin{tabular}{| c | c |}
     \hline
     Operación & Apariciones  \\ \hline
-    $+$ & $nd+ns = n(d+s)$  \\
+    $+$ & $n d+n s = n(d+s)$  \\
     $\times$ & $n(d+1)+(n+1)s = n(d+s+2)$  \\
     $\gamma$ & $n$  \\
     $\mathfrak{I}$ & $2$  \\
@@ -310,13 +310,13 @@ y con esta representación la evaluación sería
         \right),
 \end{equation}
 que tiene un coste computacional de 
-\begin{table}[H]
+\begin{table}[h]
     \begin{center}
     \begin{tabular}{| c | c |}
     \hline
     Operación & Apariciones  \\ \hline
-    $+$ & $nd+n(s-1) = n(d+s-1)$  \\
-    $\times$ & $nd+ns = n(d+s)$  \\
+    $+$ & $n d+n(s-1) = n(d+s-1)$  \\
+    $\times$ & $n d+n s = n(d+s)$  \\
     $\gamma$ & $n$  \\
     $\mathfrak{I}$ & $0$  \\
     \hline
@@ -328,7 +328,7 @@ que tiene un coste computacional de
 
 Que como vemos ha supuesto una mejora de 
 
-\begin{table}[H]
+\begin{table}[h]
     \begin{center}
     \begin{tabular}{| c | c | c | c |}
     \hline
@@ -351,6 +351,7 @@ Que como vemos ha supuesto una mejora de
 Además se ha reducido el espacio de memoria en $n$ unidades del tipo de datos que utilicen las redes neuronales. 
 
 \subsubsection*{Ejemplo de evaluación de una red neuronal}
+
 \begin{figure}[h!]
     \includegraphics[width=0.7\textwidth]{4-Actualizacion_redes_neuronales/evaluacion-1-capa.drawio.png}
     \centering
@@ -461,3 +462,66 @@ Finalmente las respectivas salidas de las capas ocultas serían
        0.0097  \\
     \end{bmatrix}.
 \end{equation}
+
+\subsection{Implementación de una red neuronal y evaluación}
+
+Como conclusión a todo lo explicado una red neuronal no sería más que una estructura que almacenara $(\gamma, A, S, B)$, esto es 
+
+% Pseudo código que refleja la estructura de una red neuronal 
+
+\begin{algorithm}[H]
+    \caption{Estructura de una red neuronal}
+    \label{algoritmo:estructura de una red neuronal}
+    \DontPrintSemicolon
+    \hspace*{\algorithmicindent} 
+        \textbf{Entrada}:
+        \begin{itemize}
+            \item $d$: Dimensión de los datos de entrada.
+            \item $s$: Dimensión que define una red neuronal.
+            \item $n$: Número de redes nodos en la capa oculta. 
+
+        \end{itemize}
+        \hspace{\algorithmicindent} 
+        \Struct{Red neuronal(d,s,n)}{
+            $A \gets$ Matriz $n$ filas $d$ columnas\;
+            $S \gets$ Matriz $n$ filas $1$ columnas\;
+            $B \gets$ Matriz $s$ filas $n$ columnas\;
+        }
+        \hspace{\algorithmicindent} 
+  \end{algorithm}
+
+y si quisiéramos evaluar la red neuronal el algoritmo sería el siguiente 
+  %% Algoritmo de evaluación de redes neuronales 
+
+  \begin{algorithm}[H]
+    \caption{Evaluación de una red neuronal, \textit{Forward propagation}}
+    \label{algoritmo:evaluar red neuronal}
+
+    \hspace*{\algorithmicindent} 
+        \textbf{Entrada}:
+        \begin{itemize}
+            \item $x$: Vector de atributos que se desea evaluar con la red neuronal.
+            \item $h = (\gamma, A, S, B)$ representa la red neuronal que se desea evaluar y la función de activación $\gamma$ con la que se va a evaluar. 
+        \end{itemize}
+        \hspace{\algorithmicindent} 
+        \SetKwFunction{Main}{ForwardPropagation}
+        \SetKwProg{F}{Function}{:}{}
+        \F{\Main{$h, x$}}{ 
+
+            sensibilidad $\gets A \cdot x + S$ \;
+            primeraCapa $\gets$ sensibilidad \;
+            \ForEach{ entrada-Iésima-Neurona $\in$ sensibilidad}{
+                primeraCapa[i] $\gets \gamma($ entrada-Iésima-Neurona $)$
+            }
+            \;
+            salida $\gets B \cdot $primeraCapa \;
+            \KwRet salida \;
+        }
+  \end{algorithm}
+  \newpage
+
+
+
+
+
+
