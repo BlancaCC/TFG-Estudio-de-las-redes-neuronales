@@ -85,22 +85,22 @@ Denotaremos como $w$ al conjunto de parámetros que determinan el valor de una r
 Sea $E_{in}(h_w)$ la función de error habitualmente usada, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
 de entrenamiento está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada y $y_n$ el estado o valor deseado para cualquier $n\in \{1, \ldots, N\}.$
 \begin{equation}
-    E_{in}(h_w) = \frac{1}{N} \sum^N_{n=1} (h_w(x)- y_n)^2. 
+    E_{in}(h_w) = \frac{1}{N} \sum^N_{n=1} (h_w(x_n)- y_n)^2. 
 \end{equation}
 que es una métrica para medir error entre, en nuestro caso  
 la red neuronal $h_w$ y los valores de entrenamiento.
 
 Para nuestro caso de una sola capa oculta el resultado sería el siguiente: 
 \begin{equation}
-    \nabla_w E_{in}(h) = \frac{2}{N} \nabla_w h_w(x)
+    \nabla_w E_{in}(h_w) = \frac{2}{N} \sum^N_{n=1} \nabla_w h_w(x_n)
 \end{equation}
 y puesto que $\frac{2}{N}$ no es más que una constante que 
-puede ser corregida en \refeq{eq:descenso-gradiente} con $\eta$ con el fin de ahorrar coste computacional la 
+puede ser corregida en \refeq{eq:descenso-gradiente} con $\eta$, con el fin de ahorrar coste computacional la 
 omitiremos de ahora en adelante. Es decir, podemos suponer que 
 nuestra función de error a minimizar es 
 
 \begin{equation}
-    E_{in}(h) = \frac{1}{2} \sum^N_{n=1} (h_w(x)- y_n)^2. 
+    E_{in}(h_w) = \frac{1}{2} \sum^N_{n=1} (h_w(x)- y_n)^2. 
 \end{equation}
 
 Tengamos presente que hemos definido una red neuronal  $h_w \in \mathcal{H}_q (\R^d, \R^s)$ como
@@ -121,50 +121,71 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
     \item Derivada parcial del error con respecto a $\beta_i$:
     \begin{align} \label{eq:parcial_beta}
         \frac{\partial E(h)}{\partial \beta_i} 
-        =
-        \frac{\partial h(x)}{\partial \beta_i} 
-        = 
-        \sigma
-    \left(  
-        \alpha_{0 i} +
-        \sum_{j=1}^d \alpha_{j i}x_j
-    \right).
+        =&
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \frac{\partial h(x_n)}{\partial \beta_i} 
+        \right)
+        \\ 
+        = &
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \sigma
+            \left(  
+                \alpha_{0 i} +
+                \sum_{j=1}^d \alpha_{j i}x_j
+            \right)
+        \right).
     \end{align}
 
     \item Derivada parcial del error con respecto a $\alpha_{0 i}$:
     \begin{align} \label{eq:parcial_alpha_cero}
         \frac{\partial E(h)}{\partial \alpha_{0 i}} 
-        =
-        \frac{\partial h(x)}{\partial \alpha_{0 i}} 
-        = 
-        \beta_i \sigma'
-    \left(  
-        \alpha_{0 i} +
-        \sum_{j=1}^d \alpha_{j i}x_j
-    \right).
+        =&
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \frac{\partial h(x_n)}{\partial \alpha_{0 i}} 
+        \right)
+        \\ 
+        = &
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \beta_i
+            \sigma'
+            \left(  
+                \alpha_{0 i} +
+                \sum_{j=1}^d \alpha_{j i}x_j
+            \right)
+        \right).
     \end{align}
 
     \item Derivada parcial del error con respecto a $\alpha_{j i}$:
     
     \begin{align} \label{eq:parcial_alpha_i}
         \frac{\partial E(h)}{\partial \alpha_{j i}} 
-        =
-        \frac{\partial h(x))}{\partial \alpha_{j i}} 
-        = 
-        \beta_i \sigma'
-    \left(  
-        \alpha_{0 i} +
-        \sum_{j=1}^d \alpha_{j i}x_j
-    \right) x_j.
+        =&
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \frac{\partial h(x_n)}{\partial \alpha_{0 i}} 
+        \right)
+        \\ 
+        = &
+        \sum_{n = 1}^N \left(
+            \left(h(x_n) - y_n\right)
+            \beta_i
+            \sigma'
+            \left(  
+                \alpha_{0 i} +
+                \sum_{j=1}^d \alpha_{j i}x_j
+            \right) x_j
+        \right).
     \end{align}
 \end{itemize}  
 
-Si el cálculo se hiciera sin tener más consideración alguna que la propia expresión supondría un coste computacional de: 
+Si el cálculo se hiciera sin tener más consideración alguna que la propia expresión supondría el coste computacional que mostramos en la tabla \ref{tab:coste-computacional-directa}.
 
 % tabla con coste en multiplicación 
-
-
-\begin{table}[h]
+\begin{table}[H]
     \begin{center}
     \begin{tabular}{| c | c | c | c | c | c| }
     \hline
@@ -176,50 +197,45 @@ Si el cálculo se hiciera sin tener más consideración alguna que la propia exp
     & $n s$ & $n s (d+1)$ & $n s d$ & $n s$ & 0
     \\
     \hline
+    % Para los segos alpha 0i 
     (\ref{eq:parcial_alpha_cero}) $\frac{\partial E(h)}{\partial \alpha_{0 i}}$ 
-    & $n$ & $n (d+1)$ & $n s d$ & $n s$ & 0
+    & $n$ & $n d$ & $n (d + 1)$ & 0 & $n$
     \\
     \hline
-    % Para los segos alpha 0i 
+    % Para los segos alpha ji 
+    (\ref{eq:parcial_alpha_i}) $\frac{\partial E(h)}{\partial \alpha_{j i}}$ 
+    & $n d$ & $n d^2$ & $n d (d + 2)$ & 0 & $n d$
+    \\
+    \hline
     \end{tabular}
-    \caption{Coste computacional aplicar para el cálculo directo para actualizar $h \in \mathcal{H}_n(\R^d, \R^s)$}
+    \caption{Coste computacional de aplicar directamente el  algoritmo de gradiente 
+    descendente para actualizar $h \in \mathcal{H}_n(\R^d, \R^s)$}
     \label{tab:coste-computacional-directa}
     \end{center}
 \end{table}
 
-A la vista de estas expresiones debemos de definir un algoritmo que busque ahorro en memoria y en coste computacional.
-
-Para el coste computacional notaremos que hay cálculos que se repiten en (\refeq{eq:parcial_beta}), (\refeq{eq:parcial_alpha_cero}) y  
+Abordar el problema de manera directa es muy ineficiente, ya que como mostramos en la tabla 
+\ref{tab:expresiones_repetidas_en_descenso_gradiente}
+hay cálculos que se repiten en (\refeq{eq:parcial_beta}), (\refeq{eq:parcial_alpha_cero}) y  
 (\refeq{eq:parcial_alpha_i}). 
 
-\begin{table}[h]
+\begin{table}[H]
     \begin{center}
     \begin{tabular}{| c | c | c | c | c| }
     \hline
     % cabecera
-    Apariciones de cierta expresión en 
+    Expresión  repetida en 
     & $\frac{\partial E(h)}{\partial \beta_i}$ 
     & $\frac{\partial E(h)}{\partial \alpha_{0 i}}$ 
     &$\frac{\partial E(h)}{\partial \alpha_{j i}}$ 
     & Total apariciones 
     \\ \hline
     % primer cálculo repetido 
-    $\mathfrak{S} =  \alpha_{0 i} \sum_{j=1}^d \alpha_{j i}x_j$ 
+    $\alpha_{0 i} \sum_{j=1}^d \alpha_{j i}x_j$ 
     & 1 & 1& $d$ & $d+2$
     \\
-    % Segundo cálculo repetido 
-    $\mathfrak{D} = \sigma'
-    \left(  
-        \mathfrak{S}
-    \right) = \sigma'
-    \left(  
-     \alpha_{0 i} 
-     \sum_{j=1}^d \alpha_{j i}x_j
-    \right)$
-    & 0 & 1 & $d$  & $d+1$
-    \\
     % Tercer cálculo repetido 
-    $\beta_i \mathfrak{D} = \beta_i \sigma'
+    $\beta_i \sigma'
     \left(  
      \alpha_{0 i} 
      \sum_{j=1}^d \alpha_{j i}x_j
@@ -227,10 +243,92 @@ Para el coste computacional notaremos que hay cálculos que se repiten en (\refe
     & 0 & 1 & $d$ & $d+1$
     \\ \hline
     \end{tabular}
-    \caption{Veces que se calcula cierta expresión fijado un $i$}
+    \caption{Veces que se calcula una misma expresión 
+    para el cálculo de gradiente descendente fijado un
+     $i$}
     \label{tab:expresiones_repetidas_en_descenso_gradiente}
     \end{center}
 \end{table}
 
-A la vista de los resultados expuesto en la tabla \ref{tab:expresiones_repetidas_en_descenso_gradiente}, exponemos la siguiente relación coste computacional coste en memoria
+A la vista de las repeticiones mostradas en  \ref{tab:expresiones_repetidas_en_descenso_gradiente}
+almacenaremos primero en memoria los cálculos parciales. 
+
+Notemos además que las expresiones del tipo 
+$\alpha_{0 i} \sum_{j=1}^d \alpha_{j i}x_j$  son las que denotábamos como $sensibilidades$ en el algoritmo de \textit{forward propagation} \ref{algoritmo:evaluar red neuronal}.
+
+Resultando la siguiente implementación del algoritmo de cálculo. 
+
+Primero aplicaremos algoritmo de gradiente descendente 
+
+Sea $W = (A,S,B)$ 
+la matrices que definen a una red neuronal $h \in \rrnnsmn$, denotando a estas como: 
+\begin{align}
+    A &= (a)_{i,j} \text{ con } 1 \leq i \leq n, 1 \leq j \leq d. \\
+    S &= (c)_{i} \text{ con } 1 \leq i \leq n. \\
+    B &= (b)_{i,j} \text{ con } 1 \leq i \leq s, 1 \leq j \leq n. \\
+\end{align}
+ $h$ modificará el valor de sus pesos de acorde al algoritmo de gradiente descendente \ref{eq:descenso-gradiente} que viene dado por
+
+\begin{algorithm}[H]
+    \caption{Algoritmo gradiente descendente.}
+    \hspace*{\algorithmicindent} \textbf{Input}:$h$ red neuronal  y conjunto de entrenamiento \\
+    \hspace*{\algorithmicindent} \textbf{Output:} $h$ actualizada de acorde al algoritmo de gradiente descendente. 
+    \begin{algorithmic}[1]
+        \STATE Debe de calcularse el previamente el $\nabla E(h)$, es decir cada una de la parciales.
+        % actualizamos los pesos de a 
+        \STATE Actualización de los pesos de $A$ \\  
+        \For{
+                $i \in \{1,\ldots n\}$
+            }{
+                \For{
+                $j \in \{1,\ldots d\}$
+            }{
+                \begin{equation}
+                    a_{i j} 
+                    \gets 
+                    \eta 
+                    \frac{\partial E(h)}{\partial a_{i j}}
+                \end{equation}
+            }
+        }
+         %  Actualizamos los pesos de S               
+        \STATE Actualización de los pesos de $S$ \\   
+        \For{
+                $i \in \{1,\ldots n\}$
+            }{
+                \begin{equation}
+                    c_{i} 
+                    \gets 
+                    \eta 
+                    \frac{\partial E(h)}{\partial c_{i}}
+                \end{equation}
+        } 
+        % actualizamos los pesos de B
+        \STATE Actualización de los pesos de $B$ \\ 
+        \For{
+                $i \in \{1,\ldots s\}$
+            }{
+                \For{
+                $j \in \{1,\ldots d\}$
+            }{
+                \begin{equation}
+                    b_{i j} 
+                    \gets 
+                    \eta 
+                    \frac{\partial E(h)}{\partial b_{i j}}
+                \end{equation}
+            }
+        }
+\end{algorithmic}
+\end{algorithm}
+
+Notemos la necesidad de una variable $\eta \in \R$ que es prefijada. 
+
+\textcolor{red}{$\eta$ podría ser incluso una vector de pesos que se aplicara de manera distinta a cualquier coeficiente o una función variable de ciertas condiciones. No sé hasta qué punto sería interesante plantearse el uso de algoritmos genéticos para actualizarlo ya que estos carecen de valor teórico. ¿Existe algún resultado de análisis que nos de una cota mejor?}
+
+
+Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este vienen determinado por la expresión 
+
+
+
 
