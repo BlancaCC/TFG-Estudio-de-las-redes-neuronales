@@ -49,6 +49,7 @@ approximators
 aproximador
 aproximadores
 autres
+auxiliarDiferenciaPorDerivada
 backpropagation
 codominio
 codominios
@@ -58,6 +59,7 @@ diferenciabilidad
 diferenciable
 diferenciables
 discretice
+ds
 entregables
 eq
 falsar
