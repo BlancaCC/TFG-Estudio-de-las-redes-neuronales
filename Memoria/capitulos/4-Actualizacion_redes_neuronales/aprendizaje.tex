@@ -53,10 +53,10 @@ El gradiente descendente es un método iterativo de minimización de funciones d
 
 
 %Fin nota margen
-En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h \in \rrnnmc$, concretamente se fijará un número $q$ de neuronas en la capa oculta. 
+En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h \in \rrnnmc$, concretamente se fijará un número $n$ de neuronas en la capa oculta. 
 Dada también una función de error diferenciable y que no presente puntos de inflexión
-$E: \mathcal{H}_q (\R^d, \R^s) \longrightarrow \R,$
-se toma red neuronal cualquiera $h_0 \in \mathcal{H}_q (\R^d, \R^s)$ y 
+$E: \rrnnsmn\longrightarrow \R,$
+se toma red neuronal cualquiera $h_0 \in \rrnnsmn$ y 
 fijado $\eta \in \R^+$. 
 
 Se define la sucesión 
@@ -77,34 +77,32 @@ Donde $h_n$ es una sucesión cuyos términos convergen a un mínimo local.
 
 
 Con el fin de reducir el coste del cálculo del gradiente, 
-se utiliza el algoritmo conocido como \textit{backpropagation} que fue publicado en 
-1989 en el artículo \cite{backpropagation-Hinton}. 
-
-Denotaremos como $w$ al conjunto de parámetros que determinan el valor de una red neuronal. 
+se utiliza generalmente el algoritmo conocido como \textit{backpropagation} que fue publicado en 
+1989 en el artículo \cite{backpropagation-Hinton}. Las hipótesis bajo las que fue diseñado tal algoritmo fueron: redes neuronales con varias capas y entendiendo por red neuronal un modelo más costoso al nuestro. \textbf{Es por ello que a continuación plantearemos una versión propia deducida y optimizada de acorde a nuestro modelo}
 
  Sea $E_{in} : \rrnnmc \longrightarrow \R^+_0$ la función para medir error habitualmente usada, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
-de entrenamiento $\mathcal{D}$ está constituido por $N$ datos de la forma $(x_n, y_n)$ con $x_n$ el vector de entrada o atributos y $y_n$ el estado o valor deseado para cualquier $n\in \{1, \ldots, N\}.$ Para cualquier $h \in \rrnnmc$ denotando por $h_k$ a su $k-$ésima proyección, se define como métrica de error dentro de $\mathcal{D}$ como
+de entrenamiento $\mathcal{D}$ está constituido por $N$ datos de la forma $(x_i, y_i)$ con $x_i$ el vector de entrada o atributos y $y_i$ el estado o valor deseado para cualquier $k\in \{1, \ldots, N\}.$ Para cualquier $h \in \rrnnmc$ denotando por $h_k$ a su $k-$ésima proyección, se define como métrica de error dentro de $\mathcal{D}$ como
 \begin{equation}
     E_{in}(h) = \frac{1}{N} \sum_{(x,y) \in \mathcal{D}} \sum_{k=1}^s(h_k(x)- y_k)^2. 
 \end{equation}
 
-puesto que $\frac{1}{N}$ no es más que una constante que 
+puesto que $\frac{1}{N}$ no es más que una constante de proporcionalidad (y que por tanto no afecta a la minimización) del error y que además 
 puede ser corregida en \refeq{eq:descenso-gradiente} con $\eta$, con el fin de ahorrar coste computacional la 
-omitiremos de ahora en adelante. Es decir, podemos suponer que 
+fijaremos a conveniencia. Es decir, podemos suponer que 
 nuestra función de error a minimizar es 
 
 \begin{equation}
     E_{in}(h) = \frac{1}{2} \sum_{(x,y) \in \mathcal{D}} \sum_{k=1}^s (h_k(x)- y_k)^2. 
 \end{equation}
 
-Antes de adentrarnos en los cálculos tengamos presente que hemos definido una red neuronal  $h \in \mathcal{H}_n (\R^d, \R^s)$ como
-\begin{equation}
+Antes de adentrarnos en los cálculos tengamos presente que hemos definido una red neuronal  $h \in \mathcal{H}_n (\R^d, \R^s)$ como $h= (h_1, \ldots, h_s)$ con cada proyección $k-$ésima dada por: 
+\begin{equation}\label{eq:red-neuronal-que-aprender}
     h_k(x) = 
     \sum_{j=1}^n \beta_{j k}
     \sigma
     \left(  
         \alpha_{0 j} +
-        \sum_{i=1}^d \alpha_{i j}x_j
+        \sum_{i=1}^d \alpha_{i j}x_i
     \right)
 \end{equation}
 para la cual hemos impuesto que la función de activación $\sigma$ sea diferenciable.
@@ -118,14 +116,15 @@ Denotaremos como $\chi_{[c]}$ a la función características
 \right.
 \end{equation}
 
-Así pues a la hora de calcular el gradiente tendríamos tres tipos de derivadas parciales, las dependientes de $\beta_{i  k}$, 
-las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virtud de la regla de la cadena, se tiene: 
+Así pues, en base al modelo expuesto en \refeq{eq:red-neuronal-que-aprender} a la hora de calcular el gradiente del error con respecto a los parámetros que determinan la red, tendríamos tres tipos de derivadas parciales, las dependientes de $\beta_{j  k}$, 
+las de $\alpha_{0 j}$ y las de $\alpha_{j i}$, para cada caso concreto y en virtud de la regla de la cadena, se tiene: 
+
 \begin{itemize}
-    \item Derivada parcial del error con respecto a $\beta_{u v}$ donde $u \in \{1, \ldots, n\}$ y $v \in \{1, \ldots, s\}$:
+    \item Derivada parcial del error con respecto a $\beta_{v w}$ donde $v \in \{1, \ldots, n\}$ y $w \in \{1, \ldots, s\}$:
     \begin{align} \label{eq:parcial_beta}
-        \frac{\partial E(h)}{\partial \beta_{u v}} 
+        \frac{\partial E(h)}{\partial \beta_{v w}} 
         = &
-        \frac{\partial}{\partial \beta_{u v}}
+        \frac{\partial}{\partial \beta_{v w}}
         \left[
             \frac{1}{2}
             \sum_{(x,y) \in \mathcal{D}}
@@ -138,19 +137,19 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         \sum_{(x,y) \in \mathcal{D}}
         \sum_{k = 1}^s 
         2 \left(h_k(x) - y_k \right)
-        \frac{\partial h_k(x)}{\partial \beta_{u v}} 
+        \frac{\partial h_k(x)}{\partial \beta_{v w}} 
         \\ 
         = & % desarrollamos h
         \sum_{(x,y) \in \mathcal{D}}
         \sum_{k = 1}^s 
         \left(h_k(x) - y_k \right)
-        \frac{\partial}{\partial \beta_{u v}} 
+        \frac{\partial}{\partial \beta_{v w}} 
         \left[
             \sum_{j = 1}^n 
                 \beta_{j k}
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
         \right] 
@@ -161,12 +160,12 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         \left(h_k(x) - y_k \right)
         \left(
             \sum_{j = 1}^n 
-            \frac{\partial}{\partial \beta_{u v}} 
+            \frac{\partial}{\partial \beta_{v w}} 
             \left[
                 \beta_{j k}
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
             \right]
@@ -178,22 +177,22 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
         \left(h_k(x) - y_k \right)
         \left(
             \sum_{j = 1}^n 
-                \chi_{[j = u \wedge k = v]}
+                \chi_{[j = v \wedge k = w]}
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{j=1}^d \alpha_{i j}x_i
                 \right)
         \right)
         \\ 
         = & % Expresión final quitando términos nulos 
         \sum_{(x,y) \in \mathcal{D}}
-        \left(h_v(x) - y_v \right)
+        \left(h_w(x) - y_w \right)
         \left(
             \sigma
             \left(  
-                \alpha_{0 u} +
-                \sum_{i=1}^d \alpha_{i u}x_i
+                \alpha_{0 v} +
+                \sum_{i=1}^d \alpha_{i v}x_i
             \right)
         \right).
     \end{align}
@@ -227,7 +226,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
                 \beta_{j k}
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
         \right] 
@@ -243,7 +242,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
             \left[
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
             \right]
@@ -327,7 +326,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
                 \beta_{j k}
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
         \right] 
@@ -343,7 +342,7 @@ las de $\alpha_{0 i}$ y las de $\alpha_{j i}$, para cada caso concreto y en virt
             \left[
                 \sigma
                 \left(  
-                    \alpha_{0 i} +
+                    \alpha_{0 j} +
                     \sum_{i=1}^d \alpha_{i j}x_i
                 \right)
             \right]
@@ -493,27 +492,28 @@ supondría el cómputo que mostramos en la tabla \ref{tab:coste-computacional-di
     \end{center}
 \end{table}
 
-Abordar el problema de manera directa es muy ineficiente, ya que como mostramos en la tabla 
+Abordar el problema de manera directa es muy ineficiente. Basta fijar un par $(x,y) \in \mathcal{D}$ para darse cuenta de que el cálculo de $h(x)-y$ se repite $n(s+1+d)$ veces y que además,  como mostramos en la tabla 
 \ref{tab:expresiones_repetidas_en_descenso_gradiente}
 hay cálculos que se repiten en (\refeq{eq:parcial_beta}), (\refeq{eq:parcial_alpha_cero}) y  
 (\refeq{eq:parcial_alpha_i}). 
 
-\textcolor{red}{Actualizar la tabla con los valores reales}
 \begin{table}[H]
     \begin{center}
-    \begin{tabular}{| c | c | c | c | c| c | }
+        \resizebox{\textwidth}{!}{
+    \begin{tabular}{| c | c | c | c | c| c | c| }
     \hline
     % cabecera
     Expresión  repetida en 
     & $\frac{\partial E(h)}{\partial \beta_i}$ 
     & $\frac{\partial E(h)}{\partial \alpha_{0 i}}$ 
     &$\frac{\partial E(h)}{\partial \alpha_{j i}}$ 
-    & Total apariciones 
+    & Total apariciones  para $i$
+    & Coste total 
     & Coste en memoria 
     \\ \hline
     % Primer cálculo repetido 
     $\alpha_{0 i} \sum_{j=1}^d \alpha_{j i}x_j$ 
-    & 1 & 1& $d$ & $d+2$ & $n$
+    & 1 & 1& $d$ & $d+2$ & $n(d+2)$ & $n$
     \\
     % Segundo cálculo repetido
     $\beta_{i k} \sigma'
@@ -521,12 +521,10 @@ hay cálculos que se repiten en (\refeq{eq:parcial_beta}), (\refeq{eq:parcial_al
      \alpha_{0 i} 
      \sum_{j=1}^d \alpha_{j i}x_j
     \right)$
-    & 0 & 1 & $d$ & $d+1$ & $n s$
-    \\ % Veces que se repite el algoritmo de forward propagation 
-    $h_k(x)-y_k$
-    & $n s$ & $n$ & $n d$ & $n(s+1+d)$ & $s$
+    & 0 & 1 & $d$ & $d+1$ & $n s(d+1)$ &$n s$
     \\ \hline
     \end{tabular}
+        } % fin ajuste tamaño
     \caption{Veces que se calcula una misma expresión 
     para el cálculo de gradiente descendente fijado un
      $i$ y coste en memoria en unidades si se almacenara el cálculo de todos esos parámetros.}
@@ -535,30 +533,38 @@ hay cálculos que se repiten en (\refeq{eq:parcial_beta}), (\refeq{eq:parcial_al
 \end{table}
 
 Notemos además que las expresiones del tipo 
-$\alpha_{0 i} + \sum_{j=1}^d \alpha_{j i}x_j$  son las que denotábamos como $sensibilidades$ en el algoritmo de \textit{forward propagation} \ref{algoritmo:evaluar red neuronal}.
+$\alpha_{0 j} + \sum_{i=1}^d \alpha_{i j}x_i$  son las que denotábamos como $sensibilidades$ en el algoritmo de \textit{forward propagation} \ref{algoritmo:evaluar red neuronal}.
  
 
-\subsection{ Conclusión balance almacenamiento memoria y coste computacional}  
-A la vista de las repeticiones que se producen recogidas en la tabla  
-\ref{tab:expresiones_repetidas_en_descenso_gradiente} ofrece un gran beneficio frente a coste de cálculo y memoria almacenar $h_k(x)-y_k$, ya que el coste de cálculo aumenta de manera lineal conforme aumenta el número de neuronas mientras que se mantiene constante el costo en memoria. Además aunque hubiera limitaciones de memoria, podría plantearse el uso el de algoritmo de compresión que si $n$ es lo suficientemente grande, ya que el coste de éste sería menor que calcular todas las apariciones.   
+\subsection{ Motivación para almacenar cálculos parciales}  
 
-Para el resto de expresiones estamos en una situación en la que el coste en memoria aumenta de manera lineal frente  a que el beneficio
-\textcolor{red}{Completar con las conclusiones cuando la tabla esté completa y bien hecha}. 
+A la vista de las repeticiones de cálculos, su coste computacional,
+ ofrece un gran beneficio almacenar $h_k(x)-y_k$, ya que el coste de cálculo aumenta de manera lineal conforme aumenta el número de neuronas mientras que se mantiene constante el costo en memoria.      
 
-Resultando la siguiente implementación del algoritmo de cálculo. 
+Para el resto de expresiones podría no estar tan claro su beneficio, 
+ya que estamos en una situación en la que el coste en memoria y de cálculo aumentan manera lineal con respecto al número de neuronas. 
+
+Sin embargo, para un cálculo directo sin almacenar operaciones intermedias, sería necesario reservar en memoria espacio para $n (s + 1 + d )$  parámetros, ya que no se debería de sobreescribir los parámetros antiguos con los nuevos ya que afectaría al cálculo. 
+
+Pero como hemos observado en el coste en memoria de ir almacenando los resultados parciales \ref{tab:expresiones_repetidas_en_descenso_gradiente}
+el coste en memoria de nuestro algoritmo sería de $s + n(1+s)$ 
+Así pues se acaba de probar que un algoritmo directo es peor en coste de cálculo y memoria frente a otro que almacene los resultados parciales. 
+
+Por lo que los algoritmos que proponemos a continuación se basarán en almacenar estos resultados. 
+
+\textcolor{red}{ Revisar una vez hecho el algoritmo} porque creo que el coste de almacenar las parciales es inamovible (o no).
+
 
 \subsection{Algoritmos de actualización de pesos de una neurona}
 
-Primero aplicaremos algoritmo de gradiente descendente 
+Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neural $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
 
-Sea $W = (A,S,B)$ 
-la matrices que definen a una red neuronal $h \in \rrnnsmn$, denotando a estas como: 
 \begin{align}\label{eq:representation red neuronal}
-    A &= (\alpha)_{i,j} \text{ con } 1 \leq i \leq n , 1 \leq j \leq d. \\
-    S &= (\alpha)_{0, i} \text{ con } 1 \leq i \leq n. \\
-    B &= (\beta)_{i,j} \text{ con } 1 \leq i \leq s, 1 \leq j \leq n. \\
+    A &= (\alpha_{i,j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
+    S &= (\alpha_{0, j}) \text{ con }  j \in \{1, \ldots, n\}. \\
+    B &= (\beta_{j,k}) \text{ con }  j \in \{1, \ldots n\}, \; k \in \{1, \ldots s\}.\\
 \end{align}
- $h$ modificará el valor de sus pesos de acorde al algoritmo de gradiente descendente \ref{eq:descenso-gradiente} que viene dado por
+ De esta manera $h$ modificará el valor de sus pesos de acorde al algoritmo de gradiente descendente \ref{eq:descenso-gradiente} que viene dado por
 
 \begin{algorithm}[H]
     \caption{Algoritmo gradiente descendente.}
@@ -569,10 +575,10 @@ la matrices que definen a una red neuronal $h \in \rrnnsmn$, denotando a estas c
         % actualizamos los pesos de a 
         \STATE Actualización de los pesos de $A$ \\  
         \For{
-                $i \in \{1,\ldots n\}$
+                $j \in \{1,\ldots n\}$
             }{
                 \For{
-                $j \in \{1,\ldots d\}$
+                $i \in \{1,\ldots d\}$
             }{
                 \begin{equation}
                     \alpha_{i j} 
@@ -585,28 +591,28 @@ la matrices que definen a una red neuronal $h \in \rrnnsmn$, denotando a estas c
          %  Actualizamos los pesos de S               
         \STATE Actualización de los pesos de $S$ \\   
         \For{
-                $i \in \{1,\ldots n\}$
+                $j \in \{1,\ldots n\}$
             }{
                 \begin{equation}
-                    \alpha_{i 0} 
+                    \alpha_{0 j} 
                     \gets 
                     \eta 
-                    \frac{\partial E(h)}{\partial \alpha_{i 0} }
+                    \frac{\partial E(h)}{\partial \alpha_{0 j} }
                 \end{equation}
         } 
         % actualizamos los pesos de B
         \STATE Actualización de los pesos de $B$ \\ 
         \For{
-                $i \in \{1,\ldots s\}$
+                $k \in \{1,\ldots s\}$
             }{
                 \For{
-                $j \in \{1,\ldots d\}$
+                $j \in \{1,\ldots n\}$
             }{
                 \begin{equation}
-                    \beta_{i j} 
+                    \beta_{j k} 
                     \gets 
                     \eta 
-                    \frac{\partial E(h)}{\partial \beta_{i j}}
+                    \frac{\partial E(h)}{\partial \beta_{j k}}
                 \end{equation}
             }
         }
@@ -622,11 +628,12 @@ Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este
 
 El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que el no haya ningún cálculo repetido. 
 
+\textcolor{red}{ Falta revisar que esté bien este algoritmo}
 
 % Cálculo de los gradientes 
 \begin{algorithm}[H]
     \caption{Algoritmo cálculo del gradiente $\nabla E(h)$.}
-    \hspace*{\algorithmicindent} \textbf{Input}:$h \in  \rrnnsmn$ red neuronal que representaremos como en \ref{eq:representation red neuronal} y $\mathcal{D}$ conjunto de entrenamiento, con pares $(x, y)$ \\
+    \hspace*{\algorithmicindent} \textbf{Input}:$h \in  \rrnnsmn$ red neuronal que representaremos como en \ref{eq:representation red neuronal} y $\mathcal{D}$ conjunto de entrenamiento, con pares $(x, y)$. \\
     \hspace*{\algorithmicindent} \textbf{Output:} Gradiente del error, esto es $\nabla E(h)$ que se almacena en las siguientes variables: 
     \begin{itemize}
         \item $\text{parcial} \alpha_{i j}$ hace referencia a $\frac{\partial E(h)}{\partial \alpha_{i j}}$. 
@@ -716,5 +723,8 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
         }
 \end{algorithmic}
 \end{algorithm}
+
+\textcolor{red}{Falta añadir complejidad}
+
 
 

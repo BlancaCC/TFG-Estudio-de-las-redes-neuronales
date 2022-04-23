@@ -104,6 +104,7 @@ retroalimentarán
 rrnn
 rrnng
 separabilidad
+sobreescribir
 solventable
 squasher
 subespacio
