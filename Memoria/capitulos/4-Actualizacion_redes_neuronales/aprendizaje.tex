@@ -546,14 +546,11 @@ ya que estamos en una situación en la que el coste en memoria y de cálculo aum
 
 Sin embargo, para un cálculo directo sin almacenar operaciones intermedias, sería necesario reservar en memoria espacio para $n (s + 1 + d )$  parámetros, ya que no se debería de sobreescribir los parámetros antiguos con los nuevos ya que afectaría al cálculo. 
 
-Pero como hemos observado en el coste en memoria de ir almacenando los resultados parciales \ref{tab:expresiones_repetidas_en_descenso_gradiente}
-el coste en memoria de nuestro algoritmo sería de $s + n(1+s)$ 
-Así pues se acaba de probar que un algoritmo directo es peor en coste de cálculo y memoria frente a otro que almacene los resultados parciales. 
+Pero como hemos observado en el coste en memoria de ir almacenando los resultados parciales \ref{tab:expresiones_repetidas_en_descenso_gradiente} y se aprecia claramente en \ref{algoritmo:calculo-gradiente}
+el coste en memoria de nuestro algoritmo sería de $ n (d + 2s +3) +1$.
+Así pues se acaba de probar que un algoritmo directo es peor en coste de cálculo y ligeramente memoria frente a otro que almacene los resultados parciales. 
 
 Por lo que los algoritmos que proponemos a continuación se basarán en almacenar estos resultados. 
-
-\textcolor{red}{ Revisar una vez hecho el algoritmo} porque creo que el coste de almacenar las parciales es inamovible (o no).
-
 
 \subsection{Algoritmos de actualización de pesos de una neurona}
 
@@ -631,7 +628,7 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
 \textcolor{red}{ Falta revisar que esté bien este algoritmo}
 
 % Cálculo de los gradientes 
-\begin{algorithm}[H]
+\begin{algorithm}[H] \label{algoritmo:calculo-gradiente}
     \caption{Algoritmo cálculo del gradiente $\nabla E(h)$.}
     \hspace*{\algorithmicindent} \textbf{Input}:$h \in  \rrnnsmn$ red neuronal que representaremos como en \ref{eq:representation red neuronal} y $\mathcal{D}$ conjunto de entrenamiento, con pares $(x, y)$. \\
     \hspace*{\algorithmicindent} \textbf{Output:} Gradiente del error, esto es $\nabla E(h)$ que se almacena en las siguientes variables: 
@@ -725,6 +722,57 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
 \end{algorithm}
 
 \textcolor{red}{Falta añadir complejidad}
+
+\subsubsection*{Análisis de la complejidad}  
+Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-gradiente} es:
+\begin{itemize}
+    \item \textbf{Coste de cálculo}:  Entiendo suma, productos y evaluaciones como constante de valor $1$ el resultado es: 
+    \begin{align}
+        \text{coste} &=
+        |\mathcal{D}| 
+        \left(
+            n(1+1+1 + s) + 
+            1+1 +
+            n s 
+            + n s (1 + 1 + d) 
+        \right) 
+        \\
+        & =   
+        |\mathcal{D}| 
+        ( 
+            n (3 + s)  
+            +  3 n s
+            + n s d
+        ) 
+        \\
+        & = |\mathcal{D}|
+        (
+            4 n s + d n s + 3 n
+        )  
+        \\
+        & \leq 
+        |\mathcal{D}|
+        3 \max \{4, d \} n s.
+    \end{align} 
+
+    De aquí se deduce, puesto que $s,d$ son constantes fijas que a nivel práctico serán mucho menor que el número de neuronas  $n$ y el número de datos de entrenamiento $|\mathcal{D}| $, que los que afecta primordialmente al coste es $|\mathcal{D}| $ y $n$. 
+    
+    Si queremos converger con cierta precisión, el teorema de aproximación no nos permite reducir $n$. Sin embargo, si suponemos que $\mathcal{D}$
+    presenta datos independientes e idénticamente distribuidos tomar un subconjunto aleatorio mantendría una buen estimador  del error actual y por ende del aprendizaje. 
+
+    \textcolor{red}{La clave es cuánto de pequeño debe ser la muestra con la que aprendamos.}
+
+    \item \textbf{Coste en memoria}: 
+    El coste total de memoria, entendiendo por una unidad aquella que almacene un parámetro concreto de la red neuronal será: 
+    \begin{align}
+        \text{Coste en memoria} = &
+         n d + n (s + 1) \; &  \textit{parciales}
+         \\& + n (1 + 1 + s)  \; & \textit{ cálculo de }
+          \delta, s, d s \; \text{y derivada}\beta
+         \\& +1 \; &  \textit{ variable auxiliar}
+         \\& = n (d + 2s +3) +1.
+    \end{align}
+\end{itemize} 
 
 
 
