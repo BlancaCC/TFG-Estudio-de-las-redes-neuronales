@@ -81,11 +81,13 @@ insesgados
 jk
 lcc
 md
+modus
 muestral
 multicapa
 multicapas
 nx
 nótese
+operandi
 optarse
 overparametrization
 pag
