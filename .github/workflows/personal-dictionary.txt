@@ -1,6 +1,7 @@
 personal_ws-1.1 es 0 utf-8 
 Approximators
 Backpropagation
+Backpropagations
 Bernstein
 Beygelzimer
 Borel
@@ -94,6 +95,7 @@ perceptrón
 png
 primeraCapa
 qB
+reenfocar
 referenciada
 reformulando
 renumerar
