@@ -9,8 +9,10 @@ Bubeck
 Chebyshev
 ECM
 Explicitación
+FSum
 Factorizando
 Feedforward
+Fn
 ForwardPropagation
 GN
 García
@@ -32,6 +34,7 @@ Merelo
 Merí
 Mesejo
 Multilayer
+NN
 Nótese
 Ockham
 Perceptrón
@@ -60,6 +63,7 @@ diferenciabilidad
 diferenciable
 diferenciables
 discretice
+distanciaMínima
 ds
 entregables
 eq

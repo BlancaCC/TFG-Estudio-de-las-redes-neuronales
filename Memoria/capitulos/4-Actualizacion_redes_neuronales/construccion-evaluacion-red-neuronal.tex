@@ -191,11 +191,11 @@ por lo que habrá situaciones en que para ese conjunto de datos sí  se tenga la
 que es un artificio de las redes neuronales multicapa para enlazar una capa con otra y que en redes neuronales de una capa oculta carece de sentido.
 
 % Consideración sobre componer la red neuronal con una función
-\subsection{Consideraciones sobre la composición de redes neuronales con otras funciones}
+\subsection{\textit{Modus operandi} ante problemas que requieran un dominio de salida discreto}
 
 Es usual en la literatura presentar las redes neuronales con la salida compuesta con una función $\theta$, de tal manera que una red neuronal sea de la forma
 
-\begin{equation}
+\begin{equation}\label{red-neuronal-con-compuesta}
     h_k(x) = \theta_k 
     \left(
         \sum_{i=1}^{n} \beta_{i k} \gamma_{i}
@@ -207,14 +207,83 @@ Es usual en la literatura presentar las redes neuronales con la salida compuesta
 \end{equation}
 El teorema universal de convergencia \ref{teo:MFNAUA} nos asegura 
 que dado un número lo suficientemente grande de neuronas tal 
-composición no es necesaria, sin embargo a nivel práctico ese 
-número de neuronas puede no alcanzarse y por cómo se produce la convergencia el resultado serán funciones con imágenes contenidas en $\R^n$.
+composición no es necesaria. Sin embargo, a nivel práctico ese 
+número de neuronas puede no alcanzarse y por cómo se produce la convergencia el resultado serán funciones con imágenes con forma de intervalos contenidos en $\R^n$.
 
-Por la naturaleza de la imagen de ciertos problemas no sería necesaria mayor modificación y con nuestra definición sería más que suficiente, pero en caso de la salida tener que cumplir alguna restricción, como  un 
-problema de clasificación que necesite una salida discreta; por lo observado en \ref{corolario:2_5_función_Booleana} sería necesario la composición con una función $\theta$ que discretice el la imagen.
+Por la naturaleza de la imagen de ciertos problemas no sería necesaria mayor modificación y con nuestra definición sería más que suficiente. Pero en caso de la salida tener que cumplir alguna restricción, como por ejemplo en 
+problemas de clasificación que necesiten de una salida discreta; sería necesario la composición con una función $\theta$ que discretice el la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
 
-\textcolor{red}{Pensar en el debate de si entrenar y luego determinar $\theta$ o directamente entrenar con $\theta$ (esto vendrá determinado por el método de aprendizaje que usemos y si $\theta$ se lleva bien con él.)}
 
+La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuronal-con-compuesta}, se tendría que si $f$ es el patrón subyacente de la clasificación y $\theta$ la función que discretiza el dominio se deberá de encontrar 
+$h \in \rrnnmc$ tal que $h$ aproxime a $\theta^{-1} \circ f$.
+
+Lo cual esto exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
+
+Es por ello que en nuestra aproximación descartamos este modo de proceder y proponemos el siguiente: 
+
+\begin{enumerate}
+    \item Entrenamos $h\in \rrnnmc$, esto dará una salida que no necesariamente será discreta. 
+    \item Una vez que se ha calculado $h$,  $\theta$ se determina a partir de $h$. 
+\end{enumerate}
+
+\subsubsection*{Construcción de $\theta$}
+
+Una vez fijada $h$,  para $A \subseteq \mathcal{D}$ se define  el conjunto 
+\begin{equation}
+    \Lambda = \{(h(x), y) : (x,y) \in A\}.
+\end{equation}
+
+A partir del cual $\theta$ será una función que se ha obtenido por el método de clasificación supervisada de los $k$-vecinos más cercanos ($k-$NN)donde el conjunto de entrenamiento es $\Lambda$.
+
+El motivo por el que se ha optado por esta aproximación es que si consideráramos $\theta$ como una función a trozos usual definida como 
+
+\begin{equation}
+    \tilde{\theta}(x) = y \text{ si } h(x) \in I_y.
+\end{equation}
+
+Donde $I_y$ puede no ser un intervalo conexo y que introduciría complejidad al cálculo y determinación de $\tilde{\theta}$, es por ello que lo natural sería entonces construir un función que discretice a partir de los valores conocidos más cercanos, esto es el algoritmo $k-$NN.  
+
+\subsubsection*{Construcción de $k-$NN}  
+
+Si la dimensión de salida con la que se ha entrenado $h$ es uno, es decir $s=1$. Por ser $\R$ de una dimensión lo natural sería hacer $k=1$, es decir 
+
+\begin{align}
+    & \theta(h(x)) = y_{cercano}, \\
+    &\text{donde } 
+    (h(a),  y_{cercano}) \in A 
+    \text{ y }
+    h(a) = \min \{|h(x) - h(b)| :  (h(b),  y) \in A  \}.
+\end{align}
+
+Si se desea mayor deberíamos de entrenar $s > 1$ y considerar cualquier distancia. 
+
+La implementación de la fórmula anterior sería la siguiente: 
+
+% Algoritmo 1-NN
+\begin{algorithm}[H]
+   \caption{ Cálculo de la función $\theta$ como clasificado $1-$NN} 
+   \textbf{Input: } Conjunto de datos $\Lambda$.  \\
+   \textbf{Output: } Función $\theta : \R \longrightarrow \R$
+   \begin{algorithmic}[1]
+    \STATE \COMMENT{Definimos $\theta$ como} \\
+    \SetKwFunction{FSum}{$\theta$}
+    \SetKwProg{Fn}{Function}{:}{}
+    \Fn{\FSum{$h_x$}}{
+        \STATE $distanciaMínima \gets\infty$
+        \STATE $clase \leftarrow NADA$ \\
+        \STATE \COMMENT{Encontramos el más cercano}\\
+        \ForAll{cada $(h, y)$}{
+            \If{$distancia(h,h_x) < distanciaMínima$}{
+               $clase \leftarrow y$
+            }
+        }
+        \Return{$clase$}
+    } 
+    \Return{$\theta$}
+   \end{algorithmic}
+\end{algorithm}
+
+\textcolor{red}{Falta revisar y repensar esta sección }
 %%%%%%%%%%% Fin de lo observado
 
 \subsection{Qué función de activación seleccionar}
