@@ -228,35 +228,6 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
 
 Nótese que con este corolario lo que se está indicando es que dado
 un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuronal que para tales puntos \textit{devuelva} el valor exacto. 
-
-\begin{definicion}[Función Booleana]
-    Decimos que una función es Booleana si su dominio es 
-    $\{0,1\}^d$  para algún $d \in \N \setminus \{0\}$
-    y su codominio es $\{0,1\}$. Es decir,
-    \begin{equation}
-      f:\{0,1\}^d \longrightarrow \{0,1\}.
-    \end{equation}
-\end{definicion}
-
-Ejemplos conocidos son la función 
-$or: \{0,1\}^d \longrightarrow \{0,1\}$  que vale 
-uno si alguno de su entrada es uno y la función 
-$and: \{0,1\}^d \longrightarrow \{0,1\}$
-que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
-
-% Corolario 2.5  
-\begin{corolario}\label{corolario:2_5_función_Booleana} 
-    Para cada función Booleana 
-    $g: \{0,1\}^d \longrightarrow \{0,1\}$
-     y 
-    cada $\epsilon >0$ existe una red neuronal
-    $f \in \rrnn$ tal que 
-    \begin{equation}
-        \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
-        < \epsilon.
-    \end{equation}
-\end{corolario}
-
 %Nota aclarativa sobre la relevancia del corolario
 \marginpar{
     \textcolor{dark_green}{    
@@ -293,6 +264,36 @@ que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
      $\theta \circ h(\{ x : g(x)=1 \})=1$.
     }
 }
+
+\begin{definicion}[Función Booleana]
+    Decimos que una función es Booleana si su dominio es 
+    $\{0,1\}^d$  para algún $d \in \N \setminus \{0\}$
+    y su codominio es $\{0,1\}$. Es decir,
+    \begin{equation}
+      f:\{0,1\}^d \longrightarrow \{0,1\}.
+    \end{equation}
+\end{definicion}
+
+Ejemplos conocidos son la función 
+$or: \{0,1\}^d \longrightarrow \{0,1\}$  que vale 
+uno si alguno de su entrada es uno y la función 
+$and: \{0,1\}^d \longrightarrow \{0,1\}$
+que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
+
+% Corolario 2.5  
+\begin{corolario}\label{corolario:2_5_función_Booleana} 
+    Para cada función Booleana 
+    $g: \{0,1\}^d \longrightarrow \{0,1\}$
+     y 
+    cada $\epsilon >0$ existe una red neuronal
+    $f \in \rrnn$ tal que 
+    \begin{equation}
+        \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
+        < \epsilon.
+    \end{equation}
+\end{corolario}
+
+
 
 \begin{proof}
     Se define la función $\mu : \R^d \longrightarrow [0,1]$ de forma que 
@@ -481,8 +482,28 @@ podemos suponer que
 Por alcanzar la función de activación $\psi$ el cero y el uno, 
 gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ tal que $\psi(-M) = 1-\psi(M) = 0.$
 
-Definiremos de manera recursiva la red neuronal buscada $f_n$. 
+Definiremos de manera recursiva la red neuronal buscada $f_n$.
 
+% Nota nueva hipótesis de optimización del Teorema 2.5
+\setlength{\marginparwidth}{\smallMarginSize}
+\reversemarginpar
+\marginpar{\raggedright
+    \textcolor{blue}{
+        \textbf{Nueva hipótesis de optimización}
+    }
+}
+\marginpar{
+    \textbf{
+    El teorema 
+        \ref{teorema:2_5_entrenamiento_redes_neuronales}
+        nos brinda una heurística de inicialización de los pesos
+        de una red neuronal.
+    }
+    La cual se tratará en en la sección \ref{section:inicializar_pesos}.
+\setlength{\marginparwidth}{\bigMarginSize}
+ 
+}
+\normalmarginpar
 
 \begin{itemize}
     \item Red neuronal $f_1$. 
@@ -515,32 +536,7 @@ Veamos por inducción sobre $n$ que así definida para cualquier $1 \leq i \leq 
 $f_n(x_i) = g(x_i)$. 
 Además de que tiene un total de $n$ neuronas ocultas. 
 
-% Nota nueva hipótesis de optimización del Teorema 2.5
-\reversemarginpar
-\marginpar{\raggedright
-    \textcolor{blue}{
-        \textbf{Nueva hipótesis de optimización}
-    }
-}
-\marginpar{
-    \textbf{
-    El teorema 
-        \ref{teorema:2_5_entrenamiento_redes_neuronales}
-        nos brinda una heurística de inicialización de los pesos
-        de una red neuronal.
-}
-  La demostración es totalmente constructiva 
-  dando las claves de cómo conseguir una red neuronal 
-  que tome ciertos valores concretos.
-  A nivel práctico si queremos que una red neuronal de una capa oculta
-  con $n$ neuronas aprenda se deberán de ir refinando los pesos iniciales con el algoritmo de gradiente 
-    descendente. Sabemos que los valores iniciales condicionan el 
-    resultado final del entrenamiento, por lo que 
-    \textbf{tomar  como red inicial la construida con la fórmula que nos da 
-    esta demostración y $n$ datos aleatorios, podría ser una buena 
-    heurística}.  
-}
-\normalmarginpar
+
 \begin{itemize}
     \item Caso base, $n=1$. 
     \begin{equation}
