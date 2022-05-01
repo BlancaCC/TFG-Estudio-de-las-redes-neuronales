@@ -177,13 +177,9 @@ Está claro por la relación
 
  La clave ahora reside en si se satisface la desigualdad opuesta
 Es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
-\textcolor{red}{Mal razonado, D es finito y que el error sea cero en ambos no supone que uno pertenezca al otro}.
-Esto no es posible para todo los casos, fijamos $h^+ \in \mathcal{H}^+_n(X,Y)$ y tomamos como conjunto de datos $\mathcal{D}$ el grafo de $h^+$, es evidente que $E_{\mathcal{D}}(h^+) = 0$ entonces si existiera $h \in \mathcal{H}_n(X,Y)$ con $E_{\mathcal{D}}(h) \leq E_{\mathcal{D}}(h^+)$ necesariamente $E_{\mathcal{D}}(h) = 0$ y entonces $h^+ \in \mathcal{H}_n(X,Y)$ por lo que se tendría que 
-$$\mathcal{H}_n(X,Y) = \mathcal{H}_n^+(X,Y)$$ 
-lo cual es una contradicción.
 
-Notemos que en la práctica el conjunto $\mathcal{D}$ es finito, 
-por lo que habrá situaciones en que para ese conjunto de datos sí  se tenga la misma precisión. 
+Esto no es posible y para darse cuenta basta con considerar el caso de una neurona, con $G(x)$ la función de activación y $k \in \R^+$ definimos la función ideal como $f(x)$. 
+Tomando tan solo dos puntos convenientemente seleccionados se llega a la contradicción de que $H_1(\R, \R)$ pueda aproximar perfectamente $f$ y sin embargo $f \in H^+_1(\R, \R)$ 
 
 % Fin de la demostración 
 
