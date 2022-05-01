@@ -4,8 +4,6 @@
 
 \section{ Inicialización de los pesos de una red neuronal}  
 
-\textcolor{red}{Nota en sucio para que no se me olvide incluirla}  
-
 Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
 cada iteración mejorar la solución encontrada, pero es 
 totalmente sensible a la posición inicial 
@@ -16,7 +14,9 @@ sino para cualquier otro dependiente del punto inicial.
 
 \subsection{ Estado del arte relacionado con esto} 
 
-\textcolor{red}{TODO: Estado del arte. Buscar sobre backbones y otros}
+\textcolor{red}{TODO: Estado del arte. Buscar sobre backbones y otros
+sistema y cómo influye el estado inicial. Argumentar con esto 
+que este algoritmo permitiría generar nuestro propio backbone}
 
 \subsection{Descripción del método propuesto}
 
@@ -81,11 +81,12 @@ dada por $A_k(x)=B_k(p \cdot x)$, con $B_{k}$ como la única función afín de $
     \quad \text{y} \quad 
      B_{k}(p \cdot x_k)= M.
 \end{equation}
-Que esto equivale a calcular las constantes reales $\tilde {\alpha}$ 
+
+Que esto equivale a calcular las constantes reales $\tilde {\alpha}$. 
 
 Si tenemos presente que 
 \begin{equation}
-    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{l s} = -M 
+    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{k s} = -M 
     \quad \text{y} \quad 
     \tilde{\alpha}_{k p}(p \cdot x_k) + \tilde{\alpha}_{k s}= M.
 \end{equation} 
@@ -96,7 +97,9 @@ Resolviendo el sistema resulta que
         \begin{array}{l}
             \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
             \\
-            \tilde{\alpha}_{k s} = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
+            \tilde{\alpha}_{k s} 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
         \end{array}
     \right.
 \end{equation}
@@ -106,8 +109,13 @@ Luego los coeficientes de la red neuronal $A$, $S$ se deduciría de
 \begin{equation}
     \left\{ 
         \begin{array}{l}
-            \alpha_{k s} = \tilde{\alpha}_s \\
-            \alpha_{k i} =  \tilde{\alpha}_{k i} p_{k i}
+            \alpha_{k 0} = \tilde{\alpha}_{k s} =
+            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            \\
+            \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
+            = 
+            \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_i 
         \end{array}
         \right.
 \end{equation}
@@ -118,8 +126,10 @@ cuya solución son las respectivas filas y columnas:
 \begin{equation}
     \left\{ 
         \begin{array}{l}
-            S_{k} = \\
-            A_{k *} = \frac{2M}{ p \cdot ( x_k - x_{k-1} )} p_{[1,d]}\\
+            S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  
+            \\
             B_{* k} = y_k - y_{k-1}
         \end{array}
     \right.
@@ -159,7 +169,7 @@ Con todo esto el proceso algorítmico resultante es:
         }
        }
        \STATE \textit{Cálculo de los parámetros base de la red neuronal.} \\
-       \textcolor{red}{ TODO: Hay que cambiar esto porque creo que está mal}
+       
        Para el primer $(x_1, y_1) \in \Lambda$ \\
        \begin{align}
             &S_1 = M p_0, \\
@@ -170,11 +180,18 @@ Con todo esto el proceso algorítmico resultante es:
        \STATE \textit{Cálculo del resto de neuronas}. 
        \For{ cada $(x_k, y_k) \in \Lambda$}{
         \begin{align}
-            &A_{k *} = \frac{2M}{ p \cdot ( x_k - x_{k-1} )} p_{[1,d]},\\
-            &S_k = M -  A_{k *} \cdot p_{[1,d]} + p_0,\\
+            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  \quad i \in \{1, \ldots d\},\\
             & B_{* k} = y_k - y_{k-1}.
         \end{align} 
        }
        \STATE \textbf{return $(A,S,B)$}.
     \end{algorithmic}  
 \end{algorithm}
+
+\textcolor{red}{TODO: Añadir coste computacional}
+
+\textcolor{red}{TODO: Hacer observaciones sobre que sería igual de válido cambiando la $M$ y $p$ ¿hay alguna selección mejor que otra? }
+
+\textcolor{red}{TODO: Hacer experimentaciones }
