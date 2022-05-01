@@ -210,8 +210,11 @@ que dado un número lo suficientemente grande de neuronas tal
 composición no es necesaria. Sin embargo, a nivel práctico ese 
 número de neuronas puede no alcanzarse y por cómo se produce la convergencia el resultado serán funciones con imágenes con forma de intervalos contenidos en $\R^n$.
 
-Por la naturaleza de la imagen de ciertos problemas no sería necesaria mayor modificación y con nuestra definición sería más que suficiente. Pero en caso de la salida tener que cumplir alguna restricción, como por ejemplo en 
-problemas de clasificación que necesiten de una salida discreta; sería necesario la composición con una función $\theta$ que discretice el la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
+Por la naturaleza de la imagen de ciertos problemas no sería 
+necesaria mayor modificación y con nuestra definición sería 
+más que suficiente. Pero en caso de la salida tener que cumplir alguna restricción, como por ejemplo en 
+problemas de clasificación que necesiten de una salida discreta; sería necesario la composición con una función 
+$\theta$ que discretice el la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
 
 
 La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuronal-con-compuesta}, se tendría que si $f$ es el patrón subyacente de la clasificación y $\theta$ la función que discretiza el dominio se deberá de encontrar 
@@ -283,7 +286,8 @@ La implementación de la fórmula anterior sería la siguiente:
    \end{algorithmic}
 \end{algorithm}
 
-\textcolor{red}{Falta revisar y repensar esta sección }
+\textcolor{red}{Falta revisar y repensar esta sección 
+aprovechar que es de dimensión para hacer triquiñuelas en la evaluación ordenando los valores jejejeje}
 %%%%%%%%%%% Fin de lo observado
 
 \subsection{Qué función de activación seleccionar}
@@ -536,8 +540,9 @@ Finalmente las respectivas salidas de las capas ocultas serían
 \end{equation}
 
 \subsection{Implementación de una red neuronal y evaluación}
-
-Como conclusión a todo lo explicado una red neuronal no sería más que una estructura que almacenara $(\gamma, A, S, B)$, esto es 
+\label{section:rrnn_implementation}
+Como conclusión a todo lo explicado una red neuronal no 
+sería más que una estructura que almacenara $(\gamma, A, S, B)$, esto es 
 
 % Pseudo código que refleja la estructura de una red neuronal 
 
