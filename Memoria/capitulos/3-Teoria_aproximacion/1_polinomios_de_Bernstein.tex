@@ -61,7 +61,7 @@ la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
 %\end{equation} 
 
 %Tomando valor absoluto resulta 
-\begin{equation} \label{eq:berstein_diferencia}
+\begin{equation} \label{eq:eq:Bernstein_diferencia}
     |f(x)-B_n(x)| \leq \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|
     \binom{n}{k} x^{k} (1-x)^{n-k}
 \end{equation} 
@@ -266,7 +266,7 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
     \end{equation*}
 
     Para el resto de sumandos para los que $|x - \frac{k}{n}| \geq  n^{\frac{-1}{4}}$ se tiene que 
-    $(x - \frac{k}{n})^2 \geq  n^{\frac{-1}{2}}$ cota. Procederemos a acotar tales términos, para ello partimos de la ecuación (\refeq{eq:berstein_diferencia}) y  la acotación de $f$. 
+    $(x - \frac{k}{n})^2 \geq  n^{\frac{-1}{2}}$ cota. Procederemos a acotar tales términos, para ello partimos de la ecuación (\refeq{eq:eq:Bernstein_diferencia}) y  la acotación de $f$. 
 
     \begin{equation*}
         |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|  
@@ -313,7 +313,7 @@ Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein
         x (1-x) \leq \frac{1}{4}.
     \end{equation*}
 
-    Además recordemos que se puede tomar un  $n$ que satisfazca (\refeq{eq:cota-de-la-n}) y entonces se concluye que para los valores de
+    Además recordemos que se puede tomar un  $n$ que satisfaga (\refeq{eq:cota-de-la-n}) y entonces se concluye que para los valores de
     $\mathcal{B}_{n x}$ se puede acotar la desigualdad por $\varepsilon$. 
     
     Por tanto para un $n$ convenientemente seleccionado, se ha acotado la desigualdad para los  indices $\mathcal{A}_{n x}$ y $\mathcal{B}_{n x}$, es decir todos, por lo que concluimos que 
