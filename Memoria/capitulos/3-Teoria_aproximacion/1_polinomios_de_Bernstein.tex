@@ -1,0 +1,324 @@
+% !TeX root = ../../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Polinomios de Bernstein
+%*******************************************************
+
+\section{Polinomios de Bernstein}\label{ch:Bernstein}  
+
+%% Resumen capítulo 
+En esta sección introduciremos los polinomios de Bernstein,   
+que vistos como una serie nos asegurarán una convergencia uniformemente a cualquier 
+función continua en un compacto y serán esenciales para nuestra prueba del teorema de Stone-Weierstrass, 
+las pruebas se basan en el manual \cite{the-elements-of-real-analysis}.  
+
+Comenzaremos recordando el Teorema del Binomio de Newton. 
+
+%% Teorema Binomio de Newton
+
+\begin{teorema}[Binomio de Newton]
+    Cualquier potencia de un binomio $x+y$ con $x,y \in \R$,  puede ser expandido en una suma de la forma
+    \[
+        (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{k}y^{n-k}. 
+    \]
+\end{teorema}  
+%%% Idea intuitiva y desigualdad 
+Tomando ahora para esta igualdad $x \in \R, y= 1-x$ se tiene que 
+
+\begin{equation}\label{eq:uno_igual_binomio}
+    1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}.
+\end{equation}
+
+Dada cualquier función $f$ definida en $x$ podríamos multiplicar la ecuación 
+\eqref{eq:uno_igual_binomio} por $f(x)$ resultando 
+
+\begin{equation}\label{eq:f_igual_binomio}
+    f(x) = \sum_{k=0}^n f(x) \binom{n}{k} x^{k} (1-x)^{n-k}.
+\end{equation} 
+
+Y tomando como dominio $I=[0,1]$ de $f: I \longrightarrow \R$,
+ nos encontramos
+frente a una ecuación muy sugerente para introducir $B_n(x)$, el \textit{Polinomio n-ésimo  de Bernstein }. 
+El cual pretende  aproximar la función $f$ a través de los puntos $\frac{k}{n}$ con $n \in \N$ fijo
+y $k \in \{0,...,n \}.$
+
+\begin{definicion}[Polinomios de Bernstein] \label{def:Bernstein}
+    Dada cierta función $f: [0,1] \rightarrow \R$, se define el n-ésimo polinomio de Bernstein para $f$ como 
+
+    $$B_n(x) = B_n(x;f)=\sum_ {k=0}^{n} \left( f \left( \frac{k}{n} \right) \binom{n}{k} x^k (1-x)^{n-k} \right).$$
+
+\end{definicion}
+
+Faltaría por ver si efectivamente nuestro polinomio construido
+ \textit{aproxima lo suficientemente bien} a la $f$ originaria. 
+Basándonos en la igualdad \eqref{eq:f_igual_binomio} y 
+la diferencia entre $f(x)$ y $B_n(x)$ se concluye que
+
+%\begin{equation}
+%    f(x)-B_n(x) = \sum_{k=0}^n \left(f(x) - f \left( \frac{k}{n} \right)\right)
+%    \binom{n}{k} x^{k} (1-x)^{n-k}
+%\end{equation} 
+
+%Tomando valor absoluto resulta 
+\begin{equation} \label{eq:berstein_diferencia}
+    |f(x)-B_n(x)| \leq \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+\end{equation} 
+
+Ante tal igualdad la intuición ya nos
+hace pensar que sea convergente al aumentar el tamaño de la partición.
+ En efecto, en nuestro sucesivo teorema, nos cercioraremos que \ref{def:Bernstein}
+ es uniformemente convergente a $f$ en un compacto. 
+
+Para la demostración será necesario el siguiente resultado técnico: 
+% Lema ecuación que se usa para una de las demostraciones del lema de Bernstein
+\begin{lema}
+    Se desea probar la siguiente igualdad 
+
+    \begin{equation} \label{eq:binomio_segunda_suma}
+        \frac{1}{n} x (1-x)= \sum_{k=0}^{n}  \left( x-\frac{k}{n} \right)^2  \binom{n}{k} x^{k} (1-x)^{n-k}.
+     \end{equation}
+\end{lema}
+% Nota margen sobre el lema
+\marginpar{
+    \textcolor{dark_green}{    
+        \textbf{
+            Resultado técnico. 
+        }
+    }
+    La demostración del lema \ref{eq:binomio_segunda_suma}
+    se ha incluido para que todo resultado esté fundamentado, solo se utiliza para establecer una cota necesaria en una desigualdad del teorema \ref{teo:aproximacion_bernstein}.  
+     
+}
+\begin{proof}
+
+    %%% propiedades coeficientes binomial 
+
+    Tengamos ahora presente las siguientes igualdades 
+    \begin{equation} \label{eq:binomio_menos_uno}
+        \binom{n-1}{k-1} = \frac{(n-1)!}{(k-1)! (n-1-(k-1))!} = \frac{k}{n} \binom{n}{k}
+    \end{equation}
+    \begin{equation} \label{eq:binomio_menos_dos}
+        \binom{n-2}{k-2} = \frac{(n-2)!}{(k-2)! (n-2-(k-2))!} = \frac{k(k-1)}{n(n-1)} \binom{n}{k}
+    \end{equation}
+
+    Partiendo de la igualdad \eqref{eq:uno_igual_binomio}:
+    \begin{equation}
+        1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+
+    Reemplazamos la $n$ por $n-1$ y la $k$ por $j$ y tenemos 
+    \begin{equation}
+        1 = \sum_{j=0}^{n-1} \binom{n-1}{j} x^{j} (1-x)^{(n-1)-j}.
+    \end{equation}
+    Multiplicamos por $x$ y aplicamos la igualdad \eqref{eq:binomio_menos_uno} resultando 
+
+    \begin{equation}
+        x = \sum_{j=0}^{n-1} \frac{j+1}{n} \binom{n}{j+1} x^{j+1} (1-x)^{n-(j+1)}.
+    \end{equation}
+
+    Renombramos $k= j+1$, por lo que resulta
+    \begin{equation}
+        x = \sum_{k=1}^{n} \frac{k}{n} \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+
+    Como el término con $k=0$ es nulo podemos añadirlo a la sumatoria
+    
+    \begin{equation} \label{eq:desarrollo_binomio_uno}
+        x = \sum_{k=0}^{n} \frac{k}{n} \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+    %------------------ caso 2, no te confundas --------------------
+    Haremos ahora un razonamiento similar sustituyendo $n$ por $n-2$.
+    Partiendo de \eqref{eq:uno_igual_binomio} se tiene que 
+    \begin{equation}
+        1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+    Reemplazamos la $n$ por $n-2$ y la $k$ por $j$ y tenemos 
+    \begin{equation}
+        1 = \sum_{j=0}^{n-2} \binom{n-2}{j} x^{j} (1-x)^{(n-2)-j}.
+    \end{equation}
+    Multiplicamos por $x^2$ y aplicamos la igualdad \eqref{eq:binomio_menos_dos} resultando 
+    \begin{equation}
+        x^2 = \sum_{j=0}^{n-2} \frac{(j+2)(j+1)}{n(n-1)} \binom{n}{j+2} x^{j+2} (1-x)^{n-(j+2)}.
+    \end{equation}
+    Renombramos $k= j+2$, por lo que resulta
+    \begin{equation}
+        x^2 = \sum_{k=2}^{n} \frac{k(k-1)}{n(n-1)} \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+    Como con los términos $k=0$ y $k=1$ se anula, podemos añadir dichos índices sin modificar la suma 
+    \begin{equation}
+        x^2 = \sum_{k=0}^{n} \frac{k(k-1)}{n(n-1)} \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+    Podemos reescribir la ecuación resultando \label{eq:desarrollo_binomio_dos}: 
+    \begin{equation}
+      (n^2 - n)  x^2 = \sum_{k=0}^{n} (k^2 - k) \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation}
+    
+    
+%--------------- fin de las igualdades del binomio de Newton 
+
+Sumando las dos expresiones que hemos obtenido
+ \eqref{eq:desarrollo_binomio_uno} y \eqref{eq:desarrollo_binomio_dos}
+ resultando 
+ \begin{equation} 
+    (n^2 - n)  x^2 + nx= \sum_{k=0}^{n} ((k^2 - k)+k) \binom{n}{k} x^{k} (1-x)^{n-k}.
+  \end{equation}
+  Dividimos todo entre $n$. 
+  \begin{equation} \label{eq:binomio_tras_suma}
+    (1 - \frac{1}{n})  x^2 + \frac{1}{n}x= \sum_{k=0}^{n} \left( \frac{k}{n} \right)^2 \binom{n}{k} x^{k} (1-x)^{n-k}.
+  \end{equation}
+  A continuación sumamos a la igualdad \eqref{eq:binomio_tras_suma} la ecuación \eqref{eq:uno_igual_binomio} multiplicada por $x^2$ y la ecuación \eqref{eq:desarrollo_binomio_uno}
+  multiplicada por $-2x$ resultando: 
+  \begin{equation} 
+    \left(1 - \frac{1}{n} + 1 -2 \right)  x^2 + \frac{1}{n}x= \sum_{k=0}^{n} \left( \left( \frac{k}{n} \right)^2 + x^2 -2x \right) \binom{n}{k} x^{k} (1-x)^{n-k}.
+  \end{equation}
+  Sacando factor común en el miembro de la izquierda y escribiendo como un cuadrado el factor de la derecha,  resulta la igualdad \ref{eq:binomio_segunda_suma} que buscábamos
+  \begin{equation} 
+     \frac{1}{n} x (1-x)= \sum_{k=0}^{n}  \left( x-\frac{k}{n} \right)^2  \binom{n}{k} x^{k} (1-x)^{n-k}.
+  \end{equation}
+
+    
+\end{proof}
+
+\begin{teorema}[Teorema de aproximación de Bernstein]\label{teo:aproximacion_bernstein}
+
+    Sea $f$ una función continua de un intervalo $I = [0,1]$ con imágenes en los reales. 
+    La secuencia de polinomio de Bernstein
+    \ref{def:Bernstein} converge uniformemente a $f$ en $I.$
+    
+\end{teorema}
+Recordaremos antes la definición de convergencia uniforme: 
+
+\begin{definicion}[Convergencia uniforme para funciones reales]
+
+    Dado $E$ un conjunto y $\{f_n\}_{n \in \N}$ una sucesión de funciones de $E$
+    a los reales, se dice 
+    que dicha sucesión converge uniformemente si para cualquier $\varepsilon > 0$ existe un número natural $m$ tal que 
+    para todo $x   \in E$ y cualquier natural $n$ que cumpla $n \geq m$ se tiene que 
+
+    \begin{equation*}
+        |f_n(x) - f(x) | < \varepsilon
+    \end{equation*}
+    
+\end{definicion}
+
+% Demostración de la convergencia de los polinomios de Bernstein
+Comencemos pues con la demostración del teorema \ref{teo:aproximacion_bernstein}.
+\begin{proof}
+    
+    Para cualquier $\varepsilon > 0$ queremos probar que existe un $m_\varepsilon  \in \N$ tal que para 
+    todo $x \in I$ e $n \geq m_\varepsilon$  se tiene que 
+    $|f(x) - B_n(x)| < \varepsilon$.
+    
+     Para ello por estar $f$ definida en un intervalo, 
+    se tienen dos consecuencias claves: 
+    \begin{enumerate}
+        \item Está acotada, supongamos por $M \in \R$, esto es $|f(x)| \leq M$. \label{consecuencia:M}
+        \item En virtud del teorema de Heine-Cantor $f$ es uniformemente continua, es decir, por estar $f$ definida en un compacto,  para cualquier $\varepsilon >0$ existirá un $\delta_\varepsilon$
+        tal que para cualesquiera $x,y \in I$ que cumplan $|x-y| < \delta_\varepsilon$ entonces $|f(x)-f(y)| < \varepsilon$. \label{consecuencia:delta}
+    \end{enumerate}
+    %% Cota 2M para  cada sumando
+    En virtud de la consecuencia \refeq{consecuencia:M}. 
+    Dado $N \in  \N$ fijo pero arbitrario, para cualquier $k \in \{1, ..., N\}$ se tiene que
+    $\frac{k}{N} \in I$ y tomando $x \in I$ podemos acotar por la desigualdad triangular
+
+    $$\left|f(x)- f\left( \frac{k}{N} \right) \right| \leq |f(x)| + \left|f \left( \frac{k}{N}\right) \right|\leq 2M.$$  
+    Por lo que 
+    \begin{equation*}
+        |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right| \leq
+     \binom{n}{k} x^{k} (1-x)^{n-k}.
+    \end{equation*}
+
+    Puesto que tenemos que $f$ acotada por $M$ y es uniformemente continua, para valores de $k$ tales que $\frac{k}{n}$ 
+    esté próxima a $x$, tal término de la sumatoria será pequeño por la continuidad de $f$ en $x$. Por otro lado
+    si está lo suficientemente alejado, tan solo podremos acotar tal término por $2M$.  
+
+    Para $\varepsilon > 0$ y para $\delta_\varepsilon$ de la definición de continuidad uniforme de $f$ 
+    podemos encontrar un 
+    \begin{equation} \label{eq:cota-de-la-n}
+        n \geq \sup \left\{ (\delta_\varepsilon)^{-4}, \frac{M^2}{ \varepsilon^2}\right\}.
+    \end{equation}
+    Separaremos pues nuestra sumatoria en los siguientes dos conjuntos. 
+    % Conjunto de los que son menores
+    \begin{equation}
+        \mathcal{A}_{n x} = \left\{ k \text{ tales que } k \in \{0,..., n\} \text{ y  } \left|x - \frac{k}{n}\right| < n^{\frac{-1}{4}} \leq \delta_\varepsilon \right\},
+    \end{equation}
+    % Conjunto de los que son mayores
+    \begin{equation}
+        \mathcal{B}_{n x} = \{0,..., n\} - \mathcal{A}_{n x}. 
+    \end{equation}
+
+     Para los elementos de $\mathcal{A}_{n x}$ se obtiene la siguiente estimación: 
+
+     \begin{equation*}
+        \begin{split}
+        \sum_{k \in \mathcal A } \left|f(x) - f \left( \frac{k}{n} \right)\right|
+     \binom{n}{k} x^{k} (1-x)^{n-k}
+     \leq 
+     \sum_{k \in \mathcal{A}_{n x} } \varepsilon \binom{n}{k} x^{k} (1-x)^{n-k} 
+     =  \\
+      = \varepsilon \sum_{k \in \mathcal{A}_{n x} }  \binom{n}{k} x^{k} (1-x)^{n-k} 
+     \leq 
+     \varepsilon \sum_{k = 0} ^ n  \binom{n}{k} x^{k} (1-x)^{n-k} = 
+     \varepsilon
+        \end{split}
+    \end{equation*}
+
+    Para el resto de sumandos para los que $|x - \frac{k}{n}| \geq  n^{\frac{-1}{4}}$ se tiene que 
+    $(x - \frac{k}{n})^2 \geq  n^{\frac{-1}{2}}$ cota. Procederemos a acotar tales términos, para ello partimos de la ecuación (\refeq{eq:berstein_diferencia}) y  la acotación de $f$. 
+
+    \begin{equation*}
+        |f(x)-B_n(x)| \sum_{k=0}^n \left|f(x) - f \left( \frac{k}{n} \right)\right|  
+     \leq \sum_{k=0}^n 2M 
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+    \end{equation*}
+    
+    \begin{align*}
+        & \sum_{k \in \mathcal{B}_{n x}} 2M 
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+    \\ 
+    & 
+    = 2M \sum_{k \in \mathcal{B}_{n x}} 
+    % multiplicamos y dividimos por diferencias 
+    \frac{
+        \left(x- \frac{k}{n}\right)^2
+    }{
+        \left(x- \frac{k}{n}\right)^2
+    }
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+    \\
+    &
+    % cota de la fracción introducida 
+    % y más sumandos
+    \leq 2M 
+    \sqrt{n}
+    \sum_{k \in \mathcal{B}_{n x}} 
+    \left(x- \frac{k}{n}\right)^2
+    \binom{n}{k} x^{k} (1-x)^{n-k}
+    \\
+    & % cota del lema
+    \leq
+    2M \sqrt{n}
+    \left(
+        \frac{1}{n} x(1-x)
+    \right)
+    \leq 
+    \frac{M}{2 \sqrt{n}},
+    \end{align*}
+
+    Donde para la penúltima desigualdad se ha usado 
+    la desigualdad (\refeq{eq:binomio_segunda_suma}) del lema previo y para la última que en el intervalo $I$ se satisface que 
+    \begin{equation*}
+        x (1-x) \leq \frac{1}{4}.
+    \end{equation*}
+
+    Además recordemos que se puede tomar un  $n$ que satisfazca (\refeq{eq:cota-de-la-n}) y entonces se concluye que para los valores de
+    $\mathcal{B}_{n x}$ se puede acotar la desigualdad por $\varepsilon$. 
+    
+    Por tanto para un $n$ convenientemente seleccionado, se ha acotado la desigualdad para los  indices $\mathcal{A}_{n x}$ y $\mathcal{B}_{n x}$, es decir todos, por lo que concluimos que 
+    \begin{equation*}
+        |f(x) - B_n(x)| \leq 2 \varepsilon,
+    \end{equation*}
+    independiente del valor de $x$, por lo que se prueba que la secuencia de polinomios de Bernstein converge uniformemente a $f$ en $I$.
+\end{proof}
