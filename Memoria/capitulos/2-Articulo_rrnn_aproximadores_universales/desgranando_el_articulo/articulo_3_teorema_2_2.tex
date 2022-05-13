@@ -12,7 +12,7 @@
     se tiene que $\pmcg$ es $\dist$-denso en $\fM$. 
 \end{teorema} 
   % Nota idea intuitiva  teorema 2.2
-  \marginpar{\raggedright
+  \marginpar{\maginLetterSize\raggedright
     \textcolor{dark_green}{
         \textbf{
             Idea intuitiva teorema
@@ -20,7 +20,7 @@
         }
     }
   }
-  \marginpar{
+  \marginpar{\maginLetterSize
   Se prueba en el teorema \ref{teo:2_2_denso_función_continua}
   que con una \textbf{versión más general de una red neuronal} (perteneciente a  $\pmcg$)  \textbf{se es capaz de aproximar cualquier función medible}.
   
@@ -49,7 +49,7 @@
 % Nota idea intuitiva  lema 3.4
 \reversemarginpar
 \setlength{\marginparwidth}{\smallMarginSize}
-\marginpar{\raggedright
+\marginpar{\maginLetterSize\raggedright
     \textcolor{dark_green}{
         \textbf{
             Idea intuitiva lema 
@@ -57,7 +57,7 @@
         }
     }
 }
-\marginpar{
+\marginpar{\maginLetterSize
  Hasta ahora hemos probado que $\pmcg$ es capaz de aproximar funciones medibles pero siendo $G$ una función de activación continua, vamos a relajar tal hipótesis a que $G$ sea cualquier función de activación, sin exigirle continuidad.
   }
 \normalmarginpar
@@ -125,7 +125,7 @@
     \end{equation}
     y así definida cumple que: 
     % Nota idea de demostración intuitiva  lema lema:a_2_paso_previo_denso
-    \marginpar{\raggedright
+    \marginpar{\maginLetterSize\raggedright
         \textcolor{dark_green}{
             \textbf{
                 Idea intuitiva demostración del lema 
@@ -133,7 +133,7 @@
             }
         }
     }
-    \marginpar{
+    \marginpar{\maginLetterSize
     Aprovechamos que sabemos que la función de activación continua $F$ es no decreciente así que podemos dividir su imagen en trozos iguales y aproximar la imagen
     con una función en escalera que valga en cada tramo el valor mínimo.
     A su vez, una función en escalera se puede construir con una red neuronal de una capa oculta que tenga como función de 
@@ -257,7 +257,7 @@
 \end{teorema}
 
    % Nota idea  intuitiva  teorema teorema:2_3_uniformemente_denso_compactos
-   \marginpar{\raggedright
+   \marginpar{\maginLetterSize\raggedright
    \textcolor{dark_green}{
        \textbf{
            Idea intuitiva teorema
@@ -265,7 +265,7 @@
        }
    }
 }
-\marginpar{
+\marginpar{\maginLetterSize
 Con una versión generalizada de una red neuronal que utilice cualquier función de activación (es decir que pertenezca a $\rrnng$)
 \textbf{ podemos aproximar funciones continuas y funciones medibles}.
 
@@ -610,10 +610,10 @@ Podemos ya definir la función que buscamos:
 
 
   % Nota idea intuitiva  lema de que C es denso en M
-  \marginpar{
+  \marginpar{\maginLetterSize
   \textcolor{dark_green}{\textbf{Idea intuitiva lema \ref{lema:A_5_uniformemente_denso_compactos}:}}
   }
-  \marginpar{
+  \marginpar{\maginLetterSize
     Afirma que \textbf{podemos aproximar cualquier función continua definida 
     con una red neuronal}. Además, si los valores de entrada está 
     dentro de un rango acotado tendremos una cota de error única para todo el dominio.
@@ -697,11 +697,11 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
 \end{teorema}
 
  % Nota idea intuitiva  lema de que C es denso en M
- \marginpar{
+ \marginpar{\maginLetterSize
     \textcolor{dark_green}{
         \textbf{Idea intuitiva teorema \ref{teo:2_4_rrnn_densas_M}:}}
     }
-    \marginpar{
+    \marginpar{\maginLetterSize
     Afirma que las \textbf{redes neuronales son capaces de aproximar funciones medibles},
     es decir funciones muy generales con formas variopintas.
     La diferencia que guarda con el lema \ref{lema:A_5_uniformemente_denso_compactos} 
@@ -709,11 +709,11 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
     es decir \textbf{podemos asegurar que en casi todos los puntos esté muy próximo a la función que queremos aproximar}, pero pudiera ser que al evaluar un punto concreto el error sea muy grande.
     }
 
-    \marginpar{
+    \marginpar{\maginLetterSize
         \textcolor{darkRed}{
             \textbf{Reflexión sobre \ref{teo:2_4_rrnn_densas_M}}}
     }
-    \marginpar{
+    \marginpar{\maginLetterSize
         Por lo que acabamos de ver no se \textit{aproxima igual de bien} las funciones continuas a las medibles. La cuestión es la siguiente ¿la función que nosotros queremos aproximar con una red neuronal es continua o solo medible?
         A nivel práctico es ante todo desconocida, luego debemos 
         suponer las hipótesis menos restrictivas, es decir, que sea solo medible.

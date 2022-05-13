@@ -19,7 +19,7 @@
 \end{teorema}
 
 % Significado del teorema 2.1
-\marginpar{
+\marginpar{\maginLetterSize
     \textcolor{dark_green}{    
     \textbf{Qué se está probando en el teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
     }
@@ -33,7 +33,7 @@ continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de
     Lo primero será comprobar que $\pmcg$ es un álgebra, para ello veamos que:   
 
       % Claves de la demostración teorema 2.1
-      \marginpar{\textbf{Clave de la demostración del teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
+      \marginpar{\maginLetterSize\textbf{Clave de la demostración del teorema \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}
       Se comprueba primero que para operando elementos del \textit{anillo de aproximación} con sumas, productos y re-escalados no se \textit{salen del conjunto}, es decir que el resultado es otro elemento del \textit{anillo de aproximación}. Con estas operaciones se irá construyendo y refinando una función que aproxime cualquier función continua con un método cuya idea es \textit{con este elemento del anillo de aproximación tengo tal error porque me falla en tales puntos, si le sumo esto otro corrijo ese error y además el resultado sigue perteneciendo al conjunto.}
       }      
     \begin{enumerate}
@@ -124,7 +124,7 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 % Nota sobre experimentar con 
 \setlength{\marginparwidth}{\smallMarginSize}
 \reversemarginpar
-\marginpar{\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+\marginpar{\maginLetterSize\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
 El corolario \ref{cor:se-generaliza-G-a-una-familia}
 abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
 Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
@@ -150,7 +150,7 @@ Por ejemplo $B((x_1, ..., x_d)) = \sum_{i= 0} ^N \sum_{j= 0} ^d \alpha_{ij} x_j^
 
 % Nota sobre posible hipótesis de optimización 
 \setlength{\marginparwidth}{\bigMarginSize}
-\marginpar{\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+\marginpar{\maginLetterSize\textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
 Gracias al corolario \ref{corolario:generaliza-a}
 nos podemos plantear si aumentar el espacio de búsqueda a partir de transformaciones
  no lineales es más conveniente que hacerlo mediante el número neuronas.
@@ -174,9 +174,9 @@ generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras.
 \textcolor{red}{TODO: ELIMINAR ESTA CONCLUSIÓN CUANDO SE REDACTE EN LAS HIPÓTESIS}
 
 % Nota idea intuitiva  equivalencia 
-\marginpar{\raggedright
+\marginpar{\maginLetterSize\raggedright
     \textcolor{dark_green}{\textbf{Idea intuitiva equivalencia de funciones:}}}
-    \marginpar{
+    \marginpar{\maginLetterSize
     En la definición \ref{definition:equivalencia_funciones}
 Se considera que dos funciones son equivalentes si 
 son iguales en casi todos sus puntos.  El objetivo de todas estas definiciones es \textbf{saber cuándo una red neuronal es equivalente a una función medible o cuánto la aproxima}.
@@ -218,9 +218,9 @@ distan las funciones $f,g$ entre ellas.
 \end{lema}
 
 % Nota idea intuitiva distancia
-\marginpar{\raggedright
+\marginpar{\maginLetterSize\raggedright
     \textcolor{dark_green}{\textbf{Idea intuitiva distancia probabilidad:}}}
-\marginpar{
+\marginpar{\maginLetterSize
 Este concepto de analizar la tendencia de la mayoría de los punto 
 se ve reflejado en la definición de distancia basada en una probabilidad \ref{definition:distancia-probabilidad}, siendo entonces la \textbf{distancia de dos funciones la menor de las distancias que siguen la mayoría de sus puntos}.
 
@@ -397,19 +397,19 @@ $$\mu \{  x : |f_n(x) - f(x)| > \epsilon \} \longrightarrow 0.$$
     para cada natural $n$ con $n\geq n_0.$ 
     
           % Nota idea intuitiva  lema de que C es denso en M
-          \marginpar{\raggedright
+          \marginpar{\maginLetterSize\raggedright
           \textcolor{dark_green}{\textbf{Idea intuitiva lema \ref{lema:A_1_C_es_denso_en_M}:}}
           }
-          \marginpar{
+          \marginpar{\maginLetterSize
           Las funciones continuas pueden tomar formas muy variopintas, estando incluso no acotadas. La función de Dirichlet definida en $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional, es medible pero no es continua ya que presenta infinitas discontinuidades.
           }
-          \marginpar{
+          \marginpar{\maginLetterSize
           Sin embargo, las funciones continuas son más simples, fáciles de entender y manejar. 
           Gracias al lema \ref{lema:A_1_C_es_denso_en_M}
           acabamos de probar que \textbf{podemos aproximar en
           casi todos sus puntos  cualquier función medible a partir de una continua.} 
           }
-          \marginpar{
+          \marginpar{\maginLetterSize
           Por ejemplo la función constantemente uno aproxima a la función $D$ previamente definida.
           }
     De modo que para cualquier $x \in K$, 
