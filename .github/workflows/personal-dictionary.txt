@@ -103,6 +103,7 @@ parametrized
 perceptrones
 perceptrón
 png
+posteriori
 primeraCapa
 qB
 reenfocar
