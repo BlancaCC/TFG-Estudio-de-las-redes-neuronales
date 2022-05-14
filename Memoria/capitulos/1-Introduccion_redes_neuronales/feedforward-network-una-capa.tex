@@ -17,8 +17,8 @@ de una capa oculta} \label{sec:redes-neuronales-intro-una-capa}
     }
     {\maginLetterSize
         A nivel intuitivo una función medible es aquella,
-        que por muy extraña que sea  
-        su imagen está acotada casi siempre, lo que a nivel práctico 
+        que por muy extraña que sea,  
+        su imagen (los valores que toma su salida) está acotada casi siempre, lo que a nivel práctico 
         significa que \textit{podemos observar y cuantificar sus valores.}
     
         Con esto pretendemos que nuestra definición $\Gamma$ 
@@ -30,7 +30,7 @@ de una capa oculta} \label{sec:redes-neuronales-intro-una-capa}
 
 
 A lo largo de esta sección  explicaremos qué es una red neuronal, cómo está construida y en qué consiste el \textit{aprendizaje} de la misma, concretamente
-construiremos el tipo particular \textit{Feedforward Networks}, al cual nos referiremos de ahora
+construiremos el tipo particular \textit{Feedforward Neural Networks}, al cual nos referiremos de ahora
 en adelante como red neuronal.
 
 De acorde con nuestra filosofía de trabajo expuesta en la introducción del capítulo \ref{motivo-una-capa} partiremos de un modelo de una sola capa oculta. 
@@ -42,19 +42,6 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
     \caption{\textit{Grafo} de una red neuronal de una capa oculta}
     \label{img:grafo-red-neuronal-una-capa-oculta}
 \end{figure}
-
-% Nota margen aclarativa de la fórmula
-\marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{Interpretación fórmula}
-    }
-    {
-        Observemos que $n_k$ es el número de neuronas de la capa oculta para la salida $k$, el número total de neuronas en
-        la capa oculta es la sumatoria de cada salida.
-    }
-}
-\normalmarginpar
-\setlength{\marginparwidth}{\bigMarginSize}
 
 \begin{definicion}[Redes neuronales de una capa oculta] \label{definition:redes_neuronales_una_capa_oculta}
     Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
@@ -73,6 +60,18 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
         \}.
     \end{align}
 \end{definicion}
+% Nota margen aclarativa de la fórmula
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{Interpretación fórmula}
+    }
+    {\maginLetterSize
+        Observemos que $n$ es el número de neuronas de la capa oculta. Es decir lo que en el grafo \ref{img:grafo-red-neuronal-una-capa-oculta} serían las neuronas de las capas ocultas se correspondería con términos $\gamma_{i}( A_{i}(x))$.
+    }
+}
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
+
 
 Es habitual representar una red neuronal de forma matricial, veremos que tal forma es equivalente a la definición dada. 
 
@@ -87,7 +86,7 @@ $A_i(x) = W_i \cdot i(x)$ como queríamos probar.
 Además también se suele mostrar de manera pedagógica con un grafo como el mostrado en la 
 figura \ref{img:grafo-red-neuronal-una-capa-oculta}.
 
-\textcolor{red}{TODO Comentar cómo se han relajado las hipótesis en nuestra definición con respecto a otras.}
+% Elimino TODO porque ya se ha comentado.
 
 \subsection*{Componentes de la red neuronal}  
 
