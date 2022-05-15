@@ -42,24 +42,27 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
     \caption{\textit{Grafo} de una red neuronal de una capa oculta}
     \label{img:grafo-red-neuronal-una-capa-oculta}
 \end{figure}
-
-\begin{definicion}[Redes neuronales de una capa oculta] \label{definition:redes_neuronales_una_capa_oculta}
-    Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
-    \begin{align}
-        \mathcal{H}(X,Y) 
-        =
-        \{
-            h : X \longrightarrow Y 
-            /& \quad 
-            h_k(x) = 
-            \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
-            & \text{donde  $h_k$  es la proyección k-ésima de $h$ con 
-            $k \in \{1, \ldots, s\}$}, \\
-            & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R
-             \text{ y }A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
-        \}.
-    \end{align}
-\end{definicion}
+%\begin{mdframed} % Añadimos símbolo de que es contenido
+    \begin{aportacionOriginal}
+    \begin{definicion}[Redes neuronales de una capa oculta] \label{definition:redes_neuronales_una_capa_oculta}
+        Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
+        \begin{align}
+            \mathcal{H}(X,Y) 
+            =
+            \{
+                h : X \longrightarrow Y 
+                /& \quad 
+                h_k(x) = 
+                \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
+                & \text{donde  $h_k$  es la proyección k-ésima de $h$ con 
+                $k \in \{1, \ldots, s\}$}, \\
+                & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R
+                \text{ y }A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
+            \}.
+        \end{align}
+    \end{definicion}
+\end{aportacionOriginal}
+%\end{mdframed}
 % Nota margen aclarativa de la fórmula
 \marginpar{\maginLetterSize
     \iconoAclaraciones \textcolor{dark_green}{     
