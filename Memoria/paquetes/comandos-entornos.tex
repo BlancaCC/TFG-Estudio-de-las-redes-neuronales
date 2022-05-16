@@ -13,22 +13,26 @@
 \usepackage{minted}
 
 \usepackage{algorithmic}
-%\def\BState{\State\hskip-\ALG@thistlm}
+% Para la definición de redes neuronales de una sola capa 
+\newcommand{\Hu}{\mathcal{H}(X,Y)}  % Espacio de las redes neuronales
+
 % Notas en el margen
-\usepackage{sidenotes} 
-  \newcommand{\pmc}{\sum ^r (G)}  % Perceptrón multicapa 
-  \newcommand{\pmcg}{ \sum \prod^r (G)} % Perceptrón multicapa generalizado
-  \newcommand{\fC}{C(\R^r)} %conjunto de funciones continuas en R^r -> R
-  \newcommand{\fM}{M(\R^r)} % Perceptrón generalizado
-  \newcommand{\rrnn}{ \sum^r (\psi)} % Red neuronal  generalizado
-  \newcommand{\rrnng}{ \sum \prod^r (\psi)} % Red neuronal  generalizado
+\usepackage{sidenotes}
+  \newcommand{\afines}{\mathcal{A}(\R^d)}
+  \newcommand{\pmc}{\mathcal{H}_G(\R^d,\R)}%{\sum ^r (G)}  % Red neurona una capa una salida
+  \newcommand{\pmcg}{ \sum \prod^d (G)} % Generalización red neuronal
+  \newcommand{\fC}{\mathcal{C}(\R^d)} %conjunto de funciones continuas en R^r -> R
+  \newcommand{\fM}{\mathcal{M}(\R^d)} % Conjunto funiones medibles
+  \newcommand{\rrnn}{ \mathcal{H}(\R^d,\R)} % Red neuronal  sin subíndice
+  \newcommand{\rrnng}{ \sum \prod^d (\psi)} % Red neuronal  generalizado
   \newcommand{\dist}{\rho_{\mu}}     % Distancia de una medida
   \newcommand{\dlp}{\rho_{p}} % Distancia de los espacios Lp
-  % Para multicapas
-  \newcommand{\fCC}{C(\R^r ,\R^s)}
-  \newcommand{\fMM}{M(\R^r , \R^s)}
-  \newcommand{\rrnnmc}{ \sum^{r,s} (\psi)} 
-  \newcommand{\rrnngmc}{ \sum \prod^{r,s} (\psi)} 
+  % Múltiples salidas 
+  \newcommand{\fCC}{\mathcal{C}(\R^d ,\R^s)}
+  \newcommand{\fMM}{\mathcal{M}(\R^d , \R^s)}
+  \newcommand{\rrnnmc}{ \mathcal{H}(\R^d,\R^s)} 
+  \newcommand{\rrnnsmn}{ \mathcal{H}_n(\R^d,\R^s)} % Red neuronal salida múltiple con n neuronas
+  \newcommand{\rrnngmc}{ \sum \prod^{d,s} (\psi)} 
   %%%%%%%%% Mis comandos %%%%%%%%%5
 \usepackage{sidenotes} % Notas en el margen
 \newcommand{\margenimagen}{
@@ -76,8 +80,23 @@
 \setlength{\cftfignumwidth}{2.55em}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
-% Para las notas del margen
-\definecolor{darkRed}{rgb}{0.7,0.1,0.1}
-\definecolor{dark_green}{rgb}{0.2, 0.7, 0.2}
+\SetKwRepeat{Struct}{struct \{}{\}}%
+
+% Para las notas del margen 
+%Nota los colores seleccionados han sido creados con una paleta inclusiva
+% https://palett.es/6a94a8-013e3b-7eb645-31d331-26f27d
+\definecolor{darkRed}{rgb}{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
+\definecolor{dark_green}{rgb}{0, 0.24, 0.23} %{0.2, 0.7, 0.2}
+\definecolor{blue}{rgb}{0.41, 0.58, 0.659} % sobreeescribimos el azul
 \newcommand{\smallMarginSize}{1.8cm}
 \newcommand{\bigMarginSize}{3cm}
+\newcommand{\maginLetterSize}{\footnotesize} %{\scriptsize}%
+
+% Para los iconos 
+\usepackage{fontawesome}
+% Alias aclaraciones 
+% dark_green
+\newcommand{\iconoAclaraciones}{\faQuestionCircleO $\quad$} %\faQuestionCircleO
+% blue
+\newcommand{\iconoProfundizar}{\faSearch  $\quad$}
+\newcommand{\iconoClave}{\faLightbulbO  $\quad$} % \faLightbulbO %\faKey

@@ -1,301 +1,46 @@
-% !TeX root = ../../tfg.tex
-% !TeX encoding = utf8
-%
-%*******************************************************
-% Construcción redes neuronales  
-%*******************************************************
-\section{Construcción de las redes neuronales \textit{Feedforward Networks}} \label{sec:redes-neuronales-intro}
-
-A lo largo de esta sección  explicaremos qué es una red neuronal, cómo está construida y en qué consiste el \textit{aprendizaje} de la misma, concretamente
-construiremos el tipo particular \textit{Feedforward Networks}, al cual nos referiremos de ahora
-en adelante como red neuronal.
-
-\subsection{Modelo básico de una red neuronal} \label{rrnn:modelo_simple_rrnn}  
-
-Con el fin de entender mejor cómo se definen y construyen las redes neuronales y porque en nuestro trabajo nos hemos centrado en estudiar
-esta clase concreta de redes neuronales,
-comenzaremos 
-introduciendo las de una sola capa oculta. 
-La información que se va a desarrollar a lo largo de esta 
-sección proviene principalmente del capítulo cinco, páginas 227-256 del libro \cite{BishopPaterRecognition} y las notas online sobre redes neuronales de \cite{MostafaLearningFromData}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Backpropagation 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsubsection*{Construcción de la primera capa}
-La primera capa está compuesta por el conjunto de $M$ combinaciones
-lineales del vector de entrada $(x_1, \ldots, x_d)$
-a las cuales denominaremos \textit{activaciones}
+%%%%%%%%%%%%%%%%%%% algoritmo de gradiente descendente 
 
+\section{El gradiente descendente} \label{sec:gradiente-descendente}
+
+De acorde a los capítulos uno y dos del libro  \cite{learning-from-data-1-2},
+ una vez concretado el problema y sus elementos 
+(\ref{sub:componentes_aprendizaje}) es necesario definir un método con 
+el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
+
+El gradiente descendente es un método iterativo de minimización de funciones diferenciables. 
+
+En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h_w \in \mathcal{H}$, donde $w \in M(\R)_{m \times n}$ son parámetros que caracterizan a $h_w$.
+Para  
+Dada también una función de error diferenciable y que no presente puntos de inflexión
+$E: M(\R)_{m \times n} \longrightarrow \R,$
+se toma una matriz inicial  cualquiera $w_0 \in M(\R)_{m \times n}$ y 
+fijado $\eta \in \R^+$. 
+
+Se define la sucesión 
 \begin{equation}
-    a_j = \sum_{i=1}^D w_{ji}^{(1)} x_i + w_{j0}^{(1)}
-    \text{ con } j \in \{1, \ldots, M \}.
-\end{equation}
-El superíndice (1) indica que los parámetro $w$ correspondientes pertenecen a la primera capa. 
-Nos referiremos a los  parámetros $w_{ji}^{(1)}$ como 
-\textit{pesos} y al parámetro $w_{j0}^{(1)}$ como 
-\textit{sesgo}.  
-
-\subsubsection*{Unidades ocultas}
-Cada una de esas \textit{activaciones} será transformada
-utilizando una \textit{función de activación} $\sigma_j$ 
-diferenciable y no linear
-
-\begin{equation}
-    z_j = \sigma_j(a_j).
-\end{equation}
-En el contexto de las redes neuronales a $z_j$ se le conoce como \textit{unidad oculta}. Ésta  podría ser de 
-nuevo  transformada por una combinación lineal 
-\begin{equation}
-    a_k = \sum_{i=1}^M w_{ji}^{(2)} z_i + w_{k0}^{(2)}
-    \text{ con } j \in \{1, \ldots, K \}.
-\end{equation}
-Nótese que ahora el tamaño de variables de entrada es $M$
-y hay un total de $K$ unidades de activación, tanto $M$ como $K$ son
-valores fijados por el diseñador de la red. 
-Finalmente se define como \textbf{red neuronal con una capa oculta} $h_w \in \mathcal{H}_{D \times M \times K}$, con $h=(y_1, \ldots, y_K)$ a la combinación de las expresiones anteriores, es decir a: 
-\begin{equation}
-    y_k(x,w) = \theta_k 
-    \biggl( 
-        \sum^M_{j=1} w_{ji}^{(2)}
-        \sigma_j 
-        \biggl(
-            \sum_{i=1}^D w_{ji}^{(1)} x_i + w_{j0}^{(1)}
-        \biggr)
-        + w_{k0}^{(2)}
-    \biggr) 
-    \text{ para cada  } k \in \{1, \ldots, K \}..
-\end{equation}
-Donde todos los pesos y sesgos han sido agrupados en el vector $w$. 
-
-Si al vector de entrada se le añade una variable $x_0 = 1$, puede reescribirse cada expresión eliminando los sesgos y como producto vectorial
-
-\begin{equation}
-    y_k(x,w) = \theta_k 
-    \bigl(
-         w^{(2)} \cdot
-        \sigma    
-        \bigl(
-             w^{(1)} \cdot x 
-        \bigr)
-    \bigr)
+    w_{t+1}  = w_t - \eta \nabla E(w_t).
 \end{equation}  
 
-La función de activación $\theta_k$ será escogida de acorde a la
-naturaleza del problema, es decir \textit{cómo se desee codificar la salida}, por ejemplo si se trata de un problema de regresión, de clasificación, de probabilidad. 
- 
-De ahora en adelante trabajaremos con esta notación. 
-
-Es posible visualizar las relaciones de las entradas y los distintos nodos de la 
-red neuronal como un grafo dirigido acíclico como se muestra en la figura \ref{img:ejemplo topología red neuronal}
-
-\begin{figure}[h!] 
-    \centering
-    \includegraphics[width=0.65\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/red-neuronal-simple-introduccion.drawio.png}
-    \caption{Ejemplo de red neuronal con una capa oculta}
-    \label{img:ejemplo topología red neuronal}
-\end{figure} 
- 
-
-En este ejemplo poseemos una capa oculta, 
-puede definirse siguiendo esta misma idea
-una red neuronal de múltiples capas ocultas. 
-
-% Generalización de modelo 
-\subsection{Construcción red neuronal de varias capas ocultas} \label{rrnn:construcción_generalizada}
-
-Etiquetaremos a cada capa con $l \in \{0, \ldots, L \}$, donde $L+1$ es el número total de capas.  Donde 
+Donde $w_n$ es una sucesión cuyos términos convergen a un mínimo local.
+\subsubsection*{Observaciones sobre el algoritmo }
 
 \begin{itemize}
-    \item La capa de entrada será la etiquetada con $l = 0$.
-    \item La capa de salida que determina el valor de la red neuronal es la $l=L$.
-    \item Las capas ocultas serán aquellas etiquetadas como $0 < l <L.$
+    \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
+    \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
+    \item Si la función es convexa el mínimo será global.
+    \item El parámetro $\eta$ puede ser cualquiera y debe de ser fijado o controlado por el diseñador.  
 \end{itemize}
 
-Se usará un superíndice para hacer referencia a la capa. 
-Cada capa posee una dimensión $d^{(l)}$, es decir que posee
-$d^{(l)} + 1$ unidades o nodos. El nodo $d_0^{(l)}$ se trata del sesgo y siempre será uno. 
-
-El modelo de red neuronal $\mathcal{H}_{n n}$ viene determinado una vez que se fija la arquitectura de la misma, es decir sus dimensiones $d$. 
-\begin{equation}
-    d = (d^{(0)}, d^{(1)}, \ldots, d^{(L)})
-\end{equation}
-y se tiene que cada red neuronal $h \in \mathcal{H}_{n n}$
-viene determinada por sus pesos. 
-
-\subsubsection*{Cálculo de una capa oculta}  
-Cada nodo recibe una señal de entrada $s$ y determina una salida $x$. 
-  
-La relación que existe entre dos nodos de capas contiguas es la siguiente: si $x_i^{(l-1)}$ es la salida de la unidad $i$ de la capa $l-1$, 
-entonces se calcula la entrada de la unidad $j$ de la capa $l$ como 
-\begin{align}\label{eq:construcción_red_neuronas:calculo_una_capa_oculta}
-    s_j^{(l)} &= w_{i j}^{(l)} \cdot x_i^{(l-1)}  \\
-    x_j^{(l)} &= \theta(s_j^{(l)})
-\end{align}
-
-Es decir, que en cada capa $l$ intervienen los siguientes elementos:  
-\begin{table}[h]
-    \begin{center}
-    \begin{tabular}{| l | l | l |}
-    \hline
-    Elementos & Notación & Representación 
-    \\ \hline
-    Vector de entrada & $s^{(l)}$ &  Vector de dimensión $d^{(l)}$ \\
-    Vector de salida & $x^{(l)}$ &  Vector de dimensión $d^{(l)}+ 1$ \\
-    Pesos entrada & $W^{(l)}$ & Matriz de dimensiones $(d^{(l-1)}+1) \times d^{(l)}$ \\
-    Pesos salida & $W^{(l+1)}$ 
-    & Matriz de dimensiones $(d^{(l)}+1) \times d^{(l+1)}$ \\
-    \hline
-    \end{tabular}
-    \caption{Elementos capa oculta $l$}
-    \label{tab:rrnn_elementos_capa_oculta}
-    \end{center}
-\end{table}
-
-\subsection{ \textit{Forward propagación}}
-
-Explicaremos en esta sección cómo calcular para una entrada una determinada salida, es decir
-dada una red neuronal $h \in \mathcal{H}_{d^{(0)} \times \cdots \times d^{(L)}}$ y un vector de entrada $x \in \mathcal{X}$ calcularemos  $h(x)$, esto se hará gracias al algoritmo conocido como \textit{forward propagation}.
-
-Teniendo presente la relación  explicada en (\refeq{eq:construcción_red_neuronas:calculo_una_capa_oculta}) se puede escribir de forma vectorial la siguiente relación: 
-\begin{equation}
-    x^{(l)} = 
-    \left[ \begin{array}{c}
-        1 \\
-       \theta(s^{(l)})
-        \end{array}
-\right] .
-\end{equation}
-Donde $\theta(s^{(l)})$ es un vector de componentes $\theta(s^{(l)}_j)$. 
-Para calcular el vector de entrada de la capa $l$, para cada nodo se hará
-\begin{equation}
-    s_j^{(l)} = \sum_{i=0}^{d^{(l-1)}} w_{i j}^{(l)}x_i^{(l-1)}.
-\end{equation}
-Que se formula de forma vectorial para toda la capa como 
-\begin{equation}
-    s^{(l)} = W^{(l)} x^{(l-1)}.
-\end{equation}
-
-Si el vector de entrada es $x \in \mathcal{X} \subseteq \R^d$, 
-se inicializa  $x^{(0)} = (1,x_1, \ldots, x_d)^T$ y por tanto $d^{(0)} = d+1.$
 
 
-La implementación del algoritmo sería:
 
-\begin{algorithm}[H]
-    \caption{Algoritmo \textit{Forward propagation} para evaluación de una red neuronal $h_w(x)$.}
-    \begin{algorithmic}[1]
-        \STATE $x^{(0)} \leftarrow x$ 
-        \COMMENT{Inicialización}
-
-        \STATE \COMMENT{\textit{Forward Propagation}}
-        \For{$l = 1, \ldots , L$}{
-            % Calcula s
-            \STATE 
-            \begin{equation}
-                s^{(l)}
-                    \leftarrow
-                    \left(W^{(l)}\right)^T
-                    x^{(l-1)}      
-            \end{equation}
-
-            %Calcula x
-            \STATE
-            \begin{equation}
-                x^{(l)}
-                    \leftarrow
-                    \left[ 
-                        \begin{array}{c}
-                            1 \\ 
-                            \theta \left( s^{(l)}\right)
-                        \end{array}
-                    \right]
-            \end{equation}
-        }
-        \STATE $h_w(x) = x^{(L)}$ 
-        \COMMENT{Salida}  
-\end{algorithmic}
-\end{algorithm}
-
-% Imagen red neuronal con pesos concretos
-Veamos un ejemplo concreto para la siguiente red neuronal de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1}
-\begin{figure}[h!]
-    \includegraphics[width=\textwidth]{introduccion_redes_neuronales/construccion_redes_neuronales/rrnn-2-3-2-1-completa.png}
-    \caption{Ejemplo de red neuronal con dos capas ocultas y pesos con valores concretos}
-    \label{img:construccion_rrnn:rrnn-2-3-2-1}
-\end{figure} 
-
-La red de la imagen \ref{img:construccion_rrnn:rrnn-2-3-2-1} está 
-compuesta por dos capas ocultas, acepta vectores de entrada de dimensión dos, 
-la primera capa oculta está compuesta por tres neuronas, 
-la segunda por dos y la salida por una. 
-La notación del dibujo usada es la siguiente, entre paréntesis se 
-especifica la capa, en el caso de la salida $x(l)i$ hace referencia a la salida $i$-ésima de la capa $l$. Las \textit{flechas} que conectan los nodos $w(l)ij$ hace referencia al peso que se le da a $x(l-1)i$ con respecto a la entrada $s(l)j$.
-
-Representando los pesos de manera matricial
-\begin{align}
-    W^{(l)} = 
-    \begin{bmatrix}
-        w^{(l)}_{01} & w^{(l)}_{11} & \cdots & w^{(l)}_{d^{(l-1)} 1}\\
-        w^{(l)}_{02} & w^{(l)}_{12} & \cdots & w^{(l)}_{d^{(l-1)} 2}\\
-        \cdots & \cdots & \cdots & \cdots \\
-        w^{(l)}_{0d} & w^{(l)}_{1d} & \cdots & w^{(l)}_{d^{(l-1)} d}\
-    \end{bmatrix} 
-\end{align}
-las matrices de pesos de nuestra imagen son :
-\begin{align}
-    W^{(1)} = 
-    \begin{bmatrix}
-        0.4 & -0.3 & 0.5\\
-        -0.2 & -0.2 & 0.2\\
-        0.1 & 0 & -0.3
-    \end{bmatrix} ,
-    W^{(2)} = 
-    \begin{bmatrix}
-        1 & -1 & 0.3 & 0\\
-        0.3& 0 & 0.3 & -0.6 
-    \end{bmatrix} ,
-    W^{(3)} = 
-    \begin{bmatrix}
-        0.33 & 0.33 & -0.6 \
-    \end{bmatrix} .
-\end{align}
-Si inicializamos $x= (1,0)$ y tomamos como función de activación
-a la tangente hiperbólica, la ejecución del algoritmo queda reflejada en la tabla \ref{tab:construcción_rnnn:ejemplo_forward_propagation} resultando que 
-$h((1,0)) = 0.439$.
-\begin{table}[H]
-    \begin{center}
-\begin{tabular}{| c | c | c | c| }
-    \hline
-    Capa $l$-ésima &  $W^{(l)}$ & $\bigl(s^{(l)}\bigr)^T $ & $\bigl(x^{(l)}\bigr)^T$ \\ \hline
-    0 & & & $(1,1,0)$ 
-    \\ \hline
-    1 & 
-    $\begin{bmatrix}
-        0.4 & -0.3 & 0.5\\
-        -0.2 & -0.2 & 0.2\\
-        0.1 & 0 & -0.3
-    \end{bmatrix}$ 
-    & $(0.1, -0.4, 0.1)$ & $(1, 0.1, -0.38, 0.1)$
-     \\ \hline
-    2 & $\begin{bmatrix}
-        1 & -1 & 0.3 & 0\\
-        0.3& 0 & 0.3 & -0.6 
-    \end{bmatrix}$
-    & $(0.786, 0.126)$
-    & $(1,0.656, 0.126)$
-    \\ \hline
-    3 & $\begin{bmatrix}
-        0.33 & 0.33 & -0.6 
-    \end{bmatrix}$ 
-    & $(0.471)$ 
-    & $(1,0.439)$
-    \\ \hline
-\end{tabular}
-\caption{Ejemplo de ejecución del algoritmo de \textit{forward propagation}}
-\label{tab:construcción_rnnn:ejemplo_forward_propagation}
-\end{center}
-\end{table}
-
-\subsection{\textit{Backpropagation}}
+%%%%%%%%%% backpropagation 
+\section{\textit{Backpropagation}} \label{algoritmo-de-backpropagation}
 
 Los parámetros que determinan una red neuronal son sus pesos, y esto es lo que \textit{aprende},
 para actualizarlos utilizaremos la técnica de gradiente descendente ya explicado en la sección \ref{sec:gradiente-descendente}. 

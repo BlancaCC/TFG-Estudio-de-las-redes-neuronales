@@ -40,17 +40,32 @@ observaciones. Se compone de tres elementos principales:
 
 Así pues, el objetivo del aprendizaje automático es encontrar una función que se aproxime a la función de densidad desconocida.
 
-Por lo general la teoría se fundamenta en minimizar el error de estimadores, como el error cuadrático medio, ya que este se trata de un UMVUE  (estimador insesgado de mínima varianza). 
-
-$$ECM = \frac{1}{n} \sum_{i=0} ^n (f(x_i) - y_i)^2,$$
-
-donde $f(x_i)$ representa la predicción y $y_i$ la etiqueta de entrenamiento de $x_i$, es decir, su valor real.
+Por lo general la teoría se fundamenta en minimizar el error de estimadores
+tales como el error cuadrático medio.
 
 % Componentes del aprendizaje   
 \subsection{Componentes del aprendizaje}\label{sub:componentes_aprendizaje}  
 A nivel práctico y en nuestro caso, los elementos que consideraremos para el aprendizaje y los cuales 
 serán susceptibles de contribuir a la optimización buscada son
 (capítulo 1 \cite{MostafaLearningFromData}): 
+
+% Comentario margen sobre lo que verdaderamente se trata de aproximar
+
+\marginpar{\maginLetterSize \raggedright
+     \iconoProfundizar \textcolor{blue}{
+        \textbf{En qué consiste la función ideal y desconocida a nivel práctico}:
+    }
+}
+\marginpar{\maginLetterSize
+    A nivel teórico existen infinitas funciones que coincidan en un conjunto finito de puntos,
+    por lo que 
+    verdaderamente no se está buscando una función ideal sino un elemento dentro de
+    la clase de equivalencia de las funciones medibles que coincide en un conjunto numerable de puntos. 
+}
+
+
+% Qué se entiende por clase de equivalencia y función medible 
+
 
 
 \begin{itemize}
@@ -60,11 +75,13 @@ serán susceptibles de contribuir a la optimización buscada son
      donde  $\mathcal{Y}$ es el conjunto de posibles valores asociados. 
     \item Un conjunto de datos de entrenamiento $\mathcal D$, donde los elementos son pares $(x,y)$ con $x \in  \mathcal X$ y 
     $y \in \mathcal{Y}$ y que representa una observación $f(x)=y.$
-    \item Un algoritmo de aprendizaje que consiste en seleccionar una fórmula $g: \mathcal X \longrightarrow \mathcal{Y}$ que aproxime $f$. La fórmula $g$ pertenece 
-    a un conjunto $\mathcal H$ de hipótesis. 
+    \item Un algoritmo de aprendizaje es aquel que dado un espacio de búsqueda o de hipótesis posibles
+    $\mathcal{H}$ con elementos de la forma $h: \longrightarrow Y$ con 
+    $X \subseteq \mathcal X$ y $Y \subseteq \mathcal Y$ selecciona un candidato que aproxime $f$.
 \end{itemize}
 
-En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neuronales y $g$ la red neuronal seleccionada. 
+En nuestro caso $\mathcal{H}$ será el conjunto de todas las posibles redes neuronales con un cierto 
+número de neuronas y capas ocultas prefijadas. 
 
 
 % Tipos de aprendizaje 
@@ -77,14 +94,15 @@ tienen distintos tipos de aprendizaje y cabe la pregunta de en qué ámbitos son
 son extensibles a otros. 
 
 Con el fin de tener una clara distinción,
-establecemos por consiguiente la siguiente clasificación sobre los tipos de aprendizajes existentes basa en el
+establecemos la siguiente clasificación sobre los tipos de aprendizajes existentes 
+que se basada en el
 artículo \cite{importancia-arte-aprendizaje-automatico},
- el capítulo 1 \cite{MostafaLearningFromData}
- y capítulo 4 pag 179
-\cite{BishopPaterRecognition}).
+ el capítulo primero de  \cite{MostafaLearningFromData}
+ y el capítulo cuarto   página 179 de
+\cite{BishopPaterRecognition}.
 
 \subsubsection{Aprendizaje supervisado}
-Cuando el conjunto de datos de entrenamiento contiene de manera explícita lo que es una salida correcta respecto a una entrada estamos frente a un caso de \textbf{aprendizaje no supervisado}.   
+Cuando el conjunto de datos de entrenamiento contiene de manera explícita lo que es una salida correcta respecto a una entrada estamos frente a un caso de \textbf{aprendizaje supervisado}.   
 Este tipo de aprendizaje resuelve tareas de clasificación, donde la salida es discreta 
 o de regresión, con una salida continua.
 Un ejemplo sería el reconocimiento de dígitos  manuscritos donde cada imagen de un dígito tiene asociado cuál es. 
@@ -104,7 +122,7 @@ a las damas; de todo el espacio de jugadas posibles, se conocerían tan solo el 
 En este tipo de aprendizaje, los datos de entrenamiento tampoco contienen ninguna información de la salida.
  Tan solo se tienen los datos de entrada. El \textbf{aprendizaje no supervisado} 
  consiste en la tarea de encontrar patrones y estructuras en los datos de entrada, 
- así como de crear una una abstracción de los datos.  Son problemas de \textit{clustering}, asociación o entre otros, detección de anomalías.
+ así como de crear una abstracción de los datos.  Son problemas de \textit{clustering}, asociación o entre otros, detección de anomalías.
 
 \subsubsection{Aprendizaje semi supervisado }
 Combina tanto datos etiquetados como no etiquetados, 
@@ -118,41 +136,3 @@ recién mencionados
 de aprendizaje supervisado. 
 
 
-\subsection{El gradiente descendente} \label{sec:gradiente-descendente}
-
-(Información tomada de los capítulos uno y dos de \cite{learning-from-data-1-2})
-Así pues, una vez concretado el problema y sus elementos 
-(\ref{sub:componentes_aprendizaje}) es necesario definir un método con el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
-
-El gradiente descendente es un método iterativo de minimización de funciones diferenciables. 
-
-En nuestro caso particular se quiere aproximar la función ideal desconocida $f$ a partir de funciones (redes neuronales) $h_w \in \mathcal{H}$, donde $w \in M(\R)_{m \times n}$ son parámetros que caracterizan a $h_w$.
-Para  
-Dada también una función de error diferenciable y que no presente puntos de inflexión
-$E: M(\R)_{m \times n} \longrightarrow \R,$
-se toma una matriz inicial  cualquiera $w_0 \in M(\R)_{m \times n}$ y 
-fijado $\eta \in \R^+$. 
-
-Se define la sucesión 
-\begin{equation}
-    w_{t+1}  = w_t - \eta \nabla E(w_t).
-\end{equation}  
-
-Donde $w_n$ es una sucesión cuyos términos convergen a un mínimo local.
-\subsubsection*{Observaciones sobre el algoritmo }
-
-\begin{itemize}
-    \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
-    \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
-    \item Si la función es convexa el mínimo será global.
-    \item El parámetro $\eta$ puede ser cualquiera y debe de ser fijado o controlado por el diseñador.  
-\end{itemize}
-
-
-\subsection{Comentario de Blanca que deja aquí por guardarlo en algún sitio y que en algún momento debiera de borrar} 
-
-\textcolor{blue}{
-Estamos buscando verdaderamente no una función ideal sino 
-la clase de equivalencia de las funciones medibles que coincide su grafo en un conjunto numerable de puntos. 
-En la práctica nos quedamos con un candidato de esa clase. ¿ Afectar esta forma de ver las cosas?
-}

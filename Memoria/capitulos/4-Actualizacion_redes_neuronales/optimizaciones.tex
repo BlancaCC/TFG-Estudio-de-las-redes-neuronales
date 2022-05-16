@@ -1,0 +1,197 @@
+%%%%%%%%%%%%%%%%%%%
+%% Optimización de la inicialización de los pesos de una red neuronal 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{ Inicialización de los pesos de una red neuronal}  
+\label{section:inicializar_pesos}
+Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
+cada iteración mejorar la solución encontrada, pero es 
+totalmente sensible a la posición inicial 
+de los pesos. 
+Presentamos por tanto la siguiente propuesta para inicializar una red neuronal de modo que sus pesos se encuentre ya lo suficientemente cerca de la solución, 
+no solo servirá exclusivamente para el método de gradiente descendente 
+sino para cualquier otro dependiente del punto inicial. 
+
+\subsection{ Estado del arte relacionado con esto} 
+
+\textcolor{red}{TODO: Estado del arte. Buscar sobre backbones y otros
+sistema y cómo influye el estado inicial. Argumentar con esto 
+que este algoritmo permitiría generar nuestro propio backbone}
+
+\subsection{Descripción del método propuesto}
+
+La idea proviene de la demostración casi constructiva del teorema \ref{teorema:2_5_entrenamiento_redes_neuronales}.
+
+Se desea inicializar los pesos de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \mathcal{D}$ de datos de entrenamiento. 
+
+La bondad del resultado depende en gran medida de $\Lambda$, 
+puesto que a priori se carece de hipótesis, se seleccionará 
+de manera aleatoria bajo supuesto de una distribución 
+independiente e idénticamente distribuida de los datos. 
+
+Como apunta la demostración, debe de encontrarse un 
+$p \in \R^d$ satisfaciendo que $p \cdot (x_i-x_j) \neq 0$ para cualesquiera
+atributos $x_i,x_j$ distintos de $\Lambda$.  
+
+Es decir que se estaría considerando un vector que no 
+pertenezca a una unión finita de hiperplanos ortogonales de $\R^r$. 
+De manera teórica la probabilidad de seleccionar un $p$ y 
+que pertenezca al espacio ortogonal es $0$, sin embargo esto 
+no quiere decir que no pueda pasar. 
+
+Tomaremos por tanto un $p$ aleatorio y a partir de él 
+seleccionaremos $\Lambda$ lo suficientemente grande para que
+ al menos $n$ vectores admitan de manera estricta la ordenación: 
+
+\begin{equation}\label{eq:method_inicializar_condition_desigualdad}
+    p \cdot x_1 < 
+    p \cdot x_2 
+    < \cdots <
+    p \cdot x_n.
+\end{equation}
+Para continuar, para la función de activación 
+seleccionada $\gamma$, por cómo se definen 
+existirá un $M \in \R^+$ tal que 
+\begin{equation} \label{eq:method_inicializar_M}
+    \gamma(K)=1 \text{ y } \gamma(-K)=0 
+    \text{ sean constantes para todo }K \geq M.
+\end{equation}
+
+Una vez concretados los valores $p$, $\Lambda$ y $M$ que satisfagan las condiciones 
+(\refeq{eq:method_inicializar_condition_desigualdad}) 
+y (\refeq{eq:method_inicializar_M})  
+falta concretar los valores iniciales de la red neuronal. 
+
+Para ello debemos de calcular el valor de las matrices $(A,S,B)$ que definen a una red neuronal y que presentamos en la sección \ref{section:rrnn_implementation}.
+
+Recordemos que $A$ y $S$ tienen tantas filas como neuronas  y $B$ tantas columnas como neuronas. 
+
+Usado la notación vectorial
+$p_{[i,j]} = (p_i, p_{i+1}, \ldots, p_{j})$ donde $(p_0, p_1, \ldots, p_d)=p$, comenzaremos definiendo el valor de la primera fila como
+
+\begin{align}
+    &S_1 = M p_0, \\
+    & A_{1 *} = M p_{[1,d]}, \\
+    & B_{* 1} = y_1.
+\end{align}
+
+Los valores de la fila  k-ésimas de las matrices $(A,S)$, vendrán determinados por la única función afín $A \in \afines$, 
+dada por $A_k(x)=B_k(p \cdot x)$, con $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que 
+\begin{equation}
+    B_k(p \cdot x_{k-1}) = -M 
+    \quad \text{y} \quad 
+     B_{k}(p \cdot x_k)= M.
+\end{equation}
+
+Que esto equivale a calcular las constantes reales $\tilde {\alpha}$. 
+
+Si tenemos presente que 
+\begin{equation}
+    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{k s} = -M 
+    \quad \text{y} \quad 
+    \tilde{\alpha}_{k p}(p \cdot x_k) + \tilde{\alpha}_{k s}= M.
+\end{equation} 
+Resolviendo el sistema resulta que 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            \\
+            \tilde{\alpha}_{k s} 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+        \end{array}
+    \right.
+\end{equation}
+
+Luego los coeficientes de la red neuronal $A$, $S$ se deduciría de 
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            \alpha_{k 0} = \tilde{\alpha}_{k s} =
+            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            \\
+            \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
+            = 
+            \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_i 
+        \end{array}
+        \right.
+\end{equation}
+
+Esto define un sistema lineal compatible
+cuya solución son las respectivas filas y columnas: 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  
+            \\
+            B_{* k} = y_k - y_{k-1}
+        \end{array}
+    \right.
+\end{equation}  
+
+Con todo esto el proceso algorítmico resultante es: 
+
+% Algoritmo de inicialización de pesos de una red neuronal
+
+\begin{algorithm}[H]
+    \caption{Inicialización de pesos de una red neuronal}
+    \textbf{Input:} Tamaño red neuronal $n$, conjunto de datos de entrenamiento $\mathcal{D}$, constate $M$ involucrada en \refeq{eq:method_inicializar_M}.
+
+    \textbf{Input:} Red neuronal, representada con las matrices $(A,S,B)$.
+    \hspace*{\algorithmicindent} 
+    \begin{algorithmic}[1]
+        %selección de p
+       \STATE \textit{Inicializamos $p$}. \\
+       $p \gets$ vector de $\R^{d+1}$. 
+       \COMMENT{Como heurística será generado con distribución uniforme en el intervalo $[0,1]$} 
+       % Cálculo de Lambda
+       \STATE \textit{Selección datos inicialización
+       $\Lambda \subset \mathcal{D}$}. \\
+       \begin{equation}
+           \Lambda \gets \{ \emptyset \}
+       \end{equation}
+       \While{tamaño de $\Lambda < n$}{
+            Tomamos de manera aleatoria $(x,y)$ de $\mathcal{D}$.   \\
+        \If{para todo $(a,b) \in \Lambda$ se satisface que 
+        $p \cdot (x-a)$}{ 
+           \begin{equation}
+                \Lambda  \gets \Lambda \cup \{(x,y)\}.
+           \end{equation} 
+           \COMMENT{$\Lambda$ está ordenado conforme a la propiedad 
+           \refeq{eq:method_inicializar_condition_desigualdad} 
+           }
+        }
+       }
+       \STATE \textit{Cálculo de los parámetros base de la red neuronal.} \\
+       
+       Para el primer $(x_1, y_1) \in \Lambda$ \\
+       \begin{align}
+            &S_1 = M p_0, \\
+            & A_{1 *} = M p_{[1,d]}, \\
+            & B_{* 1} = y_1.
+        \end{align}
+       $\Lambda \gets \Lambda \setminus \{(x_1, y_1)\} $ \\
+       \STATE \textit{Cálculo del resto de neuronas}. 
+       \For{ cada $(x_k, y_k) \in \Lambda$}{
+        \begin{align}
+            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  \quad i \in \{1, \ldots d\},\\
+            & B_{* k} = y_k - y_{k-1}.
+        \end{align} 
+       }
+       \STATE \textbf{return $(A,S,B)$}.
+    \end{algorithmic}  
+\end{algorithm}
+
+\textcolor{red}{TODO: Añadir coste computacional}
+
+\textcolor{red}{TODO: Hacer observaciones sobre que sería igual de válido cambiando la $M$ y $p$ ¿hay alguna selección mejor que otra? }
+
+\textcolor{red}{TODO: Hacer experimentaciones }

@@ -9,10 +9,10 @@
 En las secciones anteriores se han provisto resultados para redes 
 neuronales de salida real. Vamos a generalizar los resultados vistos
 para ser capaces de aproximar funciones continuas o medibles 
-de $\R^r$ a $\R^s$ con $r,s \in \N.$
+de $\R^d$ a $\R^s$ con $d,s \in \N.$
 
-Denotaremos por $\fCC$ al conjunto de funciones continuas definidas de $\R^r$ a $\R^s$ y al de funciones medibles de 
-$\R^r$ a $\R^s$  por $\fMM.$ 
+Denotaremos por $\fCC$ al conjunto de funciones continuas definidas de $\R^d$ a $\R^s$ y al de funciones medibles de 
+$\R^d$ a $\R^s$  por $\fMM.$ 
 La distancia asociada a estos espacios se define como 
 \begin{equation}
     \rho_{\mu}^s(f,g) 
@@ -23,33 +23,50 @@ La distancia asociada a estos espacios se define como
 Con la siguiente definición buscamos abstraer el modelo de una red neuronal de una capa oculta y salida múltiple.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.7\textwidth]{articulo_rrnn_aproximadores_universales/RedNeuronalAbstactaUnaCapaVariasSalidas.png}
-    \caption{Ejemplo de red neuronal de una capa oculta con $h$ nodos, de dimensión de entrada $r$ y salida $s$.}
+    \includegraphics[width=.9\textwidth]{articulo_rrnn_aproximadores_universales/Red-Neuronal-blanco-negro-varias-salidas.jpg}
+    \caption{Ejemplo de red neuronal de una capa oculta con $n$ nodos, de dimensión de entrada $d$ y salida $s$.}
     \label{fig:red neuronal-r-h-s}
 \end{figure}
 
 Nótese que los vectores $(w_{0i},w_{1 i}, \ldots, w_{r i})$ representan a la aplicación afín 
-$A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^r w_{ji} x_j$
+$A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^d w_{ji} x_j$
 con $i \in \{1,\ldots, h\}$ . 
 
 \begin{definicion}[Abstracción de una red neuronal con una capa oculta y múltiple salida] 
-    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
-    $r \in \N$ se define a la clase de funciones $\pmc$ como 
+    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquiera naturales positivo
+    $d,s \in \N$ se define a la clase de funciones $\rrnnmc$ como 
     \begin{equation}
         \begin{split}
-        \sum^{r,s}(G) = 
+        \rrnnmc = 
         \{ 
-            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots, f_s)  / \quad 
+            & h: \R ^d \longrightarrow \R^s, h= (h_1, h_2, \ldots, h_s)  / \quad 
             \\ &
-            \text{ con } f_i : \R ^r\longrightarrow \R, 
-            f_i(x)=\sum_{j = 1} ^h (
+            \text{ con } h_i : \R ^d\longrightarrow \R, 
+            h_i(x)=\sum_{j = 1} ^{n_i} (
             \beta_{j i} G(A_{j}(x)) \quad i \in \{1,2,\ldots, s\}, \\
-            & x  \in \R ^r, \beta_{j i} \in \R, A_{j}\in A^r,h \in \N
-            )
+            & x  \in \R ^d, \beta_{j i} \in \R, A_{j}\in \afines,n_i \in \N, i \in \{1,\ldots, s\} 
         \}.
         \end{split}
     \end{equation}
 \end{definicion}
+
+\iconoAclaraciones \textcolor{dark_green}{ Nota Blanca: }
+
+
+Es interesante apreciar que se tiene que 
+    \begin{equation} \label{eq:diferencia_conjuntos_multicapa}
+        \begin{split}
+        \rrnnmc \subsetneq
+        \{ 
+            & h: \R ^d \longrightarrow \R^s, h= (h_1, h_2, \ldots, h_s)  / \quad 
+            \\ &
+            h_i \in \rrnn \quad \forall i \in \{1, \ldots, s\}
+        \}.
+        \end{split}
+    \end{equation}
+    aunque como veremos en el corolario \ref{corolario:2_6} $\rrnnmc$ es un espacio denso en el conjunto que acabamos de presentar. 
+    Si tenemos presente que de acorde a nuestras definiciones una red neuronal $h_i$ viene determinada por un conjunto de funciones afines $A^{(i)}_j$  y escalares $\beta^{(i)_j}$, se daría la igualdad en \refeq{eq:diferencia_conjuntos_multicapa} si imponemos que para cualquier par de redes neuronales $h_k, h_j$ se satisface que $A^{(k)}_i = A^{(j)}_i$. 
+
 
 No es difícil pensar que su versión generalizada sea: 
 
@@ -57,18 +74,18 @@ No es difícil pensar que su versión generalizada sea:
     Dadas las mismas hipótesis que en la definición anterior, se define la siguiente clase de funciones como 
     \begin{equation}
         \begin{split}
-            \sum \prod^{r, s}(G) 
+            \sum \prod^{d, s}(G) 
             = 
         \{ 
-            & f: \R ^r \longrightarrow \R^s, f= (f_1, f_2, \ldots , f_s)  / \quad 
+            & f: \R ^d \longrightarrow \R^s, f= (f_1, f_2, \ldots , f_s)  / \quad 
             \\ &
-            \text{ con } f_i : \R ^r\longrightarrow \R, 
+            \text{ con } f_i : \R ^d\longrightarrow \R, 
             f_i(x)=\sum_{j = 1} ^h 
             \left(
             \beta_{j i} \prod_{k=1}^{l_{j i}} G(A_{j i}(x))
             \right)
              \quad i \in \{1,2,\ldots, s\}, \\
-            & x  \in \R ^r, \beta_{j i} \in \R, A_{j i}\in A^r; h,l_{j i} \in \N 
+            & x \in \R ^d, \beta_{j i} \in \R, A_{j i}\in \afines; h,l_{j i} \in \N 
         \}.
         \end{split}
     \end{equation}
@@ -93,13 +110,13 @@ No es difícil pensar que su versión generalizada sea:
 \end{corolario}
 
 % Nota intuitiva sobre el Corolario 2.6
-\marginpar{\raggedright
-    \textcolor{dark_green}{
+\marginpar{\maginLetterSize\raggedright
+    \iconoAclaraciones \textcolor{dark_green}{ 
         \textbf{Idea clave corolario
         \ref{corolario:2_6}}
     }
 }
-\marginpar{
+\marginpar{\maginLetterSize\small
    En esencia, todos los resultados probados hasta ahora para redes 
    neuronales con salida real de dimensión uno son válidos para 
    cualquier tamaño de salida, es decir, \textbf{lo que a nosotros 
@@ -108,23 +125,23 @@ No es difícil pensar que su versión generalizada sea:
 }
 
 % Nota intuitiva sobre la demostración del Corolario 2.6
-\marginpar{\raggedright
-    \textcolor{dark_green}{
+\marginpar{\maginLetterSize\raggedright
+    \iconoAclaraciones \textcolor{dark_green}{ 
         \textbf{Idea clave demostración corolario
         \ref{corolario:2_6}}
     }
 }
-\marginpar{
+\marginpar{\maginLetterSize\small
  La demostración del corolario es totalmente constructiva:
-si se desea una red neuronal de salida $r\in \N$, 
-se construyen de manera independiente $r$ redes neuronales de salida de una dimensión
+si se desea una red neuronal de salida $s\in \N$, 
+se construyen de manera independiente $s$ redes neuronales de salida de dimensión uno
 (una para cada salida buscada) y las concatenamos haciendo valer cero las conexiones entre nodos que no pertenecieran a las redes de partida.
 }
 \begin{proof}
     Observemos que todos los teoremas y lemas mencionados basan su tesis
     en la existencia de una red neuronal es decir, que si llamamos según 
-    convenga $\mathcal{F}^{r,s}$ a $\rrnnmc$ o $\rrnngmc$ deberemos de 
-    encontrar un $f \in \mathcal{F}^{r,s}$ que cumplan las respectivas tesis para salidas múltiples. 
+    convenga $\mathcal{F}^{d,s}$ a $\rrnnmc$ o $\rrnngmc$ deberemos de 
+    encontrar $f \in \mathcal{F}^{d,s}$ que cumplan las respectivas tesis para salidas múltiples. 
 
     La prueba se construirá por inducción sobre el número de salidas $s$. 
 
@@ -132,12 +149,13 @@ se construyen de manera independiente $r$ redes neuronales de salida de una dime
 \reversemarginpar
 \setlength{\marginparwidth}{\smallMarginSize}
 
-\marginpar{\raggedright
-    \textcolor{blue}{
+\marginpar{\maginLetterSize\raggedright
+     \iconoProfundizar \textcolor{blue}{
         \textbf{Nueva hipótesis de optimización}
     }
 }
-\marginpar{
+\marginpar{\maginLetterSize
+    \small
     La demostración del corolario nos da una \textbf{técnica constructiva}
     de obtener redes neuronales de varias salidas,
      que puede ser de valía para aplicarla \textbf{como heurística 
@@ -154,18 +172,18 @@ se construyen de manera independiente $r$ redes neuronales de salida de una dime
     
     Se quiere encontrar 
     $f = (f_1, f_2, \ldots, f_n, f_{n+1})$ de $n+1$ salidas, 
-    por hipótesis de inducción existe $g_n \in \mathcal{F}^{r,n}$ con
+    por hipótesis de inducción existe $g_n \in \mathcal{F}^{d,n}$ con
      $g_n = (f_1, f_2, \ldots, f_n)$ y con $h_n$ sumandos. Denotamos a los pesos de las transformaciones afines 
      $w_{i j} \in \R$ con 
-     $i \in \{0, 1, \ldots , r \}$  y  $j \in \{1, \ldots ,h_n \}$ 
+     $i \in \{0, 1, \ldots , d \}$  y  $j \in \{1, \ldots ,h_n \}$ 
      y $\beta_{ k l} \in \R$ con 
      $k \in \{1, \ldots ,h_n \}$  y  $l \in \{1, \ldots ,n \}.$
 
-    También existe $g_1 \in \mathcal{F}^{r,1}$ cumpliendo que
+    También existe $g_1 \in \mathcal{F}^{d,1}$ cumpliendo que
     $g_1 = f_{n+1}$ con $h_1$ sumandos en la capa oculta
     y pesos  
     ${w'}_{i j} \in \R$ con 
-     $i \in \{0, 1, \ldots , r \}$  y  $j \in \{1, \ldots , h_1 \}$ 
+     $i \in \{0, 1, \ldots , d \}$  y  $j \in \{1, \ldots , h_1 \}$ 
      y ${\beta '}_{ k l} \in \R$ con 
      $k \in \{1, \ldots , h_1 \}$  y  $l = {n+1}$
      (Ver figura \ref{fig:red neuronal-r-h-s} para orientarse en la notación tomada).
@@ -174,7 +192,7 @@ se construyen de manera independiente $r$ redes neuronales de salida de una dime
 
     El peso $\tilde{w}$ de las funciones afines: 
     Para cuales quiera 
-    $i \in \{0, 1, \ldots  , r \}$  y  
+    $i \in \{0, 1, \ldots  , d \}$  y  
     $j \in \{1, \ldots , h_n, h_{n} + 1, \ldots, h_n + h_1\}$  determinaremos la siguiente casuística
     \begin{enumerate}
         \item Si $1 \leq j \leq h_n$ entonces $\tilde{w}_{i j} = w_{i j}.$
@@ -198,14 +216,14 @@ se construyen de manera independiente $r$ redes neuronales de salida de una dime
         $\tilde{\beta}_{k l} = {\beta '}_{(k- h_n) l}.$
     \end{enumerate}
 
-    Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{r,s}$, y que para cada teorema o lema
+    Notemos que $f=(f_1, f_2, \ldots, f_n, f_{n+1})$, es decir $f \in \mathcal{F}^{d,s}$, y que para cada teorema o lema
     cada una de las proyecciones de $f$ cumple la tesis, es decir $f$ cumple lo buscado. 
 \end{proof}
 
 \subsubsection*{ Conclusión sobre el teorema anterior}  
 A la vista de la demostración constructiva se nos acaba de decir de manera indirecta que si queremos construir una red neuronal 
-a partir de un tamaño de entrenamiento $E$ y de salida $r$, 
-con una red neuronal de $E \times r$ capas ocultas será suficiente y para este caso la reflexión expuesta en la sección \ref{subsection:reflexión_sobre_número_de_neuronas} es idéntica. 
+a partir de un tamaño de conjunto entrenamiento $E$ y de salida de dimensión $s$, 
+con una red neuronal de $E \times s$ neuronas en la ocultas será suficiente y para este caso la reflexión expuesta en la sección \ref{subsection:reflexión_sobre_número_de_neuronas} es idéntica. 
 
 
 
