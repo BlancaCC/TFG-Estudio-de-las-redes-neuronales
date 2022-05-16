@@ -10,9 +10,7 @@ por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref
 De acorde a los capítulos uno y dos del libro  \cite{learning-from-data-1-2},
  una vez concretado el problema y sus elementos 
 (\ref{sub:componentes_aprendizaje}) es necesario definir un método con 
-el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente.  
-
-El gradiente descendente es un método iterativo de minimización de funciones diferenciables. 
+el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente. Se trata de un método iterativo de minimización de funciones diferenciables. 
 
 % Nota sobre el algoritmo de gradiente descendente 
 \marginpar{\maginLetterSize
@@ -77,9 +75,9 @@ Donde $h_n$ es una sucesión cuyos términos convergen a un mínimo local.
 
 Con el fin de reducir el coste del cálculo del gradiente, 
 se utiliza generalmente el algoritmo conocido como \textit{backpropagation} que fue publicado en 
-1989 en el artículo \cite{backpropagation-Hinton}. Las hipótesis bajo las que fue diseñado tal algoritmo fueron: redes neuronales con varias capas y entendiendo por red neuronal un modelo más costoso al nuestro. \textbf{Es por ello que a continuación plantearemos una versión propia deducida y optimizada de acorde a nuestro modelo}
+1989 en el artículo \cite{backpropagation-Hinton}. Las hipótesis bajo las que fue diseñado tal algoritmo fueron: redes neuronales con varias capas y entendiendo por red neuronal un modelo más costoso al nuestro. \textbf{Es por ello que a continuación plantearemos una versión propia deducida y optimizada de acorde a nuestro modelo}.
 
- Sea $E_{in} : \rrnnmc \longrightarrow \R^+_0$ la función para medir error habitualmente usada, la cual tomaremos como el error dentro de conjunto de entrenamiento, esto es,  si el conjunto 
+ Sea $E_{in} : \rrnnmc \longrightarrow \R^+_0$ la función para medir error habitualmente usada, la cual tomaremos como el error dentro del conjunto de entrenamiento, esto es,  si el conjunto 
 de entrenamiento $\mathcal{D}$ está constituido por $N$ datos de la forma $(x_i, y_i)$ con $x_i$ el vector de entrada o atributos y $y_i$ el estado o valor deseado para cualquier $k\in \{1, \ldots, N\}.$ Para cualquier $h \in \rrnnmc$ denotando por $h_k$ a su $k-$ésima proyección, se define como métrica de error dentro de $\mathcal{D}$ como
 \begin{equation}
     E_{in}(h) = \frac{1}{N} \sum_{(x,y) \in \mathcal{D}} \sum_{k=1}^s(h_k(x)- y_k)^2. 
@@ -106,17 +104,17 @@ Antes de adentrarnos en los cálculos tengamos presente que hemos definido una r
 \end{equation}
 para la cual hemos impuesto que la función de activación $\sigma$ sea diferenciable.
 
-Denotaremos como $\chi_{[c]}$ a la función características
+Denotaremos como $\chi_{[c]}$ a la función característica:
 \begin{equation}
     \chi_{[c]}= \left\{ \begin{array}{lcc}
         1 &   si  &  \text{se satisface c} \\
-        \\ 0 &  si  & \text{no se satisface c} 
+        \\ 0 &  si  & \text{no se satisface c.} 
         \end{array}
-\right.
+    \right. 
 \end{equation}
 
 Así pues, en base al modelo expuesto en \refeq{eq:red-neuronal-que-aprender} a la hora de calcular el gradiente del error con respecto a los parámetros que determinan la red, tendríamos tres tipos de derivadas parciales, las dependientes de $\beta_{j  k}$, 
-las de $\alpha_{0 j}$ y las de $\alpha_{j i}$, para cada caso concreto y en virtud de la regla de la cadena, se tiene: 
+las de $\alpha_{0 j}$ y las de $\alpha_{i j}$, para cada caso concreto y en virtud de la regla de la cadena, se tiene: 
 
 \begin{itemize}
     \item Derivada parcial del error con respecto a $\beta_{v w}$ donde $v \in \{1, \ldots, n\}$ y $w \in \{1, \ldots, s\}$:
@@ -541,13 +539,12 @@ A la vista de las repeticiones de cálculos, su coste computacional,
  ofrece un gran beneficio almacenar $h_k(x)-y_k$, ya que el coste de cálculo aumenta de manera lineal conforme aumenta el número de neuronas mientras que se mantiene constante el costo en memoria.      
 
 Para el resto de expresiones podría no estar tan claro su beneficio, 
-ya que estamos en una situación en la que el coste en memoria y de cálculo aumentan manera lineal con respecto al número de neuronas. 
+ya que estamos en una situación en la que el coste en memoria y de cálculo aumentan de manera lineal con respecto al número de neuronas. 
 
 Sin embargo, para un cálculo directo sin almacenar operaciones intermedias, sería necesario reservar en memoria espacio para $n (s + 1 + d )$  parámetros, ya que no se debería de sobreescribir los parámetros antiguos con los nuevos ya que afectaría al cálculo. 
 
-Pero como hemos observado en el coste en memoria de ir almacenando los resultados parciales \ref{tab:expresiones_repetidas_en_descenso_gradiente} y se aprecia claramente en \ref{algoritmo:calculo-gradiente}
-el coste en memoria de nuestro algoritmo sería de $ n (d + 2s +3) +1$.
-Así pues se acaba de probar que un algoritmo directo es peor en coste de cálculo y ligeramente memoria frente a otro que almacene los resultados parciales. 
+Por otra parte, hemos observado que el coste en memoria de ir almacenando los resultados parciales \ref{tab:expresiones_repetidas_en_descenso_gradiente} y el propio coste en memoria de nuestro algoritmo \ref{algoritmo:calculo-gradiente} supondrían un espacio de $n (d + 2s +3) +1$.
+Así pues se acaba de probar que un algoritmo directo es peor en coste de cálculo y ligeramente mejor en memoria frente a otro que almacene los resultados parciales. 
 
 Por lo que los algoritmos que proponemos a continuación se basarán en almacenar estos resultados. 
 
@@ -556,18 +553,18 @@ Por lo que los algoritmos que proponemos a continuación se basarán en almacena
 Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neural $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
 
 \begin{align}\label{eq:representation red neuronal}
-    A &= (\alpha_{i,j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
-    S &= (\alpha_{0, j}) \text{ con }  j \in \{1, \ldots, n\}. \\
-    B &= (\beta_{j,k}) \text{ con }  j \in \{1, \ldots n\}, \; k \in \{1, \ldots s\}.\\
+    A &= (\alpha_{i j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
+    S &= (\alpha_{0 j}) \text{ con }  j \in \{1, \ldots, n\}. \\
+    B &= (\beta_{j k}) \text{ con }  j \in \{1, \ldots n\}, \; k \in \{1, \ldots s\}.\\
 \end{align}
  De esta manera $h$ modificará el valor de sus pesos de acorde al algoritmo de gradiente descendente \ref{eq:descenso-gradiente} que viene dado por
 
 \begin{algorithm}[H]
-    \caption{Algoritmo gradiente descendente.}
+    \caption{Algoritmo gradiente descendente conocidas las derivadas parciales.}
     \hspace*{\algorithmicindent} \textbf{Input}:$h$ red neuronal  y conjunto de entrenamiento \\
     \hspace*{\algorithmicindent} \textbf{Output:} $h$ actualizada de acorde al algoritmo de gradiente descendente. 
     \begin{algorithmic}[1]
-        \STATE Debe de calcularse el previamente el $\nabla E(h)$, es decir cada una de la parciales.
+        \STATE Debe de calcularse el previamente $\nabla E(h)$, es decir cada una de las derivadas parciales, esto se hará en el algoritmo \ref{algoritmo:calculo-gradiente}.
         % actualizamos los pesos de a 
         \STATE Actualización de los pesos de $A$ \\  
         \For{
@@ -579,6 +576,7 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
                 \begin{equation}
                     \alpha_{i j} 
                     \gets 
+                    \alpha_{i j} -
                     \eta 
                     \frac{\partial E(h)}{\partial \alpha_{i j}}
                 \end{equation}
@@ -592,6 +590,7 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
                 \begin{equation}
                     \alpha_{0 j} 
                     \gets 
+                    \alpha_{0 j} -
                     \eta 
                     \frac{\partial E(h)}{\partial \alpha_{0 j} }
                 \end{equation}
@@ -607,6 +606,7 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
                 \begin{equation}
                     \beta_{j k} 
                     \gets 
+                    \beta_{j k} -
                     \eta 
                     \frac{\partial E(h)}{\partial \beta_{j k}}
                 \end{equation}
@@ -622,9 +622,8 @@ Notemos la necesidad de una variable $\eta \in \R$ que es prefijada.
 
 Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este vienen determinado por la expresión. 
 
-El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que el no haya ningún cálculo repetido. 
+El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que no haya ningún cálculo repetido. 
 
-\textcolor{red}{ Falta revisar que esté bien este algoritmo}
 
 % Cálculo de los gradientes 
 \begin{algorithm}[H] \label{algoritmo:calculo-gradiente}
@@ -725,7 +724,7 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
 \subsubsection*{Análisis de la complejidad}  
 Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-gradiente} es:
 \begin{itemize}
-    \item \textbf{Coste de cálculo}:  Entiendo suma, productos y evaluaciones como constante de valor $1$ el resultado es: 
+    \item \textbf{Coste de cálculo}:  Entendiendo suma, productos y evaluaciones como constante de valor $1$ el resultado es: 
     \begin{align}
         \text{coste} &=
         |\mathcal{D}| 
@@ -754,10 +753,10 @@ Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-g
         3 \max \{4, d \} n s.
     \end{align} 
 
-    De aquí se deduce, puesto que $s,d$ son constantes fijas que a nivel práctico serán mucho menor que el número de neuronas  $n$ y el número de datos de entrenamiento $|\mathcal{D}| $, que los que afecta primordialmente al coste es $|\mathcal{D}| $ y $n$. 
+    De aquí se deduce, puesto que $s,d$ son constantes fijas que a nivel práctico serán mucho menor que el número de neuronas  $n$ y el número de datos de entrenamiento $|\mathcal{D}| $, que lo que afecta primordialmente al coste es $|\mathcal{D}| $ y $n$. 
     
     Si queremos converger con cierta precisión, el teorema de aproximación no nos permite reducir $n$. Sin embargo, si suponemos que $\mathcal{D}$
-    presenta datos independientes e idénticamente distribuidos tomar un subconjunto aleatorio mantendría una buen estimador  del error actual y por ende del aprendizaje. 
+    presenta datos independientes e idénticamente distribuidos tomar un subconjunto aleatorio mantendría un buen estimador del error actual y por ende del aprendizaje. 
 
     \textcolor{red}{La clave es cuánto de pequeño debe ser la muestra con la que aprendamos.}
 
