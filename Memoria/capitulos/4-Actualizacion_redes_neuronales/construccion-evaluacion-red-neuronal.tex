@@ -18,7 +18,7 @@ Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cua
 \section{Componentes de una red neuronal de una capa oculta} 
 
 Como ya habíamos definido en \ref{definition:redes_neuronales_una_capa_oculta}  
-para nosotros una red neuronal será  una función $h : X \longrightarrow Y$ don $X \subseteq \R^d, Y \subseteq \R^s$ 
+para nosotros una red neuronal será  una función $h : X \longrightarrow Y$ con $X \subseteq \R^d, Y \subseteq \R^s$ 
 cuya proyección $k-$ésima viene dada por
 \begin{equation}
     h_k(x) =  \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x))
@@ -28,7 +28,7 @@ cuya proyección $k-$ésima viene dada por
         w_{0 i} + \sum_{j=1}^d w_{j i } x_i
     \right) 
 \end{equation}
-donde $n$ es el número de neuronas,   $\gamma_{i} \in \Gamma$, funciones medibles definidas de $\R$ a $\R$, una red neuronal será 
+donde $n$ es el número de neuronas,   $\gamma_{i} \in \Gamma$, funciones medibles definidas de $\R$ a $\R$,
 $\beta_{i k} \in \R$ y $A_i \in \afines$.
 
 % Imagen grafo red neuronal  una capa oculta muy simple y en blanco y negro 
@@ -44,15 +44,14 @@ Ante esta definición el número de parámetros a ajustar es:
     \item De la forma $\beta_{i k}$: $n s$. 
     \item De la forma $w_{i j}$: $n(d+1)$.
 \end{itemize}
-Lo que hace un total de $n(s+d+1)$ parámetros, done $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. Por lo general $d$ y $s$ son fijos a que suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.
+Lo que hace un total de $n(s+d+1)$ parámetros, done $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. Por lo general $d$ y $s$ son fijos ya que se suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.
 
 Analizaremos más a fondo su componentes. 
 
 \subsection*{Construcción de la primera capa}
 La primera capa está compuesta por el conjunto de $n$ combinaciones
 lineales del vector de entrada $(x_1, \ldots, x_d)$
-a las cuales denominaremos \textit{activaciones}, $M$ coincide además
-con el número de neuronas en la capa oculta. 
+a las cuales denominaremos \textit{activaciones}, $n$ será el número de sumandos definidos en \ref{definition:redes_neuronales_una_capa_oculta}  que equivale al número de neuronas en la capa oculta. 
 
 \begin{equation}
     a_i = w_{0 i} + \sum_{i=j}^d w_{j i} x_j 
@@ -63,14 +62,14 @@ Nos referiremos a los  parámetros $w_{j i}$ como
 \textit{pesos} y al parámetro $w_{0 i}$ como 
 \textit{sesgo}.  
 
-La memoria que necesaria será de de $(d+1)n \mathfrak{F}$ 
-con el $\mathfrak{F}$ la memoria requerida por un peso. 
+La memoria necesaria será $(d+1)n \mathfrak{F}$ 
+con $\mathfrak{F}$ es el espacio requerido por un peso. 
 El coste computacional es además de $d$ multiplicaciones 
 y $d+1$ sumas.
 
 \subsection*{Unidades ocultas}
 Cada una de esas \textit{activaciones} será transformada
-utilizando una \textit{función de activación} $\sigma_j$ 
+utilizando una \textit{función de activación} $\gamma_j$ 
 
 \begin{equation}
     z_i = \gamma_i(a_i).
@@ -78,12 +77,12 @@ utilizando una \textit{función de activación} $\sigma_j$
 En el contexto de las redes neuronales a $z_i$ se le conoce como \textit{unidad oculta}. Ésta  podría ser de 
 nuevo  transformada por una combinación lineal, en nuestro caso tan solo 
 por el producto de un escalar, ya que como se adelantó en la sección \ref{subsection:diferencia-otras-definiciones-RRNN},
- frente a la transformación afín usualmente propuesta, esta transformación no es necesaria para asegurar la convergencia, profundizaremos más sobre esto más adelante. 
+ frente a la transformación afín usualmente propuesta, esta transformación no es necesaria para asegurar la convergencia, profundizaremos sobre esto más adelante. 
 
-Finalmente la salida vendrá dada por
+ Finalmente la salida vendrá dada por
  \begin{equation}
-    h_k = \sum_{i=1}^n \beta_i z_i 
-    \text{ con } i \in \{1, \ldots, s \}.
+    h_k = \sum_{i=1}^n \beta_{i k} z_i 
+    \text{ con } k \in \{1, \ldots, s \}.
 \end{equation}
 Nótese que ahora el tamaño de variables de entrada es $M$
 y hay un total de $s$ unidades de activación, tanto $M$ como $s$ son
@@ -112,10 +111,8 @@ valores fijados por el diseñador de la red ya que a priori no tenemos otra info
 
 Está claro que al introducir tal sesgo se añade en memoria 
 un coste de $n \mathfrak{F}$ con $n$ el número de neuronas en la capa oculta y que además el costo de cómputo se ve aumentado en la misma proporción. 
-
 Sin embargo podría obtenerse un beneficio en cuanto a precisión, 
 vamos a proceder  a analizar esta idea. 
-
 Es evidente que 
 \begin{equation} \label{eq:conjuntos-redes-neuronales-con-sesgo-contiene-elemental}
     \mathcal{H}(X,Y) \subseteq \mathcal{H}^+(X,Y)
@@ -126,9 +123,9 @@ $h^+ \in \mathcal{H}^+(X,Y)$
 
 \begin{align}
     h^+ = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x)) + \alpha_{i k} \right)
-    = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x))\right) + k 
+    = \sum_{i=1}^{n} \left(\beta_{i k} \gamma_{i}( A_{i}(x))\right) + O, 
 \end{align}
-Con $k \in \R$ un parámetro libre.
+con $O \in \R$ un parámetro libre.
 
 Ante esto, al igual que se hacía en el lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
 es fácil obtener una neurona de valor constante y por tanto, para un conjunto fijo de neuronas $n$, se tiene que 
@@ -144,16 +141,16 @@ entonces como espacios de funciones
 \begin{equation}
     \mathcal{H}(X,Y) = \mathcal{H}^+ (X,Y).
 \end{equation}
-Por otra parte no hace reparar que la precisión que pueda aportar el sesgo es
+Por otra parte, la precisión que pueda aportar el sesgo es
 superada añadiendo una neurona más a un modelo sin sesgo, es más, también se obtiene una mejora en memoria, ya que 
 $\mathcal{H}^+_n(X,Y)$ requiere de $n \mathfrak{F}$ espacio de memoria adicional con respecto a $\mathcal{H}_n(X,Y)$
-mientras que $\mathcal{H}_{n+1}(X,Y)$ de $(D +1) \mathfrak{F}$
+mientras que $\mathcal{H}_{n+1}(X,Y)$ de $(d +1) \mathfrak{F}$
 y por lo visto en el teorema de convergencia universal \ref{teo:MFNAUA}, la precisión se consigue añadiendo neuronas (la dimensión de los datos es fija),
-luego podemos suponer que $n$ será mayor que $D+1$. 
+luego podemos suponer que $n$ será mayor que $d+1$. 
 
 Hasta ahora hemos comparado la capacidad de expresión 
 por la forma de los elementos de los conjuntos, para comparar su bondad aproximando, vamos a fijar  un 
- número de capas ocultas $n$ y 
+ número de neuronas en la capa oculta $n$ y 
  y una función de error cualquiera que mida el error dentro 
  del conjunto de entrenamiento
  $E_{\mathcal{D}}:\mathcal{H}^+(X,Y) \longrightarrow \R^+_0$.
@@ -178,13 +175,19 @@ Está claro por la relación
  La clave ahora reside en si se satisface la desigualdad opuesta
 Es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
 
-Esto no es posible y para darse cuenta basta con considerar el caso de una neurona, con $G(x)$ la función de activación y $k \in \R^+$ definimos la función ideal como $f(x)$. 
-Tomando tan solo dos puntos convenientemente seleccionados se llega a la contradicción de que $H_1(\R, \R)$ pueda aproximar perfectamente $f$ y sin embargo $f \in H^+_1(\R, \R)$ 
+Esto no es posible y para darse cuenta basta con considerar el caso de una neurona, con $G(x)$ su función de activación y $k \in \R^+$ definimos la función ideal como $f(x) = G(x) +k$. 
+Tomando tan solo dos puntos convenientemente seleccionados (por ejemplo $M$ y $-M$ tal que $G(-M) = 0 y G(M) = 1$) aprecia que $H_1(\R, \R)$ no puede aproximar $f$ y sin embargo $f \in H^+_1(\R, \R)$.
 
 % Fin de la demostración 
 
- Concluimos tras todo esto que aunque la precisión que se pueda obtener con funciones de $\mathcal{H}_n(X,Y)$ y $\mathcal{H}^+_n(X,Y)$ es diferente para un mismo número de neuronas $n$, añadiendo una más el sesgo es irrelevante  y además $\mathcal{H}^+_n(X,Y)$ tiene mayor coste computacional, por lo que afirmamos que 
-que es un artificio de las redes neuronales multicapa para enlazar una capa con otra y que en redes neuronales de una capa oculta carece de sentido.
+Concluimos tras todo esto que aunque la precisión
+ que se pueda obtener con funciones de
+ $\mathcal{H}_n(X,Y)$ y $\mathcal{H}^+_n(X,Y)$ es
+  diferente para un mismo número de neuronas $n$,
+  añadiendo una más el sesgo es irrelevante  y 
+  además $\mathcal{H}^+_n(X,Y)$ tiene mayor coste
+   computacional, por lo que afirmamos que 
+es un artificio de las redes neuronales multicapa para enlazar una capa con otra y que en redes neuronales de una capa oculta carece de sentido.
 
 % Consideración sobre componer la red neuronal con una función
 \subsection{\textit{Modus operandi} ante problemas que requieran un dominio de salida discreto}
@@ -204,19 +207,19 @@ Es usual en la literatura presentar las redes neuronales con la salida compuesta
 El teorema universal de convergencia \ref{teo:MFNAUA} nos asegura 
 que dado un número lo suficientemente grande de neuronas tal 
 composición no es necesaria. Sin embargo, a nivel práctico ese 
-número de neuronas puede no alcanzarse y por cómo se produce la convergencia el resultado serán funciones con imágenes con forma de intervalos contenidos en $\R^n$.
+número de neuronas puede no alcanzarse y, por cómo se produce la convergencia, el resultado serán funciones con imágenes con forma de dominios contenidos en $\R^n$.
 
 Por la naturaleza de la imagen de ciertos problemas no sería 
 necesaria mayor modificación y con nuestra definición sería 
-más que suficiente. Pero en caso de la salida tener que cumplir alguna restricción, como por ejemplo en 
+más que suficiente. Pero en caso de que la salida tenga que cumplir alguna restricción, como por ejemplo en 
 problemas de clasificación que necesiten de una salida discreta; sería necesario la composición con una función 
-$\theta$ que discretice el la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
+$\theta$ que discretice la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
 
 
 La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuronal-con-compuesta}, se tendría que si $f$ es el patrón subyacente de la clasificación y $\theta$ la función que discretiza el dominio se deberá de encontrar 
 $h \in \rrnnmc$ tal que $h$ aproxime a $\theta^{-1} \circ f$.
 
-Lo cual esto exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
+Lo cual exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
 
 Es por ello que en nuestra aproximación descartamos este modo de proceder y proponemos el siguiente: 
 
@@ -225,14 +228,14 @@ Es por ello que en nuestra aproximación descartamos este modo de proceder y pro
     \item Una vez que se ha calculado $h$,  $\theta$ se determina a partir de $h$. 
 \end{enumerate}
 
-\subsubsection*{Construcción de $\theta$}
+\subsubsection*{Construcción de  $\theta$}
 
 Una vez fijada $h$,  para $A \subseteq \mathcal{D}$ se define  el conjunto 
 \begin{equation}
     \Lambda = \{(h(x), y) : (x,y) \in A\}.
 \end{equation}
 
-A partir del cual $\theta$ será una función que se ha obtenido por el método de clasificación supervisada de los $k$-vecinos más cercanos ($k-$NN)donde el conjunto de entrenamiento es $\Lambda$.
+A partir del cual $\theta$ será una función que se ha obtenido por el método de clasificación supervisada de los $k$-vecinos más cercanos ($k-$NN) donde el conjunto de entrenamiento es $\Lambda$.
 
 El motivo por el que se ha optado por esta aproximación es que si consideráramos $\theta$ como una función a trozos usual definida como 
 
@@ -254,13 +257,11 @@ Si la dimensión de salida con la que se ha entrenado $h$ es uno, es decir $s=1$
     h(a) = \min \{|h(x) - h(b)| :  (h(b),  y) \in A  \}.
 \end{align}
 
-Si se desea mayor deberíamos de entrenar $s > 1$ y considerar cualquier distancia. 
-
 La implementación de la fórmula anterior sería la siguiente: 
 
 % Algoritmo 1-NN
 \begin{algorithm}[H]
-   \caption{ Cálculo de la función $\theta$ como clasificado $1-$NN} 
+   \caption{ Cálculo de la función $\theta$ como clasificador $1-$NN} 
    \textbf{Input: } Conjunto de datos $\Lambda$.  \\
    \textbf{Output: } Función $\theta : \R \longrightarrow \R$
    \begin{algorithmic}[1]
@@ -298,7 +299,7 @@ de activación frente a otra de una red neuronal serían los siguientes:
 
 Sobre la primera consideración está claro que el uso de una única función ahorraría el tener que almacenar el tipo de función que se va emplear en cada neurona.
 
-Respecto al coste computacional para se han observado los siguientes
+Respecto al coste computacional 
 \textcolor{red}{TODO:  añadir coste computacional  de las funciones que considere oportunas}
 
 Y respecto a la precisión no se conoce ninguna motivación (por ahora)
@@ -310,11 +311,11 @@ el coste y la precisión. Es decir, a mismo número de neuronas se podría conse
 
 %% Formulación técnica 
 
-\section{Explicitación de la construcción y evaluación de una red neuronal}
+\section{Construcción explícita y evaluación de una red neuronal}
 
 Ante todas las consideraciones expuestas y puesto que 
-no existe ningún resultado o hipótesis a favor de combinar funciones de activación, en pos de simplificar el estudio; vamos a suponer a priori que todos los nodos están compuestos con la misma. Entonces,  una red neuronal para nosotros 
-no serán más que dos matrices de pesos y una función de evaluación. 
+no existe ningún resultado o hipótesis a favor de combinar funciones de activación, en pos de simplificar el estudio, vamos a suponer a priori que todos los nodos están compuestos con la misma. Entonces,  una red neuronal para nosotros 
+vendrá determinada dos matrices de pesos y una función de evaluación. 
 
 Es decir siguiendo la idea constructiva expuesta en manuales tales como \cite{learning-from-data-1-2}
  cualquier $h \in \rrnnsmn$ de $n$ neuronas en la capa oculta se implementa como 
@@ -326,7 +327,7 @@ y $M_{(n+1) \times s}$ son los pesos de la salida.
 
 Tomando como $\mathfrak{I}_{r+1}: \R^r \longrightarrow M_{(r+1) \times 1}(\R)$ a la aplicación inyección que a cada vector $(x_1, \ldots, x_d)$ le hace corresponder el vector columna $(1, x_1, \ldots x_d)^T.$
 Además entendemos para una función $\gamma : \R \longrightarrow \R$ 
-que la imagen de una matriz con $\gamma$ es evaluar cada una de sus entradas por $\gamma$. 
+que la imagen de la composición de una matriz con $\gamma$ es evaluar cada una de sus entradas por $\gamma$. 
 Con esta representación evaluar una red neuronal consistiría en el producto matricial de 
 
 \begin{equation}
