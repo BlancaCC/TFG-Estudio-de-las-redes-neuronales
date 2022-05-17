@@ -10,7 +10,7 @@
 Comenzaremos presentando definiciones básicas sobre redes neuronales. 
 
 
-\begin{definicion}[Función de activación ] \label{def:funcion_activacion_articulo}
+\begin{definicion}[Función de activación] \label{def:funcion_activacion_articulo}
     Una función  $\psi: \R \longrightarrow [0,1]$ es una \textbf{ función de activación} si  cumple las siguientes propiedades:
     \begin{enumerate}[label=(\roman*)]
         \item Es no decreciente.
@@ -67,20 +67,21 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     \end{figure}
 
     \begin{itemize}
+        \item \textbf{Funciones indicadoras} \ref{fig:función_indicadora}: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
+        
         \item \textbf{Funciones umbral} \ref{fig:función_umbral_lineal}:
-        Una función umbral, es una función booleana monótona $\psi_w: \{0,1\}^n \longleftarrow \{0,1\},$ 
+        Una función umbral, es una función booleana monótona $\psi_w: \{0,1\}^n \longrightarrow \{0,1\},$ 
         donde para $w \in \R^n$, $t \in \R$ fijos se
         satisface que 
         \begin{equation}
             \psi_w(x) = \left\{
                 \begin{array}{lcc}
                     1, &   si  & w \cdot x \geq t \\
-                    0, &  si & w \cdot x < t\\
+                    0, &  si & w \cdot x < t.\\
                     \end{array}
             \right.
         \end{equation}
         
-        \item \textbf{Funciones indicadoras} \ref{fig:función_indicadora}: $\psi(\lambda) = 1_{\{\lambda > \lambda_0\}}$ con $\lambda_0 \in \R$. 
         \item \textbf{Función rampa} \ref{fig:funciones_rampa}: $\psi(\lambda)  = \lambda 1_{\{0 \leq \lambda \leq  1\}} + 1_{\{\lambda > 1\}}.$
     
         \item \textbf{La función \textit{cosine squasher}} de Gallant and White 
@@ -109,14 +110,11 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     %%% fin nota
 
     Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que existen
-    otras posibles definiciones menos restrictivas con las que también se ha probado la convergencia universal,
-    por ejemplo podrían aceptarse funciones de activación no continuas \cite{FUNAHASHI1989183},  
+    otras posibles definiciones menos restrictivas con las que también se ha probado la convergencia universal.
+    Por ejemplo podrían aceptarse funciones de activación no continuas (véase \cite{FUNAHASHI1989183}); 
     o como 
-    en \cite{DBLP:journals/corr/SonodaM15} con funciones de activación no polinómicas no acotadas. 
-    \textcolor{red}{A priori no debería de ser equivalentes entre ellas y será necesario un estudio más 
-    profundo para establecer \textit{cuáles son las más democráticas}}
-    %TODO añadir sección 
-
+    se demuestra en \cite{DBLP:journals/corr/SonodaM15}, funciones de activación no polinómicas no acotadas. 
+ 
 \end{definicion}
 
 
@@ -124,10 +122,8 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
 Para cualquier natural $d$ mayor que cero  denotaremos por $\afines$ al conjunto de todas 
 las \textbf{funciones afines} de $\R^d$ a $\R$. Es decir el conjunto de funciones de la forma 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$,  $b \in \R$ es un escalar
- y $\cdot$ representa el producto 
-usual de escalares.  
-    
-En este contexto, $x$ corresponde al vector entrada de la red neuronal, $w$ los pesos de la red
+ y $\cdot$ representa el producto escalar
+usual. En este contexto, $x$ corresponde al vector entrada de la red neuronal, $w$ los pesos de la red
 que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo. 
 
   % Nota margen sobre Idea intuitiva de la definición 
@@ -151,9 +147,8 @@ que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo.
         \{ 
             & f: \R ^d \longrightarrow \R / \quad
             f(x)=\sum_{j = 1} ^q (
-            \beta_j G(A_{j}(x)), \\
+            \beta_j G(A_{j}(x))), \\
             & x  \in \R ^d, \beta_j \in \R, A_{j}\in \afines,q \in \N
-            )
         \}.
         \end{split}
     \end{equation}
@@ -175,7 +170,6 @@ una utilidad teórica, es decir no tendrá ninguna relevancia a nivel práctico 
         f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
         G(A_{jk}(x)), \\
         &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines; l_j,q \in \N
-        )
         \}.
     \end{split}
     \end{equation}  
@@ -233,10 +227,10 @@ todos los número reales donde a priori no se explicita una asignación de clase
 Introducimos a continuación la notación de los conjuntos de funciones que seremos capaces de aproximar.  
 
 Denotamos por  $\fC$ al conjunto de funciones continuas con dominio en $\R^d$ y codominio $\R$,
-por  $\fM$ al conjunto de todas las funciones Borel medible de $\R^d$ a $\R$. 
+por  $\fM$ al conjunto de todas las funciones Borel medibles de $\R^d$ a $\R$; 
 y por $B^d$ a la $\sigma$-álgebra de Borel en $\R ^d$. 
 
-En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ pertenecen a 
+En lo que respecta a definiciones anteriores, $\pmc$ y $\pmcg$ están contenidos en
 $\fM$ para cualquier función Borel-medible $G$. Si $G$ es continua entonces 
 $\pmc$ y $\pmcg$ pertenecen a $\fC$. Tengamos presente que $\fC$ es un subconjunto
 de $\fM$.  
@@ -277,7 +271,7 @@ razonamientos topológicos.
     que $\rho(s,t) \leq \epsilon$. 
 \end{definicion}
 
-Un ejemplo habitual sería en el espacio métrico $(\R, |\cdot|)$ con $|\cdot|$ el valor absoluto, el subconjunto 
+Un ejemplo habitual es en el espacio métrico $(\R, |\cdot|)$ con $|\cdot|$ el valor absoluto, el subconjunto 
 $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$. 
 
 
