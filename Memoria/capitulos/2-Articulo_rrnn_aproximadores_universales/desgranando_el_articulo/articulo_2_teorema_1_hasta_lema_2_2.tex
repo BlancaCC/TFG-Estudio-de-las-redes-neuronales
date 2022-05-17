@@ -129,6 +129,17 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
  \cite{8258768}, 
  \cite{DBLP:journals/corr/SzegedyVISW15}
 ). 
+%Nota sobre experimentar con 
+%\setlength{\marginparwidth}{\smallMarginSize}
+\reversemarginpar
+\marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+El corolario \ref{cor:se-generaliza-G-a-una-familia}
+abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
+Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
+}
+\normalmarginpar
+
+\begin{aportacionOriginal}
 
 \begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] \label{cor:se-generaliza-G-a-una-familia}
 
@@ -146,21 +157,11 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
         \end{split}
     \end{equation}
 \end{corolario}
-
-% Nota sobre experimentar con 
-\setlength{\marginparwidth}{\smallMarginSize}
-\reversemarginpar
-\marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
-El corolario \ref{cor:se-generaliza-G-a-una-familia}
-abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
-Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
-}
-\normalmarginpar
-
 \begin{proof}
     La demostración es idéntica a la dada en el Teorema de convergencia 
     real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}.
 \end{proof}
+\end{aportacionOriginal}
 
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
  ni cómo afecta a la \textit{velocidad de convergencia}. 
@@ -169,10 +170,6 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
 Recordemos que de manera general se ha definido $A$ como una función afín 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
 Por ejemplo $B((x_1, ..., x_d)) = \sum_{i= 0} ^N \sum_{j= 0} ^d \alpha_{ij} x_j^i$  con $N$ natural positivo. 
-
-\begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
-    Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
-\end{corolario}
 
 % Nota sobre posible hipótesis de optimización 
 \setlength{\marginparwidth}{\bigMarginSize}
@@ -183,10 +180,15 @@ nos podemos plantear si aumentar el espacio de búsqueda a partir de transformac
 Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
 }
 
-\begin{proof}
-    Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
-    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
-\end{proof}
+\begin{aportacionOriginal}
+    \begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
+        Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
+    \end{corolario}
+    \begin{proof}
+        Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
+        Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
+    \end{proof}
+\end{aportacionOriginal}
 
 La utilidad de este corolario a nivel práctico es cuestionable, ya que aumentaría considerablemente el número de 
 parámetros que ajustar de la red neuronal ocasionando: (1) la necesidad de mayor número de datos que aprender, 

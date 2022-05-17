@@ -91,6 +91,8 @@ valores fijados por el diseñador de la red ya que a priori no tenemos otra info
  % Vamos a probar que tampoco mejora el error 
 \subsection{Consideraciones sobre la irrelevancia del sesgo}
 
+\begin{aportacionOriginal}
+
  Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como $\mathcal{H}^+(X,Y)$ al conjunto de redes neuronales a las cuales se le ha añadido un sesgo. 
 
 \begin{align}
@@ -189,6 +191,9 @@ Concluimos tras todo esto que aunque la precisión
    computacional, por lo que afirmamos que 
 es un artificio de las redes neuronales multicapa para enlazar una capa con otra y que en redes neuronales de una capa oculta carece de sentido.
 
+\end{aportacionOriginal} % fin aportación original irrelevancia del sesgo
+
+
 % Consideración sobre componer la red neuronal con una función
 \subsection{\textit{Modus operandi} ante problemas que requieran un dominio de salida discreto}
 
@@ -221,6 +226,8 @@ $h \in \rrnnmc$ tal que $h$ aproxime a $\theta^{-1} \circ f$.
 
 Lo cual exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
 
+\begin{aportacionOriginal} % aportación original salida discreta
+    
 Es por ello que en nuestra aproximación descartamos este modo de proceder y proponemos el siguiente: 
 
 \begin{enumerate}
@@ -244,6 +251,8 @@ El motivo por el que se ha optado por esta aproximación es que si consideráram
 \end{equation}
 
 Donde $I_y$ puede no ser un intervalo conexo y que introduciría complejidad al cálculo y determinación de $\tilde{\theta}$, es por ello que lo natural sería entonces construir un función que discretice a partir de los valores conocidos más cercanos, esto es el algoritmo $k-$NN.  
+
+\end{aportacionOriginal}  % aportación original salida discreta
 
 \subsubsection*{Construcción de $k-$NN}  
 
