@@ -27,29 +27,51 @@ el trabajo desarrollando con una mentalidad ágil, de acorde a las siguientes hi
      
 \end{enumerate}  
 
-\section{Descripción de la metodología }  
+% Nota margen enfoque de la metodología 
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+        El objetivo de la metodología seleccionada.
+        }
+    }
+
+    Buscamos organizarnos de una manera eficiente con el fin de optimizar el proceso de producción y conducir a un resultado exitoso. Para ello nos basaremos en: 
+    
+    1.¿Qué personas se beneficiarán y están involucradas en el proyecto? (\textbf{Personas definidas } \ref{ch:metodología_personas})
+    
+    2.¿Qué caracteriza a esas personas y cuáles son sus necesidades? (\textbf{Historias de usuario} \ref{ch:metodología_personas_historias_de_usuario})
+     
+    3.¿Qué acciones satisfarán tales requisitos?(\textbf{Hitos} \ref{ch00:hitos})
+   
+}
 
 Concretamente la metodología seguida basada en \cite{que-es-un-trabajo-fin-de-x} ha sido la siguiente: 
 
-El objetivo principal es resolver un problema usando técnicas tanto informáticas como matemáticas. Para ello 
-se han definido unos objetivos claros a través de una \textit{metodología de personas} 
+
+El objetivo es  \textit{optimizar las redes neuronales} para reducir su coste de cómputo 
+y espacio en memoria en base de
+un fundamento matemático sólido y sistemático que provenga de
+la noción más elemental de red neuronal y no meras heurísticas experimentales.
+
+Puesto que los problemas surgen de las necesidades humanas,
+se han definido unas metas claras a través de la \textit{metodología de personas} 
 (ver sección \ref{ch:metodología_personas}) \cite{personas-why-and-how-you-should-use-them}
 y las respectivas historias de usuario derivadas (ver sección \ref{ch:metodología_personas_historias_de_usuario}).   
 
-\subsection{Personas definidas}  \label{ch:metodología_personas}
+\section{\textit{Personas definidas}}  \label{ch:metodología_personas}
 
-Las \textit{personas ficticias} que hemos definido serán los beneficiados del proyecto 
-y son los siguientes:  
+Ante la pregunta de quiénes serán los beneficiados e involucrados por este proyecto y que trataremos de satisfacer
+han surgido 
+las siguientes \textit{personas ficticias}:
 
 \begin{itemize}
 
-    \item \textbf{Rosa Camarero}, no tiene ni idea de lo que es una red neuronal ni tampoco le interesa.  Ella aprecia mejoras en su día a día, o bien porque pueda tener nuevas funcionalidades en su móvil o porque alguna 
-    aplicación de su día a día se vuelva más precisa. 
+    \item \textbf{Rosa Camarero}, desea implementar un modelo de red neuronal que mejore a los actuales en algún aspecto, ya sea porque reduzca su coste computacional o espacio en memoria. 
 
-    \item \textbf{Mayte Pérez}, catedrática en matemáticas aplicadas y miembro del tribunal . Su conocimiento
+    \item \textbf{María López}, catedrática en matemáticas aplicadas y miembro del tribunal . Su conocimiento
     de informática es moderado. Valora una memoria formal y rigurosa. Se encarga de evaluar trabajos fin de grado, en particular éste mismo
     
-    \item \textbf{Pablo Mesejo}, Doctor experto en \textit{deep learning} y miembro del tribunal. Valora la claridad, las experimentaciones sensatas y fundamentadas así cómo la posibilidad de aplicaciones reales. Se encarga de evaluar trabajos fin de grado, en particular éste mismo. 
+    \item \textbf{Pedro Castillo}, Doctor experto en \textit{deep learning} y miembro del tribunal. Valora la claridad, las experimentaciones sensatas y fundamentadas así cómo la posibilidad de aplicaciones reales. Se encarga de evaluar trabajos fin de grado, en particular éste mismo. 
     
     \item \textbf{Javier Merí}, profesor del departamento de análisis matemático y contutor del proyecto (junto con JJ). Busca de manera formal rigurosa entender y optimizar las redes neuronales usando herramientas analíticas. Estará presente durante todo el desarrollo. 
     
@@ -63,14 +85,14 @@ y son los siguientes:
 
 \section{Historias de usuario}   \label{ch:metodología_personas_historias_de_usuario}
 
-A partir de los usuarios se han definido las historias de usuario, que han quedado registradas 
+A partir de los usuarios se han definido las historias de usuario \cite{UserStories}, que han quedado registradas 
 como \textit{issues} etiquetadas con \textit{user story} y cabecera de formato
 \texttt{[HUxx] título de la historia de usuario} en nuestro 
 repositorio de GitHub \cite{TFG-Estudio-de-las-redes-neuronales},
  donde \texttt{HUxx} representa
 la historia de usuario número $xx$.   
 
-\subsection{Historias de usuario definidas} 
+Las historias de usuario definidas son las siguientes: 
 
 \subsubsection*{[HU01] Optimización redes neuronales.}\label{HU01}
     Como \textit{Rosa} me gustaría que se ejecutaran las redes neuronales en un hardware
@@ -122,16 +144,16 @@ Puede encontrar su declaración en \cite{TFG-Estudio-de-las-redes-neuronales-HU0
 
 %%%% fin historias de usuario %%%%
 
-Estas historias de usuario dan lugar a \textit{milestones}. 
+Estas historias de usuario dan lugar a \textit{hitos}. 
 
-\section{Milestones}  
+\section{Hitos} \label{ch00:hitos} 
 
-Los milestones describen entregables, productos mínimos viables y se basan en las historias de usuarios,
+Los hitos describen entregables, productos mínimos viables y se basan en las historias de usuarios,
 puede encontrar nuestras declaraciones en nuestro repositorio \cite{TFG-Estudio-de-las-redes-neuronales-milestones}. 
 A éstas además le hemos asociado una fecha de entrega. 
 
 
-\subsection*{Milestone 0: Explicitación escrita de la metodología} 
+\subsection*{Hito 0: Explicitación escrita de la metodología} 
 Consiste en la redacción de la descripción de la metodología a seguir resultando en capítulos concretos de la memoria 
 y \textit{issues} en la plataforma de trabajo, GitHub.  
 La documentación presentada deberá de incluir: 
@@ -139,52 +161,82 @@ La documentación presentada deberá de incluir:
     \item Explicitación de la metodología. 
     \item Definición y descripción de personas.
     \item Redacción de las historias de usuario.
-    \item Redacción de los milestones.
+    \item Redacción de los hitos.
 \end{itemize}
 Será validada cuando los tutores aprueben la organización y formulación de la misma.
 
 
-\subsection*{Milestone 1: Exposición del sustento teórico de las redes neuronales}  
-Este milestone consiste en la redacción de una serie de capítulos y secciones 
-que estudien: 
+\subsection*{Hito 1: Búsqueda de resultados teóricos para optimizar  las redes neuronales}
+
+Se busca con este hito establecer las bases teóricas para poder optimizar las redes neuronales, se dará por concluido cuando se haya conseguido algún resultado teórico con el que:
 \begin{itemize}
-    \item Definición y construcción de las redes neuronales.
-    \item Motivación de su eficacia con: Análisis del 
-    teorema de aproximación universal de las redes neuronales de Hornik, Stinchcombe y White.
+    \item Acotar el tamaño o la precisión de los pesos u otros parámetros de la red neuronal.
+    \item Alguna forma de acelerar la convergencia, si es que se va a optar por un método de descenso de gradiente.
+    \item En general, cualquier hipótesis que se pueda relajar o cambiar en el camino de reducir el espacio de búsqueda de posibles redes neuronales o de los pesos de las mismas.
 \end{itemize}
+
+El estudio progresivo se verá reflejado en varios capítulos y secciones de la memoria. Con secciones como: 
+\textit{Definición  y construcción de las redes neuronales}. 
+Este hito consiste en la redacción de una serie de capítulos y secciones 
+que estudien: 
+
 Se aceptarán las secciones una vez hayan sido supervisadas y validadas por los tutores. 
 
-\subsection*{Milestone 2: Formulación y experimentación de hipótesis que democraticen las redes neuronales}
+\subsection*{Hito 2: Evaluación experimental de las hipótesis de optimización formuladas}
 
-Su producto serán ciertos capítulos de la memoria donde se reflejen
+Deberá de validarse y cuantificar experimentalmente las propuestas de optimización del hito anterior. 
+
+Para ello  se deberá de: 
+\begin{enumerate}
+    \item \textbf{Formular los test correspondientes y adecuados} lo que conllevará : 
+    \begin{itemize}
+        \item Una implementación de los algoritmos teóricos propuestos.
+        \item Una descripción y formulación de los test.
+    \end{itemize}
+
+    \item \textbf{Evaluar los resultados.}
+\end{enumerate}
+
+El criterio de aceptación de un producto mínimo viable consistirá en:
 \begin{itemize}
-    \item Hipótesis planteadas que puedan optimizar las redes neuronales en cualquier aspecto de hardware o potencia de cómputo.
-    \item Experimentación o investigación relacionada con las hipótesis anteriores. 
-    \item Análisis y conclusiones de los resultados anteriores. 
-\end{itemize}
-El criterio de aceptación consistirá en:
-\begin{itemize}
-    \item Una formulación de las hipótesis por escrito, que tras debatirlas con los tutores
-    se seleccionarán las que se estimen más interesantes y se definirán respectivos experimentos con el fin de falsar o 
-    hacer plausibles tales hipótesis.
-    \item  Los experimentos de requerir implementaciones deberán previamente comprobar su correcto funcionamiento mediante tests.
+    \item La implementación de los algoritmos debe de ser coherente y proveniente del hito anterior y debe de estar referenciada.
+    \item  Toda implementación deberá previamente comprobar su correcto funcionamiento mediante tests.
     \item La redacción del análisis y conclusiones deberá ser aprobado por los tutores nuevamente.
 \end{itemize}
 
+\subsection*{Hito 3: Implementación de aplicaciones reales que se beneficien de las optimizaciones encontradas }
 
-\subsection*{Milestone x: Entrega del proyecto}
+A partir de las optimizaciones encontradas del hito previo deberá de implementarse alguna aplicación real que se beneficie de algunas de las optimizaciones encontradas. 
+
+Un ejemplo de ello podría ser entrenar una red neuronal en una raspberry pi .
+
+
+
+\subsection*{Hito x: Entrega del proyecto}
 
 Su resultado será una memoria revisada y pulida que se entregará en Prado como trabajo fin de grado en el plazo de la convocatoria ordinaria. 
 
-Para cumplir con los \textit{milestones},  ha sido necesario resolver nuevos  problemas menores, estos se han
-recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{milestones}.
+Para cumplir con los \textit{hitos},  ha sido necesario resolver nuevos  problemas menores, estos se han
+recogido también como \textit{issues} ligados a las historias de usuario y asociados a un  \textit{hitos}.
+
+% Sobre el tiempo 
+\section{Registro de trabajo}  
+
+Con el fin de constatar que el desarrollo efectivamente se ha 
+llevado con una filosofía ágil y según a los tiempos estipulados se ha registrando el tiempo, tareas dedicadas  y hitos relacionados
+en las siguiente hoja de cálculo \cite{TFG-hoja-calculo-horas-trabajo}.
+
+En total el número de horas invertidas ha sido: 
+\textcolor{red}{TODO añadir registro}
+Que se distribuye de la siguiente manera en los distintos hitos: 
+\textcolor{red}{TODO añadir registro}
 
 
 \section{Resumen de la metodología}  
 
 Se ha seguido un desarrollo ágil que radica en la resolución de problemas expuestos como historias de usuarios. 
 Éstas historias de usuario se formulan en base a los beneficiados,personas bien definidas; se formalizan 
-mediante \textit{issues} y entraman los \textit{milestones}, hitos con los que guiar el desarrollo.
+mediante \textit{issues} y entraman los \textit{hitos}, hitos con los que guiar el desarrollo.
 
 Todo esto se puede leer no solo en esta memoria sino también en nuestro repositorio de GitHub \cite{TFG-Estudio-de-las-redes-neuronales}. 
  

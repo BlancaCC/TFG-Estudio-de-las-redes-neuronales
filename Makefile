@@ -11,7 +11,7 @@ open:
 
 clean:
 	find . -name "*.aux" -type f -delete
-	cd Memoria/ && rm -f tfg.toc tfg.out tfg.lot tfg.log tfg.lof tfg.ind tfg.ilg tfg.fls tfg.fdb_latexmk tfg.brf tfg.blg tfg.bbl tfg.idx
+	cd Memoria/ && rm -f tfg.toc tfg.out tfg.lot tfg.log tfg.lof tfg.ind tfg.ilg tfg.fls tfg.fdb_latexmk tfg.brf tfg.blg tfg.bbl tfg.idx tfg.loa *.gz
 # Corrector ortográfico
 spell:
 	./scripts/spell-check.sh

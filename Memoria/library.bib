@@ -11,7 +11,19 @@
 
 % Importancia y estado del arte del aprendizaje automático en la actualidad
 @article{importancia-arte-aprendizaje-automatico,
-	abstract = {In the current age of the Fourth Industrial Revolution (4IR or Industry 4.0), the digital world has a wealth of data, such as Internet of Things (IoT) data, cybersecurity data, mobile data, business data, social media data, health data, etc. To intelligently analyze these data and develop the corresponding smart and automated applications, the knowledge of artificial intelligence (AI), particularly, machine learning (ML) is the key. Various types of machine learning algorithms such as supervised, unsupervised, semi-supervised, and reinforcement learning exist in the area. Besides, the deep learning, which is part of a broader family of machine learning methods, can intelligently analyze the data on a large scale. In this paper, we present a comprehensive view on these machine learning algorithms that can be applied to enhance the intelligence and the capabilities of an application. Thus, this study's key contribution is explaining the principles of different machine learning techniques and their applicability in various real-world application domains, such as cybersecurity systems, smart cities, healthcare, e-commerce, agriculture, and many more. We also highlight the challenges and potential research directions based on our study. Overall, this paper aims to serve as a reference point for both academia and industry professionals as well as for decision-makers in various real-world situations and application areas, particularly from the technical point of view.},
+	abstract = {In the current age of the Fourth Industrial Revolution (4IR or Industry 4.0), the digital world has 
+  a wealth of data, such as Internet of Things (IoT) data, cybersecurity data, mobile data, business data, social 
+  media data, health data, etc. To intelligently analyze these data and develop the corresponding smart and 
+  automated applications, the knowledge of artificial intelligence (AI), particularly, machine learning (ML) is 
+  the key. Various types of machine learning algorithms such as supervised, unsupervised, semi-supervised, and reinforcement learning exist in the area. Besides, the deep learning, which is part of a broader family of 
+  machine learning methods, can intelligently analyze the data on a large scale. In this paper, we present a 
+  comprehensive view on these machine learning algorithms that can be applied to enhance the intelligence and the 
+  capabilities of an application. Thus, this study's key contribution is explaining the principles of different 
+  machine learning techniques and their applicability in various real-world application domains, such as 
+  cybersecurity systems, smart cities, healthcare, e-commerce, agriculture, and many more. We also highlight the
+   challenges and potential research directions based on our study. Overall, this paper aims to serve as a 
+   reference point for both academia and industry professionals as well as for decision-makers in various 
+   real-world situations and application areas, particularly from the technical point of view.},
 	author = {Sarker, Iqbal H. },
 	doi = {10.1007/s42979-021-00592-x},
 	id = {Sarker2021},
@@ -258,6 +270,7 @@ keywords = {Aprendizaje automático},
 language = {eng},
 }
 % Libro para algunas demostraciones de teoría de la medida
+% Se cita en pag 77 para definición de función medible
 % Se cita en pag 228 teorema 52.G
 % Se cita en pag 241-242  teorema 55.C y 55.D
 % Para el teorema de Lusin en pag 242-243.
@@ -313,7 +326,8 @@ catalogue-url = { https://nla.gov.au/nla.cat-vn1819421 },
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
-% ejemplo paper general 
+% Ejemplo paper general 
+% Habla sobre cómo se combinan y funcionan las distintas funciones de activación 
 @INPROCEEDINGS{8258768,
   author={Wang, Bin and Li, Tianrui and Huang, Yanyong and Luo, Huaishao and Guo, Dongming and Horng, Shi-Jinn},
   booktitle={2017 12th International Conference on Intelligent Systems and Knowledge Engineering (ISKE)}, 
@@ -372,6 +386,116 @@ abstract = {In this paper, we prove that any continuous mapping can be approxima
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%----------- Sobre utilizar otros cuerpos  --------------
+% Utiliza solo aritmética entera 
+% Lo que hace es adaptar backpropagation y forward propagation 
+% con algoritmos de redondeo para así poder utilizar enteros (no tiene ningún sustengo teórico)
+@ARTICLE{9709160,
+  author={Wang, Maolin and Rasoulinezhad, Seyedramin and Leong, Philip H.W. and So, Hayden Kwok-Hay},
+  journal={IEEE Transactions on Parallel and Distributed Systems}, 
+  title={NITI: Training Integer Neural Networks Using Integer-only Arithmetic}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TPDS.2022.3149787}
+  }
+
+
+
+%%%%----- Estado del arte   --------
+%
+% Este artículo """demuestra""" que para una serie de distribuciones de datos 
+% si queremos aproximar "suavemente" es """necesario""" aumentar el número de neuronas
+% en cierto factor "d" 
+% Lo cierto es que se basa en la dimensión VC, conceptos que acotan en el peor de los casos 
+@inproceedings{
+a-universal-law-of-Robustness,
+title={A Universal Law of Robustness via Isoperimetry},
+author={Sebastien Bubeck and Mark Sellke},
+booktitle={Advances in Neural Information Processing Systems},
+editor={A. Beygelzimer and Y. Dauphin and P. Liang and J. Wortman Vaughan},
+year={2021},
+url={https://openreview.net/forum?id=z71OSKqTFh7}
+}
+
+%
+% Argumento en contra de aumentar el número de capas
+@inproceedings{DBLP:conf/iwann/Linan-Villafranca21,
+  author    = {Luis Li{\~{n}}{\'{a}}n{-}Villafranca and
+               Mario Garc{\'{\i}}a{-}Valdez and
+               Juan Juli{\'{a}}n Merelo and
+               Pedro Castillo{-}Valdivieso},
+  editor    = {Ignacio Rojas and
+               Gonzalo Joya and
+               Andreu Catal{\`{a}}},
+  title     = {EvoMLP: {A} Framework for Evolving Multilayer Perceptrons},
+  booktitle = {Advances in Computational Intelligence - 16th International Work-Conference
+               on Artificial Neural Networks, {IWANN} 2021, Virtual Event, June 16-18,
+               2021, Proceedings, Part {II}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {12862},
+  pages     = {330--342},
+  publisher = {Springer},
+  year      = {2021},
+  url       = {https://doi.org/10.1007/978-3-030-85099-9\_27},
+  doi       = {10.1007/978-3-030-85099-9\_27},
+  timestamp = {Thu, 26 Aug 2021 10:23:24 +0200},
+  biburl    = {https://dblp.org/rec/conf/iwann/Linan-Villafranca21.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+% Estado del arte de las redes neuronales profundas en visión por computador 
+@article{CHAI2021100134,
+title = {Deep learning in computer vision: A critical review of emerging techniques and application scenarios},
+journal = {Machine Learning with Applications},
+volume = {6},
+pages = {100134},
+year = {2021},
+issn = {2666-8270},
+doi = {https://doi.org/10.1016/j.mlwa.2021.100134},
+url = {https://www.sciencedirect.com/science/article/pii/S2666827021000670},
+author = {Junyi Chai and Hao Zeng and Anming Li and Eric W.T. Ngai},
+keywords = {Machine learning, Deep learning, Computer vision, Literature review},
+abstract = {Deep learning has been overwhelmingly successful in computer vision (CV), natural language processing, and video/speech recognition. In this paper, our focus is on CV. We provide a critical review of recent achievements in terms of techniques and applications. We identify eight emerging techniques, investigate their origins and updates, and finally emphasize their applications in four key scenarios, including recognition, visual tracking, semantic segmentation, and image restoration. We recognize three development stages in the past decade and emphasize research trends for future works. The summarizations, knowledge accumulations, and creations could benefit researchers in the academia and participators in the CV industries.}
+}
+
+%%%%%%%%%%%% Alternativas para backpropagation  %%%%%%%%%%%%%%
+
+% Algoritmo alternativo a backpropagation
+% Pros: 
+% - Menor coste computacional
+% - Alternativa a backpropagation
+% Cons: 
+% - Resutados solo empíricos
+% - Sigue necesistando hipótesis de derivabilidad 
+% - Mantiene el coste en memoria constante
+
+@article{forwardGradient,
+  doi = {10.48550/ARXIV.2202.08587},
+  
+  url = {https://arxiv.org/abs/2202.08587},
+  author = {Baydin, Atılım Güneş and Pearlmutter, Barak A. and Syme, Don and Wood, Frank and Torr, Philip},
+  keywords = {Machine Learning (cs.LG), Machine Learning (stat.ML), FOS: Computer and information sciences, FOS: Computer and information sciences, I.2.6; I.2.5, 68T07},
+  title = {Gradients without Backpropagation},
+  publisher = {arXiv},
+  year = {2022},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}
+
+@ARTICLE{TransactionsOnNeuralNetworks,
+  author={Wilamowski, Bogdan M. and Yu, Hao},
+  journal={IEEE Transactions on Neural Networks}, 
+  title={Neural Network Learning Without Backpropagation}, 
+  year={2010},
+  volume={21},
+  number={11},
+  pages={1793-1803},
+  doi={10.1109/TNN.2010.2073482}}
+
+
+
+
   %% ---------- Nociones topología -------
  % De james1966topology tomamos: 
  % Definición vecino (pag 63)
@@ -387,6 +511,17 @@ abstract = {In this paper, we prove that any continuous mapping can be approxima
   url={https://books.google.es/books?id=FgFRAAAAMAAJ},
   year={1966},
   publisher={Allyn and Bacon}
+}
+
+%% Teoría de distribución   
+% Libro de referencia e introducción a la materia 
+  @book{teoriaDistribuciones,
+  title={Introduction to Fourier Analysis and Generalized Functions.},
+  author={M. J. Lighthill},
+  isbn={0-521-09128-4 },
+  year={1958},
+  publisher={Cambridge University Press},
+  subjects = {Defines distributions as limits of sequences of functions under integrals}
 }
 
 %%%%%%%%%%%%%%%%%% metodología %%%%%%%%%%%%%%
@@ -421,6 +556,20 @@ abstract = {In this paper, we prove that any continuous mapping can be approxima
   url = {https://www.interaction-design.org/literature/article/personas-why-and-how-you-should-use-them},
   urldate = {2022-02-05}
 }
+
+% Cita historias de usuario 
+@Book{UserStories,
+author = {Mike Cohn},
+title = {User Stories for Agile Software},
+isbn = { 0-321-20568-5},
+publisher = {Pearson Education, Inc.},
+year = {2009},
+type = { Book },
+language = { English },
+subjects = { Agile Software },
+}
+
+
 % - 12 principios manifiesto agil 
 % https://agilemanifesto.org/iso/es/principles.html
 @online{principios-manifiesto-agil,

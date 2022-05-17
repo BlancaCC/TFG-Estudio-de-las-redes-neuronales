@@ -37,10 +37,7 @@ tfg*.pdf
 *.lot
 *.loa
 Memoria/_minted-tfg
+Memoria/paquetes/mathpazo/pazotest.pdf
 
 # Capítulos que sirven a modo de notas 
-Memoria/capitulos/introduccion_redes_neuronales/bibliografia.tex
-Memoria/capitulos/introduccion_redes_neuronales/perceptron.tex
-BORRAR
-Memoria/paquetes/mathpazo/pazotest.pdf
-NotasJulia.md
+Notas/

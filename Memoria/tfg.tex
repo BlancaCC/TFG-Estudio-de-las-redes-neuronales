@@ -31,6 +31,7 @@
                         % parámetros. Al aumentar el número aumentamos el ancho de texto y disminuimos el ancho del margen. Una opción de 14 producirá márgenes estrechos y texto ancho.
 }
 
+
 % INFORMACIÓN PARA LA VERSIÓN IMPRESA
 % Si el documento ha de ser impreso en papel de tamaño a4 pero el tamaño del documento (elegido en \KOMAoptions con la ocpión paper) no es a4 descomentar la línea que carga el paquete `crop` más abajo. El paquete crop se encargará de centrar el documento en un a4 e imprimir unas guías de corte. El procedimiento completo para imprenta sería el siguiente:
 % 0. Determinar, según el tipo de encuadernación del documento, el ancho reservado para el proceso de encuadernación (preguntar en la imprenta), es decir, la anchura del área del papel que se pierde durante el proceso de encuadernación. Fijar la varibale BCOR de \KOMAoptions a dicho valor.
@@ -218,38 +219,49 @@
   
 }
 
+%Metodología 
+\include{capitulos/0-Metodologia/Comentarios_previos}
+\input{capitulos/0-Metodologia/introduccion}
+
 \part{Teoría subyacente }%\label{part:conceptos-previos}
 
-% Teoría de la aproximación 
-\include{capitulos/teoria_aproximacion/objetivos}
-\include{capitulos/teoria_aproximacion/bibliografia}
-\include{capitulos/teoria_aproximacion/polinomios_de_Berstenstein}
-\include{capitulos/teoria_aproximacion/Weierstrass_approximation_theorem}
-\include{capitulos/teoria_aproximacion/TeoremaStoneWeierstrass}
+% Filosofía a seguir   
+\input{capitulos/Introduccion}
 
-% Redes neuronales
-\input{capitulos/introduccion_redes_neuronales/Objetivos}
-\input{capitulos/introduccion_redes_neuronales/aprendizaje_introduccion}
-\input{capitulos/introduccion_redes_neuronales/feedforward-networks}
+% Redes neuronales Definición de la clase de redes neuronales 
+\input{capitulos/1-Introduccion_redes_neuronales/Objetivos}
+\input{capitulos/1-Introduccion_redes_neuronales/aprendizaje_introduccion}
+\input{capitulos/1-Introduccion_redes_neuronales/feedforward-network-una-capa}
 
 % Las redes neuronales multicapa son aproximadores universales 
-\include{capitulos/articulo_rrnn_aproximadores_universales/introduccion}
-\include{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_1_primeras_definiciones}
-\input{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_2_teorema_1_hasta_lema_2_2}
-\input{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_3_teorema_2_2}
-\input{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_4_colorario_2_1}
-\include{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_5_colorarios_lp}
-\include{capitulos/articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_6_multi_output}
-\include{capitulos/articulo_rrnn_aproximadores_universales/conclusiones_finales}
-% Cajón desastre 
-\part{Experimentación}
-%\include{capitulos/ideas/objetivos}
-%\include{capitulos/ideas/recurrencias_continuas_en_varias_dimensiones}
-%\include{capitulos/ideas/numero_capas_ocultas}
-\part{Metodología}
-%Metodología 
-\include{capitulos/metodologia/introduccion}
-\include{capitulos/metodologia/registroHorasTrabajo}
+\include{capitulos/2-Articulo_rrnn_aproximadores_universales/introduccion}
+\include{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_1_primeras_definiciones}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_2_teorema_1_hasta_lema_2_2}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_3_teorema_2_2}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_4_colorario_2_1}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_5_colorarios_lp}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_6_multi_output}
+%\include{capitulos/2-Articulo_rrnn_aproximadores_universales/conclusiones_finales}
+
+% Teoría de la aproximación 
+\input{capitulos/3-Teoria_aproximacion/0_objetivos}
+\input{capitulos/3-Teoria_aproximacion/1_polinomios_de_Bernstein}
+\input{capitulos/3-Teoria_aproximacion/2_Weierstrass_approximation_theorem}
+\input{capitulos/3-Teoria_aproximacion/3_TeoremaStoneWeierstrass}
+
+% Redes neuronales: métodos de evaluación y actualización de pesos 
+%\input{capitulos/4-Actualizacion_redes_neuronales/introduccion}
+\input{capitulos/4-Actualizacion_redes_neuronales/construccion-evaluacion-red-neuronal}
+\input{capitulos/4-Actualizacion_redes_neuronales/aprendizaje}
+\input{capitulos/4-Actualizacion_redes_neuronales/otras-alternativas}
+\input{capitulos/4-Actualizacion_redes_neuronales/optimizaciones}
+
+
+% Hipótesis
+\part{Exploración hipótesis planteadas}
+\include{capitulos/N-Exploracion-hipotesis-planteadas/hipotesis}
+
+
 % --------------------------------------------------------------------
 % APPENDIX: Opcional
 % --------------------------------------------------------------------

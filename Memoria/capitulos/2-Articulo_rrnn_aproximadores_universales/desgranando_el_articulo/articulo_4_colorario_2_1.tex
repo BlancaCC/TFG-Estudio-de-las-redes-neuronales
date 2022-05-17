@@ -36,31 +36,45 @@ todo lo parecido a $\R^r$ como se quiera.
 \end{teorema}
 
 Como el ambiente actual en el que estamos trabajando 
-es el espacio $(\R^r, \mathcal{T})$ que sabemos que es normal y puesto que es habitual que nuestras funciones estén definidas
-en  compactos de $\R^r$, las podremos extender a $\R^r$. 
+es el espacio $(\R^d, \mathcal{T})$ que sabemos que es normal y puesto que es habitual que nuestras funciones estén definidas
+en  compactos de $\R^d$, las podremos extender a $\R^d$. 
 
 
 % Corolarios del artículo 
 % Corolario 2.1
 \begin{corolario} \label{cor:2_1}
     Para cada función $g \in \fM$ existe un subconjunto compacto 
-    $K$ de $\R^r$ y $f \in \rrnng$ tal que para cualquier 
+    $K$ de $\R^d$ y $f \in \rrnn$ tal que para cualquier 
     $\epsilon > 0$ se tiene que 
     $\mu(K) > 1- \epsilon$ y para cada $x \in K$ tenemos que 
     \begin{equation}
         |f(x) - g(x) | < \epsilon,
     \end{equation}
-    independientemente de la función de activación $\psi$, dimensión $r$ o medida $\mu$. 
+    independientemente de la función de activación $\psi$, dimensión $d$ o medida $\mu$. 
 \end{corolario}
+
+    % Nota idea intuitiva corolario 2.1
+    \reversemarginpar
+    \marginpar{\maginLetterSize
+        \iconoAclaraciones \textcolor{dark_green}{ 
+            \textbf{Idea intuitiva corolario \ref{cor:2_1}}
+        }
+    }
+    \marginpar{\maginLetterSize
+    Este teorema corrige la carencia sobre la precisión del error que describíamos 
+    en la idea intuitiva del teorema \ref{teo:2_4_rrnn_densas_M}. Podemos encontrar una red neuronal que aproxime cualquier función medible que queramos en todos los puntos del espacio que queramos.
+    }
+
+    
 \begin{proof}
     Sea $\epsilon > 0$ fijo pero arbitrario.  Gracias al teorema de Lusin \ref{teo:Lusin}
-    existe un subconjunto compacto $K \subset \R^r$ de medida
+    existe un subconjunto compacto $K \subset \R^d$ de medida
     $\mu(K) > 1 - \epsilon$ donde la restricción  $g_{|K}$ es continua. 
 
     Por otra parte, en virtud de la caracterización de Tietze 
     \ref{teo:Tietze}, 
     por estar $g_{|K}$ definida en un compacto, admite una 
-    extensión continua $G:\R^r \longrightarrow \R$ tal que 
+    extensión continua $G:\R^d \longrightarrow \R$ tal que 
     \begin{equation}
         \begin{split}
             G_{|K} = g_{|K} .
@@ -83,15 +97,4 @@ en  compactos de $\R^r$, las podremos extender a $\R^r$.
     como queríamos probar.
 \end{proof}
 
-\subsubsection{Comentarios sobre el corolario \ref{cor:2_1}}  
 
-Este resultado nos indica que existe una red neuronal con una 
-capa oculta capaz de aproximar cualquier función medible con el grado 
-de precisión que se desee dentro de un compacto.   
-
-Notemos que la diferencia que presenta el corolario recién probado
-\ref{cor:2_1} con respecto al teorema \ref{teo:2_4_rrnn_densas_M}
-es que en el corolario se está fijando el compacto y esto nos 
-permite tener convergencia uniforme en él, mientras que en el 
-teorema \ref{teo:2_4_rrnn_densas_M} para funciones medibles
-tendremos asegurada tan solo la convergencia. 

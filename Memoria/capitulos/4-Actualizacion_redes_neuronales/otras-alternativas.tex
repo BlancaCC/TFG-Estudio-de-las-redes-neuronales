@@ -1,0 +1,32 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Alternativas al algoritmo de gradiente descendente 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Otras alternativas al alternativo de gradiente descendente}  
+
+Recordemos que nuestro enfoque partía de
+fundamentar toda decisión de diseño de manera rigurosa. Destaquemos por tanto que en el algoritmo de gradiente descendente se introduce la restricción de que 
+las funciones de activación deben de ser diferenciables.
+
+Esto, a priori, no es de extrañar, ya que si buscamos optimizar algún aspecto, en algún momento deberemos de particularizar o reenfocar algunos de los componentes del problema, sin embargo ¿exigir tales restricciones está sustentado teóricamente? 
+
+Desde un punto de vista analítico la forma por excelencia de minimizar radica en la derivación. Pudiéndose relajar el concepto de derivada a derivada débil o incluso trabajar en el ambiente de teoría de distribuciones, donde \textit{casi todo} se puede derivar \cite{teoriaDistribuciones}.
+ La clave sería poder implementar los cálculos y obtener buenos resultados experimentales.
+
+La cuestión reside entonces si existen otras alternativas al algoritmo de gradiente descendente podrían reducir el costo computacional del proceso de aprendizaje. 
+
+Para ello se ha consultado el estado del arte actual encontrando publicaciones como: 
+
+\subsubsection{\textit{Gradients without Backpropagations}}
+
+A finales de este mismo años, se publicó el artículo \textit{Gradients without Backpropagations} \cite{forwardGradient}, en él se introduce el algoritmo al que acuñan como 
+\textit{forward propagation} y al que posicionan los propios autores como una alternativa \textit{más eficiente en coste} que el algoritmo de \textit{Backpropagation}. 
+
+Por desgracia, en este artículo no se da una demostración formal que verdaderamente explique el beneficio computacional, sino que se basan en meras experimentaciones. 
+
+Sin embargo, tiene su interés y es por ello que lo mencionamos, en indicar que existe margen de mejora 
+imponiendo como restricción el que las funciones de activación sean diferenciables. 
+Esta tendencia se puede ver también en artículos como \cite{TransactionsOnNeuralNetworks}.
+
+
+
