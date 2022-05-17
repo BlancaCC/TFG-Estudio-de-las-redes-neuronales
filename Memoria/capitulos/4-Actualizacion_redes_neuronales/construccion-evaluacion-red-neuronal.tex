@@ -88,46 +88,6 @@ Nótese que ahora el tamaño de variables de entrada es $M$
 y hay un total de $s$ unidades de activación, tanto $M$ como $s$ son
 valores fijados por el diseñador de la red ya que a priori no tenemos otra información. 
 
-% Observación sobre el dominio discreto donde se está trabajando 
-% y que refleja una posible fuente de mejora de las redes neuronales
-% ISSUE #88
-\subsection{Consideración sobre la discretización del dominio} 
-
-Si tenemos presente la definición de red neuronal dada en \ref{definition:redes_neuronales_una_capa_oculta}, notaremos que lo que se intenta construir no es más que una función $h: \R^d \longrightarrow \R^s$. Sin embargo, los números reales no dejan de ser una entelequia, ya que en un ordenador es imposible representarlos por su infinitud. Esto nos impone una restricción del espacio de búsqueda, es decir nos está acotando el espacio. 
-
- Si la precisión máxima de se pueda o quiera alcanzar es de $t$ decimales;
- y por la naturaleza de los datos,
- % hacer referencia limitaciones en el muestreo
- % hacer referencia a que converge mejor en compactos 
- cada componente esté acotada por $M \in \N$
- entonces se podría 
-establecer un isomorfismo entre \textit{la salida en flotante implementable} y el espacio cociente 
-
-\begin{equation}\label{ch05:espacio_cociente_isomorfo}
-    \left( \frac{\N}{<10^{t + ceil( \log_{10}(2 M))}>} \right)^s. 
-\end{equation}
-
-
-Donde la deducción de esta forma es sencilla, 
-fijamos una de las $s$ componentes de la salida, si los datos de salida estuvieran acotados en el 
-intervalo real $[0,1]$ y si la precisión máxima 
-posible a representar es de $t$ decimales; 
-multiplicando cada salida por $10^{t+1}$ se tendría siempre un número natural de $t+1$ cifras, este sería el isomorfismo. 
-
-Si par el contrario está acotado por $M \in N$, multiplicando cada salida por $10^{t+1}$ se tendrá número de a lo sumo $ceil(\log_{10}(2 M))+ t$ cifras, es decir lo que matemáticamente se expresa con el espacio cociente formulado en(\refeq{ch05:espacio_cociente_isomorfo}). 
- 
-Esto supondría abrir la puerta a trabajar con enteros en vez de con flotantes. 
-
-Los cálculos realizados con enteros son más eficientes % TODO: argumentar
-, la cuestión entonces reside en si sería factible modelizar el aprendizaje y evaluación de una red neuronal en los enteros 
-y si supondría verdaderamente un beneficio. 
-
-
-
-% Fin de la zona en que se está trabajando 
-
-
-
  % Vamos a probar que tampoco mejora el error 
 \subsection{Consideraciones sobre la irrelevancia del sesgo}
 

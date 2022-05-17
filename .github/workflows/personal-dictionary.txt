@@ -6,6 +6,7 @@ Bernstein
 Beygelzimer
 Borel
 Bubeck
+CPUs
 Chebyshev
 ECM
 Explicitación
@@ -15,6 +16,7 @@ Feedforward
 Fn
 ForwardPropagation
 GN
+GPUs
 García
 Guervós
 HU
