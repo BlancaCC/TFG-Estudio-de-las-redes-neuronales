@@ -24,15 +24,15 @@ que este algoritmo permitiría generar nuestro propio backbone}
     
 La idea proviene de la demostración casi constructiva del teorema \ref{teorema:2_5_entrenamiento_redes_neuronales}.
 
-Se desea inicializar los peso de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \mathcal{D}$ de datos de entrenamiento. 
+Se desea inicializar los pesos de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \mathcal{D}$ de datos de entrenamiento. 
 
 La bondad del resultado depende en gran medida de $\Lambda$, 
-puesto que a priori se carecen de hipótesis se seleccionará 
-de manera aleatorio bajo supuesto de una distribución 
+puesto que a priori se carece de hipótesis, se seleccionará 
+de manera aleatoria bajo supuesto de una distribución 
 independiente e idénticamente distribuida de los datos. 
 
 Como apunta la demostración, debe de encontrarse un 
-$p \in \R^d$ satisfaciendo que $p \cdot (x_i-x_j)$ para todo
+$p \in \R^d$ satisfaciendo que $p \cdot (x_i-x_j) \neq 0$ para cualesquiera
 atributos $x_i,x_j$ distintos de $\Lambda$.  
 
 Es decir que se estaría considerando un vector que no 
@@ -48,11 +48,12 @@ seleccionaremos $\Lambda$ lo suficientemente grande para que
 \begin{equation}\label{eq:method_inicializar_condition_desigualdad}
     p \cdot x_1 < 
     p \cdot x_2 
-    < \ldots <
+    < \cdots <
     p \cdot x_n.
 \end{equation}
-
-Para continuar, para la función de activación seleccionada $\gamma$, por cómo se definen existirá un $M \in \R^+$ tal que 
+Para continuar, para la función de activación 
+seleccionada $\gamma$, por cómo se definen 
+existirá un $M \in \R^+$ tal que 
 \begin{equation} \label{eq:method_inicializar_M}
     \gamma(K)=1 \text{ y } \gamma(-K)=0 
     \text{ sean constantes para todo }K \geq M.
@@ -65,7 +66,7 @@ falta concretar los valores iniciales de la red neuronal.
 
 Para ello debemos de calcular el valor de las matrices $(A,S,B)$ que definen a una red neuronal y que presentamos en la sección \ref{section:rrnn_implementation}.
 
-Recordemos que $A$ y $S$ tienen tantas filas como neuronas  y $B$ tantas columnas. 
+Recordemos que $A$ y $S$ tienen tantas filas como neuronas  y $B$ tantas columnas como neuronas. 
 
 Usado la notación vectorial
 $p_{[i,j]} = (p_i, p_{i+1}, \ldots, p_{j})$ donde $(p_0, p_1, \ldots, p_d)=p$, comenzaremos definiendo el valor de la primera fila como
@@ -105,7 +106,6 @@ Resolviendo el sistema resulta que
         \end{array}
     \right.
 \end{equation}
-\textcolor{red}{ TODO: Revisar}
 
 Luego los coeficientes de la red neuronal $A$, $S$ se deduciría de 
 \begin{equation}
