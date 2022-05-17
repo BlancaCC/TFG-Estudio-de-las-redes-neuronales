@@ -100,3 +100,43 @@
 % blue
 \newcommand{\iconoProfundizar}{\faSearch  $\quad$}
 \newcommand{\iconoClave}{\faLightbulbO  $\quad$} % \faLightbulbO %\faKey
+
+% Contenido original 
+\usepackage{lipsum}
+\usepackage[%
+linewidth=5pt,
+outerlinecolor=red,
+outerlinewidth=5pt,
+innerlinewidth=0pt,
+outerlinecolor=red,
+roundcorner=5pt
+%middlelinecolor= yellow,
+middlelinewidth=0.4pt,
+%roundcorner=1pt,
+topline = false,
+rightline = false,
+leftline = false,
+bottomline = false,
+rightmargin=0pt,
+skipabove=0pt,
+skipbelow=0pt,
+leftmargin=-1cm,
+backgroundcolor=black!7,
+%innerleftmargin=1cm,
+%innerrightmargin=0pt,
+%innertopmargin=0pt,
+%innerbottommargin=0pt,
+%frametitlebackgroundcolor=yellow,
+]{mdframed}
+
+\newenvironment{aportacionOriginal}
+  {\mdfsetup{
+    frametitle={\colorbox{black!7}{ \textcolor{white}{\Large Aportación original}}},
+    %frametitleaboveskip=-\ht\strutbox,
+    %frametitlealignment=\center
+    }
+  \begin{mdframed}%
+  }
+  {\end{mdframed}}
+
+

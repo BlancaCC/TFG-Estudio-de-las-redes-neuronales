@@ -57,22 +57,48 @@ continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de
         lineal de productos finitos y por tanto $\gamma f+ \sigma g \in \pmcg.$
         
       
-        \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$. 
-        Renombrando los índices de la sumatoria con $\Lambda = i\{1..l_i\} \cup j\{1..l_j\}$ basta ver que 
-        \begin{equation}
-            \begin{split}
-                fg &= \left(\sum_{i \in I_f} \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))\right)
-                    \left(\sum_{j \in I_g}   \beta_{j}  \prod_{k=1}^{l_{j}} G(A_{jk}(x)) \right) \\
-                    & = \sum_{i \in I_f} \left(  \beta_{j}  \prod_{k=1}^{l_{i}}  G(A_{ik}(x))
-                        \left( \sum_{j \in I_g}  \beta_{j} \prod_{k=1}^{l_{j}} G(A_{jk}(x))  \right)  
-                     \right) \\
-                    & =  \sum_{(i,j) \in I_f \times I_g} (\beta{i}\beta{j}) \prod_{k \in \Lambda} G(A_{k}(x))
-            \end{split}
-        \end{equation}
+        \item Cerrado para producto. Para $f,g \in \pmcg$, se tiene que $fg$ pertenece a $\pmcg$, para ello basta ver que: 
+        \begin{align}
+           f g & = 
+           % escribimos f  en forma del anillo
+           \left(
+               \sum_{i \in I_f} \beta_{f_i} \prod_{k=1}^{l_i} G((x)) 
+           \right) 
+           % escribimos g en forma del anillo
+           \left(
+               \sum_{j \in I_g} \beta_{g_j} \prod_{k=1}^{l_j} G(A_{g_{j k}(x)}) 
+           \right) 
+           \\
+           & = 
+           % propiedad distributiva (con la primera suma) 
+            \sum_{i \in I_f} 
+            \left(
+                \beta_{f_i} \prod_{k=1}^{l_i} G(A_{f_{i k}}(x)) 
+           \right) 
+           % escribimos g en forma del anillo
+           \left(
+               \sum_{j \in I_g} \beta_{g_j} \prod_{k=1}^{l_j} G(A_{g_{j k}(x)}) 
+           \right) 
+           \\
+           & = 
+           \sum_{
+               \begin{subarray}{c}
+                i \in I_f \\
+                j \in I_g
+               \end{subarray}
+               }
+               (\beta_{f_i} \beta_{g_j})
+               \sum_{k = 1}^{l_i + l_j}G 
+               \left(
+                    \tilde{A}_{i j k}(x)
+               \right).
+        \end{align}
+        Definimos $\tilde{A}_{i j k}(x) = A_{f_{i k}}$ si $k \in \{1, \ldots, l_i\}$
+        y $\tilde{A}_{i j k}(x) = A_{g_{i (k - l_i)}}$ si $k \in \{l_i + 1, \ldots, l_i+l_j\}$.
         luego $fg \in \pmcg$. 
     \end{enumerate}
 
-    Veamos que $\pmcg$ separa puntos cada compacto $K \subset \R^r$. 
+    Veamos que $\pmcg$ separa puntos para cada compacto $K \subset \R^r$. 
 
     Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Fijadas $x,y \in K$ tomamos entonces cualquiera de las 
     funciones afines que cumplen que $A(x) = a$ y $A(y)=b$ 
@@ -82,10 +108,10 @@ continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de
 
     Comprobemos finalmente que para todo punto de $K$ existe una función de $\pmcg$  en el que la imagen no es nula.  
 
-    Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$ , consideramos ahora la aplicación lineal
+    Por ser $G$ no constante volvemos a tomar un $a \in \R$ tal que $G(a) \neq 0$, consideramos ahora la aplicación lineal
     $A(x) = 0 \cdot x + a$ por lo que para todo $x \in K$, $G(A(x)) = G(a) \neq 0$. 
 
-    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos, como queríamos probar que $\pmcg |_K$ es denso en $C(K).$ 
+    Como hemos comprobado se verifican todas las hipótesis del teorema de Stone-Weierstrass, con lo que concluimos que $\pmcg |_K$ es denso en $C(K)$. 
 \end{proof}
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
@@ -103,6 +129,17 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
  \cite{8258768}, 
  \cite{DBLP:journals/corr/SzegedyVISW15}
 ). 
+%Nota sobre experimentar con 
+%\setlength{\marginparwidth}{\smallMarginSize}
+\reversemarginpar
+\marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
+El corolario \ref{cor:se-generaliza-G-a-una-familia}
+abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
+Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
+}
+\normalmarginpar
+
+\begin{aportacionOriginal}
 
 \begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] \label{cor:se-generaliza-G-a-una-familia}
 
@@ -120,21 +157,11 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
         \end{split}
     \end{equation}
 \end{corolario}
-
-% Nota sobre experimentar con 
-\setlength{\marginparwidth}{\smallMarginSize}
-\reversemarginpar
-\marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
-El corolario \ref{cor:se-generaliza-G-a-una-familia}
-abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
-Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
-}
-\normalmarginpar
-
 \begin{proof}
     La demostración es idéntica a la dada en el Teorema de convergencia 
     real en compactos \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}.
 \end{proof}
+\end{aportacionOriginal}
 
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
  ni cómo afecta a la \textit{velocidad de convergencia}. 
@@ -143,10 +170,6 @@ Notemos que este resultado no da pista alguna de las ventajas de una función fr
 Recordemos que de manera general se ha definido $A$ como una función afín 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
 Por ejemplo $B((x_1, ..., x_d)) = \sum_{i= 0} ^N \sum_{j= 0} ^d \alpha_{ij} x_j^i$  con $N$ natural positivo. 
-
-\begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
-    Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
-\end{corolario}
 
 % Nota sobre posible hipótesis de optimización 
 \setlength{\marginparwidth}{\bigMarginSize}
@@ -157,10 +180,15 @@ nos podemos plantear si aumentar el espacio de búsqueda a partir de transformac
 Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
 }
 
-\begin{proof}
-    Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
-    Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
-\end{proof}
+\begin{aportacionOriginal}
+    \begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
+        Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
+    \end{corolario}
+    \begin{proof}
+        Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
+        Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
+    \end{proof}
+\end{aportacionOriginal}
 
 La utilidad de este corolario a nivel práctico es cuestionable, ya que aumentaría considerablemente el número de 
 parámetros que ajustar de la red neuronal ocasionando: (1) la necesidad de mayor número de datos que aprender, 
