@@ -4,24 +4,27 @@
 # de manera empíricas
 ###################################################################################
 
-include("../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
+include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
 using .ActivationFunctions
 # Bibliotecas para tiempos y estadísticas
 using TimerOutputs
 using DataFrames
 using Statistics
+using CSV
 
+DIRECTORIO_RESULTADOS = "Experimentos/comparativas-funciones-activacion/"
+NOMBRE_FICHERO_RESULTADOS = "resultado-comparativas-funciones.csv"
 
 # Conjunto de datos sobre los que se van a comparar  
 limite_inf = -100000
 limite_sup = 100000
-cardinalidad = 1*(limite_sup-limite_inf)
+cardinalidad = 5*(limite_sup-limite_inf)
 particion_homogenea = LinRange(limite_inf, limite_sup, cardinalidad )
 
 ### Funciones que se van a analizar 
 p(x) = 2x 
 Threshold_1 = CreateThreshold(p,0. )
-p_2(x) = 2x + 3x^5+ 100*x^100
+p_2(x) = 2x+3x^5+ 100*x^100
 Threshold_2 = CreateThreshold(p,0. )
 # creamos una función indicadora
 Indicator  = CreateIndicatorFunction(0)
@@ -30,31 +33,41 @@ struct FuncionActivacion
     nombre::String
     funcion_activacion # función propiamente dicho
 end
-
+# Funciones simples para comparativa 
+f(x)=1
+g(x) = x
+# Declaración de funciones 
 funciones_activacion_a_comparar = [
-    FuncionActivacion("Threshold de polinomio 2x", Threshold_1),
-    FuncionActivacion("Threshold de polinomio complejo", Threshold_2),
+    FuncionActivacion("cte 1 (para comparar)", f),
+    FuncionActivacion("Identidad (para comparar)", g),
+    FuncionActivacion("Threshold de 2x+3x^5+ 100*x^100", Threshold_2),
     FuncionActivacion("Consine CosineSquasher", CosineSquasher),
     FuncionActivacion("Indicadora de 0", Indicator),
     FuncionActivacion("Rampa", RampFunction),
-    FuncionActivacion("ReLU", ReLU)
+    FuncionActivacion("ReLU", ReLU),
+    FuncionActivacion("Threshold de polinomio 2x", Threshold_1),
 ]
 
 # Estructuras que almacenarán los estadísticos
- # Datos que vamos a escribir
+ # Estadísticos a recoger
  numero_funciones_activacion = length(funciones_activacion_a_comparar)
- numero_particiones = 5
+ numero_particiones = 7
  dfTime = [
      Array{Float64}(undef, numero_funciones_activacion)
-     for i in 1:5]
- dfNombre = Array{String}(undef, numero_funciones_activacion)
-dfMedia =  Array{Float64}(undef, numero_funciones_activacion)
-dfDesviacion =  Array{Float64}(undef, numero_funciones_activacion)
-# Realizamos estimación 
+     for i in 1:numero_particiones ]
+    
+dfNombre = Array{String}(undef, numero_funciones_activacion)
+ # se declararán más adelante
+#dfMedia =  Array{Float64}(undef, numero_funciones_activacion)
+#dfDesviacion =  Array{Float64}(undef, numero_funciones_activacion)
 
+# Medición de los tiempo
 for (i,f) in enumerate(funciones_activacion_a_comparar)
     dfNombre[i] = f.nombre
-    for p in 1:numero_particiones
+end
+
+for p in 1:numero_particiones
+    for (i,f) in enumerate(funciones_activacion_a_comparar)
         time = @elapsed begin
             for x in particion_homogenea
                 f.funcion_activacion(x)
@@ -63,6 +76,7 @@ for (i,f) in enumerate(funciones_activacion_a_comparar)
         dfTime[p][i] = time*1000  
     end
 end
+# Cálculo de la media
 dfMedia = [
     mean(
         [dfTime[j][i] for j in 1:(numero_particiones) ]
@@ -80,11 +94,11 @@ DF = DataFrame(
         Función = dfNombre, 
         Media_Tiempo = dfMedia,
         Desviacion_tipica = dfDesviacion,
-        Tiempo_1 = dfTime[1],
-        Tiempo_2 = dfTime[2],
-        Tiempo_3 = dfTime[3],
-        Tiempo_4 = dfTime[4],
-        Tiempo_5 = dfTime[5],    
+        
 )
-println(DF)
+DF_time = DataFrame(dfTime, ["Tiempo $(i)" for i in 1:numero_particiones])
+DF = hcat(DF, DF_time)
 
+println("Resultado del experimento de comparativa de funciones de activación")
+println(DF)
+CSV.write(DIRECTORIO_RESULTADOS*NOMBRE_FICHERO_RESULTADOS, DF)

@@ -35,6 +35,8 @@ test-library:
 test: spell test-library
 
 ############################### Generar experimentos ############
+experimentos: 
+	julia --project=. Experimentos/comparativas-funciones-activacion/velocidad_funciones_activacion.jl
 
 
 
