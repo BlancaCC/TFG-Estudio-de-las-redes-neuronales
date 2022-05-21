@@ -1,23 +1,39 @@
 module ActivationFunctions
 
 export CreateThreshold
+export CreateThresholdSign
 export CosineSquasher
 export CreateIndicatorFunction
 export RampFunction
 export ReLU
 
 """
-    CreateThreshold(polinomial, t)
+    CreateThreshold(polynomial, t)
 Return a Threshold Function defined by `polinamial`and `t`.
 
 # Arguments
-- `polinomial`: A functions from real to real numbers
-- `t`: A real number
-#Example: 
+- `polynomial`: A functions from real to real numbers
+- `t`: A real number 
 """
-function CreateThreshold(polinomial, t::Real)
+function CreateThreshold(polynomial, t::Real)
     function ThresholdFunction(x)
-        return  (polinomial(x) < t) ? 0 : 1
+        return  (polynomial(x) < t) ? 0 : 1
+    end
+    return ThresholdFunction
+end
+
+"""
+CreateThreshold(polynomial, t)
+Return a Threshold Function defined by `polinamial`and `t`.
+Rango entre [-1,1]
+
+# Arguments
+- `polynomial`: A functions from real to real numbers
+- `t`: A real number
+"""
+function CreateThresholdSign(polynomial, t::Real)
+    function ThresholdFunction(x)
+        return  sign(polynomial(x) - t)
     end
     return ThresholdFunction
 end

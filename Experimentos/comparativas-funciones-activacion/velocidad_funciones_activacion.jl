@@ -24,7 +24,7 @@ particion_homogenea = LinRange(limite_inf, limite_sup, cardinalidad )
 ### Funciones que se van a analizar 
 p(x) = 2x 
 Threshold_1 = CreateThreshold(p,0. )
-p_2(x) = 2x+3x^5+ 100*x^100
+p_2(x) = -x^2+1
 Threshold_2 = CreateThreshold(p,0. )
 # creamos una función indicadora
 Indicator  = CreateIndicatorFunction(0)
@@ -40,8 +40,8 @@ g(x) = x
 funciones_activacion_a_comparar = [
     FuncionActivacion("cte 1 (para comparar)", f),
     FuncionActivacion("Identidad (para comparar)", g),
-    FuncionActivacion("Threshold de 2x+3x^5+ 100*x^100", Threshold_2),
-    FuncionActivacion("Consine CosineSquasher", CosineSquasher),
+    FuncionActivacion("Threshold de -x^2+1", Threshold_2),
+    FuncionActivacion("Cosine CosineSquasher", CosineSquasher),
     FuncionActivacion("Indicadora de 0", Indicator),
     FuncionActivacion("Rampa", RampFunction),
     FuncionActivacion("ReLU", ReLU),

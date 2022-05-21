@@ -41,10 +41,12 @@ Nótese
 Ockham
 Perceptrón
 Pérez
+ReLU
 Readme
 Rosenblatt
 Sebastien
 Sellke
+Sigmoide
 Stinchcombe
 TFG
 TeoremaStoneWeiertrass
