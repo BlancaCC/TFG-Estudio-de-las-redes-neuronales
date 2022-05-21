@@ -42,6 +42,7 @@ Ockham
 Perceptrón
 Pérez
 ReLU
+ReLu
 Readme
 Rosenblatt
 Sebastien
