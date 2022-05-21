@@ -7,6 +7,7 @@ Beygelzimer
 Borel
 Bubeck
 Chebyshev
+CosineSquaher
 ECM
 Explicitación
 FSum
@@ -20,11 +21,14 @@ Guervós
 HU
 HUxx
 Halber
+Hardtanh
 Hornik
 Isoperimetry
 Iésima
 JJ
 Julián
+LReLU
+LReLU
 LaTeX
 Liang
 Lusin
@@ -42,11 +46,11 @@ Ockham
 Perceptrón
 Pérez
 ReLU
-ReLu
 Readme
 Rosenblatt
 Sebastien
 Sellke
+Sigmodea
 Sigmoide
 Stinchcombe
 TFG
@@ -127,6 +131,7 @@ subespacio
 subespacios
 sumatoria
 sumatorias
+tanh
 teo
 tratabilidad
 usefulInformation

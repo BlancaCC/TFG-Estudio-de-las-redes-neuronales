@@ -1,11 +1,14 @@
 module ActivationFunctions
 
-export CreateThreshold
-export CreateThresholdSign
 export CosineSquasher
 export CreateIndicatorFunction
+export CreateThreshold
+export CreateThresholdSign
+export HardTanh
+export LReLU
 export RampFunction
 export ReLU
+export Sigmoid
 
 """
     CreateThreshold(polynomial, t)
@@ -78,6 +81,40 @@ ReLU function
 """
 function ReLU(x::Real)
     return max(0,x)
+end
+
+"""
+    Sigmoid(x::Real)
+Sigmoid activation function
+"""
+function Sigmoid(x::Real)
+    return 1/(1+ exp(-x))
+end
+
+"""
+    HardTanh(x::Real)
+Hard Hyperbolic Function 
+"""
+function HardTanh(x::Real)
+    if x <= -1
+        return -1
+    elseif x <= 1
+        return x
+    else
+        return 1 
+    end
+end
+
+"""
+    LReLU(x::Real, a=0.01)
+Leaky ReLU
+"""
+function LReLU(x::Real, a=0.01)
+    if(x<0)
+        return a*x
+    else
+        return x
+    end
 end
 
 end #module end

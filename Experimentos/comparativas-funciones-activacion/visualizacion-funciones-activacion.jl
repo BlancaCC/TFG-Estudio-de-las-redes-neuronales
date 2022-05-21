@@ -18,8 +18,6 @@ Threshold_1 = CreateThreshold(p,0. )
 p_2(x) = -x^2+1
 Threshold_2 = CreateThreshold(p_2,0. )
 Threshold_3 = CreateThresholdSign(p_2,0. )
-# Funciones simples para comparativa 
-f(x)=1
 id(x) = x
 # creamos una función indicadora
 Indicator  = CreateIndicatorFunction(0)
@@ -34,7 +32,6 @@ end
 
 # Declaración de funciones 
 funciones_a_mostrar = [
-    FuncionActivacion("1", f, -1,1),
     FuncionActivacion("Identidad", id, -1,1),
     FuncionActivacion("Threshold de x^2-1", Threshold_2, -2, 2),
     FuncionActivacion("Threshold versión signo de x^2-1", Threshold_3, -2, 2),
@@ -43,6 +40,13 @@ funciones_a_mostrar = [
     FuncionActivacion("Rampa", RampFunction, -2, 2),
     FuncionActivacion("ReLU", ReLU, -2, 2),
     FuncionActivacion("Threshold de polinomio 2x", Threshold_1, -2, 2),
+    FuncionActivacion("Sigmoid", Sigmoid, -4,4),
+    FuncionActivacion("Tangente hiperbolica", tanh, -4,4),
+    FuncionActivacion("Valor absoluto", abs, -2,2),
+    FuncionActivacion("coseno", cos, -2pi,2pi),
+    FuncionActivacion("hardtanh", HardTanh, -2pi,2pi),
+    FuncionActivacion("LReLU", LReLU, -2pi,2pi),
+
 ]
 
 """
@@ -51,7 +55,7 @@ Muestra por pantalla una función de activación con la estructura FuncionActiva
 y la guarda en el directiorio indicado en `img_path`
 """
 function MuestraYGuarda(fa :: FuncionActivacion, img_path:: String)
-    plot( fa.funcion_activacion, fa.cota_inferior, fa.cota_superior, title="", label="")
+    plot( fa.funcion_activacion, fa.cota_inferior, fa.cota_superior, title="", label="",linewidth=3)
     savefig(img_path*fa.nombre)   
 end
 
