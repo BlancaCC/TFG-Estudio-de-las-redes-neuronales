@@ -251,26 +251,34 @@ añadimos a nuestra colección las siguientes.
     \begin{equation*}
         \tilde{h}_i(x) 
         = \sum^n_{j=1}(\beta_{j}  \phi(\sigma(A_j(x)))+ k_j)
-        = \sum^n_{j=1}(\tilde{\beta}_{j} \sigma(A_j(x)+ \tilde{k_j})),
+        = \sum^n_{j=1}(\tilde{\beta}_{j} \sigma(\tilde{A}_j(x))+ \tilde{k_j}),
     \end{equation*}
-    con $x \in \R^d, \tilde \beta_{j}, \tilde k_j \in \R, A_j \in \afines$,
+    con $x \in \R^d, \tilde \beta_{j}, \tilde k_j \in \R, \tilde{A}_j \in \afines$,
     por lo que está claro que $\tilde{h}_i(x) \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$. 
 
     Pero por hipótesis del teorema $\phi \circ \sigma = \gamma$, por lo que $\tilde{h}_i(x) \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$. 
 
-    Basta con considerar la transformación afín inversa para ver que
+    Basta con considerar la transformación afín inversa para ver que ambos espacios son isomorfos
     \begin{equation*}
-        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) = \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) \simeq \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
     \end{equation*}
+
+    Dos conjuntos isomorfos donde para cualquier $h \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$, 
+    se tiene que $h \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ via el isomorfismo y 
+    luego componer con la inversa de la aplicación afín. 
 
     Como demostramos en \ref{consideration-irrelevancia-sesgo} se tiene que 
     \begin{equation*}
-        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) \subset \mathcal{H}_{\gamma, n+1}(\R^d, \R^s).
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s) = \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
+        \subset 
+            \mathcal{H}_{\gamma, n+1}(\R^d, \R^s) 
+        \subset
+        \mathcal{H}^+_{\gamma, {n+1}}(\R^d, \R^s) = \mathcal{H}^+_{\sigma, {n+1}}(\R^d, \R^s) 
+        .
     \end{equation*}
-    Por lo que tomando límite cuando $n$ tiende a infinito se tiene lo que buscábamos probar.
-
+    Por lo que para un $n$ arbitrariamente grande, se acaba de probar lo buscado. 
     \begin{equation*}
-        \mathcal{H}_{\gamma, n}(\R^d, \R^s) = \mathcal{H}_{\sigma, n}(\R^d, \R^s).
+        \mathcal{H}_{\gamma}(\R^d, \R^s) = \mathcal{H}_{\sigma}(\R^d, \R^s).
     \end{equation*}
 \end{proof}
 \end{aportacionOriginal}
@@ -295,17 +303,18 @@ aproximaciones).
 
 Así pues a la vista de la imágenes de las distintas funciones de activación 
 recogidas en la tabla \ref{table:funciones-de-activation} y
-por el recién probado teorema \ref{teo:eficacia-funciones-activation} podemos determinar a priori que de manera teórica existen conjuntos de funciones que aproximadamente  puedes producir los mismos resultado, 
+por el recién probado teorema \ref{teo:eficacia-funciones-activation} podemos determinar a priori 
+que de manera teórica existen conjuntos de funciones que aproximadamente  puedes producir los mismos resultado, 
 compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
 
 \begin{table}[H] 
     \centering  
     \begin{tabular}{| c | c | c | }
         \hline
-        Indicadora &  Rampa & ReLU \\
-        Umbral & Sigmodea & LReLU\\
-        & \textit{Cosine Squasher}& \\
-        & tanh& \\
+       &  Rampa &  \\
+       Indicadora & Sigmodea & ReLU\\
+       Umbral & \textit{Cosine Squasher}& LReLU\\
+        & tanh & \\
         & \textit{Hard Hyperbolic Function}& \\
 \hline
     \end{tabular}
@@ -313,4 +322,21 @@ compararemos entonces su coste computacional y tomaremos como representante de l
     \label{table:Clases-equivalencia-activation-function}
 \end{table}
 
+\textcolor{red}{TODO: Comentar cómo afecta el escalado al error}. Razonarlo con la integral.
+
+\subsection{Coste computacional funciones activación }
+
+El experimento para comparar los resultados ha consistido en dado
+un rango fijo de valores realizar mediciones del tiempo 
+tomado en evaluar con la función de evaluación tales resultados. 
+
+
+
+
+
+Además compararemos los resultados utilizando el test de los rangos con 
+signos de Wilcoxon (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatistics}, o la web de \href{https://www.cienciadedatos.net}{cienciadedatos.net} \footnote{
+ Prueba de los rangos con signo de Wilcoxon by Joaquín Amat Rodrigo, available under a Attribution 4.0 International (CC BY 4.0) at
+  \url{https://www.cienciadedatos.net/documentos/18_prueba_de_los_rangos_con_signo_de_wilcoxon}
+  }
 
