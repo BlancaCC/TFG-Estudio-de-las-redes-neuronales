@@ -46,7 +46,6 @@ funciones_a_mostrar = [
     FuncionActivacion("coseno", cos, -2pi,2pi),
     FuncionActivacion("hardtanh", HardTanh, -2pi,2pi),
     FuncionActivacion("LReLU", LReLU, -2pi,2pi),
-
 ]
 
 """

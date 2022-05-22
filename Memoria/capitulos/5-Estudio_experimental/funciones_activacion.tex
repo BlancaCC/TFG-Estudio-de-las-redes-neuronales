@@ -151,7 +151,7 @@ añadimos a nuestra colección las siguientes.
         % Nombre: 
         \textit{Cosine Squasher}
         & %expresión 
-        $CosineSquaher(x)=\left(1 + \cos\left(x + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
+        $CosineSquasher(x)=\left(1 + \cos\left(x + 3 \frac{\pi}{2} \right) \frac{1}{2}\right) 
         1_{\{\frac{-\pi}{2} \leq x \leq  \frac{\pi}{2}\}}
         +
         1_{\{ \frac{\pi}{2} < \lambda \}}.$
@@ -331,12 +331,29 @@ un rango fijo de valores realizar mediciones del tiempo
 tomado en evaluar con la función de evaluación tales resultados. 
 
 
-
-
-
-Además compararemos los resultados utilizando el test de los rangos con 
-signos de Wilcoxon (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatistics}, o la web de \href{https://www.cienciadedatos.net}{cienciadedatos.net} \footnote{
+Además compararemos los resultados utilizando el \textbf{test de los rangos con 
+signos de Wilcoxon} (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatistics}, o la web de \href{https://www.cienciadedatos.net}{cienciadedatos.net} \footnote{
  Prueba de los rangos con signo de Wilcoxon by Joaquín Amat Rodrigo, available under a Attribution 4.0 International (CC BY 4.0) at
   \url{https://www.cienciadedatos.net/documentos/18_prueba_de_los_rangos_con_signo_de_wilcoxon}
+  Con fecha de visita el 22 de mayo del 2022.
   }
+
+\subsubsection*{Condiciones que avalan la prueba de los rangos}
+\begin{itemize}
+    \item Los datos son independientemente.
+    \item Los datos tomados, el tiempo, permiten ser ordenados. 
+    \item El tamaño de muestra es pequeño y no podemos asegurar normalidad de la datos. 
+\end{itemize}
+
+\subsubsection*{Hipótesis} 
+
+\begin{itemize}
+    \item $H_0$: La mediana de las diferencia de cada par de datos es $0$. 
+    \item $H_a$: La mediana de las diferencia entre cada par de datos es diferente de cero. 
+\end{itemize}
+
+La utilidad de este test es que si rechaza la hipótesis la hipótesis nula sabremos que 
+muy probablemente las distribuciones tendrán medianas diferentes, es decir, \textbf{existe una 
+diferencia de tiempos}. En caso de que no se rechace no podremos afirmar nada.
+ Puede encontrar la implementación en el repositorio del proyecto \footnote{En el directorio de experimentos de \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales}.}.
 
