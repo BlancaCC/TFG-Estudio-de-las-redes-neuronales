@@ -25,5 +25,5 @@ jobs:
           with:
               version: '1'
         - uses: julia-actions/julia-buildpkg@master
-        - run: make test-library
+        - run: make test
         

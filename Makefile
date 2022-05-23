@@ -27,12 +27,11 @@ lazy:
 
 workflow-spell: install-spell spell
 
-# Test biblioteca redes neurales 
-test-library:
+########## Test biblioteca redes neurales ########### 
+test:
 	julia --project=. Biblioteca-Redes-Neuronales/test/activation_functions.test.jl 
 	julia --project=. Biblioteca-Redes-Neuronales/test/one_layer_neural_network.test.jl
-## test en general 
-test: spell test-library
+
 
 ############################### Generar experimentos ############
 experimentos: 
