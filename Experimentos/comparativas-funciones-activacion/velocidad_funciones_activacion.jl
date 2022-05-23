@@ -29,21 +29,16 @@ NOMBRE_FICHERO_TEST_WILCOXON = config["NOMBRE_FICHERO_TEST_WILCOXON"]
 NOMBRE_FICHERO_RESULTADOS_MEDIA = config["NOMBRE_FICHERO_RESULTADOS_MEDIA"]
 
 # número de particiones
-numero_particiones = 3
+numero_particiones = config["NUMERO_PARTICIONES"]
+
 # Conjunto de datos sobre los que se van a comparar  
-limite_inf = -1000000
-limite_sup = 1000000
-cardinalidad = 7*(limite_sup-limite_inf)
+limite_inf = config["LIMITE_INFERIOR"]
+limite_sup = config["LIMITE_SUPERIOR"]
+cardinalidad = config["FACTOR"] *(limite_sup-limite_inf)
 particion_homogenea = LinRange(limite_inf, limite_sup, cardinalidad )
 
 ### Funciones que se van a analizar 
 p(x) = 2x 
-Threshold_1 = CreateThreshold(p,0. )
-p_2(x) = -x^2+1
-Threshold_2 = CreateThreshold(p,0. )
-# creamos una función indicadora
-Indicator  = CreateIndicatorFunction(0)
-
 struct FuncionActivacion
     nombre::String
     funcion_activacion # función propiamente dicho
@@ -55,18 +50,17 @@ g(x) = x
 funciones_activacion_a_comparar = [
     FuncionActivacion("cte 1 (para comparar)", f),
     FuncionActivacion("Identidad (para comparar)", g),
-    FuncionActivacion("Threshold de -x^2+1", Threshold_2),
+    FuncionActivacion("Threshold de 2x", @ThresholdFunction(p,0)),
     FuncionActivacion("Cosine CosineSquasher", CosineSquasher),
-    FuncionActivacion("Indicadora de 0", Indicator),
+    FuncionActivacion("Indicadora de 0", @IndicatorFunction(0)),
     FuncionActivacion("Rampa", RampFunction),
     FuncionActivacion("ReLU", ReLU),
-    FuncionActivacion("Threshold de polinomio 2x", Threshold_1),
     FuncionActivacion("Sigmoid", Sigmoid),
     FuncionActivacion("Tangente hiperbolica", tanh),
     FuncionActivacion("Valor absoluto", abs),
     FuncionActivacion("coseno", cos),
     FuncionActivacion("hardtanh", HardTanh),
-    FuncionActivacion("LReLU", LReLU),
+    FuncionActivacion("LReLU", @LReLU(0.01)),
 
 ]
 

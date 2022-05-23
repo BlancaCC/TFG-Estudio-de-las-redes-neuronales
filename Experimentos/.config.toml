@@ -11,6 +11,11 @@
 DIRECTORIO_RESULTADOS = "Experimentos/comparativas-funciones-activacion/"
 NOMBRE_FICHERO_TEST_WILCOXON = "test-Wilcoxon.txt"
 NOMBRE_FICHERO_RESULTADOS_MEDIA = "resultado-comparativas-funciones-media-tiempos.csv"
+# Configuraciones relativas a parámetros del experimento
+NUMERO_PARTICIONES = +20       # Veces que se tomarán medidas
+LIMITE_INFERIOR = -100000      # Cota inferior de los valores posibles
+LIMITE_SUPERIOR = +100000      # Cota superior de los valores posibles
+FACTOR = +7                    # Parámetro implicado con la cardinalidad del conjunto
 
 # Configuración de 
 [visualizacion-funciones-activacion]

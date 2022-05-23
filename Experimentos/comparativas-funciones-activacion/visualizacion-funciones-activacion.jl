@@ -11,14 +11,7 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["visualizacion-funciones-activaci
 img_path = config["DIRECTORIO_IMAGENES"]
 
 ### Funciones que se van a analizar  y auxiliares
-p(x) = 2x 
-Threshold_1 = CreateThreshold(p,0. )
-p_2(x) = -x^2+1
-Threshold_2 = CreateThreshold(p_2,0. )
-Threshold_3 = CreateThresholdSign(p_2,0. )
-id(x) = x
-# creamos una función indicadora
-Indicator  = CreateIndicatorFunction(0)
+p(x) = 2x +1
 
 # Estructura caracteríticas a mostrar 
 struct FuncionActivacion
@@ -31,19 +24,17 @@ end
 # Declaración de funciones 
 funciones_a_mostrar = [
     FuncionActivacion("Identidad", id, -1,1),
-    FuncionActivacion("Threshold de x^2-1", Threshold_2, -2, 2),
-    FuncionActivacion("Threshold versión signo de x^2-1", Threshold_3, -2, 2),
+    FuncionActivacion("Threshold de 2x+1", @ThresholdFunction(p,0), -2, 2),
     FuncionActivacion("Cosine CosineSquasher", CosineSquasher, -2pi, 2pi),
-    FuncionActivacion("Indicadora de 0", Indicator, -1, 1),
+    FuncionActivacion("Indicadora de 0", @IndicatorFunction(0), -1, 1),
     FuncionActivacion("Rampa", RampFunction, -2, 2),
     FuncionActivacion("ReLU", ReLU, -2, 2),
-    FuncionActivacion("Threshold de polinomio 2x", Threshold_1, -2, 2),
     FuncionActivacion("Sigmoid", Sigmoid, -4,4),
     FuncionActivacion("Tangente hiperbolica", tanh, -4,4),
     FuncionActivacion("Valor absoluto", abs, -2,2),
     FuncionActivacion("coseno", cos, -2pi,2pi),
     FuncionActivacion("hardtanh", HardTanh, -2pi,2pi),
-    FuncionActivacion("LReLU", LReLU, -2pi,2pi),
+    FuncionActivacion("LReLU", @LReLU(0.01), -2pi,2pi),
 ]
 
 """

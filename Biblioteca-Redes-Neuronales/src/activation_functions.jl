@@ -10,8 +10,8 @@ export @ThresholdFunction
 export @IndicatorFunction
 
 """
-CreateThreshold(polynomial, t)
-Return a Threshold Function defined by `polinamial`and `t`.
+Threshold(polynomial, t)
+Return a Threshold Function defined by `polynomial`and `t`.
 Output in {-1,1}
 
 # Arguments
