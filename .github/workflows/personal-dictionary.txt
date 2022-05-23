@@ -53,6 +53,7 @@ TeoremaStoneWeiertrass
 Tietze
 UMVUE
 Wortman
+Zhou
 approximators
 aproximador
 aproximadores
