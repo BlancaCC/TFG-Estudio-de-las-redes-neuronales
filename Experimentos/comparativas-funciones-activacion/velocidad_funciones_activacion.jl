@@ -105,12 +105,21 @@ dfDesviacion = [
     )
     for i in 1:numero_funciones_activacion
 ]
+dfMediana = [
+    median(
+        [dfTime[j][i] for j in 1:(numero_particiones) ]
+    )
+    for i in 1:numero_funciones_activacion
+]
+# Vamos a mostrar los datos ordenados por la mediana
+indices_ordenados = sortperm(dfMediana)
 #Mostramos en pantalla resultados 
 DF = DataFrame(
-        Función = dfNombre, 
-        Media_Tiempo = dfMedia,
-        Desviacion_tipica = dfDesviacion,
-        
+        Función = dfNombre[indices_ordenados], 
+        Mediana = dfMediana[indices_ordenados],
+        Media_Tiempo = dfMedia[indices_ordenados],
+        Desviacion_tipica = dfDesviacion[indices_ordenados],
+       
 )
 DF_time = DataFrame(dfTime, ["Tiempo $(i)" for i in 1:numero_particiones])
 DF = hcat(DF, DF_time)

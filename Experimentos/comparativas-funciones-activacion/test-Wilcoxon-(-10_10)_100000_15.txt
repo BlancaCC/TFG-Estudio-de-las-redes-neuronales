@@ -6,17 +6,17 @@ Para cte 1 (para comparar) y Identidad (para comparar)
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -25.8928
-    95% confidence interval: (-30.52, -16.37)
+    point estimate:          2.81117
+    95% confidence interval: (-0.6571, 12.11)
 
 Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-04
+    outcome with 95% confidence: fail to reject h_0
+    two-sided p-value:           0.0833
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 6.0
-    rank sums:                   [6.0, 204.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 91.0
+    rank sums:                   [91.0, 29.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y Threshold de 2x
@@ -26,37 +26,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -95.473
-    95% confidence interval: (-104.0, -85.41)
+    point estimate:          -78.7973
+    95% confidence interval: (-94.4, -71.05)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para cte 1 (para comparar) y Cosine CosineSquasher
+        Para cte 1 (para comparar) y CosineSquasher
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -50.3857
-    95% confidence interval: (-64.07, -43.22)
+    point estimate:          -45.9895
+    95% confidence interval: (-59.54, -35.41)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y Indicadora de 0
@@ -66,17 +66,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -91.8313
-    95% confidence interval: (-98.4, -85.32)
+    point estimate:          -79.3673
+    95% confidence interval: (-95.17, -70.3)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y Rampa
@@ -86,17 +86,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -85.3694
-    95% confidence interval: (-95.22, -78.37)
+    point estimate:          -75.6215
+    95% confidence interval: (-90.25, -66.63)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y ReLU
@@ -106,17 +106,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -92.1284
-    95% confidence interval: (-99.21, -83.4)
+    point estimate:          -80.3015
+    95% confidence interval: (-86.44, -69.74)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y Sigmoid
@@ -126,37 +126,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -138.327
-    95% confidence interval: (-145.5, -127.7)
+    point estimate:          -132.487
+    95% confidence interval: (-138.2, -119.1)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para cte 1 (para comparar) y Tangente hiperbolica
+        Para cte 1 (para comparar) y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -167.262
-    95% confidence interval: (-177.8, -157.9)
+    point estimate:          -188.055
+    95% confidence interval: (-191.9, -167.3)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y Valor absoluto
@@ -166,57 +166,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -91.9953
-    95% confidence interval: (-103.6, -82.08)
+    point estimate:          -103.82
+    95% confidence interval: (-118.9, -94.06)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para cte 1 (para comparar) y coseno
+        Para cte 1 (para comparar) y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -166.246
-    95% confidence interval: (-175.0, -153.6)
+    point estimate:          -157.072
+    95% confidence interval: (-166.0, -145.8)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para cte 1 (para comparar) y hardtanh
+        Para cte 1 (para comparar) y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -21.2579
-    95% confidence interval: (-34.38, -11.84)
+    point estimate:          -19.3447
+    95% confidence interval: (-28.88, -4.988)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           0.0012
+    two-sided p-value:           0.0084
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 23.0
-    rank sums:                   [23.0, 187.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 15.0
+    rank sums:                   [15.0, 105.0]
     adjustment for ties:         0.0
 
         Para cte 1 (para comparar) y LReLU
@@ -226,17 +226,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -99.8337
-    95% confidence interval: (-106.6, -85.43)
+    point estimate:          -96.0235
+    95% confidence interval: (-105.4, -72.95)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y Threshold de 2x
@@ -246,37 +246,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -68.3376
-    95% confidence interval: (-81.51, -60.29)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
-    adjustment for ties:         0.0
-
-        Para Identidad (para comparar) y Cosine CosineSquasher
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -35.9947
-    95% confidence interval: (-42.73, -20.29)
+    point estimate:          -91.2491
+    95% confidence interval: (-99.23, -79.45)
 
 Test summary:
     outcome with 95% confidence: reject h_0
     two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 10.0
-    rank sums:                   [10.0, 200.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para Identidad (para comparar) y CosineSquasher
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -56.2127
+    95% confidence interval: (-62.41, -41.85)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y Indicadora de 0
@@ -286,17 +286,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -64.3942
-    95% confidence interval: (-80.28, -56.75)
+    point estimate:          -92.1005
+    95% confidence interval: (-101.9, -75.39)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y Rampa
@@ -306,17 +306,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -62.2361
-    95% confidence interval: (-75.25, -52.89)
+    point estimate:          -75.6253
+    95% confidence interval: (-97.37, -72.02)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 1.0
-    rank sums:                   [1.0, 209.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y ReLU
@@ -326,17 +326,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -68.1513
-    95% confidence interval: (-79.43, -57.3)
+    point estimate:          -80.1095
+    95% confidence interval: (-95.75, -71.66)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 1.0
-    rank sums:                   [1.0, 209.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y Sigmoid
@@ -346,37 +346,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -116.896
-    95% confidence interval: (-122.8, -104.9)
+    point estimate:          -133.535
+    95% confidence interval: (-139.9, -127.1)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Identidad (para comparar) y Tangente hiperbolica
+        Para Identidad (para comparar) y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -145.816
-    95% confidence interval: (-156.8, -133.5)
+    point estimate:          -189.899
+    95% confidence interval: (-198.2, -175.2)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y Valor absoluto
@@ -386,57 +386,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -64.8815
-    95% confidence interval: (-83.42, -54.29)
+    point estimate:          -113.166
+    95% confidence interval: (-125.9, -99.95)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 1.0
-    rank sums:                   [1.0, 209.0]
-    adjustment for ties:         0.0
-
-        Para Identidad (para comparar) y coseno
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -132.043
-    95% confidence interval: (-156.2, -125.8)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Identidad (para comparar) y hardtanh
+        Para Identidad (para comparar) y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          2.15221
-    95% confidence interval: (-12.21, 8.494)
+    point estimate:          -154.317
+    95% confidence interval: (-173.3, -149.0)
 
 Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.9854
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 106.0
-    rank sums:                   [106.0, 104.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para Identidad (para comparar) y Hardtanh
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -22.5005
+    95% confidence interval: (-33.24, -13.16)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0002
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 2.0
+    rank sums:                   [2.0, 118.0]
     adjustment for ties:         0.0
 
         Para Identidad (para comparar) y LReLU
@@ -446,37 +446,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -78.65
-    95% confidence interval: (-84.76, -63.24)
+    point estimate:          -102.561
+    95% confidence interval: (-110.0, -76.54)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 1.0
-    rank sums:                   [1.0, 209.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Threshold de 2x y Cosine CosineSquasher
+        Para Threshold de 2x y CosineSquasher
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          44.4922
-    95% confidence interval: (31.47, 52.18)
+    point estimate:          37.1211
+    95% confidence interval: (26.94, 44.87)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y Indicadora de 0
@@ -486,17 +486,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          0.283625
-    95% confidence interval: (-4.296, 11.98)
+    point estimate:          -0.784916
+    95% confidence interval: (-6.616, 7.56)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.6215
+    two-sided p-value:           0.9341
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 119.0
-    rank sums:                   [119.0, 91.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 58.0
+    rank sums:                   [58.0, 62.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y Rampa
@@ -506,17 +506,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          3.93688
-    95% confidence interval: (-1.11, 16.78)
+    point estimate:          3.17579
+    95% confidence interval: (-2.088, 12.23)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.0826
+    two-sided p-value:           0.2293
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 152.0
-    rank sums:                   [152.0, 58.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 82.0
+    rank sums:                   [82.0, 38.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y ReLU
@@ -526,17 +526,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          3.41298
-    95% confidence interval: (-12.33, 20.48)
+    point estimate:          -1.40096
+    95% confidence interval: (-7.4, 13.38)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.6215
+    two-sided p-value:           0.6788
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 119.0
-    rank sums:                   [119.0, 91.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 68.0
+    rank sums:                   [68.0, 52.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y Sigmoid
@@ -546,37 +546,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -42.982
-    95% confidence interval: (-54.04, -28.77)
+    point estimate:          -43.344
+    95% confidence interval: (-52.76, -35.5)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 3.0
-    rank sums:                   [3.0, 207.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Threshold de 2x y Tangente hiperbolica
+        Para Threshold de 2x y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -70.6103
-    95% confidence interval: (-84.1, -58.37)
+    point estimate:          -100.365
+    95% confidence interval: (-109.1, -85.96)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y Valor absoluto
@@ -586,57 +586,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          4.33892
-    95% confidence interval: (-5.361, 11.92)
+    point estimate:          -22.2297
+    95% confidence interval: (-33.07, -14.78)
 
 Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.4304
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0003
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 127.0
-    rank sums:                   [127.0, 83.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 3.0
+    rank sums:                   [3.0, 117.0]
     adjustment for ties:         0.0
 
-        Para Threshold de 2x y coseno
+        Para Threshold de 2x y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -70.337
-    95% confidence interval: (-85.03, -50.61)
+    point estimate:          -71.5432
+    95% confidence interval: (-86.73, -59.02)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Threshold de 2x y hardtanh
+        Para Threshold de 2x y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          67.9581
-    95% confidence interval: (56.94, 86.13)
+    point estimate:          68.8591
+    95% confidence interval: (55.15, 76.81)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 208.0
-    rank sums:                   [208.0, 2.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Threshold de 2x y LReLU
@@ -646,197 +646,197 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -0.705707
-    95% confidence interval: (-15.08, 14.2)
+    point estimate:          -5.85871
+    95% confidence interval: (-19.0, 8.738)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.8408
+    two-sided p-value:           0.4543
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 99.0
-    rank sums:                   [99.0, 111.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 46.0
+    rank sums:                   [46.0, 74.0]
     adjustment for ties:         0.0
 
-        Para Cosine CosineSquasher y Indicadora de 0
+        Para CosineSquasher y Indicadora de 0
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -44.0448
-    95% confidence interval: (-50.69, -28.16)
+    point estimate:          -42.3084
+    95% confidence interval: (-46.71, -25.28)
 
 Test summary:
     outcome with 95% confidence: reject h_0
     two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 5.0
-    rank sums:                   [5.0, 205.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Cosine CosineSquasher y Rampa
+        Para CosineSquasher y Rampa
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -34.7846
-    95% confidence interval: (-45.58, -21.13)
+    point estimate:          -38.3385
+    95% confidence interval: (-45.07, -20.04)
 
 Test summary:
     outcome with 95% confidence: reject h_0
     two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 7.0
-    rank sums:                   [7.0, 203.0]
-    adjustment for ties:         0.0
-
-        Para Cosine CosineSquasher y ReLU
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -28.53
-    95% confidence interval: (-50.0, -19.55)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 3.0
-    rank sums:                   [3.0, 207.0]
-    adjustment for ties:         0.0
-
-        Para Cosine CosineSquasher y Sigmoid
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -75.4658
-    95% confidence interval: (-93.39, -70.55)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Cosine CosineSquasher y Tangente hiperbolica
+        Para CosineSquasher y ReLU
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -108.956
-    95% confidence interval: (-120.7, -103.4)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
-    adjustment for ties:         0.0
-
-        Para Cosine CosineSquasher y Valor absoluto
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -44.2466
-    95% confidence interval: (-51.79, -25.85)
+    point estimate:          -26.538
+    95% confidence interval: (-40.64, -20.17)
 
 Test summary:
     outcome with 95% confidence: reject h_0
     two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 4.0
-    rank sums:                   [4.0, 206.0]
-    adjustment for ties:         0.0
-
-        Para Cosine CosineSquasher y coseno
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -107.277
-    95% confidence interval: (-125.6, -93.64)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Cosine CosineSquasher y hardtanh
+        Para CosineSquasher y Sigmoid
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          35.64
-    95% confidence interval: (16.25, 45.09)
+    point estimate:          -76.4012
+    95% confidence interval: (-89.49, -70.91)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           0.0012
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 187.0
-    rank sums:                   [187.0, 23.0]
-    adjustment for ties:         0.0
-
-        Para Cosine CosineSquasher y LReLU
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -41.0305
-    95% confidence interval: (-50.61, -31.86)
-
-Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
-
-Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para CosineSquasher y Tangente hiperbólica
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -131.523
+    95% confidence interval: (-138.3, -125.6)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para CosineSquasher y Valor absoluto
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -54.9809
+    95% confidence interval: (-69.73, -48.98)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para CosineSquasher y Coseno
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -104.271
+    95% confidence interval: (-120.1, -96.07)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para CosineSquasher y Hardtanh
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          31.5473
+    95% confidence interval: (22.22, 39.42)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0001
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 119.0
+    rank sums:                   [119.0, 1.0]
+    adjustment for ties:         0.0
+
+        Para CosineSquasher y LReLU
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -38.5665
+    95% confidence interval: (-50.02, -30.75)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Indicadora de 0 y Rampa
@@ -846,17 +846,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          3.40281
-    95% confidence interval: (1.074, 10.83)
+    point estimate:          1.28817
+    95% confidence interval: (-0.5219, 10.03)
 
 Test summary:
-    outcome with 95% confidence: reject h_0
-    two-sided p-value:           0.0215
+    outcome with 95% confidence: fail to reject h_0
+    two-sided p-value:           0.1070
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 166.0
-    rank sums:                   [166.0, 44.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 89.0
+    rank sums:                   [89.0, 31.0]
     adjustment for ties:         0.0
 
         Para Indicadora de 0 y ReLU
@@ -866,17 +866,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -7.81419
-    95% confidence interval: (-10.19, 13.0)
+    point estimate:          -2.51917
+    95% confidence interval: (-6.653, 12.77)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.7562
+    two-sided p-value:           0.4543
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 114.0
-    rank sums:                   [114.0, 96.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 74.0
+    rank sums:                   [74.0, 46.0]
     adjustment for ties:         0.0
 
         Para Indicadora de 0 y Sigmoid
@@ -886,37 +886,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -42.3055
-    95% confidence interval: (-53.89, -33.99)
+    point estimate:          -43.4597
+    95% confidence interval: (-54.1, -35.75)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Indicadora de 0 y Tangente hiperbolica
+        Para Indicadora de 0 y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -74.2304
-    95% confidence interval: (-84.88, -63.34)
+    point estimate:          -90.9175
+    95% confidence interval: (-109.6, -82.48)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Indicadora de 0 y Valor absoluto
@@ -926,57 +926,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          0.242458
-    95% confidence interval: (-6.965, 7.122)
-
-Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.9273
-
-Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 102.0
-    rank sums:                   [102.0, 108.0]
-    adjustment for ties:         0.0
-
-        Para Indicadora de 0 y coseno
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -75.1278
-    95% confidence interval: (-86.3, -59.16)
+    point estimate:          -24.4531
+    95% confidence interval: (-32.84, -15.51)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Indicadora de 0 y hardtanh
+        Para Indicadora de 0 y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          70.9064
-    95% confidence interval: (58.77, 81.88)
+    point estimate:          -78.2278
+    95% confidence interval: (-85.09, -61.96)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 209.0
-    rank sums:                   [209.0, 1.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para Indicadora de 0 y Hardtanh
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          68.0651
+    95% confidence interval: (53.68, 75.45)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Indicadora de 0 y LReLU
@@ -986,17 +986,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          1.14615
-    95% confidence interval: (-16.8, 10.85)
+    point estimate:          5.16567
+    95% confidence interval: (-20.61, 11.98)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.7285
+    two-sided p-value:           0.5995
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 95.0
-    rank sums:                   [95.0, 115.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 50.0
+    rank sums:                   [50.0, 70.0]
     adjustment for ties:         0.0
 
         Para Rampa y ReLU
@@ -1006,17 +1006,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -8.13779
-    95% confidence interval: (-14.54, 6.923)
+    point estimate:          -7.11667
+    95% confidence interval: (-9.634, 8.624)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.2943
+    two-sided p-value:           0.7197
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 76.0
-    rank sums:                   [76.0, 134.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 67.0
+    rank sums:                   [67.0, 53.0]
     adjustment for ties:         0.0
 
         Para Rampa y Sigmoid
@@ -1026,37 +1026,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -57.9833
-    95% confidence interval: (-62.57, -39.99)
+    point estimate:          -56.2834
+    95% confidence interval: (-59.56, -39.57)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Rampa y Tangente hiperbolica
+        Para Rampa y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -79.288
-    95% confidence interval: (-91.09, -67.42)
+    point estimate:          -96.9838
+    95% confidence interval: (-115.7, -87.96)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Rampa y Valor absoluto
@@ -1066,57 +1066,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -0.941645
-    95% confidence interval: (-14.16, 4.165)
-
-Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.3683
-
-Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 80.0
-    rank sums:                   [80.0, 130.0]
-    adjustment for ties:         0.0
-
-        Para Rampa y coseno
-
-        Exact Wilcoxon signed rank test
--------------------------------
-Population details:
-    parameter of interest:   Location parameter (pseudomedian)
-    value under h_0:         0
-    point estimate:          -77.8644
-    95% confidence interval: (-92.08, -64.79)
+    point estimate:          -26.4246
+    95% confidence interval: (-34.66, -23.18)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Rampa y hardtanh
+        Para Rampa y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          63.9878
-    95% confidence interval: (54.12, 75.69)
+    point estimate:          -78.9308
+    95% confidence interval: (-88.06, -66.97)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 207.0
-    rank sums:                   [207.0, 3.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        Para Rampa y Hardtanh
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          66.7323
+    95% confidence interval: (49.36, 73.84)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Rampa y LReLU
@@ -1126,17 +1126,17 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -4.12244
-    95% confidence interval: (-20.24, 4.184)
+    point estimate:          -1.34079
+    95% confidence interval: (-25.04, 5.397)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.2611
+    two-sided p-value:           0.3591
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 74.0
-    rank sums:                   [74.0, 136.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 43.0
+    rank sums:                   [43.0, 77.0]
     adjustment for ties:         0.0
 
         Para ReLU y Sigmoid
@@ -1146,37 +1146,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -51.4715
-    95% confidence interval: (-54.94, -37.98)
+    point estimate:          -52.1617
+    95% confidence interval: (-58.41, -39.44)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para ReLU y Tangente hiperbolica
+        Para ReLU y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -84.1005
-    95% confidence interval: (-89.21, -65.85)
+    point estimate:          -106.064
+    95% confidence interval: (-113.4, -89.18)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para ReLU y Valor absoluto
@@ -1186,57 +1186,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          6.43608
-    95% confidence interval: (-13.31, 12.54)
+    point estimate:          -29.7378
+    95% confidence interval: (-40.1, -17.05)
 
 Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.7285
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0004
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 95.0
-    rank sums:                   [95.0, 115.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 4.0
+    rank sums:                   [4.0, 116.0]
     adjustment for ties:         0.0
 
-        Para ReLU y coseno
+        Para ReLU y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -72.1121
-    95% confidence interval: (-80.83, -66.32)
+    point estimate:          -79.1831
+    95% confidence interval: (-87.32, -68.13)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para ReLU y hardtanh
+        Para ReLU y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          67.6445
-    95% confidence interval: (58.97, 76.9)
+    point estimate:          58.3572
+    95% confidence interval: (47.22, 72.97)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 209.0
-    rank sums:                   [209.0, 1.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para ReLU y LReLU
@@ -1246,37 +1246,37 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -11.3381
-    95% confidence interval: (-17.27, 5.316)
+    point estimate:          -15.5795
+    95% confidence interval: (-23.1, 5.949)
 
 Test summary:
     outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.3488
+    two-sided p-value:           0.1688
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 79.0
-    rank sums:                   [79.0, 131.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 35.0
+    rank sums:                   [35.0, 85.0]
     adjustment for ties:         0.0
 
-        Para Sigmoid y Tangente hiperbolica
+        Para Sigmoid y Tangente hiperbólica
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -33.7816
-    95% confidence interval: (-40.5, -16.58)
+    point estimate:          -55.5686
+    95% confidence interval: (-62.68, -42.48)
 
 Test summary:
     outcome with 95% confidence: reject h_0
     two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 10.0
-    rank sums:                   [10.0, 200.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         Para Sigmoid y Valor absoluto
@@ -1286,57 +1286,57 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          39.3199
-    95% confidence interval: (31.49, 56.46)
+    point estimate:          15.6716
+    95% confidence interval: (9.182, 30.59)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           0.0002
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 209.0
-    rank sums:                   [209.0, 1.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 118.0
+    rank sums:                   [118.0, 2.0]
     adjustment for ties:         0.0
 
-        Para Sigmoid y coseno
+        Para Sigmoid y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -17.8256
-    95% confidence interval: (-42.17, -12.84)
+    point estimate:          -24.5853
+    95% confidence interval: (-39.64, -15.41)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 3.0
-    rank sums:                   [3.0, 207.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Sigmoid y hardtanh
+        Para Sigmoid y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          118.172
-    95% confidence interval: (106.6, 124.4)
+    point estimate:          109.16
+    95% confidence interval: (102.0, 116.7)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Sigmoid y LReLU
@@ -1346,137 +1346,137 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          38.0946
-    95% confidence interval: (29.38, 51.51)
+    point estimate:          36.238
+    95% confidence interval: (26.04, 54.95)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 209.0
-    rank sums:                   [209.0, 1.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para Tangente hiperbolica y Valor absoluto
+        Para Tangente hiperbólica y Valor absoluto
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          69.417
-    95% confidence interval: (66.14, 82.3)
+    point estimate:          68.8611
+    95% confidence interval: (63.38, 83.44)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para Tangente hiperbolica y coseno
+        Para Tangente hiperbólica y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          10.8145
-    95% confidence interval: (-9.715, 15.23)
+    point estimate:          19.1776
+    95% confidence interval: (9.775, 37.85)
 
 Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.4524
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0020
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 126.0
-    rank sums:                   [126.0, 84.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 111.0
+    rank sums:                   [111.0, 9.0]
     adjustment for ties:         0.0
 
-        Para Tangente hiperbolica y hardtanh
+        Para Tangente hiperbólica y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          149.8
-    95% confidence interval: (131.7, 156.8)
+    point estimate:          168.711
+    95% confidence interval: (154.2, 173.2)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para Tangente hiperbolica y LReLU
+        Para Tangente hiperbólica y LReLU
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          73.4402
-    95% confidence interval: (63.81, 78.69)
+    point estimate:          93.8514
+    95% confidence interval: (85.81, 99.6)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para Valor absoluto y coseno
+        Para Valor absoluto y Coseno
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -79.125
-    95% confidence interval: (-84.36, -59.64)
+    point estimate:          -52.9964
+    95% confidence interval: (-58.05, -39.1)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
-        Para Valor absoluto y hardtanh
+        Para Valor absoluto y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          70.7083
-    95% confidence interval: (56.38, 82.22)
+    point estimate:          85.5009
+    95% confidence interval: (77.79, 98.48)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 209.0
-    rank sums:                   [209.0, 1.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
         Para Valor absoluto y LReLU
@@ -1486,77 +1486,77 @@ Details:
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          3.04229
-    95% confidence interval: (-13.85, 7.666)
+    point estimate:          27.7067
+    95% confidence interval: (9.656, 29.92)
 
 Test summary:
-    outcome with 95% confidence: fail to reject h_0
-    two-sided p-value:           0.8124
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           0.0054
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 98.0
-    rank sums:                   [98.0, 112.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 107.0
+    rank sums:                   [107.0, 13.0]
     adjustment for ties:         0.0
 
-        Para coseno y hardtanh
+        Para Coseno y Hardtanh
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          135.49
-    95% confidence interval: (129.0, 155.7)
+    point estimate:          133.543
+    95% confidence interval: (128.5, 151.4)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para coseno y LReLU
+        Para Coseno y LReLU
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          55.0153
-    95% confidence interval: (52.51, 81.48)
+    point estimate:          53.9847
+    95% confidence interval: (50.41, 81.64)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
-    Wilcoxon rank-sum statistic: 210.0
-    rank sums:                   [210.0, 0.0]
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 120.0
+    rank sums:                   [120.0, 0.0]
     adjustment for ties:         0.0
 
-        Para hardtanh y LReLU
+        Para Hardtanh y LReLU
 
         Exact Wilcoxon signed rank test
 -------------------------------
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -74.7082
-    95% confidence interval: (-83.09, -61.77)
+    point estimate:          -77.3618
+    95% confidence interval: (-82.25, -60.57)
 
 Test summary:
     outcome with 95% confidence: reject h_0
-    two-sided p-value:           <1e-05
+    two-sided p-value:           <1e-04
 
 Details:
-    number of observations:      20
+    number of observations:      15
     Wilcoxon rank-sum statistic: 0.0
-    rank sums:                   [0.0, 210.0]
+    rank sums:                   [0.0, 120.0]
     adjustment for ties:         0.0
 
         

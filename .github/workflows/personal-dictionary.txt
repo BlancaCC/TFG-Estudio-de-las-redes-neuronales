@@ -130,6 +130,8 @@ retroalimentarán
 rrnn
 rrnng
 separabilidad
+sigmoide
+sigmoidea
 sobreescribir
 solventable
 squasher
