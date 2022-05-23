@@ -15,3 +15,21 @@ Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no sol
 
 Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo de los enteros es factible como aproximador universal. 
 
+% Teorema de que podemos tener redes neuronales con parámetros racionales que también converjan. 
+\begin{aportacionOriginal}
+    \begin{teorema}
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso al espacio $\rrnnmc$. 
+    \end{teorema}
+    \begin{proof}
+        Para todo $h_r \in \rrnnmc$, dado cualquier $\epsilon \in \R^+$, 
+        gracias a la densidad de los racionales en los reales, 
+        existirá $h_q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
+        $\dist( h_r, h_q) < \epsilon$. 
+    \end{proof}
+
+    Si bien los números racionales tienen el potencial de ser computados por su 
+    finitud, seguimos sujetos a que el número de decimales y tamaño de su parte entera \textit{sean lo suficientemente pequeños} como para poder ser representados 
+    y calculados con un ordenador. Esto no tiene que ser, cierto y de hecho abre una nueva cuestión
+     Al aumentar el número de neuronas, la precisión que demande una red neuronal también disminuye?  
+\end{aportacionOriginal} 
+
