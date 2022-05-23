@@ -41,6 +41,7 @@ Multilayer
 NN
 Nótese
 Ockham
+Palett
 Perceptrón
 Pérez
 Readme
