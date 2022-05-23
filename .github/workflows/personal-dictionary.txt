@@ -71,8 +71,8 @@ aproximadores
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
-cienciadedatos
 ceil
+cienciadedatos
 codominio
 codominios
 contutor
@@ -136,6 +136,7 @@ retroalimentarán
 rrnn
 rrnng
 separabilidad
+sigmodea
 sigmoide
 sigmoidea
 sobreescribir
