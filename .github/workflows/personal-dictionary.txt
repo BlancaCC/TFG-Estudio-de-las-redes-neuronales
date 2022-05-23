@@ -7,6 +7,7 @@ Bernstein
 Beygelzimer
 Borel
 Bubeck
+CPUs
 Chebyshev
 CosineSquasher
 ECM
@@ -18,6 +19,7 @@ Feedforward
 Fn
 ForwardPropagation
 GN
+GPUs
 García
 Guervós
 HU
@@ -44,6 +46,7 @@ Multilayer
 NN
 Nótese
 Ockham
+Palett
 Perceptrón
 Pérez
 ReLU
@@ -61,6 +64,7 @@ Tietze
 UMVUE
 Wilcoxon
 Wortman
+Zhou
 approximators
 aproximador
 aproximadores
@@ -68,6 +72,7 @@ autres
 auxiliarDiferenciaPorDerivada
 backpropagation
 cienciadedatos
+ceil
 codominio
 codominios
 contutor
@@ -78,6 +83,7 @@ diferenciable
 diferenciables
 discretice
 discretiza
+discretización
 distanciaMínima
 ds
 entregables

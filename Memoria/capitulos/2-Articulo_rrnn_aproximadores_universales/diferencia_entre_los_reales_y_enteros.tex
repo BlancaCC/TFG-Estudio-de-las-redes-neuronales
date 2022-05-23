@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Observación entre la diferencia de Q y R
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Observación sobre el dominio discreto donde se está trabajando 
+% y que refleja una posible fuente de mejora de las redes neuronales
+% ISSUE #88
+\section{Consideración sobre la capacidad de cálculo}
+
+Suele pasar peligrosamente desapercibido que el teorema  \ref{corolario:2_6} recién probado asegura
+que se podrá encontrar una red neuronal en $\rrnnmc$
+que aproxime todo lo bien que queramos la función ideal; sin embargo, destaquemos que los parámetros que caracterizan a la red neuronal encontrada son reales. Es decir, 
+si nuestra red neuronal toma valores irracionales difícilmente será computable en un ordenador por su infinitud. 
+
+Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no solo debe de reducirse el error, si no que los parámetros que representan la red deben de estar limitados a cierta precisión: la propia de un ordenador.  
+
+Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo de los enteros es factible como aproximador universal. 
+
+% Teorema de que podemos tener redes neuronales con parámetros racionales que también converjan. 
+\begin{aportacionOriginal}
+    \begin{teorema}
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso al espacio $\rrnnmc$. 
+    \end{teorema}
+    \begin{proof}
+        Para todo $h_r \in \rrnnmc$, dado cualquier $\epsilon \in \R^+$, 
+        gracias a la densidad de los racionales en los reales, 
+        existirá $h_q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
+        $\dist( h_r, h_q) < \epsilon$. 
+    \end{proof}
+
+    Si bien los números racionales tienen el potencial de ser computados por su 
+    finitud, seguimos sujetos a que el número de decimales y tamaño de su parte entera \textit{sean lo suficientemente pequeños} como para poder ser representados 
+    y calculados con un ordenador. Esto no tiene que ser, cierto y de hecho abre una nueva cuestión
+     Al aumentar el número de neuronas, la precisión que demande una red neuronal también disminuye?  
+\end{aportacionOriginal} 
+
+De ser cierto este resultado, podría empezar a denominarse el espacio 
+de las redes neuronales de $n$  neuronas y $d$ bits de precisión. 
+
+Es más, una vez limitados los decimales con los que se puede representar una red neuronal; puesto que los números racionales son isomorfos a los enteros, se abriría la puerta a establecer un isomorfismo entre las redes neuronales con parámetros
+en los racionales y el 
+y el de las redes neuronales con entradas en los enteros. 
+
+Todas estas pesquisas tendrían su interés ya que por las arquitecturas 
+actuales, los números flotantes (racionales con un límite de decimales) se calculan en la GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se comenta se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
+del 2022, URL: \url{https://long-zhou.github.io/2013/02/12/CPU-GPU-comparison.html}} \cite{CPU-vs-GPUS}. 
+
