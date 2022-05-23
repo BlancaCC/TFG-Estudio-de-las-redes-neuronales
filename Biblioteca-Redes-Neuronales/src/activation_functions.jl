@@ -1,46 +1,26 @@
 module ActivationFunctions
 
 export CosineSquasher
-export CreateIndicatorFunction
-export CreateThreshold
-export CreateThresholdSign
 export HardTanh
-export LReLU
+export @LReLU
 export RampFunction
 export ReLU
 export Sigmoid
-
-"""
-    CreateThreshold(polynomial, t)
-Return a Threshold Function defined by `polinamial`and `t`.
-
-# Arguments
-- `polynomial`: A functions from real to real numbers
-- `t`: A real number 
-"""
-function CreateThreshold(polynomial, t::Real)
-    function ThresholdFunction(x)
-        return  (polynomial(x) < t) ? 0 : 1
-    end
-    return ThresholdFunction
-end
+export @ThresholdFunction
+export @IndicatorFunction
 
 """
 CreateThreshold(polynomial, t)
 Return a Threshold Function defined by `polinamial`and `t`.
-Rango entre [-1,1]
+Output in {-1,1}
 
 # Arguments
 - `polynomial`: A functions from real to real numbers
 - `t`: A real number
 """
-function CreateThresholdSign(polynomial, t::Real)
-    function ThresholdFunction(x)
-        return  sign(polynomial(x) - t)
-    end
-    return ThresholdFunction
+macro ThresholdFunction(polynomial, t::Real)
+    return :( f(x)=sign($(esc(polinamial))(x) - $esc(t)) )
 end
-
 
 """
     CosineSquasher(x::Real) :: Real
@@ -57,14 +37,11 @@ function CosineSquasher(x::Real) :: Real
 end
 
 """
-    CreateIndicatorFunction(t)
+    IndicatorFunction(t)
 Return an indicator function giving its threshold `t`.
 """
-function CreateIndicatorFunction(t::Real)
-    function IndicatorFunction(x::Real) :: Real
-        return  (x > t) ? 1 : 0
-    end
-    return IndicatorFunction
+macro IndicatorFunction(t::Real)
+    return :( f(x)=($(esc(t)) < x) ? 1 : 0 )
 end
 
 """
@@ -106,15 +83,11 @@ function HardTanh(x::Real)
 end
 
 """
-    LReLU(x::Real, a=0.01)
+    LReLU(a::Real)
 Leaky ReLU
 """
-function LReLU(x::Real, a=0.01)
-    if(x<0)
-        return a*x
-    else
-        return x
-    end
-end
-
+macro LReLU(a::Real)
+    return :( f(x::Real)=(x<0) ? $(esc(a))*x : x )
+end 
 end #module end
+
