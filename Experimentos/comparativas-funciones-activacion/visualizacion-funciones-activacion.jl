@@ -4,13 +4,11 @@
 # Paquetes
 using Plots
 include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
-#using GR
-#gr()
 using .ActivationFunctions
-# Descomentar: Para mostrar en la carpeta del experimento 
-#img_path = "./Experimentos/comparativas-funciones-activacion/img/" #carpeta que contendrá las imágenes
-# Descomentar: Para mostrar en la carpeta de la memoria
-img_path = "./Memoria/img/funciones-activacion/" #carpeta que contendrá las imágenes
+
+FICHERO_CONFIGURACION = "Experimentos/.config.toml"
+config = TOML.parsefile(FICHERO_CONFIGURACION)["visualizacion-funciones-activacion"]
+img_path = config["DIRECTORIO_IMAGENES"]
 
 ### Funciones que se van a analizar  y auxiliares
 p(x) = 2x 

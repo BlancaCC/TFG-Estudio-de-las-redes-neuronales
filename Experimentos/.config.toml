@@ -1,0 +1,20 @@
+############################################################
+#           FICHERO CONGIGURACIÓN EXPERIMENTOS 
+#
+# Guarda información relativa a: 
+# - Nombre de ficheros
+# - Directorio de escritura
+############################################################
+
+# --- Configuración de comparativa de las funciones de activación ---
+[comparativas-funcion-activacion] 
+DIRECTORIO_RESULTADOS = "Experimentos/comparativas-funciones-activacion/"
+NOMBRE_FICHERO_TEST_WILCOXON = "test-Wilcoxon.txt"
+NOMBRE_FICHERO_RESULTADOS_MEDIA = "resultado-comparativas-funciones-media-tiempos.csv"
+
+# Configuración de 
+[visualizacion-funciones-activacion]
+# Descomentar: Para mostrar en la carpeta del experimento 
+#DIRECTORIO_IMAGENES = "./Experimentos/comparativas-funciones-activacion/img/" #carpeta que contendrá las imágenes
+# Descomentar: Para mostrar en la carpeta de la memoria
+DIRECTORIO_IMAGENES = "./Memoria/img/funciones-activacion/" #carpeta que contendrá las imágenes

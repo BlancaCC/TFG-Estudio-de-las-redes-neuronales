@@ -18,14 +18,18 @@ using DataFrames
 using Statistics
 using HypothesisTests
 using CSV
+using TOML
+
+FICHERO_CONFIGURACION = "Experimentos/.config.toml"
+config = TOML.parsefile(FICHERO_CONFIGURACION)["comparativas-funcion-activacion"]
 
 # Variables de localización y nombre de ficheros
-DIRECTORIO_RESULTADOS = "Experimentos/comparativas-funciones-activacion/"
-NOMBRE_FICHERO_TEST_WILCOXON = "test-Wilcoxon.txt"
-NOMBRE_FICHERO_RESULTADOS_MEDIA = "resultado-comparativas-funciones-media-tiempos.csv"
+DIRECTORIO_RESULTADOS = config["DIRECTORIO_RESULTADOS"]
+NOMBRE_FICHERO_TEST_WILCOXON = config["NOMBRE_FICHERO_TEST_WILCOXON"]
+NOMBRE_FICHERO_RESULTADOS_MEDIA = config["NOMBRE_FICHERO_RESULTADOS_MEDIA"]
 
 # número de particiones
-numero_particiones = 24
+numero_particiones = 3
 # Conjunto de datos sobre los que se van a comparar  
 limite_inf = -1000000
 limite_sup = 1000000
