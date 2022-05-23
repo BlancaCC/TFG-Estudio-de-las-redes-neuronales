@@ -46,7 +46,7 @@ end
 # Funciones simples para comparativa 
 f(x)=1
 g(x) = x
-# Declaración de funciones 
+# Declaración de funciones  
 funciones_activacion_a_comparar = [
     FuncionActivacion("cte 1 (para comparar)", f),
     FuncionActivacion("Identidad (para comparar)", g),
@@ -61,7 +61,6 @@ funciones_activacion_a_comparar = [
     FuncionActivacion("coseno", cos),
     FuncionActivacion("hardtanh", HardTanh),
     FuncionActivacion("LReLU", @LReLU(0.01)),
-
 ]
 
 # Estructuras que almacenarán los estadísticos
@@ -83,6 +82,7 @@ for (i,f) in enumerate(funciones_activacion_a_comparar)
 end
 
 for p in 1:numero_particiones
+    println("Partición $p/$numero_particiones")
     for (i,f) in enumerate(funciones_activacion_a_comparar)
         time = @elapsed begin
             for x in particion_homogenea

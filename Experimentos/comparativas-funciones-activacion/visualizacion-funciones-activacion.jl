@@ -3,6 +3,7 @@
 #################################################################################
 # Paquetes
 using Plots
+using TOML
 include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
 using .ActivationFunctions
 
@@ -12,7 +13,7 @@ img_path = config["DIRECTORIO_IMAGENES"]
 
 ### Funciones que se van a analizar  y auxiliares
 p(x) = 2x +1
-
+id(x)=x
 # Estructura caracteríticas a mostrar 
 struct FuncionActivacion
     nombre::String
@@ -26,14 +27,14 @@ funciones_a_mostrar = [
     FuncionActivacion("Identidad", id, -1,1),
     FuncionActivacion("Threshold de 2x+1", @ThresholdFunction(p,0), -2, 2),
     FuncionActivacion("Cosine CosineSquasher", CosineSquasher, -2pi, 2pi),
-    FuncionActivacion("Indicadora de 0", @IndicatorFunction(0), -1, 1),
+    FuncionActivacion("Indicadora de 0", @IndicatorFunction(0), -2, 2),
     FuncionActivacion("Rampa", RampFunction, -2, 2),
     FuncionActivacion("ReLU", ReLU, -2, 2),
     FuncionActivacion("Sigmoid", Sigmoid, -4,4),
     FuncionActivacion("Tangente hiperbolica", tanh, -4,4),
     FuncionActivacion("Valor absoluto", abs, -2,2),
-    FuncionActivacion("coseno", cos, -2pi,2pi),
-    FuncionActivacion("hardtanh", HardTanh, -2pi,2pi),
+    FuncionActivacion("Coseno", cos, -2pi,2pi),
+    FuncionActivacion("Hardtanh", HardTanh, -2pi,2pi),
     FuncionActivacion("LReLU", @LReLU(0.01), -2pi,2pi),
 ]
 

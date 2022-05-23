@@ -2,12 +2,13 @@ module ActivationFunctions
 
 export CosineSquasher
 export HardTanh
+export @IndicatorFunction
 export @LReLU
 export RampFunction
 export ReLU
 export Sigmoid
 export @ThresholdFunction
-export @IndicatorFunction
+
 
 """
 Threshold(polynomial, t)
@@ -37,11 +38,11 @@ function CosineSquasher(x::Real) :: Real
 end
 
 """
-    IndicatorFunction(t)
+    IndicatorFunction(t::Real)
 Return an indicator function giving its threshold `t`.
 """
 macro IndicatorFunction(t::Real)
-    return :( f(x)=($(esc(t)) < x) ? 1 : 0 )
+    return :( f(x)=(($(esc(t)) < x) ? 1 : 0 ) )
 end
 
 """
