@@ -324,6 +324,18 @@ compararemos entonces su coste computacional y tomaremos como representante de l
 
 \textcolor{red}{TODO: Comentar cómo afecta el escalado al error}. Razonarlo con la integral.
 
+\subsection{ Implementación de las funciones de activación} 
+
+Las funciones de activación han sido implementadas con cuidado de que sean eficientes 
+y valiéndose de las características propias de Julia, para ello se han utilizado técnicas como: 
+
+\textbf{Macros}\footnote{La información consultada de macros ha sido  de la página oficial de Julia, a día 23 de mayo del 2022, url:
+\url{https://docs.julialang.org/en/v1/manual/metaprogramming}}:
+que permiten sustituciones de código cuando el código es analizado por el compilador, 
+de esta manera, funciones que devuelven otras funciones dependientes de un parámetro se verán beneficiadas.  Puede encontrar la implementación de esto en la biblioteca de redes neuronales implementada en nuestro repositorio \footnote{Esto es en \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src/activation_functions.jl}}
+
+
+
 \subsection{Coste computacional funciones activación }
 
 El experimento para comparar los resultados ha consistido en dado
@@ -336,7 +348,7 @@ signos de Wilcoxon} (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatisti
  Prueba de los rangos con signo de Wilcoxon by Joaquín Amat Rodrigo, available under a Attribution 4.0 International (CC BY 4.0) at
   \url{https://www.cienciadedatos.net/documentos/18_prueba_de_los_rangos_con_signo_de_wilcoxon}
   Con fecha de visita el 22 de mayo del 2022.
-  }
+  }).
 
 \subsubsection*{Condiciones que avalan la prueba de los rangos}
 \begin{itemize}

@@ -19,7 +19,7 @@ Output in {-1,1}
 - `t`: A real number
 """
 macro ThresholdFunction(polynomial, t::Real)
-    return :( f(x)=sign($(esc(polinamial))(x) - $esc(t)) )
+    return :( f(x)=sign($(esc(polynomial))(x) - $(esc(t))) )
 end
 
 """
