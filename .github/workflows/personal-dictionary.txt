@@ -1,4 +1,5 @@
 personal_ws-1.1 es 0 utf-8 
+Amat
 Approximators
 Backpropagation
 Backpropagations
@@ -9,6 +10,7 @@ Bubeck
 Chebyshev
 CosineSquasher
 ECM
+Encapsulamiento
 Explicitación
 FSum
 Factorizando
@@ -50,6 +52,7 @@ Rosenblatt
 Sebastien
 Sellke
 Sigmodea
+Sigmoid
 Sigmoide
 Stinchcombe
 TFG
@@ -68,6 +71,7 @@ cienciadedatos
 codominio
 codominios
 contutor
+cte
 darkRed
 diferenciabilidad
 diferenciable
@@ -112,6 +116,7 @@ perceptrones
 perceptrón
 png
 posteriori
+precompilados
 primeraCapa
 qB
 reenfocar
@@ -139,6 +144,3 @@ usefulInformation
 ésima
 ésimas
 ésimo
-Amat
-cte
-Sigmoid

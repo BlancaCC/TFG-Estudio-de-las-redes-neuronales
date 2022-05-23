@@ -324,15 +324,28 @@ compararemos entonces su coste computacional y tomaremos como representante de l
 
 \textcolor{red}{TODO: Comentar cómo afecta el escalado al error}. Razonarlo con la integral.
 
-\subsection{ Implementación de las funciones de activación} 
+\subsection{ Implementación de las funciones de activación en la biblioteca de redes neuronales} 
 
 Las funciones de activación han sido implementadas con cuidado de que sean eficientes 
 y valiéndose de las características propias de Julia, para ello se han utilizado técnicas como: 
 
-\textbf{Macros}\footnote{La información consultada de macros ha sido  de la página oficial de Julia, a día 23 de mayo del 2022, url:
-\url{https://docs.julialang.org/en/v1/manual/metaprogramming}}:
-que permiten sustituciones de código cuando el código es analizado por el compilador, 
-de esta manera, funciones que devuelven otras funciones dependientes de un parámetro se verán beneficiadas.  Puede encontrar la implementación de esto en la biblioteca de redes neuronales implementada en nuestro repositorio \footnote{Esto es en \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src/activation_functions.jl}}
+\begin{itemize}
+    \item \textbf{Programación modular}: Tal y como se recomienda en la documentación de Julia \footnote{
+        Consultada en la página web oficial de Julia  a día 23 de mayo del 2022 con URL: \url{https://docs.julialang.org/en/v1/manual/modules/}
+    } se ha utilizado una módulo en la implementación de la biblioteca, esto aporta los siguientes beneficios: 
+    \begin{itemize}
+        \item Los módulos pueden ser precompilados y de esta manera se aceleraría la carga y el tiempo de inicialización. 
+        \item Encapsulamiento de los métodos y facilidades de uso del espacio de nombres, lo cual forma parte
+        de una buena metodología de programación. 
+    \end{itemize}
+    \item \textbf{Macros}\footnote{La información consultada de macros ha sido  de la página oficial de Julia, a día 23 de mayo del 2022, URL:
+    \url{https://docs.julialang.org/en/v1/manual/metaprogramming}}:
+    que permiten sustituciones de código cuando el código es analizado por el compilador, 
+    de esta manera, funciones que devuelven otras funciones dependientes de un parámetro se verán beneficiadas. 
+     Puede encontrar la implementación de esto en la biblioteca de redes neuronales implementada en nuestro 
+     repositorio \footnote{Esto es en \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src/activation_functions.jl}}
+\end{itemize}
+
 
 
 
