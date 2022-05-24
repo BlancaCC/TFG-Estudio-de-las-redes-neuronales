@@ -292,8 +292,6 @@ La implementación de la fórmula anterior sería la siguiente:
    \end{algorithmic}
 \end{algorithm}
 
-\textcolor{red}{Falta revisar y repensar esta sección 
-aprovechar que es de dimensión para hacer triquiñuelas en la evaluación ordenando los valores jejejeje}
 %%%%%%%%%%% Fin de lo observado
 
 \subsection{Qué función de activación seleccionar}
@@ -303,19 +301,31 @@ de activación frente a otra de una red neuronal serían los siguientes:
 \begin{enumerate}
     \item Espacio de memoria.
     \item Coste computacional.
-    \item Precisión a obtener.
+    \item Efectividad en cuanto a reducir el error de aproximación.
 \end{enumerate}
 
 Sobre la primera consideración está claro que el uso de una única función ahorraría el tener que almacenar el tipo de función que se va emplear en cada neurona.
 
-Respecto al coste computacional 
-\textcolor{red}{TODO:  añadir coste computacional  de las funciones que considere oportunas}
+Respecto al coste computacional puede uno basarse en una análisis teórico del número de 
+operaciones y su complejidad o realizar un estudio empírico se ha realizado 
+en al sección \ref{ch06:coste-computacional-funciones-activacion}.
 
-Y respecto a la precisión no se conoce ninguna motivación (por ahora)
-que \textcolor{red}{TODO pensar}
+% Nota margen sobre idea 
+\marginpar{\maginLetterSize
+    \iconoClave \textcolor{darkRed}{     
+        \textbf{
+        Estrategia de selección de funciones de activación.
+        }
+    }
 
-\textcolor{red}{TODO: Pudiera existir un equilibrio entre 
-el coste y la precisión. Es decir, a mismo número de neuronas se podría conseguir mejor precisión con ciertas funciones de activación -> esto seguro. ¿Cómo se podría saber esto a partir de los datos? ¿aumentaría ese proceso el coste?}
+    Esta idea abre la puerta a determinar mediante algoritmos 
+    genéticos qué funciones de activación podrían resultar más 
+    beneficiosas.
+    
+}
+Fijado cierto número de neuronas, en lo que respecta a la precisión que nos puedan aportar las funciones de activación; por la idea intuitiva 
+del funcionamiento de las funciones de activación mostrado en mostrada en \ref{ch03:funcionamiento-intuitivo-funcion-activacion} es un factor que repercute en los resultados 
+pero desconocido a priori. 
 
 
 %% Formulación técnica 

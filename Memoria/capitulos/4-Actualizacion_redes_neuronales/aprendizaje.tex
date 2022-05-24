@@ -617,9 +617,6 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
 
 Notemos la necesidad de una variable $\eta \in \R$ que es prefijada. 
 
-\textcolor{red}{$\eta$ podría ser incluso una vector de pesos que se aplicara de manera distinta a cualquier coeficiente o una función variable de ciertas condiciones. No sé hasta qué punto sería interesante plantearse el uso de algoritmos genéticos para actualizarlo ya que estos carecen de valor teórico. ¿Existe algún resultado de análisis que nos de una cota mejor?}
-
-
 Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este vienen determinado por la expresión. 
 
 El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que no haya ningún cálculo repetido. 
@@ -719,7 +716,7 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
 \end{algorithmic}
 \end{algorithm}
 
-\textcolor{red}{Falta añadir complejidad}
+\textcolor{red}{TODO issue 105 Falta añadir complejidad}
 
 \subsubsection*{Análisis de la complejidad}  
 Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-gradiente} es:
