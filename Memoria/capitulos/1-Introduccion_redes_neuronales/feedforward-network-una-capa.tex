@@ -164,31 +164,3 @@ lo que se hace es \textit{colocar} por escalado y simetrías la imagen de la fun
     \caption{Cómo afecta la forma de la función de activación}
     \label{img:como afecta la forma de la función de aproximación}
    \end{figure}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Multiplicar por un coeficiente complejo sería aplicar un giro,
- lo que a priori mejoraría la convergencia
- ¿Qué pasaría se cambiáramos el cuerpo?}
-
-Ante esta idea habría que plantearse si: 
-
-\begin{enumerate}
-    \item Formalizar si esto mejoraría.
-    \item A nivel de implementar Julia tiene números complejos ¿cuánto supondría de coste computacional? ¿merecería la pena?
-    \item ¿Cómo habría que actualizar los pesos?
-\end{enumerate}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Vista esta idea sería muy interesante plantearse a partir de los datos cómo deberían de ser las funciones de activación. Es decir, que no se fijen a priori, sino que sean de los datos donde provenga su forma.}
-
-Para poder utilizarse la idea que acaba de plantearse debería de plantearse: 
-\begin{enumerate}
-    \item Formalizar beneficio teórico.
-    \item Balanza costo y mejora.
-    \item Una forma de mejorar que acepte esas funciones (no necesariamente \textit{backpropagation}).
-\end{enumerate}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Ante esto mi intuición me dice que que la función de activación sea constante por algún extremo y que no fuera constante en algún intervalo serían las únicas hipótesis para que tal función de activación sirviera para construir redes neuronales que funcionara como aproximador universal}
-
-
