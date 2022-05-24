@@ -21,26 +21,60 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
         El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso al espacio $\rrnnmc$. 
     \end{teorema}
     \begin{proof}
-        Para todo $h_r \in \rrnnmc$, dado cualquier $\epsilon \in \R^+$, 
-        gracias a la densidad de los racionales en los reales, 
-        existirá $h_q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
-        $\dist( h_r, h_q) < \epsilon$. 
+        Se quiere probar que para todo $h^r \in \rrnnmc$,
+         dado cualquier $\epsilon \in \R^+$  
+        existirá $h^q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
+        $\dist( h^r, h^q) < \epsilon$. 
+
+        La red neuronal $h^r$ está determinada por un conjunto finito
+        de parámetros supongamos que hay $q$ y que están determinados por un índice del conjunto $\Lambda$. 
+
+        Sea $\alpha^0_i \in R$, el primer índice $h^r$ definimos la red neuronal $h^1$ con coeficientes  $\alpha^1_i$ con $i\in \Lambda$
+        de tal forma que los parámetros que la determinan vienen dados 
+        \begin{equation*}
+            \alpha^1_i = \alpha^0_i 
+            \text{ con } i \in \Lambda
+            \text{ y } i \neq 1.
+        \end{equation*}
+
+        El primer parámetro $\alpha^1_1$, será un número racional 
+        seleccionado de tal forma que se satisfaga que 
+        \begin{equation*}
+            \dist( h^r, h^1) < \frac{\epsilon}{q}.
+        \end{equation*}
+        Por la densidad de los racionales en los reales sabemos que  $\alpha^1_1$.
+
+        Siguiendo la misma idea, para $j \in \{2,\ldots, q\}$ se define la red neuronal 
+        $h^j$ cuyos parámetro vienen dados por 
+        \begin{equation*}
+            \alpha^j_i = \alpha^{j-1}_i 
+            \text{ con } i \in \Lambda
+            \text{ y } i \neq j;
+        \end{equation*}
+        y $\alpha^j_j \in \Q$ seleccionado de tal forma que  
+        \begin{equation*}
+            \dist( h^j, h^{j-1}) < \frac{\epsilon}{q}.
+        \end{equation*}
+
+        De esta forma, en virtud de la desigualdad triangular,  se ha encontrado una red neuronal $h^q$ que todos sus parámetros son racionales y 
+        satisface 
+        $\dist( h^r, h^q) < \epsilon$.
     \end{proof}
 
     Si bien los números racionales tienen el potencial de ser computados por su 
     finitud, seguimos sujetos a que el número de decimales y tamaño de su parte entera \textit{sean lo suficientemente pequeños} como para poder ser representados 
-    y calculados con un ordenador. Esto no tiene que ser, cierto y de hecho abre una nueva cuestión
-     Al aumentar el número de neuronas, la precisión que demande una red neuronal también disminuye?  
+    y calculados con un ordenador. Esto no tiene que ser, cierto y de hecho abre una nueva cuestión:
+     Al aumentar el número de neuronas, ¿la precisión demandada por una red neuronal también disminuye?  
 \end{aportacionOriginal} 
 
 De ser cierto este resultado, podría empezar a denominarse el espacio 
 de las redes neuronales de $n$  neuronas y $d$ bits de precisión. 
 
-Es más, una vez limitados los decimales con los que se puede representar una red neuronal; puesto que los números racionales son isomorfos a los enteros, se abriría la puerta a establecer un isomorfismo entre las redes neuronales con parámetros
+Es más, una vez limitados los decimales con los que se puede representar una red neuronal; puesto que los números racionales son isomorfos a los enteros, se podría plantear establecer un isomorfismo entre las redes neuronales con parámetros
 en los racionales y el 
 y el de las redes neuronales con entradas en los enteros. 
 
-Todas estas pesquisas tendrían su interés ya que por las arquitecturas 
+Todas estas pesquisas tienen su interés ya que por las arquitecturas 
 actuales, los números flotantes (racionales con un límite de decimales) se calculan en la GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se comenta se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
 del 2022, URL: \url{https://long-zhou.github.io/2013/02/12/CPU-GPU-comparison.html}} \cite{CPU-vs-GPUS}. 
 
