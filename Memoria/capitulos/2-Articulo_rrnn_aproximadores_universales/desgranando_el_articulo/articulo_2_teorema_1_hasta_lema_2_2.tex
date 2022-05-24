@@ -134,8 +134,8 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 \reversemarginpar
 \marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
 El corolario \ref{cor:se-generaliza-G-a-una-familia}
-abre la puerta a preguntarse si la combinación de diferentes funciones de activación podría mejorar los resultados de alguna manera.
-Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
+abre la puerta a preguntarse si la combinación de diferentes funciones de activación 
+podría mejorar los resultados de alguna manera.
 }
 \normalmarginpar
 
@@ -189,17 +189,6 @@ Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
         Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
     \end{proof}
 \end{aportacionOriginal}
-
-La utilidad de este corolario a nivel práctico es cuestionable, ya que aumentaría considerablemente el número de 
-parámetros que ajustar de la red neuronal ocasionando: (1) la necesidad de mayor número de datos que aprender, 
-(2) mayor costo computacional, (3) probablemente peores resultados a igual número de iteraciones en comparativa 
-con otros modelos de menor número de neuronas (ya que el espacio de búsqueda ha aumentado).
-
-Podría tener el siguiente interés:
-el teorema nos dice que podemos aproximar cualquier función continua de variable real, sin embargo, desconocemos el 
-número de neuronas, por capa. Supongamos una situación en la que el número de neuronas esté restringido, en tal caso,
-generalizar $A^r$ sí que podría tener un papel importante en cuanto a mejoras. 
-\textcolor{red}{TODO: ELIMINAR ESTA CONCLUSIÓN CUANDO SE REDACTE EN LAS HIPÓTESIS}
 
 % Nota idea intuitiva  equivalencia 
 \marginpar{\maginLetterSize\raggedright

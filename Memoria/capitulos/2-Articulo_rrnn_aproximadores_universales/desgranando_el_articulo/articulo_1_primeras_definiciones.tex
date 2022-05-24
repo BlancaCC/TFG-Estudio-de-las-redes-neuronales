@@ -28,7 +28,7 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     }
     Se probará la convergencia de las redes neuronales independientemente de la función de activación seleccionada. Cabe entonces la pregunta
     ¿Existen funciones de activación más democráticas que otras? 
-    Se discutirá esta pregunta como hipótesis de optimización \ref{hypothesis:activation-function}.
+    Se discutirá esta pregunta en \ref{funciones-activacion-democraticas-mas-demoscraticas}.
     }
 
     % Imágenes de la función indicadora 
@@ -96,18 +96,6 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
 
    Notemos que así definidas las funciones de activación son medibles, ya que la imagen inversa de un abierto de $[0,1]$ siempre será un conjunto medible de  $\R$  (capítulo 7  página 77 \cite{nla.cat-vn1819421}).
     
-    % Nota margen sobre que abstrae esta estructura de red neuronal
-    \marginpar{\maginLetterSize
-        \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{Idea tras la definición de $\pmc$.}
-        }
-    Nótese que de acorde a nuestra definición  
-    \textcolor{red}{TODO añadir referencia}
-    lo que se ha definido es la clase de las redes 
-    neuronales de una capa oculta y salida de una dimensión.
-    Donde cada sumando representa una neurona de la capa oculta.
-    }
-    %%% fin nota
 
     Cabe destacar que la definición tomada es la propuesta en \cite{HORNIK1989359} y que existen
     otras posibles definiciones menos restrictivas con las que también se ha probado la convergencia universal.
@@ -126,17 +114,17 @@ $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$,  $b \in \R$ es un
 usual. En este contexto, $x$ corresponde al vector entrada de la red neuronal, $w$ los pesos de la red
 que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo. 
 
-  % Nota margen sobre Idea intuitiva de la definición 
-  \marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-   \textbf{Motivación de la definición de $\pmcg$}}.
-    
-   En un principio será más fácil demostrar que con funciones de esta clase seremos capaz de aproximar cualquier función continua.
-   De esta manera este conjunto actuará de nexo de unión entre las funciones continuas y las redes neuronales facilitando las demostraciones. De ahora en adelante nos referiremos a este conjunto como al \textbf{de anillo de aproximación} (como curiosidad, el nombre proviene a que tiene estructura de anillo y que se utilizará para aproximar funciones continuas).
-   }
-
-
-
+   % Nota margen sobre que abstrae esta estructura de red neuronal
+ \marginpar{\maginLetterSize
+ \iconoAclaraciones \textcolor{dark_green}{     
+ \textbf{Idea tras la definición de $\pmc$.}
+ }
+Nótese que de acorde a nuestra definición  \ref{definition:redes_neuronales_una_capa_oculta}
+lo que se ha definido es la clase de las redes 
+neuronales de una capa oculta y salida de una dimensión.
+Donde cada sumando representa una neurona de la capa oculta.
+}
+%%% fin nota
 \begin{definicion} [Formalización de una red neuronal de una capa oculta y salida real]
     Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquier natural positivo
     $d \in \N$ se define a la clase de funciones $\pmc$ como 
@@ -157,10 +145,23 @@ que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo.
     no depende de la función $G$ seleccionada, así pues tras enunciar tales resultados nos referiremos sin ambigüedad tal conjunto como $\rrnn$.
 \end{definicion}
 
+
 Definiremos a continuación una familia de funciones más generales que $\pmc$ con la intención de que actúe como nexo de unión entre la clase de funciones continuas y las redes neuronales de una capa facilitándonos con ello la prueba de los resultados. La familia que introduciremos solo tiene 
 una utilidad teórica, es decir no tendrá ninguna relevancia a nivel práctico en cuanto a implementaciones.
    
+% Nota margen sobre Idea intuitiva de la definición 
+\marginpar{\maginLetterSize
+\iconoAclaraciones \textcolor{dark_green}{     
+\textbf{Motivación de la definición de $\pmcg$}}.
 
+En un principio será más fácil demostrar que con 
+funciones de esta clase seremos capaz de aproximar cualquier función continua.
+De esta manera este conjunto actuará de nexo de unión entre las funciones continuas y las redes neuronales 
+facilitando las demostraciones. De ahora en adelante nos
+ referiremos a este conjunto como al \textbf{de anillo de aproximación} (como curiosidad, el nombre proviene a que
+  tiene estructura de anillo y que se utilizará para 
+  aproximar funciones continuas).
+}
 \begin{definicion} [Anillo de aproximación de redes neuronales]\label{def:articulo_abstracción_rrnn}
     
     \begin{equation} 
@@ -180,28 +181,7 @@ una utilidad teórica, es decir no tendrá ninguna relevancia a nivel práctico 
 
 \end{definicion}
 
-
-\subsection{ Reflexión sobre la relevancia de la función de activación}  
-
-\textcolor{red}{Este párrafo es redundante con el de la introducción, habría que ver cómo casarlos}
-La función de activación $G$ es clave en el proceso de aprendizaje.
-Por una parte nótese que como $\afines$ es el espacio de funciones afines, lo que se está haciendo es 
-aproximar una función medible a partir de combinaciones lineales de \textit{rectas} evaluadas mediante $G$. 
- 
-\begin{figure}[h!]
-    \includegraphics[width=\textwidth]{articulo_rrnn_aproximadores_universales/ejemploAproximaciónCurvasPorRectas.jpeg}
-    \caption{Ejemplo de curva aproximada por un perceptrón multicapa \cite{alma991008058419704990}. El interior de la curva da lugar a la categoría $+$ y el exterior a otra, la $-$.}
-    \label{img:def_esenciales_ejemplo_curva_aproximada_percentrón_multicapa}
-\end{figure}
-
-Se probará la convergencia de las redes neuronales independientemente de la función de activación seleccionada. Cabe entonces la pregunta
-¿Existen funciones de activación más democráticas que otras? 
-Se discutirá esta pregunta como hipótesis de optimización \ref{hypothesis:activation-function}.
-
-Por otra parte, la función de activación acota la imagen de una aplicación afín, esta limitación 
-es de total relevancia ya que permite una interpretación previamente convenida. 
-Decimos por ende que es la causante del \textit{aprendizaje}.     
-
+\reversemarginpar
   %%% Nota margen sobre función medible 
   \marginpar{\maginLetterSize
     \iconoAclaraciones \textcolor{dark_green}{     
@@ -218,11 +198,7 @@ Decimos por ende que es la causante del \textit{aprendizaje}.
     que pueden ser observables y cuantificables en la mayoría de los casos, estos comportamientos son formalizados
      matemáticamente con \textbf{funciones medibles}.
 }
-Por si el comentario no ha resultado claro procedamos a dar un ejemplo:   
-Supongamos que nos hallamos frente a un problema de clasificación de dos clases y que la función de activación
-tomada es una función umbral que toma valores cero o uno. Define por tanto esta función una separación de clases. 
-De otra manera, de solo existir la función afín sin una transformación de la salida, el codominio serían 
-todos los número reales donde a priori no se explicita una asignación de clase.  
+\normalmarginpar 
 
 Introducimos a continuación la notación de los conjuntos de funciones que seremos capaces de aproximar.  
 
@@ -266,6 +242,7 @@ razonamientos topológicos.
         con la precisión que se desee}. 
     }
     \normalmarginpar
+
     Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
     en subconjunto $T$ si para todo $\epsilon$ positivo y cualquier $t \in T$ existe un $s \in S$ tal 
     que $\rho(s,t) \leq \epsilon$. 
