@@ -66,6 +66,7 @@ Wilcoxon
 Wortman
 Zhou
 approximators
+aproximable
 aproximador
 aproximadores
 autres
@@ -103,6 +104,7 @@ inasumible
 inecuación
 insesgado
 insesgados
+ipynb
 jejejeje
 jk
 lcc
@@ -123,6 +125,7 @@ perceptrón
 png
 posteriori
 precompilados
+preimágenes
 primeraCapa
 qB
 reenfocar

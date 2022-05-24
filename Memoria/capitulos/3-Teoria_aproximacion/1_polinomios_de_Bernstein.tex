@@ -13,16 +13,45 @@ que vistos como una serie nos asegurarán una convergencia uniformemente a cualq
 función continua en un compacto y serán esenciales para nuestra prueba del teorema de Stone-Weierstrass, 
 las pruebas se basan en el manual \cite{the-elements-of-real-analysis}.  
 
+% Nota margen sobre Idea intuitiva convergencia uniforme
+\marginpar{\maginLetterSize
+\iconoAclaraciones \textcolor{dark_green}{     
+\textbf{¿Qué es la convergencia uniforme?}}.
+    Cuando se hable de \textbf{convergencia} nos referiremos 
+    a encontrar un elemento que \textbf{aproxime todo lo bien que queramos};
+    es decir, fijado cualquier error podemos encontrar un elemento 
+    que lo aproxime cometiendo un error menor. 
+    
+    Tengamos presente que en el contexto de funciones
+    el error se puede medir evaluando la imagen de cada punto del dominio; entonces  
+    con \textbf{uniforme} lo que se dice es que independientemente del error que se busque, 
+    se puede encontrar una función que en \textbf{para todos los puntos del dominio
+     aproxima al objetivo
+    por debajo de ese error}.  
+}
+
 Comenzaremos recordando el Teorema del Binomio de Newton. 
 
 %% Teorema Binomio de Newton
-
 \begin{teorema}[Binomio de Newton]
     Cualquier potencia de un binomio $x+y$ con $x,y \in \R$,  puede ser expandido en una suma de la forma
     \[
         (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{k}y^{n-k}. 
     \]
-\end{teorema}  
+\end{teorema} 
+
+% Nota margen sobre Idea intuitiva sobre porqué se está procediendo de esta manera 
+\marginpar{\maginLetterSize
+\iconoAclaraciones \textcolor{dark_green}{     
+\textbf{¿Con qué idea se está avanzando?}}.
+
+    Nuestro objetivo es ser capaces de aproximar una función 
+    a partir de una muestra de sus preimágenes e imágenes. 
+    Comenzaremos probando primero que dada una función continua, podemos
+    aproximarla a partir de una muestra concreta. 
+    Por eso se está tratando de reescribir la función en 
+    términos de cierto conjunto de sus imágenes. 
+}
 %%% Idea intuitiva y desigualdad 
 Tomando ahora para esta igualdad $x \in \R, y= 1-x$ se tiene que 
 
@@ -30,7 +59,7 @@ Tomando ahora para esta igualdad $x \in \R, y= 1-x$ se tiene que
     1 = (x+ (1-x))^n = \sum_{k=0}^n \binom{n}{k} x^{k} (1-x)^{n-k}.
 \end{equation}
 
-Dada cualquier función $f$ definida en $x$ podríamos multiplicar la ecuación 
+Dada cualquier función continua $f: I \longrightarrow \R$ podríamos multiplicar la ecuación 
 \eqref{eq:uno_igual_binomio} por $f(x)$ resultando 
 
 \begin{equation}\label{eq:f_igual_binomio}
