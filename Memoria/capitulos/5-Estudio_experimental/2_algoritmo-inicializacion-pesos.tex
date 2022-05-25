@@ -1,0 +1,129 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Experimentación con ALGORITMO INICIALIZACIÓN DE PESOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Algoritmo de inicialización pesos de una red neuronal}  
+
+Se desea conocer la bondad del algoritmo propuesto 
+en \ref{section:inicializar_pesos} que plantea dos objetivos múltiples en lo que respecta a la inicialización de pesos de una red neuronal:
+
+\begin{itemize}
+    \item Su inicialización reporta un beneficio considerable con respecto a una inicialización aleatoria. 
+    \item A mismo tiempo es más ventajoso que utilizar un descenso de gradiente. 
+\end{itemize}
+
+Para ello se han diseñado dos experimentos: 
+ 
+\section{Experimento 1: Contraste de hipótesis con inicialización aleatoria} 
+\label{ch07:experimento-1} 
+
+Las preguntas a resolver son ¿mejora nuestro algoritmo? ¿Cuánto mejora?
+
+La primera observación  es que como
+hemos observado en el modelado de una red neuronal 
+en la sección \ref{ch05:construction-evaluation-nnnn}
+una red neuronal depende de varios parámetros:
+la dimensión de entrada $d$, el número de neuronas en la capa oculta $n$, la dimensión de salida $s$ 
+y la funciones de activación de cada neurona.  
+
+Por simplicidad fijaremos una función de activación 
+Así que deberemos de formular el test 
+para diferentes tamaños $n$, $d$, $s$. 
+
+\textcolor{red}{Ahora mismo no tengo muy claro 
+los tamaños porque tampoco quiero que dure mucho tiempo la realización del experimento, los concretaré tras unas primeras pruebas}. 
+
+\subsection{Descripción experimento}
+
+El experimento costa de los siguientes pasos: 
+
+\begin{enumerate}
+% Paso 0: Selección de data sets 
+\item Dado un conjunto de datos de entrenamiento $\D$  se separará el conjunto en
+\begin{itemize}
+    \item $\D_i$ \textbf{Conjunto de 
+    datos de inicialización.} Debe de ser mayor que 
+    $n$ y lo suficientemente grande para que el algoritmo diseñado funcione correctamente. 
+
+    \item $\D_t$ \textbf{Conjunto de 
+    datos de test.} Se utilizarán para el cálculo del error. 
+\end{itemize}  
+
+% Paso 1: Construcción 
+\item Fijados $n, d$ y $s$ se generarán dos redes neuronales: 
+
+\begin{itemize}
+    \item Una inicializada de manera aleatoria con valores dentro de un rango de valores. 
+    
+    \item  Otra inicializada con nuestro algoritmo. 
+\end{itemize}
+
+% Paso 2: Evaluación del error
+\item Utilizando $\D_t$ deberá de tomarse un registro del error dentro de tal muestra. 
+\end{enumerate}
+
+Los pasos 2 y 3 se repetirán tantas veces como 
+muestras se desee tomar. 
+
+\subsection{Contraste de hipótesis}
+
+Se desea comparar si los errores observados efectivamente son notables: 
+
+Para ello se realizará un test de Wilcoxon, con las siguientes hipótesis
+
+\begin{itemize}
+    \item $H_0$: La mediana de las diferencia de cada par de muestras es $0$. 
+    \item $H_a$: La mediana de las diferencia entre cada par de muestras es diferente de cero. 
+\end{itemize}
+
+La utilidad de este test es que si rechaza la hipótesis la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
+diferencia en los errores}. En caso de que no se rechace no podremos afirmar nada.
+Puede encontrar la implementación en el repositorio del
+ proyecto \footnote{En el directorio de experimentos 
+ de \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales}.}.
+
+\subsection{Requisitos técnicos}  
+
+A la vista de todo el proceso es descrito surgen las siguientes necesidades técnicas que deberemos de implementar:  
+
+\subsubsection{Capacidad de crear una red neuronal aleatoria}  
+
+Deberá de crearse una red neuronal con entradas dentro de un rango $[a,b]$ con $a < b$ reales,
+que tenga una entrada de tamaño $d$,
+$n$ neuronas en la capa oculta y
+una dimensión de salida $d$.
+
+\subsubsection{Implementación del algoritmo de inicialización}
+
+Deberá de implementarse del algoritmo  \ref{algo:algoritmo-iniciar-pesos} con todos los requisitos y atributos que ahí se describe.  
+
+\subsubsection{Función para medir el error}
+
+Deberá implementarse una función para medir el
+ error, no es lo mismo problemas de clasificación 
+que de regresión, así que deberemos de ir con 
+cuidado. 
+
+Además deberá de realizarse una busca de los datos 
+
+\subsubsection{ Forma de evaluar las redes neuronales}  
+
+Dado una red neuronal, una función de evaluación y un datos ser capaz de aplicar el algoritmo de \textit{forward propagation} descrito en \ref{algoritmo:evaluar red neuronal}.
+
+
+\subsubsection{Bases de datos de prueba}
+\textcolor{red}{Nota:
+Comenzaremos probando con bases de datos de juguete 
+y en función de tiempo y prestaciones ya veremos si merece la pena plantearse el uso de datos reales
+}
+
+\subsubsection{Implementación del experimento} 
+Deberá de implementarse una función que realice el 
+experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
+
+Podrían utilizarse alguno de estos: 
+
+\begin{itemize}
+    \item \href{https://github.com/JuliaStats/RDatasets.jl}{Julia contiene las base de datos estándar de R}.
+    \item \href{https://juliaml.github.io/MLDatasets.jl/stable/}{Otros paquetes básicos provistos también por la comunidad.}
+\end{itemize}
