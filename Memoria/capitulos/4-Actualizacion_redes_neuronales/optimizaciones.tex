@@ -32,11 +32,11 @@ Se ha comprobado en la práctica que el uso de
 \textit{backbones} reporta mejoras sustanciales en el 
 entrenamiento de redes neuronales, véanse artículos como \cite{backbone-object-detection}, \cite{backbone-Architecture} y sus referencias. 
 
-Cuando se carecen de \textit{backbones} o no es posible utilizarlos, una buena técnica para dar un valor inicial  a los pesos consiste en basarse en metaheurísticas como algoritmos genéticos,
+Cuando se carecen de \textit{backbones} o no es posible utilizarlos, una buena técnica para dar un valor inicial  a los pesos consiste en basarse en metaheurísticas tales como algoritmos genéticos,
 ver \cite{Montana2002NeuralNW}, sin embargos estos 
 tienen un coste computacional importante. 
 
-Nuestro algoritmo propone por tanto una inicialización de bajo coste computacional y que no necesita de más valores que los del conjunto de entrenamiento. 
+Ante esta situación, nuestro algoritmo propone una inicialización de bajo coste computacional y que no necesita de más valores que los del conjunto de entrenamiento. 
 
 
 
@@ -218,10 +218,11 @@ Con todo esto el proceso algorítmico resultante es:
 
 \subsubsection{Coste computacional algoritmo de inicialización de pesos}
 
-Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$ que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
+Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$; 
+y que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
 
 Sin embargo, en virtud de las observaciones hechas en la 
-descripción del método,  la mayoría de los datos cumplirán la propiedad de ortogonalidad y por tanto una buena 
+descripción del método, la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
 heurística es suponer 
 que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. 
 
@@ -261,7 +262,7 @@ posible ver que se puede generalizar para funciones de activación más
 generales como definidas en \ref{table:funciones-de-activation}. 
 
 \begin{itemize}
-    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para \textbf{funciones de activación que sean afines a una que satisface \refeq{eq:method_inicializar_M}}. El proceso constructivo consistiría en que la red aprenda con la función que cumple satisface \refeq{eq:method_inicializar_M} y los pesos obtenidos transformarlos de acorde a la misma técnica que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
+    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para \textbf{funciones de activación que sean afines a una que satisface \refeq{eq:method_inicializar_M}}. El proceso constructivo consistiría en: (1) hacer que la red aprenda con la función que cumple los requisitos \refeq{eq:method_inicializar_M}. (2) Los pesos obtenidos transformarlos con la misma técnica que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
     
     \item  \textbf{Funciones de activación asintóticas a 0 o 1}, esto es funciones que satisfacen que: 
     \begin{enumerate}
@@ -271,7 +272,7 @@ generales como definidas en \ref{table:funciones-de-activation}.
         \item Que cumpla que $\psi(x) \neq 1$ para todo  $x\in \R$  o $\psi(x) \neq 0$ para todo $x\in \R$ .
     \end{enumerate}
     Bastará con tomar un $M$ lo suficientemente grande. 
-    \item Para funciones del tipo anterior, pero asintóticas a $a,b \in \R$, con alguno de los extremos $a,b$ distintos de $0$ y $1$, bastará con realizar una transformación $f$ cumpliendo que $f(a)= 0$ y $f(b)= 1$ y aplicar teorema \ref{teo:eficacia-funciones-activation}. 
+    \item Para funciones del tipo anterior, pero asintóticas a $a,b \in \R$, con alguno de los extremos $a,b$ distintos de $0$ y $1$, bastará con realizar una transformación afín $f$ cumpliendo que $f(a)= 0$ y $f(b)= 1$ y aplicar teorema \ref{teo:eficacia-funciones-activation}. 
 \end{itemize}
 
 De esta manera se pueden ampliar las funciones de activación válidas, añadiendo algunas como: 

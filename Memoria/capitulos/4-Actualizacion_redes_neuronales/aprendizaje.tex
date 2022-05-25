@@ -626,16 +626,19 @@ La complejidad algorítmica del algoritmo de gradiente
 descendente recae principalmente en el coste de calcular los gradientes, la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
 En resumen su complejidad es 
 \begin{align*}
-    \mathcal{O}(
+    &\mathcal{O}(
         \max\{
             n d , n s, 
             \text{coste cálculo de los gradientes}
         \}
     )
-    = 
+    = \\
+    & = 
     \mathcal{O}(
         \text{coste cálculo de los gradientes}
     )
+    =  \\
+    & 
     = 
     \mathcal{O}(|\mathcal{D}| n d s).
 \end{align*} 
