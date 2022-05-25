@@ -161,7 +161,7 @@ cuya solución son las respectivas filas y columnas:
 
 Con todo esto el proceso algorítmico resultante es: 
 
-\end{aportacionOriginal} % método de construción
+\end{aportacionOriginal} % método de construcción
 
 % Algoritmo de inicialización de pesos de una red neuronal
 
@@ -177,7 +177,7 @@ Con todo esto el proceso algorítmico resultante es:
        $p \gets$ vector de $\R^{d+1}$. 
        \COMMENT{Como heurística será generado con distribución uniforme en el intervalo $[0,1]$} 
        % Cálculo de Lambda
-       \STATE \textit{Selección datos inicialización
+       \STATE \textit{Selección  de los datos de inicialización
        $\Lambda \subset \mathcal{D}$}. \\
        \begin{equation}
            \Lambda \gets \{ \emptyset \}
@@ -216,8 +216,54 @@ Con todo esto el proceso algorítmico resultante es:
     \end{algorithmic}  
 \end{algorithm}
 
-\textcolor{red}{TODO: Añadir coste computacional Issue 105}
+\subsubsection{Coste computacional algoritmo de inicialización de pesos}
 
-\textcolor{red}{TODO issue 105: Hacer observaciones sobre que sería igual de válido cambiando la $M$ y $p$ ¿hay alguna selección mejor que otra? }
+Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$ que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
+
+Sin embargo, en virtud de las observaciones hechas en la descripción del método,  la mayoría de los datos cumplirán la propiedad de ortogonalidad y por tanto una buena heurística es suponer 
+que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. 
+
+De esta manera el algoritmo de inicialización de pesos propuesto tendría una complejidad $\mathcal{O}(n)$.
+
+Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizar en repetidas ocasiones mientras que el nuestro tan solo una vez. 
+
+
+\subsubsection{Observaciones }
+
+Notemos que en nuestro algoritmo proporciona infinitas redes neuronales posibles,
+ no solo por los datos con que se inicialice; sino porque
+existen dos variables libres $M$ y $p$. 
+
+La  constante $M$ depende de la función de activación seleccionada y recordemos que  debe de escogerse para que satisfaga la condición \refeq{eq:method_inicializar_M}. 
+
+Presentamos a continuación en la tabla \ref{table:M-activation-function} el valor $M$ para alguna función de activación. 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Función rampa & 1 \\ \hline
+        \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
+        Función indicadora 0 & 0 \\ \hline
+    \end{tabular}
+    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada}
+    \label{table:M-activation-function}
+\end{table}
+
+\subsubsection{Generalización del método para funciones de activación }
+
+A priori si  la función de activación no cumple las propiedades demandadas no podría ser utilizada en el algoritmo.  Sin embargo es posible ver que se puede generalizar para las funciones de activación más generales definidas en \ref{table:funciones-de-activation}. 
+
+%TODO te has queda por aquí
+% Hay que añadir 
+% Por el teorema de equivalencia funciones afines
+% Si el límite acaba siendo constante, tomando límite y volviendo aplicando el teorema de equivalencia
+% Para relu  y variantes tomando M = x siendo x el valor en que la función de activación vale 1 (en nuestros caso M = 1) 
+% Reflexión: El método podría generalizarse para adaptarse a más funciones, pero no merece la pena porque se contemplan las básicas
+Veamos que esto es posible gracias  
+Sin embargo gracias al teorema \ref{teo:eficacia-funciones-activation}, las función de activación que satisfagan las hipótesis del teorema y sean afines a aquellas que sí las cumpla sí que se podrán aplicar. 
+
+
 
 \textcolor{red}{TODO issue 106: Hacer experimentaciones }
