@@ -220,18 +220,20 @@ Con todo esto el proceso algorítmico resultante es:
 
 Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$ que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
 
-Sin embargo, en virtud de las observaciones hechas en la descripción del método,  la mayoría de los datos cumplirán la propiedad de ortogonalidad y por tanto una buena heurística es suponer 
+Sin embargo, en virtud de las observaciones hechas en la 
+descripción del método,  la mayoría de los datos cumplirán la propiedad de ortogonalidad y por tanto una buena 
+heurística es suponer 
 que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. 
 
 De esta manera el algoritmo de inicialización de pesos propuesto tendría una complejidad $\mathcal{O}(n)$.
 
-Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizar en repetidas ocasiones mientras que el nuestro tan solo una vez. 
+Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente,  mientras que el nuestro tan solo una vez. 
 
 
 \subsubsection{Observaciones }
 
-Notemos que en nuestro algoritmo proporciona infinitas redes neuronales posibles,
- no solo por los datos con que se inicialice; sino porque
+Observemos nuestro algoritmo, para un mismo conjunto de entrenamiento  es capaz de producir infinitas soluciones 
+diferentes ya que 
 existen dos variables libres $M$ y $p$. 
 
 La  constante $M$ depende de la función de activación seleccionada y recordemos que  debe de escogerse para que satisfaga la condición \refeq{eq:method_inicializar_M}. 
@@ -247,23 +249,48 @@ Presentamos a continuación en la tabla \ref{table:M-activation-function} el val
         \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
         Función indicadora 0 & 0 \\ \hline
     \end{tabular}
-    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada}
+    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada.}
     \label{table:M-activation-function}
 \end{table}
 
 \subsubsection{Generalización del método para funciones de activación }
 
-A priori si  la función de activación no cumple las propiedades demandadas no podría ser utilizada en el algoritmo.  Sin embargo es posible ver que se puede generalizar para las funciones de activación más generales definidas en \ref{table:funciones-de-activation}. 
+A priori si  la función de activación no cumple las propiedades 
+demandadas no podría ser utilizada en el algoritmo.  Sin embargo, es 
+posible ver que se puede generalizar para funciones de activación más 
+generales como definidas en \ref{table:funciones-de-activation}. 
 
-%TODO te has queda por aquí
-% Hay que añadir 
-% Por el teorema de equivalencia funciones afines
-% Si el límite acaba siendo constante, tomando límite y volviendo aplicando el teorema de equivalencia
-% Para relu  y variantes tomando M = x siendo x el valor en que la función de activación vale 1 (en nuestros caso M = 1) 
-% Reflexión: El método podría generalizarse para adaptarse a más funciones, pero no merece la pena porque se contemplan las básicas
-Veamos que esto es posible gracias  
-Sin embargo gracias al teorema \ref{teo:eficacia-funciones-activation}, las función de activación que satisfagan las hipótesis del teorema y sean afines a aquellas que sí las cumpla sí que se podrán aplicar. 
+\begin{itemize}
+    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para \textbf{funciones de activación que sean afines a una que satisface \refeq{eq:method_inicializar_M}}. El proceso constructivo consistiría en que la red aprenda con la función que cumple satisface \refeq{eq:method_inicializar_M} y los pesos obtenidos transformarlos de acorde a la misma técnica que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
+    
+    \item  \textbf{Funciones de activación asintóticas a 0 o 1}, esto es funciones que satisfacen que: 
+    \begin{enumerate}
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 1
+        $.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+        \item Que cumpla que $\psi(x) \neq 1$ para todo  $x\in \R$  o $\psi(x) \neq 0$ para todo $x\in \R$ .
+    \end{enumerate}
+    Bastará con tomar un $M$ lo suficientemente grande. 
+    \item Para funciones del tipo anterior, pero asintóticas a $a,b \in \R$, con alguno de los extremos $a,b$ distintos de $0$ y $1$, bastará con realizar una transformación $f$ cumpliendo que $f(a)= 0$ y $f(b)= 1$ y aplicar teorema \ref{teo:eficacia-funciones-activation}. 
+\end{itemize}
 
+De esta manera se pueden ampliar las funciones de activación válidas, añadiendo algunas como: 
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Función rampa & 1 \\ \hline
+        \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
+        Función indicadora 0 & 0 \\ \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Sigmoidea  & con $M=10$ el error menor de $10^{-5}$\\ \hline
+        Tangente hiperbólica  &  con $M=7$ el error menor de $10^{-5}$\\ \hline
+        \textit{Hardtanh} & 1 \\ \hline
+    \end{tabular}
+    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada (con más resultados).}
+    \label{table:M-activation-function-2}
+\end{table}
 
-\textcolor{red}{TODO issue 106: Hacer experimentaciones }
+\textcolor{red}{TODO issue 107: Hacer experimentaciones }
