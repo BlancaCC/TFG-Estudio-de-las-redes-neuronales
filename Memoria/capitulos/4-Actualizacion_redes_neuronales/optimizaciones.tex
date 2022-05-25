@@ -5,18 +5,40 @@
 \section{ Inicialización de los pesos de una red neuronal}  
 \label{section:inicializar_pesos}
 Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
-cada iteración mejorar la solución encontrada, pero es 
+iteración mejorar la solución encontrada, pero es 
 totalmente sensible a la posición inicial 
 de los pesos. 
-Presentamos por tanto la siguiente propuesta para inicializar una red neuronal de modo que sus pesos se encuentre ya lo suficientemente cerca de la solución, 
+Presentamos por tanto la siguiente propuesta para inicializar una red neuronal a modo de intentar que sus pesos se encuentren ya cerca de la solución. Destaquemos que este algoritmo 
 no solo servirá exclusivamente para el método de gradiente descendente 
 sino para cualquier otro dependiente del punto inicial. 
 
-\subsection{ Estado del arte relacionado con esto} 
+\subsection{ Estado del arte relacionado } 
 
-\textcolor{red}{TODO issue 105: Estado del arte. Buscar sobre backbones y otros
-sistema y cómo influye el estado inicial. Argumentar con esto 
-que este algoritmo permitiría generar nuestro propio backbone}
+% Nota informativa de lo que es un backbone 
+\setlength{\marginparwidth}{\bigMarginSize}
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Qué es un \textit{backbone}
+        }
+    }
+
+    Se denomina \textit{backbone} a los nodos de una red neuronal que han sido \textbf{inicializados con valores 
+    de otras redes neuronales ya entrenadas}. Por ejemplo si quisiéramos clasificar insectos y partiéramos de una red neuronal que se entrenó para clasificar frutas.  
+    
+}
+
+Se ha comprobado en la práctica que el uso de 
+\textit{backbones} reporta mejoras sustanciales en el 
+entrenamiento de redes neuronales, véanse artículos como \cite{backbone-object-detection}, \cite{backbone-Architecture} y sus referencias. 
+
+Cuando se carecen de \textit{backbones} o no es posible utilizarlos, una buena técnica para dar un valor inicial  a los pesos consiste en basarse en metaheurísticas como algoritmos genéticos,
+ver \cite{Montana2002NeuralNW}, sin embargos estos 
+tienen un coste computacional importante. 
+
+Nuestro algoritmo propone por tanto una inicialización de bajo coste computacional y que no necesita de más valores que los del conjunto de entrenamiento. 
+
+
 
 \subsection{Descripción del método propuesto}
 
