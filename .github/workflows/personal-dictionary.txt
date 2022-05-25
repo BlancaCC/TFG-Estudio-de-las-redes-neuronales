@@ -71,8 +71,8 @@ aproximadores
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
-cienciadedatos
 ceil
+cienciadedatos
 codominio
 codominios
 contutor
