@@ -142,4 +142,9 @@ backgroundcolor=black!7,
   % ancho imágenes en tabla
   \newcommand{\coeficienteAncho}{.3}
 
+% Paquetes para citas
+\usepackage{csquotes}
+\let\oldenquote\enquote
+\renewcommand{\enquote}[1]{{\itshape\oldenquote{#1}}}
+
 

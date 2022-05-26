@@ -152,3 +152,7 @@ usefulInformation
 ésima
 ésimas
 ésimo
+paramétrico
+paramétricos
+Funtores
+Liskov
