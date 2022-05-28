@@ -22,9 +22,9 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
     \end{teorema}
     \begin{proof}
         Se quiere probar que para todo $h^r \in \rrnnmc$,
-         dado cualquier $\epsilon \in \R^+$  
+         dado cualquier $\varepsilon \in \R^+$  
         existirá $h^q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
-        $\dist( h^r, h^q) < \epsilon$. 
+        $\dist( h^r, h^q) < \varepsilon$. 
 
         La red neuronal $h^r$ está determinada por un conjunto finito
         de parámetros supongamos que hay $q$ y que están determinados por un índice del conjunto $\Lambda$. 
@@ -40,7 +40,7 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
         El primer parámetro $\alpha^1_1$, será un número racional 
         seleccionado de tal forma que se satisfaga que 
         \begin{equation*}
-            \dist( h^r, h^1) < \frac{\epsilon}{q}.
+            \dist( h^r, h^1) < \frac{\varepsilon}{q}.
         \end{equation*}
         Por la densidad de los racionales en los reales sabemos que  $\alpha^1_1$.
 
@@ -53,12 +53,12 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
         \end{equation*}
         y $\alpha^j_j \in \Q$ seleccionado de tal forma que  
         \begin{equation*}
-            \dist( h^j, h^{j-1}) < \frac{\epsilon}{q}.
+            \dist( h^j, h^{j-1}) < \frac{\varepsilon}{q}.
         \end{equation*}
 
         De esta forma, en virtud de la desigualdad triangular,  se ha encontrado una red neuronal $h^q$ que todos sus parámetros son racionales y 
         satisface 
-        $\dist( h^r, h^q) < \epsilon$.
+        $\dist( h^r, h^q) < \varepsilon$.
     \end{proof}
 
     Si bien los números racionales tienen el potencial de ser computados por su 
