@@ -4,47 +4,35 @@
 %   1. Comparativas en cuanto a coste computacional.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Funciones de activación}
+\chapter{Democratización de las funciones de activación}
 \label{funciones-activacion-democraticas-mas-demoscraticas}
 Como se observó en 
 \ref{def:funcion_activacion_articulo}
 se desconoce teóricamente si una función de activación va a ser 
 mejor que otra, es por ello y puesto que nuestro objetivo 
-es reducir el coste computacional de una red neuronal
+es reducir el coste computacional de una red neuronal,
 que procederemos a realizar un análisis del costo de las redes neuronales. 
 
 
 \section{Caracterización de las funciones de activación}  
 
-Si bien por conveniencia teórica definimos las funciones de activación en \ref{def:funcion_activacion_articulo}
+Por conveniencia teórica definimos las funciones de activación en \ref{def:funcion_activacion_articulo}
 como una función de $\phi:\R \longrightarrow [0,1]$, no 
 decreciente, con uno como límite en infinito y cero como límite a 
-menos infinito. 
-
-% Nota sobre el concepto de función no polinómica
-\setlength{\marginparwidth}{\bigMarginSize}
-\marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{
-            Función no polinómica
-        }
-    }
-
-    Que no es un polinomio.
-}
-Nos basaremos en el concepto \textit{actual} de función de activación:
+menos infinito; nos basaremos en el concepto \textit{actual} de función de activación:
 basta con que sea una función no polinómica
-(véanse  los artículos \cite{DBLP:journals/corr/SonodaM15}, \cite{modern-trainable-activation-functions} y \cite{FUNAHASHI1989183}),
-además también incluiremos la función de activación identidad.
+(véanse  los artículos \cite{DBLP:journals/corr/SonodaM15}, \cite{modern-trainable-activation-functions} y \cite{FUNAHASHI1989183}).
 
 Funciones no polinómicas hay infinitas y reincidimos en que a priori no hay una mejor que otra; por tanto, como criterio de selección nos guiaremos por la intuición que nos brinda la demostración del teorema \ref{teorema:2_3_uniformemente_denso_compactos}.
   La imagen de una función de activación es relevante a la hora de aproximar la función ideal desconocida, ya que reduce el número 
   de neuronas si se usa convenientemente.  
-Por lo tanto, una buena heurística sería disponer de un repertorio básico de funciones de activación que contemplen distintas imágenes no polinómicas. 
+Por lo tanto, una buena heurística sería disponer de un repertorio básico de funciones de activación que contemplen distintas imágenes no polinómicas.
+
 
 Además de las propuestas en \ref{def:funcion_activacion_articulo}, 
 añadimos a nuestra colección las siguientes. 
 
+\pagebreak
 
 \begin{table}[H] 
     \centering  
@@ -55,17 +43,17 @@ añadimos a nuestra colección las siguientes.
         \hline
         %%%%%%%% Identidad %%%%%%%
         % Nombre: 
-        Identidad 
-        & %expresión 
-        $Id(x) = x$
-        & % Rango imagen
-        $(-\infty, +\infty)$
-        & % Gráfica
-        \begin{minipage}{\coeficienteAncho\textwidth}
-            \includegraphics[width=\linewidth]{funciones-activacion/Identidad.png}
-        \end{minipage}
-        \\
-        \hline
+        %Identidad 
+        %& %expresión 
+        %$Id(x) = x$
+        %& % Rango imagen
+        %$(-\infty, +\infty)$
+        %& % Gráfica
+        %\begin{minipage}{\coeficienteAncho\textwidth}
+        %    \includegraphics[width=\linewidth]{funciones-activacion/Identidad.png}
+        %\end{minipage}
+        %\\
+        %\hline
          %%%%%%%% Indicadora %%%%%%%
         % Nombre: 
         Indicadora $\lambda \in \R$
@@ -240,13 +228,13 @@ añadimos a nuestra colección las siguientes.
     \begin{equation*}
         \phi \circ \sigma = \gamma,
     \end{equation*}
-    entonces para 
+    entonces 
     el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
     igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
 \end{teorema}
 \begin{proof}
 
-    Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$, el espacio de redes neuronales con $n$ neuronas con sesgo. 
+    Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ el espacio de redes neuronales con $n$ neuronas con sesgo. 
 
     Para cualquier $h  \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$
     la proyección i-ésima de $h$ será de la forma 
@@ -256,8 +244,7 @@ añadimos a nuestra colección las siguientes.
     \end{equation*}
     con $x \in \R^d, \beta_{j}, k_j \in \R, A_j \in \afines$. 
 
-    Procedemos a definir $\tilde{h}_i(x)$ como sigue y
-    se tiene que 
+    Procedemos a definir $\tilde{h}_i(x)$ como sigue 
     \begin{equation*}
         \tilde{h}_i(x) 
         = \sum^n_{j=1}(\beta_{j}  \phi(\sigma(A_j(x)))+ k_j)
@@ -311,11 +298,30 @@ significa que sea resultado de una serie de
 aproximaciones).  
 
 
-Así pues a la vista de la imágenes de las distintas funciones de activación 
-recogidas en la tabla \ref{table:funciones-de-activation} y
-por el recién probado teorema \ref{teo:eficacia-funciones-activation} podemos determinar a priori 
-que de manera teórica existen conjuntos de funciones que aproximadamente  puedes producir los mismos resultado, 
-compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
+Así pues, a la vista de la imágenes de las distintas funciones de activación 
+recogidas en la tabla \ref{table:funciones-de-activation}, y
+por el recién probado teorema \ref{teo:eficacia-funciones-activation}, podemos determinar a priori 
+que de manera teórica existen conjuntos de funciones que aproximadamente  pueden producir los mismos resultados. 
+
+% Porqué se ha ampliado 
+\marginpar{\maginLetterSize
+    \iconoClave  \textcolor{darkRed}{    
+        \textbf{
+            Motivo de seleccionar estas agrupaciones
+        }
+    }
+    
+    Como ya comentamos en las conclusiones del 
+    teorema \ref{teo:eficacia-funciones-activation}; 
+    se puede aplicar en la práctica 
+    como si dos funciones de activación con la
+    misma forma (o muy parecidas) 
+    producirán los mismos resultados (o muy parecidos). 
+    De ahí que hayamos agrupado funciones 
+    parecidas entre ellas.  
+
+}
+Compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
 
 \begin{table}[H] 
     \centering  
@@ -342,7 +348,7 @@ y valiéndose de las características propias de Julia, para ello se han utiliza
 \begin{itemize}
     \item \textbf{Programación modular}: Tal y como se recomienda en la documentación de Julia \footnote{
         Consultada en la página web oficial de Julia  a día 23 de mayo del 2022 con URL: \url{https://docs.julialang.org/en/v1/manual/modules/}
-    } se ha utilizado una módulo en la implementación de la biblioteca, esto aporta los siguientes beneficios: 
+    } se ha utilizado un módulo en la implementación de la biblioteca, esto aporta los siguientes beneficios: 
     \begin{itemize}
         \item Los módulos pueden ser precompilados y de esta manera se aceleraría la carga y el tiempo de inicialización. 
         \item Encapsulamiento de los métodos y facilidades de uso del espacio de nombres, lo cual forma parte
@@ -363,11 +369,12 @@ y valiéndose de las características propias de Julia, para ello se han utiliza
 \label{ch06:coste-computacional-funciones-activacion}
 
 \subsubsection{Diseño del experimento}
-El experimento para comparar los resultados ha consistido: 
-Se ha evaluado cada función a comparar $20000000$ veces y se ha medido cuanto tarda. 
+El experimento para comparar los resultados ha consistido en: 
+Se ha evaluado cada función a comparar $20.000.000$ veces y se ha medido cuanto tarda. 
 Esto se ha repetido $15$ veces. Puede encontrar la implementación concreta y los resultados concretos de cada iteración en el repositorio del
 proyecto \footnote{En el directorio de experimentos 
 de \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales}.}.
+Además, puesto que las funciones más simples que se pueden construir son la identidad y la constante, las hemos añadido para poder comparar el costo. 
 
 \subsubsection{Test de hipótesis}
 
@@ -381,18 +388,18 @@ signo de Wilcoxon} (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatistic
   La motivación de realizar esta prueba es la siguiente: 
 \begin{itemize}
     \item Las muestras son independientes.
-    \item Los datos tomados, el tiempo, permiten ser ordenados. 
+    \item Los datos tomados permiten ser ordenados. 
     \item El tamaño de muestra es pequeño y no podemos asegurar normalidad de la datos. 
 \end{itemize}
 
 \subsubsection*{Hipótesis} 
 
 \begin{itemize}
-    \item $H_0$: La mediana de las diferencia de cada par de datos es $0$. 
-    \item $H_a$: La mediana de las diferencia entre cada par de datos es diferente de cero. 
+    \item $H_0$: La mediana de las diferencias de cada par de datos es $0$. 
+    \item $H_a$: La mediana de las diferencias entre cada par de datos es diferente de cero. 
 \end{itemize}
 
-La utilidad de este test es que si rechaza la hipótesis la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
+La utilidad de este test es que si rechaza la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
 diferencia de tiempos}. En caso de que no se rechace no podremos afirmar nada.
 Puede encontrar la implementación en el repositorio del
  proyecto \footnote{En el directorio de experimentos 
@@ -473,10 +480,10 @@ Puede encontrar la implementación en el repositorio del
 \end{table}
 
 Como ya comentábamos, si la hipótesis nula es rechazada podemos suponer que hay una diferencia 
-de tiempo significativas;  en caso contrario no podemos saber nada. 
+de tiempo significativa;  en caso contrario no podemos saber nada. 
 
-Sin embargo podemos entender estos rechazos como una clase de equivalencia; es decir, la diferencia en coste computacional no es tan significativa, dentro de ese grupo. De hecho, como podemos apreciar en la tabla \ref{Tiempos-ejecucion-comparativas}, que está ordenada de menor tiempo a mayor,
- estos se encuentra en posiciones consecutivas.
+Sin embargo, podemos entender estos rechazos como una clase de equivalencia; es decir, la diferencia en coste computacional no es tan significativa, dentro de ese grupo. De hecho, como podemos apreciar en la tabla \ref{Tiempos-ejecucion-comparativas}, que está ordenada de menor tiempo a mayor,
+ estos se encuentran en posiciones consecutivas.
 
 \begin{table}[H]
     \centering
