@@ -224,17 +224,46 @@ añadimos a nuestra colección las siguientes.
 \begin{aportacionOriginal}
 
 \begin{teorema}\label{teo:eficacia-funciones-activation}
-    Sea $\phi \in \mathcal{A}(\R^2)$ una transformación afín, sean dos funciones de activación $\sigma, \gamma$ tales que 
+    Sea $\phi \in \mathcal{A}(\R^2)$ una función afín 
+    cuya forma matricial asociada es de la forma:  
+    \begin{equation}
+        \phi((x,y)) =  
+        \begin{bmatrix}
+            a & 0 \\
+             0& b 
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            t_x  & t_y
+        \end{bmatrix}
+    \end{equation}
+    con $a,b \in \R^\times$ y $t_x, t_y \in \R$.
+
+    Sean dos funciones de activación $\sigma, \gamma$ tales que 
     \begin{equation*}
-        \phi \circ \sigma = \gamma,
+        \phi(Grafo(\sigma)) = Grafo(\gamma),
     \end{equation*}
     entonces 
     el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
     igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
 \end{teorema}
 \begin{proof}
-
+    % Primero lo demostramos con sesgo
     Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ el espacio de redes neuronales con $n$ neuronas con sesgo. 
+
+    Está claro que 
+    \begin{equation*}
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
+        \simeq 
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
+    \end{equation*}
+    Ya que basta con tomar una red neuronal de una y cambiarle la función de activación por la de la otra. 
+    Veamos 
+    que se da la igualdad viendo que una está contenida en la otra. 
 
     Para cualquier $h  \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$
     la proyección i-ésima de $h$ será de la forma 
@@ -243,27 +272,75 @@ añadimos a nuestra colección las siguientes.
         h_i(x) = \sum^n_{j=1}(\beta_{j} \sigma(A_j(x))+ k_j),
     \end{equation*}
     con $x \in \R^d, \beta_{j}, k_j \in \R, A_j \in \afines$. 
-
+    % Se define la h tilda: 
     Procedemos a definir $\tilde{h}_i(x)$ como sigue 
-    \begin{equation*}
+    \begin{align}\label{eq:h-tilda-definition}
         \tilde{h}_i(x) 
-        = \sum^n_{j=1}(\beta_{j}  \phi(\sigma(A_j(x)))+ k_j)
+        = \sum^n_{j=1}(\beta_{j}  (b \sigma( a A_j(x) + t_x) + t_y)+ k_j)
         = \sum^n_{j=1}(\tilde{\beta}_{j} \sigma(\tilde{A}_j(x))+ \tilde{k_j}),
-    \end{equation*}
+    \end{align}
     con $x \in \R^d, \tilde \beta_{j}, \tilde k_j \in \R, \tilde{A}_j \in \afines$,
-    por lo que está claro que $\tilde{h}_i(x) \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$. 
+    por lo que está claro que $\tilde{h}(x) \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$. 
+ 
+    Observemos que la 
+    hipótesis del enunciado 
+    establece que
+    \begin{align}
+        Grafo(\gamma) &= \{ (x, \gamma(x)) \colon x \in \R \} 
+        \\
+        & = 
+        Grafo(\gamma)  = \phi(Grafo(\sigma)) 
+        \\
+        & = 
+        \phi( \{ (x, \sigma(x)) \colon x \in \R \})
+        \\
+        &=
+        \{ (a x + t_x, b \sigma(x) + t_y) \colon x \in \R \}.
+    \end{align}
+    Por lo que $\tilde{h}$ así definida (\refeq{eq:h-tilda-definition})
+    es a su vez 
+    \begin{align}
+        \tilde{h}_i(x) 
+        = \sum^n_{j=1}(\beta_{j}  \gamma A_j(x)+ k_j)
+    \end{align}
+     es decir que $\tilde{h}(x) \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$. 
+    Así que vía $\phi$ se ha definido una inyección 
+    de $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ a 
+    $\mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$, 
+    esto es 
+    \begin{equation}
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)
+        \subseteq
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s).  
+    \end{equation}
 
-    Pero por hipótesis del teorema $\phi \circ \sigma = \gamma$, por lo que $\tilde{h}_i(x) \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$. 
+    Dos conjuntos isomorfos donde uno está contenido 
+    dentro del otro necesariamente son iguales. 
 
-    Basta con considerar la transformación afín inversa para ver que ambos espacios son isomorfos
+    % Vamos a ver que tiene inversa la fi para poder hacerla isomorfa
+    Por las hipótesis pedidas a $\phi$, ésta tiene inversa
+    dada como 
+    \begin{equation}
+        \phi^{-1}((x,y)) =  
+        \begin{bmatrix}
+            \frac{1}{a}(1-t_x) & 0 \\
+             0& \frac{1}{b}(1-t_y) 
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+    \end{equation}
+    con $a,b \in \R^\times$ y $t_x, t_y \in \R$.
+
+    Ante esto y repitiendo el razonamiento se tiene 
+    la igualdad buscada: 
     \begin{equation*}
-        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) \simeq \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
+        = 
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
     \end{equation*}
-
-    Dos conjuntos isomorfos donde para cualquier $h \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$, 
-    se tiene que $h \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ via el isomorfismo y 
-    luego componer con la inversa de la aplicación afín. 
-
+    
     Como demostramos en \ref{consideration-irrelevancia-sesgo} se tiene que 
     \begin{equation*}
         \mathcal{H}^+_{\sigma, n}(\R^d, \R^s) = \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
@@ -279,6 +356,10 @@ añadimos a nuestra colección las siguientes.
     \end{equation*}
 \end{proof}
 \end{aportacionOriginal}
+
+\begin{corolario}[Mismo enunciado anterior pero con sigma y gamma afines]
+    Hola yo soy un corolario. 
+\end{corolario}
 
 \subsubsection*{\iconoAclaraciones \textcolor{dark_green}{Relevancia práctica del teorema}}
 Este teorema lo que nos está diciendo es que si dos funciones de activación tienen \textit{la misma forma}
