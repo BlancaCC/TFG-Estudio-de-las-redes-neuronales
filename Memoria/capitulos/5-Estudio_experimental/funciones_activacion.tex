@@ -6,12 +6,34 @@
 
 \chapter{Democratización de las funciones de activación}
 \label{funciones-activacion-democraticas-mas-demoscraticas}
-Como se observó en 
-\ref{def:funcion_activacion_articulo}
-se desconoce teóricamente si una función de activación va a ser 
-mejor que otra, es por ello y puesto que nuestro objetivo 
-es reducir el coste computacional de una red neuronal,
-que procederemos a realizar un análisis del costo de las redes neuronales. 
+A lo largo de este capítulo se esclarecerá la idea
+que se planteó en \ref{def:funcion_activacion_articulo}
+de si 
+hay alguna función de activación mejor que otra. 
+Para ello 
+se han aportado dos nuevos resultados originales: 
+el teorema \ref{teo:eficacia-funciones-activation} 
+y el corolario \ref{corolario:afine-activation-function}.
+Gracias a ellos se puede establecer cuándo 
+dos espacios de redes neuronales con funciones de activación distintas pueden aproximar
+con la misma precisión una función.
+
+Tales resultados tienen su importancia ya que
+si sabemos que dos funciones de activación producen 
+los mismos resultados (\textit{o muy similares}), 
+conociendo su coste computacional podremos seleccionar 
+el que sea menor y de esta manera optimizar el tiempo 
+de cálculo y disminuir el número de operaciones sin 
+perder precisión en los resultados.  
+
+Es por ello que 
+tras establecer las clases de funciones que producen 
+resultados similares, en la sección \ref{ch06:coste-computacional-funciones-activacion}
+se ha formulado un test para
+determinar las funciones de menor costo. 
+
+
+
 
 
 \section{Caracterización de las funciones de activación}  
@@ -224,6 +246,7 @@ añadimos a nuestra colección las siguientes.
 \begin{aportacionOriginal}
 
 \begin{teorema}\label{teo:eficacia-funciones-activation}
+    \label{teo:equivalencia-grafos-activation-function}
     Sea $\phi \in \mathcal{A}(\R^2)$ una función afín 
     cuya forma matricial asociada es de la forma:  
     \begin{equation}
@@ -315,26 +338,7 @@ añadimos a nuestra colección las siguientes.
     \end{equation}
 
     Dos conjuntos isomorfos donde uno está contenido 
-    dentro del otro necesariamente son iguales. 
-
-    % Vamos a ver que tiene inversa la fi para poder hacerla isomorfa
-    Por las hipótesis pedidas a $\phi$, ésta tiene inversa
-    dada como 
-    \begin{equation}
-        \phi^{-1}((x,y)) =  
-        \begin{bmatrix}
-            \frac{1}{a}(1-t_x) & 0 \\
-             0& \frac{1}{b}(1-t_y) 
-        \end{bmatrix}
-        \begin{bmatrix}
-            x \\
-            y
-        \end{bmatrix}
-    \end{equation}
-    con $a,b \in \R^\times$ y $t_x, t_y \in \R$.
-
-    Ante esto y repitiendo el razonamiento se tiene 
-    la igualdad buscada: 
+    dentro del otro necesariamente son iguales, esto es:
     \begin{equation*}
         \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
         = 
@@ -357,9 +361,7 @@ añadimos a nuestra colección las siguientes.
 \end{proof}
 \end{aportacionOriginal}
 
-\begin{corolario}[Mismo enunciado anterior pero con sigma y gamma afines]
-    Hola yo soy un corolario. 
-\end{corolario}
+
 
 \subsubsection*{\iconoAclaraciones \textcolor{dark_green}{Relevancia práctica del teorema}}
 Este teorema lo que nos está diciendo es que si dos funciones de activación tienen \textit{la misma forma}
@@ -378,31 +380,69 @@ asintótico (lo asintótico en términos prácticos
 significa que sea resultado de una serie de 
 aproximaciones).  
 
+%corolario para cuando sean afines 
+\begin{corolario}\label{corolario:afine-activation-function}
+    Sea $\phi \in \mathcal{A}(\R)$ una transformación afín e invertible, esto es de la forma 
+    \begin{equation}
+        \phi(x) = a x + b 
+        \text{ con } a \in \R^\times, b \in \R.
+    \end{equation}
+    Dadas dos funciones de activación $\sigma$ y $\gamma$ que satisfagan que 
+    \begin{equation}
+        \phi \circ \sigma = \gamma,
+    \end{equation} 
+    entonces 
+    el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
+    igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
+\end{corolario}
+\begin{proof}
+    En base a que $\phi(x) = a x + b$, con 
+    $a \in \R^\times, b \in \R$
+    basta con definir 
+     $\psi  \in \mathcal{A}(\R^2)$ como 
+    \begin{equation}
+        \psi((x,y)) =  
+        \begin{bmatrix}
+            1 & 0 \\
+             0& a
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & b
+        \end{bmatrix}.
+    \end{equation}
+    A partir  definición se tiene que 
+    \begin{align}
+        Grafo(\gamma) &=
+        \{ (x, \gamma(x)) \colon x \in \R\} 
+        \\
+        & = 
+        \{ (x, \phi(\sigma(x))) \colon x \in \R\}
+        \\
+        & =
+        \psi(\{ (x, \sigma(x)) \colon x \in \R\})
+        = 
+        \psi(Grafo(\sigma)).
+    \end{align}
+    Se satisfacen 
+    las hipótesis del teorema \ref{teo:equivalencia-grafos-activation-function} y en virtud de él se tiene el resultado buscado.
+\end{proof}
 
+\section{ Selección de las mejores funciones de activación}
 Así pues, a la vista de la imágenes de las distintas funciones de activación 
 recogidas en la tabla \ref{table:funciones-de-activation}, y
 por el recién probado teorema \ref{teo:eficacia-funciones-activation}, podemos determinar a priori 
 que de manera teórica existen conjuntos de funciones que aproximadamente  pueden producir los mismos resultados. 
 
-% Porqué se ha ampliado 
-\marginpar{\maginLetterSize
-    \iconoClave  \textcolor{darkRed}{    
-        \textbf{
-            Motivo de seleccionar estas agrupaciones
-        }
-    }
-    
-    Como ya comentamos en las conclusiones del 
-    teorema \ref{teo:eficacia-funciones-activation}; 
-    se puede aplicar en la práctica 
-    como si dos funciones de activación con la
-    misma forma (o muy parecidas) 
-    producirán los mismos resultados (o muy parecidos). 
-    De ahí que hayamos agrupado funciones 
-    parecidas entre ellas.  
-
-}
-Compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
+A la vista de del resultado, si las funciones de 
+activación son similares entonces actuarán con 
+una precisión similar, es por ello 
+que el la table \ref{table:Clases-equivalencia-activation-function} establecemos 
+las siguientes clases de funciones de activación 
 
 \begin{table}[H] 
     \centering  
@@ -420,6 +460,9 @@ Compararemos entonces su coste computacional y tomaremos como representante de l
     \caption{Agrupaciones de funciones de activación con forma similar}  
     \label{table:Clases-equivalencia-activation-function}
 \end{table}
+
+Compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
+
 
 \subsection{ Implementación de las funciones de activación en la biblioteca de redes neuronales} 
 \label{ch06:activation-function-implementation}
