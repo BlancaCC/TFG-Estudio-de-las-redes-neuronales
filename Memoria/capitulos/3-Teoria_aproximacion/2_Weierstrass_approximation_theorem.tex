@@ -5,12 +5,14 @@
 % Teorema de Aproximación Weierstrass 
 %*******************************************************
 
-Realizando un repaso global habiendo acabado el teorema, se pueden extraer que conjunto a un ingenioso manejo de operaciones y acotaciones; la clave del resultado reside  en las consideraciones
-en \refeq{consecuencia:M} \refeq{consecuencia:delta} y estas a su vez en la 
+Realizando un repaso global habiendo acabado el teorema,
+ se pueden extraer que, junto a un ingenioso 
+ manejo de operaciones y acotaciones; la clave del resultado reside  en las consideraciones
+en \refeq{consecuencia:M} y \refeq{consecuencia:delta} y estas a su vez en la 
 compacidad de $I$.
 
 Por su parte, la selección del dominio de $I = [0,1]$ viene determinada ya que 
- los nodos $\{ \frac{k}{N} | k\in \{0,..., N\}\}$ sobre los que se construye el \textit{N-ésimo polinomio de Bernstein}  deben pertenecer a $I$.
+ los nodos $\{ \frac{k}{N} \colon k\in \{0,..., N\}\}$ sobre los que se construye el \textit{N-ésimo polinomio de Bernstein}  deben pertenecer a $I$.
 
 Sin embargo, tal dificultad es fácilmente salvable con un homeomorfismo. 
 
@@ -20,9 +22,13 @@ Sin embargo, tal dificultad es fácilmente salvable con un homeomorfismo.
 \textbf{¿Qué es un homeomorfismo?}}.
 
     A nivel intuitivo un homeomorfismo sería 
-    que una transformación de un objeto que lo desforma 
-    \textit{sin romperlo}. Es decir, si este fuera plastilina
-    sería aquellas figuras que podríamos llegar sin separar la masilla
+    una transformación de un objeto que lo desforma 
+    \textit{sin romperlo}. 
+    Es decir, si éste  fuera de plastilina, 
+    existiría un homeomorfismo entre la figura 
+    original y 
+    aquellas que pudiéramos construir 
+     sin separar totalmente la masilla
     o crear y eliminar agujeros. 
 }
 
@@ -30,7 +36,7 @@ Como resultado de relajar el dominio donde se define $f$, pidiéndole tan solo
 compacidad nace el siguiente corolario.  
 
 \begin{corolario}[Teorema de aproximación de Weierstass] \label{teo:Teorema-Weierstrass}
-    Sea $f$ una función continua definida en un intervalo real y con valores reales. Se tiene que $f$ puede ser aproximada uniformemente con polinomios. 
+    Sea $f$ una función continua definida en un intervalo cerrado y acotado y con valores reales. Se tiene que $f$ puede ser aproximada uniformemente con polinomios. 
 \end{corolario}  
 
 \begin{proof}
