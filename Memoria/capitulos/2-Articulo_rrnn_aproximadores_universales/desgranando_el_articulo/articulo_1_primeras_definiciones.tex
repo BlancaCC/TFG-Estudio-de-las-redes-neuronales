@@ -102,11 +102,40 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     Por ejemplo podrían aceptarse funciones de activación no continuas (véase \cite{FUNAHASHI1989183}); 
     o como 
     se demuestra en \cite{DBLP:journals/corr/SonodaM15} y en \cite{non-polynomial-activation-functions}, funciones de activación no polinómicas y no acotadas. 
- 
 \end{definicion}
 
+\subsection*{Las funciones de activación $\Gamma$ son la clave del aprendizaje} 
+
+\label{ch03:funcionamiento-intuitivo-funcion-activacion}
+
+Las \textit{funciones de activación} serán definidas con precisión en la sección 
+\ref{def:funcion_activacion_articulo}, pero para continuar con nuestro razonamiento 
+pensemos en ellas como una función cualquiera que no sea un polinomio. 
+
+Una vez liberados de tratar de buscar un polinomio que aproxime la función en todo
+el dominio, podemos pensar en aproximar la image de acorde a intervalos.  
+ 
+\textcolor{red}{TODO : Añadir gráficos cuando esté implementada una red neuronal}
+
+% Ejemplo de cómo se aproxima gracias  a la forma de la función de activación
+\begin{figure}[h!]
+    \includegraphics[width=\textwidth]{1-Introduccion_redes_neuronales/idea-como-aproxima-redes-neuronales.jpeg}
+    \caption{Cómo actúa en la aproximación una función de activación}
+    \label{img:idea-como-aproxima-redes-neuronales}
+   \end{figure}
+
+La idea intuitiva es que para una capa oculta con una neurona, 
+lo que se hace es \textit{colocar} por escalado y simetrías la imagen de la función de activación. 
+
+% Ejemplo trivial de como la forma de la función de activación influye en aproximar mejor 
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{1-Introduccion_redes_neuronales/Idea-forma-función-Activación.jpg}
+    \caption{Cómo afecta la forma de la función de activación}
+    \label{img:como afecta la forma de la función de aproximación}
+\end{figure}
 
 
+% Fin del tratamiento de funciones de activación 
 Para cualquier natural $d$ mayor que cero  denotaremos por $\afines$ al conjunto de todas 
 las \textbf{funciones afines} de $\R^d$ a $\R$. Es decir el conjunto de funciones de la forma 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$,  $b \in \R$ es un escalar
