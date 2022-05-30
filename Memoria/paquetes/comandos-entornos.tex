@@ -107,7 +107,7 @@
 linewidth=5pt,
 outerlinecolor=red,
 outerlinewidth=5pt,
-innerlinewidth=0pt,
+innerlinewidth=1pt,
 outerlinecolor=red,
 roundcorner=5pt
 %middlelinecolor= yellow,
@@ -118,20 +118,21 @@ rightline = false,
 leftline = false,
 bottomline = false,
 rightmargin=0pt,
-skipabove=0pt,
-skipbelow=0pt,
+skipabove=7pt,
+skipbelow=7pt,
 leftmargin=-1cm,
 backgroundcolor=black!7,
 %innerleftmargin=1cm,
 %innerrightmargin=0pt,
 %innertopmargin=0pt,
 %innerbottommargin=0pt,
-%frametitlebackgroundcolor=yellow,
+frametitlebackgroundcolor=yellow!100,
 ]{mdframed}
-
+ 
 \newenvironment{aportacionOriginal}
   {\mdfsetup{
-    frametitle={\colorbox{black!7}{ \textcolor{white}{\Large Aportación original}}},
+    frametitle=\textcolor{white}{\Large Aportación original}
+    %frametitle={\colorbox{black!7}{ \textcolor{white}{\Large Aportación original}}},
     %frametitleaboveskip=-\ht\strutbox,
     %frametitlealignment=\center
     }
