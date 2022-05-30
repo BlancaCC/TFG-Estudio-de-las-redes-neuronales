@@ -163,32 +163,26 @@ podría mejorar los resultados de alguna manera.
 \end{proof}
 \end{aportacionOriginal}
 
+\iconoClave  \textcolor{darkRed}{ \textbf{Cómo contribuiría este corolario a la optimización de redes neuronales}}
+
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
- ni cómo afecta a la \textit{velocidad de convergencia}. 
+ni cómo afecta a la \textit{velocidad de convergencia}.
 
+Es más, a priori se estaría aumentando el espacio de búsqueda, lo que significaría que \textit{dificultaría el encontrar la solución}, es decir
+un aumento en coste y aumento del error de aproximación.
 
-Recordemos que de manera general se ha definido $A$ como una función afín 
-$A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$  y $b \in \R$ es un escalar.  ¿Pero que ocurriría si trabajáramos con transformaciones más generales?  
-Por ejemplo $B((x_1, ..., x_d)) = \sum_{i= 0} ^N \sum_{j= 0} ^d \alpha_{ij} x_j^i$  con $N$ natural positivo. 
+Sin embargo, como ya mostrábamos en 
+\ref{ch03:funcionamiento-intuitivo-funcion-activacion}
+utilizar una función de activación frente a otra
+varía el número de neuronas necesarias para 
+conseguir cierta precisión, lo cual,
+bien usado  significaría
+reducir el espacio de búsqueda.
 
-% Nota sobre posible hipótesis de optimización 
-\setlength{\marginparwidth}{\bigMarginSize}
-\marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
-Gracias al corolario \ref{corolario:generaliza-a}
-nos podemos plantear si aumentar el espacio de búsqueda a partir de transformaciones
- no lineales es más conveniente que hacerlo mediante el número neuronas.
-Abordaremos esta cuestión en \ref{hypothesis:activation-function}.
-}
+En el capítulo \ref{ch08:genetic-selection}, una vez que 
+se hayan presentado todas las herramientas necesarias 
+se desarrollará con más profundidad y claridad esta idea.
 
-\begin{aportacionOriginal}
-    \begin{corolario}[Generalización de de las transformaciones afines]  \label{corolario:generaliza-a}
-        Se puede extender $\afines$ a conjuntos más generales como el de los polinomios de $d$ variables de grado $N$, $\mathbb{P}$.  
-    \end{corolario}
-    \begin{proof}
-        Simplemente hay que reparar en que $\afines$ está contenido en el espacio $\mathbb{P}$. 
-        Es más observando la demostración bastará con utilizar cualquier conjunto que contenga a $\afines$. 
-    \end{proof}
-\end{aportacionOriginal}
 
 % Nota idea intuitiva  equivalencia 
 \marginpar{\maginLetterSize\raggedright
@@ -206,8 +200,6 @@ son iguales en casi todos sus puntos.  El objetivo de todas estas definiciones e
 \end{definicion}
 
 Lo que se está diciendo es que serán iguales casi por doquier.   
-
-
 % Definición distancia  
 \begin{definicion} [Introducción de una distancia basada en una probabilidad] \label{definition:distancia-probabilidad}
     Dada una medida de probabilidad $\mu$ en $(\R^d, B^d)$, se define 
