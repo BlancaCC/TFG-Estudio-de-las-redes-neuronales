@@ -8,12 +8,23 @@
 \chapter{Construcción técnica de las redes neuronales de una sola capa}  
 \label{chapter:construir-redes-neuronales}
 Vista la formulación teórica de una red neuronal de una sola capa 
-introducida en \ref{definition:redes_neuronales_una_capa_oculta} explicaremos a continuación  una construcción técnica junto con un
-análisis del costo necesario.
- Particularmente el algoritmo presentado es una ligera modificación del algoritmo de    
-\textit{forward propagation} explicado en \cite{BishopPaterRecognition}, ha sido necesaria su modificación para ser totalmente fieles a nuestro enfoque teórico. 
+introducida en \ref{definition:redes_neuronales_una_capa_oculta} 
+se comparará y estudiará la relación teórica 
+entre nuestra propuesta de modelo y los modelos usuales de redes neuronales. 
 
-Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cuanto a analizar el coste computacional tanto de cómputo como de memoria.
+Explicaremos también una construcción técnica junto con un
+análisis del costo necesario y beneficio obtenido.
+Así como los algoritmos necesarios para su evaluación y aprendizaje. 
+
+ Los algoritmos presentados son 
+ la adaptación natural de técnicas como 
+\textit{forward propagation} y \textit{backpropagation } explicadas en \cite{BishopPaterRecognition} a nuestro enfoque teórico. 
+
+Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cuanto a analizar el 
+coste computacional tanto de cómputo como de 
+memoria.
+
+
 
 \section{Componentes de una red neuronal de una capa oculta} 
 
@@ -196,6 +207,7 @@ es un artificio de las redes neuronales multicapa para enlazar una capa con otra
 
 % Consideración sobre componer la red neuronal con una función
 \subsection{\textit{Modus operandi} ante problemas que requieran un dominio de salida discreto}
+\label{ch05:dominio-discreto}
 
 Es usual en la literatura presentar las redes neuronales con la salida compuesta con una función $\theta$, de tal manera que una red neuronal sea de la forma
 
