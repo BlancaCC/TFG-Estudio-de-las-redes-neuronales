@@ -11,7 +11,24 @@ que se podrá encontrar una red neuronal en $\rrnnmc$
 que aproxime todo lo bien que queramos la función ideal; sin embargo, destaquemos que los parámetros que caracterizan a la red neuronal encontrada son reales. Es decir, 
 si nuestra red neuronal toma valores irracionales difícilmente será computable en un ordenador por su infinitud. 
 
-Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no solo debe de reducirse el error, si no que los parámetros que representan la red deben de estar limitados a cierta precisión: la propia de un ordenador.  
+Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no solo debe de reducirse el error, si no que los parámetros que representan la red deben de estar limitados a cierta precisión: la propia de un ordenador.
+
+% Comentario sobre la representación de enteros 
+\marginpar{\maginLetterSize
+    \iconoProfundizar \textcolor{blue}{     
+        \textbf{
+            Ojalá hubiera un lenguaje de programación que permitiera 
+            trabajar explícitamente con 
+            tipos racionales
+        }
+    }
+    
+    De hecho el lenguaje de programación Julia, 
+    el que hemos seleccionado para nuestra implementación 
+    sí lo permite. ( Véase la documentación oficial de Julia sobre \href{https://docs.julialang.org/en/v1/manual/complex-and-rational-numbers/}{\textit{Rational numbers}}, consultada por última ver el 
+    30 de mayo del 2022).
+    
+}
 
 Comenzaremos viendo que, en efecto, una red neuronal con parámetros en el cuerpo de los racionales es factible como aproximador universal. 
 
