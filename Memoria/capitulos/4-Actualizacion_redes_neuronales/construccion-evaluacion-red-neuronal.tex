@@ -290,11 +290,11 @@ La implementación de la fórmula anterior sería la siguiente:
     \SetKwFunction{FSum}{$\theta$}
     \SetKwProg{Fn}{Function}{:}{}
     \Fn{\FSum{$h_x$}}{
-        \STATE $distanciaMínima \gets\infty$
+        \STATE \textit{distancia mínima} $\gets\infty$
         \STATE $clase \leftarrow NADA$ \\
         \STATE \COMMENT{Encontramos el más cercano}\\
         \ForAll{cada $(h, y)$}{
-            \If{$distancia(h,h_x) < distanciaMínima$}{
+            \If{$distancia(h,h_x) <$\textit{distancia mínima}}{
                $clase \leftarrow y$
             }
         }
