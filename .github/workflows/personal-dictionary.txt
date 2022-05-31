@@ -131,6 +131,7 @@ preimágenes
 primeraCapa
 qB
 reenfocar
+reescalados
 referenciada
 reformulando
 renumerar
@@ -149,6 +150,7 @@ solventable
 squasher
 subespacio
 subespacios
+subrecubrimiento
 sumatoria
 sumatorias
 tanh
@@ -158,4 +160,3 @@ usefulInformation
 ésima
 ésimas
 ésimo
-subrecubrimiento
