@@ -54,7 +54,7 @@ Por lo tanto, una buena heurística sería disponer de un repertorio básico de 
 
 
 Además de las propuestas en \ref{def:funcion_activacion_articulo}, 
-añadimos a nuestra colección las siguientes. 
+añadimos a nuestra colección las que mostramos en la tabla \ref{table:funciones-de-activation}. El criterio de selección ha sido contar con funciones de activación de formas diversas y que además sean las utilizadas de acorde (motivados por \ref{ch03:funcionamiento-intuitivo-funcion-activacion}) 
 
 \pagebreak
 
@@ -95,7 +95,7 @@ añadimos a nuestra colección las siguientes.
         % Nombre: 
         Función umbral $p$ polinomio
         & %expresión 
-        $Threshold(x) = 1_{\{p(x) > 0\}}$
+        $Umbral(x) = 1_{\{p(x) > 0\}}$
         & % Rango imagen
         $\{0,1\}$
         & % Gráfica
@@ -245,6 +245,36 @@ añadimos a nuestra colección las siguientes.
     \label{table:funciones-de-activation}
 \end{table}
 
+% comentario margen
+% Qué hace la función afín definida
+% y relevancia teorema 
+\setlength{\marginparwidth}{\bigMarginSize}
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Qué hace la función $\phi$
+        }
+    }
+
+    Tal función significa aplicar traslaciones,
+    simetrías, reescalados  o composiciones de estos
+    movimientos a la imagen de la función afín.
+
+    \iconoClave  \textcolor{darkRed}{     
+        \textbf{
+            Utilidad práctica del teorema
+        }
+    }
+
+    Gracias a este resultado sabremos 
+    cuándo dos funciones de activación 
+    producirán exactamente los mismos resultados.
+    Por lo tanto podremos seleccionar 
+    la más oportuna, por ejemplo 
+    la que tenga menos coste.
+}
+
+
 \begin{aportacionOriginal}
 
 \begin{teorema}\label{teo:eficacia-funciones-activation}
@@ -365,7 +395,7 @@ añadimos a nuestra colección las siguientes.
 
 
 
-\subsubsection*{\iconoAclaraciones \textcolor{dark_green}{Relevancia práctica del teorema}}
+\subsubsection*{\iconoClave  \textcolor{darkRed}{Relevancia práctica del teorema}}
 Este teorema lo que nos está diciendo es que si dos funciones de activación tienen \textit{la misma forma}
 (independientemente de su grafo)
 entonces \textbf{aproximarán igual de bien},
@@ -382,6 +412,18 @@ asintótico (lo asintótico en términos prácticos
 significa que sea resultado de una serie de 
 aproximaciones).  
 
+% Relevancia corolario 
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Relevancia corolario 
+            \ref{corolario:afine-activation-function}
+        }
+    }
+    Simplifica las comparativas entre funciones 
+    de activación 
+    sin necesidad de conocer su imagen.
+}
 %corolario para cuando sean afines 
 \begin{corolario}\label{corolario:afine-activation-function}
     Sea $\phi \in \mathcal{A}(\R)$ una transformación afín e invertible, esto es de la forma 
@@ -537,10 +579,10 @@ Puede encontrar la implementación en el repositorio del
     \resizebox{\textwidth}{!}{
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline
-        ~ & cte 1  & Identidad  & Threshold de $2x$ & CosineSquasher & Indicadora de 0 \\ \hline
+        ~ & cte 1  & Identidad  & Umbral de $2x$ & CosineSquasher & Indicadora de 0 \\ \hline
         cte 1  & - &\textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & \textbf{No rechaza $H_0$} & - & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
+        Umbral de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & - \\ \hline
         Rampa & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -564,7 +606,7 @@ Puede encontrar la implementación en el repositorio del
         ~ & Rampa & ReLU & Sigmoid & Tangente hiperbólica \\ \hline
         cte 1  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & \textbf{No rechaza $H_0$} & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
+        Umbral de $2x$ & \textbf{No rechaza $H_0$} & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Rampa & - & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -588,7 +630,7 @@ Puede encontrar la implementación en el repositorio del
         ~ & Valor absoluto & Coseno & Hardtanh & LReLU \\ \hline
         cte 1  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$& Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
+        Umbral de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         Rampa & Rechaza $H_0$& Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
@@ -609,31 +651,40 @@ Como ya comentábamos, si la hipótesis nula es rechazada podemos suponer que ha
 de tiempo significativa;  en caso contrario no podemos saber nada. 
 
 Sin embargo, podemos entender estos rechazos como una clase de equivalencia; es decir, la diferencia en coste computacional no es tan significativa, dentro de ese grupo. De hecho, como podemos apreciar en la tabla \ref{Tiempos-ejecucion-comparativas}, que está ordenada de menor tiempo a mayor,
- estos se encuentran en posiciones consecutivas.
+ estos se encuentran en posiciones consecutivas y en los mismos rango de tiempos de la respectiva
+ gráfica de caja y bigote figura \ref{img:boxplot-whiskers-activation-function}.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|}
+    \resizebox{0.8\textwidth}{!}{  
+    \begin{tabular}{|l|c |c|}
     \hline
-        Función & Mediana & Media Tiempo & Desviación típica \\ \hline
-        cte 1 (para comparar) & 1475,959 & 1473,478 & 26,332 \\ \hline
-        Identidad (para comparar) & 1479,817 & 1467,311 & 27,021 \\ \hline
-        Hardtanh & 1495,105 & 1491,046 & 21,334 \\ \hline
-        CosineSquasher & 1522,128 & 1521,117 & 19,223 \\ \hline
-        ReLU & 1546,379 & 1552,049 & 21,435 \\ \hline
-        Indicadora de 0 & 1554,432 & 1556,114 & 21,814 \\ \hline
-        Rampa & 1557,449 & 1552,169 & 25,043 \\ \hline
-        Threshold de $2x$ & 1562,809 & 1556,669 & 23,029 \\ \hline
-        LReLU & 1564,124 & 1561,367 & 21,722 \\ \hline
-        Valor absoluto & 1583,266 & 1580,545 & 23,464 \\ \hline
-        Sigmoid & 1608,797 & 1601,079 & 21,938 \\ \hline
-        Coseno & 1630,392 & 1629,634 & 26,113 \\ \hline
-        Tangente hiperbólica & 1664,006 & 1653,295 & 23,025 \\ \hline
+        Función & Mediana & Media tiempo  \\ \hline
+        cte 1 (para comparar) & 1475,959 & 1473,478 $\pm$ 26,332 \\ \hline
+        Identidad (para comparar) & 1479,817 & 1467,311 $\pm$ 27,021 \\ \hline
+        Hardtanh & 1495,105 & 1491,046 $\pm$ 21,334 \\ \hline
+        CosineSquasher & 1522,128 & 1521,117 $\pm$ 19,223 \\ \hline
+        ReLU & 1546,379 & 1552,049 $\pm$ 21,435 \\ \hline
+        Indicadora de 0 & 1554,432 & 1556,114 $\pm$ 21,814 \\ \hline
+        Rampa & 1557,449 & 1552,169 $\pm$ 25,043 \\ \hline
+        Umbral de $2x$ & 1562,809 & 1556,669 $\pm$ 23,029 \\ \hline
+        LReLU & 1564,124 & 1561,367 $\pm$ 21,722 \\ \hline
+        Valor absoluto & 1583,266 & 1580,545 $\pm$ 23,464 \\ \hline
+        Sigmoid & 1608,797 & 1601,079 $\pm$ 21,938 \\ \hline
+        Coseno & 1630,392 & 1629,634 $\pm$ 26,113 \\ \hline
+        Tangente hiperbólica & 1664,006 & 1653,295 $\pm$ 23,025 \\ \hline
     \end{tabular}
+    }
     \caption{Tiempo de ejecución en segundos}
     \label{Tiempos-ejecucion-comparativas}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=\textwidth]{5-estudio-experimental/activation-function/boxplot-whiskers-activation-function.png}
+     \caption{Gráfico de cajas y bigotes con los tiempo de las respectivas funciones}
+     \label{img:boxplot-whiskers-activation-function}
+\end{figure}
 
 Si volvemos a nuestro objetivo, que era encontrar el representante de 
 menor costo entre las agrupaciones dispuestas en la tabla \ref{table:Clases-equivalencia-activation-function}. Concluimos que los mejores candidatos son: 
