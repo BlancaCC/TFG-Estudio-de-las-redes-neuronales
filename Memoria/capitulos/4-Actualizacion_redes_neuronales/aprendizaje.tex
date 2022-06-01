@@ -622,14 +622,21 @@ como tasa de aprendizaje o \textit{learning rate}.
 Una amplia literatura sobre cómo debe seleccionarse 
 y variantes adaptativas del mismo, 
 se puede encontrar en \cite{MostafaLearningFromData}. 
+El algoritmo como hemos visto se divide en 
+\begin{enumerate}
+    \item Ejecución del algoritmo de gradiente descendente.
+    \item Actualización de los pesos. 
+\end{enumerate}
 
-La complejidad del algoritmo de gradiente 
-descendente recae principalmente en el coste de calcular los gradientes, la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
+La complejidad por tanto será el máximo de esos dos procesos;
+puesto que el segundo son tres grandes asignaciones de costo $n d , n, n s$ respectivamente,  
+la complejidad recae principalmente en el coste de calcular los gradientes, 
+la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
 En resumen su complejidad es 
 \begin{align*}
     &\mathcal{O}(
         \max\{
-            n d , n s, 
+            n d ,  n, n s, 
             \text{coste cálculo de los gradientes}
         \}
     )
