@@ -144,7 +144,6 @@ retroalimentarán
 rrnn
 rrnng
 separabilidad
-sigmodea
 sigmoide
 sigmoidea
 sobreescribir
