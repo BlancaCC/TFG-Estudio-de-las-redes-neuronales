@@ -7,6 +7,154 @@
 
 \section{Teorema de Stone-Weierstrass }\label{ch:TeoremaStoneWeiertrass}
 
+\begin{lema}\label{ch03:lema:min-max}
+    Sean tres funciones $f_1,f_2,g : K \longrightarrow \R$ tales que 
+    \begin{equation}
+        |f_2 - g| \leq \varepsilon.
+    \end{equation}
+    Entonces la diferencia entre los máximos 
+    y respectivamente mínimos satisface que: 
+    \begin{equation}
+        |
+            \max\{f_1, f_2\}
+            -
+            \max\{f_1, g\}
+        |
+        \leq \epsilon
+    \end{equation}
+    y 
+    \begin{equation}
+        |
+            \min\{f_1, f_2\}
+            -
+            \min\{f_1, g\}
+        |
+        \leq \epsilon.
+    \end{equation}
+\end{lema}
+\begin{proof}
+    Sabemos que 
+    \begin{align}
+        & \max\{f,g\} = \frac{1}{2} (f+g+ |f-g|) \\
+        & \min \{f,g\} = \frac{1}{2} (f+g -|f-g|).
+    \end{align}
+    Por lo que 
+    \begin{align}
+        |
+            \max\{f_1, f_2\}
+            -
+            \max\{f_1, g\}
+        |   
+        & = 
+        \left|
+            \frac{1}{2} (f_1+f_2+ |f_1-f_2|)
+            -
+            \frac{1}{2} (f_1+g+ |f_1-g|)
+        \right|
+        \\
+        &= 
+        \frac{1}{2}
+        \left|
+             f_1+f_2+ |f_1-f_2|
+            -
+            f_1 - g - |f_1-g|
+        \right|
+        \\
+        &= 
+        \frac{1}{2}
+        \left|
+             f_2 - g + |f_1-f_2|
+           - |f_1-g|
+        \right|
+        \\
+        & \leq
+        \frac{1}{2}
+        (|f_2 - g |
+         +
+        | |f_1-f_2|- |f_1-g||
+        )
+        \\
+        & \leq
+        \frac{1}{2}
+        (\varepsilon
+         +
+        | |f_1-f_2|- |f_1-g||
+        )
+        \\
+        & \leq
+        \frac{1}{2}
+        (\varepsilon
+         +
+        | |f_1 - g| + |g -f_2|- |f_1-g||
+        )
+        \\
+        & \leq
+        \frac{1}{2}
+        (\varepsilon
+         +
+        |g -f_2|
+        )
+        \\
+        & \leq
+        \varepsilon.
+    \end{align} 
+
+    Para el mínimo se razona igual: 
+    \begin{align}
+        |
+            \min\{f_1, f_2\}
+            -
+            \min\{f_1, g\}
+        |   
+        & = 
+        \left|
+            \frac{1}{2} (f_1+f_2- |f_1-f_2|)
+            -
+            \frac{1}{2} (f_1+g - |f_1-g|)
+        \right|
+        \\
+        &= 
+        \frac{1}{2}
+        \left|
+             f_1+f_2- |f_1-f_2|
+            -
+            f_1 - g + |f_1-g|
+        \right|
+        \\
+        &= 
+        \frac{1}{2}
+        \left|
+             f_2 - g - |f_1-f_2|
+           + |f_1-g|
+        \right|
+        \\
+        & \leq
+        \frac{1}{2}
+        (|f_2 - g |
+         +
+        | |f_1-g| - |f_1-f_2||
+        )
+        \\
+        & \leq
+        \frac{1}{2}
+        (\varepsilon
+         +
+        | |f_1 - f_2| + |f_2 - g|- |f_1- f_2||
+        )
+        \\
+        & \leq
+        \frac{1}{2}
+        (\varepsilon
+         +
+        |f_2 - g|
+        )
+        \\
+        & \leq
+        \varepsilon.
+    \end{align} 
+    
+\end{proof}
+
 \begin{teorema}[Teorema de Stone-Weierstrass] 
 
     Sea $K$ un subconjunto compacto de $\R^p$ y sea $\mathcal{A}$ una colección de 
@@ -15,29 +163,26 @@
 
     \begin{enumerate}
         \item La función constantemente uno, definida como $e(x)=1$, para cualquier $x\in K$ pertenece a $\mathcal{A}$.
-        \item Cerrado para sumas y producto para escalares reales. Si $f,g$ pertenece a  $\mathcal{A}$, entonces $\alpha f + \beta g$ pertenece a $\mathcal{A}$ . 
-        \item Cerrado para producto. Para $f,g \in \mathcal A$, se tiene que $fg$ pertenece a $\mathcal{A}$. 
-        \item Separación de $K$, es decir si $x \neq y$ pertenecientes a $K$, entonces existe una función $f$ en $\mathcal{A}$  de tal manera que $f(x) \neq f(y)$. 
+        \item $\mathcal{A}$ es cerrado para sumas y producto para escalares reales. Si $f,g$ pertenece a  $\mathcal{A}$, entonces $\alpha f + \beta g$ pertenece a $\mathcal{A}$ . 
+        \item $\mathcal{A}$ es cerrado para productos. Para $f,g \in \mathcal A$, se tiene que $fg$ pertenece a $\mathcal{A}$. 
+        \item Separación de $K$, es decir, si $x \neq y$ pertenecen a $K$, entonces existe una función $f$ en $\mathcal{A}$  de tal manera que $f(x) \neq f(y)$. 
     \end{enumerate}
     
     Se tiene que toda función continua de $K$ a $\R$ puede ser aproximada en $K$ por funciones de $\mathcal A$. 
 
 \end{teorema}  
 
-La idea que subyace bajo la demostración del teorema es que a partir de las hipótesis de la estructura algebraica y 
-separabilidad 
-se prueba que es posible encontrar las funciones máximo y mínimo, 
-construyéndolo a partir del valor absoluto.   
-
-Con esta nueva propiedad y siendo cerrado para combinaciones lineales 
-se puede aproximar uniformemente cualquier función continua definida en el compacto. 
-
 \begin{proof}
-    Sean $a, b \in \R$ y $x \neq y$ pertenecientes a $K$.  Por la hipótesis de separabilidad existirá 
-    una función $f \in \mathcal{A}$ tal que $f(x) \neq f(y)$.  Además la existencia de un elemento neutro 
-    $e \in \mathcal{A}$ en el álgebra nos permite encontrar reales $\alpha, \beta$ tales que 
-
-    $$\alpha f(x) + \beta e(x) = a, \quad \alpha f(y) + \beta e(y) = b$$  
+    \subsubsection*{Paso 1: Para $f \in \mathcal{A}$ la función valor absoluto de $f$ puede ser aproximada por elementos
+     de $\mathcal{A}$}
+    Comenzaremos probando que para cualquier  $f \in \mathcal{A}$, 
+    la función $|f|$ se puede aproximar todo lo que queramos por elementos de $\mathcal{A}$. 
+    Esto es, 
+    para cualquier $\varepsilon > 0$ y $f \in \mathcal{A}$, 
+    existe $g \in \mathcal{A}$  tal que 
+    \begin{equation*}
+        |g(x) - |f(x)|| < \varepsilon \quad \forall x \in K.
+    \end{equation*}
 
      Por el teorema de Heine, para $f \in \mathcal A$ está acotada por tomar imagen en un compacto, es decir $|f(x)| \leq M$ para $x \in K.$  
 
@@ -46,20 +191,204 @@ se puede aproximar uniformemente cualquier función continua definida en el comp
     \ref{teo:Teorema-Weierstrass}
     para cualquier $\varepsilon > 0$ 
     existirá un polinomio $p$ cumpliendo que 
-    $$||t|- p(t)| < \varepsilon, \quad \forall t \in I.$$
+    $$||t|- p(t)| < \varepsilon \quad \forall t \in I.$$
 
     Puesto que $t \in I$ no son más que las posibles imágenes que puede tomar $f$ en $K$ inferimos entonces que 
 
     $$||f(x)| - p \circ f(x)| < \varepsilon \quad \forall x \in K.$$
 
-    Como $f \in \mathcal{A}$ y $p$ es un polinomio, es decir,  $p \circ f(x)$ son sumas de potencias multiplicadas por escalares de $f(x)$, luego por la hipótesis de ser cerrado a estas operaciones tenemos que la función 
-    $|f|$ pertenece a $\mathcal{A}$ si $f \in \mathcal{A}.$  
+    Como $f \in \mathcal{A}$ y $p$ es un polinomio, es decir, 
+     $p \circ f(x)$ son sumas de potencias multiplicadas por escalares de $f(x)$, luego por la hipótesis de ser cerrado a estas operaciones tenemos que la función 
+    $g = p \circ f$ pertenece a $\mathcal{A}$ de donde se deduce  
+    $|f|$ se puede aproximar todo lo que queramos por elementos de $\mathcal{A}$. 
 
+    \subsubsection*{Paso 2: Para la familia finita $\mathcal{F} \subset \mathcal{A}$ las funciones $\max\{\mathcal{F}\}$ y $\min\{\mathcal{F}\}$ pueden ser aproximadas por elementos de
+    de $\mathcal{A}$}
+    \label{ch03:weiertrass-paso-2}
+    Tenemos con esto que para $f,g \in \mathcal{A}$ también es capaz de aproximar la función
+     a supremo e ínfimo  gracias a que:
+    \begin{align} \label{eq:cerrado-min-max}
+        & \max\{f,g\} = \frac{1}{2} (f+g+ |f-g|) \\
+        & \min \{f,g\} = \frac{1}{2} (f+g -|f-g|). 
+    \end{align}  
+    Además se cumple para un conjunto 
+    finito de funciones $\{f_1, \ldots, f_n \} \subset \mathcal{A}$. Razonando por inducción: para el caso base $n=2$ ya se ha probado. 
+    Si $n >2$ entonces podemos escribir (los razonamientos son idénticos que para la función mínimo):
+    \begin{equation}
+        \max\{f_1, f_2, \ldots, f_n\}
+        =
+        \max\{f_1, \max\{f_2, \ldots, f_n\}\},
+    \end{equation}
+    por hipótesis de inducción existe
+    $g \in \mathcal{A}$ tal que 
+    \begin{equation}
+        |\max\{f_2, \ldots, f_n\} - g|
+        < 
+        \frac{\varepsilon}{2}.
+    \end{equation}
+    Considerando entonces 
+    $\max\{f_1,g\}$, por el caso base existirá 
+    un $g' \in \mathcal{A}$ tal que
+    \begin{equation}\label{cota:max-g}
+        |\max\{f_1,g\} - g'| 
+        < \frac{\varepsilon}{2}.
+    \end{equation} 
+    Por desigualdad triangular, el lema \ref{ch03:lema:min-max} y la ecuación (\refeq{cota:max-g}) se tiene que 
+    \begin{align}
+        |\max\{f_1, f_2, \ldots, f_n\} 
+        -
+        g'
+        | 
+        &\leq
+        |\max\{f_1, f_2, \ldots, f_n\} 
+        -
+        \max\{f_1,g\}
+        |
+        + 
+        |
+        \max\{f_1,g\}-
+        g'
+        | 
+        \\
+        &\leq
+        \varepsilon.
+    \end{align}
 
-    Tenemos con esto que $\mathcal{A}$ también es cerrada a supremo e ínfimo  gracias a que:   
-    $$\sup\{f,g\} = \frac{1}{2} \{f+g+ |f+g|\}$$
-    $$\inf\{f,g\} = \frac{1}{2} \{f+g -|f+g|\}$$
+    Probando con ello lo buscado.
     
-    Por lo que concluimos que cualquier función puede ser uniformemente aproximada por combinaciones lineales, supremos e ínfimo mediante funciones de $\mathcal{A}$.   Es decir, cualquier función continua en $K$
-    puede ser uniformemente aproximado por funciones de $\mathcal{A}$. 
+    \subsubsection*{Paso 3: Cualquier función continua $f \in \mathcal{C}(K, \R)$ puede ser aproximada con elementos
+    de $\mathcal{A}$}
+    Vamos a proceder ahora con nuestro objetivo 
+    principal. 
+    Queremos probar que para cualquier función continua $f: K \longrightarrow \R$ y cualquier $\varepsilon > 0$ existe $g \in \mathcal{A}$ tal que 
+
+    \begin{equation}
+        |f(x) - g(x)| < \varepsilon \quad \forall  x \in K. 
+    \end{equation}
+
+    Tomamos $s,t \in K$ distintos y por la hipótesis de separación de puntos existirá $u \in \mathcal{A}$ tal que $u(s) \neq u(t)$, de esta forma definimos 
+    \begin{equation}
+        \tilde{h}_{s t}(x) = 
+            f(s) + (f(t) - f(s))\frac{ u(x) - u(s)}{ u(t) - u(s)}, 
+    \end{equation}
+    se tiene que  $\tilde{h}_{s t} \in \mathcal{A}$
+    y satisface que 
+    $\tilde{h}_{s t}(s) = f(s)$ y $\tilde{h}_{s t}(t) = f(t)$. 
+    
+    Tomamos $s \in K$ fijo pero arbitrario y 
+    definimos el siguiente conjunto 
+    \begin{align}
+        U_t = 
+        \left\{
+            u \in K \colon
+            \tilde{h}_{s t}(u) < f(u) + \frac{\varepsilon}{2}
+        \right\}.
+    \end{align}
+    Notemos que $U_t$ es un conjunto abierto ya que 
+    $\tilde{h}_{s t} - f$ es una función continua
+    y se está tomando la imagen inversa de un abierto. 
+    Además se tiene que $\{t,s\} \subset U_t$ para cualquier
+    $t \in K \setminus \{s\}$. 
+    % Escribimos como recubrimiento finito
+    Por lo que podemos escribir 
+    \begin{equation*}
+        K = \bigcup_{t \in K \setminus \{s\}} U_t
+    \end{equation*}
+    y por ser $K$ compacto admitirá un recubrimiento finito dado por 
+    $I_u = \{t_1, \ldots, t_n\} \subset K$, es decir 
+    \begin{equation}\label{subrecubrimiento_t}
+        K = \bigcup_{t \in I_u} U_t.
+    \end{equation}
+    Definimos ahora 
+    \begin{equation*}
+        h_s(x) = \max_{t \in I_u}\{ 
+            \tilde{h}_{s t}(x) 
+            \colon
+            x \in U_t
+        \} 
+        \text{ para cada } x \in K. 
+    \end{equation*}
+    Así definida $h_s$ satisface que: 
+    \begin{itemize}
+        % Desigualdad 
+        \item $\text{Para cada } x \in K$ se tiene que $h_s(x) < f(x) + \frac{\varepsilon}{2}$.
+        
+        Ya que por 
+        (\refeq{subrecubrimiento_t}) 
+        $h_s(x) =  \tilde{h}_{s t_j}(x)$ y 
+        como $x \in U_{t_j}$ entonces 
+        $\tilde{h}_{s t_j}(x) < f(x) + \frac{\varepsilon}{2}$.
+        % continuidad 
+        \item La función $h_s$ puede ser aproximada con la precisión que se desee por elementos de $\mathcal{A}$ como ya hemos visto en el paso 2.
+        Sea $h_s'\in \mathcal{A}$ tal que 
+        $|h_s' - h_s| < \frac{\varepsilon}{2}$.
+
+        % Desigualdad para aproximación 
+        \item $\text{Para cada } x \in K$ se tiene que $h_s(x) < f(x) + \frac{\varepsilon}{2}$ y que $\frac{\varepsilon}{2} > |h_s' - h_s| \geq h_s' - h_s$; sumando ambas ecuaciones se tiene que 
+        \begin{equation}
+            h_s'(x) < f(x) + \varepsilon.
+        \end{equation}
+        
+    \end{itemize} 
+     
+
+    % Vamos a definir el conjunto pa sacar la otra cota. 
+    Y definimos para cada $s \in K$ el conjunto 
+    \begin{equation}\label{subrecubrimiento_s}
+        V_s = \left\{
+            v \in K  \colon
+            h_s'(x) > f(x) - \frac{\varepsilon}{2}
+            \right\}.
+    \end{equation} 
+
+    Y repitiendo el mismo argumento que para $U_t$ puede verse que $K$ admitirá un 
+    subrecubrimiento finito por abiertos: 
+    \begin{equation*}
+        K = \bigcup_{s \in I_s} V_s
+    \end{equation*}
+    con $I_v = \{s_1, \ldots, s_m\} \subset K$. 
+    % definimos ahora la función graciosa 
+    Además $g$ definida como: 
+    \begin{equation}
+        g(x)= \min_{s \in I_v}
+        \{ 
+            h_{s}'(x) 
+            \colon
+            x \in V_s
+        \} 
+    \end{equation}
+    satisface:  
+    \begin{itemize}
+
+        \item Por el paso 2 sabemos que existe un $g' \in \mathcal{A}$ tal que   $|g' - g| < \frac{\varepsilon}{2}$.
+         
+        % g acotado inferiormente
+        \item $\text{Para cada } x \in K$ se tiene que $g(x) >f(x) - \frac{\varepsilon}{2}$.
+        Ya que por 
+        (\refeq{subrecubrimiento_s})   
+        $g(x) =  h_{s_i}'(x)$ y 
+        como $x \in V_{s_i}$ entonces 
+        $h_{s_i}'(x) > f(x) - \frac{\varepsilon}{2}$.
+        % g acotado superiormente
+        \item $\text{Para cada } x \in K$ se tiene que $g(x) <f(x) + \frac{\varepsilon}{2}$.
+        
+        Ya que por 
+        (\refeq{subrecubrimiento_s}) para cada $x$ existe $i$ tal que 
+        $g(x) =  h_{s_i}'(x)$ y 
+        en las propiedades de $h_s'$ habíamos visto que
+        $h_{s}'(x) < f(x) + \frac{\varepsilon}{2}$ para $s$ arbitrario.
+        \item De las últimas observaciones se deduce que $|g-f| < \frac{\varepsilon}{2}$.
+
+    \end{itemize}
+    De estas observaciones se tiene que 
+
+    existe $g' \in \mathcal{A}$ tal que 
+    \begin{equation}
+        |g'-f| \leq |g-f| + |g'-g| 
+        <
+         \frac{\varepsilon}{2} + \frac{\varepsilon}{2} 
+        = 
+        \varepsilon.
+    \end{equation}
+    es decir $f$ puede ser aproximada por elementos de $\mathcal{A}$.
 \end{proof}

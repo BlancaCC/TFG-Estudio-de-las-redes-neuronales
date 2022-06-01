@@ -31,6 +31,7 @@ Isoperimetry
 Iésima
 JJ
 Julián
+Jupyter
 LReLU
 LaTeX
 Liang
@@ -98,6 +99,7 @@ gj
 gjk
 hiperplanos
 homeomorfismo
+homeomorfos
 ij
 ik
 inasumible
@@ -109,6 +111,8 @@ jejejeje
 jk
 lcc
 md
+metaheurística
+metaheurísticas
 modus
 muestral
 multicapa
@@ -129,6 +133,7 @@ preimágenes
 primeraCapa
 qB
 reenfocar
+reescalados
 referenciada
 reformulando
 renumerar
@@ -147,6 +152,7 @@ solventable
 squasher
 subespacio
 subespacios
+subrecubrimiento
 sumatoria
 sumatorias
 tanh
