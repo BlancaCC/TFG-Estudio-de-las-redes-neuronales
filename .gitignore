@@ -42,3 +42,5 @@ Memoria/_minted-tfg
 # Capítulos que sirven a modo de notas 
 Notas/
 Experimentos/comparativas-funciones-activacion/pruebas-linter.jl
+Experimentos/comparativas-funciones-activacion/boxplot.jl
+Experimentos/comparativas-funciones-activacion/img/boxplot-whiskers-activation-function.png
