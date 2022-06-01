@@ -98,6 +98,7 @@ gj
 gjk
 hiperplanos
 homeomorfismo
+homeomorfos
 ij
 ik
 inasumible
