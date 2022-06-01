@@ -8,12 +8,23 @@
 \chapter{Construcción técnica de las redes neuronales de una sola capa}  
 \label{chapter:construir-redes-neuronales}
 Vista la formulación teórica de una red neuronal de una sola capa 
-introducida en \ref{definition:redes_neuronales_una_capa_oculta} explicaremos a continuación  una construcción técnica junto con un
-análisis del costo necesario.
- Particularmente el algoritmo presentado es una ligera modificación del algoritmo de    
-\textit{forward propagation} explicado en \cite{BishopPaterRecognition}, ha sido necesaria su modificación para ser totalmente fieles a nuestro enfoque teórico. 
+introducida en \ref{definition:redes_neuronales_una_capa_oculta} 
+se comparará y estudiará la relación teórica 
+entre nuestra propuesta de modelo y los modelos usuales de redes neuronales. 
 
-Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cuanto a analizar el coste computacional tanto de cómputo como de memoria.
+Explicaremos también una construcción técnica junto con un
+análisis del costo necesario y beneficio obtenido.
+Así como los algoritmos necesarios para su evaluación y aprendizaje. 
+
+ Los algoritmos presentados son 
+ la adaptación natural de técnicas como 
+\textit{forward propagation} y \textit{backpropagation } explicadas en \cite{BishopPaterRecognition} a nuestro enfoque teórico. 
+
+Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cuanto a analizar el 
+coste computacional tanto de cómputo como de 
+memoria.
+
+
 
 \section{Componentes de una red neuronal de una capa oculta} 
 
@@ -196,6 +207,7 @@ es un artificio de las redes neuronales multicapa para enlazar una capa con otra
 
 % Consideración sobre componer la red neuronal con una función
 \subsection{\textit{Modus operandi} ante problemas que requieran un dominio de salida discreto}
+\label{ch05:dominio-discreto}
 
 Es usual en la literatura presentar las redes neuronales con la salida compuesta con una función $\theta$, de tal manera que una red neuronal sea de la forma
 
@@ -278,11 +290,11 @@ La implementación de la fórmula anterior sería la siguiente:
     \SetKwFunction{FSum}{$\theta$}
     \SetKwProg{Fn}{Function}{:}{}
     \Fn{\FSum{$h_x$}}{
-        \STATE $distanciaMínima \gets\infty$
+        \STATE \textit{distancia mínima} $\gets\infty$
         \STATE $clase \leftarrow NADA$ \\
         \STATE \COMMENT{Encontramos el más cercano}\\
         \ForAll{cada $(h, y)$}{
-            \If{$distancia(h,h_x) < distanciaMínima$}{
+            \If{$distancia(h,h_x) <$\textit{distancia mínima}}{
                $clase \leftarrow y$
             }
         }
@@ -319,8 +331,15 @@ en al sección \ref{ch06:coste-computacional-funciones-activacion}.
     }
 
     Esta idea abre la puerta a determinar mediante algoritmos 
-    genéticos qué funciones de activación podrían resultar más 
+    de optimización qué funciones de activación podrían resultar más 
     beneficiosas.
+    Ideas similares usando algoritmos genéticos 
+    se encuentra en artículos como 
+    \cite{FunctionOptimizationwithGeneticAlgorithms}
+    y 
+    \cite{Genetic-deep-neural-networks}
+    sin embargo expondremos nuestra versión en el capítulo 
+    \ref{ch08:genetic-selection}.
     
 }
 Fijado cierto número de neuronas, en lo que respecta a la precisión que nos puedan aportar las funciones de activación; por la idea intuitiva 

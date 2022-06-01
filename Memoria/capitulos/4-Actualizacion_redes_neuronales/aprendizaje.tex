@@ -615,11 +615,46 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
 \end{algorithmic}
 \end{algorithm}
 
-Notemos la necesidad de una variable $\eta \in \R$ que es prefijada. 
+Notemos la necesidad de una variable $\eta \in \R$ que es
+ prefijada. En la terminología de aprendizaje automático 
+se suele referir a ester término 
+como tasa de aprendizaje o \textit{learning rate}.
+Una amplia literatura sobre cómo debe seleccionarse 
+y variantes adaptativas del mismo, 
+se puede encontrar en \cite{MostafaLearningFromData}. 
+El algoritmo como hemos visto se divide en 
+\begin{enumerate}
+    \item Ejecución del algoritmo de gradiente descendente.
+    \item Actualización de los pesos. 
+\end{enumerate}
 
-Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este vienen determinado por la expresión. 
+La complejidad por tanto será el máximo de esos dos procesos;
+puesto que el segundo son tres grandes asignaciones de costo $n d , n, n s$ respectivamente,  
+la complejidad recae principalmente en el coste de calcular los gradientes, 
+la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
+En resumen su complejidad es 
+\begin{align*}
+    &\mathcal{O}(
+        \max\{
+            n d ,  n, n s, 
+            \text{coste cálculo de los gradientes}
+        \}
+    )
+    = \\
+    & = 
+    \mathcal{O}(
+        \text{coste cálculo de los gradientes}
+    )
+    =  \\
+    & 
+    = 
+    \mathcal{O}(|\mathcal{D}| n d s).
+\end{align*} 
+
+Procederemos ahora a determinar el cálculo del gradiente, como hemos visto, éste viene determinado por la expresión. 
 
 El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que no haya ningún cálculo repetido. 
+\pagebreak  
 
 
 % Cálculo de los gradientes 
@@ -716,9 +751,8 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
 \end{algorithmic}
 \end{algorithm}
 
-\textcolor{red}{TODO issue 105 Falta añadir complejidad}
-
 \subsubsection*{Análisis de la complejidad}  
+\label{ch05:complejidad-gradientes}
 Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-gradiente} es:
 \begin{itemize}
     \item \textbf{Coste de cálculo}:  Entendiendo suma, productos y evaluaciones como constante de valor $1$ el resultado es: 
@@ -749,13 +783,19 @@ Notemos que la complejidad computacional del algoritmo  \ref{algoritmo:calculo-g
         |\mathcal{D}|
         3 \max \{4, d \} n s.
     \end{align} 
-
-    De aquí se deduce, puesto que $s,d$ son constantes fijas que a nivel práctico serán mucho menor que el número de neuronas  $n$ y el número de datos de entrenamiento $|\mathcal{D}| $, que lo que afecta primordialmente al coste es $|\mathcal{D}| $ y $n$. 
+    La complejidad del algoritmo resulta por tanto 
+    $\mathcal{O}(|\mathcal{D}| n d s)$.
+    De aquí se deduce, puesto que $s,d$ son constantes fijas que a nivel práctico serán 
+    mucho menor que el número de neuronas  $n$ y el 
+    número de datos de entrenamiento $|\mathcal{D}| $,
+     que lo que afecta primordialmente al coste es 
+     $|\mathcal{D}| $ y $n$. 
     
     Si queremos converger con cierta precisión, el teorema de aproximación no nos permite reducir $n$. Sin embargo, si suponemos que $\mathcal{D}$
     presenta datos independientes e idénticamente distribuidos tomar un subconjunto aleatorio mantendría un buen estimador del error actual y por ende del aprendizaje. 
 
-    \textcolor{red}{La clave es cuánto de pequeño debe ser la muestra con la que aprendamos.}
+    La clave entonces reside en qué tamaño de subconjunto tomar, en artículos como \cite{mini-batch-size} se ofrece una posible estimación basada en reducir el número de épocas, es decir ejecuciones del algoritmo de gradiente descendiente. 
+
 
     \item \textbf{Coste en memoria}: 
     El coste total de memoria, entendiendo por una unidad aquella que almacene un parámetro concreto de la red neuronal será: 

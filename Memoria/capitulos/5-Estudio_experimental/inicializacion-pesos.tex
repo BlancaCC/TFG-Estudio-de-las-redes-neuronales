@@ -1,0 +1,294 @@
+%%%%%%%%%%%%%%%%%%%
+%% Optimización de la inicialización de los pesos de una red neuronal 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{ Mejora en la inicialización de los pesos de una red neuronal}  
+\label{section:inicializar_pesos}
+Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
+iteración mejorar la solución encontrada, pero es 
+totalmente sensible a la posición inicial 
+de los pesos. 
+Presentamos por tanto la siguiente propuesta para inicializar una red neuronal con el objetivo de que sus pesos se encuentren ya cerca de la solución. Destaquemos que este algoritmo 
+no solo servirá exclusivamente para el método de gradiente descendente 
+sino para cualquier otro dependiente del punto inicial. 
+
+\section{ Estado del arte relacionado } 
+
+% Nota informativa de lo que es un backbone 
+\setlength{\marginparwidth}{\bigMarginSize}
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Qué es un \textit{backbone}
+        }
+    }
+
+    Se denomina \textit{backbone} a los nodos de una red neuronal que han sido \textbf{inicializados con valores 
+    de otras redes neuronales ya entrenadas}. Por ejemplo si quisiéramos clasificar insectos y partiéramos de una red neuronal que se entrenó para clasificar frutas.  
+    
+}
+
+Se ha comprobado en la práctica que el uso de 
+\textit{backbones} reporta mejoras sustanciales en el 
+entrenamiento de redes neuronales, véanse artículos como \cite{backbone-object-detection}, \cite{backbone-Architecture} y sus referencias. 
+
+Cuando se carece de \textit{backbones} o no es posible utilizarlos, una buena técnica para dar un valor inicial  a los pesos consiste en basarse en metaheurísticas tales como algoritmos genéticos,
+ver \cite{Montana2002NeuralNW}, sin embargo, éstos 
+tienen un coste computacional importante. 
+
+Ante esta situación, nuestro algoritmo propone una inicialización de bajo coste computacional y que no necesita de más valores que los del conjunto de entrenamiento. 
+
+
+
+\section{Descripción del método propuesto}
+
+\begin{aportacionOriginal} % método de construción
+    
+La idea proviene de la demostración casi constructiva del teorema \ref{teorema:2_5_entrenamiento_redes_neuronales}.
+
+Se desea inicializar los pesos de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \mathcal{D}$ de datos de entrenamiento. 
+
+La bondad del resultado depende en gran medida de $\Lambda$, 
+puesto que a priori se carece de hipótesis, se seleccionará 
+de manera aleatoria bajo el supuesto de una distribución 
+independiente e idénticamente distribuida de los datos. 
+
+Como apunta la demostración, debe encontrarse un 
+$p \in \R^d$ satisfaciendo que $p \cdot (x_i-x_j) \neq 0$ para cualesquiera
+atributos $x_i,x_j$ distintos de $\Lambda$.  
+
+Es decir que se estaría considerando un vector que no 
+pertenezca a una unión finita de hiperplanos ortogonales de $\R^r$. 
+De manera teórica la probabilidad de seleccionar un $p$ y 
+que pertenezca al espacio ortogonal es $0$, sin embargo esto 
+no quiere decir que no pueda pasar. 
+
+Tomaremos por tanto un $p$ aleatorio y a partir de él 
+seleccionaremos $\Lambda$ lo suficientemente grande para que
+ al menos $n$ vectores admitan de manera estricta la ordenación: 
+
+\begin{equation}\label{eq:method_inicializar_condition_desigualdad}
+    p \cdot x_1 < 
+    p \cdot x_2 
+    < \cdots <
+    p \cdot x_n.
+\end{equation}
+Para continuar, para la función de activación 
+seleccionada $\gamma$, por cómo se definen 
+existirá un $M \in \R^+$ tal que 
+\begin{equation} \label{eq:method_inicializar_M}
+    \gamma(K)=1 \text{ y } \gamma(-K)=0 
+    \text{ sean constantes para todo }K \geq M.
+\end{equation}
+
+Una vez concretados los valores $p$, $\Lambda$ y $M$ que satisfagan las condiciones 
+(\refeq{eq:method_inicializar_condition_desigualdad}) 
+y (\refeq{eq:method_inicializar_M})  
+falta concretar los valores iniciales de la red neuronal. 
+
+Para ello debemos calcular el valor de las matrices $(A,S,B)$ que definen a una red neuronal y que presentamos en la sección \ref{section:rrnn_implementation}.
+
+Recordemos que $A$ y $S$ tienen tantas filas como neuronas  y $B$ tantas columnas como neuronas. 
+
+Usado la notación vectorial
+$p_{[i,j]} = (p_i, p_{i+1}, \ldots, p_{j})$ donde $(p_0, p_1, \ldots, p_d)=p$, comenzaremos definiendo el valor de la primera fila como
+
+\begin{align}
+    &S_1 = M p_0, \\
+    & A_{1 *} = M p_{[1,d]}, \\
+    & B_{* 1} = y_1.
+\end{align}
+
+Los valores de la fila  k-ésima de las matrices $(A,S)$, vendrán determinados por la única función afín $A \in \afines$, 
+dada por $A_k(x)=B_k(p \cdot x)$, con $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que 
+\begin{equation}
+    B_k(p \cdot x_{k-1}) = -M 
+    \quad \text{y} \quad 
+     B_{k}(p \cdot x_k)= M.
+\end{equation}
+
+Esto equivale a calcular las constantes reales $\tilde {\alpha}$. 
+
+Si tenemos presente que 
+\begin{equation}
+    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{k s} = -M 
+    \quad \text{y} \quad 
+    \tilde{\alpha}_{k p}(p \cdot x_k) + \tilde{\alpha}_{k s}= M.
+\end{equation} 
+Resolviendo el sistema resulta que 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            \\
+            \tilde{\alpha}_{k s} 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+        \end{array}
+    \right.
+\end{equation}
+
+Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de 
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            \alpha_{k 0} = \tilde{\alpha}_{k s} =
+            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            \\
+            \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
+            = 
+            \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_i 
+        \end{array}
+        \right.
+\end{equation}
+
+Esto define un sistema lineal compatible
+cuya solución son las respectivas filas y columnas: 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  
+            \\
+            B_{* k} = y_k - y_{k-1}
+        \end{array}
+    \right.
+\end{equation}  
+
+Con todo esto el proceso algorítmico resultante es: 
+
+\end{aportacionOriginal} % método de construcción
+
+% Algoritmo de inicialización de pesos de una red neuronal
+
+\begin{algorithm}[H]
+    \caption{Inicialización de pesos de una red neuronal}
+    \textbf{Input:} Tamaño red neuronal $n$, conjunto de datos de entrenamiento $\mathcal{D}$, constate $M$ involucrada en \refeq{eq:method_inicializar_M}.
+
+    \textbf{Input:} Red neuronal, representada con las matrices $(A,S,B)$.
+    \hspace*{\algorithmicindent} 
+    \begin{algorithmic}[1]
+        %selección de p
+       \STATE \textit{Inicializamos $p$}. \\
+       $p \gets$ vector de $\R^{d+1}$. 
+       \COMMENT{Como heurística será generado con distribución uniforme en el intervalo $[0,1]$} 
+       % Cálculo de Lambda
+       \STATE \textit{Selección  de los datos de inicialización
+       $\Lambda \subset \mathcal{D}$}. \\
+       \begin{equation}
+           \Lambda \gets \{ \emptyset \}
+       \end{equation}
+       \While{tamaño de $\Lambda < n$}{
+            Tomamos de manera aleatoria $(x,y)$ de $\mathcal{D}$.   \\
+        \If{para todo $(a,b) \in \Lambda$ se satisface que 
+        $p \cdot (x-a) \neq 0$}{ 
+           \begin{equation}
+                \Lambda  \gets \Lambda \cup \{(x,y)\}.
+           \end{equation} 
+           \COMMENT{$\Lambda$ está ordenado conforme a la propiedad 
+           \refeq{eq:method_inicializar_condition_desigualdad} 
+           }
+        }
+       }
+       \STATE \textit{Cálculo de los parámetros base de la red neuronal.} \\
+       
+       Para el primer $(x_1, y_1) \in \Lambda$ \\
+       \begin{align}
+            &S_1 = M p_0, \\
+            & A_{1 *} = M p_{[1,d]}, \\
+            & B_{* 1} = y_1.
+        \end{align}
+       $\Lambda \gets \Lambda \setminus \{(x_1, y_1)\} $ \\
+       \STATE \textit{Cálculo del resto de neuronas}. 
+       \For{ cada $(x_k, y_k) \in \Lambda$}{
+        \begin{align}
+            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i}  \quad i \in \{1, \ldots d\},\\
+            & B_{* k} = y_k - y_{k-1}.
+        \end{align} 
+       }
+       \STATE \textbf{return $(A,S,B)$}.
+    \end{algorithmic}  
+\end{algorithm}
+
+\subsection{Coste computacional algoritmo de inicialización de pesos}
+
+Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$; 
+y que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
+
+Sin embargo, en virtud de las observaciones hechas en la 
+descripción del método, la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
+heurística es suponer 
+que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. De esta manera el algoritmo de inicialización de pesos propuesto tendría una complejidad $\mathcal{O}(n)$.
+
+Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente,  mientras que el nuestro se realiza tan solo una vez. 
+
+
+\subsection{Observaciones }
+
+Observemos que nuestro algoritmo, para un mismo conjunto de entrenamiento  es capaz de producir infinitas soluciones 
+diferentes ya que 
+existen dos variables libres $M$ y $p$. 
+
+La  constante $M$ depende de la función de activación seleccionada y recordemos que  debe escogerse para que satisfaga la condición \refeq{eq:method_inicializar_M}. 
+
+Presentamos a continuación en la tabla \ref{table:M-activation-function} el valor $M$ para algunas funciones de activación. 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Función rampa & 1 \\ \hline
+        \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
+        Función indicadora 0 & 0 \\ \hline
+    \end{tabular}
+    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada.}
+    \label{table:M-activation-function}
+\end{table}
+
+\subsection{Generalización del método para funciones de activación }
+
+A priori si  la función de activación no cumple las propiedades 
+demandadas no podría ser utilizada en el algoritmo.  Sin embargo, es 
+posible ver que se puede generalizar para otras
+funciones de activación menos restrictivas como las definidas en \ref{table:funciones-de-activation}. 
+
+\begin{itemize}
+    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para \textbf{funciones de activación que sean afines a una que satisface \refeq{eq:method_inicializar_M}}. El proceso constructivo consistiría en: (1) hacer que la red aprenda con la función que cumple los requisitos \refeq{eq:method_inicializar_M}. (2) Los pesos obtenidos transformarlos con la misma técnica que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
+    
+    \item  \textbf{Funciones de activación asintóticas a 0 o 1}, esto es funciones que satisfacen que: 
+    \begin{enumerate}
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 1
+        $.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+        \item Que cumpla que $\psi(x) \neq 1$ para todo  $x\in \R$  o $\psi(x) \neq 0$ para todo $x\in \R$ .
+    \end{enumerate}
+    Bastará con tomar un $M$ lo suficientemente grande. 
+    \item Para funciones del tipo anterior, pero asintóticas a $a,b \in \R$, con alguno de los extremos $a,b$ distintos de $0$ y $1$, bastará con realizar una transformación afín de $f$ cumpliendo que $f(a)= 0$ y $f(b)= 1$ y aplicar el teorema \ref{teo:eficacia-funciones-activation}. 
+\end{itemize}
+
+De esta manera se pueden ampliar las funciones de activación válidas, añadiendo algunas como: 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Función rampa & 1 \\ \hline
+        \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
+        Función indicadora 0 & 0 \\ \hline
+        Función de activación  & Valor mínimo de $M$ \\ \hline
+        Sigmoidea  & con $M=10$ el error menor de $10^{-5}$\\ \hline
+        Tangente hiperbólica  &  con $M=7$ el error menor de $10^{-5}$\\ \hline
+        \textit{Hardtanh} & 1 \\ \hline
+    \end{tabular}
+    \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada (con más resultados).}
+    \label{table:M-activation-function-2}
+\end{table}
+
+%\textcolor{red}{TODO issue 107: Hacer experimentaciones }
