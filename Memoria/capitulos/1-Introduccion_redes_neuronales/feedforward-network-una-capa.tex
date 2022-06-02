@@ -3,37 +3,25 @@
 %*******************************************************
 % Construcción redes neuronales  una capa 
 %*******************************************************
+% Introducción al capítulo 
 
+A lo largo de este capítulo daremos una modelización propia de red  neuronal y la compararemos con otros modelos ofrecidos.
+Probaremos además que el modelo propuesto es un aproximador universal, es decir es capaz de aproximar cualquier función medible. 
+
+
+% Comienzo de la sección 
 \section{Definición de las redes neuronales \textit{Feedforward Networks} 
 de una capa oculta} \label{sec:redes-neuronales-intro-una-capa}
 
-% Nota margen aclarativa de una función medible
-\reversemarginpar
-\setlength{\marginparwidth}{\smallMarginSize}
-\marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{Qué son las funciones medibles 
-        y porqué las usamos en nuestra definición.}
-    }
-    {\maginLetterSize
-        A nivel intuitivo una función medible es aquella,
-        que por muy extraña que sea,  
-        su imagen (los valores que toma su salida) está acotada casi siempre, lo que a nivel práctico 
-        significa que \textit{podemos observar y cuantificar sus valores.}
-    
-        Con esto pretendemos que nuestra definición $\Gamma$ 
-        sea lo menos restrictiva posible.
-    }
-}
-\normalmarginpar
-\setlength{\marginparwidth}{\bigMarginSize}
-
-
-A lo largo de esta sección  explicaremos qué es una red neuronal, cómo está construida y en qué consiste el \textit{aprendizaje} de la misma, concretamente
+Ya estamos en condiciones de introducir qué es una red neuronal,
+cómo está construida y en qué consiste el \textit{aprendizaje} de la misma. 
+Concretamente
 construiremos el tipo particular \textit{Feedforward Neural Networks}, al cual nos referiremos de ahora
 en adelante como red neuronal.
 
-De acorde con nuestra filosofía de trabajo expuesta en la introducción del capítulo \ref{motivo-una-capa} partiremos de un modelo de una sola capa oculta. 
+De acorde con nuestra filosofía de trabajo expuesta en la introducción del capítulo \ref{motivo-una-capa}
+partiremos de un modelo de una sola capa oculta y además comenzaremos presentando el modelo que 
+hemos considerado más conveniente; esta decisión es argumentada en el capítulo \ref{chapter:construir-redes-neuronales}. 
 
 % Imagen grafo red neuronal  una capa oculta muy simple y en blanco y negro 
 \begin{figure}[h!]
@@ -42,7 +30,7 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
     \caption{\textit{Grafo} de una red neuronal de una capa oculta}
     \label{img:grafo-red-neuronal-una-capa-oculta}
 \end{figure}
-%\begin{mdframed} % Añadimos símbolo de que es contenido
+
     \begin{aportacionOriginal}
     \begin{definicion}[Redes neuronales de una capa oculta] \label{definition:redes_neuronales_una_capa_oculta}
         Dados $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ un conjunto no vacío de funciones medibles definidas de $\R$ a $\R$, denotaremos como 
@@ -62,7 +50,28 @@ De acorde con nuestra filosofía de trabajo expuesta en la introducción del cap
         \end{align}
     \end{definicion}
 \end{aportacionOriginal}
-%\end{mdframed}
+
+% Nota margen aclarativa de una función medible
+\reversemarginpar
+\setlength{\marginparwidth}{\smallMarginSize}
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{Qué son las funciones medibles 
+        y porqué las usamos en nuestra definición.}
+    }
+    {\maginLetterSize
+        A nivel intuitivo una función medible es aquella,
+        que por muy extraña que sea
+        su imagen (los valores que toma su salida) está acotada casi siempre, lo que a nivel práctico 
+        significa que \textit{podemos observar y cuantificar sus valores.}
+    
+        Con esto pretendemos que nuestra definición $\Gamma$ 
+        sea lo menos restrictiva posible.
+    }
+}
+\normalmarginpar
+\setlength{\marginparwidth}{\bigMarginSize}
+
 % Nota margen aclarativa de la fórmula
 \marginpar{\maginLetterSize
     \iconoAclaraciones \textcolor{dark_green}{     
@@ -137,58 +146,3 @@ Las diferencias con nuestra definición son las siguientes
     \item \textbf{Se elimina un parámetro} de la transformación afín de la última capa; puesto que no es necesario para la convergencia de nuevo por \ref{teo:MFNAUA} lo hemos eliminado.
     \item Nuestras funciones de activación son funciones medibles en vez de diferenciables ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción, como hemos visto en \ref{teo:MFNAUA}.
 \end{itemize}
-
-\subsection*{Las funciones de activación $\Gamma$ son la clave del aprendizaje}  
-
-Notemos que de no ser por las funciones de activación se estarían haciendo transformaciones lineales de los datos, por el contrario estamos realizando \textit{cambios más fuerte} siendo capaz con esto de \textit{de diferenciar puntos claves}.
-
-\textcolor{red}{Dicho de esta manera queda muy poco claro y habría que profundizar más.}
-Vamos a mostrar un ejemplo de la importancia de la función de activación 
-
-\textcolor{red}{TODO : Añadir gráficos cuando esté implementada una red neuronal}
-
-
-% Ejemplo de cómo se aproxima gracias  a la forma de la función de activación
-\begin{figure}[h!]
-    \includegraphics[width=\textwidth]{1-Introduccion_redes_neuronales/idea-como-aproxima-redes-neuronales.jpeg}
-    \caption{Cómo actúa en la aproximación una función de activación}
-    \label{img:idea-como-aproxima-redes-neuronales}
-   \end{figure}
-
-La idea intuitiva es que para una capa oculta con una neurona, 
-lo que se hace es \textit{colocar} por escalado y simetrías la imagen de la función de activación. 
-
-% Ejemplo trivial de como la forma de la función de activación influye en aproximar mejor 
-\begin{figure}[h!]
-    \includegraphics[width=0.8\textwidth]{1-Introduccion_redes_neuronales/Idea-forma-función-Activación.jpg}
-    \caption{Cómo afecta la forma de la función de activación}
-    \label{img:como afecta la forma de la función de aproximación}
-   \end{figure}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Multiplicar por un coeficiente complejo sería aplicar un giro,
- lo que a priori mejoraría la convergencia
- ¿Qué pasaría se cambiáramos el cuerpo?}
-
-Ante esta idea habría que plantearse si: 
-
-\begin{enumerate}
-    \item Formalizar si esto mejoraría.
-    \item A nivel de implementar Julia tiene números complejos ¿cuánto supondría de coste computacional? ¿merecería la pena?
-    \item ¿Cómo habría que actualizar los pesos?
-\end{enumerate}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Vista esta idea sería muy interesante plantearse a partir de los datos cómo deberían de ser las funciones de activación. Es decir, que no se fijen a priori, sino que sean de los datos donde provenga su forma.}
-
-Para poder utilizarse la idea que acaba de plantearse debería de plantearse: 
-\begin{enumerate}
-    \item Formalizar beneficio teórico.
-    \item Balanza costo y mejora.
-    \item Una forma de mejorar que acepte esas funciones (no necesariamente \textit{backpropagation}).
-\end{enumerate}
-
-% IDEA
-\iconoAclaraciones \textcolor{dark_green}{ Nota idea Blanca: Ante esto mi intuición me dice que que la función de activación sea constante por algún extremo y que no fuera constante en algún intervalo serían las únicas hipótesis para que tal función de activación sirviera para construir redes neuronales que funcionara como aproximador universal}
-
-

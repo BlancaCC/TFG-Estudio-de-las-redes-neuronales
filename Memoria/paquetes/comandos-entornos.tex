@@ -85,13 +85,13 @@
 % Para las notas del margen 
 %Nota los colores seleccionados han sido creados con una paleta inclusiva
 % https://palett.es/6a94a8-013e3b-7eb645-31d331-26f27d
-\definecolor{darkRed}{rgb}{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
+\definecolor{darkRed}{rgb}{0.2,1,0.7}%{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
 \definecolor{dark_green}{rgb}{0, 0.24, 0.23} %{0.2, 0.7, 0.2}
 \definecolor{sutilGreen}{rgb}{0.850, 0.996, 0.807} % para el fondo del código
 \definecolor{blue}{rgb}{0.61, 0.98, 0.759} % sobreeescribimos el azul
 \newcommand{\smallMarginSize}{1.8cm}
 \newcommand{\bigMarginSize}{3cm}
-\newcommand{\maginLetterSize}{\footnotesize} %{\scriptsize}%
+\newcommand{\maginLetterSize}{\scriptsize}%{\footnotesize} %{\scriptsize}%
 
 % Para los iconos 
 \usepackage{fontawesome}
@@ -108,7 +108,7 @@
 linewidth=5pt,
 outerlinecolor=red,
 outerlinewidth=5pt,
-innerlinewidth=0pt,
+innerlinewidth=1pt,
 outerlinecolor=red,
 roundcorner=5pt
 %middlelinecolor= yellow,
@@ -119,20 +119,21 @@ rightline = false,
 leftline = false,
 bottomline = false,
 rightmargin=0pt,
-skipabove=0pt,
-skipbelow=0pt,
+skipabove=7pt,
+skipbelow=7pt,
 leftmargin=-1cm,
 backgroundcolor=black!7,
 %innerleftmargin=1cm,
 %innerrightmargin=0pt,
 %innertopmargin=0pt,
 %innerbottommargin=0pt,
-%frametitlebackgroundcolor=yellow,
+frametitlebackgroundcolor=yellow!100,
 ]{mdframed}
-
+ 
 \newenvironment{aportacionOriginal}
   {\mdfsetup{
-    frametitle={\colorbox{black!7}{ \textcolor{white}{\Large Aportación original}}},
+    frametitle=\textcolor{white}{\Large Aportación original}
+    %frametitle={\colorbox{black!7}{ \textcolor{white}{\Large Aportación original}}},
     %frametitleaboveskip=-\ht\strutbox,
     %frametitlealignment=\center
     }

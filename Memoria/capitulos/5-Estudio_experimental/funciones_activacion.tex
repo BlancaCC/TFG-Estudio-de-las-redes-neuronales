@@ -4,37 +4,59 @@
 %   1. Comparativas en cuanto a coste computacional.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Funciones de activación}
+\chapter{Democratización de las funciones de activación}
+\label{funciones-activacion-democraticas-mas-demoscraticas}
+A lo largo de este capítulo se esclarecerá la idea
+que se planteó en \ref{def:funcion_activacion_articulo}
+de si 
+hay alguna función de activación mejor que otra. 
+Para ello 
+se han aportado dos nuevos resultados originales: 
+el teorema \ref{teo:eficacia-funciones-activation} 
+y el corolario \ref{corolario:afine-activation-function}.
+Gracias a ellos se puede establecer cuándo 
+dos espacios de redes neuronales con funciones de activación distintas pueden aproximar
+con la misma precisión una función. Cabe mencionar 
+que estos resultados son además independientes del modelo de red neuronal seleccionado gracias a los resultados teóricos descubiertos en \ref{consideration-irrelevancia-sesgo} y \ref{ch05:dominio-discreto}.
 
-Como se observó en 
-% TODO referencia a que no hay idoneidad a nivel teórico 
-% sobre una función de 
-se desconoce teóricamente si una función de activación va a ser 
-mejor que otra, es por ello y puesto que nuestro objetivo 
-es reducir el coste computacional de una red neuronal
-que procederemos a realizar un análisis del costo de las redes neuronales. 
+El teorema \ref{teo:eficacia-funciones-activation} 
+y el corolario \ref{corolario:afine-activation-function}  tienen su importancia ya que
+si sabemos que dos funciones de activación producen 
+los mismos resultados (\textit{o muy similares}), 
+conociendo su coste computacional podremos seleccionar 
+el que sea menor y de esta manera optimizar el tiempo 
+de cálculo y disminuir el número de operaciones sin 
+perder precisión en los resultados.  
+
+Es por ello que 
+tras establecer las clases de funciones que producen 
+resultados similares, en la sección \ref{ch06:coste-computacional-funciones-activacion}
+se ha formulado un test para
+determinar las funciones de menor costo. 
+
+
+
 
 
 \section{Caracterización de las funciones de activación}  
 
-Si bien por conveniencia teórica definimos las funciones de activación en \ref{def:funcion_activacion_articulo}
+Por conveniencia teórica definimos las funciones de activación en \ref{def:funcion_activacion_articulo}
 como una función de $\phi:\R \longrightarrow [0,1]$, no 
 decreciente, con uno como límite en infinito y cero como límite a 
-menos infinito. 
-
-Nos basaremos en el concepto actual de función de activación,
+menos infinito; nos basaremos en el concepto \textit{actual} de función de activación:
 basta con que sea una función no polinómica
-(véanse  los artículos \cite{DBLP:journals/corr/SonodaM15}, \cite{modern-trainable-activation-functions} y \cite{FUNAHASHI1989183}),
-además también incluiremos la función de activación identidad.
+(véanse  los artículos \cite{DBLP:journals/corr/SonodaM15}, \cite{modern-trainable-activation-functions} y \cite{FUNAHASHI1989183}).
 
 Funciones no polinómicas hay infinitas y reincidimos en que a priori no hay una mejor que otra; por tanto, como criterio de selección nos guiaremos por la intuición que nos brinda la demostración del teorema \ref{teorema:2_3_uniformemente_denso_compactos}.
   La imagen de una función de activación es relevante a la hora de aproximar la función ideal desconocida, ya que reduce el número 
   de neuronas si se usa convenientemente.  
-Por lo tanto, una buena heurística sería disponer de un repertorio básico de funciones de activación que contemplen distintas imágenes no polinómicas. 
+Por lo tanto, una buena heurística sería disponer de un repertorio básico de funciones de activación que contemplen distintas imágenes no polinómicas.
+
 
 Además de las propuestas en \ref{def:funcion_activacion_articulo}, 
-añadimos a nuestra colección las siguientes. 
+añadimos a nuestra colección las que mostramos en la tabla \ref{table:funciones-de-activation}. El criterio de selección ha sido contar con funciones de activación de formas diversas y que además sean las utilizadas de acorde (motivados por \ref{ch03:funcionamiento-intuitivo-funcion-activacion}) 
 
+\pagebreak
 
 \begin{table}[H] 
     \centering  
@@ -45,17 +67,17 @@ añadimos a nuestra colección las siguientes.
         \hline
         %%%%%%%% Identidad %%%%%%%
         % Nombre: 
-        Identidad 
-        & %expresión 
-        $Id(x) = x$
-        & % Rango imagen
-        $(-\infty, +\infty)$
-        & % Gráfica
-        \begin{minipage}{\coeficienteAncho\textwidth}
-            \includegraphics[width=\linewidth]{funciones-activacion/Identidad.png}
-        \end{minipage}
-        \\
-        \hline
+        %Identidad 
+        %& %expresión 
+        %$Id(x) = x$
+        %& % Rango imagen
+        %$(-\infty, +\infty)$
+        %& % Gráfica
+        %\begin{minipage}{\coeficienteAncho\textwidth}
+        %    \includegraphics[width=\linewidth]{funciones-activacion/Identidad.png}
+        %\end{minipage}
+        %\\
+        %\hline
          %%%%%%%% Indicadora %%%%%%%
         % Nombre: 
         Indicadora $\lambda \in \R$
@@ -73,7 +95,7 @@ añadimos a nuestra colección las siguientes.
         % Nombre: 
         Función umbral $p$ polinomio
         & %expresión 
-        $Threshold(x) = 1_{\{p(x) > 0\}}$
+        $Umbral(x) = 1_{\{p(x) > 0\}}$
         & % Rango imagen
         $\{0,1\}$
         & % Gráfica
@@ -223,20 +245,80 @@ añadimos a nuestra colección las siguientes.
     \label{table:funciones-de-activation}
 \end{table}
 
+% comentario margen
+% Qué hace la función afín definida
+% y relevancia teorema 
+\setlength{\marginparwidth}{\bigMarginSize}
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Qué hace la función $\phi$
+        }
+    }
+
+    Tal función significa aplicar traslaciones,
+    simetrías, reescalados  o composiciones de estos
+    movimientos a la imagen de la función afín.
+
+    \iconoClave  \textcolor{darkRed}{     
+        \textbf{
+            Utilidad práctica del teorema
+        }
+    }
+
+    Gracias a este resultado sabremos 
+    cuándo dos funciones de activación 
+    producirán exactamente los mismos resultados.
+    Por lo tanto podremos seleccionar 
+    la más oportuna, por ejemplo 
+    la que tenga menos coste.
+}
+
+
 \begin{aportacionOriginal}
 
 \begin{teorema}\label{teo:eficacia-funciones-activation}
-    Sea $\phi \in \mathcal{A}(\R^2)$ una transformación afín, sean dos funciones de activación $\sigma, \gamma$ tales que 
+    \label{teo:equivalencia-grafos-activation-function}
+    Sea $\phi \in \mathcal{A}(\R^2)$ una función afín 
+    cuya forma matricial asociada es de la forma:  
+    \begin{equation}
+        \phi((x,y)) =  
+        \begin{bmatrix}
+            a & 0 \\
+             0& b 
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            t_x  & t_y
+        \end{bmatrix}
+    \end{equation}
+    con $a,b \in \R^*$ y $t_x, t_y \in \R$.
+
+    Sean dos funciones de activación $\sigma, \gamma$ tales que 
     \begin{equation*}
-        \phi \circ \sigma = \gamma,
+        \phi(Grafo(\sigma)) = Grafo(\gamma),
     \end{equation*}
-    entonces para 
+    entonces 
     el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
     igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
 \end{teorema}
 \begin{proof}
+    % Primero lo demostramos con sesgo
+    Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ el espacio de redes neuronales con $n$ neuronas con sesgo. 
 
-    Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$, el espacio de redes neuronales con $n$ neuronas con sesgo. 
+    Está claro que 
+    $\mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$ 
+        y 
+        $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ 
+        son biyectivos.
+   
+    Ya que basta con tomar una red neuronal de una y cambiarle la función de activación por la de la otra. 
+    Veamos 
+    que se da la igualdad viendo que una está contenida en la otra. 
 
     Para cualquier $h  \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$
     la proyección i-ésima de $h$ será de la forma 
@@ -245,28 +327,79 @@ añadimos a nuestra colección las siguientes.
         h_i(x) = \sum^n_{j=1}(\beta_{j} \sigma(A_j(x))+ k_j),
     \end{equation*}
     con $x \in \R^d, \beta_{j}, k_j \in \R, A_j \in \afines$. 
-
-    Procedemos a definir $\tilde{h}_i(x)$ como sigue y
-    se tiene que 
-    \begin{equation*}
+    % Se define la h tilda: 
+    Procedemos a definir $\tilde{h}_i(x)$ como sigue 
+    \begin{align}\label{eq:h-tilda-definition}
         \tilde{h}_i(x) 
-        = \sum^n_{j=1}(\beta_{j}  \phi(\sigma(A_j(x)))+ k_j)
+        = \sum^n_{j=1}(\beta_{j}  (b \sigma( a A_j(x) + t_x) + t_y)+ k_j)
         = \sum^n_{j=1}(\tilde{\beta}_{j} \sigma(\tilde{A}_j(x))+ \tilde{k_j}),
-    \end{equation*}
+    \end{align}
     con $x \in \R^d, \tilde \beta_{j}, \tilde k_j \in \R, \tilde{A}_j \in \afines$,
-    por lo que está claro que $\tilde{h}_i(x) \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$. 
+    por lo que está claro que $\tilde{h}(x) \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$. 
+ 
+    Observemos que la 
+    hipótesis del enunciado 
+    establece que
+    \begin{align}
+        Grafo(\gamma) &= \{ (x, \gamma(x)) \colon x \in \R \} 
+        \\
+        & = 
+        Grafo(\gamma)  = \phi(Grafo(\sigma)) 
+        \\
+        & = 
+        \phi( \{ (x, \sigma(x)) \colon x \in \R \})
+        \\
+        &=
+        \{ (a x + t_x, b \sigma(x) + t_y) \colon x \in \R \}.
+    \end{align}
+    Por lo que $\tilde{h}$ así definida (\refeq{eq:h-tilda-definition})
+    es a su vez 
+    \begin{align}
+        \tilde{h}_i(x) 
+        = \sum^n_{j=1}(\beta_{j}  \gamma A_j(x)+ k_j)
+    \end{align}
+     es decir que $\tilde{h}(x) \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$. 
+    Así que vía $\phi$ se ha definido una inyección 
+    de $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ a 
+    $\mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$, 
+    esto es 
+    \begin{equation}
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)
+        \subseteq
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s).  
+    \end{equation}
 
-    Pero por hipótesis del teorema $\phi \circ \sigma = \gamma$, por lo que $\tilde{h}_i(x) \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$. 
-
-    Basta con considerar la transformación afín inversa para ver que ambos espacios son isomorfos
+    Además, $\phi$ con las hipótesis exigidas es
+    invertible, con inversa: 
+    \begin{equation}
+        \phi^{-1}((x,y)) =  
+        \begin{bmatrix}
+            \frac{1}{a} & 0 \\
+             0& \frac{1}{b} 
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            - \frac{t_x}{a}  &  - \frac{t_y}{b}
+        \end{bmatrix}.
+    \end{equation}
+    Así que razonando de igual manera que en el 
+    apartado anterior se tiene la inclusión
+    \begin{equation}
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)
+        \supseteq
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s),  
+    \end{equation}
+    por lo que podemos concluir que 
     \begin{equation*}
-        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) \simeq \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
+        = 
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
     \end{equation*}
-
-    Dos conjuntos isomorfos donde para cualquier $h \in \mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$, 
-    se tiene que $h \in \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ via el isomorfismo y 
-    luego componer con la inversa de la aplicación afín. 
-
+    
     Como demostramos en \ref{consideration-irrelevancia-sesgo} se tiene que 
     \begin{equation*}
         \mathcal{H}^+_{\sigma, n}(\R^d, \R^s) = \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
@@ -283,13 +416,15 @@ añadimos a nuestra colección las siguientes.
 \end{proof}
 \end{aportacionOriginal}
 
-\subsubsection*{Relevancia práctica del teorema}
+
+
+\subsubsection*{\iconoClave  \textcolor{darkRed}{Relevancia práctica del teorema}}
 Este teorema lo que nos está diciendo es que si dos funciones de activación tienen \textit{la misma forma}
 (independientemente de su grafo)
 entonces \textbf{aproximarán igual de bien},
 es decir, con el mismo error dentro de un conjunto de datos.
  Esto a nivel práctico  significa que \textbf{si se tienen dos funciones de activación
-  \textit{con la misma forma} (o muy parecidas) elige
+  \textit{con la misma forma} (\textit{o muy parecida}) elige
    la que tenga menor costo computacional}, porque a 
    nivel teórico aproximarán igual de bien y de esta
     manera ahorraremos recursos. 
@@ -300,12 +435,81 @@ asintótico (lo asintótico en términos prácticos
 significa que sea resultado de una serie de 
 aproximaciones).  
 
+% Relevancia corolario 
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Relevancia corolario 
+            \ref{corolario:afine-activation-function}
+        }
+    }
+    Simplifica las comparativas entre funciones 
+    de activación 
+    sin necesidad de conocer su imagen.
+}
+%corolario para cuando sean afines 
+\begin{corolario}\label{corolario:afine-activation-function}
+    Sea $\phi \in \mathcal{A}(\R)$ una transformación afín e invertible, esto es de la forma 
+    \begin{equation}
+        \phi(x) = a x + b 
+        \text{ con } a \in \R^*, b \in \R.
+    \end{equation}
+    Dadas dos funciones de activación $\sigma$ y $\gamma$ que satisfagan que 
+    \begin{equation}
+        \phi \circ \sigma = \gamma,
+    \end{equation} 
+    entonces 
+    el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
+    igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
+\end{corolario}
+\begin{proof}
+    En base a que $\phi(x) = a x + b$, con 
+    $a \in \R^*, b \in \R$
+    basta con definir 
+     $\psi  \in \mathcal{A}(\R^2)$ como 
+    \begin{equation}
+        \psi((x,y)) =  
+        \begin{bmatrix}
+            1 & 0 \\
+             0& a
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & b
+        \end{bmatrix}.
+    \end{equation}
+    A partir  definición se tiene que 
+    \begin{align}
+        Grafo(\gamma) &=
+        \{ (x, \gamma(x)) \colon x \in \R\} 
+        \\
+        & = 
+        \{ (x, \phi(\sigma(x))) \colon x \in \R\}
+        \\
+        & =
+        \psi(\{ (x, \sigma(x)) \colon x \in \R\})
+        = 
+        \psi(Grafo(\sigma)).
+    \end{align}
+    Se satisfacen 
+    las hipótesis del teorema \ref{teo:equivalencia-grafos-activation-function} y en virtud de él se tiene el resultado buscado.
+\end{proof}
 
-Así pues a la vista de la imágenes de las distintas funciones de activación 
-recogidas en la tabla \ref{table:funciones-de-activation} y
-por el recién probado teorema \ref{teo:eficacia-funciones-activation} podemos determinar a priori 
-que de manera teórica existen conjuntos de funciones que aproximadamente  puedes producir los mismos resultado, 
-compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
+\section{ Selección de las mejores funciones de activación}
+Así pues, a la vista de la imágenes de las distintas funciones de activación 
+recogidas en la tabla \ref{table:funciones-de-activation}, y
+por el recién probado teorema \ref{teo:eficacia-funciones-activation}, podemos determinar a priori 
+que de manera teórica existen conjuntos de funciones que aproximadamente  pueden producir los mismos resultados. 
+
+A la vista de del resultado, si las funciones de 
+activación son similares entonces actuarán con 
+una precisión similar, es por ello 
+que el la table \ref{table:Clases-equivalencia-activation-function} establecemos 
+las siguientes clases de funciones de activación 
 
 \begin{table}[H] 
     \centering  
@@ -324,10 +528,11 @@ compararemos entonces su coste computacional y tomaremos como representante de l
     \label{table:Clases-equivalencia-activation-function}
 \end{table}
 
-\textcolor{red}{TODO: Comentar cómo afecta el escalado al error}. Razonarlo con la integral.
+Compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
+
 
 \subsection{ Implementación de las funciones de activación en la biblioteca de redes neuronales} 
-
+\label{ch06:activation-function-implementation}
 Las funciones de activación han sido implementadas con cuidado de que sean eficientes 
 y valiéndose de las características propias de Julia, para ello se han utilizado técnicas como: 
 
@@ -363,7 +568,7 @@ y valiéndose de las características propias de Julia, para ello se han utiliza
     % Programación modular 
     \item \textbf{Programación modular}: Tal y como se recomienda en la documentación de Julia \footnote{
         Consultada en la página web oficial de Julia  a día 23 de mayo del 2022 con URL: \url{https://docs.julialang.org/en/v1/manual/modules/}
-    } se ha utilizado una módulo en la implementación de la biblioteca, esto aporta los siguientes beneficios: 
+    } se ha utilizado un módulo en la implementación de la biblioteca, esto aporta los siguientes beneficios: 
     \begin{itemize}
         \item Los módulos pueden ser precompilados y de esta manera se aceleraría la carga y el tiempo de inicialización. 
         \item Encapsulamiento de los métodos y facilidades de uso del espacio de nombres, lo cual forma parte
@@ -537,13 +742,15 @@ mientras que otras lo hacen incluso de otras funciones (ver definiciones en la t
 
 
 \subsection{Coste computacional funciones activación }
+\label{ch06:coste-computacional-funciones-activacion}
 
 \subsubsection{Diseño del experimento}
-El experimento para comparar los resultados ha consistido: 
-Se ha evaluado cada función a comparar $20000000$ veces y se ha medido cuanto tarda. 
+El experimento para comparar los resultados ha consistido en: 
+Se ha evaluado cada función a comparar $20.000.000$ veces y se ha medido cuanto tarda. 
 Esto se ha repetido $15$ veces. Puede encontrar la implementación concreta y los resultados concretos de cada iteración en el repositorio del
 proyecto \footnote{En el directorio de experimentos 
 de \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales}.}.
+Además, puesto que las funciones más simples que se pueden construir son la identidad y la constante, las hemos añadido para poder comparar el costo. 
 
 \subsubsection{Test de hipótesis}
 
@@ -557,18 +764,18 @@ signo de Wilcoxon} (véase \cite{OpenIntroStatistics}, \cite{BiologicalStatistic
   La motivación de realizar esta prueba es la siguiente: 
 \begin{itemize}
     \item Las muestras son independientes.
-    \item Los datos tomados, el tiempo, permiten ser ordenados. 
+    \item Los datos tomados permiten ser ordenados. 
     \item El tamaño de muestra es pequeño y no podemos asegurar normalidad de la datos. 
 \end{itemize}
 
 \subsubsection*{Hipótesis} 
 
 \begin{itemize}
-    \item $H_0$: La mediana de las diferencia de cada par de datos es $0$. 
-    \item $H_a$: La mediana de las diferencia entre cada par de datos es diferente de cero. 
+    \item $H_0$: La mediana de las diferencias de cada par de datos es $0$. 
+    \item $H_a$: La mediana de las diferencias entre cada par de datos es diferente de cero. 
 \end{itemize}
 
-La utilidad de este test es que si rechaza la hipótesis la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
+La utilidad de este test es que si rechaza la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
 diferencia de tiempos}. En caso de que no se rechace no podremos afirmar nada.
 Puede encontrar la implementación en el repositorio del
  proyecto \footnote{En el directorio de experimentos 
@@ -580,10 +787,10 @@ Puede encontrar la implementación en el repositorio del
     \resizebox{\textwidth}{!}{
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline
-        ~ & cte 1  & Identidad  & Threshold de $2x$ & CosineSquasher & Indicadora de 0 \\ \hline
+        ~ & cte 1  & Identidad  & Umbral de $2x$ & CosineSquasher & Indicadora de 0 \\ \hline
         cte 1  & - &\textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & \textbf{No rechaza $H_0$} & - & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
+        Umbral de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & - \\ \hline
         Rampa & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -607,7 +814,7 @@ Puede encontrar la implementación en el repositorio del
         ~ & Rampa & ReLU & Sigmoidea& Tangente hiperbólica \\ \hline
         cte 1  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & \textbf{No rechaza $H_0$} & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
+        Umbral de $2x$ & \textbf{No rechaza $H_0$} & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Rampa & - & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -631,7 +838,7 @@ Puede encontrar la implementación en el repositorio del
         ~ & Valor absoluto & Coseno & Hardtanh & LReLU \\ \hline
         cte 1  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$& Rechaza $H_0$ \\ \hline
-        Threshold de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
+        Umbral de $2x$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         CosineSquasher & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         Rampa & Rechaza $H_0$& Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
@@ -649,34 +856,43 @@ Puede encontrar la implementación en el repositorio del
 \end{table}
 
 Como ya comentábamos, si la hipótesis nula es rechazada podemos suponer que hay una diferencia 
-de tiempo significativas;  en caso contrario no podemos saber nada. 
+de tiempo significativa;  en caso contrario no podemos saber nada. 
 
-Sin embargo podemos entender estos rechazos como una clase de equivalencia; es decir, la diferencia en coste computacional no es tan significativa, dentro de ese grupo. De hecho, como podemos apreciar en la tabla \ref{Tiempos-ejecucion-comparativas}, que está ordenada de menor tiempo a mayor,
- estos se encuentra en posiciones consecutivas.
+Sin embargo, podemos entender estos rechazos como una clase de equivalencia; es decir, la diferencia en coste computacional no es tan significativa, dentro de ese grupo. De hecho, como podemos apreciar en la tabla \ref{Tiempos-ejecucion-comparativas}, que está ordenada de menor tiempo a mayor,
+ estos se encuentran en posiciones consecutivas y en los mismos rango de tiempos de la respectiva
+ gráfica de caja y bigote figura \ref{img:boxplot-whiskers-activation-function}.
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|}
+    \resizebox{0.8\textwidth}{!}{  
+    \begin{tabular}{|l|c |c|}
     \hline
-        Función & Mediana & Media Tiempo & Desviación típica \\ \hline
-        cte 1 (para comparar) & 1475,959 & 1473,478 & 26,332 \\ \hline
-        Identidad (para comparar) & 1479,817 & 1467,311 & 27,021 \\ \hline
-        Hardtanh & 1495,105 & 1491,046 & 21,334 \\ \hline
-        CosineSquasher & 1522,128 & 1521,117 & 19,223 \\ \hline
-        ReLU & 1546,379 & 1552,049 & 21,435 \\ \hline
-        Indicadora de 0 & 1554,432 & 1556,114 & 21,814 \\ \hline
-        Rampa & 1557,449 & 1552,169 & 25,043 \\ \hline
-        Threshold de $2x$ & 1562,809 & 1556,669 & 23,029 \\ \hline
-        LReLU & 1564,124 & 1561,367 & 21,722 \\ \hline
-        Valor absoluto & 1583,266 & 1580,545 & 23,464 \\ \hline
-        Sigmoidea& 1608,797 & 1601,079 & 21,938 \\ \hline
-        Coseno & 1630,392 & 1629,634 & 26,113 \\ \hline
-        Tangente hiperbólica & 1664,006 & 1653,295 & 23,025 \\ \hline
+        Función & Mediana & Media tiempo  \\ \hline
+        cte 1 (para comparar) & 1475,959 & 1473,478 $\pm$ 26,332 \\ \hline
+        Identidad (para comparar) & 1479,817 & 1467,311 $\pm$ 27,021 \\ \hline
+        Hardtanh & 1495,105 & 1491,046 $\pm$ 21,334 \\ \hline
+        CosineSquasher & 1522,128 & 1521,117 $\pm$ 19,223 \\ \hline
+        ReLU & 1546,379 & 1552,049 $\pm$ 21,435 \\ \hline
+        Indicadora de 0 & 1554,432 & 1556,114 $\pm$ 21,814 \\ \hline
+        Rampa & 1557,449 & 1552,169 $\pm$ 25,043 \\ \hline
+        Umbral de $2x$ & 1562,809 & 1556,669 $\pm$ 23,029 \\ \hline
+        LReLU & 1564,124 & 1561,367 $\pm$ 21,722 \\ \hline
+        Valor absoluto & 1583,266 & 1580,545 $\pm$ 23,464 \\ \hline
+        Sigmoid & 1608,797 & 1601,079 $\pm$ 21,938 \\ \hline
+        Coseno & 1630,392 & 1629,634 $\pm$ 26,113 \\ \hline
+        Tangente hiperbólica & 1664,006 & 1653,295 $\pm$ 23,025 \\ \hline
     \end{tabular}
+    }
     \caption{Tiempo de ejecución en segundos}
     \label{Tiempos-ejecucion-comparativas}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=\textwidth]{5-estudio-experimental/activation-function/boxplot-whiskers-activation-function.png}
+     \caption{Gráfico de cajas y bigotes con los tiempo de las respectivas funciones}
+     \label{img:boxplot-whiskers-activation-function}
+\end{figure} 
 
 Si volvemos a nuestro objetivo, que era encontrar el representante de 
 menor costo entre las agrupaciones dispuestas en la tabla \ref{table:Clases-equivalencia-activation-function}. Concluimos que los mejores candidatos son: 

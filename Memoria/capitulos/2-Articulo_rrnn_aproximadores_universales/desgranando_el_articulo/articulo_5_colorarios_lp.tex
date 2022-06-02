@@ -68,11 +68,12 @@ Se prueba que las redes neuronales son capaces de aproximar
 cualquier función de la clase recién introducida.
 }
 
+
 \begin{proof}
     Se quiere probar que para cualquier $g \in L_p$ y 
-    $\epsilon >0$ existe $f \in \rrnn$ tal que 
+    $\varepsilon >0$ existe $f \in \rrnn$ tal que 
     \begin{equation}
-        \dlp(f,g) <\epsilon.
+        \dlp(f,g) <\varepsilon.
     \end{equation}   
     
     Por pertenecer $g$ a $L_p$ existe una constante $M$ real positiva
@@ -80,7 +81,7 @@ cualquier función de la clase recién introducida.
     tal que si definimos la función $h =g 1_{|g|<M}$ esta satisface 
     que
     \begin{equation}\label{eq:corolario_2_2:h_compacto}
-        \dlp(g,h) < \frac{\epsilon}{3}.
+        \dlp(g,h) < \frac{\varepsilon}{3}.
     \end{equation}
     
     Además como $h$ es una función acotada de $L_p$, podemos encontrar
@@ -90,7 +91,7 @@ cualquier función de la clase recién introducida.
     y la cual cumple que 
 
     \begin{equation}\label{eq:corolario_2_2:s_continua}
-        \dlp(h,s) < \frac{\epsilon}{3}.
+        \dlp(h,s) < \frac{\varepsilon}{3}.
     \end{equation}
 
     Por el teorema \ref{teo:2_4_rrnn_densas_M}, al estar en un compacto $K$ y por ser $\rrnn$ uniformemente
@@ -98,7 +99,7 @@ cualquier función de la clase recién introducida.
     \begin{equation}
         \sup_{x \in K} |f(x) -s(x)|^p 
         <
-         \left( \frac{\epsilon}{3}\right) ^p.
+         \left( \frac{\varepsilon}{3}\right) ^p.
     \end{equation}
     
     Y por hipótesis $\mu(K) =1$ y definición de la distancia $\dlp$ 
@@ -108,9 +109,9 @@ cualquier función de la clase recién introducida.
         \dlp(f,s) = 
         \left(\int |f(x) - s(x)|^p d\mu \right)^\frac{1}{p}
         \leq 
-        \left(\int  \left( \frac{\epsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
-        = \left( \mu(K)  \left(\frac{\epsilon}{3} \right)^p\right) ^\frac{1}{p}
-        = \frac{\epsilon}{3}.
+        \left(\int  \left( \frac{\varepsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
+        = \left( \mu(K)  \left(\frac{\varepsilon}{3} \right)^p\right) ^\frac{1}{p}
+        = \frac{\varepsilon}{3}.
     \end{equation}
 
     Gracias a la desigualdad triangular y las desigualdades
@@ -125,8 +126,8 @@ cualquier función de la clase recién introducida.
             +\dlp(s,h)
             + \dlp(h,g)
         < 
-        \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}
-        = \epsilon.
+        \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3}
+        = \varepsilon.
     \end{equation}
 Probando con ello lo buscado. 
 \end{proof}  
@@ -152,6 +153,8 @@ Probando con ello lo buscado.
 aquí se afirma que las redes neuronales son capaces de aproximar 
 cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^d$, es decir \textbf{se está concretando los valores de entrada que pueden tomar las funciones}.
 }
+
+
 \begin{proof}
     Es consecuencia directa del corolario previo \ref{corolario:2_2_rrnn}
     donde para este caso particular $K = [0,1]^d$ un compacto
@@ -164,13 +167,13 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
     Sea $\mu$ una medida, que para
     un conjunto finito de puntos $O$ cumple que $\mu(0)=1$, 
     entonces, para cualquier función medible $g \in \fM$
-    y sea cual sea $\epsilon >0$ 
+    y sea cual sea $\varepsilon >0$ 
     existe $f \in \rrnn$ la cual cumple que 
     \begin{equation}
         \mu\{ 
             x:
             |f(x) - g(x)| 
-            < \epsilon
+            < \varepsilon
         \}
         = 1.
     \end{equation}
@@ -179,8 +182,8 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
 \begin{proof}
     Por el teorema \ref{teo:2_4_rrnn_densas_M} existe 
     $f \in \rrnn$ tal que para cualquier 
-    $\epsilon_1, \epsilon_2 >0$ se cumple que 
-    $\mu \{x: |f(x) - g(x)| > \epsilon_1\} < \epsilon_2.$
+    $\varepsilon_1, \varepsilon_2 >0$ se cumple que 
+    $\mu \{x: |f(x) - g(x)| > \varepsilon_1\} < \varepsilon_2.$
     Sea $O$ el conjunto de puntos tal que $\mu(O) = 1.$
     Por ser finito $O$ podemos encontrar
     \begin{equation} \label{eq:2_4:definición_epsilon}
@@ -189,30 +192,30 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
         \}. 
     \end{equation}
 
-    Sin pérdida de generalidad tomamos $\epsilon < \delta$ y entonces
+    Sin pérdida de generalidad tomamos $\varepsilon < \delta$ y entonces
     para  que la $f$ fijada cumpla que
     \begin{equation}
-        \dist(f,g) = \epsilon
+        \dist(f,g) = \varepsilon
     \end{equation}
     debe de cumplirse que 
     \begin{equation}
         \dist(f,g) =  \inf 
         \{
-           \epsilon_1 > 0:
+           \varepsilon_1 > 0:
            \mu\{ 
             x:
             |f(x) - g(x)| 
-            > \epsilon_1
+            > \varepsilon_1
         \}
-        < \epsilon_1
+        < \varepsilon_1
         \} 
-        = \epsilon,
+        = \varepsilon,
     \end{equation}
-    pero por cómo tomamos $\epsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
+    pero por cómo tomamos $\varepsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
     tiene que $\mu\{ 
         x:
         |f(x) - g(x)| 
-        > \epsilon
+        > \varepsilon
     \} = 0.$
 
     Por lo que acabamos de probar, como queríamos, que 
@@ -220,7 +223,7 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
         \mu\{ 
             x:
             |f(x) - g(x)| 
-            < \epsilon
+            < \varepsilon
         \}
         = 1.
     \end{equation}
@@ -236,9 +239,9 @@ un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuro
             \ref{corolario:2_5_función_Booleana}
         }
     }
-    { \small
+     
     Este resultado nos permite \textbf{aproximar funciones que actúen como clasificadores discretos}. Por ejemplo sea $g$ como una función que dada una imagen $x$ indica si hay un perro haciendo valer $g(x)=1$ y en caso contrario $g(x)=0$.
-    }   
+      
 }
 
 %Nota aclarativa sobre la implementación del corolario
@@ -250,7 +253,7 @@ un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuro
             \ref{corolario:2_5_función_Booleana}
         }
     }
-    {\small
+    
     El resultado nos   indica que podemos obtener una red neuronal $h$ que aproxime tal clasificador, 
     pero \textbf{tal red neuronal no necesariamente tomará valores discretos}, es decir,
      pudiera darse el caso que 
@@ -262,7 +265,7 @@ un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuro
      tal que 
      $\theta \circ h(\{ x : g(x)=0 \})=0$ y 
      $\theta \circ h(\{ x : g(x)=1 \})=1$.
-    }
+    
 }
 
 \begin{definicion}[Función Booleana]
@@ -285,11 +288,11 @@ que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
     Para cada función Booleana 
     $g: \{0,1\}^d \longrightarrow \{0,1\}$
      y 
-    cada $\epsilon >0$ existe una red neuronal
+    cada $\varepsilon >0$ existe una red neuronal
     $f \in \rrnn$ tal que 
     \begin{equation}
         \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
-        < \epsilon.
+        < \varepsilon.
     \end{equation}
 \end{corolario}
 
@@ -329,14 +332,14 @@ que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
             \mu\{ 
                 x:
                 |f(x) - g(x)| 
-                < \epsilon
+                < \varepsilon
             \}
             = 1,
     \end{equation} 
     es decir que 
     \begin{equation}
         \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
-        < \epsilon
+        < \varepsilon
     \end{equation}
     como queríamos probar. 
 \end{proof}
@@ -441,7 +444,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
     }
 }
 \marginpar{\maginLetterSize
-    {\small
+    {
   Es interesante reparar en que la demostración se basa
   en añadir una neurona por cada punto que queramos que tome
   un valor concreto, esa neurona se activará (es decir, no será nula) cuando la entrada $x$ \textit{sea mayor} que el valor que la activa $x_i$ y vale la diferencia con el valor anterior $x_{i-1}$, es decir $g(x_{i}) - g(x_{i-1})$, como el nodo $x_{i-1}$
@@ -495,7 +498,7 @@ Definiremos de manera recursiva la red neuronal buscada $f_n$.
         nos brinda una heurística de inicialización de los pesos
         de una red neuronal.
     }
-    La cual se tratará en en la sección \ref{section:inicializar_pesos}.
+    La cual se tratará en la sección \ref{section:inicializar_pesos}.
 \setlength{\marginparwidth}{\bigMarginSize}
  
 }
@@ -638,7 +641,8 @@ hemos observado que el fenómeno se comporta como $g(x)$. Todo esta
 situación experimental puede producir incoherencias teóricas, como por ejemplo que se tengan dos muestras $(x_1, y_1), (x_2, y_2)$ 
 tales que $x_1 = x_2$ pero $y_1 \neq y_2$ o que la medición contenga errores, es decir $(x, g(x)+\delta)$. 
 
-Se podría paliar esta situación con preprocesado de los datos. 
+Se podría paliar esta situación con un
+ preprocesado de los datos. 
 
 \subsubsection*{ Naturaleza de la regla subyacente}  
 
@@ -657,15 +661,3 @@ entrenamiento y utilizar esa \textit{redundancia} de datos para
 Supongamos que los datos son idílicos, el modelo se conoce y se establece un tamaño de datos de entrenamiento suficiente y
 un número de neuronas acorde  ¿podríamos asumir el coste computacional?
 
-\subsubsection*{Naturaleza constructiva de la demostración}
-\textcolor{red}{Estoy especulando, pero quiero dejar este pensamiento registrado.}
-El coste computacional de \textit{construir} esa red neuronal 
-es menor que el de entrenarla (TODO: comparar)
-podría optarse por una estrategia que se base de alguna manera 
-en esta construcción para inicializar los pesos?
-
-Por ejemplo: queremos construir una redes neuronales con n neuronas, 
-seleccionamos n datos aleatorios, construimos $f_n$ 
-y sobre ella entrenamos. 
-
-Quizás se obtengan mejores resultados que directamente inicializando los pesos de manera aleatoria. 

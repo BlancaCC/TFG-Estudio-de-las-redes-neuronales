@@ -4,15 +4,11 @@
 %*******************************************************
 % Introducción artículo MFNAUA
 %*******************************************************
+\section{Las redes neuronales son aproximadores universales}  
 
-\chapter{Las redes neuronales  son aproximadores universales}  
-\label{chapter:redes-neuronales-aproximador-universal}
-\section{Introducción}  
-
-Tras las definiciones y construcciones expuestas durante el capítulo de presentación 
-y construcción de las redes neuronales  presentada en el capítulo anterior \ref{sec:redes-neuronales-intro-una-capa}.
-es pertinente la pregunta de si todas las estructuras y técnicas presentadas solventan nuestro 
-objetivo principal: Aproximar con éxito una función genérica desconocida.   
+Tras las definición \ref{sec:redes-neuronales-intro-una-capa} de red neural expuesta,
+es pertinente la pregunta si tal estructura será 
+capaz de aproximar con éxito una función genérica desconocida.   
 
 Aunque las redes neuronales multicapa ya se venían aplicando con anterioridad, 
 véase por ejemplo los usos expuestos durante la primera conferencia
@@ -20,7 +16,7 @@ internacional de redes neuronales de \cite{4307059} de 1987,
 no fue hasta 1989 que se descubrió formalmente su alcance.
  Tal delimitación se propuso en el artículo 
 \textbf{Multilayer Feedforward Networks are Universal Approximators} \cite{HORNIK1989359}
- escrito por Kurt Hornik, Maxwell Stinchcombe y Halber White enunciando 
+ escrito por Kurt Hornik, Maxwell Stinchcombe y Halber White enunciando: 
 
 \begin{teorema}\textbf{Las redes \textit{feedforward} multicapa son una clase de aproximadores universales } \label{teo:MFNAUA}
     \\
@@ -30,14 +26,35 @@ no fue hasta 1989 que se descubrió formalmente su alcance.
 
 \end{teorema}
 
-En las secciones siguientes, con el fin de alcanzar una comprensión profunda de las redes neuronales,
-trataremos de desgranar y profundizar en el artículo y su demostración. Primero precisaremos o introduciremos conceptos elementales 
-sobre redes neuronales \ref{ch:articulo:sec:defincionesPrimeras}, después demostraremos el teorema en el caso real 
-\ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales} e iremos refinando y generalizando los resultado 
-en 
-TODO: añadir referencia a la sección  que faltan 
-hasta probar en 
-TODO añadir referencia a la sección  que faltan 
-el resultado enunciado \ref{teo:MFNAUA}.
+En las secciones siguientes, con el fin de alcanzar una
+ comprensión profunda de las redes neuronales,
+trataremos de desgranar y profundizar en el artículo y su 
+demostración. Primero precisaremos o introduciremos conceptos elementales 
+sobre redes neuronales \ref{ch:articulo:sec:defincionesPrimeras}, después 
+demostraremos el teorema en el caso real 
+\ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales} e iremos refinando y generalizando los resultados hasta probar
+el resultado enunciado \ref{teo:MFNAUA} para una capa oculta.
+
+El esquema general será: 
+
+    % Nota margen de denso
+    \setlength{\marginparwidth}{\bigMarginSize}
+    \marginpar{\maginLetterSize
+        \iconoAclaraciones \textcolor{dark_green}{ 
+            \textbf{Idea intuitiva conjunto denso.}
+        }
+        Si $S$ es denso en $T$, 
+        se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
+        con la precisión que se desee}. 
+    }
+
+
+\begin{itemize}
+    \item Las redes neuronales que nosotros hemos modelizado son densas en un espacio más general que hemos denominado \textit{Anillo de aproximación de redes neuronales}. 
+    \item El espacio \textit{Anillo de aproximación de redes neuronales} es denso en la funciones continuas.
+    \item Las funciones continuas son densas en los reales. 
+\end{itemize}
+
+Si quisiéramos situar en este esquema a otras definiciones de redes neuronales las situaríamos entre  nuestro modelo y el espacio \textit{Anillo de aproximación de redes neuronales}; en  el capítulo \ref{chapter:construir-redes-neuronales} se probará la equivalencia de nuestro modelo con estas definiciones y sus beneficios. 
 
 

@@ -13,8 +13,8 @@ Trataremos ahora de generalizar la tesis expuesta en
 \begin{teorema}[Teorema de Lusin] \label{teo:Lusin}
     Si $\mu$ es una medida regular de Borel, $E$ un conjunto de medida finita 
     y $f$ una función medible en $E$ entonces
-    para cualquier $\epsilon > 0$ existirá un conjunto compacto 
-    $K$ en $E$ tal que $\mu(E \setminus C) \leq \epsilon$ y donde $f$ es continua en $K$. 
+    para cualquier $\varepsilon > 0$ existirá un conjunto compacto 
+    $K$ en $E$ tal que $\mu(E \setminus C) \leq \varepsilon$ y donde $f$ es continua en $K$. 
 \end{teorema}
 \begin{proof}
     Demostración en páginas 242 y 243 de \cite{nla.cat-vn1819421}.
@@ -45,10 +45,10 @@ en  compactos de $\R^d$, las podremos extender a $\R^d$.
 \begin{corolario} \label{cor:2_1}
     Para cada función $g \in \fM$ existe un subconjunto compacto 
     $K$ de $\R^d$ y $f \in \rrnn$ tal que para cualquier 
-    $\epsilon > 0$ se tiene que 
-    $\mu(K) > 1- \epsilon$ y para cada $x \in K$ tenemos que 
+    $\varepsilon > 0$ se tiene que 
+    $\mu(K) > 1- \varepsilon$ y para cada $x \in K$ tenemos que 
     \begin{equation}
-        |f(x) - g(x) | < \epsilon,
+        |f(x) - g(x) | < \varepsilon,
     \end{equation}
     independientemente de la función de activación $\psi$, dimensión $d$ o medida $\mu$. 
 \end{corolario}
@@ -64,12 +64,13 @@ en  compactos de $\R^d$, las podremos extender a $\R^d$.
     Este teorema corrige la carencia sobre la precisión del error que describíamos 
     en la idea intuitiva del teorema \ref{teo:2_4_rrnn_densas_M}. Podemos encontrar una red neuronal que aproxime cualquier función medible que queramos en todos los puntos del espacio que queramos.
     }
+    \normalmarginpar
 
     
 \begin{proof}
-    Sea $\epsilon > 0$ fijo pero arbitrario.  Gracias al teorema de Lusin \ref{teo:Lusin}
+    Sea $\varepsilon > 0$ fijo pero arbitrario.  Gracias al teorema de Lusin \ref{teo:Lusin}
     existe un subconjunto compacto $K \subset \R^d$ de medida
-    $\mu(K) > 1 - \epsilon$ donde la restricción  $g_{|K}$ es continua. 
+    $\mu(K) > 1 - \varepsilon$ donde la restricción  $g_{|K}$ es continua. 
 
     Por otra parte, en virtud de la caracterización de Tietze 
     \ref{teo:Tietze}, 
@@ -84,7 +85,7 @@ en  compactos de $\R^d$, las podremos extender a $\R^d$.
     Por ser $G$ continua en un compacto, por la densidad de las redes neuronales en compactos en $\fC$(lema \ref{lema:A_5_uniformemente_denso_compactos} ) se tiene que existirá 
      $f \in \rrnng$ tal que 
     \begin{equation}
-        \sup_{x \in K} |G(x) - f(x)| < \epsilon.
+        \sup_{x \in K} |G(x) - f(x)| < \varepsilon.
     \end{equation}
 
     Por lo que podemos afirmar que para todo $x \in K$
@@ -92,7 +93,7 @@ en  compactos de $\R^d$, las podremos extender a $\R^d$.
         |f(x) -g(x)| 
         \leq 
         | f(x) -G(x)| + |G(x) -g(x)|
-        < \epsilon + 0 = \epsilon
+        < \varepsilon + 0 = \varepsilon
     \end{equation}
     como queríamos probar.
 \end{proof}

@@ -50,8 +50,20 @@ con $i \in \{1,\ldots, h\}$ .
     \end{equation}
 \end{definicion}
 
-\iconoAclaraciones \textcolor{dark_green}{ Nota Blanca: }
+\iconoAclaraciones \textcolor{dark_green}{ Observación: }
 
+% Comentario 
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+        Por qué se ha destacado la observación
+        }
+    }
+    Se destaca tal observación para remarcar que una 
+    red neural con salidas en varias dimensiones tiene
+    una definición mucho más estricta y que podría dar a confusión.
+    
+}
 
 Es interesante apreciar que se tiene que 
     \begin{equation} \label{eq:diferencia_conjuntos_multicapa}
@@ -116,7 +128,7 @@ No es difícil pensar que su versión generalizada sea:
         \ref{corolario:2_6}}
     }
 }
-\marginpar{\maginLetterSize\small
+\marginpar{\maginLetterSize
    En esencia, todos los resultados probados hasta ahora para redes 
    neuronales con salida real de dimensión uno son válidos para 
    cualquier tamaño de salida, es decir, \textbf{lo que a nosotros 
@@ -131,7 +143,7 @@ No es difícil pensar que su versión generalizada sea:
         \ref{corolario:2_6}}
     }
 }
-\marginpar{\maginLetterSize\small
+\marginpar{\maginLetterSize
  La demostración del corolario es totalmente constructiva:
 si se desea una red neuronal de salida $s\in \N$, 
 se construyen de manera independiente $s$ redes neuronales de salida de dimensión uno
@@ -155,7 +167,7 @@ se construyen de manera independiente $s$ redes neuronales de salida de dimensi�
     }
 }
 \marginpar{\maginLetterSize
-    \small
+   
     La demostración del corolario nos da una \textbf{técnica constructiva}
     de obtener redes neuronales de varias salidas,
      que puede ser de valía para aplicarla \textbf{como heurística 
