@@ -314,7 +314,7 @@ compararemos entonces su coste computacional y tomaremos como representante de l
         \textit{Grupo escalera} & \textit{Grupo sigmoide} & \textit{Grupo ReLU} \\
         \hline
        &  Rampa &  \\
-       Indicadora & Sigmodea & ReLU\\
+       Indicadora & Sigmoidea & ReLU\\
        Umbral & \textit{Cosine Squasher}& LReLU\\
         & tanh & \\
         & \textit{Hard Hyperbolic Function}& \\
@@ -533,7 +533,7 @@ Puede encontrar la implementación en el repositorio del
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & - \\ \hline
         Rampa & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         ReLU & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
-        Sigmoid & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
+        Sigmoidea& Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Tangente hiperbólica & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Valor absoluto & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Coseno & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -549,7 +549,7 @@ Puede encontrar la implementación en el repositorio del
     \resizebox{\textwidth}{!}{
     \begin{tabular}{|l|l|l|l|l|}
     \hline
-        ~ & Rampa & ReLU & Sigmoid & Tangente hiperbólica \\ \hline
+        ~ & Rampa & ReLU & Sigmoidea& Tangente hiperbólica \\ \hline
         cte 1  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Identidad  & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Threshold de $2x$ & \textbf{No rechaza $H_0$} & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -557,7 +557,7 @@ Puede encontrar la implementación en el repositorio del
         Indicadora de 0 & Rechaza $H_0$ & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Rampa & - & \textbf{No rechaza $H_0$} & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         ReLU & \textbf{No rechaza $H_0$} & - & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
-        Sigmoid & Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ \\ \hline
+        Sigmoidea& Rechaza $H_0$ & Rechaza $H_0$ & - & Rechaza $H_0$ \\ \hline
         Tangente hiperbólica & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & - \\ \hline
         Valor absoluto & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Coseno & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -581,7 +581,7 @@ Puede encontrar la implementación en el repositorio del
         Indicadora de 0 & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         Rampa & Rechaza $H_0$& Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         ReLU & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
-        Sigmoid & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
+        Sigmoidea& Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Tangente hiperbólica & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
         Valor absoluto & - & Rechaza $H_0$ & Rechaza $H_0$ & \textbf{No rechaza $H_0$} \\ \hline
         Coseno & Rechaza $H_0$ & - & Rechaza $H_0$ & Rechaza $H_0$ \\ \hline
@@ -614,7 +614,7 @@ Sin embargo podemos entender estos rechazos como una clase de equivalencia; es d
         Threshold de $2x$ & 1562,809 & 1556,669 & 23,029 \\ \hline
         LReLU & 1564,124 & 1561,367 & 21,722 \\ \hline
         Valor absoluto & 1583,266 & 1580,545 & 23,464 \\ \hline
-        Sigmoid & 1608,797 & 1601,079 & 21,938 \\ \hline
+        Sigmoidea& 1608,797 & 1601,079 & 21,938 \\ \hline
         Coseno & 1630,392 & 1629,634 & 26,113 \\ \hline
         Tangente hiperbólica & 1664,006 & 1653,295 & 23,025 \\ \hline
     \end{tabular}
