@@ -18,6 +18,8 @@ Factorizando
 Feedforward
 Fn
 ForwardPropagation
+Functores
+Funtores
 GN
 GPUs
 García
@@ -25,8 +27,11 @@ Guervós
 HU
 HUxx
 Halber
+HardTanh
+Hardtanh
 Hardtanh
 Hornik
+IntervaloCentral
 Isoperimetry
 Iésima
 JJ
@@ -34,6 +39,7 @@ Julián
 LReLU
 LaTeX
 Liang
+Liskov
 Lusin
 López
 Makefile
@@ -54,9 +60,9 @@ Readme
 Rosenblatt
 Sebastien
 Sellke
-Sigmoidea
 Sigmoid
 Sigmoide
+Sigmoidea
 Stinchcombe
 TFG
 TeoremaStoneWeiertrass
@@ -71,6 +77,7 @@ aproximadores
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
+bgcolor
 ceil
 cienciadedatos
 codominio
@@ -106,6 +113,8 @@ insesgados
 jejejeje
 jk
 lcc
+linenos
+lineos
 md
 modus
 muestral
@@ -118,6 +127,8 @@ optarse
 overparametrization
 pag
 parametrized
+paramétrico
+paramétricos
 perceptrones
 perceptrón
 png
@@ -141,10 +152,12 @@ sigmoidea
 sobreescribir
 solventable
 squasher
+struct
 subespacio
 subespacios
 sumatoria
 sumatorias
+sutilGreen
 tanh
 teo
 tratabilidad
@@ -152,7 +165,3 @@ usefulInformation
 ésima
 ésimas
 ésimo
-paramétrico
-paramétricos
-Funtores
-Liskov
