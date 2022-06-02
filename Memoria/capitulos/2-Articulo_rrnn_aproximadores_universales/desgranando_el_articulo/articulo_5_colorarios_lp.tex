@@ -71,9 +71,9 @@ cualquier función de la clase recién introducida.
 
 \begin{proof}
     Se quiere probar que para cualquier $g \in L_p$ y 
-    $\epsilon >0$ existe $f \in \rrnn$ tal que 
+    $\varepsilon >0$ existe $f \in \rrnn$ tal que 
     \begin{equation}
-        \dlp(f,g) <\epsilon.
+        \dlp(f,g) <\varepsilon.
     \end{equation}   
     
     Por pertenecer $g$ a $L_p$ existe una constante $M$ real positiva
@@ -81,7 +81,7 @@ cualquier función de la clase recién introducida.
     tal que si definimos la función $h =g 1_{|g|<M}$ esta satisface 
     que
     \begin{equation}\label{eq:corolario_2_2:h_compacto}
-        \dlp(g,h) < \frac{\epsilon}{3}.
+        \dlp(g,h) < \frac{\varepsilon}{3}.
     \end{equation}
     
     Además como $h$ es una función acotada de $L_p$, podemos encontrar
@@ -91,7 +91,7 @@ cualquier función de la clase recién introducida.
     y la cual cumple que 
 
     \begin{equation}\label{eq:corolario_2_2:s_continua}
-        \dlp(h,s) < \frac{\epsilon}{3}.
+        \dlp(h,s) < \frac{\varepsilon}{3}.
     \end{equation}
 
     Por el teorema \ref{teo:2_4_rrnn_densas_M}, al estar en un compacto $K$ y por ser $\rrnn$ uniformemente
@@ -99,7 +99,7 @@ cualquier función de la clase recién introducida.
     \begin{equation}
         \sup_{x \in K} |f(x) -s(x)|^p 
         <
-         \left( \frac{\epsilon}{3}\right) ^p.
+         \left( \frac{\varepsilon}{3}\right) ^p.
     \end{equation}
     
     Y por hipótesis $\mu(K) =1$ y definición de la distancia $\dlp$ 
@@ -109,9 +109,9 @@ cualquier función de la clase recién introducida.
         \dlp(f,s) = 
         \left(\int |f(x) - s(x)|^p d\mu \right)^\frac{1}{p}
         \leq 
-        \left(\int  \left( \frac{\epsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
-        = \left( \mu(K)  \left(\frac{\epsilon}{3} \right)^p\right) ^\frac{1}{p}
-        = \frac{\epsilon}{3}.
+        \left(\int  \left( \frac{\varepsilon}{3}\right) ^p d\mu \right)^\frac{1}{p}
+        = \left( \mu(K)  \left(\frac{\varepsilon}{3} \right)^p\right) ^\frac{1}{p}
+        = \frac{\varepsilon}{3}.
     \end{equation}
 
     Gracias a la desigualdad triangular y las desigualdades
@@ -126,8 +126,8 @@ cualquier función de la clase recién introducida.
             +\dlp(s,h)
             + \dlp(h,g)
         < 
-        \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3}
-        = \epsilon.
+        \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3}
+        = \varepsilon.
     \end{equation}
 Probando con ello lo buscado. 
 \end{proof}  
@@ -167,13 +167,13 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
     Sea $\mu$ una medida, que para
     un conjunto finito de puntos $O$ cumple que $\mu(0)=1$, 
     entonces, para cualquier función medible $g \in \fM$
-    y sea cual sea $\epsilon >0$ 
+    y sea cual sea $\varepsilon >0$ 
     existe $f \in \rrnn$ la cual cumple que 
     \begin{equation}
         \mu\{ 
             x:
             |f(x) - g(x)| 
-            < \epsilon
+            < \varepsilon
         \}
         = 1.
     \end{equation}
@@ -182,8 +182,8 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
 \begin{proof}
     Por el teorema \ref{teo:2_4_rrnn_densas_M} existe 
     $f \in \rrnn$ tal que para cualquier 
-    $\epsilon_1, \epsilon_2 >0$ se cumple que 
-    $\mu \{x: |f(x) - g(x)| > \epsilon_1\} < \epsilon_2.$
+    $\varepsilon_1, \varepsilon_2 >0$ se cumple que 
+    $\mu \{x: |f(x) - g(x)| > \varepsilon_1\} < \varepsilon_2.$
     Sea $O$ el conjunto de puntos tal que $\mu(O) = 1.$
     Por ser finito $O$ podemos encontrar
     \begin{equation} \label{eq:2_4:definición_epsilon}
@@ -192,30 +192,30 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
         \}. 
     \end{equation}
 
-    Sin pérdida de generalidad tomamos $\epsilon < \delta$ y entonces
+    Sin pérdida de generalidad tomamos $\varepsilon < \delta$ y entonces
     para  que la $f$ fijada cumpla que
     \begin{equation}
-        \dist(f,g) = \epsilon
+        \dist(f,g) = \varepsilon
     \end{equation}
     debe de cumplirse que 
     \begin{equation}
         \dist(f,g) =  \inf 
         \{
-           \epsilon_1 > 0:
+           \varepsilon_1 > 0:
            \mu\{ 
             x:
             |f(x) - g(x)| 
-            > \epsilon_1
+            > \varepsilon_1
         \}
-        < \epsilon_1
+        < \varepsilon_1
         \} 
-        = \epsilon,
+        = \varepsilon,
     \end{equation}
-    pero por cómo tomamos $\epsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
+    pero por cómo tomamos $\varepsilon$ en (\refeq{eq:2_4:definición_epsilon}) se
     tiene que $\mu\{ 
         x:
         |f(x) - g(x)| 
-        > \epsilon
+        > \varepsilon
     \} = 0.$
 
     Por lo que acabamos de probar, como queríamos, que 
@@ -223,7 +223,7 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
         \mu\{ 
             x:
             |f(x) - g(x)| 
-            < \epsilon
+            < \varepsilon
         \}
         = 1.
     \end{equation}
@@ -288,11 +288,11 @@ que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
     Para cada función Booleana 
     $g: \{0,1\}^d \longrightarrow \{0,1\}$
      y 
-    cada $\epsilon >0$ existe una red neuronal
+    cada $\varepsilon >0$ existe una red neuronal
     $f \in \rrnn$ tal que 
     \begin{equation}
         \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
-        < \epsilon.
+        < \varepsilon.
     \end{equation}
 \end{corolario}
 
@@ -332,21 +332,17 @@ que se define como $and(x_1, \ldots, x_d) = \prod_{i=1}^d x_i.$
             \mu\{ 
                 x:
                 |f(x) - g(x)| 
-                < \epsilon
+                < \varepsilon
             \}
             = 1,
     \end{equation} 
     es decir que 
     \begin{equation}
         \max_{x \in \{ 0,1\}^d} |g(x) - f(x)|
-        < \epsilon
+        < \varepsilon
     \end{equation}
     como queríamos probar. 
 \end{proof}
-\iconoAclaraciones \textcolor{dark_green}{ La necesidad de que $\theta$ podría indicar una deficiencia en la estructura de construcción ¿y si aproximáramos directamente con enteros?  
-Ejemplo de algo parecido  \cite{Wang_2022}
-}
-
 
 
 % Lemas propios  previos al teorema 2.5

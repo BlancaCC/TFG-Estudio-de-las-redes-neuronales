@@ -69,21 +69,21 @@
 % Lema A.2 
 \begin{lema}\label{lema:a_2_paso_previo_denso}
     Sea F una función de activación continua y $\psi$ una \textbf{función de activación} arbitraria. 
-    Para cualquier $\epsilon > 0$ existe un elemento $H_{\epsilon}$ de $\mathcal{H}_\psi{(\R, \R)}$ cumpliendo que
+    Para cualquier $\varepsilon > 0$ existe un elemento $H_{\varepsilon}$ de $\mathcal{H}_\psi{(\R, \R)}$ cumpliendo que
     \begin{equation}
-        \sup_{\lambda \in \R} | F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon.
+        \sup_{\lambda \in \R} | F(\lambda) - H_{\varepsilon}(\lambda) | < \varepsilon.
     \end{equation}
 \end{lema} 
 \begin{proof}
     Procedamos a realizar la siguiente prueba constructiva. 
-    Tomamos fijo pero arbitrario un $\epsilon > 0,$ que sin pérdida de generalidad
+    Tomamos fijo pero arbitrario un $\varepsilon > 0,$ que sin pérdida de generalidad
     supondremos menor que uno.
-    Para que $H_\epsilon$ pertenezca a $\mathcal{H}_\psi{(\R, \R)}$ deberá de ser de la 
+    Para que $H_\varepsilon$ pertenezca a $\mathcal{H}_\psi{(\R, \R)}$ deberá de ser de la 
     forma $\sum^{q-1}_{j=1} b_j \psi( A_j(\lambda))$
     debemos encontrar por ende el número de sumatorias, $q-1$; esa misma cantidad de constantes reales $b_j$ y 
     funciones afines $A_j$. Para ello tomamos como $q$ cualquier número natural que cumpla que 
     \begin{equation}\label{eq:lema_a_2_def_q}
-        \frac{1}{q} < \frac{\epsilon}{4}.
+        \frac{1}{q} < \frac{\varepsilon}{4}.
     \end{equation}
 
     Fijaremos para cada $j \in \{1,2, ...,q-1\}$ los coeficientes  $b_j$ como $\frac{1}{q}$. 
@@ -91,17 +91,17 @@
     Seleccionamos cualquier constante real $M>0$ de tal forma que 
     se cumpla que
     \begin{equation}\label{lema_a_2_psi_m}
-        \psi(-M) < \frac{\epsilon}{2q}
+        \psi(-M) < \frac{\varepsilon}{2q}
         \quad \text{ y } \quad
-        \psi(M) > 1 - \frac{\epsilon}{2q}.
+        \psi(M) > 1 - \frac{\varepsilon}{2q}.
     \end{equation} 
     Sabemos que esto es posible ya que por ser $\psi$ una función de activación satisface que 
     $\lim_{\lambda \longrightarrow \infty} \psi(\lambda) = 1$ y que  $\lim_{\lambda \longrightarrow -\infty} \psi(\lambda) = 0$,
     por tanto existirá una constante $M_1$ positiva tal que a partir de ella cualquier
      otra constante $n_1$ mayor o igual que cumpla que 
-    $\psi(n_1) > 1 - \frac{\epsilon}{2q}$. También existirá una constante $M_2$ positiva tal que a partir de 
+    $\psi(n_1) > 1 - \frac{\varepsilon}{2q}$. También existirá una constante $M_2$ positiva tal que a partir de 
     ella cualquier otra constante $n_2$ mayor o igual tal que que 
-    $\psi(-n_2) < \frac{\epsilon}{2q}$. Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
+    $\psi(-n_2) < \frac{\varepsilon}{2q}$. Podemos tomar como $M$ al máximo de $M_1$ y $M_2$.   
 
     Seleccionaremos ahora los siguientes puntos del dominio
     \begin{align}\label{lema:2_2_selección_r_F}
@@ -123,9 +123,9 @@
         A_{rs}(r) = -M \text{ y }  A_{rs}(s) = M. 
     \end{equation} 
     
-    Acabamos pues de determinar todos los elementos que conforman a $H_\epsilon$, de tal forma que se tiene que
+    Acabamos pues de determinar todos los elementos que conforman a $H_\varepsilon$, de tal forma que se tiene que
     \begin{equation}
-        H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda))
+        H_\varepsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda))
     \end{equation}
     y así definida cumple que: 
     % Nota idea de demostración intuitiva  lema lema:a_2_paso_previo_denso
@@ -148,55 +148,55 @@
         Se cumple que $\lambda \leq r_1 < r_2 <...< r_q$ luego  
         para todos $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que 
         $A_{r_j, r_{j+1}}(\lambda) < -M$ y por cómo se fijó $M$ en la condición \refeq{lema_a_2_psi_m}
-        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) < \frac{\epsilon}{2 q}$. Por tanto
+        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) < \frac{\varepsilon}{2 q}$. Por tanto
         para $\lambda \in (- \infty, r_1]$ se tiene 
         \begin{equation}
-            H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
+            H_\varepsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
             <
-            \frac{1}{q} \sum^{q-1}_{j=1}  \frac{\epsilon}{2q}
+            \frac{1}{q} \sum^{q-1}_{j=1}  \frac{\varepsilon}{2q}
             < 
-            \frac{1}{q} (q-1) \frac{\epsilon }{2q}
-            <\frac{\epsilon }{2q}
-            < \frac{\epsilon }{2}
+            \frac{1}{q} (q-1) \frac{\varepsilon }{2q}
+            <\frac{\varepsilon }{2q}
+            < \frac{\varepsilon }{2}
         \end{equation}
-        y como además $0 \leq F(\lambda) \leq \frac{1}{q} < \frac{\epsilon}{2}$ por cómo se seleccionaron los puntos $r_j$ en 
+        y como además $0 \leq F(\lambda) \leq \frac{1}{q} < \frac{\varepsilon}{2}$ por cómo se seleccionaron los puntos $r_j$ en 
         \refeq{lema:2_2_selección_r_F} se tiene que 
         \begin{equation}
-            | F(\lambda) - H_{\epsilon}(\lambda) | < \frac{\epsilon}{2} + \frac{\epsilon}{2} < \epsilon. 
+            | F(\lambda) - H_{\varepsilon}(\lambda) | < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon. 
         \end{equation}
 
         \item Si $\lambda \in (r_q, +\infty):$
         Se cumple que $r_1 < r_2 <...< r_q <\lambda$ luego  
         para todo $j \in \{1, ..., q-1\}$ las funciones afines satisfacen que  
         $A_{r_j, r_{j+1}}(\lambda) > M$ y por cómo se fijó $M$ en \refeq{lema_a_2_psi_m}
-        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) > 1-\frac{\epsilon}{2q}$ concluyendo que 
+        resulta que  $\psi( A_{r_j, r_{j+1}}(\lambda)) > 1-\frac{\varepsilon}{2q}$ concluyendo que 
         para $\lambda \in (r_q,+\infty):$
         \begin{equation}
             1 \geq
-            H_\epsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
+            H_\varepsilon(\lambda) = \frac{1}{q} \sum^{q-1}_{j=1} \psi( A_{r_j, r_{j+1}}(\lambda)) 
             >
-                \frac{1}{q} \sum^{q-1}_{j=1}  \left(1-\frac{\epsilon}{2q} \right)
+                \frac{1}{q} \sum^{q-1}_{j=1}  \left(1-\frac{\varepsilon}{2q} \right)
             >
-            \frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right)   
+            \frac{(q-1)}{q}  \left(1-\frac{\varepsilon}{2q} \right)   
         \end{equation}
-        y por ende, como además $\frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right) <  \frac{q-1}{q} \leq F(\lambda) \leq 1$ por cómo se seleccionaron los puntos $r_j$ en 
+        y por ende, como además $\frac{(q-1)}{q}  \left(1-\frac{\varepsilon}{2q} \right) <  \frac{q-1}{q} \leq F(\lambda) \leq 1$ por cómo se seleccionaron los puntos $r_j$ en 
         \refeq{lema:2_2_selección_r_F} se tiene que 
         \begin{equation}
-            | F(\lambda) - H_{\epsilon}(\lambda) | 
+            | F(\lambda) - H_{\varepsilon}(\lambda) | 
             \leq
-            1 - \frac{(q-1)}{q}  \left(1-\frac{\epsilon}{2q} \right)
-            = \frac{1}{q} + \frac{\epsilon}{2q}
-            < \epsilon.
+            1 - \frac{(q-1)}{q}  \left(1-\frac{\varepsilon}{2q} \right)
+            = \frac{1}{q} + \frac{\varepsilon}{2q}
+            < \varepsilon.
         \end{equation}
         Donde para acotar $\frac{1}{q}$ hemos usado la desigualdad \refeq{eq:lema_a_2_def_q}.
 
         \item Si $\lambda \in (r_{j},r_{j+1}]$ para $j \in \{ 1, \ldots, q-1\}$: 
         
         Tenemos por una parte que $\frac{j}{q} < F(\lambda) \leq \frac{j+1}{q}$ y 
-        podemos descomponer $H_\epsilon$ en las siguientes sumatorias: 
+        podemos descomponer $H_\varepsilon$ en las siguientes sumatorias: 
         \begin{equation}
             \begin{split}
-                q H_\epsilon(\lambda) 
+                q H_\varepsilon(\lambda) 
                 = 
                  \sum^{j-1}_{i=1} \psi( A_{r_i, r_{i+1}}(\lambda))
                 + 
@@ -208,42 +208,42 @@
 
         Nótese que así definida, si $j = q-2$ o $j = q -1$ el último sumando no aparece. 
 
-        Los términos de la primera sumatoria serán mayores que $\left(1-\frac{\epsilon}{2q} \right)$ y menores o iguales que la unidad, 
+        Los términos de la primera sumatoria serán mayores que $\left(1-\frac{\varepsilon}{2q} \right)$ y menores o iguales que la unidad, 
         el segundo sumando satisface que 
         $0 \leq q\psi( A_{r_j, r_{j+1}}(\lambda)) \leq 1$
-        y para la última sumatoria, todos sus términos serán menores que $\frac{\epsilon}{2q}$ y mayores o iguales que cero.
+        y para la última sumatoria, todos sus términos serán menores que $\frac{\varepsilon}{2q}$ y mayores o iguales que cero.
         De donde resulta que : 
         \begin{equation}
-            \frac{j-1}{q}\left(1-\frac{\epsilon}{2q} \right)  
+            \frac{j-1}{q}\left(1-\frac{\varepsilon}{2q} \right)  
             <
-            H_\epsilon(\lambda) 
+            H_\varepsilon(\lambda) 
             <
             \frac{j-1}{q} 
             + 
             \frac{1}{q} 
             + 
-            \frac{q-j}{q} \frac{\epsilon}{2q} ,
+            \frac{q-j}{q} \frac{\varepsilon}{2q} ,
         \end{equation}
         concluyendo que 
         \begin{equation}
-            F(\lambda), H_\epsilon(\lambda) 
+            F(\lambda), H_\varepsilon(\lambda) 
             \in 
             \left[
-                \frac{j-1}{q}\left(1-\frac{\epsilon}{2q}\right),
+                \frac{j-1}{q}\left(1-\frac{\varepsilon}{2q}\right),
                 \frac{j+1}{q}
             \right]
         \end{equation}
         y por tanto: 
         \begin{equation}
-            | F(\lambda) - H_{\epsilon}(\lambda) | 
-            \leq \frac{j+1}{q} -  \frac{j-1}{q}\left(1-\frac{\epsilon}{2q}\right)
+            | F(\lambda) - H_{\varepsilon}(\lambda) | 
+            \leq \frac{j+1}{q} -  \frac{j-1}{q}\left(1-\frac{\varepsilon}{2q}\right)
             = 
-            \frac{2}{q} + \frac{j-1}{q}\frac{\epsilon}{2q}
-            < \frac{\epsilon}{2} + \frac{\epsilon}{2}
-            < \epsilon.
+            \frac{2}{q} + \frac{j-1}{q}\frac{\varepsilon}{2q}
+            < \frac{\varepsilon}{2} + \frac{\varepsilon}{2}
+            < \varepsilon.
         \end{equation}
     \end{itemize}
-    La acotación $| F(\lambda) - H_{\epsilon}(\lambda) | < \epsilon$ se cumple para todo
+    La acotación $| F(\lambda) - H_{\varepsilon}(\lambda) | < \varepsilon$ se cumple para todo
     \begin{equation}
         \lambda \in (- \infty, r_1]
          \bigcup (r_q,+\infty) 
@@ -288,7 +288,7 @@ de convergencia a funciones.
     Para ello basta ver que cualquier función de la forma $\prod_{k=1}^l F(A_k(\cdot))$
     puede ser uniformemente aproximada por una una sucesión de funciones de $\rrnng$.
 
-    Fijamos $\epsilon > 0$. 
+    Fijamos $\varepsilon > 0$. 
     Por continuidad, existirá un $\delta >0$
     tal que, para cualesquiera números reales $0 \leq a_k, b_k \leq 1,$ con $k \in \{1,...,l\}$ 
     cumpliendo que $|a_k -b_k| < \delta$ se tiene
@@ -297,7 +297,7 @@ de convergencia a funciones.
             \prod^l_{k=1} a_k - \prod^l_{k=1} b_k 
         \right| 
         < 
-        \epsilon.
+        \varepsilon.
     \end{equation}
 
     Por el lema \ref{lema:a_2_paso_previo_denso} existe una función 
@@ -319,7 +319,7 @@ de convergencia a funciones.
             \prod ^l_{k=1} H_\delta(A_k(x))
         \right| 
         < 
-        \epsilon.
+        \varepsilon.
     \end{equation} 
     
     Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A_t(\cdot))$ 
@@ -332,14 +332,14 @@ de convergencia a funciones.
 
 %Lema A.3
 \begin{lema}\label{lema:A_3_función_activación_continua_con_arbitaria}
-    Para cada función de activación $\psi$, cada $\epsilon >0$
+    Para cada función de activación $\psi$, cada $\varepsilon >0$
     y cada $M>0$ existe una función 
-    $\cos_{M,\epsilon} \in \mathcal{H}_F{(\R, \R)}$ tal que 
+    $\cos_{M,\varepsilon} \in \mathcal{H}_F{(\R, \R)}$ tal que 
     \begin{equation}
         \sup_{ \lambda \in [-M, M]}
-        |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)|
+        |\cos_{M,\varepsilon}(\lambda) - \cos(\lambda)|
         < 
-        \epsilon. 
+        \varepsilon. 
     \end{equation}
 \end{lema}
 \begin{proof}
@@ -479,12 +479,12 @@ de convergencia a funciones.
     \end{equation}
     Como $F$ es una función de activación continua, el lema \ref{lema:a_2_paso_previo_denso}
     nos da la existencia de 
-    $W_\frac{\epsilon}{t} \in \mathcal{H}_\psi{(\R, \R)}$ cumpliendo que 
-    $|F - W_{ \frac{\epsilon}{t}} | < \frac{\epsilon}{t}$ en todo $\R$.
+    $W_\frac{\varepsilon}{t} \in \mathcal{H}_\psi{(\R, \R)}$ cumpliendo que 
+    $|F - W_{ \frac{\varepsilon}{t}} | < \frac{\varepsilon}{t}$ en todo $\R$.
     Por tanto 
     \begin{equation}
-        |F \circ A_i - W_{ \frac{\epsilon}{t}} \circ A_i |
-         < \frac{\epsilon}{t}
+        |F \circ A_i - W_{ \frac{\varepsilon}{t}} \circ A_i |
+         < \frac{\varepsilon}{t}
          \quad 
          \forall j \in \{1, \ldots, t\}
          . 
@@ -492,27 +492,27 @@ de convergencia a funciones.
 
 Podemos ya definir la función que buscamos: 
     \begin{equation}
-        \cos_{M, \epsilon}(\lambda) = \sum_{j=1}^t 
-        \alpha_j  W_{ \frac{\epsilon}{t}}(A_j(\lambda)). 
+        \cos_{M, \varepsilon}(\lambda) = \sum_{j=1}^t 
+        \alpha_j  W_{ \frac{\varepsilon}{t}}(A_j(\lambda)). 
     \end{equation}
 
     De esta manera, para cualquier $\lambda \in [-M, M]$
 
     \begin{equation}
         \begin{split}
-            |\cos_{M,\epsilon}(\lambda) - \cos(\lambda)| 
+            |\cos_{M,\varepsilon}(\lambda) - \cos(\lambda)| 
             &\leq
             |\cos(\lambda) -  H_{[- M, M]}(\lambda)|
             + 
-            | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)|  \\
+            | \cos_{M,\varepsilon}(\lambda) -  H_{[- M, M]}(\lambda)|  \\
             &\leq  0 
-            + | \cos_{M,\epsilon}(\lambda) -  H_{[- M, M]}(\lambda)| \\
+            + | \cos_{M,\varepsilon}(\lambda) -  H_{[- M, M]}(\lambda)| \\
             & \leq  \sum_{j=1}^t 
-            |  W_{ \frac{\epsilon}{t}}(A_j(\lambda)) 
+            |  W_{ \frac{\varepsilon}{t}}(A_j(\lambda)) 
             -
             F( A_j(\lambda))
              | \\
-             & <   \sum_{j=1}^t \frac{\epsilon}{t} = \epsilon .
+             & <   \sum_{j=1}^t \frac{\varepsilon}{t} = \varepsilon .
         \end{split}
     \end{equation}
 
@@ -525,11 +525,11 @@ Podemos ya definir la función que buscamos:
     $A_j \in \afines$ y $\beta_j \in \R$.
     Para cualquier función de activación $\psi$, 
     cualquier compacto $K \subset \R^d$
-    y cualquier $\epsilon > 0$
+    y cualquier $\varepsilon > 0$
     existe $f \in \mathcal{H}_\psi{(\R^d, \R)}$ para el cual se cumple que 
     \begin{equation}
         \sup_{x \in K} 
-        |g(x) - f(x)| < \epsilon.
+        |g(x) - f(x)| < \varepsilon.
     \end{equation}
 \end{lema}
 \begin{proof}
@@ -550,45 +550,45 @@ Podemos ya definir la función que buscamos:
 
     En virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
     podemos encontrar
-    $\cos_{M, \frac{\epsilon}{q B}} \in \sum(\psi)$ cumpliendo que
+    $\cos_{M, \frac{\varepsilon}{q B}} \in \sum(\psi)$ cumpliendo que
     \begin{equation}
         \sup_{\lambda \in [-M, M]} | 
-        \cos_{M, \frac{\epsilon}{q B}}(\lambda)
+        \cos_{M, \frac{\varepsilon}{q B}}(\lambda)
         - 
         \cos(\lambda)
         | 
-        < \frac{\epsilon}{q B} 
+        < \frac{\varepsilon}{q B} 
     \end{equation}
     por lo que para cualquier  $j \in \{1, ..., q \}$   se tiene que 
     \begin{equation}
         \sup_{x \in K} | 
-        \cos_{M, \frac{\epsilon}{q B}}(A_j(x))
+        \cos_{M, \frac{\varepsilon}{q B}}(A_j(x))
         - 
         \cos(A_j(x))
         | 
         \leq  
         \sup_{\lambda \in [-M, M]} | 
-        \cos_{M, \frac{\epsilon}{q B}}(\lambda)
+        \cos_{M, \frac{\varepsilon}{q B}}(\lambda)
         - 
         \cos(\lambda)
         | 
-        < \frac{\epsilon}{q B}. 
+        < \frac{\varepsilon}{q B}. 
     \end{equation}
 
     Definamos ahora $f$ como 
     \begin{equation}
         f(x) = \sum_{j=1}^q \beta_j 
-        \cos_{M, \frac{\epsilon}{q B}}(A_j(x)),
+        \cos_{M, \frac{\varepsilon}{q B}}(A_j(x)),
     \end{equation}
     que cumple $f \in \mathcal{H}_\psi{(\R^d, \R)}$  puesto que 
-    $\cos_{M, \frac{\epsilon}{q B}} \in \mathcal{H}_\psi{(\R, \R)}$, 
+    $\cos_{M, \frac{\varepsilon}{q B}} \in \mathcal{H}_\psi{(\R, \R)}$, 
     y satisface además que
     \begin{equation}
         \begin{split}
         \sup_{x \in K} | f(x) - g(x)| 
         &\leq
         \sup_{\lambda \in [-M, M]} 
-        | \sum_{j=1}^q \beta_j \cos_{M, \frac{\epsilon}{q B}}(\lambda )
+        | \sum_{j=1}^q \beta_j \cos_{M, \frac{\varepsilon}{q B}}(\lambda )
          - 
          \sum_{j=1}^q \beta_j \cos(\lambda )|  \\
         &\leq
@@ -596,7 +596,7 @@ Podemos ya definir la función que buscamos:
         \sum_{j=1}^q 
             |\beta_j|
             |
-                \cos_{M, \frac{\epsilon}{q B}}(\lambda)
+                \cos_{M, \frac{\varepsilon}{q B}}(\lambda)
                 -
                 \cos(\lambda)
             |
@@ -605,8 +605,8 @@ Podemos ya definir la función que buscamos:
             \sup_{\lambda \in [-M, M]} 
             \sum_{j=1}^q   
                 B
-                \frac{\epsilon}{q B}
-            = \epsilon.
+                \frac{\varepsilon}{q B}
+            = \varepsilon.
         \end{split}
     \end{equation}
      Con lo que acabamos de probar la tesis del lema. 
@@ -619,8 +619,12 @@ Podemos ya definir la función que buscamos:
   }
   \marginpar{\maginLetterSize
     Afirma que \textbf{podemos aproximar cualquier función continua definida 
-    con una red neuronal}. Además, si los valores de entrada está 
+    con una red neuronal independientemente de la 
+    función de activación que use}. 
+    Además, si los valores de entrada está 
     dentro de un rango acotado tendremos una cota de error única para todo el dominio.
+
+    Podría pensarse que la capacidad de aproximación de una red neuronal depende de su función de activación, este resultado con matices lo desmiente, \textbf{eso sí, siempre que se tenga el número suficiente de neuronas}. 
   }
 
 %Lema A.5 

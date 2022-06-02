@@ -30,7 +30,7 @@ funciones_a_mostrar = [
     FuncionActivacion("Indicadora de 0", @IndicatorFunction(0), -2, 2),
     FuncionActivacion("Rampa", RampFunction, -2, 2),
     FuncionActivacion("ReLU", ReLU, -2, 2),
-    FuncionActivacion("Sigmoid", Sigmoid, -4,4),
+    FuncionActivacion("Sigmoidea", Sigmoid, -4,4),
     FuncionActivacion("Tangente hiperbolica", tanh, -4,4),
     FuncionActivacion("Valor absoluto", abs, -2,2),
     FuncionActivacion("Coseno", cos, -2pi,2pi),
@@ -41,7 +41,7 @@ funciones_a_mostrar = [
 """
     MuestraYGuarda(f :: FuncionActivacion, img_path:: String)
 Muestra por pantalla una función de activación con la estructura FuncionActivacion
-y la guarda en el directiorio indicado en `img_path`
+y la guarda en el directorio indicado en `img_path`
 """
 function MuestraYGuarda(fa :: FuncionActivacion, img_path:: String)
     plot( fa.funcion_activacion, fa.cota_inferior, fa.cota_superior, title="", label="",linewidth=3)

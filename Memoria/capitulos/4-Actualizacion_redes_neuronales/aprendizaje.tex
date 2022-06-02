@@ -618,17 +618,25 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
 Notemos la necesidad de una variable $\eta \in \R$ que es
  prefijada. En la terminología de aprendizaje automático 
 se suele referir a ester término 
-como tasa de aprendiza o \textit{learning rate}
-una amplia literatura sobre cómo debe seleccionarse 
-y variantes adaptativas del mismo, véase \cite{MostafaLearningFromData}. 
+como tasa de aprendizaje o \textit{learning rate}.
+Una amplia literatura sobre cómo debe seleccionarse 
+y variantes adaptativas del mismo, 
+se puede encontrar en \cite{MostafaLearningFromData}. 
+El algoritmo como hemos visto se divide en 
+\begin{enumerate}
+    \item Ejecución del algoritmo de gradiente descendente.
+    \item Actualización de los pesos. 
+\end{enumerate}
 
-La complejidad algorítmica del algoritmo de gradiente 
-descendente recae principalmente en el coste de calcular los gradientes, la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
+La complejidad por tanto será el máximo de esos dos procesos;
+puesto que el segundo son tres grandes asignaciones de costo $n d , n, n s$ respectivamente,  
+la complejidad recae principalmente en el coste de calcular los gradientes, 
+la cual calculamos en la sección \ref{ch05:complejidad-gradientes}. 
 En resumen su complejidad es 
 \begin{align*}
     &\mathcal{O}(
         \max\{
-            n d , n s, 
+            n d ,  n, n s, 
             \text{coste cálculo de los gradientes}
         \}
     )
@@ -643,9 +651,10 @@ En resumen su complejidad es
     \mathcal{O}(|\mathcal{D}| n d s).
 \end{align*} 
 
-Procederemos ahora a determinar el cálculo del gradiente, como hemos visto este vienen determinado por la expresión. 
+Procederemos ahora a determinar el cálculo del gradiente, como hemos visto, éste viene determinado por la expresión. 
 
 El algoritmo que se muestra a continuación supone que la memoria no es un problema así que se plantea para que no haya ningún cálculo repetido. 
+\pagebreak  
 
 
 % Cálculo de los gradientes 

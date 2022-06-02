@@ -11,26 +11,43 @@ que se podrá encontrar una red neuronal en $\rrnnmc$
 que aproxime todo lo bien que queramos la función ideal; sin embargo, destaquemos que los parámetros que caracterizan a la red neuronal encontrada son reales. Es decir, 
 si nuestra red neuronal toma valores irracionales difícilmente será computable en un ordenador por su infinitud. 
 
-Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no solo debe de reducirse el error, si no que los parámetros que representan la red deben de estar limitados a cierta precisión: la propia de un ordenador.  
+Esto nos impone una nueva restricción en el espacio de búsqueda, ya que no solo debe de reducirse el error, si no que los parámetros que representan la red deben de estar limitados a cierta precisión: la propia de un ordenador.
 
-Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo de los enteros es factible como aproximador universal. 
+% Comentario sobre la representación de enteros 
+\marginpar{\maginLetterSize
+    \iconoProfundizar \textcolor{blue}{     
+        \textbf{
+            Ojalá hubiera un lenguaje de programación que permitiera 
+            trabajar explícitamente con 
+            tipos racionales
+        }
+    }
+    
+    De hecho el lenguaje de programación Julia, 
+    el que hemos seleccionado para nuestra implementación 
+    sí lo permite. ( Véase la documentación oficial de Julia sobre \href{https://docs.julialang.org/en/v1/manual/complex-and-rational-numbers/}{\textit{Rational numbers}}, consultada por última ver el 
+    30 de mayo del 2022).
+    
+}
+
+Comenzaremos viendo que, en efecto, una red neuronal con parámetros en el cuerpo de los racionales es factible como aproximador universal. 
 
 % Teorema de que podemos tener redes neuronales con parámetros racionales que también converjan. 
 \begin{aportacionOriginal}
     \begin{teorema}
-        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso al espacio $\rrnnmc$. 
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso en el espacio $\rrnnmc$. 
     \end{teorema}
     \begin{proof}
         Se quiere probar que para todo $h^r \in \rrnnmc$,
-         dado cualquier $\epsilon \in \R^+$  
+         dado cualquier $\varepsilon \in \R^+$  
         existirá $h^q \in \mathcal{H}(\Q^d, \Q^s)$ tal que 
-        $\dist( h^r, h^q) < \epsilon$. 
+        $\dist( h^r, h^q) < \varepsilon$. 
 
         La red neuronal $h^r$ está determinada por un conjunto finito
         de parámetros supongamos que hay $q$ y que están determinados por un índice del conjunto $\Lambda$. 
 
         Sea $\alpha^0_i \in R$, el primer índice $h^r$ definimos la red neuronal $h^1$ con coeficientes  $\alpha^1_i$ con $i\in \Lambda$
-        de tal forma que los parámetros que la determinan vienen dados 
+        de tal forma que los parámetros que la determinan vienen dados por
         \begin{equation*}
             \alpha^1_i = \alpha^0_i 
             \text{ con } i \in \Lambda
@@ -40,12 +57,12 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
         El primer parámetro $\alpha^1_1$, será un número racional 
         seleccionado de tal forma que se satisfaga que 
         \begin{equation*}
-            \dist( h^r, h^1) < \frac{\epsilon}{q}.
+            \dist( h^r, h^1) < \frac{\varepsilon}{q}.
         \end{equation*}
-        Por la densidad de los racionales en los reales sabemos que  $\alpha^1_1$.
+        Por la densidad de los racionales en los reales sabemos que  existe $\alpha^1_1$.
 
         Siguiendo la misma idea, para $j \in \{2,\ldots, q\}$ se define la red neuronal 
-        $h^j$ cuyos parámetro vienen dados por 
+        $h^j$ cuyos parámetros vienen dados por 
         \begin{equation*}
             \alpha^j_i = \alpha^{j-1}_i 
             \text{ con } i \in \Lambda
@@ -53,16 +70,17 @@ Comenzaremos viendo que en efecto una red neuronal con parámetros en el cuerpo 
         \end{equation*}
         y $\alpha^j_j \in \Q$ seleccionado de tal forma que  
         \begin{equation*}
-            \dist( h^j, h^{j-1}) < \frac{\epsilon}{q}.
+            \dist( h^j, h^{j-1}) < \frac{\varepsilon}{q}.
         \end{equation*}
 
-        De esta forma, en virtud de la desigualdad triangular,  se ha encontrado una red neuronal $h^q$ que todos sus parámetros son racionales y 
+        De esta forma, en virtud de la desigualdad triangular,  se ha 
+        encontrado una red neuronal $h^q$
+        de modo que todos sus parámetros son racionales y 
         satisface 
-        $\dist( h^r, h^q) < \epsilon$.
+        $\dist( h^r, h^q) < \varepsilon$.
     \end{proof}
 
-    Si bien los números racionales tienen el potencial de ser computados por su 
-    finitud, seguimos sujetos a que el número de decimales y tamaño de su parte entera \textit{sean lo suficientemente pequeños} como para poder ser representados 
+    Si bien los números racionales tienen el potencial de ser computados, seguimos sujetos a que el número de decimales y tamaño de su parte entera \textit{sean lo suficientemente pequeños} como para poder ser representados 
     y calculados con un ordenador. Esto no tiene que ser, cierto y de hecho abre una nueva cuestión:
      Al aumentar el número de neuronas, ¿la precisión demandada por una red neuronal también disminuye?  
 \end{aportacionOriginal} 
@@ -72,9 +90,9 @@ de las redes neuronales de $n$  neuronas y $d$ bits de precisión.
 
 Es más, una vez limitados los decimales con los que se puede representar una red neuronal; puesto que los números racionales son isomorfos a los enteros, se podría plantear establecer un isomorfismo entre las redes neuronales con parámetros
 en los racionales y el 
-y el de las redes neuronales con entradas en los enteros. 
-
+de las redes neuronales con entradas en los enteros. 
+ 
 Todas estas pesquisas tienen su interés ya que por las arquitecturas 
-actuales, los números flotantes (racionales con un límite de decimales) se calculan en la GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se comenta se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
+actuales, los números flotantes (racionales con un límite de decimales) se calculan en las GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se comenta se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
 del 2022, URL: \url{https://long-zhou.github.io/2013/02/12/CPU-GPU-comparison.html}} \cite{CPU-vs-GPUS}. 
 
