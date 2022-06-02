@@ -87,7 +87,8 @@
 % https://palett.es/6a94a8-013e3b-7eb645-31d331-26f27d
 \definecolor{darkRed}{rgb}{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
 \definecolor{dark_green}{rgb}{0, 0.24, 0.23} %{0.2, 0.7, 0.2}
-\definecolor{blue}{rgb}{0.41, 0.58, 0.659} % sobreeescribimos el azul
+\definecolor{sutilGreen}{rgb}{0.850, 0.996, 0.807} % para el fondo del código
+\definecolor{blue}{rgb}{0.61, 0.98, 0.759} % sobreeescribimos el azul
 \newcommand{\smallMarginSize}{1.8cm}
 \newcommand{\bigMarginSize}{3cm}
 \newcommand{\maginLetterSize}{\footnotesize} %{\scriptsize}%
@@ -141,5 +142,10 @@ backgroundcolor=black!7,
 
   % ancho imágenes en tabla
   \newcommand{\coeficienteAncho}{.3}
+
+% Paquetes para citas
+\usepackage{csquotes}
+\let\oldenquote\enquote
+\renewcommand{\enquote}[1]{{\itshape\oldenquote{#1}}}
 
 
