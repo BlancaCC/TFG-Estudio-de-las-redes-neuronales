@@ -296,7 +296,7 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
             t_x  & t_y
         \end{bmatrix}
     \end{equation}
-    con $a,b \in \R^\times$ y $t_x, t_y \in \R$.
+    con $a,b \in \R^*$ y $t_x, t_y \in \R$.
 
     Sean dos funciones de activación $\sigma, \gamma$ tales que 
     \begin{equation*}
@@ -311,11 +311,11 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
     Sea $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ el espacio de redes neuronales con $n$ neuronas con sesgo. 
 
     Está claro que 
-    \begin{equation*}
-        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
-        \simeq 
-        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
-    \end{equation*}
+    $\mathcal{H}^+_{\gamma, n}(\R^d, \R^s)$ 
+        y 
+        $\mathcal{H}^+_{\sigma, n}(\R^d, \R^s)$ 
+        son biyectivos.
+   
     Ya que basta con tomar una red neuronal de una y cambiarle la función de activación por la de la otra. 
     Veamos 
     que se da la igualdad viendo que una está contenida en la otra. 
@@ -369,8 +369,31 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
         \mathcal{H}^+_{\gamma, n}(\R^d, \R^s).  
     \end{equation}
 
-    Dos conjuntos isomorfos donde uno está contenido 
-    dentro del otro necesariamente son iguales, esto es:
+    Además, $\phi$ con las hipótesis exigidas es
+    invertible, con inversa: 
+    \begin{equation}
+        \phi^{-1}((x,y)) =  
+        \begin{bmatrix}
+            \frac{1}{a} & 0 \\
+             0& \frac{1}{b} 
+        \end{bmatrix}
+        \begin{bmatrix}
+            x \\
+            y
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            - \frac{t_x}{a}  &  - \frac{t_y}{b}
+        \end{bmatrix}.
+    \end{equation}
+    Así que razonando de igual manera que en el 
+    apartado anterior se tiene la inclusión
+    \begin{equation}
+        \mathcal{H}^+_{\sigma, n}(\R^d, \R^s)
+        \supseteq
+        \mathcal{H}^+_{\gamma, n}(\R^d, \R^s),  
+    \end{equation}
+    por lo que podemos concluir que 
     \begin{equation*}
         \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
         = 
@@ -401,7 +424,7 @@ Este teorema lo que nos está diciendo es que si dos funciones de activación ti
 entonces \textbf{aproximarán igual de bien},
 es decir, con el mismo error dentro de un conjunto de datos.
  Esto a nivel práctico  significa que \textbf{si se tienen dos funciones de activación
-  \textit{con la misma forma} (o muy parecidas) elige
+  \textit{con la misma forma} (\textit{o muy parecida}) elige
    la que tenga menor costo computacional}, porque a 
    nivel teórico aproximarán igual de bien y de esta
     manera ahorraremos recursos. 
@@ -429,7 +452,7 @@ aproximaciones).
     Sea $\phi \in \mathcal{A}(\R)$ una transformación afín e invertible, esto es de la forma 
     \begin{equation}
         \phi(x) = a x + b 
-        \text{ con } a \in \R^\times, b \in \R.
+        \text{ con } a \in \R^*, b \in \R.
     \end{equation}
     Dadas dos funciones de activación $\sigma$ y $\gamma$ que satisfagan que 
     \begin{equation}
@@ -441,7 +464,7 @@ aproximaciones).
 \end{corolario}
 \begin{proof}
     En base a que $\phi(x) = a x + b$, con 
-    $a \in \R^\times, b \in \R$
+    $a \in \R^*, b \in \R$
     basta con definir 
      $\psi  \in \mathcal{A}(\R^2)$ como 
     \begin{equation}
