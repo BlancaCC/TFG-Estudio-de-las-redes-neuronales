@@ -18,7 +18,6 @@ Factorizando
 Feedforward
 Fn
 ForwardPropagation
-Functores
 Funtores
 GN
 GPUs
