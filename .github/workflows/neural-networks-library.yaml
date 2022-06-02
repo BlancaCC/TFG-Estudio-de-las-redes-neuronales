@@ -1,0 +1,14 @@
+name: CI-Neural-Networks-library
+on: push
+jobs:
+  test:
+    name: Julia  - ubuntu-latest - x64
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v1
+        - uses: julia-actions/setup-julia@v1
+          with:
+              version: '1'
+        - uses: julia-actions/julia-buildpkg@master
+        - run: make test
+        

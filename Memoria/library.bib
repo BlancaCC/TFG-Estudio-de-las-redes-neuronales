@@ -386,6 +386,39 @@ abstract = {In this paper, we prove that any continuous mapping can be approxima
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+%%         Funciones de activación  modernas
+%% Hace y explica un recorrido sobre todas las funciones de activación
+
+@article{modern-trainable-activation-functions,
+  author    = {Andrea Apicella and
+               Francesco Donnarumma and
+               Francesco Isgr{\`{o}} and
+               Roberto Prevete},
+  title     = {A survey on modern trainable activation functions},
+  journal   = {CoRR},
+  volume    = {abs/2005.00817},
+  year      = {2020},
+  url       = {https://arxiv.org/abs/2005.00817},
+  eprinttype = {arXiv},
+  eprint    = {2005.00817},
+  timestamp = {Thu, 04 Mar 2021 07:49:33 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2005-00817.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+%            Condición para ser función activación
+%%%%% ¡Basta con que sea no polinómica!
+@ARTICLE{non-polynomial-activation-functions,
+  author={Tianping Chen and Hong Chen},
+  journal={IEEE Transactions on Neural Networks}, 
+  title={Universal approximation to nonlinear operators by neural networks with arbitrary activation functions and its application to dynamical systems}, 
+  year={1995},
+  volume={6},
+  number={4},
+  pages={911-917},
+  doi={10.1109/72.392253}}
+
+
 %%----------- Sobre utilizar otros cuerpos  --------------
 % Utiliza solo aritmética entera 
 % Lo que hace es adaptar backpropagation y forward propagation 
@@ -535,6 +568,52 @@ abstract = {Deep learning has been overwhelmingly successful in computer vision 
   publisher={Cambridge University Press},
   subjects = {Defines distributions as limits of sequences of functions under integrals}
 }
+
+%%%%%% Nocciones de estadística e inferencia estadística  %%%%%%%%%%%
+% Conceptos básicos 
+@book{OpenIntroStatistics,
+  author         = {David Diez, Mine Çentinkaya-Runder, Christopher D Barr},
+  publisher      = {Openinto},
+  title          = {OpenIntro Statics},
+  year           = {2022},
+  url            = {https://github.com/OpenIntroStat/openintro-statistics}
+}
+% Enfoque más aplicado(el que vamos a usar en la práctica)
+@book{BiologicalStatistics,
+  author         = {McDonald, J.H.},
+  publisher      = {Sparky House Publishing, Baltimore, Maryland},
+  title          = {Handbook of Biological Statistics},
+  year           = {2014}
+}
+
+
+@article{Liskov-principle,
+ author = {Liskov, Barbara H. and Wing, Jeannette M.}, 
+title = {A Behavioral Notion of Subtyping}, 
+year = {1994}, 
+issue_date = {Nov. 1994},
+ publisher = {Association for Computing Machinery}, 
+ address = {New York, NY, USA},
+  volume = {16}, number = {6}, 
+  issn = {0164-0925}, 
+  url = {https://doi.org/10.1145/197320.197383}, 
+  doi = {10.1145/197320.197383}, 
+  abstract = {The use of hierarchy is an important component of object-oriented design.
+   Hierarchy allows the use of type families, in which higher level supertypes capture the 
+   behavior that all of their subtypes have in common. For this methodology to be 
+   effective, it is necessary to have a clear understanding of how subtypes and supertypes 
+   are related. This paper takes the position that the relationship should ensure that any 
+   property proved about supertype objects also holds for its subtype objects. It presents 
+   two ways of defining the subtype relation, each of which meets this criterion, and each 
+   of which is easy for programmers to use. The subtype relation is based on the 
+   specifications of the sub- and supertypes; the paper presents a way of specifying types 
+   that makes it convenient to define the subtype relation. The paper also discusses the 
+   ramifications of this notion of subtyping on the design of type families.}, 
+   journal = {ACM Trans. Program. Lang. Syst.},
+    month = {nov}, pages = {1811–1841}, 
+    numpages = {31}, 
+    keywords = {Larch, subtyping, formal specifications} }
+
 
 %%%%%%%%%%%%%%%%%% metodología %%%%%%%%%%%%%%
 %% Descripción del desarrollo ágil en la ciencia
