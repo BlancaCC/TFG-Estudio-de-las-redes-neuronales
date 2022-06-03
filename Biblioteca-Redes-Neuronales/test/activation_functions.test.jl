@@ -10,6 +10,7 @@ using .ActivationFunctions
 
 ######################### TEST  #########################
 @testset "Activations functions" begin
+    
     id(x)=x
     # Propiedas asintóticas funciones clásicas 
     @test @ThresholdFunction(id,0)(-1) ≈ -1

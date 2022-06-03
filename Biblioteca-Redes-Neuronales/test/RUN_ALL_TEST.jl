@@ -3,6 +3,7 @@
 # Those test are: 
 # - Activation functions
 # - Neuronal network structure
+# - Forward Propagation 
 # - Our initialization algorithm
 ####################################################
 println("Testing Activation functions...")

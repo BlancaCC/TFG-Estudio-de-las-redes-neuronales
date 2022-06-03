@@ -1,14 +1,14 @@
 using Test 
 
-include("./../src/activation_functions.jl")
+
 include("./../src/one_layer_neuronal_network.jl")
-using .ActivationFunctions
-using .OneLayerNeuralNetwork
+
+#using .OneLayerNeuralNetwork
 
 entry_dimesion = 2
 number_of_hide_units = 3
 output_dimension = 2
-OLNN = OneLayerNeuralNetworkRandomWeights(
+OLNN = OneLayerNeuralNetwork.OneLayerNeuralNetworkRandomWeights(
     entry_dimesion,
     number_of_hide_units,
     output_dimension
@@ -27,9 +27,9 @@ end
     S = [1,2] #vector
     A = [3 4; 4 6] # matrix
     B = reshape([ 1 ; 1 ],1,2) # matrix 2 x 1
-    h = OneLayerNeuralNetworkFromMatrix(S, A, B)
+    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S, A, B)
     # Comprobación de tipo correcto 
-    @test typeof(h) <: AbstractOneLayerNeuralNetwork
+    @test typeof(h) <: OneLayerNeuralNetwork.AbstractOneLayerNeuralNetwork
     # Comprobación de tamaños correctos
     ### Para la matriz W_1
     (n_rows1, n_columns1) = size(h.W1)
