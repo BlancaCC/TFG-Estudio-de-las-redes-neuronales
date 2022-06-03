@@ -25,7 +25,7 @@ end
 
 @testset "One layer created from matrix" begin 
     S = [1,2] #vector
-    A = [1 2; 1 2] # matrix
+    A = [3 4; 4 6] # matrix
     B = reshape([ 1 ; 1 ],1,2) # matrix 2 x 1
     h = OneLayerNeuralNetworkFromMatrix(S, A, B)
     # Comprobación de tipo correcto 
@@ -43,6 +43,11 @@ end
      @test n_rows2 == r_b 
      @test n_columns2 == r_a
      @test n_columns2 == c_b
+     println("Revisión ocular:")
+     println( "A=", A)
+     println("S=", S)
+     println("h_w1=",h.W1)
+     println("B=$(B) = h_w2 = ($(h.W2))")
 end
 
 @testset "ForwardPropagation" begin
