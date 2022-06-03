@@ -27,7 +27,22 @@ end
     S = [1,2] #vector
     A = [1 2; 1 2] # matrix
     B = reshape([ 1 ; 1 ],1,2) # matrix 2 x 1
-    @test typeof(OneLayerNeuralNetworkFromMatrix(S, A, B)) <: AbstractOneLayerNeuralNetwork
+    h = OneLayerNeuralNetworkFromMatrix(S, A, B)
+    # Comprobación de tipo correcto 
+    @test typeof(h) <: AbstractOneLayerNeuralNetwork
+    # Comprobación de tamaños correctos
+    ### Para la matriz W_1
+    (n_rows1, n_columns1) = size(h.W1)
+    (n_rows2, n_columns2) = size(h.W2)
+    (r_a, c_a) = size(A)
+    @test n_rows1 == r_a 
+    @test n_columns1 == c_a+1
+     ### Para la matriz W_1
+     (n_rows2, n_columns2) = size(h.W2)
+     (r_b, c_b) = size(B)
+     @test n_rows2 == r_b 
+     @test n_columns2 == r_a
+     @test n_columns2 == c_b
 end
 
 @testset "ForwardPropagation" begin

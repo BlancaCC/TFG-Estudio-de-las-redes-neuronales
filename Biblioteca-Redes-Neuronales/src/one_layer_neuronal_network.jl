@@ -61,15 +61,23 @@ mutable struct OneLayerNeuralNetworkFromMatrix <: AbstractOneLayerNeuralNetwork
                 typeof(S)= $(typeof(S))  typeof(A) $(typeof(A))  typeof(B) $(typeof(B))
             "))
         end
+        # Comprobaciones de que los tamaños son coherentes
         (n_a,d_a) = size(A)
         l_s = length(S)
-        if(n_a != l_s)
-            throw(ArgumentError("El número de columnas de A (que es $(n_a))debe de ser igual que 
+        (s_b, n_b) = size(B)
+        ## Coherencia A y S
+        if n_a != l_s
+            throw(ArgumentError("El número de filas de A (que es $(n_a))debe de ser igual que 
             la longitud de S (que es $(l_s))
             Los tamaños encontrados son: 
                 size(S)=$(size(S)). 
                 size(A)=$(size(A))
             "))
+        end
+        # Coherencia A y B
+        if n_a != n_b
+            throw(ArgumentError("El número de fila de A (que es $(n_a)) no es coherente con el número de columnas de B (que es $(n_b)). 
+            Ambos debería de ser iguales."))
         end
         return new(hcat(A,S), B)
     end
