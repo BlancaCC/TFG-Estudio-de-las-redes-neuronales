@@ -1,3 +1,7 @@
+########################################################
+#           ONE LAYER NEURONAL NETWORK TYPE 
+#   and evaluation with forward propagation 
+########################################################
 module OneLayerNeuralNetwork
 
 # Constructores 
@@ -20,15 +24,13 @@ abstract type AbstractOneLayerNeuralNetwork end
 
 """
     OneLayerNeuralNetworkRandomWeights 
-# Arguments 
-- `activation_function` should be a Real to Real function 
-- `derivative_activation_function` should be a Real to Real function 
+Return a random initialized Neuronal Network
 """
 mutable struct OneLayerNeuralNetworkRandomWeights  <: AbstractOneLayerNeuralNetwork
     entry_dimesion :: Int 
     number_of_hide_units :: Int
     output_dimension :: Int   
-    W1  # pesos de la entrada a la capa oculta
+    W1  # pesos de la entrada a la capa oculta A S (sesgo última columna)
     W2  # pesos de la capa oculta a la salida
 
     function OneLayerNeuralNetworkRandomWeights(entry_dimesion,
@@ -48,6 +50,10 @@ mutable struct OneLayerNeuralNetworkRandomWeights  <: AbstractOneLayerNeuralNetw
     end   
 end
 
+"""
+    OneLayerNeuralNetworkRandomWeights 
+Return a  Neuronal Network inizialized  by three matrix
+"""
 mutable struct OneLayerNeuralNetworkFromMatrix <: AbstractOneLayerNeuralNetwork
     W1 :: Matrix # pesos de la entrada a la capa oculta
     W2 :: Matrix# pesos de la capa oculta a la salida

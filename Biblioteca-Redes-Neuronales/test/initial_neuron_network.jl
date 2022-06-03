@@ -8,6 +8,7 @@ Random.seed!(1);
 include("./../src/initial_neuronal_network.jl")
 using .InitialNeuralNetwork
 
+
 # Declaración de los atributos de juguete 
 # Matrix
 ##### Problema de regresión 
@@ -23,8 +24,11 @@ Y_train = reshape(Y_train, (data_set_size,1))
 # Número de neuronas 
 n = round(Int, data_set_size*0.3)
 
-println(InitializeNodes(X_train, Y_train, n))
+h = InitializeNodes(X_train, Y_train, n)
 
-
+@testset "Nodes initialization algorithm" begin
+    # El resultado es del tipo correcto 
+    
+end 
 
 
