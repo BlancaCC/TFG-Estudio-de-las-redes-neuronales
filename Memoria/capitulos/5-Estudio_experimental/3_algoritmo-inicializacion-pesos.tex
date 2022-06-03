@@ -2,19 +2,10 @@
 % Experimentación con ALGORITMO INICIALIZACIÓN DE PESOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Algoritmo de inicialización pesos de una red neuronal}  
 
-Se desea conocer la bondad del algoritmo propuesto 
-en \ref{section:inicializar_pesos} que plantea dos objetivos múltiples en lo que respecta a la inicialización de pesos de una red neuronal:
+En la siguiente sección trataremos sobre la bondad del algoritmo expuesto
 
-\begin{itemize}
-    \item Su inicialización reporta un beneficio considerable con respecto a una inicialización aleatoria. 
-    \item A mismo tiempo es más ventajoso que utilizar un descenso de gradiente. 
-\end{itemize}
-
-Para ello se han diseñado dos experimentos: 
- 
-\section{Experimento 1: Contraste de hipótesis con inicialización aleatoria} 
+\section{Contraste de hipótesis con inicialización aleatoria} 
 \label{ch07:experimento-1} 
 
 Las preguntas a resolver son ¿mejora nuestro algoritmo? ¿Cuánto mejora?
@@ -127,3 +118,22 @@ Podrían utilizarse alguno de estos:
     \item \href{https://github.com/JuliaStats/RDatasets.jl}{Julia contiene las base de datos estándar de R}.
     \item \href{https://juliaml.github.io/MLDatasets.jl/stable/}{Otros paquetes básicos provistos también por la comunidad.}
 \end{itemize}
+
+\subsection*{Estructura de datos}
+Para mantener eficientemente ordenados los puntos 
+lo normal sería utilizar un \textit{conjunto ordenado} donde ir añadiendo los datos, que la propia estructura los ordene y tras esto sacar
+los datos ya ordenados. 
+El problema es que el tipo de dato \text{set} en Julia está basado en diccionarios
+\footnotetext{Véase \url{https://discourse.julialang.org/t/can-you-sort-a-set/47948/2} 
+link accedido por última vez el 3 de junio de 2022.}
+
+Por lo tanto hemos recurrido a una biblioteca externa
+utilizado las estructuras de datos propias de Julia 
+\href{https://juliacollections.github.io/DataStructures.jl/v0.9/sorted_containers.html}{estructuras}. 
+La documentación del lenguaje está bastante regular. 
+No hemos encontrado en ese parque un conjunto ordenado. 
+
+Por lo que 
+
+
+Por lo tanto lo que vamos es a almacenar los datos y luego guardarlos
