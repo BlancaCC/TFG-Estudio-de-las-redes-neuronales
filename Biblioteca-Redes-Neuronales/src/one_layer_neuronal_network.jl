@@ -94,10 +94,11 @@ ForwardPropagation (h::AbstractOneLayerNeuralNetwork, activation_function, x::Ve
 Only use an activation function
 """
 function ForwardPropagation(h::AbstractOneLayerNeuralNetwork,activation_function, x)
-    s = h.W1 * push!(x,1)
+    x_aux = copy(x)
+    s = h.W1 * push!(x_aux,1)
     ∑= map(activation_function,s)
-    x = h.W2 * ∑
-    return x
+    x_aux = h.W2 * ∑
+    return x_aux
 end 
 
 end # end OneLayerNeuralNetwork
