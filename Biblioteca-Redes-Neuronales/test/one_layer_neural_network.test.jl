@@ -50,11 +50,5 @@ end
      println("B=$(B) = h_w2 = ($(h.W2))")
 end
 
-@testset "ForwardPropagation" begin
-    # El resultado debe de ser un vector
-    @test typeof(ForwardPropagation(OLNN,ReLU, [1,2.0])) == Vector{Float64}
-    # La evaluación debe de tener las mismas dimensiones que la salida de la red neuronal
-    @test length(ForwardPropagation(OLNN,ReLU, [0,1.0])) == output_dimension
-end
 
 
