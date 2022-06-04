@@ -19,5 +19,9 @@ t = @elapsed include("forward_propagation.test.jl")
 println("done (took $t seconds).")
 
 println("Testing our initialization algorithm")
-t = @elapsed include("initial_neuron_network.jl")
+t = @elapsed include("initial_neuron_network.test.jl")
+println("done (took $t seconds).")
+
+println("Testing metric estimation")
+t = @elapsed include("metric_estimation.test.jl")
 println("done (took $t seconds).")

@@ -62,8 +62,21 @@ end
     for v in vectores
         @test OneLayerNeuralNetwork.ForwardPropagation(h, x->x,v ) == [v[1]+1, v[2]+2]
     end
+    S = [2, 5]
+    A = [2 3; 7 8]
+    B = [4 7; 10 -9]
+    v = [2, -1]
+    # Calculamos manualmente cuál debiera de ser el resultado
+    c = A*v
+    c = c + S
+    c = B*c
+
+    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    @test OneLayerNeuralNetwork.ForwardPropagation(h, x->x,v) == c
+
 end
 @testset "ForwardPropagation activation function" begin
+    # Comprobamos que admite una función de activación cualquiera
     S = [0, 0]
     A = [1 0; 0 1]
     B = [1 0; 0 1]
@@ -78,5 +91,22 @@ end
     for (v,test) in zip(vectores,soluciones_reLU)
         @test OneLayerNeuralNetwork.ForwardPropagation(h, ActivationFunctions.ReLU,v ) == test
     end
+    # Comprobamos que aplica correctamente los coeficientes
+    S = [0, 0]
+    A = [1 0; 0 1]
+    B = [1 0; 0 1]
+    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+
+    vectores = [
+        [-1,2], [0,-3]
+    ]
+    soluciones= [
+        [1,4],[0,9]
+    ]
+    for (v,test) in zip(vectores,soluciones)
+        @test OneLayerNeuralNetwork.ForwardPropagation(h, x-> x^2,v ) == test
+    end
+
 
 end
+
