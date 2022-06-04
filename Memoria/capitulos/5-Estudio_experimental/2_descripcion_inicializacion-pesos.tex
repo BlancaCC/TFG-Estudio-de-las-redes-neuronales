@@ -122,8 +122,8 @@ Resolviendo el sistema resulta que
             \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
             \\
             \tilde{\alpha}_{k s} 
-            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
-            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
         \end{array}
     \right.
 \end{equation}
@@ -133,7 +133,7 @@ Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de
     \left\{ 
         \begin{array}{l}
             \alpha_{k 0} = \tilde{\alpha}_{k s} =
-            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
             \\
             \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
             = 
@@ -175,7 +175,7 @@ Con todo esto el proceso algorítmico resultante es:
         %selección de p
        \STATE \textit{Inicializamos $p$}. \\
        $p \gets$ vector de $\R^{d+1}$. 
-       \COMMENT{Como heurística será generado con distribución uniforme en el intervalo $[0,1]$} 
+       \COMMENT{Como heurística será generado con distribución uniforme en $[0,1]^{d+1}$} 
        % Cálculo de Lambda
        \STATE \textit{Selección  de los datos de inicialización
        $\Lambda \subset \mathcal{D}$}. \\
