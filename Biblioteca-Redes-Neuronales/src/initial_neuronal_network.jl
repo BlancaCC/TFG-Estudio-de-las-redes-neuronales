@@ -96,7 +96,7 @@ end
 
 
 """
-    InitializeNodes(X_train,Y_train, n, M=10) 
+    InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     Devuelve una red neuronal con los pesos ya inicializados
     de acorte a los conjuntos de entrenamiento. 
     `n` es el número de neuronas en la capa oculta. 
@@ -118,19 +118,21 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     nodes = Dict{Float64, Vector{Float64}}()
     index = 1
     tam = 0
-    y_values = zeros(Float64, n, output_dimension)
-    
+    y_values = Dict{Float64, Float64}() # float porque la salida es de dimensión 1
+    my_keys = zeros(Float64, n)
     while tam < n && index <= n
         new_point = X_train[index, :]
         append!(new_point,1)
         if notOrtonormal(nodes, p, new_point)
-            nodes[sum(p.*new_point)] = new_point
             tam += 1
-            y_values[tam] = Y_train[index]  
+            ordered_vector = sum(p.*new_point)
+            my_keys[tam] =  ordered_vector
+            nodes[ordered_vector] = new_point
+            y_values[ordered_vector] = Y_train[index]
         end
         index += 1
     end
-    ordered_values = sort(collect(keys(nodes)))
+    ordered_values = sortperm(my_keys)
     # Matrices de la red neuronal 
     # A = n x d 
     # S = n x 1
@@ -139,18 +141,19 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     S = zeros(Float64, n)
     B = zeros(Float64, output_dimension, n)
 
-    # valores iniciales 
+    # Cálculo del valor de las neuronas 
+    key = my_keys[ordered_values[1]]
+    x_a = nodes[key]
+    y_a = y_values[key]
+    
     S[1]=M*p[entry_dimension+1]
     A[1,:] = M.*p[1:entry_dimension]
-    B[1] = y_values[1]
+    B[1] = y_a
 
-    # Cálculo del resto de neuronas
-    x_a = nodes[ordered_values[1]]
-    y_a = y_values[1]
-    
-    for (index,key) in collect(Iterators.zip(2:n, ordered_values[2:n]))
+    for index in 2:n
+        key = my_keys[index]
         x_s = nodes[key]
-        y_s = y_values[index]
+        y_s = y_values[key]
 
         coeff_aux = 2M / sum(p.* (x_s - x_a))
         S[index] = M -  sum(p .* x_s) * coeff_aux

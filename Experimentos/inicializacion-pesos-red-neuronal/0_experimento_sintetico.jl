@@ -18,7 +18,7 @@ output_dimension = 1
 M = 1
 K_range = 2.5
 f_regression(x)=(x<1) ? exp(-x)-4 : log(x)
-for (data_set_size,n) in zip([3,10, 5,15,30,100],[2,7,4,10,20,90])
+for (data_set_size,n) in zip([3,4,5, 8,15,23,51,73,100, 103],[2,3,5,7,10,20,51,72,90, 100])
 
     println("EXPERIMENTO SINTÉTICO")
     println("n=$n y tamaño conjunto $data_set_size")
