@@ -23,3 +23,10 @@ FACTOR = +1000000         # Parámetro implicado con la cardinalidad del conjunt
 #DIRECTORIO_IMAGENES = "./Experimentos/comparativas-funciones-activacion/img/" #carpeta que contendrá las imágenes
 # Descomentar: Para mostrar en la carpeta de la memoria
 DIRECTORIO_IMAGENES = "./Memoria/img/funciones-activacion/" #carpeta que contendrá las imágenes
+
+# Configuración de 
+[visualizacion-inicializacion-pesos-R]
+# Descomentar: Para mostrar en la carpeta del experimento 
+DIRECTORIO_IMAGENES = "./Experimentos/inicializacion-pesos-red-neuronal/img/" #carpeta que contendrá las imágenes
+# Descomentar: Para mostrar en la carpeta de la memoria
+#DIRECTORIO_IMAGENES = "./Memoria/img/7-algoritmo-inicializar-pesos/"
