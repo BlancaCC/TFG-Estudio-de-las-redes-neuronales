@@ -157,13 +157,11 @@ cuya solución son las respectivas filas y columnas:
         \end{array}
     \right.
 \end{equation}  
+\end{aportacionOriginal} % método de construcción
 
 Con todo esto el proceso algorítmico resultante es: 
 
-\end{aportacionOriginal} % método de construcción
-
 % Algoritmo de inicialización de pesos de una red neuronal
-
 \begin{algorithm}[H]
     \caption{Inicialización de pesos de una red neuronal}
     \label{algo:algoritmo-iniciar-pesos}
@@ -218,15 +216,38 @@ Con todo esto el proceso algorítmico resultante es:
 
 \subsection{Coste computacional algoritmo de inicialización de pesos}
 
-Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$; 
-y que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
+El algoritmo se divide en tres pasos bien identificados: 
+\begin{enumerate}
+    \item Inicialización del vector aleatorio.
+    \item Selección de los datos iniciales.
+    \item Cálculo de los parámetros de la red neuronal.
+\end{enumerate}
+Notemos que la complejidad del primero es constante y
+la del tercero lineal. 
+
+Para conocer la complejidad 
+del paso segundo debemos de apreciar que el algoritmo 
+tiene un componente aleatorio introducido en la selección del $p$; 
+y que en el peor (y con probabilidad nula) de los casos podría suponer
+$|\mathcal{D}|$ iteraciones en el bucle interior al paso 2.  
 
 Sin embargo, en virtud de las observaciones hechas en la 
-descripción del método, la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
+descripción del método, la peor situación tiene probabilidad nula de ocurrir;
+es decir,
+la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
 heurística es suponer 
-que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. De esta manera el algoritmo de inicialización de pesos propuesto tendría una complejidad $\mathcal{O}(n)$.
+que  el paso 2 del algoritmo repetirá su bucle $n$ veces. 
+De esta manera el algoritmo de inicialización de pesos propuesto tendía la misma complejidad que el coste 
+de tener los datos ordenados. 
+Si se utilizan sistemas como insertar de manera ordenada los datos, por ejemplo en un \textit{set}, 
+el coste de cada inserción sería de $log(n)$; esto haría que el orden total del algoritmo sea: 
+\begin{equation}
+    \mathcal{O}(n log(n)).
+\end{equation}
 
-Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente,  mientras que el nuestro se realiza tan solo una vez. 
+Cabe destacar que este coste es bastante menor al de realizar \textit{backpropagation} 
+y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente, 
+ mientras que el nuestro se realiza tan solo una vez. 
 
 
 \subsection{Observaciones }

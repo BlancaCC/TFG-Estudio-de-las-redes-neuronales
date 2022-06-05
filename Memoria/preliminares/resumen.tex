@@ -10,27 +10,37 @@
 
 \chapter*{Resumen}\label{ch:resumen}
 %\addcontentsline{toc}{chapter}{Resumen}
+Con este trabajo se ha pretendido construir una teoría sólida que de cabida a optimizar el modelado actual de las redes neuronales.
 
-Objetivo inofrmática: 
-Elegir un framework común para trabajar con redes neuronales así como una serie de problemas de complejidad media, tales como spambase. Establecer una línea base examinando los resultados obtenidos con la configuración base a la hora de entrenar este tipo de redes neuronales y el resultado obtenido. A partir de esa línea base, testear las diferentes restricciones, cambios en representación y suposiciones deducidos en la parte matemática para ver qué influencia tienen en la velocidad, en el resultado, o en ambos.
+Como resultado de ello se ha creado e implementado 
+un nuevo modelo de red neuronal así como sus 
+métodos de aprendizaje y evaluación. 
+Además se ha propuesto un criterio de selección de 
+funciones de activación y un algoritmo de 
+inicialización de pesos que mejora los ya existentes. 
 
-Objetivo matemáticas: 
-El objetivo de esta parte es doble, en primer lugar, se propone analizar con detalle las demostraciones de algunos resultados de aproximación universal de redes neuronales para funciones continuas. En segundo lugar se propone realizar un estudio de la posible optimización de redes neuronales concretas en base a los resultados obtenidos empíricamente en la parte informática.  Se tratará de modelizar matemáticamente dichos resultados y de obtener mejoras en la convergencia de las aproximaciones imponiendo, si es necesario, hipótesis más restrictivas en algunos de los elementos de las redes neuronales que se correspondan con su uso en la práctica.   
+La estructura de la memoria es la siguiente: 
 
-Libros: 
-[1] Abu-Mostafa, Y.S. et al.: Learning From Data. AMLBook, 2012.             [2] G. Cybenko, Approximations by superpositions of a sigmoidal function, Math. Contro Signal Systems 2 (1989), 303-314.                                              [3] J. Conway, A Course in Functional Analysis,
-2nd Edition, Springer-Verlag, 1990.                     [4] A. Géron, Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly, 2019.                    [5] K. Hornik, M Stinchcombe and H. White, Multilayer feedforward networks are universal approximators, Neural Networks 2 (1989), 359-366.                                  [6] W. Rudin, Real and complex analysis. McGraw-Hill Book Co., New York-Toronto, Ont.-London 1966.
+\begin{itemize}
+    \item \textbf{Capítulo \ref{ch00:methodology}: Descripción de la metodología seguida.} 
+    \item \textbf{Capítulo \ref{chapter:Introduction-neuronal-networks}: Descripción del problema de aprendizaje.} Caracterización de los problemas de aprendizaje.
+    \item \textbf{Capítulo \ref{ch03:teoria-aproximar}: Teoría de la aproximación.} Ejemplificación de los problemas que presenta un enfoque clásico frente a problemas de problema de aprendizaje.  Demostración del teorema de \textit{Stone-Weierstrass}.
+    \item \textbf{Capítulo \ref{chapter4:redes-neuronales-aproximador-universal}: Introducción de las redes neuronales como aproximadores universales.} Se presenta nuestro modelo de red neuronal. Se demuestra que es un aproximador universal basado en el artículo 
+    \textit{Multilayer Feedforwar Networks are Universal Approximatos} de Kurt Hornik, 
+    Maxwell Stinchcombe y Halber White. Se plantea si en la práctica las redes neuronales se pueden implementar.
+    \item \textbf{Capítulo \ref{chapter:construir-redes-neuronales}: Construcción de las redes neuronales.} Descripción de la implementación de las redes neuronales. 
+    Comparación de nuestro modelo con los usuales bajo la introducción de resultados originales sobre el sesgo y dominio de la imagen. Motivación, desarrollo e implementación de los algoritmos de aprendizaje y evaluación propuestos.
+    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se presenta un resultado propio que establece una equivalencia entre distintas funciones de activación. A partir de él se da un criterio de selección de funciones de activación y se estudia experimentalmente los beneficios obtenidos. 
+    \item \textbf{Capítulo \ref{section:inicializar_pesos}: Algoritmo de inicialización de pesos.} Se propone un algoritmo de inicialización de pesos de una red neuronal.
+    \item \textbf{Capítulo \ref{ch08:genetic-selection}: Selección genética de las funciones de activación.} Se propone un algoritmo de selección de la función de activación basado en algoritmos genéticos. 
+\end{itemize}
+
 \paragraph{PALABRAS CLAVE:}
 \begin{itemize*}[label=,itemsep=1em,itemjoin=\hspace{1em}]
-  \item redes neuronales
-  \item LSTM
-  \item series temporales
-  \item selección de modelos
-  \item validación
-  \item selección de hiperparámetros
-  \item detección de anomalías
-  \item detector
-  \item perturbación
+  \item Redes neuronales
+  \item Optimización 
+  \item Funciones de activación 
+  \item Inicialización de pesos
 \end{itemize*}
 
 \endinput
