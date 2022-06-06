@@ -4,7 +4,6 @@
 #   CASO ENTRADA REAL de dimensión d > 1 SALIDA REAL (una dimensión)
 #####################################################################
 
-
 """
     InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     Devuelve una red neuronal con los pesos ya inicializados
@@ -24,10 +23,10 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     output_dimension = 1
     # inicializamos p 
     p = rand(Float64, entry_dimension+1)
-
-    nodes = Dict{Float64, Vector{Float64}}()
     index = 1
     tam = 0
+
+    nodes = Dict{Float64, Vector{Float64}}()
     y_values = Dict{Float64, Float64}() # float porque la salida es de dimensión 1
     my_keys = zeros(Float64, n)
     while tam < n && index <= n
