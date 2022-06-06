@@ -1,6 +1,7 @@
 personal_ws-1.1 es 0 utf-8 
 Amat
 Approximators
+Aristóteles
 Backpropagation
 Backpropagations
 Bernstein
