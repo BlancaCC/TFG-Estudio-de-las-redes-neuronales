@@ -3,16 +3,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{ Mejora en la inicialización de los pesos de una red neuronal}  
 \label{section:inicializar_pesos}
+
 Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
 iteración mejorar la solución encontrada, pero es 
 totalmente sensible a la posición inicial 
 de los pesos. 
-Presentamos por tanto la siguiente propuesta para inicializar una red neuronal con el objetivo de que sus pesos se encuentren ya cerca de la solución. Destaquemos que este algoritmo 
+Presentamos por tanto una propuesta para 
+inicializar una red neuronal con el objetivo de que 
+sus pesos se encuentren ya cerca de la solución. 
+Destaquemos que este algoritmo 
 no solo servirá exclusivamente para el método de gradiente descendente 
 sino para cualquier otro dependiente del punto inicial. 
 
-\section{ Estado del arte relacionado } 
+\section*{Contenido y objetivo del capítulo}  
 
+\begin{itemize}
+    \item Establecimiento del estado del arte en \ref{ch07:estado-arte}.
+    \item Descripción del algoritmo y demostración de su corrección \ref{ch07:algoritmo-propuesto}.
+    \begin{itemize}
+        \item Determinación de su complejidad algorítmica. 
+        \item Selección de parámetros y generalización. 
+    \end{itemize}
+    \item Descripción de la implementación. 
+    \item Beneficios obtenidos.  
+\end{itemize}
+
+
+
+\section{ Estado del arte relacionado } 
+\label{ch07:estado-arte}
 % Nota informativa de lo que es un backbone 
 \setlength{\marginparwidth}{\bigMarginSize}
 \marginpar{\maginLetterSize
@@ -40,7 +59,7 @@ Ante esta situación, nuestro algoritmo propone una inicialización de bajo cost
 
 
 \section{Descripción del método propuesto}
-
+\label{ch07:algoritmo-propuesto}
 \begin{aportacionOriginal} % método de construción
     
 La idea proviene de la demostración casi constructiva del teorema \ref{teorema:2_5_entrenamiento_redes_neuronales}.

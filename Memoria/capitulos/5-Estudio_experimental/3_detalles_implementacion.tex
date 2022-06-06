@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Implementación del algoritmo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Implementación}
+\label{ch07:Implementar} 
+
+Los requisitos mínimos necesarios para una implementación adecuada son los siguientes
+\begin{itemize}
+    \item Implementación de red neuronal y tipos de constructores.
+    \item Implementación del algoritmo. 
+\end{itemize}
+
+\subsection*{Implementación de redes neuronal}
+
+El modelo  a implementar es el presentado en el algoritmo \ref{algoritmo:estructura-de-una-red-neuronal}. En virtud del \textit{composite type} de Julia \footnotetext{ Véase la \href{https://docs.julialang.org/en/v1/manual/types/}{documentación oficial}} la forma más simple y eficiente de 
+declarar una red neuronal es como una tipo de dato \textit{red neuronal} cuyos atributos sean las matrices que definen el modelo. 
+
+En vista a la optimización en evaluación y 
+entrenamiento más eficiente las matrices 
+$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. 
+
+\subsection*{Implementación del algoritmo de \textit{Forward propagation}}  
+La evaluación de una red neuronal se realizará por 
+medio de una función que recibe como parámetros un 
+tipo de dato \textit{red neuronal}. 
+
+\subsection*{Implementación del algoritmo}
+
+Con el objetivo de optimizar: 
+- Cuestión de tipos composite dispatch. 
+- Necesidad de una lista ordenada: comentar conjunto y tipos
+y argucia del diccionario. 
+ 
