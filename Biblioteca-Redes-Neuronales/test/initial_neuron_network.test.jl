@@ -7,7 +7,7 @@ Random.seed!(2);
 
 include("./../src/activation_functions.jl")
 include("./../src/one_layer_neuronal_network.jl")
-include("./../src/initial_neuronal_network.jl")
+include("./../src/weight-inizializer-algorithm/main.jl")
 using .InitialNeuralNetwork
 
 @testset "Nodes initialization algorithm entry  dimension 1 output dimension 1" begin
