@@ -27,7 +27,7 @@
      ActivationFunctions.RampFunction,x)
 
     for (x,y) in zip(eachrow(X_train),Y_train)
-        #@test evaluar(x) ≈  [y] #AHORA MISMO ESTE TEST NO LO PASA
+        #@test evaluar(x) ≈  [y] 
     end    
 end 
 
