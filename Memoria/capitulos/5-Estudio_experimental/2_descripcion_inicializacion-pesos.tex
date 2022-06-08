@@ -234,7 +234,7 @@ Con todo esto el proceso algorítmico resultante es:
 \end{algorithm}
 
 \subsection{Coste computacional algoritmo de inicialización de pesos}
-
+\label{ch07:coste-computacional-algoritmo-propio}
 El algoritmo se divide en tres pasos bien identificados: 
 \begin{enumerate}
     \item Inicialización del vector aleatorio.
@@ -325,17 +325,15 @@ De esta manera se pueden ampliar las funciones de activación válidas, añadien
     \centering
     \begin{tabular}{|c|c|}
     \hline
-        Función de activación  & Valor mínimo de $M$ \\ \hline
+        \textbf{Función de activación}  & \textbf{Valor mínimo de $M$} \\ \hline
         Función rampa & 1 \\ \hline
         \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
         Función indicadora 0 & 0 \\ \hline
         Función de activación  & Valor mínimo de $M$ \\ \hline
-        Sigmoidea  & con $M=10$ el error menor de $10^{-5}$\\ \hline
-        Tangente hiperbólica  &  con $M=7$ el error menor de $10^{-5}$\\ \hline
+        Sigmoidea  & con $M=10$ el error será menor que $10^{-5}$\\ \hline
+        Tangente hiperbólica  &  con $M=7$ el error será menor que $10^{-5}$\\ \hline
         \textit{Hardtanh} & 1 \\ \hline
     \end{tabular}
     \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada (con más resultados).}
     \label{table:M-activation-function-2}
 \end{table}
-
-%\textcolor{red}{TODO issue 107: Hacer experimentaciones }

@@ -14,21 +14,126 @@ Los requisitos mínimos necesarios para una implementación adecuada son los sig
 \subsection*{Implementación de redes neuronal}
 
 El modelo  a implementar es el presentado en el algoritmo \ref{algoritmo:estructura-de-una-red-neuronal}. En virtud del \textit{composite type} de Julia \footnotetext{ Véase la \href{https://docs.julialang.org/en/v1/manual/types/}{documentación oficial}} la forma más simple y eficiente de 
-declarar una red neuronal es como una tipo de dato \textit{red neuronal} cuyos atributos sean las matrices que definen el modelo. 
+declarar una red neuronal es como un nuevo tipo de dato: \textit{red neuronal} cuyos atributos sean las matrices que definen el modelo. 
 
 En vista a la optimización en evaluación y 
 entrenamiento más eficiente las matrices 
-$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. 
+$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. Puede encontrar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
 
 \subsection*{Implementación del algoritmo de \textit{Forward propagation}}  
 La evaluación de una red neuronal se realizará por 
 medio de una función que recibe como parámetros un 
-tipo de dato \textit{red neuronal}. 
+tipo de dato \textit{red neuronal}.  Puede encontrar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
 
-\subsection*{Implementación del algoritmo}
+\subsection*{Implementación del algoritmo de inicialización de pesos}
 
-Con el objetivo de optimizar: 
-- Cuestión de tipos composite dispatch. 
-- Necesidad de una lista ordenada: comentar conjunto y tipos
-y argucia del diccionario. 
+Se ha realizado la implementación de acorde al algoritmo descrito 
+en \ref{algo:algoritmo-iniciar-pesos}. Para un desarrollo optimizado se han tenido en cuenta dos 
+factores esenciales: 
+\begin{itemize}
+    \item Adaptación de los tipos de datos y \textit{ dispatch methods} de Julia en función 
+    de las dimensiones de entrada y salida del conjunto de datos de entrenamiento.
+    \item Estructuras de datos propias de Julia. 
+\end{itemize}
+
+\subsubsection*{ Uso de los tipos de datos y \textit{ dispatch methods}}
+Las entradas y salidas de dimensión uno son codificadas como vectores en lugar de matrices, 
+es por ello que vamos a hacer uso de la variedad de tipos que ofrece Julia y de sus \textit{dispatch methods} que ya comentamos en 
+la sección \ref{ch06:sistema-timpos-julia} con
+ profundidad. 
+
+ Gracias a esta manera de implementar polimorfismo 
+ en Julia, tendremos una sola función que recoja a 
+ nuestro algoritmo de inicialización de pesos y diversas implementaciones adaptadas a la dimensión de entrada y salida. 
+
+ Puede consultar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{la carpeta \textit{weight-initializer-algorithm}} de nuestra biblioteca. 
+ Cabe mencionar que el caso de entrada y salida de dimensión uno ha sido el que más reducción de costo 
+ ha permitido, ya que en vez de realizar 
+ el diseño directo recogido en \ref{algo:algoritmo-iniciar-pesos} puede uno consultar 
+ el caso primero de la demostración  \ref{teorema:2_5_entrenamiento_redes_neuronales}
+ y darse cuenta que la existencia del vector $p$ 
+ es una argucia para conseguir un orden en los vectores de entrada. Como $\R$ ya es un cuerpo ordenado se puede prescindir tanto de $p$ como de toda la estructura de datos que ello conlleva. 
+ Esta cuestión guarda relación con el apartado siguiente. 
+
+\subsubsection*{ Selección de la estructuras de datos adecuada}
+Como ya observamos en  la sección \ref{ch07:coste-computacional-algoritmo-propio} el coste computacional recae principalmente en conseguir una ordenación del conjunto denominado como 
+$\Lambda$ en el pseudo código \ref{algo:algoritmo-iniciar-pesos}. 
+
+La forma más eficiente de proceder en estos casos
+es con una estructura de datos pertinente. 
+En lenguajes como C++ una solución eficiente sería introducir los datos en 
+un \textit{set}, que por estar construidos sobre un \href{https://en.wikipedia.org/wiki/Red–black_tree}{\textit{red-black tree}}
+% Sobre la implementación
+\footnote{ 
+    Puede consultar la implementación del tipo de dato \textit{set} de la STL en 
+    \url{https://github.com/gcc-mirror/gcc/blob/master/libstdc\%2B\%2B-v3/include/bits/stl_set.h}
+    (fuente consultada por última vez el 8 de junio de 2022).      
+}
+%https://en.wikipedia.org/wiki/Red–black_tree
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Estructura de datos 
+            \textit{red-black tree}
+        }
+    }
+    Se trata de un árbol binario de búsqueda 
+    autobalanceado, esto es un grafo no cíclico que partiendo de uno concreto denominado raíz la \textit{altura} (número máximo de nodos hasta llegar a un extremo partiendo de la raíz) es mínima. 
+
+    Esta estructura es muy interesante ya que no solo guarda los datos ordenados si no que su coste de búsqueda es $\mathcal{O}(n \log(n))$, pero su inserción y consulta de media términos de análisis de amortización tiene complejidad constante. En el peor de los casos sería  
+    $\mathcal{O}(n \log(n))$.  
+}
+tienen como efecto la ordenación eficiente de los mismos. 
+
+% Sobre contribuir a Julia
+\setlength{\marginparwidth}{\smallMarginSize}
+\reversemarginpar
+\marginpar{\maginLetterSize
+    \iconoClave  \textcolor{darkRed}{     
+        \textbf{
+            Contribución a Julia
+        }
+    }
+    Sería interesante explorar si se podría contribuir a Julia a partir de esta implementación, ya que a priori el uso de un diccionario solo 
+    aporta simpleza en la implementación,
+    \href{https://github.com/JuliaLang/julia/blob/master/CONTRIBUTING.md}{CONTRIBUTING}.
+}
+\setlength{\marginparwidth}{\bigMarginSize}
+\normalmarginpar
+Por desgracia, en Julia esto no es posible sin hacer uso de bibliotecas externas o una implementación propia; ya que el tipo conjunto está
+ construido sobre diccionarios
+ (ver la línea 40 de la implementación del tipo \textit{set} de Julia que puede
+ encontrar en   \href{https://github.com/JuliaLang/julia/blob/master/base/set.jl}{sus fuentes en GitHub})\footnote{
+     Las fuentes se encuentran concretamente en 
+     \url{https://github.com/JuliaLang/julia/blob/master/base/set.jl}
+     y han sido consultadas por última vez el 8 de junio de 2022.
+ }.
+
+ Para resolver el problema hemos optado 
+ por usar el tipo de dato de Julia 
+ \textit{Array} \footnote{
+    Véase su documentación oficial 
+    \url{https://docs.julialang.org/en/v1/base/arrays/}
+
+    Consultada por última vez el 8 de junio de 2022.
+}
+ya que tiene los siguientes beneficios: 
+\begin{itemize}
+    \item Permite declarar directamente la dimensión requerida (que es conocida de antemano por tratarse del número de neuronas); esto ahorraría en evitar tener que estar redimensionando en cada inserción.
+    \item Permite introducir el tipo de dato que contendrá. En la propia documentación de Julia \footnote{
+        Consultar \url{https://docs.julialang.org/en/v1/manual/performance-tips/}.
+        Fue visitada por última vez el 8 de Junio de 2022.
+    } se nos indica que evitar el uso de tipo abstractos mejora la eficiencia. 
+    \item Mantiene el mismo coste computacional.
+    Concretamente para ordenar Julia dispone de
+    dos algoritmo en su núcleo: \textit{Quick Sort} y \textit{Merge Sort}. 
+
+    Nosotros hemos optado por usar \textit{Quick Sort} \cite{Quicksort} porque a pesar de tener la misma complejidad $\mathcal{O}(n \log(n))$ la constante oculta de \textit{Quick Sort} es menor con array y además no necesita de memoria adicional, (\textit{Merge Sort}\cite{merge-sort} tiene complejidad $\mathcal{O}(n)$ en memoria).
+     ya que la ordenación de un array mantiene la eficiencia ya que 
+    tal y como se indica en la documentación de Julia \footnote{ Consúltese \url{https://docs.julialang.org/en/v1/base/sort/}} 
+    en la ordenación de array numéricos 
+    (nuestro caso) utiliza el método de ordenación de \textit{Quick Sort}
+    (véase el artículo comparativo \cite{quicksort-vs-merge-sort}).
+\end{itemize}
+
  

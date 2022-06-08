@@ -59,6 +59,7 @@ Pérez
 ReLU
 Readme
 Rosenblatt
+STL
 Sebastien
 Sellke
 Sigmoid
@@ -76,6 +77,7 @@ approximators
 aproximable
 aproximador
 aproximadores
+autobalanceado
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
@@ -111,6 +113,7 @@ ij
 ik
 inasumible
 inecuación
+initializer
 insesgado
 insesgados
 ipynb
@@ -143,6 +146,7 @@ precompilados
 preimágenes
 primeraCapa
 qB
+redimensionando
 reenfocar
 reescalados
 referenciada
@@ -160,6 +164,7 @@ sigmoidea
 sobreescribir
 solventable
 squasher
+stl
 struct
 subespacio
 subespacios
