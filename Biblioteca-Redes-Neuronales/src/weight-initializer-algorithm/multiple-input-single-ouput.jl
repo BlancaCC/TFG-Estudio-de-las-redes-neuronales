@@ -24,24 +24,25 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     # inicializamos p 
     p = rand(Float64, entry_dimension+1)
     index = 1
-    tam = 0
+    tam :: Int8= 0
 
-    nodes = Dict{Float64, Vector{Float64}}()
-    y_values = Dict{Float64, Float64}() # float porque la salida es de dimensión 1
+    nodes = Array{Vector{Float64}}(undef, n)
+    y_values = Array{Float64}(undef, n) # float porque la salida es de dimensión 1
     my_keys = zeros(Float64, n)
     while tam < n && index <= n
         new_point = X_train[index, :]
         append!(new_point,1)
-        if notOrtonormal(nodes, p, new_point)
+        if notOrtonormal(nodes, p, new_point, tam)
             tam += 1
             ordered_vector = sum(p.*new_point)
             my_keys[tam] =  ordered_vector
-            nodes[ordered_vector] = new_point
-            y_values[ordered_vector] = Y_train[index]
+            nodes[tam] = new_point
+            y_values[tam] = Y_train[index]
+            
         end
         index += 1
     end
-    ordered_values = sortperm(my_keys)
+     ordered_values_index = sortperm(my_keys)
     # Matrices de la red neuronal 
     # A = n x d 
     # S = n x 1
@@ -51,7 +52,7 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     B = zeros(Float64, output_dimension, n)
 
     # Cálculo del valor de las neuronas 
-    key = my_keys[ordered_values[1]]
+    key =  ordered_values_index[1]
     x_a = nodes[key]
     y_a = y_values[key]
     
@@ -60,7 +61,7 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     B[1] = y_a
 
     for index in 2:n
-        key = my_keys[index]
+        key =  ordered_values_index[index]
         x_s = nodes[key]
         y_s = y_values[key]
 

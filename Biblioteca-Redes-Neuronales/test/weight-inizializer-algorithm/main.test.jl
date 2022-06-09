@@ -7,7 +7,7 @@ Random.seed!(2);
 
 include("./../../src/activation_functions.jl")
 include("./../../src/one_layer_neuronal_network.jl")
-include("./../../src/weight-inizializer-algorithm/main.jl")
+include("./../../src/weight-initializer-algorithm/main.jl")
 using .InitialNeuralNetwork
 
 include("single-input-single-output.test.jl")
