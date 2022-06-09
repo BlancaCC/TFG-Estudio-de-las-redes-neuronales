@@ -1,12 +1,3 @@
-using Test 
-using Random 
-Random.seed!(2);
-
-include("./../../src/activation_functions.jl")
-include("./../../src/one_layer_neuronal_network.jl")
-include("./../../src/weight-initializer-algorithm/main.jl")
-using .InitialNeuralNetwork
-### borrar lo de arriba 
 @testset "Nodes initialization algorithm entry  dimension >1 output dimension 1" begin
     # Comprobamos que las hipótesis de selección son correctas 
     M = 1
@@ -15,16 +6,16 @@ using .InitialNeuralNetwork
 
     # Bien definido para tamaño n = 2 y salida de dimensión 1
     f_regression(x,y,z)=x*y-z
-    data_set_size =  3
+    data_set_size =  4
     entry_dimension = 3
     output_dimension = 1
     # Número de neuronas 
     n =  data_set_size# Debe de ser mayor que 1 para que no de error
     X_train= rand(Float64, data_set_size, entry_dimension)
-    Y_train = map(x->f_regression(x...), eachrow(X_train))#ones(Float64, data_set_size, output_dimension)
+    Y_train = map(x->f_regression(x...), eachrow(X_train))
 
     h = InitializeNodes(X_train, Y_train, n, M)
-
+    
     # veamos que el tamaño de la salida es la adecuada
     @test size(h.W1) == (n,entry_dimension+1)
     @test size(h.W2) == (output_dimension,n)

@@ -126,14 +126,15 @@ ya que tiene los siguientes beneficios:
     } se nos indica que evitar el uso de tipo abstractos mejora la eficiencia. 
     \item Mantiene el mismo coste computacional.
     Concretamente para ordenar Julia dispone de
-    dos algoritmo en su núcleo: \textit{Quick Sort} y \textit{Merge Sort}. 
+    dos algoritmos: \textit{Quick Sort} y \textit{Merge Sort}\footnote{ Consúltese \url{https://docs.julialang.org/en/v1/base/sort/}} . 
 
-    Nosotros hemos optado por usar \textit{Quick Sort} \cite{Quicksort} porque a pesar de tener la misma complejidad $\mathcal{O}(n \log(n))$ la constante oculta de \textit{Quick Sort} es menor con array y además no necesita de memoria adicional, (\textit{Merge Sort}\cite{merge-sort} tiene complejidad $\mathcal{O}(n)$ en memoria).
-     ya que la ordenación de un array mantiene la eficiencia ya que 
-    tal y como se indica en la documentación de Julia \footnote{ Consúltese \url{https://docs.julialang.org/en/v1/base/sort/}} 
-    en la ordenación de array numéricos 
-    (nuestro caso) utiliza el método de ordenación de \textit{Quick Sort}
-    (véase el artículo comparativo \cite{quicksort-vs-merge-sort}).
+    Nosotros hemos optado por usar \textit{Quick Sort} \cite{Quicksort} porque a pesar de tener ambos algoritmos la misma complejidad media $\mathcal{O}(n \log(n))$, la constante oculta de \textit{Quick Sort} es menor con \textit{arrays}  y además no necesita de memoria adicional, (\textit{Merge Sort} \cite{merge-sort} tiene complejidad $\mathcal{O}(n)$ en memoria) (véase el artículo comparativo \cite{quicksort-vs-merge-sort}).
 \end{itemize}
 
- 
+\subsection{Diseño de los tests} 
+
+Deberá de comprobarse que las dimensiones de salida de la red neuronal son las adecuadas 
+con respecto a la entrada y salida de los datos. 
+
+De acorde a la propiedad del teorema \ref{teo:eficacia-funciones-activation} todos los datos con los que se construya la red neuronal deben de tener una aproximación exacta. 
+

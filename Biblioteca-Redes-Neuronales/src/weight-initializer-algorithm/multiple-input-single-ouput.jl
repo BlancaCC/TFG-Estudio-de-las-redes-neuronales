@@ -22,7 +22,7 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     (_ , entry_dimension) = size(X_train) 
     output_dimension = 1
     # inicializamos p 
-    p = rand(Float64, entry_dimension+1)
+    p = rand(Float32, entry_dimension)
     index = 1
     tam :: Int8= 0
 
@@ -31,7 +31,7 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     my_keys = zeros(Float64, n)
     while tam < n && index <= n
         new_point = X_train[index, :]
-        append!(new_point,1)
+        #append!(new_point,1)
         if notOrtonormal(nodes, p, new_point, tam)
             tam += 1
             ordered_vector = sum(p.*new_point)
@@ -56,8 +56,8 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     x_a = nodes[key]
     y_a = y_values[key]
     
-    S[1]=M*p[entry_dimension+1]
-    A[1,:] = M.*p[1:entry_dimension]
+    S[1]=M
+    A[1,:] = zeros(Float64, entry_dimension)
     B[1] = y_a
 
     for index in 2:n
@@ -65,14 +65,14 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
         x_s = nodes[key]
         y_s = y_values[key]
 
+
         coeff_aux = 2M / sum(p.* (x_s - x_a))
-        S[index] = M -  sum(p .* x_s) * coeff_aux
-        A[index,:] = coeff_aux * p[1:entry_dimension]
+        S[index] = M -  coeff_aux*sum(p .* x_s)  
+        A[index,:] = coeff_aux * p
         B[index] = y_s - y_a
 
         x_a = x_s
         y_a = y_s
-
     end
     return OneLayerNeuralNetworkFromMatrix(S,A,B)
 end

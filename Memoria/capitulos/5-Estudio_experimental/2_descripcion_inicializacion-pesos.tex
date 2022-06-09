@@ -112,8 +112,8 @@ Usado la notación vectorial
 $p_{[i,j]} = (p_i, p_{i+1}, \ldots, p_{j})$ donde $(p_0, p_1, \ldots, p_d)=p$, comenzaremos definiendo el valor de la primera fila como
 
 \begin{align}
-    &S_1 = M p_0, \\
-    & A_{1 *} = M p_{[1,d]}, \\
+    &S_1 = 0, \\
+    & A_{1 *} = 0_{[1,d]}, \\
     & B_{* 1} = y_1.
 \end{align}
 
@@ -151,8 +151,9 @@ Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de
 \begin{equation}
     \left\{ 
         \begin{array}{l}
+            % sesgo
             \alpha_{k 0} = \tilde{\alpha}_{k s} =
-            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})        
             \\
             \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
             = 
@@ -168,9 +169,11 @@ cuya solución son las respectivas filas y columnas:
 \begin{equation}
     \left\{ 
         \begin{array}{l}
-            S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            S_{k} =
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})
+            \\
             A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
-            p_{i}  
+            p_{i} 
             \\
             B_{* k} = y_k - y_{k-1}
         \end{array}
@@ -223,7 +226,7 @@ Con todo esto el proceso algorítmico resultante es:
        \STATE \textit{Cálculo del resto de neuronas}. 
        \For{ cada $(x_k, y_k) \in \Lambda$}{
         \begin{align}
-            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}),\\
             & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
             p_{i}  \quad i \in \{1, \ldots d\},\\
             & B_{* k} = y_k - y_{k-1}.
