@@ -1,4 +1,6 @@
 personal_ws-1.1 es 0 utf-8 
+ActivationFunctions
+ActivationFunctions
 Amat
 Approximators
 Aristóteles
@@ -32,6 +34,7 @@ HardTanh
 Hardtanh
 Hardtanh
 Hornik
+InitializeNodes
 IntervaloCentral
 Isoperimetry
 Iésima
@@ -41,6 +44,7 @@ Jupyter
 LReLU
 LaTeX
 Liang
+LinRange
 Liskov
 Lusin
 López
@@ -58,6 +62,7 @@ OneLayerNeuralNetwork
 Palett
 Perceptrón
 Pérez
+RampFunction
 RandomWeightsNN
 ReLU
 Readme
@@ -150,6 +155,7 @@ posteriori
 precompilados
 preimágenes
 primeraCapa
+println
 qB
 redimensionando
 reenfocar

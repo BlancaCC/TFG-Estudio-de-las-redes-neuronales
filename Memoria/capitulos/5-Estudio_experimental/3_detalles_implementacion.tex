@@ -64,7 +64,7 @@ podría usarse el siguiente código:
     \end{minted}
 \end{minipage} 
 
-Que tendrá como resultado la siguiente salida: 
+Que tendrá como resultado la siguiente salida red neuronal de coeficientes aleatorios: 
 
 \begin{minipage}{\textwidth}%
     \begin{minted}
@@ -137,6 +137,68 @@ La evaluación de una red neuronal se realizará por
 medio de una función que recibe como parámetros un 
 tipo de dato \textit{red neuronal}.  Puede encontrar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
 
+\subsubsection{Diseño de los tests} 
+De acorde al modelo \ref{definition:redes_neuronales_una_capa_oculta} 
+tomando como función de activación la identidad 
+(aunque no sería una función de activación como tal)
+se podría construir fácilmente 
+redes neuronales que: 
+\begin{itemize}
+    \item Sean la función identidad. 
+    \item Actúen como una traslación.
+    \item Actúen como un escalado. 
+\end{itemize}
+Sabiendo esto es fácil predecir para cierta entrada
+cual debiera de ser su salida con el algoritmo de 
+\textit{forward propagation}, esto nos va a permitir comprobar la correcta evaluación para:
+\begin{itemize}
+    \item Redes neuronales con matrices $A$ y $B$ diagonales. 
+    \item Redes neuronales con $S$ no nulo. 
+    \item Combinaciones de tipos anteriores. 
+\end{itemize}
+Faltaría comprobar el caso en que $A$ y $B$ no fuera diagonales, a sabiendas de que para los casos anteriores su funcionamiento es correcto, basta con comprobarlo con un ejemplo aleatorio. 
+
+Como la evaluación es correcta falta por cerciorarse 
+de que se comporta como es debido con las funciones de activación definidas. 
+
+\subsubsection{Ejemplo de uso}
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+    # Variables auxiliares 
+    # S,A,B son las matrices del ejemplo anterior 
+    v = [1,2,2]
+    h = OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
+    # Ejemplo de evaluación h(v) 
+    # con función de activación ReLU y ForwardPropagation 
+    OneLayerNeuralNetwork.ForwardPropagation(h, ActivationFunctions.ReLU,v )
+ 
+    \end{minted}
+\end{minipage}
+
+El resultado de las líneas anteriores sería: 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        %bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+    2-element Vector{Int64}:
+    86
+    114
+    \end{minted}
+\end{minipage} 
+
 \subsection{Implementación del algoritmo de inicialización de pesos}
 
 Se ha realizado la implementación de acorde al algoritmo descrito 
@@ -149,7 +211,7 @@ factores esenciales:
     \item Tipo de datos de variables auxiliares. 
 \end{itemize}
 
-\subsection{ Uso de los tipos de datos y \textit{ dispatch methods}}
+\subsubsection{ Uso de los tipos de datos y \textit{ dispatch methods}}
 Las entradas y salidas de dimensión uno son codificadas como vectores en lugar de matrices, 
 es por ello que vamos a hacer uso de la variedad de tipos que ofrece Julia y de sus \textit{dispatch methods} que ya comentamos en 
 la sección \ref{ch06:sistema-timpos-julia} con
@@ -244,16 +306,124 @@ ya que tiene los siguientes beneficios:
     Nosotros hemos optado por usar \textit{Quick Sort} \cite{Quicksort} porque a pesar de tener ambos algoritmos la misma complejidad media $\mathcal{O}(n \log(n))$, la constante oculta de \textit{Quick Sort} es menor con \textit{arrays}  y además no necesita de memoria adicional, (\textit{Merge Sort} \cite{merge-sort} tiene complejidad $\mathcal{O}(n)$ en memoria) (véase el artículo comparativo \cite{quicksort-vs-merge-sort}).
 \end{itemize}
 
-\subsection{Tipo de datos de variables auxiliares}
+\subsubsection{Tipo de datos de variables auxiliares}
+Se ha seleccionado cuidadosamente el tipo de las variables auxiliares.
+\begin{itemize}
+    \item Tipo de dato de $p$: Se ha seleccionado como un vector aleatorio de \textit{Float32}, mientras que el resto de operaciones vectoriales son de \textit{Float64}, el motivo de esto es que $p$ se operará como \textit{Float64} con una precisión mayor al no tener tantas cifras decimales. 
+    \item Para otras variables auxiliares que sabíamos que iban a ser pequeñas se ha especificado que lo iba se con tipos como \textit{Int8}.
+\end{itemize}
 
-\section{Diseño de los tests} 
+\subsection{Diseño de los tests} 
 
 Deberá de comprobarse que las dimensiones de salida de la red neuronal son las adecuadas 
 con respecto a la entrada y salida de los datos. 
 
 De acorde a la propiedad del teorema \ref{teo:eficacia-funciones-activation} 
 todos los datos con los que se construya la red neuronal al evaluarse deben 
-de tener la misma imagen. 
+de tener la misma imagen.
+
+\subsection{Ejemplo de uso}
+Para crear la red neuronal bastará con llamar a la función 
+\begin{verbatim}
+    InitializeNodes(X_train, Y_train, n, M)
+\end{verbatim}
+con $n$ el número de neuronas y $M$ una constante elegida según los criterios ya mencionados en \ref{table:M-activation-function} y \ref{table:M-activation-function-2}. 
+
+Veamos un ejemplo de ejecución: 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+       # Declaramos las variables que vamos a seguir
+       # Función ideal que queremos aproximar
+       f_regression(x)=(x<1) ? exp(-x)-4 : log(x)
+       data_set_size = 5 
+       n = data_set_size # Número de neuronas 
+                         # coincide con el tamaño del conjunto
+       #Partición homogénea del dominio [-3,3]
+       K_range = 3
+       X_train= Vector(LinRange(-K_range, K_range, n)) 
+       Y_train = map(f_regression, X_train) # Imágenes de la partición
+       
+       M = 1
+       # USO DE LA FUNCIÓN DE INICIALIZACIÓN DE LOS PESOS
+       h = InitializeNodes(X_train, Y_train, n, M)
+       
+    \end{minted}
+\end{minipage} 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+       # Imprimimos la red neuronal 
+       display(Text("La red neuronal obtenida es :"))
+       println(h)
+       
+       # Vamos a ver cómo aproxima los resultados 
+       # Función que dado un punto lo evalúa con ForwardPropagation
+       # y la función de activación Rampa
+       evaluate(x)=OneLayerNeuralNetwork.ForwardPropagation(h,
+               ActivationFunctions.RampFunction,x)
+
+       # Mostramos gráfica comparativa
+       entre el resultado y la función ideal
+       
+       plot(x->evaluate([x])[1],
+            -K_range,K_range, 
+            label="red neuronal n=$n")
+       plot!(f_regression,
+           label="f ideal",
+           title="Comparativa función ideal y red neuronal n=$n")
+      
+    \end{minted}
+\end{minipage} 
+
+El resultado ha sido el siguientes
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        %bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+       La red neuronal obtenida es :
+       La matrix de pesos de las neuronas, W1, es:
+       5×2 Matrix{Float64}:
+        0.0       1.0
+        1.33333   3.0
+        1.33333   1.0
+        1.33333  -1.0
+        1.33333  -3.0
+       
+       La matrix de pesos de la salida, W2, es:
+       1×5 Matrix{Float64}:
+        16.0855  -15.6038  -3.48169  3.40547  0.693147
+    \end{minted}
+\end{minipage} 
+
+Además de la imagen  \ref{img:ch07-ejemplo-5-neuronas-incializacion-pesos}
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=.8\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_5_neuronas.png}
+     \caption{Ejemplo de ejecución del algoritmo de inicialización de pesos}
+     \label{img:ch07-ejemplo-5-neuronas-incializacion-pesos}
+    \end{figure}
 
 
 
