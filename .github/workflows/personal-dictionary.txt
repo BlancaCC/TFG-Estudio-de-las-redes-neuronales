@@ -19,6 +19,7 @@ Factorizando
 Feedforward
 Fn
 ForwardPropagation
+FromMatrixNN
 Funtores
 GN
 GPUs
@@ -53,9 +54,11 @@ Multilayer
 NN
 Nótese
 Ockham
+OneLayerNeuralNetwork
 Palett
 Perceptrón
 Pérez
+RandomWeightsNN
 ReLU
 Readme
 Rosenblatt
@@ -81,6 +84,7 @@ autobalanceado
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
+baselinestretch
 bgcolor
 ceil
 cienciadedatos
@@ -104,6 +108,7 @@ feedforward
 fg
 fj
 fjk
+framesep
 gj
 gjk
 hiperplanos
@@ -171,6 +176,7 @@ subespacios
 subrecubrimiento
 sumatoria
 sumatorias
+sutilBackground
 sutilGreen
 tanh
 teo

@@ -70,5 +70,5 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector{Float64}, n::Int, M=10)
         x_a = x_s
         y_a = y_s
     end
-    return OneLayerNeuralNetworkFromMatrix(S,A,B)
+    return FromMatrixNN(S,A,B)
 end

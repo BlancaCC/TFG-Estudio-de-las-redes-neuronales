@@ -13,7 +13,7 @@ include("./../src/one_layer_neuronal_network.jl")
     entry_dimesion = 2
     number_of_hide_units = 3
     output_dimension = 2
-    OLNN = OneLayerNeuralNetwork.OneLayerNeuralNetworkRandomWeights(
+    OLNN = OneLayerNeuralNetwork.RandomWeightsNN(
         entry_dimesion,
         number_of_hide_units,
         output_dimension
@@ -30,7 +30,7 @@ end
     S = [0, 0]
     A = [1 0; 0 1]
     B = [1 0; 0 1]
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
 
     vectores = [
         [1,2], [0,0],[-1,4]
@@ -42,7 +42,7 @@ end
     S = [0, 0]
     A = [1 0; 0 1]
     B = [2 0; 0 3]
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
 
     vectores = [
         [1,2], [0,0],[-1,4]
@@ -54,7 +54,7 @@ end
     S = [1, 2]
     A = [1 0; 0 1]
     B = [1 0; 0 1]
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
 
     vectores = [
         [1,2], [0,0],[-1,4]
@@ -71,7 +71,7 @@ end
     c = c + S
     c = B*c
 
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
     @test OneLayerNeuralNetwork.ForwardPropagation(h, x->x,v) == c
 
 end
@@ -80,7 +80,7 @@ end
     S = [0, 0]
     A = [1 0; 0 1]
     B = [1 0; 0 1]
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
 
     vectores = [
         [1,2], [0,-3]
@@ -95,7 +95,7 @@ end
     S = [0, 0]
     A = [1 0; 0 1]
     B = [1 0; 0 1]
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S,A,B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S,A,B)
 
     vectores = [
         [-1,2], [0,-3]

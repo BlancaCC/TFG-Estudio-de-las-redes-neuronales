@@ -5,13 +5,12 @@
 module OneLayerNeuralNetwork
 include("forward-propagation.jl")
 # Constructores 
-export OneLayerNeuralNetworkRandomWeights
-export OneLayerNeuralNetworkFromMatrix
+export RandomWeightsNN
+export FromMatrixNN
 # Evaluación por algoritmo de ForwardPropagation
 export ForwardPropagation
 # Tipo 
 export AbstractOneLayerNeuralNetwork 
-
 
 """
     AbstractOneLayerNeuralNetwork
@@ -23,17 +22,17 @@ W2: Matris s x n
 abstract type AbstractOneLayerNeuralNetwork end
 
 """
-    OneLayerNeuralNetworkRandomWeights 
+    RandomWeightsNN 
 Return a random initialized Neuronal Network
 """
-mutable struct OneLayerNeuralNetworkRandomWeights  <: AbstractOneLayerNeuralNetwork
+mutable struct RandomWeightsNN  <: AbstractOneLayerNeuralNetwork
     entry_dimesion :: Int 
     number_of_hide_units :: Int
     output_dimension :: Int   
     W1  # pesos de la entrada a la capa oculta A S (sesgo última columna)
     W2  # pesos de la capa oculta a la salida
 
-    function OneLayerNeuralNetworkRandomWeights(entry_dimesion,
+    function RandomWeightsNN(entry_dimesion,
                                                 number_of_hide_units,
                                                 output_dimension)
 
@@ -51,13 +50,13 @@ mutable struct OneLayerNeuralNetworkRandomWeights  <: AbstractOneLayerNeuralNetw
 end
 
 """
-    OneLayerNeuralNetworkRandomWeights 
+    RandomWeightsNN 
 Return a  Neuronal Network inizialized  by three matrix
 """
-mutable struct OneLayerNeuralNetworkFromMatrix <: AbstractOneLayerNeuralNetwork
+mutable struct FromMatrixNN <: AbstractOneLayerNeuralNetwork
     W1 :: Matrix # pesos de la entrada a la capa oculta
     W2 :: Matrix# pesos de la capa oculta a la salida
-    function OneLayerNeuralNetworkFromMatrix(S,A,B)
+    function FromMatrixNN(S,A,B)
         # Comprobación de que los tipos son correctos
         if !( typeof(S) <: Vector && typeof(A) <: Matrix && typeof(B) <: Matrix )
             throw(ArgumentError("El tipo de los argumentos no es el correcto\n 
@@ -88,4 +87,16 @@ mutable struct OneLayerNeuralNetworkFromMatrix <: AbstractOneLayerNeuralNetwork
         return new(hcat(A,S), B)
     end
 end
+
+"""
+    Base.show(io::IO, h <:AbstractOneLayerNeuralNetwork)
+Implementamos el algoritmo de visualización de nuestras matrices
+"""
+function Base.show(io::IO, h ::AbstractOneLayerNeuralNetwork)
+    display(Text("La matrix de pesos de las neuronas, W1, es:\n"))
+    display(h.W1)
+    display(Text("\nLa matrix de pesos de la salida, W2, es:\n"))
+    display(h.W2)
+end
+
 end # end OneLayerNeuralNetwork

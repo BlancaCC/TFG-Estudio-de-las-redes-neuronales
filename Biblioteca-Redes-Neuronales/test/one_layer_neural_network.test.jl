@@ -1,33 +1,33 @@
 using Test 
 
-
 include("./../src/one_layer_neuronal_network.jl")
 
-#using .OneLayerNeuralNetwork
-
 entry_dimesion = 2
-number_of_hide_units = 3
+number_of_hidden_units = 3
 output_dimension = 2
-OLNN = OneLayerNeuralNetwork.OneLayerNeuralNetworkRandomWeights(
+OLNN = OneLayerNeuralNetwork.RandomWeightsNN(
     entry_dimesion,
-    number_of_hide_units,
+    number_of_hidden_units,
     output_dimension
-    )
+)
 
 @testset "Dimension of one layer networks random initialization" begin
     # Weights have correct dimensions
     # Notemos que OLNN ha sido creada con la iniciacilización aleatoria, 
-    # La única hipótesis que debe de cumplir es que:
+    # Las única hipótesis que debe de cumplir es que:
     # 1. Inicialización con las dimensiones correctas
-    @test size(OLNN.W1)==(number_of_hide_units, 1+entry_dimesion) 
-    @test size(OLNN.W2)==(output_dimension, number_of_hide_units)
+    @test size(OLNN.W1)==(number_of_hidden_units, 1+entry_dimesion) 
+    @test size(OLNN.W2)==(output_dimension, number_of_hidden_units)
+    # 2. Por la aleatoriedad generada no todas las entradas debieran de ser iguales
+    @test OLNN.W1[1,:] != OLNN.W1[2,:]
+    @test OLNN.W2[1,:] != OLNN.W2[2,:]
 end 
 
 @testset "One layer created from matrix" begin 
     S = [1,2] #vector
     A = [3 4; 4 6] # matrix
     B = reshape([ 1 ; 1 ],1,2) # matrix 2 x 1
-    h = OneLayerNeuralNetwork.OneLayerNeuralNetworkFromMatrix(S, A, B)
+    h = OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
     # Comprobación de tipo correcto 
     @test typeof(h) <: OneLayerNeuralNetwork.AbstractOneLayerNeuralNetwork
     # Comprobación de tamaños correctos
@@ -44,10 +44,7 @@ end
      @test n_columns2 == r_a
      @test n_columns2 == c_b
      println("Revisión ocular:")
-     println( "A=", A)
-     println("S=", S)
-     println("h_w1=",h.W1)
-     println("B=$(B) = h_w2 = ($(h.W2))")
+     println(h)
 end
 
 

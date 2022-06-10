@@ -11,21 +11,133 @@ Los requisitos mínimos necesarios para una implementación adecuada son los sig
     \item Implementación del algoritmo. 
 \end{itemize}
 
-\subsection*{Implementación de redes neuronal}
+\subsection{Implementación de redes neuronal}
 
 El modelo  a implementar es el presentado en el algoritmo \ref{algoritmo:estructura-de-una-red-neuronal}. En virtud del \textit{composite type} de Julia \footnotetext{ Véase la \href{https://docs.julialang.org/en/v1/manual/types/}{documentación oficial}} la forma más simple y eficiente de 
 declarar una red neuronal es como un nuevo tipo de dato: \textit{red neuronal} cuyos atributos sean las matrices que definen el modelo. 
 
 En vista a la optimización en evaluación y 
 entrenamiento más eficiente las matrices 
-$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. Puede encontrar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
+$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. 
+Puede encontrar la implementación 
+en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
+\subsubsection{Diseño de test} 
+Para las redes neuronales generadas de manera aleatoria se debe de satisfacer que: 
+\begin{itemize}
+    \item Las dimensiones de salida son las requeridas.
+    \item Las matrices no deben de tener todas sus entradas idénticas, ya que ese caso tiene probabilidad nula de ocurrir. 
+\end{itemize}
 
-\subsection*{Implementación del algoritmo de \textit{Forward propagation}}  
+Para las redes neuronales generadas a partir de 
+ciertas matrices: 
+\begin{itemize}
+    \item Que exista comprobación de tipos en la entrada.
+    \item Que se cerciore de la coherencia de las matrices.
+    \item  La estructura se almacena correctamente. 
+\end{itemize}
+
+\subsubsection{Ejemplo de uso}
+
+Para construir una \textbf{red neuronal inicializada 
+aleatoriamente} a partir de nuestra biblioteca
+podría usarse el siguiente código: 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+    # Dimensiones requeridas
+    entry_dimension = 2
+    number_of_hidden_units = 3
+    output_dimension = 2
+    # Creación de la red neuronal
+    OneLayerNeuralNetwork.RandomWeightsNN(
+        entry_dimension,
+        number_of_hidden_units,
+        output_dimension
+    )
+    \end{minted}
+\end{minipage} 
+
+Que tendrá como resultado la siguiente salida: 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        %bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+    La matrix de pesos de las neuronas, W1, es:
+    3×3 Matrix{Float64}:
+    0.705454   0.305242  0.46417
+    0.0991484  0.720979  0.231972
+    0.46869    0.683745  0.981889
+    
+    La matrix de pesos de la salida, W2, es:
+    2×3 Matrix{Float64}:
+    0.651893  0.227729  0.0385169
+    0.937148  0.596889  0.0810362
+    \end{minted}
+\end{minipage} 
+
+Veamos ahora la \textbf{creación de una red neuronal
+a partir de matrices} 
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+    frame=single,
+    framesep=10pt,
+       baselinestretch=1.2,
+       bgcolor=sutilBackground, 
+       %linenos
+       ]{Julia}
+    S = [1,2,3] # Matriz de sesgos
+    A = [3 4 1; 4 6 3; 1 1 1] # Matriz de pesos entre entrada y capa oculta 
+    B = [1 2 3; 3 2 3] # Matriz de pesos entre capa oculta y salida
+    OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
+    \end{minted}
+\end{minipage} 
+
+Que tendrá como salida:
+
+\begin{minipage}{\textwidth}%
+    \begin{minted}
+       [
+        frame=single,
+        framesep=10pt,
+        baselinestretch=1.2,
+        %bgcolor=sutilBackground, 
+        %linenos
+       ]{Julia}
+    La matrix de pesos de las neuronas, W1, es:
+    3×4 Matrix{Int64}:
+    3  4  1  1
+    4  6  3  2
+    1  1  1  3
+
+    La matrix de pesos de la salida, W2, es:
+    2×3 Matrix{Int64}:
+    1  2  3
+    3  2  3
+\end{minted}
+\end{minipage}
+
+
+\subsection{Implementación del algoritmo de \textit{Forward propagation}}  
 La evaluación de una red neuronal se realizará por 
 medio de una función que recibe como parámetros un 
 tipo de dato \textit{red neuronal}.  Puede encontrar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src}{nuestro repositorio}.
 
-\subsection*{Implementación del algoritmo de inicialización de pesos}
+\subsection{Implementación del algoritmo de inicialización de pesos}
 
 Se ha realizado la implementación de acorde al algoritmo descrito 
 en \ref{algo:algoritmo-iniciar-pesos}. Para un desarrollo optimizado se han tenido en cuenta dos 
@@ -34,9 +146,10 @@ factores esenciales:
     \item Adaptación de los tipos de datos y \textit{ dispatch methods} de Julia en función 
     de las dimensiones de entrada y salida del conjunto de datos de entrenamiento.
     \item Estructuras de datos propias de Julia. 
+    \item Tipo de datos de variables auxiliares. 
 \end{itemize}
 
-\subsubsection*{ Uso de los tipos de datos y \textit{ dispatch methods}}
+\subsection{ Uso de los tipos de datos y \textit{ dispatch methods}}
 Las entradas y salidas de dimensión uno son codificadas como vectores en lugar de matrices, 
 es por ello que vamos a hacer uso de la variedad de tipos que ofrece Julia y de sus \textit{dispatch methods} que ya comentamos en 
 la sección \ref{ch06:sistema-timpos-julia} con
@@ -55,7 +168,7 @@ la sección \ref{ch06:sistema-timpos-julia} con
  es una argucia para conseguir un orden en los vectores de entrada. Como $\R$ ya es un cuerpo ordenado se puede prescindir tanto de $p$ como de toda la estructura de datos que ello conlleva. 
  Esta cuestión guarda relación con el apartado siguiente. 
 
-\subsubsection*{ Selección de la estructuras de datos adecuada}
+\subsubsection{Selección de la estructuras de datos adecuada}
 Como ya observamos en  la sección \ref{ch07:coste-computacional-algoritmo-propio} el coste computacional recae principalmente en conseguir una ordenación del conjunto denominado como 
 $\Lambda$ en el pseudo código \ref{algo:algoritmo-iniciar-pesos}. 
 
@@ -131,10 +244,16 @@ ya que tiene los siguientes beneficios:
     Nosotros hemos optado por usar \textit{Quick Sort} \cite{Quicksort} porque a pesar de tener ambos algoritmos la misma complejidad media $\mathcal{O}(n \log(n))$, la constante oculta de \textit{Quick Sort} es menor con \textit{arrays}  y además no necesita de memoria adicional, (\textit{Merge Sort} \cite{merge-sort} tiene complejidad $\mathcal{O}(n)$ en memoria) (véase el artículo comparativo \cite{quicksort-vs-merge-sort}).
 \end{itemize}
 
-\subsection{Diseño de los tests} 
+\subsection{Tipo de datos de variables auxiliares}
+
+\section{Diseño de los tests} 
 
 Deberá de comprobarse que las dimensiones de salida de la red neuronal son las adecuadas 
 con respecto a la entrada y salida de los datos. 
 
-De acorde a la propiedad del teorema \ref{teo:eficacia-funciones-activation} todos los datos con los que se construya la red neuronal deben de tener una aproximación exacta. 
+De acorde a la propiedad del teorema \ref{teo:eficacia-funciones-activation} 
+todos los datos con los que se construya la red neuronal al evaluarse deben 
+de tener la misma imagen. 
+
+
 
