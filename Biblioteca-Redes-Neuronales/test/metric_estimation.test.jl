@@ -8,5 +8,7 @@ include("../src/metric_estimation.jl")
     f(x)=x.*x
     X = [1,-1,-2,2]
     Y = map(f, X)
+    # Comprobamos que devuelve que para este caso en concreto son correctas: 
+    # la media de error, mediana de error, la desviación media y el coeficiente de correlación 
     @test Metric.Regression(X,Y,f) == (0,0,0,1)
 end
