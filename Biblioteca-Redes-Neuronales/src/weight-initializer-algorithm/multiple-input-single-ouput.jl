@@ -24,7 +24,7 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector{Float64}, n::Int, M=10)
     # inicializamos p 
     p = rand(Float32, entry_dimension)
     index = 1
-    tam :: Int8= 0
+    tam = 0
 
     nodes = Array{Vector{Float64}}(undef, n)
     y_values = Array{Float64}(undef, n) # float porque la salida es de dimensión 1
