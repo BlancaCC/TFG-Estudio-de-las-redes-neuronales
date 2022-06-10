@@ -96,8 +96,10 @@ cienciadedatos
 codominio
 codominios
 contutor
+csv
 cte
 darkRed
+dat
 diferenciabilidad
 diferenciable
 diferenciables
