@@ -21,24 +21,26 @@ function InitializeNodes(X_train::Matrix,Y_train::Matrix, n::Int, M=10)::Abstrac
     (_ , entry_dimension) = size(X_train) 
     (_ , output_dimension) = size(Y_train)
     # inicializamos p 
-    p = rand(Float64, entry_dimension+1)
+    p = rand(Float32, entry_dimension)
 
-    nodes = Dict{Float64, Vector{Float64}}()
-    index = 1
-    tam = 0
-    y_values = zeros(Float64, n, output_dimension)
+    index :: Int8 = 1
+    tam :: Int8= 0
+    nodes = [Vector{Float64}(undef, output_dimension) for _ in 1:n]
+    y_values = [Vector{Float64}(undef, output_dimension) for _ in 1:n] 
+    my_keys = zeros(Float64, n)
     
     while tam < n && index <= n
         new_point = X_train[index, :]
-        append!(new_point,1)
-        if notOrtonormal(nodes, p, new_point)
-            nodes[sum(p.*new_point)] = new_point
+        if notOrtonormal(nodes, p, new_point, tam)
             tam += 1
-            y_values[tam,:] = Y_train[index,:]  
+            ordered_vector = sum(p.*new_point)
+            my_keys[tam] =  ordered_vector
+            nodes[tam] = new_point
+            y_values[tam] = Y_train[index,:] 
         end
         index += 1
     end
-    ordered_values = sort(collect(keys(nodes)))
+    ordered_values_index = sortperm(my_keys)
     # Matrices de la red neuronal 
     # A = n x d 
     # S = n x 1
@@ -47,27 +49,26 @@ function InitializeNodes(X_train::Matrix,Y_train::Matrix, n::Int, M=10)::Abstrac
     S = zeros(Float64, n)
     B = zeros(Float64, output_dimension, n)
 
+    # Cálculo del valor de las neuronas 
+    key =  ordered_values_index[1]
+    x_a = nodes[key]
+    y_a = y_values[key]
     # valores iniciales 
-    S[1]=M*p[entry_dimension+1]
-    A[1,:] = M.*p[1:entry_dimension]
-    B[:,1] = y_values[1,:]
-
-    # Cálculo del resto de neuronas
-    x_a = nodes[ordered_values[1]]
-    y_a = y_values[1,:]
+    S[1]=M
+    B[:, 1] = y_a
     
-    for (index,key) in collect(Iterators.zip(2:n, ordered_values[2:n]))
+    for index in 2:n
+        key =  ordered_values_index[index]
         x_s = nodes[key]
-        y_s = y_values[index,:]
+        y_s = y_values[key]
 
         coeff_aux = 2M / sum(p.* (x_s - x_a))
-        S[index] = M -  sum(p .* x_s) * coeff_aux
-        A[index,:] = coeff_aux * p[1:entry_dimension]
+        S[index] = M -  coeff_aux*sum(p .* x_s)  
+        A[index,:] = coeff_aux * p
         B[:,index] = y_s - y_a
 
         x_a = x_s
         y_a = y_s
-
     end
     return OneLayerNeuralNetworkFromMatrix(S,A,B)
 end

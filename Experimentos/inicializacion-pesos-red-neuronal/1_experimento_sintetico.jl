@@ -9,7 +9,7 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["visualizacion-inicializacion-pes
 img_path = config["DIRECTORIO_IMAGENES"]
 
 Random.seed!(1)
-include("../../Biblioteca-Redes-Neuronales/src/weight-inizializer-algorithm/main.jl")
+include("../../Biblioteca-Redes-Neuronales/src/weight-initializer-algorithm/main.jl")
 include("../../Biblioteca-Redes-Neuronales/src/one_layer_neuronal_network.jl")
 include("../../Biblioteca-Redes-Neuronales/src/metric_estimation.jl")
 include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")

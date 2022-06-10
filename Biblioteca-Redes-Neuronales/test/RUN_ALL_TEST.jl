@@ -19,7 +19,7 @@ t = @elapsed include("forward_propagation.test.jl")
 println("done (took $t seconds).")
 
 println("Testing our initialization algorithm")
-t = @elapsed include("weight-initializer-algorithm/main.test.jl")
+t = @elapsed include("weight-inizializer-algorithm/main.test.jl")
 println("done (took $t seconds).")
 
 println("Testing metric estimation")

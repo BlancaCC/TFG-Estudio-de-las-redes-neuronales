@@ -49,8 +49,7 @@ function InitializeNodes(X_train::Vector,Y_train::Vector, n::Int, M=10)::Abstrac
     y_a = y_values[ordered_index[1]]
     # Función afín constantemente Y_1
     S[1]= M 
-    A[1] = 0
-    B[1] = y_values[1]
+    B[1] = y_a
 
     # Cálculo del resto de neuronas    
     for (index,key) in collect(Iterators.zip(2:n, ordered_index[2:n]))

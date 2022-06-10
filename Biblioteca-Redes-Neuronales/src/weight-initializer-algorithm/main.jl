@@ -14,5 +14,7 @@ include("single-input-single-output.jl")
 include("utils.jl")
 #Caso h:R^d -> R
 include("multiple-input-single-ouput.jl")
+#Caso h:R^d -> R^s con r,s> 1
+include("multiple-input-multiple-output.jl")
 
 end #end module

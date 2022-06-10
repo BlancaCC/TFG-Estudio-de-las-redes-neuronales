@@ -18,7 +18,7 @@
     por lo visto en teoría M=10 funciona para todas las 
 
 """
-function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
+function InitializeNodes(X_train::Matrix,Y_train::Vector{Float64}, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     (_ , entry_dimension) = size(X_train) 
     output_dimension = 1
     # inicializamos p 
@@ -31,14 +31,12 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     my_keys = zeros(Float64, n)
     while tam < n && index <= n
         new_point = X_train[index, :]
-        #append!(new_point,1)
         if notOrtonormal(nodes, p, new_point, tam)
             tam += 1
             ordered_vector = sum(p.*new_point)
             my_keys[tam] =  ordered_vector
             nodes[tam] = new_point
-            y_values[tam] = Y_train[index]
-            
+            y_values[tam] = Y_train[index]   
         end
         index += 1
     end
@@ -57,14 +55,12 @@ function InitializeNodes(X_train::Matrix,Y_train::Vector, n::Int, M=10)::Abstrac
     y_a = y_values[key]
     
     S[1]=M
-    A[1,:] = zeros(Float64, entry_dimension)
     B[1] = y_a
 
     for index in 2:n
         key =  ordered_values_index[index]
         x_s = nodes[key]
         y_s = y_values[key]
-
 
         coeff_aux = 2M / sum(p.* (x_s - x_a))
         S[index] = M -  coeff_aux*sum(p .* x_s)  

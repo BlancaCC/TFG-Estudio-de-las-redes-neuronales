@@ -12,3 +12,4 @@ using .InitialNeuralNetwork
 
 include("single-input-single-output.test.jl")
 include("multiple-input-single-output.test.jl")
+include("multiple-input-multiple-output.test.jl")
