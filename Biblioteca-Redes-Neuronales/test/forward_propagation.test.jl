@@ -5,8 +5,6 @@ using Test
 
 include("./../src/activation_functions.jl")
 include("./../src/one_layer_neuronal_network.jl")
-#using .ActivationFunctions
-#using .OneLayerNeuralNetwork
 
 @testset "ForwardPropagation correct types" begin
     ## Comprobación de tipos y dimensión 
@@ -50,6 +48,7 @@ end
     for v in vectores
         @test OneLayerNeuralNetwork.ForwardPropagation(h, x->x,v ) == [2*v[1], 3*v[2]]
     end
+    # Funcionamiento correcto para translaciones
     # Debiera de ser la red neuronal que suma el vector (1 2)
     S = [1, 2]
     A = [1 0; 0 1]

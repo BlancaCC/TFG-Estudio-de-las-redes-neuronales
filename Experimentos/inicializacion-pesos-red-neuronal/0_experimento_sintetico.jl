@@ -17,8 +17,7 @@ include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
 using .InitialNeuralNetwork
 using .OneLayerNeuralNetwork
 using .ActivationFunctions
-entry_dimension = 1
-output_dimension = 1
+
 M = 1
 K_range = 3
 f_regression(x)=(x<1) ? exp(-x)-4 : log(x)
