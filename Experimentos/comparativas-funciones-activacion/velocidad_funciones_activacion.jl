@@ -10,7 +10,7 @@
 # El directorio donde se guarda los ficheros es: DIRECTORIO_RESULTADOS
 ###################################################################################
 
-include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
 using .ActivationFunctions
 # Bibliotecas para tiempos y estadísticas
 using TimerOutputs

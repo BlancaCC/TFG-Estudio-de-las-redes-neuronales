@@ -13,11 +13,11 @@ NOMBRE_FICHERO_RESULTADOS = config["NOMBRE_FICHERO_RESULTADOS"]
 numero_particiones = config["NUMERO_PARTICIONES"]
 
 Random.seed!(1)
-include("../../Biblioteca-Redes-Neuronales/src/weight-initializer-algorithm/main.jl")
-include("../../Biblioteca-Redes-Neuronales/src/one_layer_neuronal_network.jl")
-include("../../Biblioteca-Redes-Neuronales/src/metric_estimation.jl")
-include("../../Biblioteca-Redes-Neuronales/src/activation_functions.jl")
-include("../../Biblioteca-Redes-Neuronales/src/metric_estimation.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/weight-initializer-algorithm/main.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/one_layer_neuronal_network.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
+include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
 
 using .InitialNeuralNetwork
 using .OneLayerNeuralNetwork
