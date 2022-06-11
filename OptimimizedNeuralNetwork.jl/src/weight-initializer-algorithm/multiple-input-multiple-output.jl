@@ -3,8 +3,9 @@
 # Basado en capítulo 7, algoritmo 6
 #   CASO ENTRADA REAL de dimensión d > 1 SALIDA REAL de dimensión s>1
 #####################################################################
+export nn_from_data
 """
-    InitializeNodes(X_train,Y_train, n, M=10) 
+    nn_from_data(X_train,Y_train, n, M=10) 
     Devuelve una red neuronal con los pesos ya inicializados
     de acorte a los conjuntos de entrenamiento. 
     `n` es el número de neuronas en la capa oculta. 
@@ -17,14 +18,14 @@
     por lo visto en teoría M=10 funciona para todas las 
 
 """
-function InitializeNodes(X_train::Matrix,Y_train::Matrix, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
+function nn_from_data(X_train::Matrix,Y_train::Matrix, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     (_ , entry_dimension) = size(X_train) 
     (_ , output_dimension) = size(Y_train)
     # inicializamos p 
     p = rand(Float32, entry_dimension)
 
-    index :: Int8 = 1
-    tam :: Int8= 0
+    index :: Int = 1
+    tam :: Int = 0
     nodes = [Vector{Float64}(undef, output_dimension) for _ in 1:n]
     y_values = [Vector{Float64}(undef, output_dimension) for _ in 1:n] 
     my_keys = zeros(Float64, n)

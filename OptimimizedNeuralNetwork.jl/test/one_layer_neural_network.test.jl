@@ -1,11 +1,9 @@
 using Test 
 
-include("./../src/one_layer_neuronal_network.jl")
-
 entry_dimesion = 2
 number_of_hidden_units = 3
 output_dimension = 2
-OLNN = OneLayerNeuralNetwork.RandomWeightsNN(
+OLNN = RandomWeightsNN(
     entry_dimesion,
     number_of_hidden_units,
     output_dimension
@@ -27,9 +25,9 @@ end
     S = [1,2] #vector
     A = [3 4; 4 6] # matrix
     B = reshape([ 1 ; 1 ],1,2) # matrix 2 x 1
-    h = OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
+    h = FromMatrixNN(S, A, B)
     # Comprobación de tipo correcto 
-    @test typeof(h) <: OneLayerNeuralNetwork.AbstractOneLayerNeuralNetwork
+    @test typeof(h) <: AbstractOneLayerNeuralNetwork
     # Comprobación de tamaños correctos
     ### Para la matriz W_1
     (n_rows1, n_columns1) = size(h.W1)

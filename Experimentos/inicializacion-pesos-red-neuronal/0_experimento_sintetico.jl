@@ -10,14 +10,8 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["visualizacion-inicializacion-pes
 img_path = config["DIRECTORIO_IMAGENES"]
 
 Random.seed!(1)
-include("../../OptimimizedNeuralNetwork.jl/src/weight-initializer-algorithm/main.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/one_layer_neuronal_network.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
-using .InitialNeuralNetwork
-using .OneLayerNeuralNetwork
-using .ActivationFunctions
+include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+using .OptimimizedNeuralNetwork
 
 M = 1
 K_range = 3
@@ -30,10 +24,10 @@ for (data_set_size,n) in zip([3,4,5, 8,15,23,51,73,100, 103],[2,3,5,7,10,20,51,7
     X_train= Vector(LinRange(-K_range, K_range, n))
     Y_train = map(f_regression, X_train)
     # Cálculo de la red neuronal con pesos inicializados
-    h = InitializeNodes(X_train, Y_train, n, M)
+    h = nn_from_data(X_train, Y_train, n, M)
     # Función de evaluación por forward propagation 
-    evaluate(x)=OneLayerNeuralNetwork.ForwardPropagation(h,
-        ActivationFunctions.RampFunction,x)
+    evaluate(x)=forward_propagation(h,
+        RampFunction,x)
     # Visualización
     interval = [-K_range,K_range] 
     file_name = "f_ideal_y_rn_con_$(n)_neuronas"

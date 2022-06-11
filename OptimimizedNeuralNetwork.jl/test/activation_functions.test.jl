@@ -5,9 +5,6 @@
 ############################################################################
 using Test 
 
-include("./../src/activation_functions.jl")
-using .ActivationFunctions
-
 ######################### TEST  #########################
 @testset "Activations functions" begin
     

@@ -2,13 +2,9 @@
 #           ONE LAYER NEURONAL NETWORK TYPE 
 #   and evaluation with forward propagation 
 ########################################################
-module OneLayerNeuralNetwork
-include("forward-propagation.jl")
 # Constructores 
 export RandomWeightsNN
 export FromMatrixNN
-# Evaluación por algoritmo de ForwardPropagation
-export ForwardPropagation
 # Tipo 
 export AbstractOneLayerNeuralNetwork 
 
@@ -99,4 +95,3 @@ function Base.show(io::IO, h ::AbstractOneLayerNeuralNetwork)
     display(h.W2)
 end
 
-end # end OneLayerNeuralNetwork

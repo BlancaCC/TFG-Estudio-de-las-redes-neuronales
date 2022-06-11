@@ -11,17 +11,11 @@ img_path = config["DIRECTORIO_IMAGENES"]
 NOMBRE_FICHERO_RESULTADOS = config["NOMBRE_FICHERO_RESULTADOS"]
 # número de particiones
 numero_particiones = config["NUMERO_PARTICIONES"]
+include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+using .OptimimizedNeuralNetwork
 
 Random.seed!(1)
-include("../../OptimimizedNeuralNetwork.jl/src/weight-initializer-algorithm/main.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/one_layer_neuronal_network.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
 
-using .InitialNeuralNetwork
-using .OneLayerNeuralNetwork
-using .ActivationFunctions
 
 M = 1
 # Conjunto de datos sobre los que se van a comparar  
@@ -40,10 +34,10 @@ for n in [3,5,7,15,20,40,60]
     X_train = shuffle(X_train)
     Y_train = map(f_regression, X_train)
     # Cálculo de la red neuronal con pesos inicializados
-    h = InitializeNodes(X_train, Y_train, n, M)
+    h = nn_from_data(X_train, Y_train, n, M)
     # Función de evaluación por forward propagation 
-    evaluate(x)=OneLayerNeuralNetwork.ForwardPropagation(h,
-        ActivationFunctions.RampFunction,x)
+    evaluate(x)=forward_propagation(h,
+        RampFunction,x)
     # Visualización
     
     interval = [limite_inf, limite_sup] 
@@ -58,6 +52,6 @@ for n in [3,5,7,15,20,40,60]
     )
     png(img_path*file_name)
     
-    media, mediana, desv, cor = Metric.Regression(X_train, Y_train,x->evaluate([x])[1])
+    media, mediana, desv, cor = regression(X_train, Y_train,x->evaluate([x])[1])
     println(media, mediana, desv, cor)
 end

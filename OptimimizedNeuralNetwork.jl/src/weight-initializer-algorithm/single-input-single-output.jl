@@ -3,8 +3,9 @@
 # Basado en capítulo 7, algoritmo 6
 #   CASO ENTRADA REAL (una dimensión) SALIDA REAL (una dimensión)
 #####################################################################
+export nn_from_data
 """
-InitializeNodes(X_train::Vector,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
+nn_from_data(X_train::Vector,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     Devuelve una red neuronal de entrada de una dimensión y 
     de salida una dimensión con los pesos ya inicializados
     de acorte a los conjuntos de entrenamiento. 
@@ -18,7 +19,7 @@ InitializeNodes(X_train::Vector,Y_train::Vector, n::Int, M=10)::AbstractOneLayer
     por lo visto en teoría M=10 funciona para todas las 
 
 """
-function InitializeNodes(X_train::Vector,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
+function nn_from_data(X_train::Vector,Y_train::Vector, n::Int, M=10)::AbstractOneLayerNeuralNetwork  
     entry_dimension =  1
     output_dimension = 1
 

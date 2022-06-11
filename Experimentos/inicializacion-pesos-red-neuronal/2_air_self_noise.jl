@@ -13,14 +13,8 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["air-self-noise"]
 FILE = config["FICHERO_DATOS"]
 
 Random.seed!(1)
-include("../../OptimimizedNeuralNetwork.jl/src/weight-initializer-algorithm/main.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/one_layer_neuronal_network.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/metric_estimation.jl")
-include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
-
-using .InitialNeuralNetwork
-using .OneLayerNeuralNetwork
-using .ActivationFunctions
+include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+using .OptimimizedNeuralNetwork
 
 #------------------------------------------------------
 #                Data preprocesing 
@@ -71,21 +65,21 @@ println("El conjunto de entrenamiento $(index)")
 # Ajuste con comienzo de datos inicial
 println("Resultados con h aleatoria")
 h_random = RandomWeightsNN(input_dimension, n, output_dimension)
-evaluate_random(x) = OneLayerNeuralNetwork.ForwardPropagation(h_random,
-        ActivationFunctions.RampFunction,x
+evaluate_random(x) = forward_propagation(h_random,
+        RampFunction,x
         )
-println(Metric.Regression(X_test_normalized, Y_test_normalized, evaluate_random))
+println(regression(X_test_normalized, Y_test_normalized, evaluate_random))
 
 # Experimentamos con nuestro algoritmo 
 M = 1
-h_initialized = InitializeNodes(X_train_normalized, Y_train_normalized, n, M)
+h_initialized = nn_from_data(X_train_normalized, Y_train_normalized, n, M)
 # Función de evaluación por forward propagation 
-evaluate_initialized(x) = OneLayerNeuralNetwork.ForwardPropagation(h_initialized,
-        ActivationFunctions.RampFunction,x
+evaluate_initialized(x) = forward_propagation(h_initialized,
+        RampFunction,x
         )
 
 println("Resultados con h ajustada")
-println(Metric.Regression(X_test_normalized, Y_test_normalized, evaluate_initialized))
+println(regression(X_test_normalized, Y_test_normalized, evaluate_initialized))
 end
 """
 6×7 DataFrame

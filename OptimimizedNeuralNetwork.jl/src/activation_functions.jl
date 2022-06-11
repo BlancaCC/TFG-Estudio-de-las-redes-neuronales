@@ -1,5 +1,3 @@
-module ActivationFunctions
-
 export CosineSquasher
 export HardTanh
 export @IndicatorFunction
@@ -8,8 +6,6 @@ export RampFunction
 export ReLU
 export Sigmoid
 export @ThresholdFunction
-
-
 """
 Threshold(polynomial, t)
 Return a Threshold Function defined by `polynomial`and `t`.
@@ -90,5 +86,5 @@ Leaky ReLU
 macro LReLU(a::Real)
     return :( f(x::Real)=(x<0) ? $(esc(a))*x : x )
 end 
-end #module end
+
 

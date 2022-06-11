@@ -56,7 +56,7 @@ podría usarse el siguiente código:
     number_of_hidden_units = 3
     output_dimension = 2
     # Creación de la red neuronal
-    OneLayerNeuralNetwork.RandomWeightsNN(
+    RandomWeightsNN(
         entry_dimension,
         number_of_hidden_units,
         output_dimension
@@ -103,7 +103,7 @@ a partir de matrices}
     S = [1,2,3] # Matriz de sesgos
     A = [3 4 1; 4 6 3; 1 1 1] # Matriz de pesos entre entrada y capa oculta 
     B = [1 2 3; 3 2 3] # Matriz de pesos entre capa oculta y salida
-    OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
+    FromMatrixNN(S, A, B)
     \end{minted}
 \end{minipage} 
 
@@ -174,10 +174,10 @@ de que se comporta como es debido con las funciones de activación definidas.
     # Variables auxiliares 
     # S,A,B son las matrices del ejemplo anterior 
     v = [1,2,2]
-    h = OneLayerNeuralNetwork.FromMatrixNN(S, A, B)
+    h = FromMatrixNN(S, A, B)
     # Ejemplo de evaluación h(v) 
     # con función de activación ReLU y ForwardPropagation 
-    OneLayerNeuralNetwork.ForwardPropagation(h, ActivationFunctions.ReLU,v )
+    ForwardPropagation(h, ReLU,v )
  
     \end{minted}
 \end{minipage}
@@ -325,7 +325,7 @@ de tener la misma imagen.
 \subsection{Ejemplo de uso}
 Para crear la red neuronal bastará con llamar a la función 
 \begin{verbatim}
-    InitializeNodes(X_train, Y_train, n, M)
+    nn_from_data(X_train, Y_train, n, M)
 \end{verbatim}
 con $n$ el número de neuronas y $M$ una constante elegida según los criterios ya mencionados en \ref{table:M-activation-function} y \ref{table:M-activation-function-2}. 
 
@@ -353,7 +353,7 @@ Veamos un ejemplo de ejecución:
        
        M = 1
        # USO DE LA FUNCIÓN DE INICIALIZACIÓN DE LOS PESOS
-       h = InitializeNodes(X_train, Y_train, n, M)
+       h = nn_from_data(X_train, Y_train, n, M)
        
     \end{minted}
 \end{minipage} 
@@ -374,8 +374,8 @@ Veamos un ejemplo de ejecución:
        # Vamos a ver cómo aproxima los resultados 
        # Función que dado un punto lo evalúa con ForwardPropagation
        # y la función de activación Rampa
-       evaluate(x)=OneLayerNeuralNetwork.ForwardPropagation(h,
-               ActivationFunctions.RampFunction,x)
+       evaluate(x)=ForwardPropagation(h,
+               RampFunction,x)
 
        # Mostramos gráfica comparativa
        entre el resultado y la función ideal

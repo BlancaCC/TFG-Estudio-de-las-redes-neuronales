@@ -2,6 +2,7 @@
 #                TEST Metric estimations
 ###################################################################
 using Test
+#include("../src/OptimizedNeuronalNetwork.jl")
 include("../src/metric_estimation.jl")
 
 @testset "Regression metrics" begin
@@ -10,5 +11,5 @@ include("../src/metric_estimation.jl")
     Y = map(f, X)
     # Comprobamos que devuelve que para este caso en concreto son correctas: 
     # la media de error, mediana de error, la desviación media y el coeficiente de correlación 
-    @test Metric.Regression(X,Y,f) == (0,0,0,1)
+    @test regression(X,Y,f) == (0,0,0,1)
 end

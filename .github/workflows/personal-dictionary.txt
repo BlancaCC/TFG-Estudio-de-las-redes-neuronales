@@ -20,7 +20,7 @@ FSum
 Factorizando
 Feedforward
 Fn
-ForwardPropagation
+forward_propagation
 FromMatrixNN
 Funtores
 GN
@@ -34,7 +34,7 @@ HardTanh
 Hardtanh
 Hardtanh
 Hornik
-InitializeNodes
+nn_from_data
 IntervaloCentral
 Isoperimetry
 Iésima
