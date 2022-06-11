@@ -1,6 +1,5 @@
 personal_ws-1.1 es 0 utf-8 
 ActivationFunctions
-ActivationFunctions
 Amat
 Approximators
 Aristóteles
@@ -31,8 +30,6 @@ HU
 HUxx
 Halber
 HardTanh
-Hardtanh
-Hardtanh
 Hornik
 nn_from_data
 IntervaloCentral
@@ -85,7 +82,6 @@ approximators
 aproximable
 aproximador
 aproximadores
-autobalanceado
 autres
 auxiliarDiferenciaPorDerivada
 backpropagation
