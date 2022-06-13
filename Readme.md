@@ -19,13 +19,13 @@ Contiene las siguientes funciones que mostramos con algunos ejemplos
 
 Red neuronal con pesos aleatorio y $n$ neuronas
 
-``` julia
-entry_dimesion = 2
+``` Julia
+entry_dimension = 2
 number_of_hidden_units = 3
 output_dimension = 2
 
 RandomWeightsNN(
-    entry_dimesion,
+    entry_dimension,
     number_of_hidden_units,
     output_dimension
 )
@@ -33,7 +33,7 @@ RandomWeightsNN(
 
 Creación a partir de matrices
 
-```julia
+```Julia
 S = [1,2,3] 
 A = [3 4 1; 4 6 3; 1 1 1]
 B = [1 2 3; 3 2 3]
@@ -47,7 +47,7 @@ Donde $n$ es el número de neuronas y $M$ es una cte que depende de la función 
 
 ### Funciones de activación usuales  
 
-``` julia
+``` Julia
     @ThresholdFunction(id,0)(-1) 
      CosineSquasher(10)  1 
      @IndicatorFunction(0)(-0.1) 
@@ -61,13 +61,13 @@ Donde $n$ es el número de neuronas y $M$ es una cte que depende de la función 
 
 ### Algoritmo de *forward propagation*
 
-``` julia
+``` Julia
 forward_propagation(h,RampFunction,x)
 ```
 
 ### Algoritmo de *back propagation*
 
-``` julia
+``` Julia
 TODO :)
 ```
 

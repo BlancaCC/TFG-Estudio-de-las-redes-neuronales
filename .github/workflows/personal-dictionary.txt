@@ -19,7 +19,7 @@ FSum
 Factorizando
 Feedforward
 Fn
-forward_propagation
+ForwardPropagation
 FromMatrixNN
 Funtores
 GN
@@ -30,8 +30,9 @@ HU
 HUxx
 Halber
 HardTanh
+Hardtanh
 Hornik
-nn_from_data
+IndicatorFunction
 IntervaloCentral
 Isoperimetry
 Iésima
@@ -53,9 +54,11 @@ Merí
 Mesejo
 Multilayer
 NN
+Nagaraj
 Nótese
 Ockham
 OneLayerNeuralNetwork
+OptimizedNeuralNetwork
 Palett
 Perceptrón
 Pérez
@@ -73,6 +76,7 @@ Sigmoidea
 Stinchcombe
 TFG
 TeoremaStoneWeiertrass
+ThresholdFunction
 Tietze
 UMVUE
 Wilcoxon
@@ -92,6 +96,8 @@ cienciadedatos
 codominio
 codominios
 contutor
+covariate
+covariates
 csv
 cte
 darkRed
@@ -125,8 +131,10 @@ initializer
 insesgado
 insesgados
 ipynb
+isoperimetry
 jejejeje
 jk
+jl
 lcc
 linenos
 lineos
@@ -137,6 +145,7 @@ modus
 muestral
 multicapa
 multicapas
+nn
 nx
 nótese
 operandi
@@ -146,6 +155,7 @@ pag
 parametrized
 paramétrico
 paramétricos
+pdf
 perceptrones
 perceptrón
 png
