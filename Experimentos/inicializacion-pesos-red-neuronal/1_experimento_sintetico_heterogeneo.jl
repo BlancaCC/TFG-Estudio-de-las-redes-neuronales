@@ -11,7 +11,7 @@ img_path = config["DIRECTORIO_IMAGENES"]
 NOMBRE_FICHERO_RESULTADOS = config["NOMBRE_FICHERO_RESULTADOS"]
 # número de particiones
 numero_particiones = config["NUMERO_PARTICIONES"]
-include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
 using .OptimimizedNeuralNetwork
 
 Random.seed!(1)

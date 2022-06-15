@@ -2,7 +2,7 @@
 #                TEST Metric estimations
 ###################################################################
 using Test
-#include("../src/OptimizedNeuronalNetwork.jl")
+#include("../src/OptimizedNeuralNetwork.jl")
 include("../src/metric_estimation.jl")
 
 @testset "Regression metrics" begin

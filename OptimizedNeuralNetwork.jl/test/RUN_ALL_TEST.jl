@@ -6,7 +6,7 @@
 # - Forward Propagation 
 # - Our initialization algorithm
 ####################################################
-include("../src/OptimizedNeuronalNetwork.jl")
+include("../src/OptimizedNeuralNetwork.jl")
 using .OptimizedNeuronalNetwork
 
 println("Testing Activation functions...")

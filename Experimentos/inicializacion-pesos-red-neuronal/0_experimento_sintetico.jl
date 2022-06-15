@@ -10,7 +10,7 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["visualizacion-inicializacion-pes
 img_path = config["DIRECTORIO_IMAGENES"]
 
 Random.seed!(1)
-include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
 using .OptimimizedNeuralNetwork
 
 M = 1

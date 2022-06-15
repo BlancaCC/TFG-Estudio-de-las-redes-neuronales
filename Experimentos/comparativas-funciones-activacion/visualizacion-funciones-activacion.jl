@@ -4,7 +4,7 @@
 # Paquetes
 using Plots
 using TOML
-include("../../OptimimizedNeuralNetwork.jl/src/activation_functions.jl")
+include("../../OptimizedNeuralNetwork.jl/src/activation_functions.jl")
 using .ActivationFunctions
 
 FICHERO_CONFIGURACION = "Experimentos/.config.toml"

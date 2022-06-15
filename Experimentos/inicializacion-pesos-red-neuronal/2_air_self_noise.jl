@@ -13,7 +13,7 @@ config = TOML.parsefile(FICHERO_CONFIGURACION)["air-self-noise"]
 FILE = config["FICHERO_DATOS"]
 
 Random.seed!(1)
-include("../../OptimimizedNeuralNetwork.jl/src/OptimizedNeuronalNetwork.jl")
+include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
 using .OptimimizedNeuralNetwork
 
 #------------------------------------------------------
