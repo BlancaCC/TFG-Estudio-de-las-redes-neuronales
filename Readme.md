@@ -9,7 +9,7 @@ Tutores:
 
 ## Biblioteca OptimizedNeuralNetwork.jl 
 
-La biblioteca OptimizedNeuralNetwork.jlimplementa el modelo de red neuronal descrito en la memoria del proyecto (puede descargar una versión pdf en *release*)
+La biblioteca \textit{OptimizedNeuralNetwork.jl} implementa el modelo de red neuronal descrito en la memoria del proyecto (puede descargar una versión pdf en *release*)
 y que pretende ser una optimización de las redes neuronales convencionales,
 así como otros algoritmo que tengan como objetivo también la mejora en algún aspecto.
 
