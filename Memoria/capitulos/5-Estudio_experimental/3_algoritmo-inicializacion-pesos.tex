@@ -2,8 +2,6 @@
 % Experimentación con ALGORITMO INICIALIZACIÓN DE PESOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcolor{red}{ATENCIÓN ESTÁ DESDE AQUÍ HASTA FIN SECCIONES EN BORRADOR}
-
 En la siguiente sección trataremos sobre la bondad del algoritmo expuesto
 
 \section{Contraste de hipótesis con inicialización aleatoria} 
@@ -18,12 +16,8 @@ una red neuronal depende de varios parámetros:
 la dimensión de entrada $d$, el número de neuronas en la capa oculta $n$, la dimensión de salida $s$ 
 y la funciones de activación de cada neurona.  
 
-Por simplicidad fijaremos una función de activación 
-Así que deberemos de formular el test 
-para diferentes tamaños $n$, $d$, $s$. 
+Por simplicidad fijaremos una función de activación. 
 
-\textcolor{red}{Ahora mismo no tengo muy claro 
-los tamaños porque tampoco quiero que dure mucho tiempo la realización del experimento, los concretaré tras unas primeras pruebas}. 
 
 \subsection{Descripción experimento}
 
@@ -31,7 +25,7 @@ El experimento costa de los siguientes pasos:
 
 \begin{enumerate}
 % Paso 0: Selección de data sets 
-\item Dado un conjunto de datos de entrenamiento $\D$  se separará el conjunto en
+\item Dado un conjunto de datos de entrenamiento $\D$  se separará el conjunto en:
 \begin{itemize}
     \item $\D_i$ \textbf{Conjunto de 
     datos de inicialización.} Debe de ser mayor que 
@@ -39,7 +33,17 @@ El experimento costa de los siguientes pasos:
 
     \item $\D_t$ \textbf{Conjunto de 
     datos de test.} Se utilizarán para el cálculo del error. 
-\end{itemize}  
+\end{itemize} 
+
+En particular hemos utilizado el conjunto de datos \href{https://archive.ics.uci.edu/ml/datasets/Airfoil+Self-Noise
+    }{
+        Airfoil Self-Noise} obtenido del repositorio de datos libres para aprendizaje automático \href{https://archive.ics.uci.edu/ml/datasets.php}{UCI}. 
+El conjunto elegido se corresponde a un problema de regresión con $1503$ instancias y $6$ atributos. 
+Para la implementación realizada podría utilizarse cualquier otra que provenga de un problema de regresión. 
+
+Notemos que $d$ viene determinado por el número de atributos, 
+$s$ será uno ya que estamos frente a un problema 
+de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mathcal{D}_i| \rfloor$ con $\alpha \in (0,1)$; concretamente, en virtud de la observaciones mostrada en la sección \ref{section:inicializar_pesos} de que la probabilidad de que un dato no pueda ser utilizado para el algoritmo es nula; suponer que el $90\%$ de los datos sí serán válidos es una estimación lo suficientemente precavida como para que el algoritmo no \textit{falle}, es decir haremos    $\alpha = 0.9$. 
 
 % Paso 1: Construcción 
 \item Fijados $n, d$ y $s$ se generarán dos redes neuronales: 
@@ -47,11 +51,13 @@ El experimento costa de los siguientes pasos:
 \begin{itemize}
     \item Una inicializada de manera aleatoria con valores dentro de un rango de valores. 
     
-    \item  Otra inicializada con nuestro algoritmo. 
+    \item  Otra inicializada con nuestro algoritmo, se medirá el $t_i$ tiempo y el error $\varepsilon_i$ en  $\D_t$. 
 \end{itemize}
 
 % Paso 2: Evaluación del error
-\item Utilizando $\D_t$ deberá de tomarse un registro del error dentro de tal muestra. 
+\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation}se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Se medirá el tiempo que necesita para ello $t_b$. 
+
+Los tiempos $t_i$ y $t_b$ serán los que compararemos. 
 \end{enumerate}
 
 Los pasos 2 y 3 se repetirán tantas veces como 
@@ -59,7 +65,7 @@ muestras se desee tomar.
 
 \subsection{Contraste de hipótesis}
 
-Se desea comparar si los errores observados efectivamente son notables: 
+Se desea comparar si las diferencias en los tiempos observados efectivamente son notables: 
 
 Para ello se realizará un test de Wilcoxon, con las siguientes hipótesis
 
@@ -78,6 +84,16 @@ Puede encontrar la implementación en el repositorio del
 
 A la vista de todo el proceso es descrito surgen las siguientes necesidades técnicas que deberemos de implementar:  
 
+\subsubsection{Lectura y tratamiento de los datos}
+
+Se necesita ser capaces de leer los datos desde los ficheros descargados, es decir, ser capaces de transformar el formato \textit{.dat} en un \textit{.csv}. 
+Además, es necesario un tratamiento previo de los datos: 
+\begin{itemize}
+    \item Comprobación de que no hay valores nulos o perdidos. 
+    \item Normalización de los datos. 
+\end{itemize}
+
+
 \subsubsection{Capacidad de crear una red neuronal aleatoria}  
 
 Deberá de crearse una red neuronal con entradas dentro de un rango $[a,b]$ con $a < b$ reales,
@@ -92,60 +108,20 @@ Deberá de implementarse del algoritmo  \ref{algo:algoritmo-iniciar-pesos} con t
 \subsubsection{Función para medir el error}
 
 Deberá implementarse una función para medir el
- error, no es lo mismo problemas de clasificación 
-que de regresión, así que deberemos de ir con 
-cuidado. 
+ error, puesto que nos hayamos frente a un problema de regresión utilizaremos el error cuadrático medio. 
 
-Además deberá de realizarse una busca de los datos 
-
-\subsubsection{ Forma de evaluar las redes neuronales}  
+\subsubsection{Forma de evaluar las redes neuronales}  
 
 Dado una red neuronal, una función de evaluación y un datos ser capaz de aplicar el algoritmo de \textit{forward propagation} descrito en \ref{algoritmo:evaluar red neuronal}.
 
+\subsubsection{Implementación del aprendizaje de una red neuronal} 
 
-\subsubsection{Bases de datos de prueba}
-\textcolor{red}{Nota:
-Comenzaremos probando con bases de datos de juguete 
-y en función de tiempo y prestaciones ya veremos si merece la pena plantearse el uso de datos reales
-}
+Se implementará el algoritmo propio de aprendizaje basado en \textit{Backpropagation} y ya optimizado 
+que describimos en los algoritmos \ref{algoritmo:gradiente-descendente} y \ref{algoritmo:calculo-gradiente}.
+
 
 \subsubsection{Implementación del experimento} 
 Deberá de implementarse una función que realice el 
 experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 
-Podrían utilizarse alguno de estos: 
-
-\begin{itemize}
-    \item \href{https://github.com/JuliaStats/RDatasets.jl}{Julia contiene las base de datos estándar de R}.
-    \item \href{https://juliaml.github.io/MLDatasets.jl/stable/}{Otros paquetes básicos provistos también por la comunidad.}
-\end{itemize}
-
-\subsection*{Estructura de datos}
-Para mantener eficientemente ordenados los puntos 
-lo normal sería utilizar un \textit{conjunto ordenado} donde ir añadiendo los datos, que la propia estructura los ordene y tras esto sacar
-los datos ya ordenados. 
-El problema es que el tipo de dato \text{set} en Julia está basado en diccionarios
-\footnotetext{Véase \url{https://discourse.julialang.org/t/can-you-sort-a-set/47948/2} 
-link accedido por última vez el 3 de junio de 2022.}
-
-Por lo tanto hemos recurrido a una biblioteca externa
-utilizado las estructuras de datos propias de Julia 
-\href{https://juliacollections.github.io/DataStructures.jl/v0.9/sorted_containers.html}{estructuras}. 
-La documentación del lenguaje está bastante regular. 
-No hemos encontrado en ese parque un conjunto ordenado. 
-
-
-\section{Base de datos real}
-
-\section{Base de datos }
-
-https://archive.ics.uci.edu/ml/datasets/Airfoil+Self-Noise
-
-base de datos con la que se va a probar
-
-\subsection{Lectura de los datos} 
-
-1. El formato es un .dat que debe de transformarse a un .csv
-
-
-\textcolor{red}{FIN DE LA SECCIÓN EN BORRADOR}
+% Se ha eliminado el contenido de aquí anterior porque eran notas en sucio
