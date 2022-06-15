@@ -7,17 +7,27 @@ Tutores:
 - Juan Julián Merelo Guervós
 - Francisco Javier Merí de la Maza
 
-## Biblioteca OptimizedNeuralNetwork.jl 
+## Biblioteca OptimizedNeuralNetwork.jl
 
 La biblioteca *OptimizedNeuralNetwork.jl* implementa el modelo de red neuronal descrito en la memoria del proyecto (puede descargar una versión pdf en *release*)
 y que pretende ser una optimización de las redes neuronales convencionales,
 así como otros algoritmo que tengan como objetivo también la mejora en algún aspecto.
 
 Contiene las siguientes funciones que mostramos con algunos ejemplos
+puede ver un ejemplo completo de uso en [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Memoria/capitulos)
+
+### Importamos la biblioteca y módulo
+
+```Julia
+include("OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
+using Main.OptimizedNeuronalNetwork
+```
 
 ### Creación de redes neuronales  
 
-Red neuronal con pesos aleatorio y $n$ neuronas
+#### Creación de una red neuronal de pesos aleatorios
+
+Red neuronal con pesos aleatorios:
 
 ``` Julia
 entry_dimension = 2
@@ -31,12 +41,12 @@ RandomWeightsNN(
 )
 ```
 
-Creación a partir de matrices
+#### Creación de una red neuronal a partir de matrices
 
 ```Julia
-S = [1,2,3] 
-A = [3 4 1; 4 6 3; 1 1 1]
-B = [1 2 3; 3 2 3]
+S = [1,2,3] # sesgos entrada
+A = [3 4 1; 4 6 3; 1 1 1] # coeficientes entrada
+B = [1 2 3; 3 2 3] # coeficientes salida
 FromMatrixNN(S, A, B)
 ```
 
@@ -45,18 +55,33 @@ Inicialización de la matriz a partir de datos de entrenamiento
 Donde $n$ es el número de neuronas y $M$ es una cte que depende de la función de activación
 (ver memoria)
 
-### Funciones de activación usuales  
+### Funciones de activación  
+
+### Evaluadad en un punto y no dependientes de ningún parámetro
 
 ``` Julia
-    @ThresholdFunction(id,0)(-1) 
-     CosineSquasher(10)  1 
-     @IndicatorFunction(0)(-0.1) 
+     CosineSquasher(10)
      RampFunction(1)
      ReLU(-1) 
      Sigmoid(9999999)    
      HardTanh(9999999) 
-     @LReLU(0.01)(10)
-     @LReLU(-0.01)(-1)  
+```
+
+### Funciones de activación dependientes de parámetros
+
+Existen funciones de activación que depende de parámetros, podemos definirlas eficientemente a partir de macros:
+
+```Julia
+# Concretamos los parámetros de los que dependen
+# de macros
+    umbral = @ThresholdFunction(x->x,0)   
+    indicadora = @IndicatorFunction(0)
+    lRelu = @LReLU(0.01)
+
+# Evaluamos en puntos concretos 
+umbral(-2.9)
+indicadora(3.9)
+lRelu(0.2)
 ```
 
 ### Algoritmo de *forward propagation*
@@ -71,11 +96,11 @@ forward_propagation(h,RampFunction,x)
 TODO :)
 ```
 
-## Reglas 
+## Reglas
 
 - Generación de la memoria `make`.
 - Pasar test a la implementación `make test`.
-- Para ejecutar los experimentos `make experimentos` (los experimentos generan datos cuya localización pude configurar en `Experimentos/.config.toml`). 
+- Para ejecutar los experimentos `make experimentos` (los experimentos generan datos cuya localización pude configurar en `Experimentos/.config.toml`).
 
 ## Motivación del proyecto: Democratización de la inteligencia artificial
 

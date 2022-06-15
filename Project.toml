@@ -1,4 +1,4 @@
-name = "OptimizedNeuralNetwork.jlactiva"
+name = "OptimizedNeuralNetwork.jl"
 uuid = "c0288f0f-8577-469d-b024-d58cda6ff0ea"
 authors = ["Blanca <blancacano2.71828@gmail.com>"]
 version = "0.1.0"
