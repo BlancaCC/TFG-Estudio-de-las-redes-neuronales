@@ -104,38 +104,24 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
     se demuestra en \cite{DBLP:journals/corr/SonodaM15} y en \cite{non-polynomial-activation-functions}, funciones de activación no polinómicas y no acotadas. 
 \end{definicion}
 
-\subsection*{Las funciones de activación $\Gamma$ son la clave del aprendizaje} 
+% Nota sobre que la funciones de activación 
+% son clave en el aprendizaje
+\marginpar{\maginLetterSize
+    \iconoClave  \textcolor{darkRed}{     
+        \textbf{
+            Las funciones de activación $\Gamma$ son la clave del aprendizaje
+        }
+    }
+    \label{ch03:funcionamiento-intuitivo-funcion-activacion}
 
-\label{ch03:funcionamiento-intuitivo-funcion-activacion}
-
-Las \textit{funciones de activación} serán definidas con precisión en la sección 
-\ref{def:funcion_activacion_articulo}, pero para continuar con nuestro razonamiento 
-pensemos en ellas como una función cualquiera que no sea un polinomio. 
-
-Una vez liberados de tratar de buscar un polinomio que aproxime la función en todo
-el dominio, podemos pensar en aproximar la imagen de acorde a intervalos.  
- 
-% Issue #114 TODO : Añadir gráficos cuando esté implementada una red neuronal
-
-% Ejemplo de cómo se aproxima gracias  a la forma de la función de activación
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{1-Introduccion_redes_neuronales/idea-como-aproxima-redes-neuronales.jpeg}
-    \caption{Cómo actúa en la aproximación una función de activación}
-    \label{img:idea-como-aproxima-redes-neuronales}
-   \end{figure}
-
-La idea intuitiva es que para una capa oculta con una neurona, 
-lo que se hace es \textit{colocar} por escalado y simetrías la imagen de la función de activación. 
-
-% Ejemplo trivial de como la forma de la función de activación influye en aproximar mejor 
-\begin{figure}[h!]
-    \includegraphics[width=0.8\textwidth]{1-Introduccion_redes_neuronales/Idea-forma-función-Activación.jpg}
-    \caption{Cómo afecta la forma de la función de activación}
-    \label{img:como afecta la forma de la función de aproximación}
-\end{figure}
-
-
+La idea intuitiva es que cada neurona 
+lo que se hace es \textit{colocar} por transformaciones afines la imagen de la función de activación en el espacio con el fin 
+de aproximar una región de la imagen de la función ideal. 
+Por lo tanto, la forma que ésta tenga será determinante en el número de neuronas necesarias para la convergencia. 
+    
+}
 % Fin del tratamiento de funciones de activación 
+
 Para cualquier natural $d$ mayor que cero  denotaremos por $\afines$ al conjunto de todas 
 las \textbf{funciones afines} de $\R^d$ a $\R$. Es decir el conjunto de funciones de la forma 
 $A(x) = w \cdot x + b$ donde $x$ y $w$ son vectores de $\R^d$,  $b \in \R$ es un escalar
@@ -212,6 +198,7 @@ facilitando las demostraciones. De ahora en adelante nos
 
 \reversemarginpar
   %%% Nota margen sobre función medible 
+  \setlength{\marginparwidth}{\smallMarginSize}
   \marginpar{\maginLetterSize
     \iconoAclaraciones \textcolor{dark_green}{     
         \textbf{
@@ -227,6 +214,7 @@ facilitando las demostraciones. De ahora en adelante nos
     que pueden ser observables y cuantificables en la mayoría de los casos, estos comportamientos son formalizados
      matemáticamente con \textbf{funciones medibles}.
 }
+\setlength{\marginparwidth}{\bigMarginSize}
 \normalmarginpar 
 
 Introducimos a continuación la notación de los conjuntos de funciones que seremos capaces de aproximar.  
@@ -261,7 +249,6 @@ razonamientos topológicos.
 \begin{definicion} [Subconjunto denso]
     % Nota margen de denso
     \reversemarginpar 
-    \setlength{\marginparwidth}{\smallMarginSize}
     \marginpar{\maginLetterSize
         \iconoAclaraciones \textcolor{dark_green}{ 
             \textbf{Idea intuitiva conjunto denso.}

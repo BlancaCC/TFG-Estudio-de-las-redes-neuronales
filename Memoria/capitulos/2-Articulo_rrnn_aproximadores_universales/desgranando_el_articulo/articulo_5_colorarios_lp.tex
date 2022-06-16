@@ -437,6 +437,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \end{proof}
 
 % Nota intuitiva sobre la demostración del Teorema 2.5
+\setlength{\marginparwidth}{\smallMarginSize}
 \marginpar{\maginLetterSize\raggedright
     \iconoAclaraciones \textcolor{dark_green}{ 
         \textbf{Idea de la demostración del teorema
@@ -451,6 +452,10 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
   también se activará por ser menor menor, el término $g(x_{i-1})$ se suma a la salida de la red y así como una serie telescópica al final solo resultará el valor $g(x_i)$.
     }
 }
+\setlength{\marginparwidth}{\bigMarginSize}
+% fin de la nota
+
+
 % Teorema 2.5  
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
     \label{teorema:2_5_entrenamiento_redes_neuronales}
@@ -484,8 +489,7 @@ gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ 
 Definiremos de manera recursiva la red neuronal buscada $f_n$.
 
 % Nota nueva hipótesis de optimización del Teorema 2.5
-\setlength{\marginparwidth}{\smallMarginSize}
-\reversemarginpar
+
 \marginpar{\maginLetterSize\raggedright
      \iconoProfundizar \textcolor{blue}{
         \textbf{Nueva hipótesis de optimización}
@@ -502,7 +506,6 @@ Definiremos de manera recursiva la red neuronal buscada $f_n$.
 \setlength{\marginparwidth}{\bigMarginSize}
  
 }
-\normalmarginpar
 
 \begin{itemize}
     \item Red neuronal $f_1$. 
