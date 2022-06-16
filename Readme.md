@@ -57,7 +57,7 @@ Donde $n$ es el número de neuronas y $M$ es una cte que depende de la función 
 
 ### Funciones de activación  
 
-### Evaluadad en un punto y no dependientes de ningún parámetro
+### Evaluada en un punto y no dependientes de ningún parámetro
 
 ``` Julia
      CosineSquasher(10)

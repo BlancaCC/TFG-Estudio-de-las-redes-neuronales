@@ -5,8 +5,40 @@
 %*******************************************************
 % Introducción al capítulo 
 
-A lo largo de este capítulo daremos una modelización propia de red  neuronal y la compararemos con otros modelos ofrecidos.
-Probaremos además que el modelo propuesto es un aproximador universal, es decir es capaz de aproximar cualquier función medible. 
+ El objetivo principal de este capítulo es dar una modelización propia de red  neuronal y demostrar que es un 
+ aproximador universal a cualquier función medible.  
+
+ El capítulo se organiza de la siguiente manera: 
+
+ \begin{enumerate}
+    \item \textbf{Introducción de nuestro modelo} de red neuronal $\rrnnmc$ y comparación con los usuales en la sección \ref{sec:redes-neuronales-intro-una-capa}. 
+    \item Demostración de que \textbf{las redes neuronales modelizadas son aproximadores universales}. 
+    \begin{itemize}
+        \item Para ello serán necesaria una serie de \textbf{definiciones previas} que se encuentran en la sección \ref{ch:articulo:sec:defincionesPrimeras},
+        las más relevantes son la de función de activación y los espacios $\pmcg$. 
+
+        \item El resultado de convergencia universal es producto de una sucesión de \textbf{conseguir aproximar espacios a partir de otros}, concretamente las relaciones \textit{es denso en} y dónde se demuestran son: 
+        \begin{align*}
+            \rrnn 
+                \xRightarrow[]{\ref{teo:2_4_rrnn_densas_M}}  
+            \rrnng 
+                \xRightarrow[]{\ref{teorema:2_3_uniformemente_denso_compactos}}
+            \pmcg
+                \xRightarrow[]{\ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}     
+            \fC    
+                \xRightarrow[]{\ref{teo:2_2_denso_función_continua}} 
+            \fM.
+        \end{align*}
+        Además se verá  
+        en la sección \ref{ch04:espacios-Lp} que $\rrnn$ es denso en $L_p(\R^d, \mu)$ lo que nos permitirá establecer propiedades y entender cómo funciona nuestro modelo 
+        para problemas concretos de regresión y clasificación. 
+
+        \item En la sección \ref{ch04:salida-varias-dimensiones} se demostrará la convergencia universal para el espacio 
+        $\rrnnmc$.
+    \end{itemize}
+    \item Consideración  en la sección \ref{ch04:capacidad-calculo} si \textbf{en la práctica} se tiene la \textbf{capacidad  computacional de actuar como aproximador universal}. 
+    
+ \end{enumerate}
 
 
 % Comienzo de la sección 

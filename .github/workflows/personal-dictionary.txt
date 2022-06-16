@@ -39,6 +39,7 @@ Iésima
 JJ
 Julián
 Jupyter
+KNN
 LReLU
 LaTeX
 Liang
@@ -59,6 +60,7 @@ Nótese
 Ockham
 OneLayerNeuralNetwork
 OptimizedNeuralNetwork
+OptimizedNeuronalNetwork
 Palett
 Perceptrón
 Pérez
@@ -78,6 +80,7 @@ TFG
 TeoremaStoneWeiertrass
 ThresholdFunction
 Tietze
+UCI
 UMVUE
 Wilcoxon
 Wortman
@@ -135,6 +138,7 @@ isoperimetry
 jejejeje
 jk
 jl
+lRelu
 lcc
 linenos
 lineos
@@ -199,5 +203,3 @@ usefulInformation
 ésima
 ésimas
 ésimo
-KNN
-UCI
