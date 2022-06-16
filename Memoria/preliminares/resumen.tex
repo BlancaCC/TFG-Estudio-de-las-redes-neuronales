@@ -10,27 +10,44 @@
 
 \chapter*{Resumen}\label{ch:resumen}
 %\addcontentsline{toc}{chapter}{Resumen}
-Con este trabajo se ha pretendido construir una teoría sólida que de cabida a optimizar el modelado actual de las redes neuronales.
+
+Existe en la actualidad un desequilibrio entre resultados empíricos 
+y teóricos de redes neuronales llegando incluso a contradicción
+ (como se comenta en la introducción del capítulo 
+ \ref{chapter:Introduction-neuronal-networks}), será por tanto
+nuestro primer objetivo construir una teoría sólida
+que de cabida a 
+ optimizaciones de fundamento teórico; 
+una revisión y
+ purga de cualquier artificio existente sobre 
+ redes neuronales carente de fundamento matemático. 
 
 Como resultado de ello se ha creado e implementado 
 un nuevo modelo de red neuronal así como sus 
 métodos de aprendizaje y evaluación. 
 Además se ha propuesto un criterio de selección de 
 funciones de activación y un algoritmo de 
-inicialización de pesos que mejora los ya existentes. 
+inicialización de pesos que mejora los ya existentes. Todos los resultados han conducido a la creación de 
+la biblioteca \textit{OptimizedNeuralNetwork.jl}, que contiene la implementación de nuestros modelos y métodos optimizados. 
+
 
 La estructura de la memoria es la siguiente: 
 
 \begin{itemize}
-    \item \textbf{Capítulo \ref{ch00:methodology}: Descripción de la metodología seguida.} 
-    \item \textbf{Capítulo \ref{chapter:Introduction-neuronal-networks}: Descripción del problema de aprendizaje.} Caracterización de los problemas de aprendizaje.
-    \item \textbf{Capítulo \ref{ch03:teoria-aproximar}: Teoría de la aproximación.} Ejemplificación de los problemas que presenta un enfoque clásico frente a problemas de problema de aprendizaje.  Demostración del teorema de \textit{Stone-Weierstrass}.
-    \item \textbf{Capítulo \ref{chapter4:redes-neuronales-aproximador-universal}: Introducción de las redes neuronales como aproximadores universales.} Se presenta nuestro modelo de red neuronal. Se demuestra que es un aproximador universal basado en el artículo 
-    \textit{Multilayer Feedforward Networks are Universal Approximators} (\cite{HORNIK1989359}) . Se plantea si en la práctica las redes neuronales 
+    \item \textbf{Capítulo \ref{ch00:methodology}: Descripción de la metodología seguida.} Se ha organizado el proyecto de acorde a una metodología ágil, basada en personas, historias de usuario, hitos y test. Tal método ha conducido e hilado desde el comienzo tanto el desarrollo teórico como el técnico a la par que  salvaguardaba la corrección de cada paso. 
+    \item \textbf{Capítulo \ref{chapter:Introduction-neuronal-networks}: Descripción del problema de aprendizaje.} Se introduce las características y tipo de problemas del aprendizaje automático. Además se clarifica cuáles tratan de resolver las redes neuronales. 
+    \item \textbf{Capítulo \ref{ch03:teoria-aproximar}: Teoría de la aproximación.} Se muestran los problemas y virtudes que presenta un enfoque clásico  de teoría de la aproximación frente a problemas de aprendizaje. En pos de solventar tales impedimentos,  
+    se sitúa esta teoría como el germen de 
+    las redes neuronales.
+    Concretamente se desarrolla la teoría necesaria hasta demostrar el teorema de \textit{Stone-Weierstrass} y se explicarán las trabas que presentan este tipo de aproximaciones. 
+    \item \textbf{Capítulo \ref{chapter4:redes-neuronales-aproximador-universal}: Introducción de las redes neuronales como aproximadores universales.} Se presenta nuestra propuesta de modelo de red neuronal y se compara con los modelos actuales. Se demuestra que nuestra definición actúa como un aproximador universal a cualquier función medible basándonos en el artículo 
+    \textit{Multilayer Feedforward Networks are Universal Approximators} (\cite{HORNIK1989359}). Además se demuestran unas serie de resultados sobre cómo es la convergencia en problema de regresión y clasificación. Finalemnte se plantea si en la práctica las redes neuronales 
     verdaderamente son aproximadores universales.
-    \item \textbf{Capítulo \ref{chapter:construir-redes-neuronales}: Construcción de las redes neuronales.} Descripción de la implementación de las redes neuronales. 
-    Comparación de nuestro modelo con los usuales bajo la introducción de resultados originales sobre el sesgo y dominio de la imagen. Motivación, desarrollo e implementación de los algoritmos de aprendizaje y evaluación propuestos.
-    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se presenta un resultado propio que establece una equivalencia entre distintas funciones de activación. A partir de él se da un criterio de selección de funciones de activación y se estudia experimentalmente los beneficios obtenidos. 
+    \item \textbf{Capítulo \ref{chapter:construir-redes-neuronales}: Diseño y construcción de las redes neuronales.} Se describe la implementación de las redes neuronales; esto nos permitirá una comparación  
+    más profunda de nuestro modelo frente a los usuales. Producto de ello son dos resultados originales sobre el sesgo y dominio de la imagen. 
+    Una vez determinado el modelo concreto se
+    han diseñado un algoritmo de aprendizaje, basado en \textit{Backpropagation} y otro de evaluación de redes neuronales. Además se han comparado los resultados de nuestro modelado con los utilizado usualmente. 
+    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se presenta un resultado propio que establece una equivalencia entre distintas funciones de activación. A partir de él se da un criterio de selección de funciones de activación y se estudian experimentalmente los beneficios obtenidos. 
     \item \textbf{Capítulo \ref{section:inicializar_pesos}: Algoritmo de inicialización de pesos.} Se propone un algoritmo de inicialización de pesos de una red neuronal.
     \item \textbf{Capítulo \ref{ch08:genetic-selection}: Selección genética de las funciones de activación.} Se propone un algoritmo de selección de la función de activación basado en algoritmos genéticos. 
 \end{itemize}
