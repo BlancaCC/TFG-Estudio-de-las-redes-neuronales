@@ -192,6 +192,7 @@ struct
 subespacio
 subespacios
 subrecubrimiento
+subsección
 sumatoria
 sumatorias
 sutilBackground

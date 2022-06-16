@@ -174,7 +174,9 @@ $\sigma_j$ lo que se suele llamar \textit{función de activación} y a la que ad
 
 Las diferencias con nuestra definición son las siguientes 
 \begin{itemize}
-    \item \textbf{Desaparece la función de clasificación $\theta$}. El motivo es que es un artificio teóricamente innecesario de acorde al teorema de convergencia universal \ref{teo:MFNAUA}.
-    \item \textbf{Se elimina un parámetro} de la transformación afín de la última capa; puesto que no es necesario para la convergencia de nuevo por \ref{teo:MFNAUA} lo hemos eliminado.
-    \item Nuestras funciones de activación son funciones medibles en vez de diferenciables ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción, como hemos visto en \ref{teo:MFNAUA}.
+    \item \textbf{Desaparece la función de clasificación $\theta$}
+    \item \textbf{Se elimina un parámetro} por cada neurona. 
+    \item No se le exige condición de diferenciabilidad a priori, ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción, como hemos visto en \ref{teo:MFNAUA}.
 \end{itemize}
+Se justificarán y se matizarán tales decisiones en 
+la sección \ref{ch05:justifica-modelo}.

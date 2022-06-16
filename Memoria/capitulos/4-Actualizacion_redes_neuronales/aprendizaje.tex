@@ -1,7 +1,13 @@
 \section{Aprendizaje}  
+\label{ch05:aprendizaje}
 
 Se entiende por aprendizaje de una red neuronal como el proceso 
-por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $A,S$ y $B$.
+por el cual se determina o actualiza el valor sus parámetros, es decir, lo que en el ejemplo 
+\ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $A,S$ y $B$.
+
+A lo largo de esta sección se deducirá un algoritmo de aprendizaje para nuestro modelo de red neuronal; concretamente éste método se basa en el algoritmo de \textit{backpropagation}, esto es, se implementa una  basada en descenso de gradiente y programación dinámica. 
+
+También se discute en la subsección \ref{ch05:alternativas-gradiente-descendente} porqué no se han utilizado otras alternativas al gradiente descendente.  
 
 %%%%%%%%%%%%%%%%%%% algoritmo de gradiente descendente 
 
@@ -9,7 +15,7 @@ por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref
 
 De acorde a los capítulos uno y dos del libro  \cite{learning-from-data-1-2},
  una vez concretado el problema y sus elementos 
-(\ref{sub:componentes_aprendizaje}) es necesario definir un método con 
+(véase la sección \ref{sub:componentes_aprendizaje}) es necesario definir un método con 
 el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente. Se trata de un método iterativo de minimización de funciones diferenciables. 
 
 % Nota sobre el algoritmo de gradiente descendente 
