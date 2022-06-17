@@ -8,18 +8,28 @@
 \selectlanguage{english}
 \chapter*{Summary}\label{ch:summary}
 %\addcontentsline{toc}{chapter}{Summar}
+Nowadays experimental research in Neural Networks are more advanced than theoretical
+results. From this we want to establish a solid mathematical theory from which to optimize the current neural network models. 
+
+As a result of our study we have proposed a new neural network model and adapted and optimized already used evaluation and learning methods to it. Moreover, we have discovered some theorems that prove the equivalence among some activation functions and propose a new algorithm to initialize weights of neural networks. By the first result, we obtain a criteria to choose the most suitable activation function to maintain accuracy and reduce computational cost. By the second one, we might accelerate learning convergence methods.
+
+In addition the models, methods and algorithms have been implemented in a Julia library: 
+OptimizedNeuralNetwork.jl 
+
+All the theory development, designs, decisions and result are written in this memory which have the following structure: 
+
+Chapter one: Description of the methodology followed. We have organized our project according to an agile philosophy  based on personas methodology, users stories, milestones and tests. The method has conducted and linked mathematical and technical results and implementations, giving them coherence and validation methods. 
+
+Chapter 2: Description of the learning problem. We defined the characteristic and type of machine learning problems. We would focus on supervised learning ones. 
+
+Chapter 3:  Approximation theory. In order to establish a solid theory we would start our work trying to solve machine learning problems by traditional approximation methods.  The main result we obtained is the Stone Weierstrass’s theorem. As a conclusion of this chapter we would know the virtues and faults of traditional methods and understand the necessity of new methods and structures such as neural networks. 
+
+ Chapter 4: Neuronal networks are universal approximators.   
  
 \paragraph{KEYWORDS:}
 \begin{itemize*}[label=,itemsep=1em,itemjoin=\hspace{1em}]
   \item neural networks
-  \item LSTM
-  \item time series
-  \item model selection
-  \item validation
-  \item hyper-parameters selection
-  \item anomaly detection
-  \item detector
-  \item perturbation
+
 \end{itemize*}
 
 % Al finalizar el resumen en inglés, volvemos a seleccionar el idioma español para el documento
