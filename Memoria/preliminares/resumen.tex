@@ -47,9 +47,27 @@ La estructura de la memoria es la siguiente:
     más profunda de nuestro modelo frente a los usuales y que nos servirá como justificación del modelo obtenido. Producto de ello son dos resultados originales sobre el sesgo y dominio de la imagen. 
     Una vez determinado el modelo concreto se
     han diseñado un algoritmo de aprendizaje, basado en \textit{Backpropagation} y otro de evaluación de redes neuronales. Además se han comparado los resultados de nuestro modelado con los utilizado usualmente. 
-    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se presenta un resultado propio que establece una equivalencia entre distintas funciones de activación. A partir de él se da un criterio de selección de funciones de activación y se estudian experimentalmente los beneficios obtenidos. 
-    \item \textbf{Capítulo \ref{section:inicializar_pesos}: Algoritmo de inicialización de pesos.} Se propone un algoritmo de inicialización de pesos de una red neuronal.
-    \item \textbf{Capítulo \ref{ch08:genetic-selection}: Selección genética de las funciones de activación.} Se propone un algoritmo de selección de la función de activación basado en algoritmos genéticos. 
+    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se pretende en este capítulo determinar qué funciones de activación son más convenientes que otras, es decir, con cuál se podría tener un menor coste computacional. 
+    Para esto, no se ha tenido sólo en cuenta el coste computacional de evaluar cada función; puesto que la imagen de una función de activación repercute 
+    en el número de neuronas necesarias para estar por debajo de cierto error, se ha establecido una serie de teoremas propio que determina qué funciones de activación tendrán los mismos resultados.  Gracias a tales resultados se han 
+    podido agrupar a las funciones de activación y 
+    para cada clase se ha tratado de determinar por medio del test de hipótesis de Wilcoxon cuál es la más rápida, resultando con esto que sin perder precisión se ha reducido el costo y tiempo en evaluación y entrenamiento de las redes neuronal. 
+    
+    \item \textbf{Capítulo \ref{section:inicializar_pesos}: Algoritmo de inicialización de pesos.} Se propone un algoritmo original de inicialización de los pesos de una red neuronal a 
+    partir de un subconjunto de datos de la muestra. Al ser la solución de partida mejor, con este método se pretende reducir el tiempo y coste de aprendizaje de técnicas iterativas, tales como \textit{Backpropagation}.  
+    
+    En este capítulo se muestran además los 
+    requisitos técnicos de la implementación de la biblioteca \textit{OptimizedNeuralNetwork.jl}, 
+    ya que para medir la bondad del algoritmo es 
+    necesario implementar todas las funcionalidades al completo. Además se han añadido en estas 
+    secciones ejemplo de uso de la biblioteca. 
+    \item \textbf{Capítulo \ref{ch08:genetic-selection}: Selección genética de las funciones de activación.} El uso de distintas funciones de activación presenta un 
+    potencial en cuanto a reducir el error fijado un cierto número de neuronas, sin embargo esto 
+    aumenta el espacio de búsqueda y por tanto la complejidad. Es aquí donde nuestro modelo 
+    propuesto de red neuronal palía la situación, 
+    ya que frente a los modelos convencionales, el nuestro es invariante a la posición de las 
+    funciones de activación de las neuronas, lo cual
+     reduce el espacio de búsqueda.  
 \end{itemize}
 
 \paragraph{PALABRAS CLAVE:}

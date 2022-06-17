@@ -3,19 +3,25 @@
 %              de activación 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\chapter{Selección genética de las funciones de activación }
+\chapter{Futuros trabajos: Selección genética de las funciones de activación }
 \label{ch08:genetic-selection}
 
-%TODO: issue 90
-A modo de borrador de lo que tendrá este capítulo: 
-\begin{itemize}
-    \item Referencia a la idea intuitiva.
-    \item Comentario sobre complejidad.
-    
-    Más funciones de activación -> aumento espacio de búsqueda.
-    Si se usan bien -> disminuye número de neuronas 
-    -> se converge más rápido con métodos. 
-    \item Cómo introducir los algoritmos genéticos para desarrollar esta idea. 
-    
-    El algoritmo genético selecciona qué funciones de activación se usan. Tras esto se entrena el algoritmo de de manera usual.
-\end{itemize}
+Como se indicó en \ref{ch03:funcionamiento-intuitivo-funcion-activacion}
+aunque la convergencia universal no 
+dependa de la función de activación seleccionada,
+fijado cierto número de neuronas esta sí que pueden 
+determinar mínimo que podamos alcanzar.  
+
+Gracias al resultado \ref{cor:se-generaliza-G-a-una-familia} es posible combinar en una red neuronal distintas funciones de activación y que el teorema de convergencia universal \ref{teo:MFNAUA} se mantenga cierto, esto abre la puerta a explorar también durante el entrenamiento diferentes funciones de activación. De hecho ya existen artículos como \cite{FunctionOptimizationwithGeneticAlgorithms} y \cite{Genetic-deep-neural-networks} donde se desarrolla esta idea. 
+
+El problema que se tiene es que al aumentar
+el número de funciones de activación candidatas, se está aumentando también el espacio de búsqueda; lo que significa que la complejidad del espacio aumenta y por ende el coste para encontrar una solución. 
+
+Se ha intentado paliar la situación con algoritmos genéticos (véanse los artículos recién citados). Sin embargo, existe un detalle clave y novedoso, los modelos que 
+están utilizando son modelos de \textit{deep learning} sensibles a la posiciones de las función de activación. Es decir, que para $n$ neuronas y $t$ funciones de activación diferentes el tamaño del espacio de búsqueda es $t^n$.
+
+
+Sin embargo, una de las ventajas que presenta nuestro modelo es que es invariante ante cambios de posición de funciones de activación; es decir una vez fijado el número de cada tipo de funciones de activación da igual la neurona dónde se posicionen (esto es fácil de comprobar observando el modelo \ref{chapter:construir-redes-neuronales} y por la propiedad conmutativa de la suma).
+
+Es decir, con nuestro modelo se estaría reduciendo el espacio de búsqueda y por tanto merecería la pena plantearse de nuevo este tipo de experimentos. 
+

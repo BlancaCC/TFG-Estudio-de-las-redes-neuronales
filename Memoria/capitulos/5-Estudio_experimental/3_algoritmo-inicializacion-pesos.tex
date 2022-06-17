@@ -115,10 +115,19 @@ Deberá implementarse una función para medir el
 Dado una red neuronal, una función de evaluación y un datos ser capaz de aplicar el algoritmo de \textit{forward propagation} descrito en \ref{algoritmo:evaluar red neuronal}.
 
 \subsubsection{Implementación del aprendizaje de una red neuronal} 
-
+% Nota en el margen sobre la derivada
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            Qué es una derivada débil.
+        }
+    }
+    Es una generalización de las derivadas para funciones del espacio $L_p$, esto nos permite
+    definir derivadas aunque no lo sea en algunos puntos (recodemos que demostremos el teorema de aproximación universal para estos espacios en la sección \ref{ch04:espacios-Lp}).   
+}
 Se implementará el algoritmo propio de aprendizaje basado en \textit{Backpropagation} y ya optimizado 
 que describimos en los algoritmos \ref{algoritmo:gradiente-descendente} y \ref{algoritmo:calculo-gradiente}.
-
+Cabe destacar que para este algoritmo es necesario la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. 
 
 \subsubsection{Implementación del experimento} 
 Deberá de implementarse una función que realice el 
