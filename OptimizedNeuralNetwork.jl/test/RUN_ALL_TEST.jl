@@ -28,3 +28,7 @@ println("done (took $t seconds).")
 println("Testing metric estimation")
 t = @elapsed include("metric_estimation.test.jl")
 println("done (took $t seconds).")
+
+println("Testing backpropagation")
+t = @elapsed include("backpropagation.test.jl")
+println("done (took $t seconds).")

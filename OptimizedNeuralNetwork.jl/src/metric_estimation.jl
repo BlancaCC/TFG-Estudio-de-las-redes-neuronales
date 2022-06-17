@@ -1,10 +1,11 @@
 ####################################################
 #           Función para tomar métricas
 ####################################################
+export regression
+export error_in_train
+
 using Statistics
 using LinearAlgebra
-export regression
-
 """
     Regression(X::Vector,Y,f)
 Para los puntos (X,Y) devuelve tupla con 
@@ -24,3 +25,9 @@ function regression(X::Matrix,Y,f)
     diferences = map(norm,eachrow(Y .- f_x))
     return mean(diferences), median(diferences), std(diferences), cor(Y, f_x)
 end 
+
+function error_in_train(x_train::Matrix,y_train, eval_neural_network)::Float64
+    estimations = map(x->eval_neural_network(x)[1], eachrow(x_train))
+    diferences = map(norm,eachrow(y_train .- estimations))
+    return mean(diferences)
+end
