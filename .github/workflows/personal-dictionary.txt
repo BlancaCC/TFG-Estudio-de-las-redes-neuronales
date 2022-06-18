@@ -184,6 +184,9 @@ rrnng
 separabilidad
 sigmoide
 sigmoidea
+sobreajustado
+sobreajuste
+sobreentrenado
 sobreescribir
 solventable
 squasher

@@ -140,9 +140,137 @@ experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 Concretamente de el experimentos se ha realizado con $\frac{3}{4}|\mathcal{D}|$ de datos de entrenamiento 
 y el resto de test, se ha repetido además $15$ veces. 
 
-Durante cada iteración los datos del conjunto han sido desordenados. 
+Durante cada iteración los datos del conjunto han sido desordenados y el tiempo medido ha sido estrictamente el de creación y aprendiza de la red neuronal. 
 
 Los resultados obtenidos han sido los siguientes: 
 
-Y donde el test de los signos de Wilcoxon ha rechazado la hipótesis nula con un $95\%$ de confianza. 
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        Método y Ejecución &   1 &   2 &   3 &   4 &   5 &   6 &   7 &   8 &   9 &   10 &   11 &   12 &   13 &   14 &   15 \\ \hline
+        Algoritmo inicialización & 0,274 & 0,030 & 0,028 & 0,028 & 0,026 & 0,028 & 0,027 & 0,027 & 0,027 & 0,029 & 0,027 & 0,028 & 0,027 & 0,027 & 0,029 \\ \hline
+        Backpropagation & 6,204 & 5,064 & 5,083 & 6,015 & 5,128 & 5,120 & 5,072 & 5,105 & 5,961 & 5,023 & 5,023 & 5,074 & 5,065 & 5,148 & 5,180 \\ \hline
+    \end{tabular}
+    }
+    \caption{Tiempos en segundos hasta parada empleado por cada algoritmo en las sucesivas iteraciones }
+\end{table}
+
+
+
+De donde se tiene que nuestro algoritmo de inicialización tiene un promedio de 
+\begin{equation}
+    0,044 \pm 0,064 \text{ segundos }
+\end{equation}
+mientras que la inicialización aleatoria y aprendizaje con el método de 
+\textit{Backpropagation} de 
+\begin{equation}
+    5,284 \pm 0,407   \text{ segundos}.
+\end{equation}
+
+Además el test de los signos de Wilcoxon rechazado la hipótesis un $95\%$ de confianza
+por lo que podemos afirmar que efectivamente la diferencia de tiempos es significativa. 
+
+El gráfico de caja bigote con los tiempo es el siguiente: 
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-tiempo.png}
+     \caption{Gráfico de caja y bigotes del tiempo requerido por el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+\end{figure}
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        Método & Error  1 & Error  2 & Error  3 & Error  4 & Error  5 & Error  6 & Error  7 & Error  8 & Error  9 & Error  10 & Error  11 & Error  12 & Error  13 & Error  14 & Error  15 \\ \hline
+        Algoritmo inicialización & 0,016 & 0,016 & 0,018 & 0,017 & 0,009 & 0,016 & 0,021 & 0,015 & 0,018 & 0,020 & 0,016 & 0,016 & 0,016 & 0,019 & 0,018 \\ \hline
+        Aleatorio y Backpropagation & 0,582 & 0,570 & 0,570 & 0,575 & 0,564 & 0,567 & 0,564 & 0,567 & 0,572 & 0,570 & 0,561 & 0,561 & 0,574 & 0,569 & 0,563 \\ \hline
+    \end{tabular}
+    }
+    \label{fig07:error-entrenamiento}
+    \caption{Error mínimo cuadrático obtenido en entrenamiento tras acabar la ejecución}
+\end{table}
+
+Tal y como se planteó el experimento la parada del algoritmo de \textit{Backpropagation} 
+pudo producirse por haber alcanzado un error menor que el la red conseguida con el 
+algoritmo de inicialización o porque ha estancado su valor.
+Sin embargo, al observarse la distribución de los errores en el 
+gráfico \ref{img07:error-entrenamiento} y la tabla \ref{fig07:error-entrenamiento} puede observarse que 
+el algoritmo de \textit{Backpropagation} se detuvo al alcanzar un 
+mínimo local. 
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_entrenamiento.png}
+     \caption{Gráfico de caja y bigotes del \textbf{error en entrenamiento tras finalizar } el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+     \label{img07:error-entrenamiento}
+\end{figure}
+
+En promedio el error cuadrático medio dentro del entrenamiento conseguido con nuestro algoritmo es 
+\begin{equation}
+    0,017 \pm 0,003
+\end{equation}
+mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
+\begin{equation}
+    0,569 \pm 0,006. 
+\end{equation}
+
+Es interesante entonces comparar el error cuadrático medio obtenido en los datos de test, para ver si efectivamente es tan beneficioso como aparenta el algoritmo creado. 
+
+El resultado en cada ejecución ha sido: 
+
+\begin{table}[H]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        Método & Error    1 & Error   2 & Error   3 & Error   4 & Error   5 & Error   6 & Error   7 & Error   8 & Error   9 & Error   10 & Error   11 & Error   12 & Error   13 & Error   14 & Error   15 \\ \hline
+        Algoritmo inicialización & 0,176 & 0,179 & 0,184 & 0,175 & 0,096 & 0,191 & 0,192 & 0,172 & 0,171 & 0,183 & 0,161 & 0,179 & 0,163 & 0,175 & 0,170 \\ \hline
+        Aleatorio y Backpropagation & 0,561 & 0,571 & 0,573 & 0,562 & 0,583 & 0,579 & 0,557 & 0,577 & 0,567 & 0,572 & 0,551 & 0,564 & 0,563 & 0,573 & 0,559 \\ \hline
+    \end{tabular}
+    }
+    \caption{Error mínimo cuadrático \textbf{en test} tras finalizar las sucesivas repeticiones del algoritmo}
+\end{table}
+
+
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_test.png}
+     \caption{Gráfico de caja y bigotes del \textbf{error cuadrático medio en test } el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+     \label{img07:error-test}
+\end{figure}
+
+Donde ahora el promedio para nuestro algoritmo es de un error de
+\begin{equation}
+    0,171 \pm 0,022
+\end{equation}
+mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
+\begin{equation}
+    0,567 \pm 0,009.
+\end{equation}
+
+% Nota sobre sobreajuste 
+\marginpar{\maginLetterSize
+    \iconoAclaraciones \textcolor{dark_green}{     
+        \textbf{
+            ¿Qué significa que un modelos está sobreajustado o sobreentrenado?
+        }
+    }
+    En aprendizaje automático un modelo se dice sobreentrenado o sobreajustado 
+    cuando ha \textit{aprendido} características 
+    propias de los datos de entrenamiento que 
+    no son válidas para el problema general. 
+    Este efecto produce que se tengan resultados en 
+    entrenamiento \textit{mucho} mejores que en test.   
+}
+Como podemos observar en el caso de nuestro 
+algoritmo; a diferencia del error en test obtenido con \textit{Backpropagation}, que el error en test ha superado al de entrenamiento, lo que indica un sobreajuste 
+del modelo a los datos de entrenamiento. Esto es totalmente de esperar por 
+cómo se construye la inicialización de pesos. Sin embargo, a pesar del sobreajuste, el resultado sigue siendo mejor tanto en precisión como en tiempo que el de aprendizaje usando \textit{Backpropagation}.  
+
+
+
+\newpage
 
