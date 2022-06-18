@@ -55,7 +55,9 @@ de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mat
 \end{itemize}
 
 % Paso 2: Evaluación del error
-\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation}se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Se medirá el tiempo que necesita para ello $t_b$. 
+\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation}se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Además puesto que puede darse el caso de quedar estancados en un mínimo local  o que oscile entorno a un mínimo (ver propiedades del gradiente descendente \ref{ch05:gradiente-descentente})
+superior al error encontrado con el algoritmo de inicialización de pesos, se ha añadido también como criterio de parada el que error se estanque o empeore durante 5 iteraciones consecutivas. 
+Se medirá el tiempo que necesita hasta su fin $t_b$ y el error en entrenamiento y test. 
 
 Los tiempos $t_i$ y $t_b$ serán los que compararemos. 
 \end{enumerate}

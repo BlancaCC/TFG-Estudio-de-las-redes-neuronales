@@ -14,7 +14,7 @@ using Test
     X_train = (rand(Float64, (data_set_size, 2)))*3
     Y_train = map(v->cosin(v...),eachrow(X_train))
     disminuye_error = 0.0
-    error_0 = error_in_train(
+    error_0 = error_in_data_set(
             X_train,
             Y_train,
             x->forward_propagation(h,RampFunction,x)
@@ -22,7 +22,7 @@ using Test
     for i in 1:n   
         backpropagation!(h, X_train, Y_train, RampFunction, derivativeRampFunction, n)
 
-        error_1 = error_in_train(
+        error_1 = error_in_data_set(
             X_train,
             Y_train,
             x->forward_propagation(h,RampFunction,x)

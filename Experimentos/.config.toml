@@ -46,14 +46,7 @@ FACTOR = +4  # Por cada neurona cuantos datos hay
 
 # Configuración de 
 [air-self-noise]
-# Descomentar: Para mostrar en la carpeta del experimento 
-DIRECTORIO_IMAGENES = "./Experimentos/inicializacion-pesos-red-neuronal/img/0_1_aleatorio/" #carpeta que contendrá las imágenes
 # Descomentar: Para mostrar en la carpeta de la memoria
-#DIRECTORIO_IMAGENES = "./Memoria/img/7-algoritmo-inicializar-pesos/"
 FICHERO_DATOS = "Experimentos/inicializacion-pesos-red-neuronal/data/airfoil_self_noise.csv"
-DIRECTORIO_RESULTADOS = "Experimentos/inicializacion-pesos-red-neuronal/resultados/1_sinteticos_heterogeneo/"
-NOMBRE_FICHERO_RESULTADOS = "resultados.csv"
-NUMERO_PARTICIONES = +15  # Veces que se tomarán medidas
-LIMITE_INFERIOR = -10     # Cota inferior de los valores posibles
-LIMITE_SUPERIOR = +10     # Cota superior de los valores posibles
-FACTOR = +4  # Por cada neurona cuantos datos hay
+DIRECTORIO_RESULTADOS = "Experimentos/inicializacion-pesos-red-neuronal/resultados/2_air_self_noise/"
+NUMERO_EJECUCIONES = +15  # Veces que se tomarán medidas

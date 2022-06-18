@@ -12,7 +12,7 @@ NOMBRE_FICHERO_RESULTADOS = config["NOMBRE_FICHERO_RESULTADOS"]
 # número de particiones
 numero_particiones = config["NUMERO_PARTICIONES"]
 include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
-using .OptimimizedNeuralNetwork
+using .OptimizedNeuralNetwork
 
 Random.seed!(1)
 

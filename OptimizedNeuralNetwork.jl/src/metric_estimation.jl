@@ -2,7 +2,7 @@
 #           Función para tomar métricas
 ####################################################
 export regression
-export error_in_train
+export error_in_data_set
 
 using Statistics
 using LinearAlgebra
@@ -26,8 +26,12 @@ function regression(X::Matrix,Y,f)
     return mean(diferences), median(diferences), std(diferences), cor(Y, f_x)
 end 
 
-function error_in_train(x_train::Matrix,y_train, eval_neural_network)::Float64
-    estimations = map(x->eval_neural_network(x)[1], eachrow(x_train))
-    diferences = map(norm,eachrow(y_train .- estimations))
+"""
+    error_in_data_set(x_set::Matrix,y_set, eval_neural_network)::Float64
+Devuelve el error mínimo cuadrático. 
+"""
+function error_in_data_set(x_set::Matrix,y_set, eval_neural_network)::Float64
+    estimations = map(x->eval_neural_network(x)[1], eachrow(x_set))
+    diferences = map(norm,eachrow(y_set .- estimations))
     return mean(diferences)
 end

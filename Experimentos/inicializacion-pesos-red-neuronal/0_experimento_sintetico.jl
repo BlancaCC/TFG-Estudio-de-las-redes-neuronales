@@ -11,7 +11,7 @@ img_path = config["DIRECTORIO_IMAGENES"]
 
 Random.seed!(1)
 include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
-using .OptimimizedNeuralNetwork
+using .OptimizedNeuralNetwork
 
 M = 1
 K_range = 3

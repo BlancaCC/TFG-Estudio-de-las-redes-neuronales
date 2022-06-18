@@ -7,7 +7,7 @@
 # - Our initialization algorithm
 ####################################################
 include("../src/OptimizedNeuralNetwork.jl")
-using .OptimizedNeuronalNetwork
+using .OptimizedNeuralNetwork
 
 println("Testing Activation functions...")
 t = @elapsed include("activation_functions.test.jl")

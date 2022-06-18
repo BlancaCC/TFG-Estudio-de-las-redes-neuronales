@@ -1,0 +1,21 @@
+
+
+        Exact Wilcoxon signed rank test
+-------------------------------
+Population details:
+    parameter of interest:   Location parameter (pseudomedian)
+    value under h_0:         0
+    point estimate:          -5.1562
+    95% confidence interval: (-5.179, -5.134)
+
+Test summary:
+    outcome with 95% confidence: reject h_0
+    two-sided p-value:           <1e-04
+
+Details:
+    number of observations:      15
+    Wilcoxon rank-sum statistic: 0.0
+    rank sums:                   [0.0, 120.0]
+    adjustment for ties:         0.0
+
+        

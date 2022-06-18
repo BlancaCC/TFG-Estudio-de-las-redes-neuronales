@@ -1,5 +1,5 @@
 ########################################################
-#   EXPERIMENTO SINTÉTICO DE NUESTRO algoritmo
+#   Experimento del algoritmo inicialización con base de datos de air self noise
 ########################################################
 using Random
 using Plots
@@ -7,14 +7,18 @@ using TOML
 using CSV 
 using DataFrames
 using StatsBase
+using HypothesisTests
+using TimerOutputs
 
 FICHERO_CONFIGURACION = "Experimentos/.config.toml"
 config = TOML.parsefile(FICHERO_CONFIGURACION)["air-self-noise"]
 FILE = config["FICHERO_DATOS"]
+DIRECTORIO_RESULTADOS = config["DIRECTORIO_RESULTADOS"]
+NUMERO_EJECUCIONES = config["NUMERO_EJECUCIONES"]
 
-Random.seed!(1)
 include("../../OptimizedNeuralNetwork.jl/src/OptimizedNeuralNetwork.jl")
-using .OptimimizedNeuralNetwork
+
+using .OptimizedNeuralNetwork
 
 #------------------------------------------------------
 #                Data preprocesing 
@@ -26,106 +30,158 @@ label = 6
 df = DataFrame(CSV.File(FILE, header=false))
 # Miramos si hay valores perdidos
 display(describe(df)) # No hay
-for i in 1:4
 # Transformamos en matrices y vectores
 X = Matrix(df[:, atributes])
 Y = Vector(df[:,label])
 len = length(Y)
-# suffle
-sort = randperm(len)
-Xs = X[sort, :]
-Ys = Y[sort]
-# separate train from test
-index = Integer(2*len/3)
-X_train = Xs[1:index,:]
-Y_train = Ys[1:index]
-X_test = Xs[index+1:len, :]
-Y_test = Ys[index+1:len]
+index = Integer(2*len/3) #separador de conjunto de entrenamiento y test
+α = 0.9 # heurística ortogonalidad comentada en memoria
+n = ceil(Integer, index*α) # numbers of nodes 
+valor_estancamiento = 5
+tol = 0.001
+η = 0.005 # valor heurístico tras varias pruebas (0.1 era demasiado grande)
 
-# Data normalization
-#dt = fit(ZScoreTransform, X_train, dims=1)
-dt = fit(UnitRangeTransform, X_train, dims=1)
-X_test_normalized = StatsBase.transform(dt, X_test)
-X_train_normalized = StatsBase.transform(dt, X_train)
-
-dt_y = fit(UnitRangeTransform, Y_train, dims=1)
-Y_test_normalized = StatsBase.transform(dt_y, Y_test)
-Y_train_normalized = StatsBase.transform(dt_y, Y_train)
-
-
-#------------------------------------------------------
-#                Get neuronal network 
-#------------------------------------------------------
-n = ceil(Integer, index*0.9) # numbers of nodes 
-println("\nEjecución $i")
 println("Se va a entrenar con $n neuronas")
 println("El tamaño de test es de $(len-index)")
 println("El conjunto de entrenamiento $(index)")
 
-# Ajuste con comienzo de datos inicial
-println("Resultados con h aleatoria")
-h_random = RandomWeightsNN(input_dimension, n, output_dimension)
-evaluate_random(x) = forward_propagation(h_random,
-        RampFunction,x
-        )
-println(regression(X_test_normalized, Y_test_normalized, evaluate_random))
+### Valores donde almacenar los datos  
+# índeces del array donde se almacenan los datos
+indice_algoritmo_inicializcion = 1
+indice_aleatorio_y_backpropagation = 2
 
-# Experimentamos con nuestro algoritmo 
-M = 1
-h_initialized = nn_from_data(X_train_normalized, Y_train_normalized, n, M)
-# Función de evaluación por forward propagation 
-evaluate_initialized(x) = forward_propagation(h_initialized,
-        RampFunction,x
-        )
+dfTiempo = [
+        Array{Float64}(undef, 2 )
+        for _ in 1:NUMERO_EJECUCIONES 
+        ]
+dfNombre = ["Algoritmo inicialización", "Aleatorio y Backpropagation"]
+dfErrorEntrenamiento = [
+        Array{Float64}(undef, 2 )
+        for _ in 1:NUMERO_EJECUCIONES 
+        ]
+dfErrorTest = [
+        Array{Float64}(undef, 2 )
+        for _ in 1:NUMERO_EJECUCIONES 
+]
+for i in 1:NUMERO_EJECUCIONES
+        # suffle
+        sort = randperm(len)
+        Xs = X[sort, :]
+        Ys = Y[sort]
+        # separate train from test
+        X_train = Xs[1:index,:]
+        Y_train = Ys[1:index]
+        X_test = Xs[index+1:len, :]
+        Y_test = Ys[index+1:len]
 
-println("Resultados con h ajustada")
-println(regression(X_test_normalized, Y_test_normalized, evaluate_initialized))
+        # Data normalization
+        #dt = fit(ZScoreTransform, X_train, dims=1)
+        dt = fit(UnitRangeTransform, X_train, dims=1)
+        X_test_normalized = StatsBase.transform(dt, X_test)
+        X_train_normalized = StatsBase.transform(dt, X_train)
+
+        dt_y = fit(UnitRangeTransform, Y_train, dims=1)
+        Y_test_normalized = StatsBase.transform(dt_y, Y_test)
+        Y_train_normalized = StatsBase.transform(dt_y, Y_train)
+
+        #------------------------------------------------------
+        #                Get neuronal network 
+        #------------------------------------------------------
+        println("\nEjecución $i")
+        # Experimentamos con nuestro algoritmo 
+        M = 1
+        dfTiempo[i][indice_algoritmo_inicializcion]= @elapsed h_initialized = nn_from_data(X_train_normalized, Y_train_normalized, n, M)
+        # Función de evaluación por forward propagation 
+        evaluate_initialized(x) = forward_propagation(h_initialized,
+                RampFunction,x
+                )
+
+        println("Resultados con h ajustada")
+        error_in_train_initialize = error_in_data_set(X_train_normalized, Y_train_normalized, evaluate_initialized) 
+        println("Ha tardado un tiempo de $(dfTiempo[i][indice_algoritmo_inicializcion])")
+        println("El error en el conjunto de entrenamiento es de $error_in_train_initialize")
+        
+        # Almacenamos datos en el csv
+        dfErrorEntrenamiento[i][indice_algoritmo_inicializcion] = error_in_train_initialize
+        dfErrorTest[i][indice_algoritmo_inicializcion] = error_in_data_set(X_test_normalized, Y_test_normalized, evaluate_initialized)
+
+        ####### Test con backpropagation 
+        # Entrenaremos hasta que el error sea igual o menor
+        # Ajuste con comienzo de datos inicial
+        println("\n--- Resultados con h aleatoria ---")
+        time_backpropagation = @elapsed h_random = RandomWeightsNN(input_dimension, n, output_dimension)
+        evaluate_random(x) = forward_propagation(h_random,RampFunction,x)
+        error_in_train_backpropagation = error_in_data_set(X_train_normalized, Y_train_normalized, evaluate_random) 
+        iterations = 0
+        last_error = error_in_train_backpropagation 
+        stoped_iterations = 0
+        println("El error inicial en backpropagation es de $error_in_train_backpropagation")
+        while( error_in_train_initialize < error_in_train_backpropagation 
+                &&
+                stoped_iterations < valor_estancamiento
+        )
+                println("El error en la iteración $iterations: $error_in_train_backpropagation")
+                time_backpropagation += @elapsed backpropagation!(h_random, 
+                        X_train_normalized, Y_train_normalized, 
+                        RampFunction, derivativeRampFunction,
+                        n,
+                        η)
+                iterations += 1
+                evaluate_random(x) = forward_propagation(h_random,
+                RampFunction,x
+                )
+                error_in_train_backpropagation = error_in_data_set(X_train_normalized, Y_train_normalized, evaluate_random) 
+                if(abs(error_in_train_backpropagation - last_error) < tol ||  error_in_train_backpropagation > tol + last_error)
+                        stoped_iterations += 1
+                else 
+                        stoped_iterations = 0
+                end
+                last_error = error_in_train_backpropagation
+        end
+        evaluate_random(x) = forward_propagation(h_random,RampFunction,x)
+        dfTiempo[i][indice_aleatorio_y_backpropagation] = time_backpropagation
+        dfErrorEntrenamiento[i][indice_aleatorio_y_backpropagation] = error_in_train_backpropagation
+        dfErrorTest[i][indice_aleatorio_y_backpropagation] = error_in_data_set(X_test_normalized, Y_test_normalized, evaluate_random)
+        println(regression(X_test_normalized, Y_test_normalized, evaluate_random))  
+        println("Durante $time_backpropagation")     
 end
-"""
-6×7 DataFrame
- Row │ variable  mean          min            median         max            nmissing  eltype   
-     │ Symbol    Float64       Real           Float64        Real           Int64     DataType 
-─────┼─────────────────────────────────────────────────────────────────────────────────────────
-   1 │ Column1   2886.38       200            1600.0         20000                 0  Int64
-   2 │ Column2      6.7823       0.0             5.4            22.2               0  Float64
-   3 │ Column3      0.136548     0.0254          0.1016          0.3048            0  Float64
-   4 │ Column4     50.8607      31.7            39.6            71.3               0  Float64
-   5 │ Column5      0.0111399    0.000400682     0.00495741      0.0584113         0  Float64
-   6 │ Column6    124.836      103.38          125.721         140.987             0  Float64
-   Ejecución 1
-Se va a entrenar con 902 neuronas
-El tamaño de test es de 501
-El conjunto de entrenamiento 1002
-Resultados con h aleatoria
-(404.8662093260707, 419.1115903577392, 41.635752117489275, -0.2961736723908062)
-Resultados con h ajustada
-(0.1759656798601324, 0.1439178380239382, 0.1418858978301221, 0.1617093840740258)
-Ejecución 2
-Se va a entrenar con 902 neuronas
-El tamaño de test es de 501
-El conjunto de entrenamiento 1002
-Resultados con h aleatoria
-(412.6085843252029, 425.4178063252722, 38.83676957614223, -0.36658463933867147)
-Resultados con h ajustada
-(0.1887864329420057, 0.1594975256947092, 0.141530618515747, 0.1669516152633034)
-Ejecución 3
-Se va a entrenar con 902 neuronas
-El tamaño de test es de 501
-El conjunto de entrenamiento 1002
-Resultados con h aleatoria
-(407.72244602689705, 420.2626874975474, 36.8556315202347, -0.2874190506953035)
-Resultados con h ajustada
-(0.19299620315055435, 0.16363726585828242, 0.15253785656821325, 0.1077840541213413)
-Ejecución 4
-Se va a entrenar con 902 neuronas
-El tamaño de test es de 501
-El conjunto de entrenamiento 1002
-Resultados con h aleatoria
-(413.7672171338432, 427.98530944897396, 38.578762699498924, -0.405215165344763)
-Resultados con h ajustada
-(0.19361423644056652, 0.16653552920747788, 0.1502466320311231, 0.1600790908855873)
 
-"""
+# Mostramos resultados y los guardamos en le fichero de resultados
+#Mostramos en pantalla resultados 
+DF_NOMBRES = DataFrame(
+        Método = dfNombre, 
+) 
+# Añadimos los tiempos
+DF_TIEMPOS = hcat(
+        DF_NOMBRES,
+        DataFrame(dfTiempo, ["Tiempo $(i)" for i in 1:NUMERO_EJECUCIONES])
+)
+# Añadimos error en entrenamiento
+DF_ERROR_ENTRENAMIENTO = hcat(
+        DF_NOMBRES,
+        DataFrame(dfErrorEntrenamiento, ["Error entrenamiento $(i)" for i in 1:NUMERO_EJECUCIONES])
+)
+
+DF_ERROR_TEST = hcat(
+                DF_NOMBRES, 
+                DataFrame(dfErrorTest, ["Error test $(i)" for i in 1:NUMERO_EJECUCIONES])
+)
+
+# Guardamos los datos en el directorio respectivo
+CSV.write(DIRECTORIO_RESULTADOS*"tiempos.csv", DF_TIEMPOS)
+CSV.write(DIRECTORIO_RESULTADOS*"error_entrenamiento.csv", DF_ERROR_ENTRENAMIENTO)
+CSV.write(DIRECTORIO_RESULTADOS*"error_test.csv", DF_ERROR_TEST)
+
+# Test de los signos de Wilcoxon
+
+resultados = "\n
+        $(SignedRankTest(map(x-> x[1]-x[2],dfTiempo)))
+        "
+println(resultados)
+write(DIRECTORIO_RESULTADOS*"TEST_WILCOXON", resultados)
+
+
+
 
 
 
