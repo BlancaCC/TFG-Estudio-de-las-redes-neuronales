@@ -28,7 +28,7 @@ El experimento costa de los siguientes pasos:
 \item Dado un conjunto de datos de entrenamiento $\D$  se separará el conjunto en:
 \begin{itemize}
     \item $\D_i$ \textbf{Conjunto de 
-    datos de inicialización.} Debe de ser mayor que 
+    datos de entrenamiento e inicialización.} Debe de ser mayor que 
     $n$ y lo suficientemente grande para que el algoritmo diseñado funcione correctamente. 
 
     \item $\D_t$ \textbf{Conjunto de 
@@ -55,7 +55,7 @@ de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mat
 \end{itemize}
 
 % Paso 2: Evaluación del error
-\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation}se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Además puesto que puede darse el caso de quedar estancados en un mínimo local  o que oscile entorno a un mínimo (ver propiedades del gradiente descendente \ref{ch05:gradiente-descentente})
+\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation} se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Además puesto que puede darse el caso de quedar estancados en un mínimo local  o que oscile entorno a un mínimo si el $\eta$ no es lo suficientemente pequeño (ver propiedades del gradiente descendente \ref{ch05:gradiente-descentente})
 superior al error encontrado con el algoritmo de inicialización de pesos, se ha añadido también como criterio de parada el que error se estanque o empeore durante 5 iteraciones consecutivas. 
 Se medirá el tiempo que necesita hasta su fin $t_b$ y el error en entrenamiento y test. 
 
@@ -135,4 +135,14 @@ Cabe destacar que para este algoritmo es necesario la derivada de las funciones 
 Deberá de implementarse una función que realice el 
 experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 
-% Se ha eliminado el contenido de aquí anterior porque eran notas en sucio
+\subsection{Resultados obtenidos}
+
+Concretamente de el experimentos se ha realizado con $\frac{3}{4}|\mathcal{D}|$ de datos de entrenamiento 
+y el resto de test, se ha repetido además $15$ veces. 
+
+Durante cada iteración los datos del conjunto han sido desordenados. 
+
+Los resultados obtenidos han sido los siguientes: 
+
+Y donde el test de los signos de Wilcoxon ha rechazado la hipótesis nula con un $95\%$ de confianza. 
+

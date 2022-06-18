@@ -4,7 +4,9 @@
 using PlotlyJS
 using CSV
 using DataFrames
-limit = 15
+limit = 16
+path = "Memoria/img/7-algoritmo-inicializar-pesos/experimento/"
+
 # Imprimimos  tabla bigotes tiempo
 df = DataFrame(CSV.File("Experimentos/inicializacion-pesos-red-neuronal/resultados/2_air_self_noise/tiempos.csv"))
 table_df = Tables.matrix(df)
@@ -15,7 +17,8 @@ traces = [
     )
     for i in 1:2
 ]
-plot(traces, Layout(yaxis_title="Tiempos en segundos", boxmode="group"))
+ref = plot(traces, Layout(yaxis_title="Tiempos en segundos", boxmode="group"))
+savefig(ref, path*"grafico-bigotes-tiempo.png")
 
 
 
@@ -31,7 +34,6 @@ traces = [
     for i in 1:2
 ]
 ref = plot(traces, Layout(yaxis_title="Error cuadrático medio", boxmode="group"))
-path = "Memoria/img/7-algoritmo-inicializar-pesos/experimento/"
 savefig(ref, path*"grafico-bigotes-error_entrenamiento.png")
 
 

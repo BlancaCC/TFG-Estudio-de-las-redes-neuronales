@@ -5,8 +5,8 @@
 Population details:
     parameter of interest:   Location parameter (pseudomedian)
     value under h_0:         0
-    point estimate:          -5.1562
-    95% confidence interval: (-5.179, -5.134)
+    point estimate:          -5.07785
+    95% confidence interval: (-5.504, -5.044)
 
 Test summary:
     outcome with 95% confidence: reject h_0
