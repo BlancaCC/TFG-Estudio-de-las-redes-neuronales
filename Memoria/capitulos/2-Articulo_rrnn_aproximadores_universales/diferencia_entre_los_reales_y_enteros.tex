@@ -47,7 +47,7 @@ Comenzaremos viendo que, en efecto, una red neuronal con parámetros en el cuerp
         La red neuronal $h^r$ está determinada por un conjunto finito
         de parámetros supongamos que hay $q$ y que están determinados por un índice del conjunto $\Lambda$. 
 
-        Sea $\alpha^0_i \in R$, el primer índice $h^r$ definimos la red neuronal $h^1$ con coeficientes  $\alpha^1_i$ con $i\in \Lambda$
+        Sea $\alpha^0_i \in \R$, el primer índice $h^r$ definimos la red neuronal $h^1$ con coeficientes  $\alpha^1_i$ con $i\in \Lambda$
         de tal forma que los parámetros que la determinan vienen dados por
         \begin{equation*}
             \alpha^1_i = \alpha^0_i 
@@ -94,6 +94,6 @@ en los racionales y el
 de las redes neuronales con entradas en los enteros. 
  
 Todas estas pesquisas tienen su interés ya que por las arquitecturas 
-actuales, los números flotantes (racionales con un límite de decimales) se calculan en las GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se comenta se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
+actuales, los números flotantes (racionales con un límite de decimales y parte en entera) se calculan en las GPUs, mientras que los enteros en las CPUs, siendo más rápidas la segundas\footnote{En el blog del investigador Long Zhou, se da una visión favorable sobre las CPUs y cómo en la actualidad se comenten errores a la hora de comparar las GPUs y CPUs, dejo link a la publicación. Consultada por última vez el 23 de mayo
 del 2022, URL: \url{https://long-zhou.github.io/2013/02/12/CPU-GPU-comparison.html}} \cite{CPU-vs-GPUS}. 
 
