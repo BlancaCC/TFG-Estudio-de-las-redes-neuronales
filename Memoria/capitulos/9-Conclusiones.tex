@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conclusiones del trabajo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Conclusiones} 
+
+Era nuestro objetivo con este trabajo esclarecer 
+el motivo y funcionamiento de las redes neuronales y 
+a partir de ahí optimizar algún aspecto de ellas. 
+
+El sustento teórico queda expuesto en los capítulos 
+\ref{ch00:methodology}, \ref{chapter:Introduction-neuronal-networks},
+\ref{ch03:teoria-aproximar}, \ref{chapter4:redes-neuronales-aproximador-universal}
+y \ref{chapter:construir-redes-neuronales}. 
+Hemos contribuido al estado del arte actual con los 
+resultados: 
+
+\begin{itemize}
+    \item La propuesta del uso de modelo de red neuronal (definición \ref{img:grafo-red-neuronal-una-capa-oculta}).
+    \item La demostración teórica del uso de distintas funciones de activación en 
+    el modelo seleccionado (corolario \ref{cor:se-generaliza-G-a-una-familia}). 
+    \item La demostración de la densidad del espacio de las redes neuronales racionales en el espacio de las funciones medibles (teorema \ref{teo:densidad-racional}).
+    \item Resultados sobre la irrelevancia del sesgo en las redes neuronales (sección \ref{consideration-irrelevancia-sesgo}).
+    \item Una alternativa al uso de funciones de clasificación (sección \ref{ch05:dominio-discreto}).
+    \item Un criterio de selección de funciones de activación (capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}).
+    \item Resultados teóricos sobre la equivalencia de funciones de activación (teorema \ref{teo:equivalencia-grafos-activation-function} y 
+    corolario \ref{corolario:afine-activation-function}).
+    \item Un algoritmo de inicialización de los pesos de una red neuronal que acelera los métodos de aprendizaje iterativos (capítulo \ref{section:inicializar_pesos}).
+    \item La biblioteca \textit{OptimizedNeuralNetwork.jl} que aporta un modelo y métodos optimizados para el uso de redes neuronales. 
+\end{itemize}
+
+y proponemos como posibles vías de investigación en proyectos futuros: 
+
+\begin{itemize}
+    \item Una revisión de la selección genética de funciones de activación con nuestro modelo (capítulo \ref{ch08:genetic-selection}).
+    \item Una investigación sobre la repercusión en la convergencia de la delimitación de la precisión en los coeficientes de las redes neuronales (sección \ref{ch04:capacidad-calculo}). 
+\end{itemize}
+
+

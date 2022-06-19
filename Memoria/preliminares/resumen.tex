@@ -22,53 +22,20 @@ una revisión y
  purga de cualquier artificio existente sobre 
  redes neuronales carente de fundamento matemático. 
 
-Como resultado de ello se ha creado e implementado 
+Como resultado de ello se ha propuesto e implementado 
 un nuevo modelo de red neuronal así como sus 
 métodos de aprendizaje y evaluación. 
-Además se ha propuesto un criterio de selección de 
+Además se ha dado un criterio de selección de 
 funciones de activación y un algoritmo de 
-inicialización de pesos que mejora los ya existentes. Todos los resultados han conducido a la creación de 
-la biblioteca \textit{OptimizedNeuralNetwork.jl}, que contiene la implementación de nuestros modelos y métodos optimizados. 
+inicialización de pesos que mejora los ya existentes. 
+Todos los resultados han conducido a la creación de 
+la biblioteca \textit{OptimizedNeuralNetwork.jl}, 
+que contiene la implementación de nuestros modelos y
+ métodos optimizados. 
 
 
 La estructura de la memoria es la siguiente: 
 
-\begin{itemize}
-    \item \textbf{Capítulo \ref{ch00:methodology}: Descripción de la metodología seguida.} Se ha organizado el proyecto de acorde a una filosofía de desarrollo ágil, basada en la metodología de personas, historias de usuario, hitos y test. Tal método ha conducido e hilado desde el comienzo tanto el desarrollo teórico como el técnico a la par que  salvaguardaba la corrección de cada paso. 
-    \item \textbf{Capítulo \ref{chapter:Introduction-neuronal-networks}: Descripción del problema de aprendizaje.} Se introduce las características y tipo de problemas del aprendizaje automático. Además se clarifica cuáles tratan de resolver las redes neuronales. 
-    \item \textbf{Capítulo \ref{ch03:teoria-aproximar}: Teoría de la aproximación.} Se muestran los problemas y virtudes que presenta un enfoque clásico  de teoría de la aproximación frente a problemas de aprendizaje. En pos de solventar tales impedimentos,  
-    se sitúa esta teoría como el germen de 
-    las redes neuronales.
-    Concretamente se desarrolla la teoría necesaria hasta demostrar el teorema de \textit{Stone-Weierstrass} y se explicarán las trabas que presentan este tipo de aproximaciones. 
-    \item \textbf{Capítulo \ref{chapter4:redes-neuronales-aproximador-universal}: Introducción de las redes neuronales como aproximadores universales.} Se presenta nuestra propuesta de modelo de red neuronal y se compara con los modelos actuales. Se demuestra que nuestra definición actúa como un aproximador universal a cualquier función medible basándonos en el artículo 
-    \textit{Multilayer Feedforward Networks are Universal Approximators} (\cite{HORNIK1989359}). Además se demuestran unas serie de resultados sobre cómo es la convergencia en problema de regresión y clasificación. Finalemnte se plantea si en la práctica las redes neuronales 
-    verdaderamente son aproximadores universales.
-    \item \textbf{Capítulo \ref{chapter:construir-redes-neuronales}: Diseño y construcción de las redes neuronales.} Se describe la implementación de las redes neuronales; esto nos permitirá una comparación  
-    más profunda de nuestro modelo frente a los usuales y que nos servirá como justificación del modelo obtenido. Producto de ello son dos resultados originales sobre el sesgo y dominio de la imagen. 
-    Una vez determinado el modelo concreto se
-    han diseñado un algoritmo de aprendizaje, basado en \textit{Backpropagation} y otro de evaluación de redes neuronales. Además se han comparado los resultados de nuestro modelado con los utilizado usualmente. 
-    \item \textbf{Capítulo \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratización de las funciones de activación.} Se pretende en este capítulo determinar qué funciones de activación son más convenientes que otras, es decir, con cuál se podría tener un menor coste computacional. 
-    Para esto, no se ha tenido sólo en cuenta el coste computacional de evaluar cada función; puesto que la imagen de una función de activación repercute 
-    en el número de neuronas necesarias para estar por debajo de cierto error, se ha establecido una serie de teoremas propio que determina qué funciones de activación tendrán los mismos resultados.  Gracias a tales resultados se han 
-    podido agrupar a las funciones de activación y 
-    para cada clase se ha tratado de determinar por medio del test de hipótesis de Wilcoxon cuál es la más rápida, resultando con esto que sin perder precisión se ha reducido el costo y tiempo en evaluación y entrenamiento de las redes neuronal. 
-    
-    \item \textbf{Capítulo \ref{section:inicializar_pesos}: Algoritmo de inicialización de pesos.} Se propone un algoritmo original de inicialización de los pesos de una red neuronal a 
-    partir de un subconjunto de datos de la muestra. Al ser la solución de partida mejor, con este método se pretende reducir el tiempo y coste de aprendizaje de técnicas iterativas, tales como \textit{Backpropagation}.  
-    
-    En este capítulo se muestran además los 
-    requisitos técnicos de la implementación de la biblioteca \textit{OptimizedNeuralNetwork.jl}, 
-    ya que para medir la bondad del algoritmo es 
-    necesario implementar todas las funcionalidades al completo. Además se han añadido en estas 
-    secciones ejemplo de uso de la biblioteca. 
-    \item \textbf{Capítulo \ref{ch08:genetic-selection}: Selección genética de las funciones de activación.} El uso de distintas funciones de activación presenta un 
-    potencial en cuanto a reducir el error fijado un cierto número de neuronas, sin embargo esto 
-    aumenta el espacio de búsqueda y por tanto la complejidad. Es aquí donde nuestro modelo 
-    propuesto de red neuronal palía la situación, 
-    ya que frente a los modelos convencionales, el nuestro es invariante a la posición de las 
-    funciones de activación de las neuronas, lo cual
-     reduce el espacio de búsqueda.  
-\end{itemize}
 
 \paragraph{PALABRAS CLAVE:}
 \begin{itemize*}[label=,itemsep=1em,itemjoin=\hspace{1em}]
@@ -76,6 +43,7 @@ La estructura de la memoria es la siguiente:
   \item optimización 
   \item funciones de activación 
   \item inicialización de pesos
+  \item Biblioteca de aprendizaje automático
 \end{itemize*}
 
 \endinput
