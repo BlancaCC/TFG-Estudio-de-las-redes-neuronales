@@ -175,9 +175,7 @@ En un principio será más fácil demostrar que con
 funciones de esta clase seremos capaz de aproximar cualquier función continua.
 De esta manera este conjunto actuará de nexo de unión entre las funciones continuas y las redes neuronales 
 facilitando las demostraciones. De ahora en adelante nos
- referiremos a este conjunto como al \textbf{de anillo de aproximación} (como curiosidad, el nombre proviene a que
-  tiene estructura de anillo y que se utilizará para 
-  aproximar funciones continuas).
+ referiremos a este conjunto como al \textbf{de anillo de aproximación}.
 }
 \begin{definicion} [Anillo de aproximación de redes neuronales]\label{def:articulo_abstracción_rrnn}
     
@@ -213,7 +211,8 @@ facilitando las demostraciones. De ahora en adelante nos
     predecir la naturaleza de datos nuevos. Es por ello necesario
     suponer que estos datos están regidos por alguna regla, la cual 
     puede ser todo lo extraña posible pero que toma valores 
-    que pueden ser observables y cuantificables en la mayoría de los casos, estos comportamientos son formalizados
+    que pueden ser observables y cuantificables en la mayoría de los casos, 
+    estos comportamientos son formalizados
      matemáticamente con \textbf{funciones medibles}.
 }
 \setlength{\marginparwidth}{\bigMarginSize}
@@ -250,7 +249,6 @@ razonamientos topológicos.
 
 \begin{definicion} [Subconjunto denso]
     % Nota margen de denso
-    \reversemarginpar 
     \marginpar{\maginLetterSize
         \iconoAclaraciones \textcolor{dark_green}{ 
             \textbf{Idea intuitiva conjunto denso.}
@@ -259,7 +257,6 @@ razonamientos topológicos.
         se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
         con la precisión que se desee}. 
     }
-    \normalmarginpar
 
     Dado un subconjunto $S$ de un espacio métrico $(X, \rho)$, se dice que $S$ es denso por la distancia $\rho$
     en subconjunto $T$ si para todo $\varepsilon$ positivo y cualquier $t \in T$ existe un $s \in S$ tal 
@@ -269,6 +266,7 @@ razonamientos topológicos.
 Un ejemplo habitual es en el espacio métrico $(\R, |\cdot|)$ con $|\cdot|$ el valor absoluto, el subconjunto 
 $T = \R$ y $S$ los números irracionales, $S = \R \setminus \Q$. 
 
+\newpage 
 
 \begin{definicion} 
     Un subconjunto $S$ de $\fC$ se dice que es \textbf{uniformemente denso para compactos} en  $\fC$

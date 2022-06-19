@@ -25,7 +25,7 @@
   Se prueba en el teorema \ref{teo:2_2_denso_función_continua}
   que con una \textbf{versión más general de una red neuronal} (perteneciente a  $\pmcg$)  \textbf{se es capaz de aproximar cualquier función medible}.
   
-  La idea de la demostración es sencilla, sabemos aproximar una función medible con una continua y a su vez una continua con una red neuronal generalizada, luego sabemos aproximar una función medible con una red neuronal generalizada.
+  La idea de la demostración es sencilla, sabemos aproximar una función medible con una continua y a su vez una continua con una del \textit{anillo de aproximación de redes neuronales}, luego sabemos aproximar una función medible con una \textit{anillo de aproximación de redes neuronales}.
   }
   % Fin de la nota
   
@@ -298,7 +298,7 @@ de convergencia a funciones.
         < 
         \varepsilon.
     \end{equation}
-
+    %
     Por el lema \ref{lema:a_2_paso_previo_denso} existe una función 
     $H_{\delta}(\cdot) = \sum_{t=1}^T \beta_t \psi(A_t(\cdot))$
     cumpliendo que 
@@ -306,7 +306,6 @@ de convergencia a funciones.
     \begin{equation}
         \sup_{\lambda \in \R} |F(\lambda) - H_{\delta}(\lambda) | < \delta.
     \end{equation}
-
     Usando \refeq{eq:teorema_2_3__1} para 
     $a_k = F(A_k(x))$ y $b_k = H_\delta(A_k(x))$
     obtenemos
@@ -320,7 +319,7 @@ de convergencia a funciones.
         < 
         \varepsilon.
     \end{equation} 
-    
+    %
     Puesto que $H_\delta$ es de la forma  $\sum_{t=1}^T \beta_t \psi(A_t(\cdot))$ 
     y porque $A_t(A_k(\cdot)) \in \afines$ se tiene por la desigualdad \refeq{eq:teorema2_3__3} que 
     $\prod ^l_{k=1} H_\delta(A_k(\cdot)) \in \rrnng.$
@@ -544,10 +543,9 @@ Podemos ya definir la función que buscamos:
 
     Definimos  
     \begin{equation}
-        B = \max \{ |\beta_j| :  j \in \{1, ..., q \}\}
+        B = \max \{ |\beta_j| :  j \in \{1, ..., q \}\},
     \end{equation}
-
-    En virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
+    en virtud del lema \ref{lema:A_3_función_activación_continua_con_arbitaria}
     podemos encontrar
     $\cos_{M, \frac{\varepsilon}{q B}} \in \sum(\psi)$ cumpliendo que
     \begin{equation}
@@ -700,7 +698,7 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
     Para cualquier función de activación $\psi$, $d \in \N$ y
     medida de probabilidad $\mu$ en $(\R^d, B^d)$, 
     se tiene que $\rrnn$ es uniformemente denso para compactos
-    en $\fC$ y denso en $\fM$ para a la distancia $\dist$. 
+    en $\fC$ y denso en $\fM$ para la distancia $\dist$. 
 \end{teorema}
 
  % Nota idea intuitiva  lema de que C es denso en M
@@ -729,9 +727,9 @@ Estamos ya en condiciones de probar el resultado clave del trabajo.
 \begin{proof}
 En el lema anterior 
 acabamos de ver que $\rrnn$ es uniformemente denso en compactos en $\fC$
-y gracias al lema \ref{lema:2_2_convergencia_uniforme_en_compactos} 
-(Si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
-uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$.)
+y gracias al lema \ref{lema:2_2_convergencia_uniforme_en_compactos} que recordemos que afirma que 
+si $\{f_n\}$ es una sucesión de funciones en $\fM$ que converge
+uniformemente en un compacto a $f$ entonces $\rho_{\mu}(f_n, f) \longrightarrow 0$;
 esto implica 
 que $\rrnn$ sea $\dist$-denso en $\fC$. 
 

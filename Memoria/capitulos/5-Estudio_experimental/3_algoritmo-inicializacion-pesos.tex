@@ -56,7 +56,8 @@ de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mat
 
 % Paso 2: Evaluación del error
 \item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation} se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Además puesto que puede darse el caso de quedar estancados en un mínimo local  o que oscile entorno a un mínimo si el $\eta$ no es lo suficientemente pequeño (ver propiedades del gradiente descendente \ref{ch05:gradiente-descentente})
-superior al error encontrado con el algoritmo de inicialización de pesos, se ha añadido también como criterio de parada el que error se estanque o empeore durante 5 iteraciones consecutivas. 
+superior al error encontrado con el algoritmo de inicialización de pesos, se ha añadido también como criterio de parada el que error se estanque o empeore durante 5 \footnote{El valor de 5 iteraciones consecutivas es una heurística observada en ejecuciones anteriores y dependiente de $\eta$ y del problema.
+Pude observar la traza de de ejecución si ejecuta el experimento.} iteraciones consecutivas. 
 Se medirá el tiempo que necesita hasta su fin $t_b$ y el error en entrenamiento y test. 
 
 Los tiempos $t_i$ y $t_b$ serán los que compararemos. 
@@ -189,8 +190,8 @@ El gráfico de caja bigote con los tiempo es el siguiente:
         Aleatorio y Backpropagation & 0,582 & 0,570 & 0,570 & 0,575 & 0,564 & 0,567 & 0,564 & 0,567 & 0,572 & 0,570 & 0,561 & 0,561 & 0,574 & 0,569 & 0,563 \\ \hline
     \end{tabular}
     }
-    \label{fig07:error-entrenamiento}
     \caption{Error mínimo cuadrático obtenido en entrenamiento tras acabar la ejecución}
+    \label{fig07:error-entrenamiento}
 \end{table}
 
 Tal y como se planteó el experimento la parada del algoritmo de \textit{Backpropagation} 
@@ -199,7 +200,7 @@ algoritmo de inicialización o porque ha estancado su valor.
 Sin embargo, al observarse la distribución de los errores en el 
 gráfico \ref{img07:error-entrenamiento} y la tabla \ref{fig07:error-entrenamiento} puede observarse que 
 el algoritmo de \textit{Backpropagation} se detuvo al alcanzar un 
-mínimo local. 
+mínimo local en todos los casos, ya que todos están por encima del error de nuestro algoritmo de inicialización. 
 
 \begin{figure}[H]
     \centering

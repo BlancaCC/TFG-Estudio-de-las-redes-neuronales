@@ -556,7 +556,7 @@ Por lo que los algoritmos que proponemos a continuación se basarán en almacena
 
 \subsection{Algoritmos de actualización de pesos de una neurona}
 
-Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neural $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
+Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neuronal $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
 
 \begin{align}\label{eq:representation red neuronal}
     A &= (\alpha_{i j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
@@ -571,7 +571,7 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
     \hspace*{\algorithmicindent} \textbf{Input}:$h$ red neuronal  y conjunto de entrenamiento \\
     \hspace*{\algorithmicindent} \textbf{Output:} $h$ actualizada de acorde al algoritmo de gradiente descendente. 
     \begin{algorithmic}[1]
-        \STATE Debe de calcularse el previamente $\nabla E(h)$, es decir cada una de las derivadas parciales, esto se hará en el algoritmo \ref{algoritmo:calculo-gradiente}.
+        \STATE Debe de calcularse previamente $\nabla E(h)$, es decir cada una de las derivadas parciales, esto se hará en el algoritmo \ref{algoritmo:calculo-gradiente}.
         % actualizamos los pesos de a 
         \STATE Actualización de los pesos de $A$ \\  
         \For{

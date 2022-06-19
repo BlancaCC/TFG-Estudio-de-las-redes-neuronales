@@ -12,7 +12,7 @@ introducida en \ref{definition:redes_neuronales_una_capa_oculta}
 estaremos en condiciones 
 se comparará y estudiará la relación teórica 
 entre nuestra propuesta de modelo y los modelos usuales de redes neuronales. Además se justificará, 
-la selección de nuestro modelo en las sección \ref{ch05:justifica-modelo}.
+la selección de nuestro modelo en la sección \ref{ch05:justifica-modelo}.
 
 Explicaremos también una construcción técnica junto con un
 análisis del costo necesario y beneficio obtenido del modelo (ver sección \ref{ch05:construction-evaluation-nnnn});
@@ -55,7 +55,7 @@ Ante esta definición el número de parámetros a ajustar son:
     \item De la forma $\beta_{i k}$: $n s$. 
     \item De la forma $w_{i j}$: $n(d+1)$.
 \end{itemize}
-Lo que hace un total de $n(s+d+1)$ parámetros, done $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. 
+Lo que hace un total de $n(s+d+1)$ parámetros, donde $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. 
 \textbf{Por lo general $d$ y $s$ son fijos ya que se suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.}
 
 Analizaremos más a fondo su componentes. 
@@ -104,9 +104,9 @@ valores fijados por el diseñador de la red ya que a priori no tenemos otra info
 \subsection{Criterio de selección de funciones de activación}
 
 Los aspectos a tener en cuenta a la hora de seleccionar una función 
-de activación frente a otra de una red neuronal serían los siguientes:
+de activación frente a otra serían los siguientes:
 \begin{enumerate}
-    \item Espacio de memoria.
+    \item Espacio de memoria que ocupe.
     \item Coste computacional.
     \item Efectividad en cuanto a reducir el error de aproximación.
 \end{enumerate}
@@ -152,7 +152,7 @@ usuales, a la par que probarán la relación que hay entre uno y otro.
 Con el fin de motivarlos tengamos presente la definición de los modelos usuales presentada en 
 \ref{subsection:diferencia-otras-definiciones-RRNN} 
 y la demostración de que el modelo planteado  
-es un aproximados universal del teorema \ref{teo:MFNAUA}. 
+es un aproximador universal del teorema \ref{teo:MFNAUA}. 
 
 Si bien el teorema de convergencia universal
 nos asegura que los elementos adicionales de los 
@@ -255,11 +255,11 @@ Está claro por la relación
  \begin{equation}
     \mathcal{E}_{\mathcal{D}}(\mathcal{H}^+(X,Y))
     \leq
-    \mathcal{E}_{\mathcal{D}}(\mathcal{H}(X,Y))
+    \mathcal{E}_{\mathcal{D}}(\mathcal{H}(X,Y)).
  \end{equation}
 
- La clave ahora reside en si se satisface la desigualdad opuesta
-Es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
+ La clave ahora reside en si se satisface la desigualdad opuesta,
+es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
 
 Esto no es posible y para darse cuenta basta con considerar el caso de una neurona, con $G(x)$ su función de activación y $k \in \R^+$ definimos la función ideal como $f(x) = G(x) +k$. 
 Tomando tan solo dos puntos convenientemente seleccionados (por ejemplo $M$ y $-M$ tal que $G(-M) = 0$ y $G(M) = 1$) aprecia que $H_1(\R, \R)$ no puede aproximar $f$ y sin embargo $f \in H^+_1(\R, \R)$.
@@ -310,7 +310,7 @@ La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuron
 $h \in \rrnnmc$ tal que $h$ aproxime a $\theta^{-1} \circ f$.
 
 Lo cual exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
-
+\newpage
 \begin{aportacionOriginal} % aportación original salida discreta
     
 Es por ello que en nuestra aproximación descartamos este modo de proceder y proponemos el siguiente: 
@@ -439,9 +439,9 @@ Sin embargo de acorde a nuestro modelo definido en \ref{definition:redes_neurona
     A \in M_{n \times d}(\R), 
     S\in M_{n \times 1}(\R) 
     \text{ y }
-    B \in M_{s \times n}(\R).
+    B \in M_{s \times n}(\R),
 \end{equation}
-y con esta representación la evaluación sería
+con esta representación la evaluación sería
 
 \begin{equation}
     h(x) =  B \cdot
@@ -452,7 +452,7 @@ y con esta representación la evaluación sería
             + S
         \right),
 \end{equation}
-que tiene un coste computacional de 
+que tiene un coste computacional que mostramos en la siguiente tabla: 
 \begin{table}[h]
     \begin{center}
     \begin{tabular}{| c | c |}
@@ -469,7 +469,7 @@ que tiene un coste computacional de
     \end{center}
 \end{table}
 
-Que como vemos ha supuesto una mejora de 
+Que como vemos ha supuesto una mejora de:
 
 \begin{table}[h]
     \centering
@@ -607,6 +607,7 @@ Finalmente las respectivas salidas de las capas ocultas serían
     \end{bmatrix}.
 \end{equation}
 
+\newpage
 \subsection{Implementación de una red neuronal y evaluación}
 \label{section:rrnn_implementation}
 A la hora de abstraer una red neuronal 

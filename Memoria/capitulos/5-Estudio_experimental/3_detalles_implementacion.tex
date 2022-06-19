@@ -11,7 +11,7 @@ Los requisitos mínimos necesarios para una implementación adecuada son los sig
     \item Implementación del algoritmo. 
 \end{itemize}
 
-\subsection{Implementación de redes neuronal}
+\subsection{Implementación de redes neuronales}
 
 El modelo  a implementar es el presentado en el algoritmo \ref{algoritmo:estructura-de-una-red-neuronal}. En virtud del \textit{composite type} de Julia \footnotetext{ Véase la \href{https://docs.julialang.org/en/v1/manual/types/}{documentación oficial}} la forma más simple y eficiente de 
 declarar una red neuronal es como un nuevo tipo de dato: \textit{red neuronal} cuyos atributos sean las matrices que definen el modelo. 
@@ -37,6 +37,10 @@ ciertas matrices:
 \end{itemize}
 
 \subsubsection{Ejemplo de uso}
+Como ya comentamos puede encontrar un ejemplo completo de uso 
+en el directorio y fichero \texttt{Memoria/Ejemplo-uso-biblioteca.ipynb} de nuestro repositorio;
+sin embargo, para mejorar la comprensión de la sección vamos a mostrar 
+algunos ejemplo breves aquí.
 
 Para construir una \textbf{red neuronal inicializada 
 aleatoriamente} a partir de nuestra biblioteca
@@ -141,7 +145,7 @@ tipo de dato \textit{red neuronal}.  Puede encontrar la implementación en \href
 De acorde al modelo \ref{definition:redes_neuronales_una_capa_oculta} 
 tomando como función de activación la identidad 
 (aunque no sería una función de activación como tal)
-se podría construir fácilmente 
+se podrían construir fácilmente 
 redes neuronales que: 
 \begin{itemize}
     \item Sean la función identidad. 
@@ -156,7 +160,7 @@ cual debiera de ser su salida con el algoritmo de
     \item Redes neuronales con $S$ no nulo. 
     \item Combinaciones de tipos anteriores. 
 \end{itemize}
-Faltaría comprobar el caso en que $A$ y $B$ no fuera diagonales, a sabiendas de que para los casos anteriores su funcionamiento es correcto, basta con comprobarlo con un ejemplo aleatorio. 
+Faltaría comprobar el caso en que $A$ y $B$ no fueran diagonales, a sabiendas de que para los casos anteriores su funcionamiento es correcto, basta con comprobarlo con un ejemplo aleatorio. 
 
 Como la evaluación es correcta falta por cerciorarse 
 de que se comporta como es debido con las funciones de activación definidas. 
@@ -202,7 +206,7 @@ El resultado de las líneas anteriores sería:
 \subsection{Implementación del algoritmo de inicialización de pesos}
 
 Se ha realizado la implementación de acorde al algoritmo descrito 
-en \ref{algo:algoritmo-iniciar-pesos}. Para un desarrollo optimizado se han tenido en cuenta dos 
+en \ref{algo:algoritmo-iniciar-pesos}. Para un desarrollo optimizado se han tenido en cuenta tres 
 factores esenciales: 
 \begin{itemize}
     \item Adaptación de los tipos de datos y \textit{ dispatch methods} de Julia en función 
@@ -226,8 +230,8 @@ la sección \ref{ch06:sistema-timpos-julia} con
  ha permitido, ya que en vez de realizar 
  el diseño directo recogido en \ref{algo:algoritmo-iniciar-pesos} puede uno consultar 
  el caso primero de la demostración  \ref{teorema:2_5_entrenamiento_redes_neuronales}
- y darse cuenta que la existencia del vector $p$ 
- es una argucia para conseguir un orden en los vectores de entrada. Como $\R$ ya es un cuerpo ordenado se puede prescindir tanto de $p$ como de toda la estructura de datos que ello conlleva. 
+ y darse cuenta de que la existencia del vector $p$ 
+ es una argucia para conseguir un orden en los vectores de entrada. Como $\R$ ya es un cuerpo ordenado, se puede prescindir tanto de $p$ como de toda la estructura de datos que ello conlleva. 
  Esta cuestión guarda relación con el apartado siguiente. 
 
 \subsubsection{Selección de la estructuras de datos adecuada}
@@ -310,7 +314,7 @@ ya que tiene los siguientes beneficios:
 Se ha seleccionado cuidadosamente el tipo de las variables auxiliares.
 \begin{itemize}
     \item Tipo de dato de $p$: Se ha seleccionado como un vector aleatorio de \textit{Float32}, mientras que el resto de operaciones vectoriales son de \textit{Float64}, el motivo de esto es que $p$ se operará como \textit{Float64} con una precisión mayor al no tener tantas cifras decimales. 
-    \item Para otras variables auxiliares que sabíamos que iban a ser pequeñas se ha especificado que lo iba se con tipos como \textit{Int8}.
+    \item Para otras variables auxiliares que sabemos que van a ser pequeñas se han especificado tipos como \textit{Int8}.
 \end{itemize}
 
 \subsection{Diseño de los tests} 
