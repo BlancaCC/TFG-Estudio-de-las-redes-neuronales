@@ -9,44 +9,45 @@
 \chapter*{Summary}\label{ch:summary}
 %\addcontentsline{toc}{chapter}{Summar}
 
-Nowadays experimental research in Neural Networks are more advanced than theoretical
+Nowadays experimental research in Neural Networks is more advanced than theoretical
 results. 
-From this we want to establish a solid mathematical theory from which to optimize the current neural network models. 
+From this we aim to establish a solid mathematical theory so as to optimize the current neural network models. 
 
 
-As a result of our study we have proposed a new neural 
-network model and adapted and optimized already used 
+As a result of our study, we have proposed a novel neural 
+network model, and adapted and optimized
 evaluation and learning methods to it. 
 Moreover, we have discovered some theorems that prove the 
-equivalence among some activation functions and propose a new
- algorithm to initialize weights of neural networks. By the 
+equivalence among some activation functions, and hence propose a new
+ algorithm to initialize weights of neural networks. Thanks to the
 first result, we obtain a criteria to choose the most 
 suitable activation function to maintain accuracy and reduce computational cost.
- By the second one, we might accelerate 
+ Thanks to the second one, we might accelerate 
 learning convergence methods.
 
 In addition, the models, methods and algorithms have been 
-implemented in a Julia library calls \textit{OptimizedNeuralNetwork.jl}
+implemented in Julia, resulting in the \textit{OptimizedNeuralNetwork.jl} library. 
 
-All the theory development, designs, decisions and result are 
-written in this memory which have the following structure: 
+All the theory development, designs, decisions and results are 
+written in this memory, which have the following structure: 
 \begin{itemize}
- \item \textbf{Chapter \ref{ch00:methodology}: Description of the methodology followed.} We have organized our project according to an agile philosophy  based on personas methodology, users stories, milestones and tests. The method has conducted and linked mathematical and technical results and implementations, giving them coherence and validation methods. 
+ \item \textbf{Chapter \ref{ch00:methodology}: Description of the methodology followed.} We have organized our project according to an agile philosophy  based on personas methodology, users stories, milestones and tests. This method has conducted and linked mathematical and technical results and implementations, giving them coherence and validation methods. 
 
- \item \textbf{Chapter \ref{chapter:Introduction-neuronal-networks}: Description of the learning problem.} We defined the characteristic and type of machine learning problems. We would focus on supervised learning ones. 
+ \item \textbf{Chapter \ref{chapter:Introduction-neuronal-networks}: Description of the learning problem.} We defined the characteristic and type of machine learning problems. We will focus on supervised learning ones. 
 
- \item \textbf{Chapter \ref{ch03:teoria-aproximar}:  Approximation theory.} In order to establish a solid theory we would start our work trying to solve machine learning problems by traditional approximation methods.  The main result we obtained is the Stone Weierstrass’s theorem. As a conclusion of this chapter we would know the virtues and faults of traditional methods and understand the necessity of new methods and structures such as neural networks. 
+ \item \textbf{Chapter \ref{ch03:teoria-aproximar}:  Approximation theory.} In order to establish a solid theory, we will start our work trying to solve machine learning problems by traditional approximation methods.  The main result we prove is the Stone Weierstrass's theorem. As a conclusion of this chapter we will achieve knowledge of the virtues and faults of traditional methods and understanding of the necessity of new methods and structures such as neural networks. 
 
- \item \textbf{Chapter \ref{chapter4:redes-neuronales-aproximador-universal}: Neuronal networks are universal approximators.}  In this chapter we introduce our neural network model and compare it with the conventional ones. In order to show it is well defined we will prove the universal convergence of our model to any measurable function. In addition, we will give some results about how our model solves classification and regression problems meanwhile the number of its neurons rises. Finally, we will argue if all of those math results can actually resolve real problems, the idea behind the debate is the computability representation of real numbers. 
+ \item \textbf{Chapter \ref{chapter4:redes-neuronales-aproximador-universal}: Neural networks are universal approximators.}  In this chapter we introduce our neural network model and compare it with the conventional ones. In order to show it is well defined, we will prove the universal convergence of our model to any measurable function. In addition, we will give some results about how our model solves classification and regression problems as its number of neurons rises. Finally, we will argue if all of those math results can actually solve real life problems, the idea behind the debate is the computability representation of real numbers. 
 
- \item \textbf{Chapter  \ref{chapter:construir-redes-neuronales}: The design and implementation of neural networks.} We would describe carefully the design and implementation of our model of neural network, thanks to that we will obtain some mathematical results about bias and classification function that would be useful to compare our model with the conventional ones and justify 
-our selection. Moreover, we would explain, justify and design  learning and evaluation methods to our models. These methods are optimized versions of Forward Propagation and Backpropagation. 
+ \item \textbf{Chapter  \ref{chapter:construir-redes-neuronales}: The design and implementation of neural networks.} We will carefully  describe the design and implementation of our model of neural network, thanks to that we will obtain some mathematical results about bias and classification function, this would be useful to compare our model with the conventional ones and justify 
+our selection. Moreover, we would explain, justify and design  learning and evaluation methods to our model. These methods are optimized versions of Forward Propagation and Backpropagation. 
 
-\item \textbf{Chapter \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratization of activation functions.} We would explain at this chapter if there are better activation functions. In the direction of that we will prove two original results that show that there are families of activation functions that with the same conditions will resolve problems with the same accuracy. As a result, if we compare the computational cost of the members of those families and choose the faster one, we would obtain a method to optimize evaluation and learning of neural networks without loss accuracy. We have used the Wilcoxon signed-rank test as a statistical hypothesis test so as to give a rigorous study of our criteria. 
+\item \textbf{Chapter \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratization of activation functions.} We will explain at this chapter if there are better activation functions. In this direction we will prove two original results which show that there are families of activation functions that with the same conditions will resolve problems with the same accuracy. As a result, if we compare the computational cost of the members of those families and choose the faster one, we will obtain a method to optimize evaluation and learning of neural networks without loss accuracy. We have used the Wilcoxon signed-rank test as a statistical hypothesis test so as to give a rigorous study of our criteria. 
 
-\item \textbf{Chapter \ref{section:inicializar_pesos}: Weight initializing algorithm.} Since the Backpropagation and other iterative  methods are sensible to the initial value of a neural network, we will show an original method to initialize its weights from training data. This process not only will produce a better initial step but also has lower computational cost than Backpropagation.  To test the potential of this method we will use the Wilcoxon signed-rank test again and also, from the experiment requirement our OptimizedNeuralNetwork.jl library will be born. In this chapter we will also explain all the decisions done during the design and implementation of the library in other to be as efficient as we could.	
+\item \textbf{Chapter \ref{section:inicializar_pesos}: Weight initializing algorithm.} Since the Backpropagation and other iterative  methods are sensible to the initial value of a neural network, we will show an original method to initialize its weights from training data. This process not only will produce a better initial step but also has lower computational cost than Backpropagation.  To test the potential of this method we will use the Wilcoxon signed-rank test again and also, from the experiment requirement our OptimizedNeuralNetwork.jl library will be born. In this chapter we will also explain every decision done during the design and implementation of the library in other to be as efficient as we were able.	
 
-\item \textbf{Chapter \ref{ch08:genetic-selection}: Use of genetic algorithm in the selection of activation function.} In this chapter we will explain a future work. Given a fixed number of neurons, the selection of its activation function may be crucial to reduce the train and test error.  However, adding more free params to the search space increases its complexity and at same time the cost of finding a solution.  However, the result obtained at chapter 6 and a property of our neural model will reduce the space complexity.
+\item \textbf{Chapter \ref{ch08:genetic-selection}: Use of genetic algorithm in the selection of activation function.} In this chapter we will explain a future work. Given a fixed number of neurons, the selection of its activation function may be crucial to reduce the train and test error.  However, adding more free params to the search space increases its complexity and at same time the cost of finding a solution.  Nevertheless, the result obtained at chapter 6 and a property of our neural model will reduce the space complexity.
+\item \textbf{Chapter \ref{ch08:genetic-selection}: Conclusions}
 \end{itemize} 
 
 \paragraph{KEYWORDS:}
@@ -56,7 +57,6 @@ our selection. Moreover, we would explain, justify and design  learning and eval
   \item activation functions
   \item weights initializing
   \item machine learning library
-
 \end{itemize*}
 
 % Al finalizar el resumen en inglés, volvemos a seleccionar el idioma español para el documento

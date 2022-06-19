@@ -106,6 +106,7 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
 
 % Nota sobre que la funciones de activación 
 % son clave en el aprendizaje
+\setlength{\marginparwidth}{\smallMarginSize}
 \marginpar{\maginLetterSize
     \iconoClave  \textcolor{darkRed}{     
         \textbf{
@@ -117,9 +118,10 @@ Comenzaremos presentando definiciones básicas sobre redes neuronales.
 La idea intuitiva es que cada neurona 
 lo que se hace es \textit{colocar} por transformaciones afines la imagen de la función de activación en el espacio con el fin 
 de aproximar una región de la imagen de la función ideal. 
-Por lo tanto, la forma que ésta tenga será determinante en el número de neuronas necesarias para la convergencia. 
-    
+Por lo tanto, la forma que ésta tenga será determinante en el número de neuronas necesarias para la convergencia.    
 }
+\setlength{\marginparwidth}{\bigMarginSize}
+
 % Fin del tratamiento de funciones de activación 
 
 Para cualquier natural $d$ mayor que cero  denotaremos por $\afines$ al conjunto de todas 
@@ -134,9 +136,9 @@ que se multiplicarán con $x$ en la capa intermedia y $b$ el sesgo.
  \iconoAclaraciones \textcolor{dark_green}{     
  \textbf{Idea tras la definición de $\pmc$.}
  }
-Nótese que de acorde a nuestra definición  \ref{definition:redes_neuronales_una_capa_oculta}
-lo que se ha definido es la clase de las redes 
-neuronales de una capa oculta y salida de una dimensión.
+Nótese que de acorde a la definición  \ref{definition:redes_neuronales_una_capa_oculta}
+lo que se está refiriendo es la clase de las redes 
+neuronales de una capa oculta y \textbf{salida de una dimensión}.
 Donde cada sumando representa una neurona de la capa oculta.
 }
 %%% fin nota
@@ -156,8 +158,8 @@ Donde cada sumando representa una neurona de la capa oculta.
         \end{split}
     \end{equation}
 
-    Conforme avancen los resultado teórico veremos que $\pmc$ 
-    no depende de la función $G$ seleccionada, así pues tras enunciar tales resultados nos referiremos sin ambigüedad a tal conjunto como $\rrnn$.
+    Conforme avancen los resultados teóricos veremos que $\pmc$ 
+    no depende de la función $G$ seleccionada; así pues, tras enunciar tales resultados nos referiremos sin ambigüedad a tal conjunto como $\rrnn$.
 \end{definicion}
 
 
