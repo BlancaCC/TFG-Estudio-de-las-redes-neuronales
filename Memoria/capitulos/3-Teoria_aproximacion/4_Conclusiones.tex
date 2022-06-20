@@ -2,7 +2,7 @@
 % Conclusiones teoría de la aproximación 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones teoría de la aproximación} 
-
+\label{ch03:conclusiones-teoria-aproximacion}
 Acabamos de probar en \ref{ch:TeoremaStoneWeiertrass} que cualquier función 
 continua es aproximable uniformemente con polinomios en un compacto. 
 Sin embargo este enfoque tiene los siguientes problemas: 
@@ -27,9 +27,24 @@ Sin embargo este enfoque tiene los siguientes problemas:
     \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales}, 
     en el fichero \texttt{Lagrange.ipynb} que se encuentra  en el directorio de teoría de la aproximación de la memoria. } 
 
+    El problema que evidencia este caso patológico es el tratar de abarcar todo el dominio 
+con un mismo polinomio ¿y si en lugar de eso se hicieran aproximaciones 
+en una partición concreta del dominio? El resultado sería una función definida a trozos.   
+La cuestión es que esta aproximación sería difícil de implementar de manera eficiente;
+sin embargo, es el germen y el enfoque de las \textit{funciones de activación}. 
+
     \item Y otra cuestión, de corte físico o  filosófico ¿son todos los fenómenos observables continuos? 
     Sería extraño que así fueran, lo que evidencia la necesidad de formular una teoría más general. 
 \end{enumerate}
+
+
+De todas formas no abandonaremos del todo esta teoría; porque como ya veremos, el 
+teorema de Stone Weierstrass  \ref{ch:TeoremaStoneWeiertrass} jugará 
+un papel fundamental en el diseño y demostración de
+ las redes neuronales como aproximadores universales,
+ ya que nos brinda los requisitos mínimos que debe de tener un conjunto para ser capaz de aproximar cualquier función continua.
+
+%\newpage
 
 \begin{figure}[H]
     \centering
@@ -64,13 +79,3 @@ Sin embargo este enfoque tiene los siguientes problemas:
     \label{fig:aproximacion-lagrage}
 \end{figure}
 
-El problema que evidencia este caso patológico es el tratar de abarcar todo el dominio 
-con un mismo polinomio ¿y si en lugar de eso se hicieran aproximaciones 
-en una partición concreta del dominio? El resultado sería una función definida a trozos.   
-La cuestión es que esta aproximación sería difícil de implementar de manera eficiente;
-sin embargo, es el germen y el enfoque de las \textit{funciones de activación}. 
-
-De todas formas no abandonemos del todo esta teoría, porque como ya veremos el 
-teorema de Stone Weierstrass  \ref{ch:TeoremaStoneWeiertrass} jugará 
-un papel fundamental en la demostración 
-de que las redes neuronales son aproximadores universales.

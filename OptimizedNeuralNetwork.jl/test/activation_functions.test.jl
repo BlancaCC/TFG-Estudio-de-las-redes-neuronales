@@ -5,11 +5,9 @@
 ############################################################################
 using Test 
 
-include("./../src/activation_functions.jl")
-using .ActivationFunctions
-
 ######################### TEST  #########################
 @testset "Activations functions" begin
+    
     id(x)=x
     # Propiedas asintóticas funciones clásicas 
     @test @ThresholdFunction(id,0)(-1) ≈ -1

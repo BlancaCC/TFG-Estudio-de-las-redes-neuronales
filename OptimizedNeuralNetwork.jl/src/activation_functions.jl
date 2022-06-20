@@ -1,5 +1,6 @@
-module ActivationFunctions
-
+####################################################################################
+#               Constains activation functions and its derivatives 
+####################################################################################
 export CosineSquasher
 export HardTanh
 export @IndicatorFunction
@@ -8,8 +9,9 @@ export RampFunction
 export ReLU
 export Sigmoid
 export @ThresholdFunction
-
-
+# derivatives
+export derivativeRampFunction
+export derivativeReLU
 """
 Threshold(polynomial, t)
 Return a Threshold Function defined by `polynomial`and `t`.
@@ -52,6 +54,13 @@ Return Ramp  function a bounded ReLU function
 function RampFunction(x::Real)
     return min(1,max(0,x))
 end
+"""
+    derivateveRampFunction(x::Real)
+Return the derivate of the Ramp function
+"""
+function derivativeRampFunction(x::Real)
+    return (0<=x<=1) ? 1 : 0
+end
 
 """
     ReLU(x::Real)
@@ -59,6 +68,13 @@ ReLU function
 """
 function ReLU(x::Real)
     return max(0,x)
+end
+"""
+    derivativeReLU(x::Real)
+ReLU function 
+"""
+function derivativeReLU(x::Real)
+    return (x<0) ? 0 : 1
 end
 
 """
@@ -90,5 +106,5 @@ Leaky ReLU
 macro LReLU(a::Real)
     return :( f(x::Real)=(x<0) ? $(esc(a))*x : x )
 end 
-end #module end
+
 

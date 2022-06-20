@@ -1,7 +1,13 @@
 \section{Aprendizaje}  
+\label{ch05:aprendizaje}
 
 Se entiende por aprendizaje de una red neuronal como el proceso 
-por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $A,S$ y $B$.
+por el cual se determina o actualiza el valor sus parámetros, es decir, lo que en el ejemplo 
+\ref{img:Ejemplo-evaluación-red-neruonal-una-capa} consistía en las matrices $A,S$ y $B$.
+
+A lo largo de esta sección se deducirá un algoritmo de aprendizaje para nuestro modelo de red neuronal; concretamente éste método se basa en el algoritmo de \textit{backpropagation}, esto es, se implementa una  basada en descenso de gradiente y programación dinámica. 
+
+También se discute en la subsección \ref{ch05:alternativas-gradiente-descendente} porqué no se han utilizado otras alternativas al gradiente descendente.  
 
 %%%%%%%%%%%%%%%%%%% algoritmo de gradiente descendente 
 
@@ -9,7 +15,7 @@ por el cual se determina el valor sus pesos, es decir, lo que en el ejemplo \ref
 
 De acorde a los capítulos uno y dos del libro  \cite{learning-from-data-1-2},
  una vez concretado el problema y sus elementos 
-(\ref{sub:componentes_aprendizaje}) es necesario definir un método con 
+(véase la sección \ref{sub:componentes_aprendizaje}) es necesario definir un método con 
 el que aproximar la función ideal $f,$ para ello introduciremos el algoritmo de gradiente descendente. Se trata de un método iterativo de minimización de funciones diferenciables. 
 
 % Nota sobre el algoritmo de gradiente descendente 
@@ -63,7 +69,7 @@ Se define la sucesión
 
 Donde $h_n$ es una sucesión cuyos términos convergen a un mínimo local.
 \subsubsection*{Observaciones sobre el algoritmo }
-
+\label{ch05:gradiente-descentente}
 \begin{itemize}
     \item El algoritmo solo encuentra óptimos locales con una dependencia crucial del valor de inicio. 
     \item La convergencia no es segura en un tiempo finito y requiere de criterios de parada. 
@@ -550,7 +556,7 @@ Por lo que los algoritmos que proponemos a continuación se basarán en almacena
 
 \subsection{Algoritmos de actualización de pesos de una neurona}
 
-Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neural $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
+Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos una red neuronal $h \in \rrnnsmn$ de estructura $(A,S,B)$, como dos matrices de parámetros $\alpha$ y $\beta$ y de respectivos tamaños $d \times(n+1)$ y $s \times n$: 
 
 \begin{align}\label{eq:representation red neuronal}
     A &= (\alpha_{i j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
@@ -560,11 +566,12 @@ Nuestro objetivo es aplicar el algoritmo de gradiente descendente, codificaremos
  De esta manera $h$ modificará el valor de sus pesos de acorde al algoritmo de gradiente descendente \ref{eq:descenso-gradiente} que viene dado por
 
 \begin{algorithm}[H]
+    \label{algoritmo:gradiente-descendente}
     \caption{Algoritmo gradiente descendente conocidas las derivadas parciales.}
     \hspace*{\algorithmicindent} \textbf{Input}:$h$ red neuronal  y conjunto de entrenamiento \\
     \hspace*{\algorithmicindent} \textbf{Output:} $h$ actualizada de acorde al algoritmo de gradiente descendente. 
     \begin{algorithmic}[1]
-        \STATE Debe de calcularse el previamente $\nabla E(h)$, es decir cada una de las derivadas parciales, esto se hará en el algoritmo \ref{algoritmo:calculo-gradiente}.
+        \STATE Debe de calcularse previamente $\nabla E(h)$, es decir cada una de las derivadas parciales, esto se hará en el algoritmo \ref{algoritmo:calculo-gradiente}.
         % actualizamos los pesos de a 
         \STATE Actualización de los pesos de $A$ \\  
         \For{
@@ -705,7 +712,7 @@ El algoritmo que se muestra a continuación supone que la memoria no es un probl
                         \gets 
                         \text{parcial} \beta _{u v} 
                         + 
-                        \text{diferencia}_v  s_i$.
+                        \text{diferencia}_v  s_u$.
                     
                 }
             }

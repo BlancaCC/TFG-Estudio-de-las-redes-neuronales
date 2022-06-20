@@ -5,8 +5,40 @@
 %*******************************************************
 % Introducción al capítulo 
 
-A lo largo de este capítulo daremos una modelización propia de red  neuronal y la compararemos con otros modelos ofrecidos.
-Probaremos además que el modelo propuesto es un aproximador universal, es decir es capaz de aproximar cualquier función medible. 
+ El objetivo principal de este capítulo es dar una modelización propia de red  neuronal y demostrar que es un 
+ aproximador universal a cualquier función medible.  
+
+ El capítulo se organiza de la siguiente manera: 
+
+ \begin{enumerate}
+    \item \textbf{Introducción de nuestro modelo} de red neuronal $\rrnnmc$ y comparación con los usuales en la sección \ref{sec:redes-neuronales-intro-una-capa}. 
+    \item Demostración de que \textbf{las redes neuronales modelizadas son aproximadores universales}. 
+    \begin{itemize}
+        \item Para ello serán necesarias una serie de \textbf{definiciones previas} que se encuentran en la sección \ref{ch:articulo:sec:defincionesPrimeras},
+        las más relevantes son la de función de activación y los espacios $\pmcg$. 
+
+        \item El resultado de convergencia universal es producto de una sucesión de \textbf{conseguir aproximar espacios a partir de otros}, concretamente las relaciones \textit{es denso en} y dónde se demuestran son: 
+        \begin{align*}
+            \rrnn 
+                \xRightarrow[]{\ref{teo:2_4_rrnn_densas_M}}  
+            \rrnng 
+                \xRightarrow[]{\ref{teorema:2_3_uniformemente_denso_compactos}}
+            \pmcg
+                \xRightarrow[]{\ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}     
+            \fC    
+                \xRightarrow[]{\ref{teo:2_2_denso_función_continua}} 
+            \fM.
+        \end{align*}
+        Además se verá  
+        en la sección \ref{ch04:espacios-Lp} que $\rrnn$ es denso en $L_p(\R^d, \mu)$ lo que nos permitirá establecer propiedades y entender cómo funciona nuestro modelo 
+        para problemas concretos de regresión y clasificación. 
+
+        \item En la sección \ref{ch04:salida-varias-dimensiones} se demostrará la convergencia universal para el espacio 
+        $\rrnnmc$.
+    \end{itemize}
+    \item Consideración  en la sección \ref{ch04:capacidad-calculo} si \textbf{en la práctica} se tiene la \textbf{capacidad  computacional de actuar como aproximador universal}. 
+    
+ \end{enumerate}
 
 
 % Comienzo de la sección 
@@ -24,7 +56,7 @@ partiremos de un modelo de una sola capa oculta y además comenzaremos presentan
 hemos considerado más conveniente; esta decisión es argumentada en el capítulo \ref{chapter:construir-redes-neuronales}. 
 
 % Imagen grafo red neuronal  una capa oculta muy simple y en blanco y negro 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{1-Introduccion_redes_neuronales/Red-Neuronal-una-capa-simple.png}
     \caption{\textit{Grafo} de una red neuronal de una capa oculta}
@@ -78,7 +110,7 @@ hemos considerado más conveniente; esta decisión es argumentada en el capítul
         \textbf{Interpretación fórmula}
     }
     {\maginLetterSize
-        Observemos que $n$ es el número de neuronas de la capa oculta. Es decir lo que en el grafo \ref{img:grafo-red-neuronal-una-capa-oculta} serían las neuronas de las capas ocultas se correspondería con términos $\gamma_{i}( A_{i}(x))$.
+        Observemos que $n$ es el número de neuronas de la capa oculta. Es decir lo que en el grafo \ref{img:grafo-red-neuronal-una-capa-oculta} serían los nodos interiores y se correspondería con los términos $\gamma_{i}( A_{i}(x))$.
     }
 }
 \normalmarginpar
@@ -142,7 +174,9 @@ $\sigma_j$ lo que se suele llamar \textit{función de activación} y a la que ad
 
 Las diferencias con nuestra definición son las siguientes 
 \begin{itemize}
-    \item \textbf{Desaparece la función de clasificación $\theta$}. El motivo es que es un artificio teóricamente innecesario de acorde al teorema de convergencia universal \ref{teo:MFNAUA}.
-    \item \textbf{Se elimina un parámetro} de la transformación afín de la última capa; puesto que no es necesario para la convergencia de nuevo por \ref{teo:MFNAUA} lo hemos eliminado.
-    \item Nuestras funciones de activación son funciones medibles en vez de diferenciables ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción, como hemos visto en \ref{teo:MFNAUA}.
+    \item \textbf{Desaparece la función de clasificación $\theta$}.
+    \item \textbf{Se elimina un parámetro} por cada neurona. 
+    \item No se le exige condición de diferenciabilidad a priori, ya que a priori no existe ninguna hipótesis teórica que fuerce a tal restricción, como hemos visto en \ref{teo:MFNAUA}.
 \end{itemize}
+Se justificarán y se matizarán tales decisiones en 
+la sección \ref{ch05:justifica-modelo}.

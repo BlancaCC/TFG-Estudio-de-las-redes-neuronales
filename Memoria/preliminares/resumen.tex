@@ -11,26 +11,39 @@
 \chapter*{Resumen}\label{ch:resumen}
 %\addcontentsline{toc}{chapter}{Resumen}
 
-Objetivo inofrmática: 
-Elegir un framework común para trabajar con redes neuronales así como una serie de problemas de complejidad media, tales como spambase. Establecer una línea base examinando los resultados obtenidos con la configuración base a la hora de entrenar este tipo de redes neuronales y el resultado obtenido. A partir de esa línea base, testear las diferentes restricciones, cambios en representación y suposiciones deducidos en la parte matemática para ver qué influencia tienen en la velocidad, en el resultado, o en ambos.
+Existe en la actualidad un desequilibrio entre resultados empíricos 
+y teóricos de redes neuronales llegando incluso a contradicción
+ (como se comenta en la introducción del capítulo 
+ \ref{chapter:Introduction-neuronal-networks}), será por tanto
+nuestro primer objetivo construir una teoría sólida
+que de cabida a 
+ optimizaciones de fundamento teórico; 
+una revisión y
+ purga de cualquier artificio existente sobre 
+ redes neuronales carente de fundamento matemático. 
 
-Objetivo matemáticas: 
-El objetivo de esta parte es doble, en primer lugar, se propone analizar con detalle las demostraciones de algunos resultados de aproximación universal de redes neuronales para funciones continuas. En segundo lugar se propone realizar un estudio de la posible optimización de redes neuronales concretas en base a los resultados obtenidos empíricamente en la parte informática.  Se tratará de modelizar matemáticamente dichos resultados y de obtener mejoras en la convergencia de las aproximaciones imponiendo, si es necesario, hipótesis más restrictivas en algunos de los elementos de las redes neuronales que se correspondan con su uso en la práctica.   
+Como resultado de ello se ha propuesto e implementado 
+un nuevo modelo de red neuronal así como sus 
+métodos de aprendizaje y evaluación. 
+Además se ha dado un criterio de selección de 
+funciones de activación y un algoritmo de 
+inicialización de pesos que mejora los ya existentes. 
+Todos los resultados han conducido a la creación de 
+la biblioteca \textit{OptimizedNeuralNetwork.jl}, 
+que contiene la implementación de nuestros modelos y
+ métodos optimizados. 
 
-Libros: 
-[1] Abu-Mostafa, Y.S. et al.: Learning From Data. AMLBook, 2012.             [2] G. Cybenko, Approximations by superpositions of a sigmoidal function, Math. Contro Signal Systems 2 (1989), 303-314.                                              [3] J. Conway, A Course in Functional Analysis,
-2nd Edition, Springer-Verlag, 1990.                     [4] A. Géron, Hands-on machine learning with Scikit-Learn, Keras and TensorFlow: concepts, tools, and techniques to build intelligent systems (2nd ed.). O’Reilly, 2019.                    [5] K. Hornik, M Stinchcombe and H. White, Multilayer feedforward networks are universal approximators, Neural Networks 2 (1989), 359-366.                                  [6] W. Rudin, Real and complex analysis. McGraw-Hill Book Co., New York-Toronto, Ont.-London 1966.
+
+La estructura de la memoria es la siguiente: 
+
+
 \paragraph{PALABRAS CLAVE:}
 \begin{itemize*}[label=,itemsep=1em,itemjoin=\hspace{1em}]
   \item redes neuronales
-  \item LSTM
-  \item series temporales
-  \item selección de modelos
-  \item validación
-  \item selección de hiperparámetros
-  \item detección de anomalías
-  \item detector
-  \item perturbación
+  \item optimización 
+  \item funciones de activación 
+  \item inicialización de pesos
+  \item Biblioteca de aprendizaje automático
 \end{itemize*}
 
 \endinput

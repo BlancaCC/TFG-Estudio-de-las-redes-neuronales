@@ -4,8 +4,8 @@
 %***************************************************************
 % Contenido del artículo 5: Generalización a multi-output 
 %***************************************************************
-\section{Generalización para \textit{multi-output neuronal networks}}
-
+\section{Generalización para \textit{multi-output neural networks}}
+\label{ch04:salida-varias-dimensiones}
 En las secciones anteriores se han provisto resultados para redes 
 neuronales de salida real. Vamos a generalizar los resultados vistos
 para ser capaces de aproximar funciones continuas o medibles 
@@ -33,7 +33,7 @@ $A_i((x_1, x_2, \ldots x_r)) = w_{0i} + \sum_{j=1}^d w_{ji} x_j$
 con $i \in \{1,\ldots, h\}$ . 
 
 \begin{definicion}[Abstracción de una red neuronal con una capa oculta y múltiple salida] 
-    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualquiera naturales positivo
+    Para cualquier función Borel medible $G$, definida de $\R$ a $\R$ y cualesquiera naturales positivos
     $d,s \in \N$ se define a la clase de funciones $\rrnnmc$ como 
     \begin{equation}
         \begin{split}
@@ -203,7 +203,7 @@ se construyen de manera independiente $s$ redes neuronales de salida de dimensi�
     Considerando $f$ compuesta por $h_n + h_1$ sumandos y donde sus pesos son los siguientes:
 
     El peso $\tilde{w}$ de las funciones afines: 
-    Para cuales quiera 
+    Para cualesquiera 
     $i \in \{0, 1, \ldots  , d \}$  y  
     $j \in \{1, \ldots , h_n, h_{n} + 1, \ldots, h_n + h_1\}$  determinaremos la siguiente casuística
     \begin{enumerate}

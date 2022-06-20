@@ -9,16 +9,16 @@
 \label{chapter:construir-redes-neuronales}
 Vista la formulación teórica de una red neuronal de una sola capa 
 introducida en \ref{definition:redes_neuronales_una_capa_oculta} 
+estaremos en condiciones 
 se comparará y estudiará la relación teórica 
-entre nuestra propuesta de modelo y los modelos usuales de redes neuronales. 
+entre nuestra propuesta de modelo y los modelos usuales de redes neuronales. Además se justificará, 
+la selección de nuestro modelo en la sección \ref{ch05:justifica-modelo}.
 
 Explicaremos también una construcción técnica junto con un
-análisis del costo necesario y beneficio obtenido.
-Así como los algoritmos necesarios para su evaluación y aprendizaje. 
-
- Los algoritmos presentados son 
- la adaptación natural de técnicas como 
-\textit{forward propagation} y \textit{backpropagation } explicadas en \cite{BishopPaterRecognition} a nuestro enfoque teórico. 
+análisis del costo necesario y beneficio obtenido del modelo (ver sección \ref{ch05:construction-evaluation-nnnn});
+así como los algoritmos necesarios para su evaluación (ver \ref{section:rrnn_implementation}) y aprendizaje (ver \ref{ch05:aprendizaje}). Los algoritmos presentados son 
+ las adaptaciones naturales a nuestro enfoque teórico de técnicas como 
+\textit{forward propagation} y \textit{backpropagation } explicadas en \cite{BishopPaterRecognition}. 
 
 Además, puesto que nuestro objetivo es optimizar seremos muy meticulosos en cuanto a analizar el 
 coste computacional tanto de cómputo como de 
@@ -50,12 +50,13 @@ $\beta_{i k} \in \R$ y $A_i \in \afines$.
     \label{img:grafo-red-neuronal-una-capa-oculta_repeticion}
 \end{figure}
 
-Ante esta definición el número de parámetros a ajustar es: 
+Ante esta definición el número de parámetros a ajustar son: 
 \begin{itemize}
     \item De la forma $\beta_{i k}$: $n s$. 
     \item De la forma $w_{i j}$: $n(d+1)$.
 \end{itemize}
-Lo que hace un total de $n(s+d+1)$ parámetros, done $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. Por lo general $d$ y $s$ son fijos ya que se suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.
+Lo que hace un total de $n(s+d+1)$ parámetros, donde $n$ es el número de neuronas, $s$ la dimensión de salida y $d$ la dimensión de entrada. 
+\textbf{Por lo general $d$ y $s$ son fijos ya que se suponen requisitos del problema, luego si se desea reducir el coste en memoria deberá de hacerse disminuyendo el número de neuronas.}
 
 Analizaremos más a fondo su componentes. 
 
@@ -99,7 +100,79 @@ Nótese que ahora el tamaño de variables de entrada es $M$
 y hay un total de $s$ unidades de activación, tanto $M$ como $s$ son
 valores fijados por el diseñador de la red ya que a priori no tenemos otra información. 
 
- % Vamos a probar que tampoco mejora el error 
+
+\subsection{Criterio de selección de funciones de activación}
+
+Los aspectos a tener en cuenta a la hora de seleccionar una función 
+de activación frente a otra serían los siguientes:
+\begin{enumerate}
+    \item Espacio de memoria que ocupe.
+    \item Coste computacional.
+    \item Efectividad en cuanto a reducir el error de aproximación.
+\end{enumerate}
+
+Sobre la primera consideración está claro que el uso de una única función ahorraría el tener que almacenar el tipo de función que se va emplear en cada neurona.
+
+Respecto al coste computacional puede uno basarse en una análisis teórico del número de 
+operaciones y su complejidad o realizar un estudio empírico se ha realizado 
+en al sección \ref{ch06:coste-computacional-funciones-activacion}.
+
+% Nota margen sobre idea 
+\marginpar{\maginLetterSize
+    \iconoClave \textcolor{darkRed}{     
+        \textbf{
+        Estrategia de selección de funciones de activación.
+        }
+    }
+
+    Esta idea abre la puerta a determinar mediante algoritmos 
+    de optimización qué funciones de activación podrían resultar más 
+    beneficiosas.
+    Ideas similares usando algoritmos genéticos 
+    se encuentra en artículos como 
+    \cite{FunctionOptimizationwithGeneticAlgorithms}
+    y 
+    \cite{Genetic-deep-neural-networks}
+    sin embargo expondremos nuestra versión en el capítulo 
+    \ref{ch08:genetic-selection}.
+    
+}
+Fijado cierto número de neuronas, en lo que respecta a la precisión que nos puedan aportar las funciones de activación; por la idea intuitiva 
+del funcionamiento de las funciones de activación mostrado en mostrada en \ref{ch03:funcionamiento-intuitivo-funcion-activacion} es un factor que repercute en los resultados 
+pero desconocido a priori. 
+
+
+
+\section{Justificación del modelo seleccionado}
+\label{ch05:justifica-modelo}
+A continuación presentaremos una serie de resultados
+propios que justificarán nuestro modelo frente a los
+usuales, a la par que probarán la relación que hay entre uno y otro.  
+
+Con el fin de motivarlos tengamos presente la definición de los modelos usuales presentada en 
+\ref{subsection:diferencia-otras-definiciones-RRNN} 
+y la demostración de que el modelo planteado  
+es un aproximador universal del teorema \ref{teo:MFNAUA}. 
+
+Si bien el teorema de convergencia universal
+nos asegura que los elementos adicionales de los 
+modelos usuales no son necesarios, 
+hay que tener presente que esto es un resultado 
+de convergencia, es decir, se construye bajo hipótesis 
+de que se disponen de todas las neuronas que sean necesarias para hallar una red neuronal los suficientemente próxima a la función a aproximar.  
+
+Podría entonces uno plantearse si a niveles prácticos
+verdaderamente esas adiciones contribuyen en 
+alguna mejora de precisión o tiempo o verdaderamente 
+son un lastre.  Como justificaremos en esta sección los cambios realizados han sido los siguientes: 
+
+\begin{itemize}
+    \item \textbf{Desaparece la función de clasificación $\theta$}. El motivo es que es un artificio innecesario como mostramos en \ref{ch05:dominio-discreto} y como indica el teorema \ref{teo:MFNAUA}.
+    \item \textbf{Se elimina un parámetro} de la transformación afín de la última capa; puesto que no es necesario para la convergencia de nuevo por el teorema \ref{teo:MFNAUA} y como veremos en \ref{consideration-irrelevancia-sesgo} tampoco aporta beneficios de precisión. 
+\end{itemize}
+
+
+
 \subsection{Consideraciones sobre la irrelevancia del sesgo}
 \label{consideration-irrelevancia-sesgo}
 \begin{aportacionOriginal}
@@ -182,14 +255,14 @@ Está claro por la relación
  \begin{equation}
     \mathcal{E}_{\mathcal{D}}(\mathcal{H}^+(X,Y))
     \leq
-    \mathcal{E}_{\mathcal{D}}(\mathcal{H}(X,Y))
+    \mathcal{E}_{\mathcal{D}}(\mathcal{H}(X,Y)).
  \end{equation}
 
- La clave ahora reside en si se satisface la desigualdad opuesta
-Es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
+ La clave ahora reside en si se satisface la desigualdad opuesta,
+es decir, dada cualquier $h^+ \in \mathcal{H}^+_n(X,Y)$ con un error de $E_D(h^+)$ existe $h \in \mathcal{H}_n(X,Y)$  tal que $E_D(h) \leq E_D(h^+).$  
 
 Esto no es posible y para darse cuenta basta con considerar el caso de una neurona, con $G(x)$ su función de activación y $k \in \R^+$ definimos la función ideal como $f(x) = G(x) +k$. 
-Tomando tan solo dos puntos convenientemente seleccionados (por ejemplo $M$ y $-M$ tal que $G(-M) = 0 y G(M) = 1$) aprecia que $H_1(\R, \R)$ no puede aproximar $f$ y sin embargo $f \in H^+_1(\R, \R)$.
+Tomando tan solo dos puntos convenientemente seleccionados (por ejemplo $M$ y $-M$ tal que $G(-M) = 0$ y $G(M) = 1$) aprecia que $H_1(\R, \R)$ no puede aproximar $f$ y sin embargo $f \in H^+_1(\R, \R)$.
 
 % Fin de la demostración 
 
@@ -233,11 +306,13 @@ problemas de clasificación que necesiten de una salida discreta; sería necesar
 $\theta$ que discretice la imagen como observábamos en \ref{corolario:2_5_función_Booleana}.  
 
 
-La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuronal-con-compuesta}, se tendría que si $f$ es el patrón subyacente de la clasificación y $\theta$ la función que discretiza el dominio se deberá de encontrar 
+La situación por tanto es la siguiente, si procedemos como en \refeq{red-neuronal-con-compuesta}, 
+se tendría que si $f$ es el patrón subyacente de la clasificación 
+y $\theta$ la función que discretiza el dominio se deberá de encontrar 
 $h \in \rrnnmc$ tal que $h$ aproxime a $\theta^{-1} \circ f$.
 
 Lo cual exige que $\theta$ tenga inversa y que sea medible, además de la cuestión de qué $\theta$ es la más conveniente $\dots$
-
+\newpage
 \begin{aportacionOriginal} % aportación original salida discreta
     
 Es por ello que en nuestra aproximación descartamos este modo de proceder y proponemos el siguiente: 
@@ -306,60 +381,20 @@ La implementación de la fórmula anterior sería la siguiente:
 
 %%%%%%%%%%% Fin de lo observado
 
-\subsection{Qué función de activación seleccionar}
-
-Los aspectos a tener en cuenta a la hora de seleccionar una función 
-de activación frente a otra de una red neuronal serían los siguientes:
-\begin{enumerate}
-    \item Espacio de memoria.
-    \item Coste computacional.
-    \item Efectividad en cuanto a reducir el error de aproximación.
-\end{enumerate}
-
-Sobre la primera consideración está claro que el uso de una única función ahorraría el tener que almacenar el tipo de función que se va emplear en cada neurona.
-
-Respecto al coste computacional puede uno basarse en una análisis teórico del número de 
-operaciones y su complejidad o realizar un estudio empírico se ha realizado 
-en al sección \ref{ch06:coste-computacional-funciones-activacion}.
-
-% Nota margen sobre idea 
-\marginpar{\maginLetterSize
-    \iconoClave \textcolor{darkRed}{     
-        \textbf{
-        Estrategia de selección de funciones de activación.
-        }
-    }
-
-    Esta idea abre la puerta a determinar mediante algoritmos 
-    de optimización qué funciones de activación podrían resultar más 
-    beneficiosas.
-    Ideas similares usando algoritmos genéticos 
-    se encuentra en artículos como 
-    \cite{FunctionOptimizationwithGeneticAlgorithms}
-    y 
-    \cite{Genetic-deep-neural-networks}
-    sin embargo expondremos nuestra versión en el capítulo 
-    \ref{ch08:genetic-selection}.
-    
-}
-Fijado cierto número de neuronas, en lo que respecta a la precisión que nos puedan aportar las funciones de activación; por la idea intuitiva 
-del funcionamiento de las funciones de activación mostrado en mostrada en \ref{ch03:funcionamiento-intuitivo-funcion-activacion} es un factor que repercute en los resultados 
-pero desconocido a priori. 
-
-
 %% Formulación técnica 
 
 \section{Construcción explícita y evaluación de una red neuronal}
+\label{ch05:construction-evaluation-nnnn}
 
-Ante todas las consideraciones expuestas y puesto que 
-no existe ningún resultado o hipótesis a favor de combinar funciones de activación, en pos de simplificar el estudio, vamos a suponer a priori que todos los nodos están compuestos con la misma. Entonces,  una red neuronal para nosotros 
-vendrá determinada dos matrices de pesos y una función de evaluación. 
+A pesar de que cada neurona puede estar constituida 
+por una función de activación diferente, con el fin de 
+simplificar notación, para nosotros una red neuronal 
+vendrá determinada  por    dos matrices de pesos y una función de evaluación. 
 
 Es decir siguiendo la idea constructiva expuesta en manuales tales como \cite{learning-from-data-1-2}
  cualquier $h \in \rrnnsmn$ de $n$ neuronas en la capa oculta se implementa como 
 $(\gamma, M_{n \times (1+r)}, M_{(n+1) \times s})$ con $M_{f \times c}$ matrices de dimensiones $f$ filas y $c$ columnas. 
-
-$\gamma$ representa a función de activación en cada nodo. 
+Donde $\gamma$ representa la función de activación en cada nodo. 
 $M_{n \times (1+r)}$ son los pesos de la primera capa 
 y $M_{(n+1) \times s}$ son los pesos de la salida. 
 
@@ -406,9 +441,9 @@ Sin embargo de acorde a nuestro modelo definido en \ref{definition:redes_neurona
     A \in M_{n \times d}(\R), 
     S\in M_{n \times 1}(\R) 
     \text{ y }
-    B \in M_{s \times n}(\R).
+    B \in M_{s \times n}(\R),
 \end{equation}
-y con esta representación la evaluación sería
+con esta representación la evaluación sería
 
 \begin{equation}
     h(x) =  B \cdot
@@ -419,7 +454,7 @@ y con esta representación la evaluación sería
             + S
         \right),
 \end{equation}
-que tiene un coste computacional de 
+que tiene un coste computacional que mostramos en la siguiente tabla: 
 \begin{table}[h]
     \begin{center}
     \begin{tabular}{| c | c |}
@@ -436,7 +471,7 @@ que tiene un coste computacional de
     \end{center}
 \end{table}
 
-Que como vemos ha supuesto una mejora de 
+Que como vemos ha supuesto una mejora de:
 
 \begin{table}[h]
     \centering
@@ -574,16 +609,38 @@ Finalmente las respectivas salidas de las capas ocultas serían
     \end{bmatrix}.
 \end{equation}
 
+\newpage
 \subsection{Implementación de una red neuronal y evaluación}
 \label{section:rrnn_implementation}
-Como conclusión a todo lo explicado una red neuronal no 
-sería más que una estructura que almacenara $(\gamma, A, S, B)$, esto es 
+A la hora de abstraer una red neuronal 
+y como conclusión a todo lo explicado una red neuronal no 
+sería más que una estructura que almacenara $(A, S, B)$, esto es 
+
+% Comentario sobre la implementación  
+\marginpar{\maginLetterSize
+    \iconoProfundizar \textcolor{blue}{      
+        \textbf{
+            Aclaración de la estructura.
+        }
+    }
+    Notemos que no se ha introducido la función de 
+    activación en la estructura, esto se ha hecho con 
+    vista a la implementación. Tal estructura definirá
+     un tipo de dato y serán las funciones que las 
+     utilicen  o modifiquen las que a conveniencia 
+     determinen un tipo de función de activación u 
+     otro, de esta manera se tendrá una mayor flexibilidad en 
+     la arquitectura y un ahorro en memoria. 
+     
+     Supondría además un nuevo paradigma de trabajo y definición de redes neuronales. 
+    
+}
 
 % Pseudo código que refleja la estructura de una red neuronal 
 
 \begin{algorithm}[H]
     \caption{Estructura de una red neuronal}
-    \label{algoritmo:estructura de una red neuronal}
+    \label{algoritmo:estructura-de-una-red-neuronal}
     \DontPrintSemicolon
     \hspace*{\algorithmicindent} 
         \textbf{Entrada}:

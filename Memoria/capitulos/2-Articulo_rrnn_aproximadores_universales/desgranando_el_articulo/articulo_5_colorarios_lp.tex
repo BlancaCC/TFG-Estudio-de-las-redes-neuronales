@@ -5,7 +5,7 @@
 % Contenido del artículo 5: Colorarios LP
 %***************************************************************
 \section{Generalización a espacios $L_p$}  
-
+\label{ch04:espacios-Lp}
 Hasta ahora habíamos considerado el espacio de funciones continuas 
 $\fC$ 
 como subespacio dentro del espacio de funciones medibles $\fM$. 
@@ -33,9 +33,7 @@ y que incluso no están acotadas.
     de funciones $f \in \fM$ tales que 
     \begin{equation}
         \int |f(x)|^p d\mu < \infty. 
-    \end{equation}
-
-   
+    \end{equation}  
 Se define la norma de $L_p$ como 
 \begin{equation}
     \| f\|_p 
@@ -165,7 +163,7 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
 %Corolario 2.4 
 \begin{corolario} \label{corolario:2_4_conjunto_finito}
     Sea $\mu$ una medida, que para
-    un conjunto finito de puntos $O$ cumple que $\mu(0)=1$, 
+    un conjunto finito de puntos $O$ cumple que $\mu(O)=1$, 
     entonces, para cualquier función medible $g \in \fM$
     y sea cual sea $\varepsilon >0$ 
     existe $f \in \rrnn$ la cual cumple que 
@@ -217,7 +215,6 @@ cualquier función de la clase recién introducida cuyo dominio parta de $[0,1]^
         |f(x) - g(x)| 
         > \varepsilon
     \} = 0.$
-
     Por lo que acabamos de probar, como queríamos, que 
     \begin{equation}
         \mu\{ 
@@ -256,15 +253,20 @@ un conjunto finito y sus respectivas imágenes, se puede encontrar una red neuro
     
     El resultado nos   indica que podemos obtener una red neuronal $h$ que aproxime tal clasificador, 
     pero \textbf{tal red neuronal no necesariamente tomará valores discretos}, es decir,
-     pudiera darse el caso que 
-     $h( \{ x : g(x)=0 \})  \subset [-0.2,0.3]$ y que 
-     $h(\{ x : g(x)=1 \})  \subset [0.9,1.2]$, 
-     por lo que se pone de manifiesto en este resultado, 
-     que en caso de requerirse de una salida completamente
-     discreta debería de componerse con otra función $\theta$ 
+     pudiera darse el caso en que las imágenes 
+     a un rango, por ejemplo: 
+     $$h( \{ x : g(x)=0 \})  \subset [-0.2,0.3]$$ 
+     y que 
+     $$h(\{ x : g(x)=1 \})  \subset [0.9,1.2],$$ 
+     por lo que se pone de manifiesto en este
+      resultado, 
+     que en caso de requerirse
+      de una salida completamente
+     discreta debería de componerse 
+     con otra función $\theta$ 
      tal que 
-     $\theta \circ h(\{ x : g(x)=0 \})=0$ y 
-     $\theta \circ h(\{ x : g(x)=1 \})=1$.
+     $$\theta \circ h(\{ x : g(x)=0 \})=0$$ y 
+     $$\theta \circ h(\{ x : g(x)=1 \})=1$$.
     
 }
 
@@ -365,7 +367,7 @@ es no decreciente y que su imagen pertenece al intervalo $[0,1].$
 Por tanto
 \begin{align}
       0 &\leq \psi(-M) \leq \psi(M_1) = 0 \quad \text{ luego } \quad \psi(-M) = 0, \\
-      1 &\geq \psi(M) \geq \psi(M_2) = 1 \quad \text{ luego } \quad\psi(M) = 1
+      1 &\geq \psi(M) \geq \psi(M_2) = 1 \quad \text{ luego } \quad\psi(M) = 1.
 \end{align}
 
 Gracias a estas desigualdades es fácil ver que 
@@ -382,7 +384,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \begin{equation}
     \psi(x)= \left\{ \begin{array}{lcc}
         0 &   si  & x \leq 0 \\
-        \frac{| x |}{1+ | x |}&  si & 0< x  
+        \frac{| x |}{1+ | x |}&  si & 0< x. 
         \end{array}
     \right. 
 \end{equation}
@@ -437,6 +439,7 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
 \end{proof}
 
 % Nota intuitiva sobre la demostración del Teorema 2.5
+\setlength{\marginparwidth}{\smallMarginSize}
 \marginpar{\maginLetterSize\raggedright
     \iconoAclaraciones \textcolor{dark_green}{ 
         \textbf{Idea de la demostración del teorema
@@ -448,9 +451,13 @@ asegurarse la igualdad demostrada. Pongamos como ejemplo la siguiente función d
   Es interesante reparar en que la demostración se basa
   en añadir una neurona por cada punto que queramos que tome
   un valor concreto, esa neurona se activará (es decir, no será nula) cuando la entrada $x$ \textit{sea mayor} que el valor que la activa $x_i$ y vale la diferencia con el valor anterior $x_{i-1}$, es decir $g(x_{i}) - g(x_{i-1})$, como el nodo $x_{i-1}$
-  también se activará por ser menor menor, el término $g(x_{i-1})$ se suma a la salida de la red y así como una serie telescópica al final solo resultará el valor $g(x_i)$.
+  también se activará por ser menor, el término $g(x_{i-1})$ se suma a la salida de la red y así como una serie telescópica al final solo resultará el valor $g(x_i)$.
     }
 }
+\setlength{\marginparwidth}{\bigMarginSize}
+% fin de la nota
+
+
 % Teorema 2.5  
 \begin{teorema}[Sobre el entrenamiento práctico de redes neuronales]
     \label{teorema:2_5_entrenamiento_redes_neuronales}
@@ -472,10 +479,10 @@ primero uno particular, cuando $d=1$ y después el caso general.
 
 \textbf{Caso primero}
 
-Suponemos que $\{x_1, \cdots, x_n\} \subset \R$ y tras renombrar 
+Suponemos que $\{x_1, \ldots, x_n\} \subset \R$ y tras renombrar 
 podemos suponer que 
 \begin{equation}
-    x_1 < x_2 < \ldots < x_n. 
+    x_1 < x_2 < \cdots < x_n. 
 \end{equation}
 
 Por alcanzar la función de activación $\psi$ el cero y el uno, 
@@ -484,8 +491,7 @@ gracias al lema  \ref{lema:propio_1_antes_teorema_2_5} existe una constante $M$ 
 Definiremos de manera recursiva la red neuronal buscada $f_n$.
 
 % Nota nueva hipótesis de optimización del Teorema 2.5
-\setlength{\marginparwidth}{\smallMarginSize}
-\reversemarginpar
+
 \marginpar{\maginLetterSize\raggedright
      \iconoProfundizar \textcolor{blue}{
         \textbf{Nueva hipótesis de optimización}
@@ -502,7 +508,6 @@ Definiremos de manera recursiva la red neuronal buscada $f_n$.
 \setlength{\marginparwidth}{\bigMarginSize}
  
 }
-\normalmarginpar
 
 \begin{itemize}
     \item Red neuronal $f_1$. 
@@ -606,7 +611,8 @@ Se define $B_{k}$ como la única función afín de $\R$ en $\R$ que cumple que
 \end{equation}
 Podemos definir entonces $A \in \afines$ por 
 $A_k(x)=B_k(p \cdot x).$
-Fijamos $\beta_k = g(x_k) - g(x_{k-1})$. 
+Fijamos  también
+$$\beta_k = g(x_k) - g(x_{k-1}).$$ 
 La red neuronal $f_k$ se calcula como 
 \begin{align}
     f_k(x) 
@@ -618,7 +624,7 @@ La red neuronal $f_k$ se calcula como
     & = 
     \sum_{j=1}^k \beta_j \psi(A_j(x))
     = 
-   (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x)  
+   (g(x_k)-g(x_{k-1})) \psi(A_k(x)) + f_{k-1}(x).  
 \end{align}
 \end{itemize}
 

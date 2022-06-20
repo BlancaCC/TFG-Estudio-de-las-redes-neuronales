@@ -3,26 +3,58 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\part{Teoría subyacente}
+\chapter*{Introducción}
 
-No es usual en un manual que trate sobre redes neuronales encontrarse en su interior con un 
-capítulo sobre teoría de la aproximación, pero tampoco es nuestra intención
-hacer de este documento una recopilación de todo lo usual, sino todo lo contrario.
+\section*{Origen}
+En nuestros días, el aprendizaje automático es un campo en
+continua expansión. Desde procesamiento de imágenes hasta predicciones de
+acciones en bolsa, las redes neuronales se van implantando en todos los
+campos del conocimiento. \\
 
-Existe en la actualidad un desequilibrio entre resultados empíricos y teóricos de redes neuronales llegando incluso a contradicción (como se comenta en la introducción del capítulo \ref{chapter:Introduction-neuronal-networks}), será por tanto
-nuestro primer objetivo conseguir una revisión y purga de cualquier artificio existente sobre redes neuronales carente de fundamento matemático. 
 
-El fin de esto no es más que construir una teoría sólida que de cabida a optimizaciones de 
-fundamento teórico.  Para ello nuestro \textit{modus operandi} será el siguiente: 
-Se describirá el conjunto y características de problemas que pretendemos abarcar  en el capítulo \ref{chapter:Introduction-neuronal-networks}. 
-Se comentará las limitaciones e inconvenientes que presenta un enfoque clásico 
-basado en teoría de la aproximación en el capítulo \ref{chapter:teoria-aproximar}.
-A continuación en el capítulo \ref{chapter4:redes-neuronales-aproximador-universal}, 
-presentarán las redes neuronales como un modelo eficiente.
- 
-Al final del mismo capítulo se introduce la definición que hemos determinado por conveniente de red neuronal y que es producto de los capítulos 
-\ref{chapter:teoria-aproximar} y \ref{chapter4:redes-neuronales-aproximador-universal}.
- 
-Tras todo el fundamento teórico en \ref{chapter:construir-redes-neuronales} se explicitará el diseño de la red neuronal modelizada así como los algoritmo de evaluación y aprendizaje.
+A pesar del pragmatismo actual que prevalece en las redes 
+neuronales, el concepto de neurona artificial nace en el primer tercio del siglo XX con el artículo  \textit{ Logical calculus of the ideas immanent in nervous activity} \cite{primer-articulo}, como
+intento de modelar el pensamiento humano en forma de proceso lógico. Esta
+primera etapa de investigación culmina con la invención del perceptrón en
+1958 por Frank Rosenblatt con el artículo \textit{The perceptron: a probabilistic model for information storage and organization in the brain} \cite{rosenblatt1958perceptron}. Es importante notar que todas estas investigaciones
+tenían un objetivo más allá de la resolución de problemas complejos utilizando
+máquinas u ordenadores: comprender el proceso de aprendizaje y cognición del
+ser humano.\\
 
-En los capítulos \ref{funciones-activacion-democraticas-mas-demoscraticas} y \ref{section:inicializar_pesos} se explican además otros resultados para optimizar el coste computacional.
+Estos primeros modelos tenían sus carencias y reservas por parte
+de la comunidad científica y cuando en 1969 la publicación de la demostración de que
+los modelos eran incapaces de resolver problemas lógicos simples (véase \cite{minsky69perceptrons}) hizo que el
+campo casi muriera. No fue hasta 1986 con el descubrimiento de un modelo en más complejo,
+que se superarían estas limitaciones y que darían lugar a las actuales redes neuronales
+\cite{10.5555/104279.104293}.\\
+
+El modelos de 1986, no obstante, usaba un método que sus autores eran incapaces de
+relacionar con el mundo de la cognición, suponiendo con esto el 
+inicio de la separación de las redes neuronales con el campo de la psicología
+y la neurociencia y el inicio del enfoque actual de resolución de problemas.
+Estos nuevos descubrimientos, sumados a una mejora en las capacidades
+computacionales de los ordenadores y que en 1989 se demostrara formalmente su eficacia \cite{HORNIK1989359} provocaron un auge en el interés acerca de
+las redes, que perdura hasta hoy.\\
+
+
+\section*{Descripción del problema,  motivación y objetivos} 
+Si bien las redes neuronales abandonaron ya la psicología 
+y a pesar de su uso extensivo en la actualidad, es un área incipiente de la 
+matemática donde los grandes teoremas aún están por descubrir. 
+Ante tal desequilibrio entre resultados empíricos y teóricos,
+ será 
+nuestro primer objetivo conseguir una revisión y purga de cualquier artificio
+ existente sobre redes neuronales carente de fundamento matemático. 
+Siendo el fin de esto construir una teoría sólida que de cabida a 
+optimizaciones de fundamento teórico.
+
+\section*{Técnicas, áreas matemáticas y fuentes utilizadas}  
+
+El artículo principal que membrana el proyecto es el artículo 
+\textit{Multilayer Feedforward Networks are Universal Approximators} \cite{HORNIK1989359}
+ escrito por Kurt Hornik, Maxwell Stinchcombe y Halber White. Como pilar a la 
+ sección de teoría de aproximación se ha utilizad el manual \textit{The Elements of Real Analysis} \cite{the-elements-of-real-analysis} y finalmente los manuales de referencia seguidos sobre el aprendizaje automático han sido: 
+ \textit{Learning From Data} \cite{MostafaLearningFromData} y \textit{Pattern Recognition and Machine Learning} \cite{BishopPaterRecognition}.
+
+ Sobre las técnicas y áreas empleadas pueden consultarse con detalle en la secciones \ref{ch01:Herramientas} y \ref{ch01:asignaturas}.
+

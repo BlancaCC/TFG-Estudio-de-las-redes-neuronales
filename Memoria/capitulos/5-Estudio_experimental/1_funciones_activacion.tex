@@ -22,7 +22,7 @@ que estos resultados son además independientes del modelo de red neuronal selec
 El teorema \ref{teo:eficacia-funciones-activation} 
 y el corolario \ref{corolario:afine-activation-function}  tienen su importancia ya que
 si sabemos que dos funciones de activación producen 
-los mismos resultados (\textit{o muy similares}), 
+los mismos resultados, 
 conociendo su coste computacional podremos seleccionar 
 el que sea menor y de esta manera optimizar el tiempo 
 de cálculo y disminuir el número de operaciones sin 
@@ -303,8 +303,8 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
         \phi(Grafo(\sigma)) = Grafo(\gamma),
     \end{equation*}
     entonces 
-    el espacio de redes neuronales de $n$ neuronas creado con la función de activación $\sigma$ es  
-    igual al espacio de redes neuronales creado con la función de activación $\gamma$. 
+    el espacio de redes neuronales de $n$ neuronas creado a partir de la función de activación $\sigma$ es  
+    igual al espacio de redes neuronales creado a partir la función de activación $\gamma$. 
 \end{teorema}
 \begin{proof}
     % Primero lo demostramos con sesgo
@@ -368,7 +368,6 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
         \subseteq
         \mathcal{H}^+_{\gamma, n}(\R^d, \R^s).  
     \end{equation}
-
     Además, $\phi$ con las hipótesis exigidas es
     invertible, con inversa: 
     \begin{equation}
@@ -399,7 +398,6 @@ añadimos a nuestra colección las que mostramos en la tabla \ref{table:funcione
         = 
         \mathcal{H}^+_{\sigma, n}(\R^d, \R^s).
     \end{equation*}
-    
     Como demostramos en \ref{consideration-irrelevancia-sesgo} se tiene que 
     \begin{equation*}
         \mathcal{H}^+_{\sigma, n}(\R^d, \R^s) = \mathcal{H}^+_{\gamma, n}(\R^d, \R^s) 
@@ -531,11 +529,6 @@ las siguientes clases de funciones de activación
 Compararemos entonces su coste computacional y tomaremos como representante de la clase aquel que sea de menor coste. 
 
 
-\subsection{ Implementación de las funciones de activación en la biblioteca de redes neuronales} 
-\label{ch06:activation-function-implementation}
-Las funciones de activación han sido implementadas con cuidado de que sean eficientes 
-y valiéndose de las características propias de Julia, para ello se han utilizado técnicas como: 
-
 % Comentario aclaratorio de qué es indirección 
 \setlength{\marginparwidth}{\bigMarginSize}
 \marginpar{\maginLetterSize
@@ -564,6 +557,12 @@ y valiéndose de las características propias de Julia, para ello se han utiliza
     que conllevan resolver las indirecciones en este caso.
 }
 
+
+\subsection{ Implementación de las funciones de activación en la biblioteca de redes neuronales} 
+\label{ch06:activation-function-implementation}
+Las funciones de activación han sido implementadas con cuidado de que sean eficientes 
+y valiéndose de las características propias de Julia, para ello se han utilizado técnicas como: 
+
 \begin{itemize}
     % Programación modular 
     \item \textbf{Programación modular}: Tal y como se recomienda en la documentación de Julia \footnote{
@@ -578,17 +577,17 @@ y valiéndose de las características propias de Julia, para ello se han utiliza
     % Macros
     \item \textbf{Macros}\footnote{La información consultada de macros ha sido  de la página oficial de Julia, a día 23 de mayo del 2022, URL:
     \url{https://docs.julialang.org/en/v1/manual/metaprogramming}}:
-    que permiten sustituciones de código cuando el código es analizado por el compilador; 
+    que permiten sustituciones de código cuando éste es analizado por el compilador; 
     de esta manera, funciones que devuelven otras funciones dependientes de un parámetro se verán beneficiadas,
     ya que hace que se ejecute código más rápido evitando indirecciones \footnote{La fuente bibliográfica ha sido la \href{https://es.wikipedia.org/wiki/Indirección}{Wikipedia}, a día 26 de mayo del 2022.
     También recomendamos especialmente la entrada en inglés de la misma:
     \href{https://en.wikipedia.org/wiki/Indirection}{\textit{Indirection}}
     consultada también el día 26 de mayo del 2022.
-    }  y el y el overhead correspondiente. 
+    }  y el overhead correspondiente. 
      Puede encontrar la implementación de esto en la biblioteca de redes neuronales implementada en nuestro 
      repositorio 
      \footnote{
-         Esto es en \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Biblioteca-Redes-Neuronales/src/activation_functions.jl}
+         Esto es en \url{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/OptimizedNeuralNetwork.jl/src/activation_functions.jl}
      }.
 
      % Funtores 
@@ -610,50 +609,35 @@ Lo que en un principio suena obvio, ha supuesto un diseño cuidadoso y un uso de
 su plenitud, puesto que tengamos en cuenta que la variabilidad a la hora de definir y caracterizar a una función de activación, ya que algunas no dependen de ningún parámetro 
 mientras que otras lo hacen incluso de otras funciones (ver definiciones en la tabla \ref{table:funciones-de-activation}). 
 
- 
-    % Sistema de tipos
-\subsubsection*{Sobre el sistema de tipos de Julia}
-    Julia posee un sistema de tipos muy rico 
-    \footnote{
-        Véase la documentación oficial de Julia sobre \textit{Types}: 
-        \url{https://docs.julialang.org/en/v1/manual/types/}. 
-        Esta URL fue consultada el 26 de mayo de 2022.
+% Nota sobre porqué nos interesa ajustar el dominio
+\reversemarginpar
+\setlength{\marginparwidth}{\smallMarginSize}
+\marginpar{\maginLetterSize
+\iconoClave \textcolor{darkRed}{     
+    \textbf{
+        Interés de controlar el dominio de una función
     }
-    dinámico, nominal y paramétrico; pero que ofrece la posibilidad de obtener
-    beneficio de los tipos estáticos.
-    Podría entonces un plantearse 
-    Sacar provecho de esto en la \textcolor{darkRed}{declaración 
-    del dominio} e imagen de una función de activación y prevención de errores. 
- 
-    % Nota sobre porqué nos interesa ajustar el dominio
-    \reversemarginpar
-    \setlength{\marginparwidth}{\smallMarginSize}
-    \marginpar{\maginLetterSize
-    \iconoClave \textcolor{darkRed}{     
-        \textbf{
-            Interés de controlar el dominio de una función
-        }
-    } 
+} 
 
-    Lo cual permitiría optimizar la evaluación de la función; 
-    ya que si la función tuviera comportamientos diferentes en función del rango, 
-    habría que estudiarlos con condiciones interiores que aumentan el costo computacional.
+Lo cual permitiría optimizar la evaluación de la función; 
+ya que si la función tuviera comportamientos diferentes en función del rango, 
+habría que estudiarlos con condiciones interiores que aumentan el costo computacional.
+}
+\setlength{\marginparwidth}{\bigMarginSize}
+\normalmarginpar 
+% fin de la nota, comienza explicación 
+
+% Nota en margen sobre tipos estáticos y dinámicos 
+\marginpar{\maginLetterSize
+\iconoAclaraciones \textcolor{dark_green}{     
+    \textbf{
+        Tipos estáticos y dinámicos
     }
-    \setlength{\marginparwidth}{\bigMarginSize}
-    \normalmarginpar 
-    % fin de la nota, comienza explicación 
-   
-    % Nota en margen sobre tipos estáticos y dinámicos 
-    \marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{
-            Tipos estáticos y dinámicos
-        }
-    }
+}
 
     El tipo de dato \textbf{estático} se define en memoria 
     antes de la ejecución del código (durante la compilación del código),
-     no pudiendo cambiar 
+    no pudiendo cambiar 
     durante la ejecución del programa. 
     
     Un tipo de dato \textbf{dinámico} puede cambiar y el tipo es determinado mediante 
@@ -662,34 +646,54 @@ mientras que otras lo hacen incluso de otras funciones (ver definiciones en la t
     Por lo general las ventajas del estático son mayor eficiencia y prevención de errores,
     por el contrario, tipos dinámicos permiten más flexibilidad a la hora de diseñar 
     y escribir el código. 
+}
+% Nota en margen sobre tipos nominal 
+\marginpar{\maginLetterSize
+\iconoAclaraciones \textcolor{dark_green}{     
+    \textbf{
+        Tipo de dato nominal
     }
-    % Nota en margen sobre tipos nominal 
-    \marginpar{\maginLetterSize
-    \iconoAclaraciones \textcolor{dark_green}{     
-        \textbf{
-            Tipo de dato nominal
-        }
-    }
-    Dos tipos de datos diferentes serán equivalentes o compatibles, 
-    si y solo si se ha hecho de manera explícita. 
-    Por ejemplo si definiéramos un tipo de datos de número real y otro de número 
-    racional, solo podríamos sumarlos si le explicáramos al ordenador cómo hacerlo. 
-    }
-     % Nota en margen sobre tipos paramétricos 
-     \marginpar{\maginLetterSize
-     \iconoAclaraciones \textcolor{dark_green}{     
-         \textbf{
-             Tipos de datos paramétricos 
-         }
+}
+Dos tipos de datos diferentes serán equivalentes o compatibles, 
+si y solo si se ha hecho de manera explícita. 
+Por ejemplo si definiéramos un tipo de datos de número real y otro de número 
+racional, solo podríamos sumarlos si le explicáramos al ordenador cómo hacerlo. 
+}
+ % Nota en margen sobre tipos paramétricos 
+ \marginpar{\maginLetterSize
+ \iconoAclaraciones \textcolor{dark_green}{     
+     \textbf{
+         Tipos de datos paramétricos 
      }
-     Hace referencia al polimorfismo paramétrico, 
-     esto es que una misma función se puede programar 
-     para que actúe en consecuencia al tipo de datos que recibe 
-     como argumento. 
-     }
-
-    Ante esta situación hemos determinado que el tipo más conveniente es a usar en nuestras 
-    implementaciones es el racional; ya que como
+ }
+ Hace referencia al polimorfismo paramétrico, 
+ esto es que una misma función se puede programar 
+ para que actúe en consecuencia al tipo de datos que recibe 
+ como argumento. 
+ }
+%Fin de la nota
+ 
+% Sistema de tipos
+\subsubsection*{Sobre el sistema de tipos de Julia}
+\label{ch06:sistema-timpos-julia}
+    Julia posee un sistema de tipos muy rico 
+    \footnote{
+        Véase la documentación oficial de Julia sobre \textit{Types}: 
+        \url{https://docs.julialang.org/en/v1/manual/types/}. 
+        Esta URL fue consultada el 26 de mayo de 2022.
+    }
+    dinámico, nominal y paramétrico; pero que ofrece la posibilidad de obtener
+    beneficio de los tipos estáticos.
+    Podría entonces uno plantearse 
+    sacar provecho de esto en la \textcolor{darkRed}{declaración 
+    del dominio} e imagen de una función de activación y prevención de errores. 
+ 
+    
+    Ante esta situación hemos determinado que el tipo más conveniente a usar en nuestras 
+    implementaciones es el racional no sólo por
+    por la observación que comentábamos en la nota marginal del teorema 
+    \ref{teo:densidad-racional}
+    ; ya que como
     procedemos a explicar un tipo más restrictivo
     plantea los siguientes problemas:  
 
@@ -716,7 +720,7 @@ mientras que otras lo hacen incluso de otras funciones (ver definiciones en la t
         frame=lines,
         %framesep=2mm,
        % baselinestretch=1.2,
-        bgcolor=sutilGreen, 
+        %bgcolor=sutilGreen, 
         linenos
         ]{Julia}
         struct IntervaloCentral{T<:Real} <: Real
@@ -739,6 +743,12 @@ mientras que otras lo hacen incluso de otras funciones (ver definiciones en la t
     end
      \end{minted}
 \end{minipage} 
+
+\subsection*{Sobre la implementación definitiva y ejemplo de uso}
+Puede encontrar la implementación definitiva de las funciones de activación en 
+el directorio y fichero \texttt{OptimizedNeuralNetwork.jl/src/activation\_function.jl} de nuestro repositorio. 
+Además en \texttt{Memoria/Ejemplo-uso-biblioteca.ipynb} encontrará un 
+\textit{Jupyter notebook} de Julia con ejemplos de cómo llamar y utilizar las funciones de activación. 
 
 
 \subsection{Coste computacional funciones activación }

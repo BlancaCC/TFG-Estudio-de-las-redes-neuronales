@@ -4,18 +4,6 @@
 %*******************************************************
 % Teorema de Aproximación Weierstrass 
 %*******************************************************
-
-Realizando un repaso global habiendo acabado el teorema,
- se pueden extraer que, junto a un ingenioso 
- manejo de operaciones y acotaciones; la clave del resultado reside  en las consideraciones
-en \refeq{consecuencia:M} y \refeq{consecuencia:delta} y estas a su vez en la 
-compacidad de $I$.
-
-Por su parte, la selección del dominio de $I = [0,1]$ viene determinada ya que 
- los nodos $\{ \frac{k}{N} \colon k\in \{0,..., N\}\}$ sobre los que se construye el \textit{N-ésimo polinomio de Bernstein}  deben pertenecer a $I$.
-
-Sin embargo, tal dificultad es fácilmente salvable con un homeomorfismo. 
-
 % Nota margen sobre Idea intuitiva homeomorfismo
 \marginpar{\maginLetterSize
 \iconoAclaraciones \textcolor{dark_green}{     
@@ -38,6 +26,19 @@ Sin embargo, tal dificultad es fácilmente salvable con un homeomorfismo.
     ya que el número de agujeros que tienen es distinto. 
 }
 
+Realizando un repaso global habiendo acabado el teorema,
+ se pueden extraer que, junto a un ingenioso 
+ manejo de operaciones y acotaciones; la clave del resultado reside  en las consideraciones
+en \refeq{consecuencia:M} y \refeq{consecuencia:delta} y estas a su vez en la 
+compacidad de $I$.
+
+Por su parte, la selección del dominio de $I = [0,1]$ viene determinada ya que 
+ los nodos $\{ \frac{k}{N} \colon k\in \{0,..., N\}\}$ sobre los que se construye el \textit{N-ésimo polinomio de Bernstein}  deben pertenecer a $I$.
+
+Sin embargo, tal dificultad es fácilmente salvable con un homeomorfismo. 
+
+
+
 Como resultado de relajar el dominio donde se define $f$, pidiéndole tan solo
 compacidad nace el siguiente corolario.  
 
@@ -48,10 +49,9 @@ compacidad nace el siguiente corolario.
 \begin{proof}
     Si $f$ se encuentra definida en $[a,b]$ con $a<b$ y bastará considerar la función
     \begin{equation*}
-        g(t) = f( (b-a)t + a) \text{ con } t \in [0,1]
+        g(t) = f( (b-a)t + a) \text{ con } t \in [0,1].
     \end{equation*}
-
-    Esta función está definida en $[0,1]$, tiene la misma imagen que $f$ y 
+ Esta función está definida en $[0,1]$, tiene la misma imagen que $f$ y 
     mantiene la continuidad ya que se ha construido a través del homeomorfismo 
     $H:[0,1] \longrightarrow [a,b]$, con $H(t) = (b-a)t + a$. 
 

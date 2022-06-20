@@ -11,8 +11,8 @@
 
 % Autor de la memoria: Blanca Cano Camarero
 
-\documentclass{scrbook}
-
+%\documentclass{scrbook}
+\documentclass[twoside]{scrbook}
 \KOMAoptions{%
   fontsize=10pt,        % Tamaño de fuente
   paper=a4,             % Tamaño del papel
@@ -198,9 +198,10 @@
 
 \include{preliminares/portada}
 \include{preliminares/titulo}
-%\include{preliminares/declaracion-originalidad}
-%\include{preliminares/resumen}
-%\include{preliminares/summary}
+\include{preliminares/declaracion-originalidad}
+\include{preliminares/agradecimientos}
+\include{preliminares/resumen}
+\include{preliminares/summary}
 %\include{preliminares/dedicatoria}                % Opcional
 \include{preliminares/tablacontenidos}
             % Opcional
@@ -218,18 +219,20 @@
 	%\bigskip % Deja un espacio vertical en la parte superiọ-r
   
 }
-
-%Metodología 
 \include{capitulos/0-Metodologia/Comentarios_previos}
+\include{capitulos/Introduccion}
+%Metodología 
+
 \input{capitulos/0-Metodologia/introduccion}
 \input{capitulos/0-Metodologia/herramientas}
+\input{capitulos/0-Metodologia/asignaturas}
 
 % Filosofía a seguir   
-\input{capitulos/Introduccion}
+%\input{capitulos/Introduccion}
 
 % Redes neuronales Definición de la clase de redes neuronales 
 \input{capitulos/1-Introduccion_redes_neuronales/Objetivos}
-\include{capitulos/1-Introduccion_redes_neuronales/aprendizaje_introduccion}
+\input{capitulos/1-Introduccion_redes_neuronales/aprendizaje_introduccion}
 
 
 % Teoría de la aproximación 
@@ -244,7 +247,7 @@
 \label{chapter4:redes-neuronales-aproximador-universal}
 \input{capitulos/1-Introduccion_redes_neuronales/feedforward-network-una-capa}
 \input{capitulos/2-Articulo_rrnn_aproximadores_universales/introduccion}
-\include{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_1_primeras_definiciones}
+\input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_1_primeras_definiciones}
 \input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_2_teorema_1_hasta_lema_2_2}
 \input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_3_teorema_2_2}
 \input{capitulos/2-Articulo_rrnn_aproximadores_universales/desgranando_el_articulo/articulo_4_colorario_2_1}
@@ -259,12 +262,20 @@
 \input{capitulos/4-Actualizacion_redes_neuronales/aprendizaje}
 \input{capitulos/4-Actualizacion_redes_neuronales/otras-alternativas}
 
-% Mejoras propuestas 
-\input{capitulos/5-Estudio_experimental/funciones_activacion}
-\input{capitulos/5-Estudio_experimental/inicializacion-pesos}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Hipótesis
+%\part{Exploración de las hipótesis planteadas y estudio experimental de las mismas}
+% Estudio de las funciones de activación 
+\include{capitulos/5-Estudio_experimental/1_funciones_activacion}
+% Estudio del algoritmo de inicialización de pesos 
+\input{capitulos/5-Estudio_experimental/2_descripcion_inicializacion-pesos}
+\input{capitulos/5-Estudio_experimental/3_detalles_implementacion}
+\input{capitulos/5-Estudio_experimental/3_algoritmo-inicializacion-pesos}
+\input{capitulos/5-Estudio_experimental/4_conclusion_intuitiva}
+% Comentario sobre los algoritmos genéticos 
 \input{capitulos/5-Estudio_experimental/combinacion_funciones_activacion}
 %\include{capitulos/N-Exploracion-hipotesis-planteadas/hipotesis}
 
+\include{capitulos/9-Conclusiones}
 
 % --------------------------------------------------------------------
 % APPENDIX: Opcional
@@ -309,5 +320,4 @@
 \begin{footnotesize} % Normalmente el índice se imprime en un tamaño de letra más pequeño.
 \printindex
 \end{footnotesize}
-\include{preliminares/agradecimientos}
 \end{document}

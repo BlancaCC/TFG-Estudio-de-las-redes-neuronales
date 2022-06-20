@@ -3,16 +3,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{ Mejora en la inicialización de los pesos de una red neuronal}  
 \label{section:inicializar_pesos}
+
 Como observábamos en la sección \ref{sec:gradiente-descendente}, el gradiente descendente pretende en cada 
 iteración mejorar la solución encontrada, pero es 
 totalmente sensible a la posición inicial 
 de los pesos. 
-Presentamos por tanto la siguiente propuesta para inicializar una red neuronal con el objetivo de que sus pesos se encuentren ya cerca de la solución. Destaquemos que este algoritmo 
+Presentamos por tanto una propuesta para 
+inicializar una red neuronal con el objetivo de que 
+sus pesos se encuentren ya cerca de la solución. 
+Destaquemos que este algoritmo 
 no solo servirá exclusivamente para el método de gradiente descendente 
 sino para cualquier otro dependiente del punto inicial. 
 
-\section{ Estado del arte relacionado } 
+\section*{Contenido y objetivo del capítulo}  
 
+\begin{itemize}
+    \item Establecimiento del estado del arte en \ref{ch07:estado-arte}.
+    \item Descripción del algoritmo y demostración de su corrección \ref{ch07:algoritmo-propuesto}.
+    \begin{itemize}
+        \item Determinación de su complejidad algorítmica. 
+        \item Selección de parámetros y generalización. 
+    \end{itemize}
+    \item Descripción de la implementación. 
+    \item Beneficios obtenidos.  
+\end{itemize}
+
+
+
+\section{ Estado del arte relacionado } 
+\label{ch07:estado-arte}
 % Nota informativa de lo que es un backbone 
 \setlength{\marginparwidth}{\bigMarginSize}
 \marginpar{\maginLetterSize
@@ -40,12 +59,12 @@ Ante esta situación, nuestro algoritmo propone una inicialización de bajo cost
 
 
 \section{Descripción del método propuesto}
-
+\label{ch07:algoritmo-propuesto}
 \begin{aportacionOriginal} % método de construción
     
 La idea proviene de la demostración casi constructiva del teorema \ref{teorema:2_5_entrenamiento_redes_neuronales}.
 
-Se desea inicializar los pesos de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \mathcal{D}$ de datos de entrenamiento. 
+Se desea inicializar los pesos de $h \in \rrnnsmn$, para la cual, una vez fijado el número $n$ de neuronas de nuestra red neuronal, será necesario  determinar un subconjunto $\Lambda \subset\mathcal{D}$ de datos de entrenamiento. 
 
 La bondad del resultado depende en gran medida de $\Lambda$, 
 puesto que a priori se carece de hipótesis, se seleccionará 
@@ -53,7 +72,11 @@ de manera aleatoria bajo el supuesto de una distribución
 independiente e idénticamente distribuida de los datos. 
 
 Como apunta la demostración, debe encontrarse un 
-$p \in \R^d$ satisfaciendo que $p \cdot (x_i-x_j) \neq 0$ para cualesquiera
+$p \in \R^d$ satisfaciendo que 
+\begin{equation}
+    p \cdot (x_i-x_j) \neq 0
+\end{equation}
+para cualesquiera
 atributos $x_i,x_j$ distintos de $\Lambda$.  
 
 Es decir que se estaría considerando un vector que no 
@@ -93,8 +116,8 @@ Usado la notación vectorial
 $p_{[i,j]} = (p_i, p_{i+1}, \ldots, p_{j})$ donde $(p_0, p_1, \ldots, p_d)=p$, comenzaremos definiendo el valor de la primera fila como
 
 \begin{align}
-    &S_1 = M p_0, \\
-    & A_{1 *} = M p_{[1,d]}, \\
+    &S_1 = 0, \\
+    & A_{1 *} = 0_{[1,d]}, \\
     & B_{* 1} = y_1.
 \end{align}
 
@@ -122,8 +145,8 @@ Resolviendo el sistema resulta que
             \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
             \\
             \tilde{\alpha}_{k s} 
-            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k-1})
-            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
         \end{array}
     \right.
 \end{equation}
@@ -132,8 +155,9 @@ Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de
 \begin{equation}
     \left\{ 
         \begin{array}{l}
+            % sesgo
             \alpha_{k 0} = \tilde{\alpha}_{k s} =
-            M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1}) 
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})        
             \\
             \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
             = 
@@ -149,23 +173,24 @@ cuya solución son las respectivas filas y columnas:
 \begin{equation}
     \left\{ 
         \begin{array}{l}
-            S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            S_{k} =
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})
+            \\
             A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
-            p_{i}  
+            p_{i} 
             \\
             B_{* k} = y_k - y_{k-1}
         \end{array}
     \right.
 \end{equation}  
+\end{aportacionOriginal} % método de construcción
 
 Con todo esto el proceso algorítmico resultante es: 
 
-\end{aportacionOriginal} % método de construcción
-
 % Algoritmo de inicialización de pesos de una red neuronal
-
 \begin{algorithm}[H]
     \caption{Inicialización de pesos de una red neuronal}
+    \label{algo:algoritmo-iniciar-pesos}
     \textbf{Input:} Tamaño red neuronal $n$, conjunto de datos de entrenamiento $\mathcal{D}$, constate $M$ involucrada en \refeq{eq:method_inicializar_M}.
 
     \textbf{Input:} Red neuronal, representada con las matrices $(A,S,B)$.
@@ -174,7 +199,7 @@ Con todo esto el proceso algorítmico resultante es:
         %selección de p
        \STATE \textit{Inicializamos $p$}. \\
        $p \gets$ vector de $\R^{d+1}$. 
-       \COMMENT{Como heurística será generado con distribución uniforme en el intervalo $[0,1]$} 
+       \COMMENT{Como heurística será generado con distribución uniforme en $[0,1]^{d+1}$} 
        % Cálculo de Lambda
        \STATE \textit{Selección  de los datos de inicialización
        $\Lambda \subset \mathcal{D}$}. \\
@@ -205,7 +230,7 @@ Con todo esto el proceso algorítmico resultante es:
        \STATE \textit{Cálculo del resto de neuronas}. 
        \For{ cada $(x_k, y_k) \in \Lambda$}{
         \begin{align}
-            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k-1})\\
+            &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}),\\
             & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
             p_{i}  \quad i \in \{1, \ldots d\},\\
             & B_{* k} = y_k - y_{k-1}.
@@ -216,16 +241,39 @@ Con todo esto el proceso algorítmico resultante es:
 \end{algorithm}
 
 \subsection{Coste computacional algoritmo de inicialización de pesos}
+\label{ch07:coste-computacional-algoritmo-propio}
+El algoritmo se divide en tres pasos bien identificados: 
+\begin{enumerate}
+    \item Inicialización del vector aleatorio.
+    \item Selección de los datos iniciales.
+    \item Cálculo de los parámetros de la red neuronal.
+\end{enumerate}
+Notemos que la complejidad del primero es constante y
+la del tercero lineal. 
 
-Antes de comenzar con el análisis notemos que el algoritmo tiene un componente aleatorio introducido en la selección del $p$; 
-y que en el peor (y con probabilidad nula) de los casos podría acabar con coste $\mathcal{O}(|\mathcal{D}|)$ devolviendo un resultado erróneo. 
+Para conocer la complejidad 
+del paso segundo debemos de apreciar que el algoritmo 
+tiene un componente aleatorio introducido en la selección del $p$; 
+y que en el peor (y con probabilidad nula) de los casos podría suponer
+$|\mathcal{D}|$ iteraciones en el bucle interior al paso 2.  
 
 Sin embargo, en virtud de las observaciones hechas en la 
-descripción del método, la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
+descripción del método, la peor situación tiene probabilidad nula de ocurrir;
+es decir,
+la mayoría de los datos del conjunto de entrenamiento tomados para inicializar la red neuronal cumplirán la propiedad de ortogonalidad y por tanto una buena 
 heurística es suponer 
-que  el paso 2 del algoritmo, \textit{Selección  de los datos de inicialización} se va a realizar con un coste de orden lineal a $n$. De esta manera el algoritmo de inicialización de pesos propuesto tendría una complejidad $\mathcal{O}(n)$.
+que  el paso 2 del algoritmo repetirá su bucle $n$ veces. 
+De esta manera el algoritmo de inicialización de pesos propuesto tendía la misma complejidad que el coste 
+de tener los datos ordenados. 
+Si se utilizan sistemas como insertar de manera ordenada los datos, por ejemplo en un \textit{set}, 
+el coste de cada inserción sería de $log(n)$; esto haría que el orden total del algoritmo sea: 
+\begin{equation}
+    \mathcal{O}(n log(n)).
+\end{equation}
 
-Notemos que este coste es bastante menor al de realizar \textit{backpropagation} y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente,  mientras que el nuestro se realiza tan solo una vez. 
+Cabe destacar que este coste es bastante menor al de realizar \textit{backpropagation} 
+y que además éste debería de realizarse repetidamente pare mejorar el error considerablemente, 
+ mientras que el nuestro se realiza tan solo una vez. 
 
 
 \subsection{Observaciones }
@@ -259,7 +307,13 @@ posible ver que se puede generalizar para otras
 funciones de activación menos restrictivas como las definidas en \ref{table:funciones-de-activation}. 
 
 \begin{itemize}
-    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para \textbf{funciones de activación que sean afines a una que satisface \refeq{eq:method_inicializar_M}}. El proceso constructivo consistiría en: (1) hacer que la red aprenda con la función que cumple los requisitos \refeq{eq:method_inicializar_M}. (2) Los pesos obtenidos transformarlos con la misma técnica que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
+    \item Por el teorema \ref{teo:eficacia-funciones-activation} también será valido para 
+    \textbf{funciones de activación cuyas imágenes sean
+     afines a una que satisface \refeq{eq:method_inicializar_M}}. 
+     El proceso constructivo consistiría en: 
+     (1) hacer que la red aprenda con la función que cumple los requisitos \refeq{eq:method_inicializar_M}.
+      (2) Los pesos obtenidos transformarlos con la misma técnica 
+      que se aplica en la demostración del teorema \ref{teo:eficacia-funciones-activation}. 
     
     \item  \textbf{Funciones de activación asintóticas a 0 o 1}, esto es funciones que satisfacen que: 
     \begin{enumerate}
@@ -278,17 +332,15 @@ De esta manera se pueden ampliar las funciones de activación válidas, añadien
     \centering
     \begin{tabular}{|c|c|}
     \hline
-        Función de activación  & Valor mínimo de $M$ \\ \hline
+        \textbf{Función de activación}  & \textbf{Valor mínimo de $M$} \\ \hline
         Función rampa & 1 \\ \hline
         \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
         Función indicadora 0 & 0 \\ \hline
         Función de activación  & Valor mínimo de $M$ \\ \hline
-        Sigmoidea  & con $M=10$ el error menor de $10^{-5}$\\ \hline
-        Tangente hiperbólica  &  con $M=7$ el error menor de $10^{-5}$\\ \hline
+        Sigmoidea  & con $M=10$ el error será menor que $10^{-5}$\\ \hline
+        Tangente hiperbólica  &  con $M=7$ el error será menor que $10^{-5}$\\ \hline
         \textit{Hardtanh} & 1 \\ \hline
     \end{tabular}
     \caption{Valor mínimo del parámetro $M$ en algoritmo de inicialización de redes neuronales según la función de activación seleccionada (con más resultados).}
     \label{table:M-activation-function-2}
 \end{table}
-
-%\textcolor{red}{TODO issue 107: Hacer experimentaciones }

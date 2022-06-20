@@ -29,9 +29,7 @@ workflow-spell: install-spell spell
 
 ########## Test biblioteca redes neurales ########### 
 test:
-	julia --project=. Biblioteca-Redes-Neuronales/test/activation_functions.test.jl 
-	julia --project=. Biblioteca-Redes-Neuronales/test/one_layer_neural_network.test.jl
-
+	julia --project=. OptimizedNeuralNetwork.jl/test/RUN_ALL_TEST.jl
 
 ############################### Generar experimentos ############
 experimentos: 

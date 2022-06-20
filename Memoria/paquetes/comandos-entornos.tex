@@ -8,10 +8,30 @@
   \newcommand{\Q}{\mathbb{Q}}     % Racionales
   \newcommand{\C}{\mathbb{C}}     % Complejos
 
+% Otros espacios 
+\newcommand{\D}{\mathcal{D}} % Conjunto de datos de entrenamiento
+
   %%%%%%%%% Mis comandos %%%%%%%%%
 % Para escribir código y pseudo código  
 \usepackage{minted}
+\usemintedstyle{friendly}
+\definecolor{sutilGreen}{rgb}{0.850, 0.996, 0.807} % para el fondo del código
+%\definecolor{sutilBackground}{rgb}{0.933, 0.905, 0.866}
+\definecolor{sutilBackground}{rgb}{0.99, 0.95, 0.9}
 
+\newminted{code}{
+  frame=single,
+  framesep=10pt,
+  baselinestretch=1.2,
+  bgcolor=sutilBackground, 
+  %linenos 
+}
+\newminted{example}{frame=single,
+  framesep=10pt,
+  baselinestretch=1.2,
+  %bgcolor=sutilBackground, 
+  %linenos
+}
 \usepackage{algorithmic}
 % Para la definición de redes neuronales de una sola capa 
 \newcommand{\Hu}{\mathcal{H}(X,Y)}  % Espacio de las redes neuronales
@@ -85,10 +105,11 @@
 % Para las notas del margen 
 %Nota los colores seleccionados han sido creados con una paleta inclusiva
 % https://palett.es/6a94a8-013e3b-7eb645-31d331-26f27d
-\definecolor{darkRed}{rgb}{0.2,1,0.7}%{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
+\definecolor{darkRed}{HTML}{9E6D0B}%{rgb}{0.2,1,0.7}%{ 0.149, 0.99, 0.49}%{1,0.1,0.1}
+
 \definecolor{dark_green}{rgb}{0, 0.24, 0.23} %{0.2, 0.7, 0.2}
-\definecolor{sutilGreen}{rgb}{0.850, 0.996, 0.807} % para el fondo del código
-\definecolor{blue}{rgb}{0.61, 0.98, 0.759} % sobreeescribimos el azul
+\definecolor{blue}{HTML}{2700FD}
+%\definecolor{blue}{rgb}{0.61, 0.98, 0.759} % sobreeescribimos el azul
 \newcommand{\smallMarginSize}{1.8cm}
 \newcommand{\bigMarginSize}{3cm}
 \newcommand{\maginLetterSize}{\scriptsize}%{\footnotesize} %{\scriptsize}%
@@ -148,5 +169,6 @@ frametitlebackgroundcolor=yellow!100,
 \usepackage{csquotes}
 \let\oldenquote\enquote
 \renewcommand{\enquote}[1]{{\itshape\oldenquote{#1}}}
+\usepackage{epigraph} %este es para las que salen a la derecha
 
 

@@ -6,7 +6,7 @@
 %*******************************************************
 \section{Las redes neuronales son aproximadores universales}  
 
-Tras las definición \ref{sec:redes-neuronales-intro-una-capa} de red neural expuesta,
+Tras las definición \ref{sec:redes-neuronales-intro-una-capa} de red neuronal expuesta,
 es pertinente la pregunta si tal estructura será 
 capaz de aproximar con éxito una función genérica desconocida.   
 
@@ -35,26 +35,43 @@ demostraremos el teorema en el caso real
 \ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales} e iremos refinando y generalizando los resultados hasta probar
 el resultado enunciado \ref{teo:MFNAUA} para una capa oculta.
 
+ % Nota margen de denso
+ \setlength{\marginparwidth}{\bigMarginSize}
+ \marginpar{\maginLetterSize
+     \iconoAclaraciones \textcolor{dark_green}{ 
+         \textbf{Idea intuitiva conjunto denso.}
+     }
+     Si $S$ es denso en $T$, 
+     se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
+     con la precisión que se desee}. 
+ }
+
+ 
 El esquema general será: 
 
-    % Nota margen de denso
-    \setlength{\marginparwidth}{\bigMarginSize}
-    \marginpar{\maginLetterSize
-        \iconoAclaraciones \textcolor{dark_green}{ 
-            \textbf{Idea intuitiva conjunto denso.}
-        }
-        Si $S$ es denso en $T$, 
-        se está está diciendo que \textbf{los elementos de $S$ son capaces de aproximar cualquier elemento de $T$
-        con la precisión que se desee}. 
-    }
+\begin{align*}
+    \rrnn 
+        \xRightarrow[]{\ref{teo:2_4_rrnn_densas_M}}  
+    \rrnng 
+        \xRightarrow[]{\ref{teorema:2_3_uniformemente_denso_compactos}}
+    \pmcg
+        \xRightarrow[]{\ref{teo:TeoremaConvergenciaRealEnCompactosDefinicionesEsenciales}}     
+    \fC    
+        \xRightarrow[]{\ref{teo:2_2_denso_función_continua}} 
+    \fM.
+\end{align*}
 
+   
 
 \begin{itemize}
-    \item Las redes neuronales que nosotros hemos modelizado son densas en un espacio más general que hemos denominado \textit{Anillo de aproximación de redes neuronales}. 
-    \item El espacio \textit{Anillo de aproximación de redes neuronales} es denso en la funciones continuas.
-    \item Las funciones continuas son densas en los reales. 
+    \item Las redes neuronales que nosotros hemos modelizado son densas en un espacio más general que hemos denominado \textit{Anillo de aproximación de redes neuronales}
+    generado a partir de una función de activación $\psi$. 
+    \item Que a su vez es denso en el \textit{Anillo de aproximación de redes neuronales}
+    generado a partir de una función medible $G$. 
+    \item El espacio \textit{Anillo de aproximación de redes neuronales} es denso en el de las funciones continuas.
+    \item Las funciones continuas son densas en el espacio de funciones medibles. 
 \end{itemize}
 
-Si quisiéramos situar en este esquema a otras definiciones de redes neuronales las situaríamos entre  nuestro modelo y el espacio \textit{Anillo de aproximación de redes neuronales}; en  el capítulo \ref{chapter:construir-redes-neuronales} se probará la equivalencia de nuestro modelo con estas definiciones y sus beneficios. 
+Si quisiéramos situar en este esquema a otras definiciones de redes neuronales las situaríamos entre  nuestro modelo y el espacio \textit{Anillo de aproximación de redes neuronales}; en  el capítulo \ref{chapter:construir-redes-neuronales} se probará tal resultado y analizarán los beneficios de basarnos en un modelo más simple. 
 
 

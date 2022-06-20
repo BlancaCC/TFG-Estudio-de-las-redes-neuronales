@@ -99,7 +99,6 @@ continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de
     \end{enumerate}
 
     Veamos que $\pmcg$ separa puntos para cada compacto $K \subset \R^r$. 
-
     Por ser $G$ no constante existirán $a,b \in \R$ distintos cumpliendo que $G(a) \neq G(b)$. Fijadas $x,y \in K$ tomamos entonces cualquiera de las 
     funciones afines que cumplen que $A(x) = a$ y $A(y)=b$ 
     \footnote{Sabemos que al menos una habrá, ya que podemos plantear la función afín
@@ -116,7 +115,7 @@ continua con elementos de $\pmcg$, es decir a lo que llamamos  \textit{anillo de
 
 \subsection{Observaciones y reflexiones sobre el teorema de convergencia real en compactos}
 
-Con esto lo que acabamos de probar que una estructura más general de\textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
+Con esto lo que acabamos de probar es que una estructura más general de \textit{feedforward neural networks} con tan solo una capa oculta  son capaces de aproximar cualquier 
 función continua en un compacto.  Cabe destacar que a la función $G$, que haría el papel de función de activación,
  solo se le ha pedido como 
 hipótesis ser continua.     
@@ -135,13 +134,15 @@ sin embargo es habitual la combinación de éstas en una misma red neuronal (
 \marginpar{\maginLetterSize \iconoProfundizar \textcolor{blue}{\textbf{Nueva hipótesis de optimización}}
 El corolario \ref{cor:se-generaliza-G-a-una-familia}
 abre la puerta a preguntarse si la combinación de diferentes funciones de activación 
-podría mejorar los resultados de alguna manera.
+podría mejorar los resultados de alguna manera. De hecho 
+trataremos sobre esto en el capítulo \ref{ch08:genetic-selection}.
 }
 \normalmarginpar
 
 \begin{aportacionOriginal}
 
-\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] \label{cor:se-generaliza-G-a-una-familia}
+\begin{corolario}[Pueden combinarse distintas funciones de activación en una misma red neuronal] 
+    \label{cor:se-generaliza-G-a-una-familia}
 
     Una misma red neuronal puede estar constituida por una familia de funciones continuas no constantes $\Gamma$, 
     bastará con generalizar $\pmcg$ a $\sum \prod ^d (\Gamma)$ donde 
@@ -167,11 +168,10 @@ podría mejorar los resultados de alguna manera.
 
 Notemos que este resultado no da pista alguna de las ventajas de una función frente a otra,
 ni cómo afecta a la \textit{velocidad de convergencia}.
-
 Es más, a priori se estaría aumentando el espacio de búsqueda, lo que significaría que \textit{dificultaría el encontrar la solución}, es decir
 un aumento en coste y aumento del error de aproximación.
 
-Sin embargo, como ya mostrábamos en 
+Sin embargo, como ya indicábamos en 
 \ref{ch03:funcionamiento-intuitivo-funcion-activacion}
 utilizar una función de activación frente a otra
 varía el número de neuronas necesarias para 
@@ -315,48 +315,43 @@ El lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} nos permitirá traba
 
     % 2 -> 3
     Probaremos ahora que (2) $\Longrightarrow$ (3).   
-
-    Por (2) se tiene que sea cual sea el $\varepsilon$ cumpliendo que 
+    Por (2) se tiene que sea cual sea $\varepsilon$ cumpliendo que 
     $0 < \varepsilon \leq 2$ 
     existirá un natural $n_0$ a partir del cual, cualquier otro natural $n$ 
     satisface que 
     \begin{equation} 
-        \mu \{  
+        \mu \left\{  
             x : |f_n(x) - f(x)| > \frac{\varepsilon}{2}  
-            \}  
+            \right\}  
         < 
-        \frac{\varepsilon}{2},  
+        \frac{\varepsilon}{2}. 
     \end{equation}
-
     Gracias a esta desigualdad, para cualquier $n > n_0$ podemos acotar la siguiente integral: 
 
     \begin{equation}
         \int \min \{ |f_n(x) - f(x)|, 1\} d\mu(x) 
         \leq
         \frac{\varepsilon}{2} (1-\frac{\varepsilon}{2}) + 1\frac{\varepsilon}{2} 
-         = \varepsilon - \frac{\varepsilon^2}{4} <  \varepsilon.  
+         = \varepsilon - \frac{\varepsilon^2}{4} <  \varepsilon,  
     \end{equation}
     probando con ello la implicación (2) $\Longrightarrow$ (3).
 
     % 3 -> 1
     Finalmente comprobaremos la implicación (3) $\Longrightarrow$ (1).
-
     Para cada $n\in \N$ llamamos $g_n = \min\{|f_n - f|, 1|\}$.
     Por (2), dado $0 < \varepsilon < 1$, existe un $n_0 \in \N$
     de modo que si $n \geq n_0$ se cumple que 
     \begin{equation}\label{eq:definiciones_Básicas_Integral_GN_menor_Epsilon_Cuadrado}
-        \int g_n d\mu < \varepsilon^2
+        \int g_n d\mu < \varepsilon^2.
     \end{equation}
     Como $\varepsilon < 1$ tenemos que 
 
     \begin{equation}
         \{ x; g_n(x) > \varepsilon \}
          = 
-         \{ x; |f_n - f| > \varepsilon \}
+         \{ x; |f_n - f| > \varepsilon \},
     \end{equation}
-
     luego 
-
     \begin{equation}
         \mu\{ x; |f_n - f(x)| > \varepsilon \}
         = 
@@ -366,9 +361,8 @@ El lema \ref{lema:caracterizacionConvergenciaSucesiones2_1} nos permitirá traba
         \int_{g_n(x) > \varepsilon} g_n d\mu 
         < \varepsilon 
         \quad
-        \forall n \geq n_0
+        \forall n \geq n_0,
     \end{equation}
-
     donde se ha usado la desigualdad de Chebyshev para $g_n$ y la desigualdad 
     (\refeq{eq:definiciones_Básicas_Integral_GN_menor_Epsilon_Cuadrado}). 
 
@@ -410,12 +404,12 @@ $$\mu \{  x : |f_n(x) - f(x)| > \varepsilon \} \longrightarrow 0.$$
           \iconoAclaraciones \textcolor{dark_green}{ \textbf{Idea intuitiva lema \ref{lema:A_1_C_es_denso_en_M}:}}
           }
           \marginpar{\maginLetterSize
-          Las funciones continuas pueden tomar formas muy variopintas, estando incluso no acotadas. La función de Dirichlet definida en $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional, es medible pero no es continua ya que presenta infinitas discontinuidades.
+          Las funciones medibles pueden tomar formas muy variopintas, estando incluso no acotadas, un ejemplo de ello es la función de Dirichlet definida como $D(x) = 1$ si $x$ es irracional y $D(x)=0$ si $x$ es racional. Esta función es medible pero no es continua ya que presenta infinitas discontinuidades.
           }
           \marginpar{\maginLetterSize
           Sin embargo, las funciones continuas son más simples, fáciles de entender y manejar. 
           Gracias al lema \ref{lema:A_1_C_es_denso_en_M}
-          acabamos de probar que \textbf{podemos aproximar en
+          se prueba el llamativo resultado de que \textbf{podemos aproximar en
           casi todos sus puntos  cualquier función medible a partir de una continua.} 
           }
           \marginpar{\maginLetterSize
@@ -430,7 +424,6 @@ $$\mu \{  x : |f_n(x) - f(x)| > \varepsilon \} \longrightarrow 0.$$
         = 
         g_n.
      \end{equation}
-
     Por lo que  
     \begin{equation} \label{eq:lema3_2_integral_en_compacto_K}
         \int_K g_n d\mu 
@@ -439,7 +432,7 @@ $$\mu \{  x : |f_n(x) - f(x)| > \varepsilon \} \longrightarrow 0.$$
         \leq 
         \frac{\varepsilon}{2} .
     \end{equation}
-
+    %
     Acotando el primer sumando por la medida 
     del complemento de la región integrada y en virtud de 
     (\refeq{eq:lema3_2_integral_en_compacto_K})
