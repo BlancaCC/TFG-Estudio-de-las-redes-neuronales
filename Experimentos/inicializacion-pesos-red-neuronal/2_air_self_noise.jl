@@ -1,5 +1,5 @@
 ########################################################
-#   Experimento del algoritmo inicialización con base de datos de air self noise
+#   Experimento del algoritmo inicialización aprendida aprendida con base de datos de air self noise
 ########################################################
 using Random
 using Plots
@@ -54,7 +54,7 @@ dfTiempo = [
         Array{Float64}(undef, 2 )
         for _ in 1:NUMERO_EJECUCIONES 
         ]
-dfNombre = ["Algoritmo inicialización", "Aleatorio y Backpropagation"]
+dfNombre = ["algoritmo inicialización aprendida", "Aleatorio y Backpropagation"]
 dfErrorEntrenamiento = [
         Array{Float64}(undef, 2 )
         for _ in 1:NUMERO_EJECUCIONES 

@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Experimentación con ALGORITMO INICIALIZACIÓN DE PESOS
+% Experimentación con algoritmo inicialización aprendida DE PESOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En la siguiente sección trataremos sobre la bondad del algoritmo expuesto
@@ -61,14 +61,14 @@ no \textit{falle}, es decir haremos    $\alpha = 0.9$.
 
 % Paso 2: Evaluación del error
 \item Con los datos de entrenamiento $D_i$ y el algoritmo de 
-aprendizaje de \textit{Backpropagation} se entrenará la red 
+aprendizaje de \textit{backpropagation} se entrenará la red 
 neuronal inicializada aleatoriamente hasta que iguale o sea menor que  el 
-error del algoritmo de inicialización $\varepsilon_i$. 
+error del algoritmo de inicialización aprendida $\varepsilon_i$. 
 
 Puesto que puede darse el caso de 
-quedar estancados en un mínimo local superior al error encontrado con el algoritmo de inicialización $\varepsilon_i$ o que oscile entorno a un 
+quedar estancados en un mínimo local superior al error encontrado con el algoritmo de inicialización aprendida $\varepsilon_i$ o que oscile entorno a un 
 mínimo si el $\eta$ no es lo suficientemente pequeño (ver 
-propiedades del gradiente descendente \ref{ch05:gradiente-descentente}); se ha añadido también como criterio de parada el que el error del algoritmo de \textit{Backpropagation}
+propiedades del gradiente descendente \ref{ch05:gradiente-descentente}); se ha añadido también como criterio de parada el que el error del algoritmo de \textit{backpropagation}
 se estanque o empeore durante 5 \footnote{El valor de 5 
 iteraciones consecutivas es una heurística observada en 
 ejecuciones anteriores y dependiente de $\eta$ y del problema.
@@ -122,7 +122,7 @@ que tenga una entrada de tamaño $d$,
 $n$ neuronas en la capa oculta y
 una dimensión de salida $d$.
 
-\subsubsection{Implementación del algoritmo de inicialización}
+\subsubsection{Implementación del algoritmo de inicialización aprendida}
 
 Deberá implementarse el algoritmo  \ref{algo:algoritmo-iniciar-pesos} con todos los requisitos y atributos que ahí se describe.  
 
@@ -146,7 +146,7 @@ Dados una red neuronal, una función de evaluación y un vector de atributos de 
     Es una generalización de las derivadas para funciones del espacio $L_p$, esto nos permite
     definir derivadas aunque no lo sea en algunos puntos (recodemos que demostremos el teorema de aproximación universal para estos espacios en la sección \ref{ch04:espacios-Lp}).   
 }
-Se implementará el algoritmo propio de aprendizaje basado en \textit{Backpropagation} y ya optimizado 
+Se implementará el algoritmo propio de aprendizaje basado en \textit{backpropagation} y ya optimizado 
 que describimos en los algoritmos \ref{algoritmo:gradiente-descendente} y \ref{algoritmo:calculo-gradiente}.
 Cabe destacar que para este algoritmo es necesario usar la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. Además se ha seguido el mismo criterio de diseño que ya se tuvo con las funciones de activación en la sección \ref{ch06:activation-function-implementation}.
 
@@ -158,114 +158,76 @@ experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 
 Concretamente de el experimentos se ha realizado con 
 una partición del conjunto de datos $\frac{3}{4}|\mathcal{D}|$ para entrenamiento entrenamiento 
-y el resto de test. Se ha repetido además $15$ veces (por tratarse de un número conveniente de muestras para el Test de los signos de Wilcoxon como vimos en la sección donde se usó por primera vez \ref{ch06:test-hipotesis-propiedades}). 
+y el resto de test. Se ha repetido además $15$ veces (por tratarse de un número conveniente de muestras para el Test de los signos de Wilcoxon como vimos en la sección \ref{ch06:test-hipotesis-propiedades} donde se usó por primera vez). 
 
 Durante cada iteración los datos del conjunto han sido desordenados y el tiempo medido ha sido estrictamente el de creación y aprendizaje de la red neuronal. 
 
-Los resultados obtenidos han sido los siguientes: 
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        Método y Ejecución &   1 &   2 &   3 &   4 &   5 &   6 &   7 &   8 &   9 &   10 &   11 &   12 &   13 &   14 &   15 \\ \hline
-        Algoritmo inicialización & 0,274 & 0,030 & 0,028 & 0,028 & 0,026 & 0,028 & 0,027 & 0,027 & 0,027 & 0,029 & 0,027 & 0,028 & 0,027 & 0,027 & 0,029 \\ \hline
-        Backpropagation & 6,204 & 5,064 & 5,083 & 6,015 & 5,128 & 5,120 & 5,072 & 5,105 & 5,961 & 5,023 & 5,023 & 5,074 & 5,065 & 5,148 & 5,180 \\ \hline
-    \end{tabular}
-    }
-    \caption{Tiempos en segundos hasta parada empleado por cada algoritmo en las sucesivas iteraciones }
-\end{table}
+Puede consultar los resultados obtenidos en 
+\href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Experimentos/inicializacion-pesos-red-neuronal/resultados/2_air_self_noise}{la carpeta de experimentos de air self noise} 
+de nuestro repositorio, es más para obtener
+ una información detallada del mismo ejecute 
+ los experimentos y observe la información que van mostrando. 
 
 
-
-De donde se tiene que nuestro algoritmo de inicialización tiene un promedio de 
+De donde se tiene que para nuestro algoritmo de inicialización aprendida el tiempo medio de ejecución es de 
 \begin{equation}
-    0,044 \pm 0,064 \text{ segundos }
+    0,044 \pm 0,064 \text{ segundos, }
 \end{equation}
-mientras que la inicialización aleatoria y aprendizaje con el método de 
-\textit{Backpropagation} de 
+mientras que para la inicialización aleatoria y aprendizaje con el método de 
+\textit{backpropagation} es de 
 \begin{equation}
     5,284 \pm 0,407   \text{ segundos}.
 \end{equation}
 
-Además el test de los signos de Wilcoxon ha rechazado la hipótesis 
-con un $95\%$ de confianza
+Además el test de los signos de Wilcoxon ha rechazado la hipótesis nula
+con un $95\%$ de confianza,
 por lo que podemos afirmar que efectivamente la diferencia de tiempos es significativa. 
 
 El gráfico de caja bigote con los tiempos es el siguiente: 
 
 \begin{figure}[H]
     \centering
-     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-tiempo.png}
-     \caption{Gráfico de caja y bigotes del tiempo requerido por el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+     \includegraphics[width=0.8\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-tiempo.png}
+     \caption{Gráfico de caja y bigotes del tiempo requerido por el algoritmo de inicialización aprendida de pesos y el de \textit{backpropagation}.}
 \end{figure}
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        Método & Error  1 & Error  2 & Error  3 & Error  4 & Error  5 & Error  6 & Error  7 & Error  8 & Error  9 & Error  10 & Error  11 & Error  12 & Error  13 & Error  14 & Error  15 \\ \hline
-        Algoritmo inicialización & 0,016 & 0,016 & 0,018 & 0,017 & 0,009 & 0,016 & 0,021 & 0,015 & 0,018 & 0,020 & 0,016 & 0,016 & 0,016 & 0,019 & 0,018 \\ \hline
-        Aleatorio y Backpropagation & 0,582 & 0,570 & 0,570 & 0,575 & 0,564 & 0,567 & 0,564 & 0,567 & 0,572 & 0,570 & 0,561 & 0,561 & 0,574 & 0,569 & 0,563 \\ \hline
-    \end{tabular}
-    }
-    \caption{Error mínimo cuadrático obtenido en entrenamiento tras acabar la ejecución}
-    \label{fig07:error-entrenamiento}
-\end{table}
-
-Tal y como se planteó el experimento la parada del algoritmo de \textit{Backpropagation} 
-pudo producirse por haber alcanzado un error menor que el de la red conseguida con el 
-algoritmo de inicialización o porque ha estancado su valor.
-Sin embargo, al observarse la distribución de los errores en el 
-gráfico \ref{img07:error-entrenamiento} y la tabla \ref{fig07:error-entrenamiento} puede observarse que 
-el algoritmo de \textit{Backpropagation} se detuvo al alcanzar un 
-mínimo local en todos los casos, ya que todos están por encima del error de nuestro algoritmo de inicialización. 
+Debemos ser cautos antes de afirmar que tal relación entre los tiempos es el índice de mejora. Puesto que antes debe de conocerse el motivo por el que se detuvo el algoritmo de \textit{backpropagation}; para ello se estudiará la distribución de los errores en entrenamiento. 
 
 \begin{figure}[H]
     \centering
-     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_entrenamiento.png}
-     \caption{Gráfico de caja y bigotes del \textbf{error en entrenamiento tras finalizar } el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+     \includegraphics[width=0.8\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_entrenamiento.png}
+     \caption{Gráfico de caja y bigotes del \textbf{error en entrenamiento tras finalizar } el algoritmo de inicialización aprendida de pesos y el de \textit{backpropagation}.}
      \label{img07:error-entrenamiento}
 \end{figure}
 
 En promedio el error cuadrático medio dentro del entrenamiento conseguido con nuestro algoritmo es 
 \begin{equation}
-    0,017 \pm 0,003
+    0,017 \pm 0,003;
 \end{equation}
-mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
+mientras que el de inicialización aleatoria y \textit{backpropagation} es de 
 \begin{equation}
     0,569 \pm 0,006. 
 \end{equation}
+Si además se observa la traza obtenida durante la ejecución (ver repositorio), 
+no tarda uno en percatarse de que en la mayoría de las muestras, la parada del algoritmo de
+\textit{backpropagation} se está produciendo al \textit{estancarse} el error 
+en un mínimo local. 
 
-Es interesante entonces comparar el error cuadrático medio obtenido en los datos de test, para ver si efectivamente es tan beneficioso como aparenta el algoritmo creado. 
+Esta situación si bien nos previene de poder explicitar un coeficiente de mejora 
+entre el algoritmo de inicialización aprendida y \textit{backpropagation} desde 
+una red neuronal inicializada aleatoriamente, pone de manifiesto su gran potencial de aprendizaje. 
+Es por tanto interesante  comparar el error cuadrático medio obtenido en los datos de test, ya que nos dará una estimación verdadera de la bondad del método.  
 
-El resultado en cada ejecución ha sido: 
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-    \hline
-        Método & Error    1 & Error   2 & Error   3 & Error   4 & Error   5 & Error   6 & Error   7 & Error   8 & Error   9 & Error   10 & Error   11 & Error   12 & Error   13 & Error   14 & Error   15 \\ \hline
-        Algoritmo inicialización & 0,176 & 0,179 & 0,184 & 0,175 & 0,096 & 0,191 & 0,192 & 0,172 & 0,171 & 0,183 & 0,161 & 0,179 & 0,163 & 0,175 & 0,170 \\ \hline
-        Aleatorio y Backpropagation & 0,561 & 0,571 & 0,573 & 0,562 & 0,583 & 0,579 & 0,557 & 0,577 & 0,567 & 0,572 & 0,551 & 0,564 & 0,563 & 0,573 & 0,559 \\ \hline
-    \end{tabular}
-    }
-    \caption{Error mínimo cuadrático \textbf{en test} tras finalizar las sucesivas repeticiones del algoritmo}
-\end{table}
-
-
+El error cuadrático medio de ambos métodos en test es el siguiente: 
 \begin{figure}[H]
     \centering
-     \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_test.png}
-     \caption{Gráfico de caja y bigotes del \textbf{error cuadrático medio en test } el algoritmo de inicialización de pesos y el de \textit{Backpropagation}.}
+     \includegraphics[width=0.8\textwidth]{7-algoritmo-inicializar-pesos/experimento/grafico-bigotes-error_test.png}
+     \caption{Gráfico de caja y bigotes del \textbf{error cuadrático medio en test } el algoritmo de inicialización aprendida de pesos y el de \textit{backpropagation}.}
      \label{img07:error-test}
 \end{figure}
 
-Donde ahora el promedio para nuestro algoritmo es de un error de
+donde ahora el promedio para nuestro algoritmo de inicialización aprendida es de un error de
 \begin{equation}
-    0,171 \pm 0,022
+    0,171 \pm 0,022;
 \end{equation}
 
 % Nota sobre sobreajuste 
@@ -283,18 +245,52 @@ Donde ahora el promedio para nuestro algoritmo es de un error de
     entrenamiento \textit{considerablemente} mejores que en test.   
 }
 % fin de la nota
-mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
+mientras que el de inicialización aleatoria y \textit{backpropagation} es de 
 \begin{equation}
     0,567 \pm 0,009.
 \end{equation}
 
 
-Como podemos observar en el caso de nuestro 
-algoritmo; a diferencia del error en test obtenido con \textit{Backpropagation}, el error en test ha superado al de entrenamiento, lo que indica un sobreajuste 
+A diferencia del error en test obtenido con \textit{backpropagation}, el de nuestro algoritmo
+ ha superado al de entrenamiento, lo que indica un sobreajuste 
 del modelo a los datos de entrenamiento. Esto es totalmente de esperar por 
-cómo se construye la inicialización de pesos. Sin embargo, a pesar del sobreajuste, el resultado sigue siendo mejor tanto en precisión como en tiempo que el de aprendizaje usando \textit{Backpropagation}.  
+cómo se construye la inicialización de pesos. Sin embargo, a pesar del sobreajuste, el resultado sigue siendo mejor tanto en precisión como en tiempo que el de aprendizaje usando \textit{backpropagation}.  
 
 
+\section{Observaciones y conclusiones sobre el algoritmo de inicialización aprendida de pesos}
 
+
+Cabe destacar que si bien el algoritmo se ha diseñado para nuestro 
+modelo de red neuronal, la idea se puede extender al resto de modelos 
+existentes; para ello bastaría seguir la
+demostración y plantear el sistema de ecuaciones adecuado que se 
+utilizan en la línea 4 del algoritmo \ref{algo:algoritmo-iniciar-pesos}.
+
+Por otro lado, en nuestro caso concreto, el algoritmo
+ de inicialización aprendida ha presentado 
+ mejores resultados en precisión y tiempo que la 
+ alternativa, esta simultaneidad en los 
+ beneficios evita cuantificarlos; ya que para 
+ tener un coeficiente de mejora o tiempo debería de fijarse un parámetro (las mismas condiciones de observación) y comparar el otro. 
+
+ Como mostramos por el experimento no ha sido 
+ posible fijar el error de estudio, ya que 
+ \textit{backpropagation} no ha sido capaz de minimizar la red inicializada aleatoriamente 
+ hasta tal error. 
+
+ Por otro lado nuestro algoritmo al no ser iterativo tampoco ha podido adaptarse al de 
+ \textit{backpropagation}. 
+
+ Si razonáramos fijando el error, la comparación tampoco es posible, ya que si se observan los tiempo de la traza de ejecución (ver experimento en el repositorio), una sola ejecución de nuestro
+ algoritmo ya es más rápida que una iteración de 
+ \textit{backpropagation}. 
+
+Para futuros trabajos se podría cuantificar la mejora, para ello
+proponemos relajar restricciones de \text{backpropagation} con el fin de 
+reducir su tiempo de ejecución y así poder compararlos.
+ Proponemos para 
+ello reducir el tamaño del conjunto de entrenamiento en cada iteración. De esta forma se podría obtener un tiempo por iteración que sea 
+divisor del que emplee el algoritmo de inicialización aprendida 
+y de esta manera sí poder fijar un tiempo común con el comparar el error. 
 \newpage
 

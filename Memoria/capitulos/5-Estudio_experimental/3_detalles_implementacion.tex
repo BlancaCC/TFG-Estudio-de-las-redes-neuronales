@@ -18,7 +18,7 @@ declarar una red neuronal es como un nuevo tipo de dato: \textit{red neuronal} c
 
 En vista a la optimización en evaluación y 
 entrenamiento más eficiente las matrices 
-$A, S$ se han escrito en una sola permitiendo así una evaluación más compacta. 
+$A$ y $S$ se han escrito en una sola permitiendo así una evaluación más compacta. 
 Puede encontrar la implementación 
 en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/OptimizedNeuralNetwork.jl/src}{nuestro repositorio}.
 \subsubsection{Diseño de test} 
@@ -204,7 +204,7 @@ El resultado de las líneas anteriores sería:
     \end{minted}
 \end{minipage} 
 
-\subsection{Implementación del algoritmo de inicialización de pesos}
+\subsection{Implementación del algoritmo de inicialización aprendida de pesos}
 
 Se ha realizado la implementación de acorde al algoritmo descrito 
 en \ref{algo:algoritmo-iniciar-pesos}. Para un desarrollo optimizado se han tenido en cuenta tres 
@@ -224,7 +224,7 @@ la sección \ref{ch06:sistema-timpos-julia} con
 
  Gracias a esta manera de implementar polimorfismo 
  en Julia, tendremos una sola función que recoja a 
- nuestro algoritmo de inicialización de pesos y diversas implementaciones adaptadas a la dimensión de entrada y salida. 
+ nuestro algoritmo de inicialización aprendida de pesos y diversas implementaciones adaptadas a la dimensión de entrada y salida. 
 
  Puede consultar la implementación en \href{https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/OptimizedNeuralNetwork.jl/src}{la carpeta \textit{weight-initializer-algorithm}} de nuestra biblioteca. 
  Cabe mencionar que el caso de entrada y salida de dimensión uno ha sido el que más reducción de costo 
@@ -241,7 +241,7 @@ $\Lambda$ en el pseudo código \ref{algo:algoritmo-iniciar-pesos}.
 
 La forma más eficiente de proceder en estos casos
 es con una estructura de datos pertinente. 
-En lenguajes como C++ una solución eficiente sería introducir los datos en 
+En lenguajes como C++ una solución eficaz sería introducir los datos en 
 un \textit{set}, que por estar construidos sobre un \href{https://en.wikipedia.org/wiki/Red–black_tree}{\textit{red-black tree}}
 % Sobre la implementación
 \footnote{ 
@@ -426,7 +426,7 @@ Además de la imagen  \ref{img:ch07-ejemplo-5-neuronas-incializacion-pesos}
 \begin{figure}[H]
     \centering
      \includegraphics[width=.8\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_5_neuronas.png}
-     \caption{Ejemplo de ejecución del algoritmo de inicialización de pesos}
+     \caption{Ejemplo de ejecución del algoritmo de inicialización aprendida de pesos}
      \label{img:ch07-ejemplo-5-neuronas-incializacion-pesos}
     \end{figure}
 
