@@ -130,7 +130,7 @@ Dado una red neuronal, una función de evaluación y un datos ser capaz de aplic
 }
 Se implementará el algoritmo propio de aprendizaje basado en \textit{Backpropagation} y ya optimizado 
 que describimos en los algoritmos \ref{algoritmo:gradiente-descendente} y \ref{algoritmo:calculo-gradiente}.
-Cabe destacar que para este algoritmo es necesario la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. 
+Cabe destacar que para este algoritmo es necesario la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. Además se ha seguido el mismo criterio de diseño que ya se tuvo con las funciones de activación en la sección \ref{ch06:activation-function-implementation}.
 
 \subsubsection{Implementación del experimento} 
 Deberá de implementarse una función que realice el 
@@ -138,10 +138,11 @@ experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 
 \subsection{Resultados obtenidos}
 
-Concretamente de el experimentos se ha realizado con $\frac{3}{4}|\mathcal{D}|$ de datos de entrenamiento 
-y el resto de test, se ha repetido además $15$ veces. 
+Concretamente de el experimentos se ha realizado con 
+una partición del conjunto de datos $\frac{3}{4}|\mathcal{D}|$ para entrenamiento entrenamiento 
+y el resto de test. Se ha repetido además $15$ veces (por tratarse de un número conveniente de muestras para el Test de los signos de Wilcoxon). 
 
-Durante cada iteración los datos del conjunto han sido desordenados y el tiempo medido ha sido estrictamente el de creación y aprendiza de la red neuronal. 
+Durante cada iteración los datos del conjunto han sido desordenados y el tiempo medido ha sido estrictamente el de creación y aprendizaje de la red neuronal. 
 
 Los resultados obtenidos han sido los siguientes: 
 
@@ -247,10 +248,6 @@ Donde ahora el promedio para nuestro algoritmo es de un error de
 \begin{equation}
     0,171 \pm 0,022
 \end{equation}
-mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
-\begin{equation}
-    0,567 \pm 0,009.
-\end{equation}
 
 % Nota sobre sobreajuste 
 \marginpar{\maginLetterSize
@@ -264,8 +261,15 @@ mientras que el de inicialización aleatoria y \textit{Backpropagation} es de
     propias de los datos de entrenamiento que 
     no son válidas para el problema general. 
     Este efecto produce que se tengan resultados en 
-    entrenamiento \textit{mucho} mejores que en test.   
+    entrenamiento \textit{considerablemente} mejores que en test.   
 }
+% fin de la nota
+mientras que el de inicialización aleatoria y \textit{Backpropagation} es de 
+\begin{equation}
+    0,567 \pm 0,009.
+\end{equation}
+
+
 Como podemos observar en el caso de nuestro 
 algoritmo; a diferencia del error en test obtenido con \textit{Backpropagation}, que el error en test ha superado al de entrenamiento, lo que indica un sobreajuste 
 del modelo a los datos de entrenamiento. Esto es totalmente de esperar por 
