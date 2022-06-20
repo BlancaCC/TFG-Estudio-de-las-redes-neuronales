@@ -105,6 +105,7 @@ csv
 cte
 darkRed
 dat
+derivativeRampFunction
 diferenciabilidad
 diferenciable
 diferenciables
@@ -160,6 +161,7 @@ parametrized
 paramétrico
 paramétricos
 pdf
+perceptron
 perceptrones
 perceptrón
 png
@@ -207,4 +209,3 @@ usefulInformation
 ésima
 ésimas
 ésimo
-perceptron
