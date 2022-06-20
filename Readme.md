@@ -93,7 +93,7 @@ forward_propagation(h,RampFunction,x)
 ### Algoritmo de *back propagation*
 
 ``` Julia
-TODO :)
+backpropagation!(h, X_train, Y_train, RampFunction, derivativeRampFunction, n)
 ```
 
 ## Reglas
