@@ -21,7 +21,7 @@ Por simplicidad fijaremos una función de activación.
 
 \subsection{Descripción experimento}
 
-El experimento costa de los siguientes pasos: 
+El experimento consta de los siguientes pasos: 
 
 \begin{enumerate}
 % Paso 0: Selección de data sets 
@@ -43,7 +43,12 @@ Para la implementación realizada podría utilizarse cualquier otra que provenga
 
 Notemos que $d$ viene determinado por el número de atributos, 
 $s$ será uno ya que estamos frente a un problema 
-de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mathcal{D}_i| \rfloor$ con $\alpha \in (0,1)$; concretamente, en virtud de la observaciones mostrada en la sección \ref{section:inicializar_pesos} de que la probabilidad de que un dato no pueda ser utilizado para el algoritmo es nula; suponer que el $90\%$ de los datos sí serán válidos es una estimación lo suficientemente precavida como para que el algoritmo no \textit{falle}, es decir haremos    $\alpha = 0.9$. 
+de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mathcal{D}_i| \rfloor$ con $\alpha \in (0,1)$; concretamente, en virtud de la observaciones mostradas en la 
+sección \ref{section:inicializar_pesos} de que la probabilidad de 
+que un dato no pueda ser utilizado para el algoritmo es nula; 
+suponer que el $90\%$ de los datos sí serán válidos es una 
+estimación lo suficientemente precavida como para que el algoritmo 
+no \textit{falle}, es decir haremos    $\alpha = 0.9$. 
 
 % Paso 1: Construcción 
 \item Fijados $n, d$ y $s$ se generarán dos redes neuronales: 
@@ -55,12 +60,25 @@ de regresión de variable real y $n$ vendrá dado como $n = \lfloor \alpha |\mat
 \end{itemize}
 
 % Paso 2: Evaluación del error
-\item Con los datos de entrenamiento $D_i$ y el algoritmo de aprendizaje de \textit{Backpropagation} se entrenará la neuronal inicializada aleatoriamente hasta que iguale o supere el error $\varepsilon_i$. Además puesto que puede darse el caso de quedar estancados en un mínimo local  o que oscile entorno a un mínimo si el $\eta$ no es lo suficientemente pequeño (ver propiedades del gradiente descendente \ref{ch05:gradiente-descentente})
-superior al error encontrado con el algoritmo de inicialización de pesos, se ha añadido también como criterio de parada el que error se estanque o empeore durante 5 \footnote{El valor de 5 iteraciones consecutivas es una heurística observada en ejecuciones anteriores y dependiente de $\eta$ y del problema.
-Pude observar la traza de de ejecución si ejecuta el experimento.} iteraciones consecutivas. 
-Se medirá el tiempo que necesita hasta su fin $t_b$ y el error en entrenamiento y test. 
+\item Con los datos de entrenamiento $D_i$ y el algoritmo de 
+aprendizaje de \textit{Backpropagation} se entrenará la red 
+neuronal inicializada aleatoriamente hasta que iguale o sea menor que  el 
+error del algoritmo de inicialización $\varepsilon_i$. 
 
-Los tiempos $t_i$ y $t_b$ serán los que compararemos. 
+Puesto que puede darse el caso de 
+quedar estancados en un mínimo local superior al error encontrado con el algoritmo de inicialización $\varepsilon_i$ o que oscile entorno a un 
+mínimo si el $\eta$ no es lo suficientemente pequeño (ver 
+propiedades del gradiente descendente \ref{ch05:gradiente-descentente}); se ha añadido también como criterio de parada el que el error del algoritmo de \textit{Backpropagation}
+se estanque o empeore durante 5 \footnote{El valor de 5 
+iteraciones consecutivas es una heurística observada en 
+ejecuciones anteriores y dependiente de $\eta$ y del problema.
+Pude observar la traza de de ejecución si ejecuta el experimento.} 
+iteraciones consecutivas. 
+
+Durante el experimento se medirá el tiempo que necesita hasta su fin $t_b$ y el error en 
+entrenamiento y test. 
+
+Los tiempos $t_i$ y $t_b$ serán los que compararemos con el test de hipótesis. 
 \end{enumerate}
 
 Los pasos 2 y 3 se repetirán tantas veces como 
@@ -73,11 +91,11 @@ Se desea comparar si las diferencias en los tiempos observados efectivamente son
 Para ello se realizará un test de Wilcoxon, con las siguientes hipótesis
 
 \begin{itemize}
-    \item $H_0$: La mediana de las diferencia de cada par de muestras es $0$. 
-    \item $H_a$: La mediana de las diferencia entre cada par de muestras es diferente de cero. 
+    \item $H_0$: La mediana de la diferencia de tiempos  $t_i$ y $t_b$ de cada par de muestras es cero. 
+    \item $H_a$: La mediana de las diferencia de tiempos  $t_i$ y $t_b$ entre cada par de muestras es diferente de cero. 
 \end{itemize}
 
-La utilidad de este test es que si rechaza la hipótesis la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
+La utilidad de este test es que si rechaza la hipótesis nula sabremos que con un $95 \%$ de certeza tendrán medianas diferentes, es decir, \textbf{existe una 
 diferencia en los errores}. En caso de que no se rechace no podremos afirmar nada.
 Puede encontrar la implementación en el repositorio del
  proyecto \footnote{En el directorio de experimentos 
@@ -85,7 +103,7 @@ Puede encontrar la implementación en el repositorio del
 
 \subsection{Requisitos técnicos}  
 
-A la vista de todo el proceso es descrito surgen las siguientes necesidades técnicas que deberemos de implementar:  
+A la vista de todo el proceso descrito surgen las siguientes necesidades técnicas que deberemos de implementar:  
 
 \subsubsection{Lectura y tratamiento de los datos}
 
@@ -106,7 +124,7 @@ una dimensión de salida $d$.
 
 \subsubsection{Implementación del algoritmo de inicialización}
 
-Deberá implementarse del algoritmo  \ref{algo:algoritmo-iniciar-pesos} con todos los requisitos y atributos que ahí se describe.  
+Deberá implementarse xel algoritmo  \ref{algo:algoritmo-iniciar-pesos} con todos los requisitos y atributos que ahí se describe.  
 
 \subsubsection{Función para medir el error}
 
@@ -115,7 +133,7 @@ Deberá implementarse una función para medir el
 
 \subsubsection{Forma de evaluar las redes neuronales}  
 
-Dado una red neuronal, una función de evaluación y un datos ser capaz de aplicar el algoritmo de \textit{forward propagation} descrito en \ref{algoritmo:evaluar red neuronal}.
+Dados una red neuronal, una función de evaluación y un vector de atributos de dimensiones adecuadas a la red neuronal debe ser capaz de aplicar el algoritmo de \textit{forward propagation} descrito en \ref{algoritmo:evaluar red neuronal}.
 
 \subsubsection{Implementación del aprendizaje de una red neuronal} 
 % Nota en el margen sobre la derivada
@@ -130,17 +148,17 @@ Dado una red neuronal, una función de evaluación y un datos ser capaz de aplic
 }
 Se implementará el algoritmo propio de aprendizaje basado en \textit{Backpropagation} y ya optimizado 
 que describimos en los algoritmos \ref{algoritmo:gradiente-descendente} y \ref{algoritmo:calculo-gradiente}.
-Cabe destacar que para este algoritmo es necesario la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. Además se ha seguido el mismo criterio de diseño que ya se tuvo con las funciones de activación en la sección \ref{ch06:activation-function-implementation}.
+Cabe destacar que para este algoritmo es necesario usar la derivada de las funciones de las funciones de activación. Se ha implementado la derivada débil de ellas. Además se ha seguido el mismo criterio de diseño que ya se tuvo con las funciones de activación en la sección \ref{ch06:activation-function-implementation}.
 
 \subsubsection{Implementación del experimento} 
-Deberá de implementarse una función que realice el 
+Deberá implementarse una función que realice el 
 experimento tal cual hemos descrito en \ref{ch07:experimento-1}.
 
 \subsection{Resultados obtenidos}
 
 Concretamente de el experimentos se ha realizado con 
 una partición del conjunto de datos $\frac{3}{4}|\mathcal{D}|$ para entrenamiento entrenamiento 
-y el resto de test. Se ha repetido además $15$ veces (por tratarse de un número conveniente de muestras para el Test de los signos de Wilcoxon). 
+y el resto de test. Se ha repetido además $15$ veces (por tratarse de un número conveniente de muestras para el Test de los signos de Wilcoxon como vimos en la sección donde se usó por primera vez \ref{ch06:test-hipotesis-propiedades}). 
 
 Durante cada iteración los datos del conjunto han sido desordenados y el tiempo medido ha sido estrictamente el de creación y aprendizaje de la red neuronal. 
 
@@ -171,10 +189,11 @@ mientras que la inicialización aleatoria y aprendizaje con el método de
     5,284 \pm 0,407   \text{ segundos}.
 \end{equation}
 
-Además el test de los signos de Wilcoxon rechazado la hipótesis un $95\%$ de confianza
+Además el test de los signos de Wilcoxon ha rechazado la hipótesis 
+con un $95\%$ de confianza
 por lo que podemos afirmar que efectivamente la diferencia de tiempos es significativa. 
 
-El gráfico de caja bigote con los tiempo es el siguiente: 
+El gráfico de caja bigote con los tiempos es el siguiente: 
 
 \begin{figure}[H]
     \centering
@@ -196,7 +215,7 @@ El gráfico de caja bigote con los tiempo es el siguiente:
 \end{table}
 
 Tal y como se planteó el experimento la parada del algoritmo de \textit{Backpropagation} 
-pudo producirse por haber alcanzado un error menor que el la red conseguida con el 
+pudo producirse por haber alcanzado un error menor que el de la red conseguida con el 
 algoritmo de inicialización o porque ha estancado su valor.
 Sin embargo, al observarse la distribución de los errores en el 
 gráfico \ref{img07:error-entrenamiento} y la tabla \ref{fig07:error-entrenamiento} puede observarse que 
@@ -271,7 +290,7 @@ mientras que el de inicialización aleatoria y \textit{Backpropagation} es de
 
 
 Como podemos observar en el caso de nuestro 
-algoritmo; a diferencia del error en test obtenido con \textit{Backpropagation}, que el error en test ha superado al de entrenamiento, lo que indica un sobreajuste 
+algoritmo; a diferencia del error en test obtenido con \textit{Backpropagation}, el error en test ha superado al de entrenamiento, lo que indica un sobreajuste 
 del modelo a los datos de entrenamiento. Esto es totalmente de esperar por 
 cómo se construye la inicialización de pesos. Sin embargo, a pesar del sobreajuste, el resultado sigue siendo mejor tanto en precisión como en tiempo que el de aprendizaje usando \textit{Backpropagation}.  
 

@@ -18,9 +18,9 @@ As a result of our study, we have proposed a novel neural
 network model, and adapted and optimized
 evaluation and learning methods to it. 
 Moreover, we have discovered some theorems that prove the 
-equivalence among some activation functions, and hence propose a new
- algorithm to initialize weights of neural networks. Thanks to the
-first result, we obtain a criteria to choose the most 
+equivalence among some activation functions, and hence we propose a new
+ algorithm to initialize the weights of neural networks. Thanks to the
+first result, we obtain a criterion to choose the most 
 suitable activation function to maintain accuracy and reduce computational costs.
  Thanks to the second one, we might accelerate 
 learning convergence methods.
@@ -29,7 +29,7 @@ In addition, the models, methods and algorithms have been
 implemented in Julia, resulting in the \textit{OptimizedNeuralNetwork.jl} library. 
 
 All the theory development, designs, decisions and results are 
-written in this memory, which have the following structure: 
+written in this memory, which has the following structure: 
 \begin{itemize}
  \item \textbf{Chapter \ref{ch00:methodology}: Description of the methodology followed.} We have organized our project according to an agile philosophy  based on personas methodology, user stories, milestones and tests. This method has conducted and linked mathematical and technical results and implementations, giving them coherence and validation methods. 
 
@@ -56,7 +56,7 @@ Backpropagation.
 \item \textbf{Chapter \ref{funciones-activacion-democraticas-mas-demoscraticas}: Democratization of activation functions.} 
 We will explain in this chapter if there are better activation functions. In this 
 direction we will prove two original results which show that there are families of 
-activation functions that with the same conditions will solve problems with the same 
+activation functions that under the same conditions will solve problems with the same 
 accuracy. As a result, if we compare the computational cost of the members of those 
 families and choose the faster one, we will obtain a method to optimize evaluation and 
 learning of neural networks without loss of accuracy. We have used the Wilcoxon 
@@ -64,7 +64,7 @@ signed-rank test as a statistical hypothesis test so as to give a rigorous study
 our criteria. 
 
 \item \textbf{Chapter \ref{section:inicializar_pesos}: Weight initializing algorithm.} 
-Since the Backpropagation and other iterative  methods are sensitive to the initial 
+Since Backpropagation and other iterative  methods are sensitive to the initial 
 value of a neural network, we will show an original method to initialize its weights 
 from training data. This process not only will produce a better initial step but also 
 has lower computational cost than Backpropagation.  To test the potential of this 
@@ -77,7 +77,7 @@ library in order to be as efficient as possible.
 In this chapter we will explain a future work. Given a fixed number of neurons, the 
 selection of its activation function may be crucial to reduce the train and test 
 error.  However, adding more free params to the search space increases its complexity 
-and at same time the cost of finding a solution.  Nevertheless, the result obtained at 
+and at same time the cost of finding a solution.  Nevertheless, the result obtained in 
 chapter \ref{funciones-activacion-democraticas-mas-demoscraticas} and a property of our neural model will reduce the space complexity.
 
 \item \textbf{Chapter \ref{ch09:conclusion}: Conclusions.}
