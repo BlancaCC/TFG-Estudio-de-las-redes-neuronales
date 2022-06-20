@@ -7,6 +7,13 @@ Tutores:
 - Juan Julián Merelo Guervós
 - Francisco Javier Merí de la Maza
 
+## Reglas Makefile
+
+- Generación de la memoria `make`.
+- Pasar test a la implementación `make test`.
+- Para ejecutar los experimentos `make experimentos` (los experimentos generan datos cuya localización pude configurar en `Experimentos/.config.toml`).
+
+
 ## Biblioteca OptimizedNeuralNetwork.jl
 
 La biblioteca *OptimizedNeuralNetwork.jl* implementa el modelo de red neuronal descrito en la memoria del proyecto (puede descargar una versión pdf en *release*)
@@ -14,7 +21,7 @@ y que pretende ser una optimización de las redes neuronales convencionales,
 así como otros algoritmo que tengan como objetivo también la mejora en algún aspecto.
 
 Contiene las siguientes funciones que mostramos con algunos ejemplos
-puede ver un ejemplo completo de uso en [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/tree/main/Memoria/capitulos)
+puede ver un ejemplo completo de uso en [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/blob/main/Memoria/capitulos/Ejemplo-uso-biblioteca.ipynb)
 
 ### Importamos la biblioteca y módulo
 
@@ -95,12 +102,6 @@ forward_propagation(h,RampFunction,x)
 ``` Julia
 backpropagation!(h, X_train, Y_train, RampFunction, derivativeRampFunction, n)
 ```
-
-## Reglas
-
-- Generación de la memoria `make`.
-- Pasar test a la implementación `make test`.
-- Para ejecutar los experimentos `make experimentos` (los experimentos generan datos cuya localización pude configurar en `Experimentos/.config.toml`).
 
 ## Motivación del proyecto: Democratización de la inteligencia artificial
 
