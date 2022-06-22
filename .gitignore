@@ -38,6 +38,8 @@ tfg*.pdf
 *.loa
 Memoria/_minted-tfg
 *.pdf
+*.nav
+*.snm
 
 # Capítulos que sirven a modo de notas 
 Notas/
