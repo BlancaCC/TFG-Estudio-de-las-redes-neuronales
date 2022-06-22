@@ -1,9 +1,31 @@
 
 % Inbuilt themes in beamer
 \documentclass{beamer}
-
+% paquetes: 
+\usepackage{mathpazo, amsmath, mathtools, }
+\usepackage[spanish]{babel}
+%%%%%%%%%%%%%%% comandos 
+\newcommand{\R}{\mathbb{R}} 
+\newcommand{\N}{\mathbb{N}}  
+\newcommand{\Q}{\mathbb{Q}}  
+\newcommand{\afines}{\mathcal{A}(\R^d)}
+  \newcommand{\pmc}{\mathcal{H}_G(\R^d,\R)}%{\sum ^r (G)}  % Red neurona una capa una salida
+  \newcommand{\pmcg}{ \sum \prod^d (G)} % Generalización red neuronal
+  \newcommand{\fC}{\mathcal{C}(\R^d)} %conjunto de funciones continuas en R^r -> R
+  \newcommand{\fM}{\mathcal{M}(\R^d)} % Conjunto funiones medibles
+  \newcommand{\rrnn}{ \mathcal{H}(\R^d,\R)} % Red neuronal  sin subíndice
+  \newcommand{\rrnng}{ \sum \prod^d (\psi)} % Red neuronal  generalizado
+  \newcommand{\dist}{\rho_{\mu}}     % Distancia de una medida
+  \newcommand{\dlp}{\rho_{p}} % Distancia de los espacios Lp
+  % Múltiples salidas 
+  \newcommand{\fCC}{\mathcal{C}(\R^d ,\R^s)}
+  \newcommand{\fMM}{\mathcal{M}(\R^d , \R^s)}
+  \newcommand{\rrnnmc}{ \mathcal{H}(\R^d,\R^s)} 
+  \newcommand{\rrnnsmn}{ \mathcal{H}_n(\R^d,\R^s)} % Red neuronal salida múltiple con n neuronas
+  \newcommand{\rrnngmc}{ \sum \prod^{d,s} (\psi)} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Datos generales
 % Theme choice:
-
 %\usetheme{Montpellier}
 \usetheme{Boadilla}
 \usecolortheme{rose}
@@ -13,16 +35,153 @@
 \title{Optimización de redes neuronales} 
 \author{Blanca Cano Camarero}
 \date{30 de Junio de 2022}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
     % Title page frame
 \begin{frame}
     \titlepage 
 \end{frame}
 
+
 % Outline frame
-\begin{frame}{Outline}
+\begin{frame}{Índice}
     \tableofcontents
 \end{frame}
+% Presenta nuestro modelo 
+\section{Introducción a las redes neuronales}
+\begin{frame}{Definición redes neuronales}
+    \begin{align*}
+        \mathcal{H}(\R^d,\R^s) 
+            =
+            \{
+                h &: \R^d \longrightarrow \R^s 
+                 /\quad 
+                h_k(x) = 
+                \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
+                & \text{$h_k$  es la proyección k-ésima de $h$ con 
+                $k \in \{1, \ldots, s\}$}, \\
+                & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R \\
+                &A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
+            \}.
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Comparativa de definiciniciones de red neuronal}
+    Nuestra propuesta: 
+    \begin{align*}
+                h_k(x) = 
+                \textcolor{teal}{\underline{\hspace{0.4cm}}}\sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
+    \end{align*}
+    Modelo usual:
+    \begin{align*}
+        y_k(x) &= 
+        \textcolor{red}{\theta_k}
+        \left( 
+            \sum^n_{j=1} \textcolor{red}{A_{k}}
+            \left(
+                \sigma 
+                \left(
+                    A^{d}_{j k}
+                    \left(
+                        x
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{align*}
+\end{frame}
+\subsection{Modelo bien definido}
+\begin{frame}{Aproximador universal a funciones medibles}
+    \begin{align*} 
+        \sum \prod^d(G) = \{ 
+        &f: \R^r \longrightarrow \R / \quad
+        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+        G(A_{jk}(x)), \\
+        &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines; l_j,q \in \N
+        \}.
+    \end{align*} 
+    \pause
+    Una función  $\psi: \R \longrightarrow [0,1]$ 
+    es una \textbf{ función de activación} 
+    si  cumple las siguientes propiedades:
+    \begin{itemize}
+        \item Es no decreciente.
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 1$.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+    \end{itemize}   
+\end{frame}
+
+\begin{frame}{Aproximador universal a funciones medibles}
+    Relación ser denso en 
+    \begin{align*}
+        \rrnn 
+            \Rightarrow  
+        \rrnng 
+            \Rightarrow
+        \pmcg
+            \Rightarrow  
+        \fC    
+            \Rightarrow 
+        \fM .
+    \end{align*}
+    \pause
+    Salida múltiple: 
+    \begin{align*}
+        \rrnn 
+            \longrightarrow 
+        \rrnnmc
+    \end{align*}
+    \pause
+    Los números reales son una entelequia para los ordenadores. 
+    \begin{align*}
+       \mathcal{H}(\Q^d, \Q^s)
+            \Rightarrow
+        \rrnnmc
+    \end{align*}
+\end{frame}
+\begin{frame}{Práctico}
+    \pause
+    \begin{itemize}
+        \item Evaluar \textcolor{teal}{\checkmark}: \textit{forwardpropagation}.
+        \item ¿Cómo se encuentra a la red neuronal?
+    \end{itemize}
+\end{frame}
+\begin{frame}{Práctico}
+    \begin{itemize}
+        \item Evaluar \textcolor{teal}{\checkmark}: \textit{forwardpropagation}.
+        \item Aprendizaje \textcolor{teal}{\checkmark}:  \textit{backpropagation}.
+    \end{itemize}
+    \pause 
+    Nuestras adaptaciones además reducen el costo computacional
+\end{frame}
+\begin{frame}{Práctico}
+    Nuestra propuesta: 
+    \begin{align*}
+                h_k(x) = 
+                \textcolor{teal}{\underline{\hspace{0.4cm}}}\sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
+    \end{align*}
+    Modelo usual:
+    \begin{align*}
+        y_k(x) &= 
+        \textcolor{red}{\theta_k}
+        \left( 
+            \sum^n_{j=1} \textcolor{red}{A_{k}}
+            \left(
+                \sigma 
+                \left(
+                    A^{d}_{j k}
+                    \left(
+                        x
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{align*}
+\end{frame}
+
 
 % Blocks frame
 \section{Blocks in Beamer}
