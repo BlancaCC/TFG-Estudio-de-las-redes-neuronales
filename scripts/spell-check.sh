@@ -27,5 +27,10 @@ do
     SpellingError $file; 
     let "exitValue += $?"
 done
+for file in $(find ./Memoria/Defensa -name "*.tex")
+do 
+    SpellingError $file; 
+    let "exitValue += $?"
+done
 
 exit $exitValue; 
