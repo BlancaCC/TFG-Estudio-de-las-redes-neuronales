@@ -4,6 +4,14 @@
 % paquetes: 
 \usepackage{mathpazo, amsmath, mathtools, }
 \usepackage[spanish]{babel}
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
+% bibliografía
+\addbibresource{bibliography.bib}
+
 %%%%%%%%%%%%%%% comandos 
 \newcommand{\R}{\mathbb{R}} 
 \newcommand{\N}{\mathbb{N}}  
@@ -40,7 +48,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-    % Title page frame
+  % Title page frame
 \begin{frame}
     \titlepage 
 \end{frame}
@@ -52,6 +60,19 @@
 \end{frame}
 % Presenta nuestro modelo 
 \section{Introducción a las redes neuronales}
+% Explicar que es un problema de aprendizaje automático supervisado
+\begin{frame}{Usadas en problemas aprendizaje automático}
+    Nos centraremos en problemas de aprendizaje automático supervisado. 
+
+    Para el conjunto de datos  $\mathcal{D}$
+    \begin{equation*}
+        \mathcal{D} = \{(x,y) : x \in \mathcal{X}, y \in \mathcal{Y}\}
+    \end{equation*}
+    \begin{align*}
+        &\text{¿Podemos construir } f: \mathcal{X} \longrightarrow \mathcal{Y} \\
+        &\textit{tal que } f(x) = y \text{ para todo } (x,y) \in \mathcal{D} \text{?}
+    \end{align*} 
+\end{frame}
 \begin{frame}{Definición redes neuronales}
     \begin{align*}
         \mathcal{H}(\R^d,\R^s) 
@@ -73,7 +94,8 @@
     Nuestra propuesta: 
     \begin{align*}
                 h_k(x) = 
-                \textcolor{teal}{\underline{\hspace{0.4cm}}}\sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
+                %\textcolor{teal}{\underline{\hspace{0.4cm}}}
+                \sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
     \end{align*}
     Modelo usual:
     \begin{align*}
@@ -94,54 +116,28 @@
     \end{align*}
 \end{frame}
 \subsection{Modelo bien definido}
-\begin{frame}{Aproximador universal a funciones medibles}
-    \begin{align*} 
-        \sum \prod^d(G) = \{ 
-        &f: \R^r \longrightarrow \R / \quad
-        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
-        G(A_{jk}(x)), \\
-        &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines; l_j,q \in \N
-        \}.
-    \end{align*} 
-    \pause
-    Una función  $\psi: \R \longrightarrow [0,1]$ 
-    es una \textbf{ función de activación} 
-    si  cumple las siguientes propiedades:
-    \begin{itemize}
-        \item Es no decreciente.
-        \item $\lim _{x \rightarrow \infty} \psi(x) = 1$.
-        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
-    \end{itemize}   
+\begin{frame}{Las redes neuronales son aproximadores universales}
+    \begin{block}{Teorema  \textbf{Las redes neuronales son una clase de aproximadores universales}}
+        (Kurt Hornik, Maxwell Stinchcombe y Halber White 1989 \cite{HORNIK1989359})
+        Una red neuronal con tan solo \textbf{una capa oculta} y con \textbf{una función de activación cualquiera} es capaz de \textbf{aproximar cualquier 
+        función Borel medible}  con dominios y codominios de dimensión finita (no necesariamente iguales) y con el nivel de precisión que se desee \textbf{siempre y cuando 
+        se utilicen suficientes neuronas}. En este sentido las redes redes neuronales son una clase de aproximadores universales.
+    \end{block}
+    En resumen: 
+    \begin{equation*}
+        \mathcal{H}(\R^d,\R^s)  \textit{ es denso en } \mathcal{M}(\R^d,\R^s) 
+    \end{equation*}
+\end{frame}
+%%%%%%% salto de los números reales a los racionales...
+\begin{frame}{Son computables}
+    \begin{exampleblock}{Teorema}
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso en el espacio $\rrnnmc$. 
+    \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Aproximador universal a funciones medibles}
-    Relación ser denso en 
-    \begin{align*}
-        \rrnn 
-            \Rightarrow  
-        \rrnng 
-            \Rightarrow
-        \pmcg
-            \Rightarrow  
-        \fC    
-            \Rightarrow 
-        \fM .
-    \end{align*}
-    \pause
-    Salida múltiple: 
-    \begin{align*}
-        \rrnn 
-            \longrightarrow 
-        \rrnnmc
-    \end{align*}
-    \pause
-    Los números reales son una entelequia para los ordenadores. 
-    \begin{align*}
-       \mathcal{H}(\Q^d, \Q^s)
-            \Rightarrow
-        \rrnnmc
-    \end{align*}
-\end{frame}
+%% ¿Cómo podemos encontrar la red neuronal concreta 
+
+
 \begin{frame}{Práctico}
     \pause
     \begin{itemize}
@@ -157,6 +153,8 @@
     \pause 
     Nuestras adaptaciones además reducen el costo computacional
 \end{frame}
+
+\subsection{Equivalencia redes neuronales}
 \begin{frame}{Práctico}
     Nuestra propuesta: 
     \begin{align*}
@@ -180,7 +178,97 @@
             \right)
         \right)
     \end{align*}
+    Solventamos diferencias: 
+    \begin{itemize}
+        \item $\theta$ eliminar observando convergencia en espacios $L_p$.
+        \item ¿Se puede eliminar el sesgo?
+    \end{itemize}
+    (Sí y no ) jejejjej
 \end{frame}
+\begin{frame}{Bibliografía fundamental}
+    \begin{itemize}
+        \item Kurt Hornik, Marwell Stinchcombe y Halbert White. \textit{Multilayer feedforward networks are universal approximator}
+    \end{itemize}
+    
+\end{frame}
+
+%%%% 
+%%% bibliografía
+\begin{frame}
+    \frametitle{Bibliografía}
+    \printbibliography
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Diapositivas a posibles preguntas}
+
+\begin{frame}{Posibles preguntas}
+    \begin{itemize}
+        \item Aproximador universal espacios intermedios: diapositiva \ref{univeral-aproximator}.
+        \item Algunas definiciones: diapositiva \ref{definiciones-esenciales}.
+    \end{itemize}
+    
+\end{frame}
+\begin{frame}{Aproximador universal a funciones medibles}
+    \label{definiciones-esenciales}
+    \begin{align*} 
+        \sum \prod^d(G) = \{ 
+        &f: \R^r \longrightarrow \R / \quad
+        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+        G(A_{jk}(x)), \\
+        &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines; l_j,q \in \N
+        \}.
+    \end{align*} 
+    Una función  $\psi: \R \longrightarrow [0,1]$ 
+    es una \textbf{ función de activación} 
+    si  cumple las siguientes propiedades:
+    \begin{itemize}
+        \item Es no decreciente.
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 1$.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+    \end{itemize}   
+\end{frame}
+
+\begin{frame}{Aproximador universal a funciones medibles}
+    \label{univeral-aproximator}
+    Relación ser denso en 
+    \begin{align*}
+        \rrnn 
+            \Rightarrow  
+        \rrnng 
+            \Rightarrow
+        \pmcg
+            \Rightarrow  
+        \fC    
+            \Rightarrow 
+        \fM .
+    \end{align*}
+    Salida múltiple: 
+    \begin{align*}
+        \rrnn 
+            \longrightarrow 
+        \rrnnmc
+    \end{align*}
+    Los números reales son una entelequia para los ordenadores. 
+    \begin{align*}
+       \mathcal{H}(\Q^d, \Q^s)
+            \Rightarrow
+        \rrnnmc
+    \end{align*}
+\end{frame}
+
+% Para las citas que no estén mencionadas 
+\begin{frame}
+    \frametitle{Citas no mencionadas en ninún sitio}
+
+    Este cándida diapositiva está solo para que pueda citar la 
+    bibliografía y aparezca en la presentación. 
+    \cite{MostafaLearningFromData}
+    \cite{the-elements-of-real-analysis}
+
+\end{frame}
+
 
 
 % Blocks frame
