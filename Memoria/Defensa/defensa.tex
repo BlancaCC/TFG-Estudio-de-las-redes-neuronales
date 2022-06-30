@@ -1,0 +1,393 @@
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+% paquetes: 
+\usepackage{mathpazo, amsmath, mathtools, }
+\usepackage[spanish, es-tabla]{babel}
+\usepackage[
+backend=biber,
+style=numeric,
+sorting=ynt
+]{biblatex}
+\addbibresource{bibliography.bib}
+%path imágenes
+\graphicspath{{../img/}}
+%%%%%%%%%%%%%%% comandos 
+\newcommand{\R}{\mathbb{R}} 
+\newcommand{\N}{\mathbb{N}}  
+\newcommand{\Q}{\mathbb{Q}}  
+\newcommand{\afines}{\mathcal{A}(\R^d)}
+  \newcommand{\pmc}{\mathcal{H}_G(\R^d,\R)}%{\sum ^r (G)}  % Red neurona una capa una salida
+  \newcommand{\pmcg}{ \sum \prod^d (G)} % Generalización red neuronal
+  \newcommand{\fC}{\mathcal{C}(\R^d)} %conjunto de funciones continuas en R^r -> R
+  \newcommand{\fM}{\mathcal{M}(\R^d)} % Conjunto funiones medibles
+  \newcommand{\rrnn}{ \mathcal{H}(\R^d,\R)} % Red neuronal  sin subíndice
+  \newcommand{\rrnng}{ \sum \prod^d (\psi)} % Red neuronal  generalizado
+  \newcommand{\dist}{\rho_{\mu}}     % Distancia de una medida
+  \newcommand{\dlp}{\rho_{p}} % Distancia de los espacios Lp
+  % Múltiples salidas 
+  \newcommand{\fCC}{\mathcal{C}(\R^d ,\R^s)}
+  \newcommand{\fMM}{\mathcal{M}(\R^d , \R^s)}
+  \newcommand{\rrnnmc}{ \mathcal{H}(\R^d,\R^s)} 
+  \newcommand{\rrnnsmn}{ \mathcal{H}_n(\R^d,\R^s)} % Red neuronal salida múltiple con n neuronas
+  \newcommand{\rrnngmc}{ \sum \prod^{d,s} (\psi)} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Datos generales
+% Theme choice:
+%\usetheme{Montpellier}
+\usetheme{Boadilla}
+\usecolortheme{rose}
+\usefonttheme{structuresmallcapsserif}
+
+% Title page details: 
+\title{Optimización de redes neuronales} 
+\author{Blanca Cano Camarero}
+\date{30 de Junio de 2022}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+  % Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+
+% Outline frame
+\begin{frame}{Índice}
+    \tableofcontents
+\end{frame}
+% Presenta nuestro modelo 
+\section{Introducción a las redes neuronales}
+% Explicar que es un problema de aprendizaje automático supervisado
+\begin{frame}{Usadas en problemas aprendizaje automático}
+    Nos centraremos en problemas de aprendizaje automático supervisado. 
+
+    Para el conjunto de datos  $\mathcal{D}$
+    \begin{equation*}
+        \mathcal{D} = \{(x,y) : x \in \mathcal{X}, y \in \mathcal{Y}\}
+    \end{equation*}
+    \begin{align*}
+        &\text{¿Podemos construir } f: \mathcal{X} \longrightarrow \mathcal{Y} \\
+        &\textit{tal que } f(x) = y \text{ para todo } (x,y) \in \mathcal{D} \text{?}
+    \end{align*} 
+\end{frame}
+\begin{frame}{Definición redes neuronales}
+    \begin{align*}
+        \mathcal{H}(\R^d,\R^s) 
+            =
+            \{
+                h &: \R^d \longrightarrow \R^s 
+                 /\quad 
+                h_k(x) = 
+                \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
+                & \text{$h_k$  es la proyección k-ésima de $h$ con 
+                $k \in \{1, \ldots, s\}$}, \\
+                & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R \\
+                &A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
+            \}.
+    \end{align*}
+\end{frame}
+\begin{frame}
+    \frametitle{Representaciones red neuronal}
+    \begin{equation*}
+        h_k(x) =  \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x))
+        = 
+        \sum_{i=1}^{n} \beta_{i k} \gamma_{i}
+        \left(
+            w_{0 i} + \sum_{j=1}^d w_{j i } x_i
+        \right) 
+    \end{equation*}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.65\textwidth]{1-Introduccion_redes_neuronales/Red-Neuronal-una-capa-simple.png}
+        \caption{\textit{Grafo} de una red neuronal de una capa oculta}
+        \label{img:grafo-red-neuronal-una-capa-oculta_repeticion}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Comparativa de definiciniciones de red neuronal}
+    Nuestra propuesta: 
+    \begin{align*}
+                h_k(x) = 
+                %\textcolor{teal}{\underline{\hspace{0.4cm}}}
+                \sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
+    \end{align*}
+    Modelo usual \cite{MostafaLearningFromData}:
+    \begin{align*}
+        y_k(x) &= 
+        \textcolor{red}{\theta_k}
+        \left( 
+            \sum^n_{j=1} \textcolor{red}{A_{k}}
+            \left(
+                \sigma 
+                \left(
+                    A^{d}_{j k}
+                    \left(
+                        x
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{align*}
+\end{frame}
+\subsection{Modelo bien definido}
+\begin{frame}{Las redes neuronales son aproximadores universales}
+    \begin{block}{Teorema  \textbf{Las redes neuronales son una clase de aproximadores universales}}
+        (Kurt Hornik, Maxwell Stinchcombe y Halber White 1989 \cite{HORNIK1989359})
+        Una red neuronal con tan solo \textbf{una capa oculta} y con \textbf{una función de activación cualquiera} es capaz de \textbf{aproximar cualquier 
+        función Borel medible}  con dominios y codominios de dimensión finita (no necesariamente iguales) y con el nivel de precisión que se desee \textbf{siempre y cuando 
+        se utilicen suficientes neuronas}. En este sentido las redes redes neuronales son una clase de aproximadores universales.
+    \end{block}
+    En resumen: 
+    \begin{equation*}
+        \mathcal{H}(\R^d,\R^s)  \textit{ es denso en } \mathcal{M}(\R^d,\R^s) 
+    \end{equation*}
+\end{frame}
+%%%%%%% salto de los números reales a los racionales...
+\begin{frame}{Son computables}
+    \begin{exampleblock}{Teorema}
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso en el espacio $\rrnnmc$. 
+    \end{exampleblock}
+\end{frame}
+
+%% ¿Cómo podemos encontrar la red neuronal concreta 
+
+\begin{frame}
+\frametitle{Aprendizaje} 
+\begin{enumerate}
+    \item \textbf{¿Cuánto de cerca estamos de la función ideal?}: Error cuadrático medio. 
+    \begin{equation*}
+        E_{\mathcal{D}}(h) = \frac{1}{N} \sum_{(x,y) \in \mathcal{D}} \sum_{k=1}^s(h_k(x)- y_k)^2. 
+    \end{equation*}
+    \pause 
+   \item  \textbf{Minimizar el error}: Descenso de gradiente. 
+    \begin{equation*}
+        h_{t+1}  = h_t - \eta \nabla E_{\mathcal{D}}(h_t).
+    \end{equation*}  
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Método inicialización aprendida}
+    Para 
+    \begin{align*}
+        h_{t+1}  = \textcolor{red}{h}_{\textcolor{red}{t}} - \eta \nabla E_{\mathcal{D}}(h_t)
+    \end{align*}
+    ¿Cómo determinar  \textcolor{red}{$h_0$}?
+    \pause
+    \begin{itemize}
+        \item ¿Valores aleatorios \textit{pequeños}?
+        \item ¿\textit{backbones}?
+    \end{itemize}
+\end{frame}
+
+\subsection{Método inicialización aprendida}
+\begin{frame}{Algoritmo de inicialización aprendida de pesos}
+    Nos permite construir una red neuronal a partir de datos de entrenamiento.
+
+    Comparativa de complejidad:
+    \begin{itemize}
+        \item Inicialización aprendida: $\mathcal{O}(n log(n))$. 
+        \item Una iteración de \textit{Backpropagation}: $\mathcal{O}(|\mathcal{D}| n d s) = \mathcal{O}(n^2)$
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Equivalencia redes neuronales}
+\begin{frame}{Práctico}
+    Nuestra propuesta: 
+    \begin{align*}
+                h_k(x) = 
+                %\textcolor{teal}{\underline{\hspace{0.4cm}}}
+                \sum_{i=1}^{n} \textcolor{teal}{\beta_{i k}} \gamma_{i}( A_{i}(x))
+    \end{align*}
+    Modelo usual:
+    \begin{align*}
+        y_k(x) &= 
+        \textcolor{red}{\theta_k}
+        \left( 
+            \sum^n_{j=1} \textcolor{red}{A_{k}}
+            \left(
+                \sigma 
+                \left(
+                    A^{d}_{j k}
+                    \left(
+                        x
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{align*}
+    Solventamos diferencias: 
+    \begin{itemize}
+        \item $\theta$ eliminar observando convergencia en espacios $L_p$.
+        \item ¿Se puede eliminar el sesgo?
+    \end{itemize}
+\end{frame}
+
+%%%%% Sobre las funciones de activación
+\section{Democratización de las funciones de activación} 
+\begin{frame}
+    \frametitle{Democratización de las funciones de activación}
+    ¿Hay funciones de activación mejores que otras?
+\end{frame}
+\begin{frame}
+    \frametitle{Democratización de las funciones de activación}
+    Cambio de enfoque: 
+
+    Ver funciones de activación como curvas en el plano Euclídeo.  
+
+    \begin{exampleblock}{Teorema}
+        Sea $\phi \in \mathcal{A}(\R^2)$ una función afín 
+        cuya forma matricial asociada es de la forma:  
+        \begin{equation*}
+            \phi 
+            \left( 
+                \begin{bmatrix}
+                    x & y
+                \end{bmatrix}
+            \right)
+            = 
+            \begin{bmatrix}
+                x & y
+            \end{bmatrix}
+            \begin{bmatrix}
+                a & 0 \\
+                 0& b 
+            \end{bmatrix}
+            +
+            \begin{bmatrix}
+                t_x & t_y
+            \end{bmatrix}
+        \end{equation*}
+        con $a,b \in \R^*$ y $t_x, t_y \in \R$.
+    
+        Sean dos funciones de activación $\sigma, \gamma$ tales que 
+        \begin{equation*}
+            \phi(Grafo(\sigma)) = Grafo(\gamma),
+        \end{equation*}
+        entonces 
+        el espacio de redes neuronales de $n$ neuronas creado a partir de la función de activación $\sigma$ es  
+        igual al espacio de redes neuronales creado a partir la función de activación $\gamma$. 
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Democratización }
+    Propuesta de familia de funciones de activación: 
+    \begin{table}[H] 
+        \centering  
+        \begin{tabular}{| c | c | c | }
+            \hline
+            \textit{Grupo escalera} & \textit{Grupo sigmoide} & \textit{Grupo ReLU} \\
+            \hline
+           &  Rampa &  \\
+           Indicadora & Sigmoidea & ReLU\\
+           Umbral & \textit{Cosine Squasher}& LReLU\\
+            & tanh & \\
+            & \textbf{\textit{Hard Hyperbolic Function}}& \\
+    \hline
+        \end{tabular}
+        \caption{Agrupaciones de funciones de activación con forma similar}  
+        \label{table:Clases-equivalencia-activation-function}
+    \end{table}
+    
+
+\end{frame}
+
+%%%% 
+%%% bibliografía
+\begin{frame}
+    \frametitle{Bibliografía}
+    \printbibliography
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Diapositivas a posibles preguntas}
+
+\begin{frame}{Posibles preguntas}
+    \begin{itemize}
+        \item Aproximador universal espacios intermedios: diapositiva \ref{univeral-aproximator}.
+        \item Algunas definiciones: diapositiva \ref{definiciones-esenciales}.
+    \end{itemize}
+    
+\end{frame}
+\begin{frame}{Aproximador universal a funciones medibles}
+    \label{definiciones-esenciales}
+    \begin{align*} 
+        \sum \prod^d(G) = \{ 
+        &f: \R^r \longrightarrow \R / \quad
+        f(x) = \sum_{j = 1} ^q  \beta_j \prod_{k=1}^{l_j}
+        G(A_{jk}(x)), \\
+        &x  \in \R^d, \beta_j \in \R, A_{jk}\in \afines; l_j,q \in \N
+        \}.
+    \end{align*} 
+    Una función  $\psi: \R \longrightarrow [0,1]$ 
+    es una \textbf{ función de activación} 
+    si  cumple las siguientes propiedades:
+    \begin{itemize}
+        \item Es no decreciente.
+        \item $\lim _{x \rightarrow \infty} \psi(x) = 1$.
+        \item $\lim _{x \rightarrow -\infty} \psi(x) = 0$.
+    \end{itemize}   
+\end{frame}
+
+\begin{frame}{Aproximador universal a funciones medibles}
+    \label{univeral-aproximator}
+    Relación ser denso en 
+    \begin{align*}
+        \rrnn 
+            \Rightarrow  
+        \rrnng 
+            \Rightarrow
+        \pmcg
+            \Rightarrow  
+        \fC    
+            \Rightarrow 
+        \fM .
+    \end{align*}
+    Salida múltiple: 
+    \begin{align*}
+        \rrnn 
+            \longrightarrow 
+        \rrnnmc
+    \end{align*}
+    Los números reales son una entelequia para los ordenadores. 
+    \begin{align*}
+       \mathcal{H}(\Q^d, \Q^s)
+            \Rightarrow
+        \rrnnmc
+    \end{align*}
+\end{frame}
+
+% Para las citas que no estén mencionadas 
+\begin{frame}
+    \frametitle{Citas no mencionadas en ningún sitio}
+
+    Este cándida diapositiva está solo para que pueda citar la 
+    bibliografía y aparezca en la presentación. 
+    \cite{MostafaLearningFromData}
+    \cite{the-elements-of-real-analysis}
+
+\end{frame}
+
+
+
+% Blocks frame
+\section{Blocks in Beamer}
+\begin{frame}{Blocks in Beamer}
+    \begin{block}{Standard Block}
+        This is a standard block.
+    \end{block}
+    \begin{alertblock}{Alert Message}
+        This block presents alert message.
+    \end{alertblock}
+    \begin{exampleblock}{An example of typesetting tool}
+        Example: MS Word, \LaTeX{}
+    \end{exampleblock}
+\end{frame}
+\end{document}
+

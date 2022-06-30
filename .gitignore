@@ -38,6 +38,8 @@ tfg*.pdf
 *.loa
 Memoria/_minted-tfg
 *.pdf
+*.nav
+*.snm
 
 # Capítulos que sirven a modo de notas 
 Notas/
@@ -45,3 +47,5 @@ Experimentos/comparativas-funciones-activacion/pruebas-linter.jl
 Experimentos/comparativas-funciones-activacion/boxplot.jl
 Experimentos/comparativas-funciones-activacion/img/boxplot-whiskers-activation-function.png
 Memoria/capitulos/.ipynb_checkpoints/Ejemplo-uso-biblioteca-checkpoint.ipynb
+*.bcf
+*.run.xml
