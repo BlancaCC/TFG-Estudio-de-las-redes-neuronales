@@ -11,6 +11,8 @@ sorting=ynt
 \addbibresource{bibliography.bib}
 %path imágenes
 \graphicspath{{../img/}}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
 %%%%%%%%%%%%%%% comandos 
 \newcommand{\R}{\mathbb{R}} 
 \newcommand{\N}{\mathbb{N}}  
@@ -54,8 +56,30 @@ sorting=ynt
 
 
 % Outline frame
-\begin{frame}{Índice}
-    \tableofcontents
+\begin{frame}{Tabla de contenido y objetivos}
+    %\tableofcontents
+    \textbf{Tabla contenido}
+    \begin{enumerate}
+        \item Introducción a las redes neuronales.
+        \begin{itemize}
+            \item Modelo bien definido
+            \item Aprendiza de una red neuronal
+            \item Equivalencia redes neuronales
+        \end{itemize}
+        \item Optimización de redes neuronales.
+        \begin{itemize}
+            \item Algoritmo de inicialización aprendida
+            \item Criterio de selección de funciones de activación
+        \end{itemize}
+    \end{enumerate}
+
+    \textbf{Objetivos}
+    \begin{itemize}
+        \item ¿Qué son las redes neuronales?
+        \item ¿Por qué funcionan?
+        \item ¿Cómo funcionan?
+        \item ¿Se podrían mejorar en algún aspecto?
+    \end{itemize}
 \end{frame}
 % Presenta nuestro modelo 
 \section{Introducción a las redes neuronales}
@@ -72,7 +96,8 @@ sorting=ynt
                 \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
                 & \text{$h_k$  es la proyección k-ésima de $h$ con 
                 $k \in \{1, \ldots, s\}$}, \\
-                & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R \\
+                & n \in \N, \beta_{i k} \in \R \\
+                &\gamma_{i} : \R \longrightarrow \R (\text{no polinómica}) \\
                 &A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
             \}.
     \end{align*}
@@ -124,7 +149,7 @@ sorting=ynt
 \subsection{Modelo bien definido}
 \begin{frame}{Las redes neuronales son aproximadores universales}
     \begin{block}{Teorema  \textbf{Las redes neuronales son una clase de aproximadores universales}}
-        (Kurt Hornik, Maxwell Stinchcombe y Halber White 1989 \cite{HORNIK1989359})
+        (Hornik, Stinchcombe y White 1989 \cite{HORNIK1989359})
         Una red neuronal con tan solo \textbf{una capa oculta} y con \textbf{una función de activación cualquiera} es capaz de \textbf{aproximar cualquier 
         función Borel medible}  con dominios y codominios de dimensión finita (no necesariamente iguales) y con el nivel de precisión que se desee \textbf{siempre y cuando 
         se utilicen suficientes neuronas}. En este sentido las redes redes neuronales son una clase de aproximadores universales.
@@ -134,27 +159,46 @@ sorting=ynt
         \mathcal{H}(\R^d,\R^s)  \textit{ es denso en } \mathcal{M}(\R^d,\R^s) 
     \end{equation*}
 \end{frame}
-%%%%%%% salto de los números reales a los racionales...
-\begin{frame}{¿Son computables?}
+
+\begin{frame}{Aproximador universal a funciones medibles}
+    \label{univeral-aproximator}
+    \begin{flushright}
+        \textit{Capítulo 2 páginas 47-76}
+    \end{flushright}
+    Relación ser denso en 
     \begin{align*}
-        \mathcal{H}(\R^d,\R^s) 
-            =
-            \{
-                h &: \R^d \longrightarrow \R^s 
-                 /\quad 
-                h_k(x) = 
-                \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x)), \\
-                & \text{$h_k$  es la proyección k-ésima de $h$ con 
-                $k \in \{1, \ldots, s\}$}, \\
-                & n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R \\
-                &A_{i} \text{ una aplicación afín de $\R^d$ a $\R$}           
-            \}.
+        \rrnn 
+            \Rightarrow  
+        \rrnng 
+            \Rightarrow
+        \pmcg
+            \Rightarrow  
+        \fC    
+            \Rightarrow 
+        L_p
+        \Rightarrow 
+        \fM .
     \end{align*}
+    Salida múltiple: 
+    \begin{equation*}
+        \mathcal{H}(\R^d,\R^s)  \textit{ es denso en } \mathcal{M}(\R^d,\R^s) 
+    \end{equation*}
+    \pause
+    ¿Esto computable? 
+    \begin{align*}
+        h_k(x) = 
+        %\textcolor{teal}{\underline{\hspace{0.4cm}}}
+        \sum_{i=1}^{n} 
+        % \textcolor{teal}
+        {\beta_{i k}} \gamma_{i}( A_{i}(x))
+\end{align*}
     \pause
     \begin{exampleblock}{Teorema}
-        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso en el espacio $\rrnnmc$. 
+        El espacio $\mathcal{H}(\Q^d, \Q^s)$ es denso en el espacio $\mathcal{M}(\R^d,\R^s)$. 
     \end{exampleblock}
 \end{frame}
+
+
 
 %% ¿Cómo podemos encontrar la red neuronal concreta 
 \begin{frame}
@@ -167,46 +211,17 @@ sorting=ynt
     \pause 
    \item  \textbf{Minimizar el error}: Descenso de gradiente. 
     \begin{equation*}
-        h_{t+1}  = h_t - \eta \nabla E_{\mathcal{D}}(h_t).
+        h_{t+1}  = h_t - \eta \nabla E_{\mathcal{D}}(h_t) \quad \eta \in \R^+.
     \end{equation*}  
-    \pause
-    ¿Cómo determinar  \textcolor{red}{$h_0$}? 
-    ¿\textit{backbones}?
-\end{enumerate}
-    
 
-\end{frame}
-\subsection{Método inicialización aprendida}
-\begin{frame}{Método inicialización aprendida}
-    Algoritmo: 
-    \begin{enumerate}
-        \item Se toma $p \in \R^d$  aleatorio. 
-        \item Se extrae un subconjunto aleatorio  $\Lambda \subset \mathcal{D}$
-        que satisface 
-        \begin{equation*}
-            p \cdot (x_i-x_j) \neq 0
-        \end{equation*}
-        para cualquier $x_i,x_j$ distintos que estén en algún par de $\Lambda$.
-        \item Se construye de manera recursiva la red neuronal resolviendo esta sistema de ecuaciones: 
-        \begin{equation*}
-            \left\{ 
-                \begin{array}{l}
-                    S_{k} =
-                        M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})
-                    \\
-                    A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
-                    p_{i} 
-                    \\
-                    B_{* k} = y_k - y_{k-1}
-                \end{array}
-            \right.
-        \end{equation*} 
-\end{enumerate}
- 
+\end{enumerate}  
 \end{frame}
 
-\subsection{Equivalencia redes neuronales}
-\begin{frame}{Práctico}
+
+\begin{frame}{¿Por qué revindicamos un nuevo modelo?}
+    \begin{flushright}
+        \textit{Capítulo 5 páginas 79-96}
+    \end{flushright}
     Nuestra propuesta: 
     \begin{align*}
                 h_k(x) = 
@@ -232,15 +247,147 @@ sorting=ynt
     \end{align*}
     Solventamos diferencias: 
     \begin{itemize}
-        \item $\theta$ eliminar observando convergencia en espacios $L_p$.
-        \item ¿Se puede eliminar el sesgo?
+        \item Se puede prescindir de $\theta$ (\textit{Demostración en páginas 83-85)}
+        \item ¿Se puede prescindir del sesgo? (\textit{Demostración en páginas 81-83})
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Comparativas de mejoras}
+    \begin{table}[h]
+        \centering
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{| c | c | c | c |}
+            \hline
+            % cabecera 
+            Operación 
+            & Coste formulación usual 
+            & Coste nuestra propuesta  
+            & Operaciones reducidas  \\ \hline
+            $+$ & $n(d+s)$ & $n(d+s-1)$ & $n$\\
+            $\times$ & $n(d+s+2)$ & $n(d+s)$  & $2n$\\
+            $\gamma$ & $n$  & $n$  & $0$ \\
+            $\mathfrak{I}$  & $2$ & $0$ & $2$ \\
+            \hline
+            \end{tabular}
+        }
+        \caption{Comparativas de coste computacional en evaluación entre la implementación usual de una red neuronal y la nuestra}
+        \label{tab:comparativas coste red neuronal }
+    \end{table}
+    Para $n$ el número de neuronas, $d$,$s$ las dimensiones de entrada y salida de las redes neuronales. 
+\end{frame}
+\begin{frame}
+    \frametitle{¿Qué hemos conseguido hasta aquí?}
+    \begin{itemize}
+        \item Entender qué son, cómo funcionan y porqué las redes neuronales.
+        \item Un modelo que reduce el coste computacional de los usuales.
+        \item Implementación del modelo y sus métodos en la biblioteca 
+        \textit{OptimizedNeuralNetwork.jl}.
+    \end{itemize}
+    
+
+\end{frame}
+
+
+\subsection{Método inicialización aprendida}
+%% ¿Cómo podemos encontrar la red neuronal concreta 
+\begin{frame}
+    \frametitle{¿Qué gran problema tiene le método de aprendizaje propuesto?} 
+       \textbf{Minimizar el error}: Descenso de gradiente. 
+        \begin{equation*}
+            h_{t+1}  = h_t - \eta \nabla E_{\mathcal{D}}(h_t).
+        \end{equation*} 
+        \pause
+        ¿Cómo determinar  \textcolor{red}{$h_0$}? 
+        ¿aleatorio? ¿transferencia de características?
+\end{frame}
+
+\begin{frame}{Método de inicialización aprendida}
+    \begin{flushright}
+        \textit{Capítulo 7 páginas 111-130}
+    \end{flushright}
+    Algoritmo: 
+    \begin{enumerate}
+        \item Se toma $p \in \R^d$  aleatorio. 
+        \item Se extrae un subconjunto aleatorio  $\Lambda \subset \mathcal{D}$
+        que satisface 
+        \begin{equation*}
+            p \cdot (x_i-x_j) \neq 0
+        \end{equation*}
+        para cualquier $x_i,x_j$ distintos que estén en algún par de $\Lambda$.
+        \item Se construye de manera recursiva la red neuronal resolviendo esta sistema de ecuaciones: 
+        \begin{equation*}
+            \left\{ 
+                \begin{array}{l}
+                    S_{k} =
+                        M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})
+                    \\
+                    A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+                    p_{i} 
+                    \\
+                    B_{* k} = y_k - y_{k-1}
+                \end{array}
+            \right.
+        \end{equation*} 
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Visualización de cómo actúa el algoritmo }
+    
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_3_neuronas.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_7_neuronas.png}  
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_10_neuronas.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{7-algoritmo-inicializar-pesos/f_ideal_y_rn_con_51_neuronas.png}   
+    \end{subfigure}
+    \caption{Ejemplo de aproximación de la función $f(x)$ con redes neuronales.} 
+    \label{fig:aproximacion-red-neuronal}
+\end{figure}
+\end{frame}
+ 
+
+\begin{frame}
+    \frametitle{Propuesta de uso del algoritmo de inicialización aprendida}
+
+    \textbf{Diferencias con \textit{backpropagation} filosofía y coste:}
+    \begin{itemize}
+        \item \textit{Backpropagation}: Fijadas neuronas trato de reducir el error. Coste  $n |\mathcal{D}| >> n^2$.
+        \item Algoritmo de inicialización aprendida: A más neuronas menos error. Coste  $n\log(n)$
+    \end{itemize}
+\textbf{Propuesta de uso}
+    \begin{enumerate}
+        \item Inicializar red neuronal con nuestro algoritmo de inicialización aprendida. 
+        \item Reducir el error con \textit{backpropagation}. 
+    \end{enumerate}
+
+\end{frame}
+
 %%%%% Sobre las funciones de activación
-\section{Democratización de las funciones de activación} 
+\section{Democratización las funciones de activación} 
 \begin{frame}
     \frametitle{Democratización de las funciones de activación}
+    \begin{flushright}
+        \textit{Capítulo 6 páginas 99-109}
+    \end{flushright}
+    \begin{equation*}
+        \sum_{i=1}^{n} \beta_{i k} \textcolor{red}{\gamma_{i}}( A_{i}(x))
+    \end{equation*}
     ¿Hay funciones de activación mejores que otras?
 \end{frame}
 \begin{frame}
@@ -285,8 +432,8 @@ sorting=ynt
 \end{frame}
 
 \begin{frame}
-    \frametitle{Democratización }
-    Propuesta de familia de funciones de activación: 
+    \frametitle{Se ha minimizado el coste de las funciones de activación de en familias que pueden tener la misma precisión}
+    
     \begin{table}[H] 
         \centering  
         \begin{tabular}{| c | c | c | }
@@ -300,11 +447,32 @@ sorting=ynt
             & \textbf{\textit{Hard Hyperbolic Function}}& \\
     \hline
         \end{tabular}
-        \caption{Agrupaciones de funciones de activación con forma similar}  
+        \caption{Propuesta de familia de funciones de activación con mismo potencial}  
         \label{table:Clases-equivalencia-activation-function}
     \end{table}
-    
 
+\end{frame}
+\begin{frame}
+    \frametitle{Tiempo utilizado en cada iteración}
+
+    \includegraphics[width=\textwidth]{5-estudio-experimental/activation-function/boxplot-whiskers-activation-function.png}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Conclusiones}
+    \begin{enumerate}
+        \item Se ha propuesto y revindicado un nuevo modelo de red neuronal.
+        \item Se construido la biblioteca de \textit{OptimizedNeuronalNetwork.jl} que contiene: 
+        \begin{itemize}
+            \item Modelo propuesto. 
+            \item Evaluación.
+            \item Aprendizaje. 
+            \item Método de inicialización aprendida. 
+        \end{itemize}
+        \item Se ha propuesto un nuevo método de inicialización de pesos de una red neuronal. 
+        \item Se ha propuesto un criterio de inicialización de pesos. 
+    \end{enumerate}
+    
 \end{frame}
 
 %%%% 
@@ -345,33 +513,16 @@ sorting=ynt
     \end{itemize}   
 \end{frame}
 
-\begin{frame}{Aproximador universal a funciones medibles}
-    \label{univeral-aproximator}
-    Relación ser denso en 
-    \begin{align*}
-        \rrnn 
-            \Rightarrow  
-        \rrnng 
-            \Rightarrow
-        \pmcg
-            \Rightarrow  
-        \fC    
-            \Rightarrow 
-        \fM .
-    \end{align*}
-    Salida múltiple: 
-    \begin{align*}
-        \rrnn 
-            \longrightarrow 
-        \rrnnmc
-    \end{align*}
-    Los números reales son una entelequia para los ordenadores. 
-    \begin{align*}
-       \mathcal{H}(\Q^d, \Q^s)
-            \Rightarrow
-        \rrnnmc
-    \end{align*}
+
+\begin{frame}
+    \frametitle{Ejemplo con datos reales de resultados del algoritmo de aprendizaje aprendido}
+    Ejemplo real con datos \textit{Airfoil Self-Noise} de la NASA: 
+    \begin{itemize}
+        \item Error medio en test partiendo de red neuronal aleatoria y entrenando con \textit{backpropagation} hasta encontrar mínimo: $0,567 \pm 0,009$.
+        \item Error medio en test alcanzado de nuestro algoritmo de inicialización aprendida: $0,171 \pm 0,022$.
+    \end{itemize}
 \end{frame}
+
 
 % Para las citas que no estén mencionadas 
 \begin{frame}
