@@ -13,8 +13,8 @@ A lo largo de este proyecto se ha revindicado un nuevo modelo de red neuronal, u
 
 Se ha implementado además la biblioteca *OptimizedNeuralNetwork.jl* que implementa el modelo de red neuronal descrito así como el método de inicialización aprendida.
 
-Puede descargar la memoria [aquí](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/files/8942847/TFG-Blanca-Cano.pdf)
-y ver un ejemplo de uso de la biblioteca [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/blob/main/Memoria/capitulos/Ejemplo-uso-biblioteca.ipynb).
+Puede descargar la memoria [aquí](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/files/8942847/TFG-Blanca-Cano.pdf),
+así como ver un ejemplo de uso de la biblioteca en [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/blob/main/Memoria/capitulos/Ejemplo-uso-biblioteca.ipynb).
 
 ## Reglas Makefile
 
