@@ -7,12 +7,20 @@ Tutores:
 - Juan Julián Merelo Guervós
 - Francisco Javier Merí de la Maza
 
+## Contenido
+
+A lo largo de este proyecto se ha revindicado un nuevo modelo de red neuronal, un criterio de selección de funciones de activación y un método de inicialización aprendida de los peso de una red neuronal basado en los datos de entrenamiento.
+
+Se ha implementado además la biblioteca *OptimizedNeuralNetwork.jl* que implementa el modelo de red neuronal descrito así como el método de inicialización aprendida.
+
+Puede descargar la memoria [aquí](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/files/8942847/TFG-Blanca-Cano.pdf)
+y ver un ejemplo de uso de la biblioteca [el siguiente notebook](https://github.com/BlancaCC/TFG-Estudio-de-las-redes-neuronales/blob/main/Memoria/capitulos/Ejemplo-uso-biblioteca.ipynb).
+
 ## Reglas Makefile
 
 - Generación de la memoria `make`.
 - Pasar test a la implementación `make test`.
 - Para ejecutar los experimentos `make experimentos` (los experimentos generan datos cuya localización pude configurar en `Experimentos/.config.toml`).
-
 
 ## Biblioteca OptimizedNeuralNetwork.jl
 
