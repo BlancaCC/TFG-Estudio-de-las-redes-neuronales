@@ -26,10 +26,16 @@ do
     SpellingError $file; 
     let "exitValue += $?"
 done
+# Defense directory
+for file in $(find ./Memoria/Defensa -name "*.tex" -mmin -600 )
+do 
+    SpellingError $file; 
+    let "exitValue += $?"
+done
+# Article directory
 for file in $(find ./Article -name "*.tex" -mmin -600 )
 do 
     SpellingError $file; 
     let "exitValue += $?"
 done
-
 exit $exitValue; 
