@@ -36,6 +36,8 @@ tfg*.pdf
 *.fls
 *.lot
 *.loa
+*.bcf
+Memoria/Defensa/*.xml
 Memoria/_minted-tfg
 *.pdf
 
