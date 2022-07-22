@@ -26,5 +26,10 @@ do
     SpellingError $file; 
     let "exitValue += $?"
 done
+for file in $(find ./Article -name "*.tex" -mmin -600 )
+do 
+    SpellingError $file; 
+    let "exitValue += $?"
+done
 
 exit $exitValue; 
