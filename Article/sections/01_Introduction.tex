@@ -1,34 +1,34 @@
 \section*{Introduction} % The \section*{} command stops section numbering
+\addcontentsline{toc}{section}{\protect\numberline{}Introduction}
 
 We have tried to apply agile principles to the whole development process, from
 the more mathematical to the minimally viable product that was the developed
 code and this paper \cite{DBLP:journals/corr/abs-2104-12545}.
-
 
 Since in 1988, Hornik, Stinchombe and White established
 that Multilayer Feedforward Networks are Universal Approximators \cite{HORNIK1989359} this tools have revolutionized artificial intelligence. 
 
 Backpropagation \cite{backpropagation-Hinton} and its 
 variants are relevant methods to update neural 
-network's weights, even though it is and iterative 
-algorithm and it need a initial point. In order to determine that initial state we propose a initialization method based on the training data. 
+network's weights. However one of its weak spots comes from being an iterative 
+algorithm, is needed a initial point (ie a initial setting of the weights of the neuronal network). In order to determine that initial state we propose a initialization method based on the training data. 
 
-To introduce our method we are going to use one layer
- Multilayer Feedforward Networks \cite{HORNIK1989359} , from now on we will refer to them as neuronal Networks. Their mathematical modeling is the following functional space: 
+To introduce our method we are going to use One Layer
+Feedforward Networks \cite{HORNIK1989359} , from now on we will refer to them as Neural Networks. Their mathematical modeling is the following functional space: 
 
+    For $X \subseteq \R^d, Y \subseteq \R^s$. 
 
-    For $X \subseteq \R^d, Y \subseteq \R^s$ y  $\Gamma$ 
-    not empty, real measurable functions sets.  
-    \begin{align}
+    \begin{align} \label{nn_functional_space}
         \mathcal{H}(X,Y) 
         =
         \{
             h : X \longrightarrow Y 
             /& \quad 
             h_k(x) = 
-            \sum_{i=1}^{n} \beta_{i k} \gamma_{i}( A_{i}(x))          
+            \sum_{i=1}^{n} \beta_{i k} \gamma( A_{i}(x))          
         \}.
     \end{align}
     Where $h_k$, $k \in \{1, \ldots, s\}$ is the k-projection of $h$, 
-    $n \in \N,\gamma_{i} \in \Gamma , \beta_{i k} \in \R$ and $A_{i}$ is an affine function from $\R^d$ to $\R$. 
+    $n \in \N,\gamma$ an activation function 
+    \footnote{The definition of activation function will came in next sections }, $\beta_{i k} \in \R$ and $A_{i}$ is an affine function from $\R^d$ to $\R$. 
 
