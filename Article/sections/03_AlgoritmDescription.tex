@@ -1,0 +1,30 @@
+\section*{Algorithm} 
+\addcontentsline{toc}{section}{\protect\numberline{}Algorithm description}
+
+By defining Neural Networks as (\ref{nn_functional_space}).  Fixed the activation function 
+$\gamma$, we can see a Neural Network $h$ of $n$ hidden 
+units, $d \in \N$ entry dimension and $s$ output
+dimension as 
+\begin{align}
+    &h: \R^d \longrightarrow \R^s,\\
+    &h_k(x) = \sum_{i= 1}^n 
+        \left(
+            \beta_{i k} 
+            \left( 
+                \sum_{j = 1}^d
+                (
+                    \alpha_{i j} x_j
+                ) + z_i
+            \right)
+        \right).
+\end{align}
+
+as an element of the matrix space 
+\begin{align}
+    (A,B,S) \in R^{n \times s} \times R^{d \times n} \times R^{d}.
+\end{align} 
+
+Updating $h$ will consist of change the values of $(A,B,S)$ for our algorithm we will determine the value of 
+$(A,B,S)$. 
+
+\subsection*{Algorithm description}
