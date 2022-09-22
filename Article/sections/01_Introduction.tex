@@ -10,8 +10,12 @@ that Multilayer Feedforward Networks are Universal Approximators \cite{HORNIK198
 
 Backpropagation \cite{backpropagation-Hinton} and its 
 variants are relevant methods to update neural 
-network's weights. However one of its weak spots comes from being an iterative 
-algorithm, is needed a initial point (ie a initial setting of the weights of the neuronal network). In order to determine that initial state we propose a initialization method based on the training data. 
+network's weights. However one of its weak spots comes from being iterative 
+algorithms, since an initial point is needed (ie a initial setting of the weights of the neuronal network). In order to determine this point 
+there are some heuristics such as random initialization
+closed to null values or transference (\textcolor{red}{QUESTION: This should go in the art state? Anyway, some cites are need}). 
+
+In order to determine that initial state we propose a initialization method based on the training data. 
 
 To introduce our method we are going to use One Layer
 Feedforward Networks \cite{HORNIK1989359} , from now on we will refer to them as Neural Networks. Their mathematical modeling is the following functional space: 
