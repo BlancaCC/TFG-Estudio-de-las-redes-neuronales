@@ -23,8 +23,71 @@ as an element of the matrix space
 \begin{align}
     (A,B,S) \in R^{n \times s} \times R^{d \times n} \times R^{d}.
 \end{align} 
+\begin{align*}\label{eq:representation red neuronal}
+    A &= (\alpha_{i j}) \text{ con }  i \in \{1, \ldots d\}, \; j \in \{1, \ldots n\}. \\
+    S &= (\alpha_{0 j}) \text{ con }  j \in \{1, \ldots, n\}. \\
+    B &= (\beta_{j k}) \text{ con }  j \in \{1, \ldots n\}, \; k \in \{1, \ldots s\}.
+\end{align*}
 
-Updating $h$ will consist of change the values of $(A,B,S)$ for our algorithm we will determine the value of 
-$(A,B,S)$. 
+For our algorithm we will determine the value of 
+$(A,B,S)$ seeing them and the training data as an oversized system of linear equations. 
 
-\subsection*{Algorithm description}
+\subsection*{Algorithm description}  
+
+Let be $h \in  \mathcal{H}(\R^d, \R^s)$
+ with $n$ hidden units. 
+
+For convenient $M \in R^+$,  $p \in \R^d$ and $\Lambda \subset \mathcal{D}$ subset of the training set, the system for our Neuronal Model is defining as 
+
+\begin{equation}
+    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{k s} = -M 
+    \quad \text{y} \quad 
+    \tilde{\alpha}_{k p}(p \cdot x_k) + \tilde{\alpha}_{k s}= M.
+\end{equation} 
+Resolviendo el sistema resulta que 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            \\
+            \tilde{\alpha}_{k s} 
+            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k})
+            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
+        \end{array}
+    \right.
+\end{equation}
+
+Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de 
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            % sesgo
+            \alpha_{k 0} = \tilde{\alpha}_{k s} =
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})        
+            \\
+            \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
+            = 
+            \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_i 
+        \end{array}
+        \right.
+\end{equation}
+
+Esto define un sistema lineal compatible
+cuya solución son las respectivas filas y columnas: 
+
+\begin{equation}
+    \left\{ 
+        \begin{array}{l}
+            S_{k} =
+                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})
+            \\
+            A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+            p_{i} 
+            \\
+            B_{* k} = y_k - y_{k-1}
+        \end{array}
+    \right.
+\end{equation}  
+
