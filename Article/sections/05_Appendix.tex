@@ -1,0 +1,21 @@
+\section*{Appendix} 
+\addcontentsline{toc}{section}{\protect\numberline{}Appendix}
+
+\begin{theorem}
+    For each $(x_k, y_k) \in \Lambda \subset \mathcal{D}$ the neural network $h \in \mathcal{H}(\R^d, \R^s)$ 
+    defined by the algorithm  
+    satisfy that 
+    \begin{equation*}
+        h(x_k) = y_k.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $n \in \N$ be the amount of hidden cells. 
+    The size of $\mathcal{D}$ is at least $n$. 
+    Let $p \in \R^d$ be a vector that satisfies: exist 
+    $\Lambda \subset \mathcal{D}$ that verify
+    \begin{equation*}
+        p \cdot (x_i - x_j) \neq 0
+    \end{equation*}
+    for every different $x_i, x_j$ from $\Lambda$.
+\end{proof}

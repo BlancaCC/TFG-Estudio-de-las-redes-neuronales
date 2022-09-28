@@ -10,6 +10,7 @@ dimension as
     &h_k(x) = \sum_{i= 1}^n 
         \left(
             \beta_{i k} 
+            \gamma
             \left( 
                 \sum_{j = 1}^d
                 (
@@ -18,8 +19,7 @@ dimension as
             \right)
         \right).
 \end{align}
-
-as an element of the matrix space 
+determined by its params: 
 \begin{align}
     (A,B,S) \in R^{n \times s} \times R^{d \times n} \times R^{d}.
 \end{align} 
@@ -36,48 +36,52 @@ $(A,B,S)$ seeing them and the training data as an oversized system of linear equ
 
 Let be $h \in  \mathcal{H}(\R^d, \R^s)$
  with $n$ hidden units. 
+and let $M \in R^+$ chosen
+ conveniently\footnote{See subsection \textit{Some values for $M$}\ref{subsec:values of M}}. 
 
-For convenient $M \in R^+$,  $p \in \R^d$ and $\Lambda \subset \mathcal{D}$ subset of the training set, the system for our Neuronal Model is defining as 
-
-\begin{equation}
-    \tilde{\alpha}_{k p} (p \cdot x_{k-1}) + \tilde{\alpha}_{k s} = -M 
-    \quad \text{y} \quad 
-    \tilde{\alpha}_{k p}(p \cdot x_k) + \tilde{\alpha}_{k s}= M.
-\end{equation} 
-Resolviendo el sistema resulta que 
-
-\begin{equation}
-    \left\{ 
-        \begin{array}{l}
-            \tilde{\alpha}_{k p} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
-            \\
-            \tilde{\alpha}_{k s} 
-            = M -  \tilde{\alpha}_{k p}(p \cdot x_{k})
-            = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}) 
-        \end{array}
-    \right.
-\end{equation}
-
-Luego los coeficientes de la red neuronal $A$, $S$ se deducirían de 
-\begin{equation}
-    \left\{ 
-        \begin{array}{l}
-            % sesgo
-            \alpha_{k 0} = \tilde{\alpha}_{k s} =
-                M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k})        
-            \\
-            \alpha_{k i} =  \tilde{\alpha}_{k p} p_{i}
-            = 
-            \frac{2 M}{p \cdot (x_k - x_{k-1})}
-            p_i 
-        \end{array}
-        \right.
-\end{equation}
-
-Esto define un sistema lineal compatible
-cuya solución son las respectivas filas y columnas: 
-
-\begin{equation}
+ \begin{enumerate}
+    % First steps, initialize de values
+    \item Take randomly $p \in \R^{d+1} \setminus \{0\}$.
+    \item Let $\Lambda$ be an empty set. 
+    \item While $|\Lambda| < n$ repeat:
+    \begin{enumerate}[label=\roman*.]
+        \item Pick randomly $(x,y) \in \mathcal{D}$.
+        \item If $x$ satisfies that for every $(z,w) \in \Lambda$
+        \begin{equation}
+            p \cdot (x - z) \neq 0,
+        \end{equation}
+        then let $\Lambda \gets \Lambda \cup \{(x,y)\}$.
+    \end{enumerate}
+    % Ordered sed 
+    \item Without loss of generality the elements of $\Lambda$
+    \begin{equation*}
+        \Lambda = \{(x_1,y_1), (x_2,y_2), \ldots (x_n, y_n)\}
+    \end{equation*}
+    are ordered by the following statement
+    \begin{equation}
+        p \cdot x_1 < p \cdot x_2< \ldots p \cdot x_n.
+    \end{equation}
+    % Setting the parameters 
+    \item Pick  $(x_1, y_1) \in \Lambda$ \\
+    \begin{align*}
+         &S_1 = M p_0, \\
+         & A_{1 *} = M p_{[1,d]}, \\
+         & B_{* 1} = y_1.
+     \end{align*}
+    For $k \in \{1, \ldots, n \}$
+     \begin{align*}
+         &S_{k} = M -  \frac{2 M}{p \cdot (x_k - x_{k-1})}(p \cdot x_{k}),\\
+         & A_{k i} = \frac{2 M}{p \cdot (x_k - x_{k-1})}
+         p_{i}  \quad i \in \{1, \ldots d\},\\
+         & B_{* k} = y_k - y_{k-1}.
+     \end{align*} 
+     where $(x_k, y_k) \in \Lambda$.
+     
+     \item $(A,S,B)$ are the matrix we searched for.
+    
+ \end{enumerate}
+ $p \in \R^d$ and $\Lambda \subset \mathcal{D}$ subset of the training set, the system for our Neuronal Model is defining as 
+\begin{equation}\label{eq: neural system}
     \left\{ 
         \begin{array}{l}
             S_{k} =
@@ -90,4 +94,30 @@ cuya solución son las respectivas filas y columnas:
         \end{array}
     \right.
 \end{equation}  
+where $(x_k, y_k) \in \mathcal{D}$ and $S_{k}$ denoted the $k-$th column, $A_{k i}$ the element of the $k$ row and $i$ column, $B_{* k}$ denoted the $k-$th row. 
+
+\subsubsection*{Some values for $M$}
+\label{subsec:values of M}
+The value of $M$ is determined by the chosen activation function, $M$ could be any real value bigger than the specified one: 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        Activation function  & Minimum value of $M$ \\ \hline
+        Ramp function & 1 \\ \hline
+        \textit{Cosine Squasher} & $\frac{\pi}{2}$ \\ \hline
+        Indicator function of 0 & 0 \\ \hline
+        \textit{Hardtanh} & 1 \\ \hline
+        Sigmoidea  &  $10$ (for an error smaller than $10^{-5}$)\\ \hline
+        Tangente hiperbólica  &  $7$ for an error smaller than $10^{-5}$)\\ \hline
+    \end{tabular}
+    \caption{
+        Minimum value of $M$ for the algorithm depending of the chosen activation function.
+    }
+    \label{table:M-activation-function}
+\end{table}
+
+
+
 

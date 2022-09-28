@@ -23,9 +23,9 @@
 \documentclass[fleqn,10pt]{SelfArx} % Document font size and equations flushed left
 
 \usepackage[english]{babel} % Specify a different language here - english by default
-
 \usepackage{lipsum} % Required to insert dummy text. To be removed otherwise
-
+\usepackage{amsthm} % Required for math stuff
+\usepackage{enumitem} % In order to use Roman enumeration
 %----------------------------------------------------------------------------------------
 %	COLUMNS
 %----------------------------------------------------------------------------------------
@@ -46,6 +46,8 @@
 %----------------------------------------------------------------------------------------
 \newcommand{\R}{\mathbb{R}}     % Reals
 \newcommand{\N}{\mathbb{N}}     % Naturals
+
+\newtheorem{theorem}{Theorem}
 %----------------------------------------------------------------------------------------
 %	HYPERLINKS
 %----------------------------------------------------------------------------------------
@@ -104,7 +106,7 @@
 \input{sections/01_Introduction}
 \input{sections/02_StateOfArt}
 \input{sections/03_AlgoritmDescription}
-
+\input{sections/05_Appendix}
 
 \phantomsection
 \bibliographystyle{unsrt}
